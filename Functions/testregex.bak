@@ -1,0 +1,48 @@
+﻿$FileName = '.\test2.ini'
+$NewFileName = '.\test3.ini'
+$Section = 'Section5'
+$Comment = '    Here is comment 1    ', '   Here is comment 2   '
+$CreateSection = $true
+$IniFile = Get-Content $FileName
+$NewIniFile = @()
+$Inserted = $false
+
+if ($Section -eq '') {
+    foreach ($CurrentComment in $Comment) {
+        $CurrentComment = $CurrentComment.Trim()
+        $NewIniFile += "; $CurrentComment"
+    }
+    
+    $Inserted = $true
+}
+
+$IniFile | ForEach-Object -Process {
+    if ($_ -match '(\[\s*)(\S+)(\s*\])') {
+        $MatchSection = $matches[2]
+        if ($MatchSection -eq $Section) {
+            $NewIniFile += $_
+            foreach ($CurrentComment in $Comment) {
+                $CurrentComment = $CurrentComment.Trim()
+                $NewIniFile += "; $CurrentComment"
+            }
+            $Inserted = $true
+        } else {
+            $NewIniFile += $_
+        }
+    } else {
+        $NewIniFile += $_
+    }
+}
+
+if (-not $Inserted -and $CreateSection) {
+    $NewIniFile += "[$Section]"
+    foreach ($CurrentComment in $Comment) {
+        $CurrentComment = $CurrentComment.Trim()
+        $NewIniFile += "; $CurrentComment"
+    }
+    $Inserted = $true
+}
+
+$Inserted
+
+$NewIniFile | Set-Content -Path $NewFileName

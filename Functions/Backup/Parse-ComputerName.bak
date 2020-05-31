@@ -1,0 +1,202 @@
+Function Parse-ComputerName {
+<#
+.SYNOPSIS
+    To parse from a given computername the pieces that make it up
+.DESCRIPTION
+    To parse from a given computername the pieces that make it up
+.PARAMETER ComputerName
+    A string or an array of strings which specify the ComputerName(s) for which you want the names parsed.
+.PARAMETER Case
+    An optional parameter. 'Upper' will convert calculated fields to uppercase. 'Lower' will convert calculated fields to lowercase. The original specified computername is not altered.
+.NOTES
+    Author:     Bill Riedy
+    Version:    1.0
+    Date:       2018/04/24
+    To Do:      Have not properly handled the case if someone enters a computername beginning with "LCSA" or "ITT22".
+.EXAMPLE
+    Parse-ComputerName -ComputerName 'LCS10CINDC01'
+
+    Would return
+    ComputerName Valid Platform Location PIT HostName
+    ------------ ----- -------- -------- --- --------
+    LCS10CINDC01  True LCS      10       CIN DC01
+.EXAMPLE
+    Parse-ComputerName -ComputerName 'badname'
+
+    Would return
+    ComputerName Valid Platform Location PIT HostName
+    ------------ ----- -------- -------- --- --------
+    badname      False                       badname
+.EXAMPLE
+    Parse-ComputerName -ComputerName 'LCS10CINDC01' -Case Lower
+
+    Would return
+    ComputerName Valid Platform Location PIT HostName
+    ------------ ----- -------- -------- --- --------
+    LCS10CINDC01  True lcs      10       cin dc01
+.EXAMPLE
+    "lcs2cindc01","itt2auinhvm01","badname" | Parse-ComputerName  -case upper
+
+    Would return
+    ComputerName  Valid Platform Location PIT HostName
+    ------------  ----- -------- -------- --- --------
+    lcs2cindc01    True LCS      2        CIN DC01
+    itt2auinhvm01  True ITT2     A        UIN HVM01
+    badname       False                       BADNAME
+.EXAMPLE
+    Parse-ComputerName -Computername "LCS18cindc01" -case Upper -verbose| ft -auto
+    
+    Would return
+    VERBOSE: $ValidPlatformName=[(LCS|ITT2)]
+    VERBOSE: $ValidPlatformNumber=[(\d\d|\d|A|B|C)]
+    VERBOSE: $ValidPit=[(CIN|UIN|CWS|HME|CNS|CCS)]
+    VERBOSE: Computers specified are [LCS18cindc01]
+    VERBOSE: $curComputerName=[LCS18cindc01]
+    VERBOSE: $FullRegEx=[^(LCS|ITT2)(\d\d|\d|A|B|C)(CIN|UIN|CWS|HME|CNS|CCS)\w+$]
+    VERBOSE: $HullName=[LCS]
+    VERBOSE: $PlatformNumber=[18]
+    VERBOSE: $PIT=[cin]
+    VERBOSE: $HostName=[dc01]
+    VERBOSE: Converting fields to uppercase
+
+    ComputerName Valid Platform Location PIT HostName
+    ------------ ----- -------- -------- --- --------
+    LCS18cindc01  True LCS      18       CIN DC01
+.OUTPUTS
+    A custom object containing the fields:
+    ComputerName - The name of the computer as originally specified
+    Valid        - A boolean indicating if it is a valid computername given this script
+    Platform     - A string being 'LCS', or 'ITT2', or blank if computername is invalid
+    Location     - A string of numbers if PlatformName = 'LCS', or 'A','B','C' if PlatformName = 'ITT2', or blank if the computername is invalid
+    PIT          - A string from the set (CIN, UIN, CWS, HME, CNS, CCS) or '' if undetermined
+    HostName     - The remaining portion of the string after $PlatformName $PlatformNumber, $PIT
+#>
+#region Parameter
+    [cmdletbinding()]
+    Param(
+        [Parameter(
+            Mandatory = $True,
+            Position = 0,
+            ParameterSetName = '',
+            ValueFromPipeline = $True)]
+            [string[]] $ComputerName,
+        [Parameter(
+            Mandatory = $false,
+            Position = 1,
+            ParameterSetName = '')]
+            [ValidateSet('Upper','Lower')]
+            [string] $Case
+    )
+#endregion Parameter
+begin {
+    $ValidPlatformName   = "(LCS|ITT2)"
+    # Need to search for 2 digits first as regex will exit on first match
+    $ValidPlatformNumber = "(\d\d|\d|A|B|C)"
+    $ValidPit            = "(CIN|UIN|CWS|HME|CNS|CCS)"
+    write-verbose "`$ValidPlatformName=[$($ValidPlatformName)]"
+    write-verbose "`$ValidPlatformNumber=[$($ValidPlatformNumber)]"
+    write-verbose "`$ValidPit=[$($ValidPit)]"
+}
+process {
+    write-verbose "Computers specified are [$($computerName -join ', ')]"
+    foreach ($curComputerName in $ComputerName) {
+        write-verbose "`$curComputerName=[$($curComputerName)]"
+        $FullRegEx = "^" + $ValidPlatformName + $ValidPlatformNumber + $ValidPit + "\w+$"
+        write-verbose "`$FullRegEx=[$($FullRegEx)]"
+        if ($curComputerName -match $FullRegEx) {
+            $curRegEx = "^"+$ValidPlatformName
+            $curComputerName -match $curRegEx | out-null
+            $HullName = $matches[0]
+            write-verbose "`$HullName=[$($HullName)]"
+            $curComputerName -match ("^"+$ValidPlatformName + $ValidPlatformNumber) | out-null
+            $tempString = $matches[0]
+            $PlatformNumber = $tempstring.substring($HullName.length)
+            write-verbose "`$PlatformNumber=[$($PlatformNumber)]"
+            $curComputerName -match ("^" + $ValidPlatformName + $ValidPlatformNumber + $ValidPit) | out-null
+            $tempString = $matches[0]
+            $PIT = $tempstring.substring(($HullName+$platformNumber).length)
+            write-verbose "`$PIT=[$($PIT)]"
+            $HostName = $curComputerName.substring(($HullName+$platformNumber+$pit).length)
+            write-verbose "`$HostName=[$($HostName)]"
+            switch ($case) {
+                'Upper' {
+                    write-verbose "Converting fields to uppercase"
+                    $Prop = @{
+                        ComputerName = $curComputerName
+                        Valid        = $true
+                        Platform     = $HullName.ToUpper()
+                        Location     = $PlatformNumber.ToUpper()
+                        PIT          = $PIT.ToUpper()
+                        HostName     = $HostName.ToUpper()
+                    }
+                }
+                'Lower' {
+                    write-verbose "Converting fields to lowercase"
+                    $Prop = @{
+                        ComputerName = $curComputerName
+                        Valid        = $true
+                        Platform     = $HullName.ToLower()
+                        Location     = $PlatformNumber.ToLower()
+                        PIT          = $PIT.ToLower()
+                        HostName     = $HostName.ToLower()
+                    }
+                }
+                default {
+                    $Prop = @{
+                        ComputerName = $curComputerName
+                        Valid        = $true
+                        Platform     = $HullName
+                        Location     = $PlatformNumber
+                        PIT          = $PIT
+                        HostName     = $HostName
+                    }
+                }
+            } # endSwitch
+            $obj = new-object psobject -property $prop
+            $obj | Select-Object ComputerName, Valid, Platform, Location, PIT, HostName
+        } else {
+            switch ($case) {
+                'Upper' {
+                    write-verbose "Converting fields to uppercase"
+                    $Prop = @{
+                        ComputerName = $curComputerName
+                        Valid        = $false
+                        Platform     = ""
+                        Location     = ""
+                        PIT          = ""
+                        HostName     = $curComputerName.ToUpper()
+                    }
+                }
+                'Lower' {
+                    write-verbose "Converting fields to lowercase"
+                    $Prop = @{
+                        ComputerName = $curComputerName
+                        Valid        = $false
+                        Platform     = ""
+                        Location     = ""
+                        PIT          = ""
+                        HostName     = $curComputerName.ToLower()
+                    }
+                }
+                default {
+                    $Prop = @{
+                        ComputerName = $curComputerName
+                        Valid        = $false
+                        Platform     = ""
+                        Location     = ""
+                        PIT          = ""
+                        HostName     = $curComputerName
+                    }
+                }
+            } # endSwitch
+            $obj = new-object psobject -property $prop
+            $obj | Select-Object ComputerName, Valid, Platform, Location, PIT, HostName
+        } # endElse
+    }
+} # endProcess
+end {
+    # No code needed here
+}
+
+} # EndFunction Parse-ComputerName
+# EOF: Parse-ComputerName.ps1

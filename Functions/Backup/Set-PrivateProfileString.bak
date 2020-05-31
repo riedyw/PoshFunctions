@@ -1,0 +1,87 @@
+function Set-PrivateProfileString {
+<#
+.SYNOPSIS
+    To get data out of an .ini file
+.DESCRIPTION
+    To get data out of an .ini file. .ini files are plain text that is categorized
+    in section names. Within a section there are key, value pairs. An example .ini
+    file content is as follows:
+
+    [Section1]
+    Key1=Data1
+.PARAMETER File
+    The path to the .ini file. Can be a relative path.
+.PARAMETER Section
+    The name of the section within the .ini file. Section names within the file
+    are enveloped in square brackets. []
+.PARAMETER Key
+    The key within the section that you want to pull data from.
+.PARAMETER Value
+    The value you want to assign to the given key
+.EXAMPLE
+    Assume you have an .ini file c:\Temp\Test.ini that contains
+    [Section1]
+    Key1=Data1
+
+    Set-PrivateProfileString -File c:\Temp\Test.ini -Section 'Section2' -Key 'Key2' -Value 'Data2'
+
+    The file will now contain
+
+    [Section1]
+    Key1=Data1
+    [Section2]
+    Key2=Data2
+.NOTES
+    ## From PowerShell Cookbook (O'Reilly)
+    ## by Lee Holmes (http://www.leeholmes.com/guide)
+    ##
+
+    Some modifications have been made:
+    * Error checking around file
+    * Ability to take relative path to file
+#>
+
+    [CmdletBinding(ConfirmImpact='Low')]
+    param(
+        [string] $File,
+
+        [string] $Section,
+
+        [string] $Key,
+
+        [string] $value,
+
+        [switch] $CreateFile
+    )
+
+    Begin {
+        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    }
+
+    Process {
+        if (-not (Test-Path -Path $File) -and $CreateFile) {
+            $null = New-Item -Path .\Test2.ini -ItemType File
+        }
+        if (Test-Path $File) {
+            $ResolveFile = Resolve-Path -Path $File
+            if ($ResolveFile.count -gt 1) {
+                Write-Error -Message "ERROR: File specification [$File] resolves to more than 1 file."
+            } else {
+                $parameterTypes = [string], [string], [string], [string]
+                $parameters = [string] $Section, [string] $Key, [string] $Value, [string] $ResolveFile
+
+                ## Invoke the API
+                [void] (Invoke-WindowsApi -dllName 'kernel32.dll' -returnType ([UInt32]) -methodName 'WritePrivateProfileString' -parameterTypes $parameterTypes -parameters $parameters)
+
+            }
+        } else {
+            Write-Error -Message "ERROR: File [$file] does not exist"
+        }
+
+    }
+
+    End {
+        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    }
+
+} #EndFunction Set-PrivateProfileString

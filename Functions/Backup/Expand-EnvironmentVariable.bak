@@ -1,0 +1,77 @@
+# inspired by: https://stackoverflow.com/questions/45953778/how-to-use-powershell-to-extract-data-from-dll-or-exe-files
+
+function Expand-EnvironmentVariable {
+<#
+.SYNOPSIS
+    Describe purpose of "Expand-EnvironmentVariable" in 1-2 sentences.
+
+.DESCRIPTION
+    Add a more complete description of what the function does.
+
+.PARAMETER String
+    Describe parameter -String.
+
+.PARAMETER IncludeOriginal
+    Describe parameter -IncludeOriginal.
+
+.EXAMPLE
+    Expand-EnvironmentVariable -String Value -IncludeOriginal
+    Describe what this call does
+
+.NOTES
+    Place additional notes here.
+
+.LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Expand-EnvironmentVariable
+
+.INPUTS
+    List of input types that are accepted by this function.
+
+.OUTPUTS
+    List of output types produced by this function.
+#>
+
+    #region Parameter
+    [CmdletBinding(ConfirmImpact='Low')]
+    [OutputType([object[]])]
+    Param(
+        [Parameter(Mandatory, HelpMessage = 'Enter a string to expand', Position = 0, ValueFromPipeline) ]
+        [string[]] $String,
+
+        [Parameter(Position = 1)]
+        [switch] $IncludeOriginal
+    )
+    #endregion Parameter
+
+    begin {
+        Write-Verbose -Message "Starting $($myinvocation.mycommand)"
+        [System.Collections.ArrayList] $returnVal = @()
+    }
+
+    process {
+        foreach ($s in $String) {
+            write-verbose -Message $s
+            $ExpandedString = [Environment]::ExpandEnvironmentVariables($s)
+            if ($IncludeOriginal) {
+                $obj = new-object -TypeName psobject -Property ([ordered] @{ Original = $s; ExpandedString = $ExpandedString})
+                write-verbose -Message $obj
+            } else {
+                $obj = $ExpandedString
+            }
+            $null =  $returnVal.add($obj)
+        }
+    }
+
+    end {
+        write-verbose -Message $returnVal.count
+
+        if ($IncludeOriginal) {
+            $returnVal #| select-object Original, StringValue
+        } else {
+            $returnVal
+        }
+        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    }
+
+}

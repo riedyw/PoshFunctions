@@ -1,0 +1,74 @@
+Function Get-EnumValue {
+<#
+.SYNOPSIS
+    Describe purpose of "Get-EnumValue" in 1-2 sentences.
+
+.DESCRIPTION
+    Add a more complete description of what the function does.
+
+.PARAMETER Enum
+    Describe parameter -Enum.
+
+.PARAMETER IncludeEnum
+    Describe parameter -IncludeEnum.
+
+.EXAMPLE
+    Get-EnumValue -Enum Value -IncludeEnum
+    Describe what this call does
+
+.NOTES
+    Place additional notes here.
+
+.LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Get-EnumValue
+
+.INPUTS
+    List of input types that are accepted by this function.
+
+.OUTPUTS
+    List of output types produced by this function.
+#>
+
+# Get-EnumValue -enum "System.Diagnostics.Eventing.Reader.StandardEventLevel"
+    [CmdletBinding()]
+    Param(
+        [string[]] $Enum,
+
+        [switch] $IncludeEnum
+    )
+    $oldEA = $ErrorActionPreference
+    $ErrorActionPreference = 'Stop'
+    foreach ($curEnum in $Enum) {
+        if ( -not $IncludeEnum ) {
+            $enumValues = @{}
+            try {
+                [enum]::getnames([type] $curEnum) |
+                    ForEach-Object {
+                    $enumValues.add($_, $_.value__)
+                }
+                write-output -InputObject $enumValues
+            } catch {
+                write-warning -Message "The enum specified [$($curEnum)] could not be found or is not an [enum] data type"
+            }
+        } else {
+            $returnArray = @()
+            try {
+                [enum]::getvalues([type] $curEnum) |
+                    ForEach-Object {
+                        $Prop = @{
+                            Class = $curEnum
+                            Name  = ('{0}' -f $_)
+                            Value = ($_.value__)
+                        }
+                        $obj = new-object -typename psobject -property $Prop
+                        $returnArray += $obj
+                    }
+                write-output -inputobject ($returnArray | Select-object -property Class, Name, Value)
+            } catch {
+                write-warning -message "The enum specified [$($curEnum)] could not be found or is not an [enum] data type"
+            }
+        }
+    }
+    $ErrorActionPreference = $oldEA
+}

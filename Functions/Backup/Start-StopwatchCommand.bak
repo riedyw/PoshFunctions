@@ -1,0 +1,48 @@
+Function Start-StopwatchCommand {
+    <#
+        .SYNOPSIS
+        Describe purpose of "Start-StopwatchCommand" in 1-2 sentences.
+
+        .DESCRIPTION
+        Add a more complete description of what the function does.
+
+        .PARAMETER ScriptBlock
+        Describe parameter -ScriptBlock.
+
+        .EXAMPLE
+        Start-StopwatchCommand -ScriptBlock Value
+        Describe what this call does
+
+        .NOTES
+        Place additional notes here.
+
+        .LINK
+        URLs to related sites
+        The first link is opened by Get-Help -Online Start-StopwatchCommand
+
+        .INPUTS
+        List of input types that are accepted by this function.
+
+        .OUTPUTS
+        List of output types produced by this function.
+    #>
+
+    [CmdletBinding(ConfirmImpact='Low')]
+    param ( [ScriptBlock] $ScriptBlock )
+
+    Begin {
+        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    }
+
+    Process {
+        $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+        & $ScriptBlock
+        $stopwatch.Stop()
+        Set-Variable -name Elapsed -value $stopwatch.Elapsed -scope 1
+        Write-Verbose -message ('Setting value of $Elapsed to ' + $Elapsed.TotalSeconds.ToString() + ' seconds')
+    }
+
+    End {
+        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    }
+}

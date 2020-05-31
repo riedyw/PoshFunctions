@@ -1,0 +1,181 @@
+<#
+.Synopsis
+   Converts data from an array of fixed length column structured strings to objects with a property for each column.
+.DESCRIPTION
+   Expects one or more strings of fixed length column data and parses these strings into one object for each matching string. 
+   
+   The resulting object will have one property for each column in the data. The property names will be Column1, Column2, ..., ColumnN if the HeadersFromFirstLine switch is not used.
+.PARAMETER InputObject
+   Specifies the array of strings which is the data to be used. In an entry in this array does not fullfill the structure specified by the ColumnWidths parameter it will be ignored. For each string, the whole string, from start to end, must match the format in order for the string to be included.
+.PARAMETER ColumnWidths
+   Specifies the width for each of the columns in the input data. Each entry in the array passed in determines the number of characters expected in the column of the corresponding index.
+.PARAMETER Trim
+   Specifies whether or not padding (leading or trailing) spaces should be removed from the property values.
+.PARAMETER HeadersFromFirstLine
+   Specifies whether or not the first entry in the InputObject array should be removed from the result list and instead be used to set the property names for the resulting objects.
+.INPUTS
+   Piping an array of strings to this function will set the InputObject parameter. For additional help, see Get-Help ConvertFrom-FixedLengths -Parameter InputObject
+.OUTPUTS
+   One object for each entry in the InputObject array which fits the format described by the ColumnWidths parameter. 
+
+   The properties of the objects, if the HeadersFromFirstLine switch was not provided, will be named Column1, Column2, Column3, ..., ColumnN.
+
+   If the HeadersFromFirstLine switch is provided, the properties will be named based on the names specified in the first line. If the first line does not conform to the format specified by the ColumnWidths property, the first line will be ignored and the properties will still be named Column1, Column2, ..., ColumnN.
+.NOTES
+   Author: Robert Westerlund
+   Date:   2014-03-23  
+.EXAMPLE
+
+    PS C:\> Get-Content .\data.txt | ConvertFrom-FixedLengths 9,10,14,2 | Format-Table
+
+    Just pipe the result of the Get-Content cmdlet to this function and provide the column widths.
+
+.EXAMPLE
+
+    PS C:\> Get-Content .\data.txt | ConvertFrom-FixedLengths 9,10,14,2 -Trim | Format-Table
+    
+    To remove padding spaces in the data, use the Trim switch.
+    
+.EXAMPLE
+
+    PS C:\> Get-Content .\data.txt | ConvertFrom-FixedLengths 9,10,14,2 -Trim -HeadersFromFirstLine | Format-Table
+
+    If the first line in the data file is a header line use the HeadersFromFirstLine switch
+
+.EXAMPLE
+
+    PS C:\>
+
+    Below is an example where the data is a string array created in memory (sample names and locations taken from different Wikipedia articles).
+
+    PS C:\> $peopleOrderedByFirstName = @"
+    >> Ada    Lovelace  UK            al
+    >> Alfred Nobel     Sweden        an
+    >> GalileoGalilei   Italy         gg
+    >> Sophie KowalevskiRussian Empiresk
+    >> Thomas Edison    USA           te
+    >> Wang   Zhenyi    China         wz
+    >> "@ -split [Environment]::NewLine
+    
+    PS C:\> $peopleOrderedByFirstName | 
+    >> ConvertFrom-FixedLengths 7,10,14,2 -Trim | 
+    >> Format-Table
+
+.EXAMPLE
+
+    PS C:\>
+
+    This sample uses the first line of the data to set the property names for the resulting objects (sample names and locations taken from different Wikipedia articles).
+
+    PS C:\> $peopleOrderedByFirstNameWithHeaders = @"
+    >> FirstNameLastName  Country       FL
+    >> Ada      Lovelace  UK            al
+    >> Alfred   Nobel     Sweden        an
+    >> Galileo  Galilei   Italy         gg
+    >> Sophie   KowalevskiRussian Empiresk
+    >> Thomas   Edison    USA           te
+    >> Wang     Zhenyi    China         wz
+    >> "@ -split [Environment]::NewLine
+
+    PS C:\> $peopleOrderedByFirstNameWithHeaders |
+    >> ConvertFrom-FixedLengths 9,10,14,2 -Trim -HeadersFromFirstLine | 
+    >> Format-Table
+
+#>
+function ConvertFrom-FixedLengths
+{
+    [OutputType([PSCustomObject])]
+    PARAM(
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
+        [string[]]$InputObject
+    ,
+        [Parameter(Mandatory = $true, Position = 0)]
+        [ValidateNotNullOrEmpty()]
+        [int[]]$ColumnWidths
+    ,
+        [switch]$Trim
+    ,
+        [switch]$HeadersFromFirstLine
+    )
+    BEGIN
+    {
+        #Ensure that no columns are of width 0 or lower.
+        $valuesLowerThanOrEqualToZero = $ColumnWidths | Where { $_ -le 0 }
+        if ($valuesLowerThanOrEqualToZero.Length -gt 0)
+        {
+            throw "The column width must be a value higher than 0. The value(s) '$($valuesLowerThanOrEqualToZero -join "', '")' is not valid for column width"
+        }
+
+        #Build the regex string for parsing the columns
+        $regex = '^'
+        foreach($width in $ColumnWidths)
+        {
+            $regex += "(.{$width})"
+        }
+        $regex += '$'
+        Write-Verbose "Using the regex '$regex' for parsing the string"
+
+        #Create an array holding the header names we want to use, so we can get headers from the first line
+        $haveHeadersBeenRetrieved = $false
+        $columnWidthLength = $ColumnWidths.Length
+        #We use the start index 1 since it feels more natural for property name
+        $headers = (1..$columnWidthLength) | Foreach { "Column$_" }
+        
+        #Build a script block which will be used to create PSObjects from the input data
+        $NewObjectScript = {
+            PARAM(
+                [Microsoft.PowerShell.Commands.MatchInfo]
+                $MatchInfo
+            )
+
+            $groups = $MatchInfo.Matches.Groups
+            $properties = [ordered]@{}
+            
+            for($index = 0; $index -lt $columnWidthLength; $index ++)
+            {
+                #The group at index 0 is the whole matching string, so the first capture group is at 1
+                $value = $groups[$index + 1].Value
+                if ($Trim)
+                {
+                    $value = $value.Trim()
+                }
+                $properties.($headers[$index]) = $value 
+            }
+
+            Write-Output (New-Object PSCustomObject -Property $properties)
+        }
+    }
+    PROCESS
+    {
+        if ($HeadersFromFirstLine -and -not $haveHeadersBeenRetrieved)
+        {
+            #Remove the first line from the input object and use the regular expression to retrieve the headers from that line
+            $InputObject | 
+                Select -First 1 |
+                Select-String -Pattern $regex |
+                Foreach {
+                    $groups = $_.Matches.Groups
+                    $headers = (1..$columnWidthLength) | Foreach { 
+                        $groups[$_].Value.Trim()
+                    }
+                }
+            
+            #Verify that no two headers are the same
+            $duplicateHeaders = $headers | Where { $current = $_; @($Headers | Where {$_ -eq $current}).Length -gt 1 } | Get-Unique -AsString
+            if ($duplicateHeaders)
+            {
+                throw "Cannot use the same header for two columns. Duplicate header(s) found: $($duplicateHeaders -join ', ')"
+            }
+            Write-Verbose "Using the following header(s) for property names: $($headers -join ', ')"
+
+            #Ensure that we don't do this again and that the rest of the processing doesn't use the header line
+            $haveHeadersBeenRetrieved = $true
+            $InputObject = $InputObject | Select -Skip 1
+        }
+
+        #Process the actual strings based on the regex created in the BEGIN scriptblock
+        $InputObject | 
+            Select-String -Pattern $regex |
+            Foreach {& $NewObjectScript $_ }
+    }
+}

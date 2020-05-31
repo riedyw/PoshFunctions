@@ -1,0 +1,151 @@
+
+function Sum-Digits
+{
+<#
+.SYNOPSIS
+Function to cleanup a MACAddress string
+.DESCRIPTION
+Function to cleanup a MACAddress string
+.PARAMETER MacAddress
+Specifies the MacAddress. Aliased to 'Address'
+.PARAMETER Separator
+Specifies the separator every two characters. Aliased to 'Delimiter'
+.PARAMETER Uppercase
+Specifies the output must be Uppercase
+.PARAMETER Lowercase
+Specifies the output must be LowerCase
+.EXAMPLE
+Clean-MacAddress -MacAddress '00:11:22:33:44:55'
+001122334455
+.EXAMPLE
+Clean-MacAddress -MacAddress '00:11:22:dD:ee:FF' -Uppercase
+001122DDEEFF
+.EXAMPLE
+Clean-MacAddress -MacAddress '00:11:22:dD:ee:FF' -Lowercase
+001122ddeeff
+.EXAMPLE
+Clean-MacAddress -MacAddress '00:11:22:dD:ee:FF' -Lowercase -Separator '-'
+00-11-22-dd-ee-ff
+.EXAMPLE
+Clean-MacAddress -MacAddress '00:11:22:dD:ee:FF' -Lowercase -Separator '.'
+00.11.22.dd.ee.ff
+.EXAMPLE
+Clean-MacAddress -MacAddress '00:11:22:dD:ee:FF' -Lowercase -Separator :
+00:11:22:dd:ee:ff
+.EXAMPLE
+Clean-MacAddress -Address '00:11:22:dD:ee:FF', '10005a123456' -Uppercase -Delimiter '-'
+00-11-22-DD-EE-FF
+10-00-5A-12-34-56
+
+Showing how function can take an array of MacAddress using the alias 'Address' and the alias 'Delimiter' for the 'Separator' parameter
+.EXAMPLE
+'00:11:22:dD:ee:FF', '10005a123456' | Clean-MacAddress  -Lowercase -Separator '.'
+00.11.22.dd.ee.ff
+10.00.5a.12.34.56
+
+Showing how the values for MacAddress can be received from the pipeline
+.EXAMPLE
+Clean-MacAddress '10005a123456' -Lowercase -Separator ':'
+10:00:5a:12:34:56
+
+Showing how MacAddress can be unnamed positional parameter
+.OUTPUTS
+System.String
+.NOTES
+Originally by
+Francois-Xavier Cat
+www.lazywinadmin.com
+@lazywinadm
+
+Bill Riedy
+Modified:
+1. Changed MacAddress to allow for pipeline input
+2. Changed MacAddress to be a positional parameter
+3. Changed MacAddress to be aliased to 'Address'
+4. Changed MacAddress to accept an array of addresses if need be
+5. Changed Separator to be aliased to 'Delimiter'
+
+#>
+    [OutputType([String], ParameterSetName = "Upper")]
+    [OutputType([String], ParameterSetName = "Lower")]
+    [CmdletBinding(DefaultParameterSetName = 'Lower')]
+    param
+    (
+        [Parameter(ParameterSetName = 'Lower')]
+        [Parameter(ParameterSetName = 'Upper')]
+        [Parameter(Position=0,Mandatory=$True,ValueFromPipeline = $true)]
+        [Alias("Address")]
+        [String[]] $Digit,
+
+        [Parameter(ParameterSetName = 'Upper')]
+        [Switch] $IncludeOriginal
+
+    )
+    BEGIN
+    {
+        # Initial Cleanup
+        # $MacAddress = $MacAddress -replace "-", "" #Replace Dash
+        # $MacAddress = $MacAddress -replace ":", "" #Replace Colon
+        # $MacAddress = $MacAddress -replace "/s", "" #Remove whitespace
+        # $MacAddress = $MacAddress -replace " ", "" #Remove whitespace
+        # $MacAddress = $MacAddress -replace "\.", "" #Remove dots
+        # $MacAddress = $MacAddress.trim() #Remove space at the beginning
+        # $MacAddress = $MacAddress.trimend() #Remove space at the end
+        # get-variable ps*
+    }
+    PROCESS
+    {
+        foreach ( $d in $Digit )
+        {
+            [int] $d = $d
+            $sum = $d * ($d + 1) / 2
+            IF ($IncludeOriginal)
+            {
+                $prop = @{
+                    Number = $d
+                    Sum    = $sum
+                }
+                $obj = new-object -TypeName psobject -property $prop
+                write-output -inputobject $obj | Select-Object -property number, sum
+            } else {
+                write-output -inputobject $sum
+            }
+        }
+    }
+    END
+    {
+        #Write-Output $MacAddress
+    }
+}
+
+
+#region Metadata
+# These variables are used to set the Description property of the function.
+
+Remove-Variable -Name FuncName        -ErrorAction SilentlyContinue
+Remove-Variable -Name FuncAlias       -ErrorAction SilentlyContinue
+Remove-Variable -Name FuncDescription -ErrorAction SilentlyContinue
+
+$FuncName        = 'Sum-Digits'
+$FuncAlias       = ''
+$FuncDescription = 'Sums digits'
+
+if (-not (test-path -Path Variable:AliasesToExport))
+{
+    $AliasesToExport = @()
+}
+if (-not (test-path -Path Variable:VariablesToExport))
+{
+    $VariablesToExport = @()
+}
+
+if ($FuncAlias)
+{
+    set-alias -Name $FuncAlias -Value $FuncName
+    $AliasesToExport += $FuncAlias
+}
+
+# Setting the Description property of the function.
+(get-childitem -Path Function:$FuncName).set_Description($FuncDescription)
+
+#endregion Metadata

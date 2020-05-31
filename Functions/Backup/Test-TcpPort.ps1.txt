@@ -1,0 +1,35 @@
+Function Test-TcpPort {
+    Param([string]$ComputerName="$env:computername", [int] $port = 5985, [int] $timeout = 1000)
+    try
+    {
+        $tcpclient = New-Object -TypeName system.Net.Sockets.TcpClient
+        $iar = $tcpclient.BeginConnect($ComputerName,$port,$null,$null)
+        $wait = $iar.AsyncWaitHandle.WaitOne($timeout,$false)
+        if(!$wait)
+        {
+            $tcpclient.Close()
+            write-output $false
+        }
+        else
+        {
+            # Close the connection and report the error if there is one
+            $null = $tcpclient.EndConnect($iar)
+            $tcpclient.Close()
+            write-output $true
+        }
+    }
+    catch
+    {
+        $false
+    }
+} #EndFunction Test-TcpPort
+
+if (-not (test-path Variable:AliasesToExport)) {
+    $AliasesToExport = @()
+}
+if (-not (test-path Variable:VariablesToExport)) {
+    $VariablesToExport = @()
+}
+#$AliasesToExport += 'AliasName'
+#$VariablesToExport += 'VariableName'
+

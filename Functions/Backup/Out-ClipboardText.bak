@@ -1,0 +1,52 @@
+function Out-ClipboardText {
+<#
+.SYNOPSIS
+    Describe purpose of "Out-ClipboardText" in 1-2 sentences.
+
+.DESCRIPTION
+    Add a more complete description of what the function does.
+
+.PARAMETER text
+    Describe parameter -text.
+
+.EXAMPLE
+    Out-ClipboardText -text Value
+    Describe what this call does
+
+.NOTES
+    Place additional notes here.
+
+.LINK
+    URLs to related sites
+    The first link is opened by Get-Help -Online Out-ClipboardText
+
+.INPUTS
+    List of input types that are accepted by this function.
+
+.OUTPUTS
+    List of output types produced by this function.
+#>
+
+    [CmdletBinding(ConfirmImpact='None')]
+    param(
+        [Parameter(
+            Position=0,HelpMessage='Add help message for user',
+            Mandatory,
+            ValueFromPipeline)
+        ]
+        [String] $text
+    )
+
+    begin {
+        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    }
+
+    process {
+        powershell.exe -sta -noprofile -command "add-type -an system.windows.forms; [System.Windows.Forms.Clipboard]::SetText('$text')"
+    }
+
+    end {
+        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    }
+
+}

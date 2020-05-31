@@ -1,0 +1,40 @@
+Function Remove-InvalidFileNameChars {
+    param([Parameter(Mandatory=$true,
+        Position=0,
+        ValueFromPipeline=$true,
+        ValueFromPipelineByPropertyName=$true)]
+        [String]$Name
+    )
+    write-output [RegEx]::Replace($Name, "[{0}]" -f ([RegEx]::Escape([String][System.IO.Path]::GetInvalidFileNameChars())), '')
+}
+
+#region Metadata
+# These variables are used to set the Description property of the function.
+
+Remove-Variable -Name FuncName        -ErrorAction SilentlyContinue
+Remove-Variable -Name FuncAlias       -ErrorAction SilentlyContinue
+Remove-Variable -Name FuncDescription -ErrorAction SilentlyContinue
+
+$FuncName        = 'Remove-InvalidFileNameChars'
+$FuncAlias       = ''
+$FuncDescription = 'Removes invalid file characters'
+
+if (-not (test-path -Path Variable:AliasesToExport))
+{
+    $AliasesToExport = @()
+}
+if (-not (test-path -Path Variable:VariablesToExport))
+{
+    $VariablesToExport = @()
+}
+
+if ($FuncAlias)
+{
+    set-alias -Name $FuncAlias -Value $FuncName
+    $AliasesToExport += $FuncAlias
+}
+
+# Setting the Description property of the function.
+(get-childitem -Path Function:$FuncName).set_Description($FuncDescription)
+
+#endregion Metadata

@@ -1,0 +1,82 @@
+# from: https://github.com/vrimkus/PoSh2.0-BitShifting
+
+<# 
+PS C:\> Enable-BitShift
+PS C:\> $Bitwise
+
+IsPublic IsSerial Name                                     BaseType
+-------- -------- ----                                     --------
+True     False    PoShBitwiseBuilder                       System.Object
+
+
+PS C:\> $Bitwise::Lsh(32,2)
+128
+PS C:\> $Bitwise::Rsh(128,2)
+32
+
+ #>
+
+Function Enable-BitShift
+{
+    # Big thanks to Matt Graeber for showing that it is possible to assemble .NET methods with CIL opcodes
+    # and for the overall fueling of the fire that is my PowerShell obsession
+
+    #region Create TypeBuilder
+    $Domain          = [AppDomain]::CurrentDomain
+    $DynAssembly     = New-Object System.Reflection.AssemblyName -ArgumentList @('PoShBitwiseAssembly')
+    $AssemblyBuilder = $Domain.DefineDynamicAssembly($DynAssembly, 
+                                                     [System.Reflection.Emit.AssemblyBuilderAccess]::Run)
+    $ModuleBuilder   = $AssemblyBuilder.DefineDynamicModule('PoShBitwiseModule', $False)
+    $TypeBuilder     = $ModuleBuilder.DefineType('PoShBitwiseBuilder', 
+                                                 [System.Reflection.TypeAttributes]'Public, Sealed, AnsiClass, AutoClass',
+                                                 [Object])
+    #endregion
+
+    #region Define Lsh Method
+    $MethodBuilder   = $TypeBuilder.DefineMethod('Lsh', 
+                                                 [System.Reflection.MethodAttributes]'Public,Static,HideBySig,NewSlot', 
+                                                 [Int32], 
+                                                 [type[]]([Int32],[UInt32]))
+    $MethodBuilder.SetImplementationFlags([System.Reflection.MethodImplAttributes]::IL)
+    $ILGen = $MethodBuilder.GetILGenerator(2)
+    $ILGen.Emit([Reflection.Emit.OpCodes]::Ldarg_0)
+    $ILGen.Emit([Reflection.Emit.OpCodes]::Ldarg_1)
+    $ILGen.Emit([Reflection.Emit.OpCodes]::Shl)
+    $ILGen.Emit([Reflection.Emit.OpCodes]::Ret)
+    #endregion
+
+    #region Define Rsh Method
+    $MethodBuilder   = $TypeBuilder.DefineMethod('Rsh', 
+                                                 [System.Reflection.MethodAttributes]'Public,Static,HideBySig,NewSlot', 
+                                                 [Int32], 
+                                                 [type[]]([Int32],[UInt32]))
+    $MethodBuilder.SetImplementationFlags([System.Reflection.MethodImplAttributes]::IL)
+    $ILGen = $MethodBuilder.GetILGenerator(2)
+    $ILGen.Emit([Reflection.Emit.OpCodes]::Ldarg_0)
+    $ILGen.Emit([Reflection.Emit.OpCodes]::Ldarg_1)
+    $ILGen.Emit([Reflection.Emit.OpCodes]::Shr)
+    $ILGen.Emit([Reflection.Emit.OpCodes]::Ret)
+    #endregion
+
+    # Generate RuntimeType and assign to global variable
+    $Global:Bitwise = $TypeBuilder.CreateType()
+}
+
+
+if (-not (test-path Variable:AliasesToExport)) {
+    $AliasesToExport = @()
+}
+if (-not (test-path Variable:VariablesToExport)) {
+    $VariablesToExport = @()
+}
+#$AliasesToExport += 'AliasName'
+#$VariablesToExport += 'VariableName'
+
+# These variables are used to set the Description property of the function.
+$funcName = 'Enable-BitShift'
+$funcDescription = 'Turns on '
+
+# Setting the Description property of the function.
+(get-childitem function:$funcName).set_Description($funcDescription)
+
+

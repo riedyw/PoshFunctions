@@ -1,0 +1,136 @@
+# inspired by: http://get-spscripts.com/2011/11/use-powershell-to-check-for-illegal.html
+Function Check-IllegalCharacters ($Path, [switch]$Fix, [switch]$Verbose)
+{
+    Write-output -inputobject "Checking files in $Path, please wait..."
+    #Get all files and folders under the path specified
+    $items = Get-ChildItem -Path $Path -Recurse
+    foreach ($item in $items)
+    {
+        #Check if the item is a file or a folder
+        if ($item.PSIsContainer)
+        {
+            $type = "Folder"
+        }
+        else
+        {
+            $type = "File"
+        }
+        #Report item has been found if verbose mode is selected
+        if ($Verbose)
+        {
+            Write-Verbose -Message "Found a $type called $($item.FullName)"
+        }
+
+        #Check if item name is 128 characters or more in length
+        if ($item.Name.Length -gt 127)
+        {
+            Write-output -InputObject "$type $($item.Name) is 128 characters or over and will need to be truncated"
+        }
+        else
+        {
+            #Got this from http://powershell.com/cs/blogs/tips/archive/2011/05/20/finding-multiple-regex-matches.aspx
+            $illegalChars = '[&{}~#%]'
+            filter Matches($illegalChars)
+            {
+                $item.Name | Select-String -AllMatches $illegalChars |
+                Select-Object -ExpandProperty Matches
+                Select-Object -ExpandProperty Values
+            }
+            #Replace illegal characters with legal characters where found
+            $newFileName = $item.Name
+            Matches $illegalChars | ForEach-Object
+            {
+                Write-output -inputobject "$type $($item.FullName) has the illegal character $($_.Value)"
+                #These characters may be used on the file system but not SharePoint
+                if ($_.Value -match "&")
+                {
+                    $newFileName = ($newFileName -replace "&", "and")
+                }
+                if ($_.Value -match "{")
+                {
+                    $newFileName = ($newFileName -replace "{", "(")
+                }
+                if ($_.Value -match "}")
+                {
+                    $newFileName = ($newFileName -replace "}", ")")
+                }
+                if ($_.Value -match "~")
+                {
+                    $newFileName = ($newFileName -replace "~", "-")
+                }
+                if ($_.Value -match "#")
+                {
+                    $newFileName = ($newFileName -replace "#", "")
+                }
+                if ($_.Value -match "%")
+                {
+                    $newFileName = ($newFileName -replace "%", "")
+                }
+            }
+            #Check for start, end and double periods
+            if ($newFileName.StartsWith("."))
+            {
+                Write-output -inputobject "$type $($item.FullName) starts with a period"
+            }
+            while ($newFileName.StartsWith("."))
+            {
+                $newFileName = $newFileName.TrimStart(".")
+            }
+            if ($newFileName.EndsWith("."))
+            {
+                Write-output -inputobject "$type $($item.FullName) ends with a period"
+            }
+            while ($newFileName.EndsWith("."))
+            {
+                $newFileName = $newFileName.TrimEnd(".")
+            }
+            if ($newFileName.Contains(".."))
+            {
+                Write-output -InputObject"$type $($item.FullName) contains double periods"
+            }
+            while ($newFileName.Contains(".."))
+            {
+                $newFileName = $newFileName.Replace("..", ".")
+            }
+            #Fix file and folder names if found and the Fix switch is specified
+            if (($newFileName -ne $item.Name) -and ($Fix))
+            {
+                Rename-Item -Path $item.FullName -NewName ($newFileName)
+                Write-Output -inputobject "$type $($item.Name) has been changed to $newFileName"
+            }
+        }
+    }
+} #EndFunction Check-IllegalCharacters
+
+#region Metadata
+# These variables are used to set the Description property of the function.
+
+Remove-Variable -Name FuncName        -ErrorAction SilentlyContinue
+Remove-Variable -Name FuncAlias       -ErrorAction SilentlyContinue
+Remove-Variable -Name FuncDescription -ErrorAction SilentlyContinue
+
+$FuncName        = 'Check-IllegalCharacters'
+$FuncAlias       = ''
+$FuncDescription = 'To remove illegal characters from a filename'
+
+if (-not (test-path -Path Variable:AliasesToExport))
+{
+    $AliasesToExport = @()
+}
+if (-not (test-path -Path Variable:VariablesToExport))
+{
+    $VariablesToExport = @()
+}
+
+if ($FuncAlias)
+{
+    set-alias -Name $FuncAlias -Value $FuncName
+    $AliasesToExport += $FuncAlias
+}
+
+# Setting the Description property of the function.
+(get-childitem -Path Function:$FuncName).set_Description($FuncDescription)
+
+#endregion Metadata
+
+
