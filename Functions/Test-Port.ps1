@@ -1,7 +1,7 @@
 # inspired by https://gallery.technet.microsoft.com/scriptcenter/97119ed6-6fb2-446d-98d8-32d823867131
 
 Function Test-Port {
-<#
+    <#
 .SYNOPSIS
     Tests a Port or a range of ports on a specific ComputerName(s).
 .DESCRIPTION
@@ -55,7 +55,7 @@ Function Test-Port {
 #>
 
     #region Parameter
-    [CmdletBinding(ConfirmImpact='Low')]
+    [CmdletBinding(ConfirmImpact = 'Low')]
     [OutputType('psobject')]
     Param(
         [Parameter(Mandatory, HelpMessage = 'Enter a ComputerName or IP address', Position = 0, ValueFromPipeline)]
@@ -71,7 +71,7 @@ Function Test-Port {
     )
     #endregion Parameter
 
-    Begin {
+    begin {
         Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
         if (!$tcp -AND !$udp) {
             $tcp = $True
@@ -84,7 +84,7 @@ Function Test-Port {
         $report = @()
     }
 
-    Process {
+    process {
         foreach ($c in $ComputerName) {
             foreach ($p in $port) {
                 if ($tcp) {
@@ -178,7 +178,9 @@ Function Test-Port {
             }
         }
 
-    } End {
+    }
+
+    end {
         #Generate Report
         Write-Output -InputObject $report
         Write-Verbose -Message "Resetting value of `$ErrorActionPreference back to [$($oldEa)]"
