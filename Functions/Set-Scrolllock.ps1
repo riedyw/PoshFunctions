@@ -17,7 +17,6 @@ Function Set-Scrolllock {
     Set-ScrollLock -Off
     Will turn off the ScrollLock
 .NOTES
-    Author:      Bill Riedy
     Inspiration: # Inspired by https://gallery.technet.microsoft.com/on-off-keyboad-lock-keys-6ba9885c
     Changes:     Created function to set on or off the ScrollLock. Requires use of helper function Test-IsScrollLock
 .LINK

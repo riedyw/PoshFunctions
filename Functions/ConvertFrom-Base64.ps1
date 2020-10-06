@@ -6,9 +6,6 @@ Function ConvertFrom-Base64 {
     Convert from a Base64 string to normal string
 .PARAMETER StringFrom
     A base64 encoded string
-.NOTES
-    Author:     Bill Riedy
-    Version:    1.0
 .EXAMPLE
     ConvertFrom-Base64 "SABlAGwAbABvAA=="
 

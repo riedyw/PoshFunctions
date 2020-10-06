@@ -6,8 +6,6 @@ Function Convert-UserFlag {
     Converts a userflag enumeration to a human readable list of attributes about an AD object.
 .PARAMETER UserFlag
     A integer value providing attributes about an AD object.
-.NOTES
-    Author:     Bill Riedy
 .EXAMPLE
     Convert-UserFlag -UserFlag (0x0200 + 0x0010 + 0x800000)
 

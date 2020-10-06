@@ -4,8 +4,6 @@ Function Show-TypeAccelerator {
     Shows type accelerators
 .DESCRIPTION
     Shows type accelerators [int32] [datetime] etc.
-.NOTES
-    Author:     Bill Riedy
 #>
 
     #requires -Version 2

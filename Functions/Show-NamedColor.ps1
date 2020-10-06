@@ -8,8 +8,6 @@ Function Show-NamedColor {
     To show the attributes of a single named color. This parameter has a ValidateSet against it so you can tab through the options.
 .PARAMETER ExcludeEmpty
     Will exclude the Empty and Transparent colors
-.NOTES
-    Author:     Bill Riedy
 #>
 
     #region Parameter

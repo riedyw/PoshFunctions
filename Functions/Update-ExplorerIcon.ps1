@@ -6,8 +6,6 @@ function Update-ExplorerIcon {
     Updates explorericon
 .DESCRIPTION
     Updates explorericon
-.NOTES
-    Author:     Bill Riedy
 #>
 
   [CmdletBinding(ConfirmImpact='Low')]

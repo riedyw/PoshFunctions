@@ -18,7 +18,6 @@ Function Get-RandomDate {
     UnixEpoch       01/01/1970 12:00:00AM   01/19/2038 03:14:07AM
     FileTime        01/01/1601 12:00:00AM   12/31/9999 11:59:59PM
 .NOTES
-    Author:     Bill Riedy
     If you specify -MinDate or -MaxDate, -MinDate must be less than or equal to -MaxDate.
 .EXAMPLE
     Get-Randomdate  -MinDate 1/1/1969 -Max-Date 1/1/2040 -DateLimit UnixEpoch -verbose

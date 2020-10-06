@@ -4,8 +4,6 @@ Function Show-Timezone {
     Show timezone information
 .DESCRIPTION
     Show timezone information
-.NOTES
-    Author:     Bill Riedy
 #>
 
     [CmdletBinding(ConfirmImpact='None')]

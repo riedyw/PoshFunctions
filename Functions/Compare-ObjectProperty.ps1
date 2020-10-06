@@ -8,8 +8,6 @@ Function Compare-ObjectProperty {
     The first object to compare
 .PARAMETER DifferenceObject
     The second object to compare
-.NOTES
-    Author:     Bill Riedy
 .EXAMPLE
     Compare-ObjectProperty -ReferenceObject $object1 -DifferenceObject $object2
 .OUTPUTS

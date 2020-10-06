@@ -12,7 +12,6 @@ Function ConvertTo-Bool {
 .PARAMETER IncludeOriginal
     Determines if you wish to see the original in the output
 .NOTES
-    Author:     Bill Riedy
     ConvertTo-Bool will .Trim() the InputVal before trying to parse it.
 .EXAMPLE
     ConvertTo-Bool 'true'

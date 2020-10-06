@@ -15,7 +15,7 @@ function Get-Round {
 .PARAMETER IncludeOriginal
     A switch to determine if you want the input parameters to be included in the output
 .NOTES
-    Author:     Bill Riedy
+    Inspired by: https://stackoverflow.com/questions/41700200/how-to-correctly-round-numbers-in-powershell
 .EXAMPLE
     Get-Round 2.5
 

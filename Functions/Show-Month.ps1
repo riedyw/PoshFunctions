@@ -4,8 +4,6 @@ Function Show-Month {
     Shows the months
 .DESCRIPTION
     Shows the months
-.NOTES
-    Author:     Bill Riedy
 #>
 
 
@@ -25,6 +23,5 @@ Function Show-Month {
     End {
         Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
     }
-
 
 }

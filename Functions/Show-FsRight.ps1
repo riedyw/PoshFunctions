@@ -4,14 +4,6 @@ Function Show-FsRight {
     To list all potential file system rights
 .DESCRIPTION
     To list all potential file system rights
-.NOTES
-    Author:     Bill Riedy
-    Version:    1.1
-    Date:       2018/09/19
-    Notes:      Cleaned up quoting, updated comment based help.
-    Version:    1.0
-    Date:       2018/03/13
-    Notes:      Some rights are 'Combo', a predefined mix of several different 'Single' rights. 'Combo' rights can be checked with -eq. 'Single' rights would need to be checked with -band $($_.dec)
 .EXAMPLE
     Show-FsRight
     Would return:

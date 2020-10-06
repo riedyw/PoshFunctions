@@ -6,8 +6,6 @@ Filter grep {
     A simple text filter to search for a string
 .PARAMETER Keyword
     The string searching for
-.NOTES
-    Author:     Bill Riedy
 .EXAMPLE
     'Hello','There' | grep 'Hello'
     Would return

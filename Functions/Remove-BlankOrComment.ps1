@@ -8,8 +8,6 @@ Filter Remove-BlankOrComment {
     The input string array
 .PARAMETER BeginComment
     The token indicating the beginning of a single line comment. Defaults to '#'
-.NOTES
-    Author:     Bill Riedy
 .EXAMPLE
     '#Hello','','There' | Remove-BlankOrComment
 

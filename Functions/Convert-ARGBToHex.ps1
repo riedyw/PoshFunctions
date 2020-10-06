@@ -17,7 +17,7 @@ Function Convert-ARGBToHex {
     Part of the ISEColorThemeCmdlets.ps1 Script by Jeff Pollock
     http://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
 
-    Modified:     Bill Riedy
+    Modified:
     a) Changed name of parameter to ARGB
     b) Added -IncludeHash parameter to make # optional.
     c) Minor tweaking so that it passes Invoke-ScriptAnalyzer

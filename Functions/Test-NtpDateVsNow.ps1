@@ -10,7 +10,6 @@ Function Test-NtpDateVsNow {
 .PARAMETER Tolerance
     The acceptable number of seconds difference between local and NTP time. Default = 300. Valid range 1-3600 seconds (1 hour)
 .NOTES
-    Author:     Bill Riedy
     Will return a value of $False if either: a) the time difference is greater than the $Tolerance; or b) the time server does not reply to the NTP time request being sent by this function
 .EXAMPLE
     Test-NtpDateVsNow $DC

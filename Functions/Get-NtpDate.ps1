@@ -10,9 +10,6 @@ Function Get-NtpDate  {
     The name or IPv4 address of the computer running NTP
 .PARAMETER Port
     The port number NTP is listening to. Defaults to 123
-.NOTES
-    Author:     Bill Riedy
-    Version:    1.0
 .EXAMPLE
     Get-NtpDate $DC
     Assuming $DC holds the name of the domain controller then would return a datetime similar to

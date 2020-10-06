@@ -80,7 +80,6 @@ Function ConvertFrom-DateTime () {
     Assuming a timezone of "Eastern Time" and a culture of "en-US" this would return the string
     20180315160000.000000+000
 .NOTES
-    Author:     Bill Riedy
     Info:       For further information on DMTF time formats see https://docs.microsoft.com/en-us/windows/desktop/wmisdk/cim-datetime
 #>
 

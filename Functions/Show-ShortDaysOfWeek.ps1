@@ -4,11 +4,7 @@ Function Show-ShortDaysOfWeek {
     Show short days of the week
 .DESCRIPTION
     Show short days of the week
-.NOTES
-    Author:     Bill Riedy
 #>
-
-
 
     [CmdletBinding(ConfirmImpact='None')]
     Param ()

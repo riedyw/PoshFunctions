@@ -29,8 +29,6 @@ Function Remove-QuotesFromCsv {
     None
 .OUTPUTS
     [string[]]
-.NOTES
-    Author:      Bill Riedy
 .LINK
     ConvertFrom-Csv
 #>

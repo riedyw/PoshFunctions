@@ -1,4 +1,4 @@
-function ConvertFrom-Xml {
+function ConvertFrom-XML {
 <#
 .SYNOPSIS
     Convert XML to an object
@@ -6,9 +6,6 @@ function ConvertFrom-Xml {
     Convert XML to an object
 .PARAMETER XML
     The XML that you want converted
-.NOTES
-    Author:     Bill Riedy
-
 #>
 
 [CmdletBinding(ConfirmImpact='None')]

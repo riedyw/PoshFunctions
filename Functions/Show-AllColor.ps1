@@ -4,8 +4,6 @@ Function Show-AllColor {
     Shows all console colors
 .DESCRIPTION
     Shows all console colors
-.NOTES
-    Author:     Bill Riedy
 #>
 
     [CmdletBinding(ConfirmImpact='None')]

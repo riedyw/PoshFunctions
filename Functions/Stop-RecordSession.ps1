@@ -4,8 +4,6 @@ Function Stop-RecordSession {
     Stops the running transcript
 .DESCRIPTION
     Stops the running transcript
-.NOTES
-    Author:     Bill Riedy
 #>
 
     [CmdletBinding(ConfirmImpact='Low')]

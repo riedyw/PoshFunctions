@@ -4,11 +4,7 @@ Function Show-ShortMonth {
     Shows short month
 .DESCRIPTION
     Shows short month
-.NOTES
-    Author:     Bill Riedy
 #>
-
-
 
     [CmdletBinding(ConfirmImpact='None')]
     Param ()

@@ -1,4 +1,3 @@
-#region Function
 Function ConvertTo-BinaryIPv4 {
 <#
 .SYNOPSIS
@@ -35,10 +34,6 @@ Function ConvertTo-BinaryIPv4 {
     Would return
     00001010.00000001.00000001.00000001
     11000000.10101000.00000001.00000001
-.NOTES
-    NAME: ConvertTo-BinaryIPv4
-    AUTHOR: Bill Riedy
-    LASTEDIT: 06/13/2018
 .INPUTS
     An IPv4Address or array of IPV4Address'es
 .OUTPUTS

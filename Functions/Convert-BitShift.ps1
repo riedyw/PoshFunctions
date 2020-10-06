@@ -19,11 +19,7 @@ function Convert-BitShift {
     Pos      - The number of positions to shift
     Output   - The result
 .NOTES
-    Author:     Bill Riedy
-    Version:    1.0
-    Date:       2018/03/13
-    Note:       If -Left or -Right are not specified, the default is a left shift of 1.
-    To Do:      None
+    Only needed for PowerShell 2
 .EXAMPLE
     Convert-BitShift -Integer 36 -Left 2
     144

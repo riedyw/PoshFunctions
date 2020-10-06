@@ -9,10 +9,7 @@ Function Get-UrlContent {
 .PARAMETER IgnoreSslError
     To ignore any SSL errors that are generated
 .NOTES
-    Author:     Bill Riedy
-    Version:    1.0
-    Date:       2018/03/13
-    Notes:      Assumes that the computer specified in the URL is up and running and listening to the appropriate TCP port
+    This function only exists for PowerShell versions prior to the inclusion of Invoke-WebRequest
 .EXAMPLE
     Get-UrlContent -URL "http://www.google.com"
     Would return:

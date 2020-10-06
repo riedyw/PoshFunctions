@@ -8,8 +8,6 @@ function Read-HostWithDefault {
     A required parameter indicating what the default return value will be if the user just hits [Enter]
 .PARAMETER Prompt
     A string template for the prompt string. Defaults to 'Enter a password value or accept default of'. Resulting prompt with this template would be "Enter a password value or accept default of [$Default]"
-.NOTES
-    Author:     Bill Riedy
 .EXAMPLE
     $password = Read-HostWithDefault -Default 'SuperSecretPassword'
 

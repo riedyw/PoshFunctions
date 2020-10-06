@@ -4,8 +4,6 @@ Function Switch-Mute (){
     Toggles speaker mute
 .DESCRIPTION
     Toggles speaker mute
-.NOTES
-    Author:     Bill Riedy
 #>
 
     [CmdletBinding(ConfirmImpact='Low')]

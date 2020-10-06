@@ -7,8 +7,6 @@ Function Convert-ROT13 {
 .PARAMETER String
     A simple string or array of strings that you want Convert-ROT13 run against.
 .NOTES
-    Author:     Bill Riedy
-    Version:    1.0
     Link:       https://en.wikipedia.org/wiki/ROT13
 .EXAMPLE
     Convert-ROT13 -String 'Password'

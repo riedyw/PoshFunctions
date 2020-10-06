@@ -6,11 +6,6 @@ function Get-SharePermission {
     To get permission information on specified ShareName
 .PARAMETER ShareName
     The name of the share, exact match only
-.NOTES
-    Author:     Bill Riedy
-    Version:    1.0
-    Date:       2018/03/13
-    Notes:      None at this time
 .EXAMPLE
     Get-SharePermission -ShareName "C$"
     Would return:
@@ -18,6 +13,7 @@ function Get-SharePermission {
 .OUTPUTS
     An array of objects containing the fields ComputerName, ShareName, Domain, ID, AccessMask, AceType
 #>
+
 [CmdletBinding(ConfirmImpact='None')]
     param([string] $sharename)
 

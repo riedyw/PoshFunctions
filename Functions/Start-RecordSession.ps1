@@ -4,8 +4,7 @@ Function Start-RecordSession {
     Creates a transcript of current Powershell session
 .DESCRIPTION
     Creates a transcript of current Powershell session
-.NOTES
-    Author:     Bill Riedy
+
 #>
     # Inspired by post https://groups.google.com/forum/#!topic/microsoft.public.exchange.admin/0z7249mOuzA
     # create a uniqely named transcript file for this session. It will have format of:

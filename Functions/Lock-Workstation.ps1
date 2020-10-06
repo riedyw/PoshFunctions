@@ -4,8 +4,6 @@ function Lock-Workstation {
     Locks the workstation
 .DESCRIPTION
     Locks the workstation and requires authentication afterwards
-.NOTES
-    Author:     Bill Riedy
 .EXAMPLE
     Lock-Workstation
 

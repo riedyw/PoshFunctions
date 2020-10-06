@@ -8,8 +8,6 @@ Filter sed {
     The string searching for
 .PARAMETER After
     The string to replace it with
-.NOTES
-    Author:     Bill Riedy
 .EXAMPLE
     'Hello There' | sed 'Hello' 'Goodbye'
     Would return

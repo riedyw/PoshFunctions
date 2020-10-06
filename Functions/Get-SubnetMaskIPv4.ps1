@@ -9,8 +9,6 @@ Function Get-SubnetMaskIPv4 {
     Aliased to both 'Length' and 'CIDR'
 .PARAMETER IncludeCIDR
     A switch controlling whether you want to see the CIDR length
-.NOTES
-    Author:     Bill Riedy
 .EXAMPLE
     Get-SubnetMaskIPv4 -NetworkLength 22 -IncludeCIDR
     Would return something similar to the following:

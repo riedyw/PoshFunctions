@@ -5,7 +5,6 @@ Function Show-ColorsWithBackground {
 .DESCRIPTION
     Show-ColorsWithBackground displays all combinations of foreground/background of the console colors.
 .NOTES
-    Author:     Bill Riedy
     Uses Write-Host to display colors and as such does not use the pipeline.
 .LINK
     Write-Host

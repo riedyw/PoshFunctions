@@ -8,41 +8,29 @@ Function Resolve-ComputerName {
     A string or an array of strings which specify the ComputerName(s) for which you want the names parsed.
 .PARAMETER Case
     An optional parameter. 'Upper' will convert calculated fields to uppercase. 'Lower' will convert calculated fields to lowercase. The original specified computername is not altered.
-.NOTES
-    Author:     Bill Riedy
-    Version:    2.1
-    Date:       2018/09/14
-    Comment:    Added logic to handle both ITT2 as well as ITT2A|ITT2B|ITT2C
-    Version:    2.0
-    Date:       2018/07/06
-    Comment:    Added field for complete computername after it has been parsed
-    Version:    1.1
-    Date:       2018/04/30
-    Comment:    Changed regular expression to address entry of hostname beginning with mix of LCS and IIT nomenclature (e.g. 'LCS2A' or 'ITT214')
-    To Do:
 .EXAMPLE
-    Parse-ComputerName -ComputerName 'LCS10CINDC01'
+    Resolve-ComputerName -ComputerName 'LCS10CINDC01'
 
     Would return
     ComputerName Valid Hull  PIT HostName ParsedCN
     ------------ ----- ----  --- -------- --------
     LCS10CINDC01  True LCS10 CIN DC01     LCS10CINDC01
 .EXAMPLE
-    Parse-ComputerName -ComputerName 'badname'
+    Resolve-ComputerName -ComputerName 'badname'
 
     Would return
     ComputerName Valid Hull PIT HostName ParsedCN
     ------------ ----- ---- --- -------- --------
     badname      False          badname
 .EXAMPLE
-    Parse-ComputerName -ComputerName 'LCS10CINDC01' -Case Lower
+    Resolve-ComputerName -ComputerName 'LCS10CINDC01' -Case Lower
 
     Would return
     ComputerName Valid Hull  PIT HostName ParsedCN
     ------------ ----- ----  --- -------- --------
     LCS10CINDC01  True lcs10 cin dc01     lcs10cindc01
 .EXAMPLE
-    "lcs2cindc01","itt2auinhvm01","badname" | Parse-ComputerName  -case upper
+    "lcs2cindc01","itt2auinhvm01","badname" | Resolve-ComputerName  -case upper
 
     Would return
     ComputerName  Valid Hull  PIT HostName ParsedCN
@@ -51,7 +39,7 @@ Function Resolve-ComputerName {
     itt2auinhvm01  True ITT2A UIN HVM01    ITT2AUINHVM01
     badname       False           BADNAME
 .EXAMPLE
-    Parse-ComputerName -Computername 'LCS18cindc01' -case Upper -verbose
+    Resolve-ComputerName -Computername 'LCS18cindc01' -case Upper -verbose
 
     Would return
     VERBOSE: $ValidPlatform=[((LCS\d\d)|(LCS\d)|ITT2A|ITT2B|ITT2C|ITT2|(LDE\d))]
@@ -192,4 +180,4 @@ Function Resolve-ComputerName {
         Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
     }
 
-} # EndFunction Parse-ComputerName
+} # EndFunction Resolve-ComputerName

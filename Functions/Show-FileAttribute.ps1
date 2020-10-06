@@ -4,8 +4,6 @@ Function Show-FileAttribute {
     Shows the available file attributes
 .DESCRIPTION
     Shows the available file attributes
-.NOTES
-    Author:     Bill Riedy
 .OUTPUTS
     [string[]]
 #>

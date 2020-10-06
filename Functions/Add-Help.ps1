@@ -4,8 +4,6 @@ Function Add-Help {
     Adds a template comment based block into the editor in the Powershell ISE.
 .DESCRIPTION
     Adds a template comment based block into the editor in the Powershell ISE.
-.NOTES
-    Author:     Bill Riedy
 .EXAMPLE
     Add-Help
 .OUTPUTS

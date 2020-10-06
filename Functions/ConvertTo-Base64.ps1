@@ -11,8 +11,6 @@ Function ConvertTo-Base64 {
 
     Would return
     UABhAHMAcwB3AG8AcgBkAA==
-.NOTES
-    Author:     Bill Riedy
 .OUTPUTS
     [string]
 .LINK

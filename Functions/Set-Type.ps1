@@ -13,12 +13,11 @@ Filter Set-Type {
 .NOTES
     Only works properly if there are no separate begin, process, and end blocks
 .EXAMPLE
-    $csv = Import-CSV -Path .\test.csv | Set-Type -Type_Hash @{ 'LastWriteTime' = 'DateTime'}
+    $csv = Import-CSV -Path .\test.csv | Set-Type -TypeHash @{ 'LastWriteTime' = 'DateTime'}
 .LINK
     about_Properties
 #>
 
-    [CmdletBinding(ConfirmImpact='Low')]
     param(
         [hashtable] $TypeHash
     )

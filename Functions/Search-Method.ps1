@@ -6,7 +6,8 @@ function Search-Method {
 .DESCRIPTION
     Search method
 .NOTES
-    Author:     Bill Riedy
+    Inspiration: <https://blogs.msdn.microsoft.com/mediaandmicrocode/2008/10/23/microcode-powershell-scripting-tricks-exploring-net-types-with-a-get-type-function-and-reflection/>
+    Changed: Minor clean ups
 #>
 
     [CmdletBinding()]
@@ -126,5 +127,5 @@ Hope this helps,
 
 James Brundage [MSFT]
 
-Pasted from <https://blogs.msdn.microsoft.com/mediaandmicrocode/2008/10/23/microcode-powershell-scripting-tricks-exploring-net-types-with-a-get-type-function-and-reflection/>
+Pasted from 
  #>

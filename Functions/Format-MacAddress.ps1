@@ -72,7 +72,6 @@ function Format-MacAddress {
     # www.lazywinadmin.com
     # @lazywinadm
 
-    Bill Riedy
     Modified:
     1. Changed MacAddress to allow for pipeline input
     2. Changed MacAddress to be a positional parameter

@@ -7,9 +7,9 @@ Function Test-ConnectionAsync {
 .PARAMETER Computername
     List of computers to test connection
 .PARAMETER Timeout
-    Timeout in milliseconds
+    Timeout in milliseconds. Default 2000 ms.
 .PARAMETER TimeToLive
-    Sets a time to live on ping request
+    Sets a time to live on ping request.
 .PARAMETER Fragment
     Tells whether to fragment the request
 .PARAMETER BufferSize
@@ -46,7 +46,7 @@ Function Test-ConnectionAsync {
         [string[]] $Computername,
 
         [parameter()]
-        [int32] $Timeout = 100,
+        [int32] $Timeout = 2000,
 
         [parameter()]
         [Alias('Ttl')]

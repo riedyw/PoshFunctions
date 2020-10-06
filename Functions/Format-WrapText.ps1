@@ -10,8 +10,6 @@ Function Format-WrapText {
     Column width to wrap at. Default = 80
 .PARAMETER Screen
     A switch indicating that the wrap should occur at the width of the current Powershell window.
-.NOTES
-    Author:     Bill Riedy
 .EXAMPLE
     Format-WrapText -Text "word1 word2 word3 word4 word5" -Width 10
 

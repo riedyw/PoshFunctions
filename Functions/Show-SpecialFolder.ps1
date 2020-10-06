@@ -4,13 +4,10 @@ Function Show-SpecialFolder {
     Shows special folder names
 .DESCRIPTION
     Shows special folder names
-.NOTES
-    Author:     Bill Riedy
 #>
 
-
-
     [CmdletBinding(ConfirmImpact='None')]
+
     Param (
 
         [switch] $IncludeLocations

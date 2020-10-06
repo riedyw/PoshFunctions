@@ -11,10 +11,7 @@ Function Get-In {
 .PARAMETER In
     A boolean to indicate whether -in ($true) or -notin ($false)
 .NOTES
-    Author:     Bill Riedy
-    Version:    1.0
-    Date:       2018/03/15
-    Notes:      None at this time
+    Is necessary only for PowerShell 2 as PowerShell 3 introduced -in and -not in operators
 .EXAMPLE
     Get-In -ItemToFind "Hello" -ListToSearch @("Hello","Goodbye")
     Would return:

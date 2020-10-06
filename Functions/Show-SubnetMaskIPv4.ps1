@@ -4,8 +4,6 @@ Function Show-SubnetMaskIPv4 {
     Show IPv4 subnet masks
 .DESCRIPTION
     Show IPv4 subnet masks
-.NOTES
-    Author:     Bill Riedy
 #>
 
 

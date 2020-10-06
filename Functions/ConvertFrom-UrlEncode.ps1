@@ -8,8 +8,6 @@ Function ConvertFrom-UrlEncode {
     The encoded URL string. Can be a string or an array of strings. Accepts pipeline input.
 .PARAMETER IncludeOriginal
     A switch to enable showing original text in the output.
-.NOTES
-    Author:     Bill Riedy
 .EXAMPLE
     ConvertFrom-UrlEncode -URL 'https%3a%2f%2fwww.google.com%2f'
 

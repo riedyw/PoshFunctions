@@ -20,7 +20,6 @@ Function Add-ISEThemeMenu {
 .OUTPUTS
     None.
 .NOTES
-    Author:      Bill Riedy
     Inspiration: Part of the ISEColorThemeCmdlets.ps1 Script by Jeff Pollock
                 http://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
     Changes:     Added parameter for MultiSelect of files. Forced function to always return an array. Filter is
@@ -29,6 +28,7 @@ Function Add-ISEThemeMenu {
                 Also changed syntax to Add-Type -AssemblyName to conform with
                 Powershell 2+ and to be more "Powershelly".
 #>
+
     [CmdletBinding(ConfirmImpact='Low')]
     Param (
        [Parameter()] [ValidateNotNullOrEmpty()]

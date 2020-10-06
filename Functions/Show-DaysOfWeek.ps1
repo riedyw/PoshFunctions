@@ -4,8 +4,6 @@ Function Show-DaysOfWeek {
     Shows the days of the week
 .DESCRIPTION
     Shows the days of the week
-.NOTES
-    Author:     Bill Riedy
 .OUTPUTS
     [string[]]
 #>

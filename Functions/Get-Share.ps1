@@ -10,11 +10,6 @@ Function Get-Share {
     To ignore any default admin shares such as Admin$, C$, IPC$
 .PARAMETER Types
     A string, or an array of the types of shares you want to view. Valid types include: Disk, Print, DiskAdmin, PrintAdmin, IPCAdmin, Device, DeviceAdmin
-.NOTES
-    Author:     Bill Riedy
-    Version:    1.0
-    Date:       2018/03/15
-    Notes:      Added functionality to test if Powershell version 2 as that does not have -in or -notin operators
 .EXAMPLE
     Get-Share
     Would return:

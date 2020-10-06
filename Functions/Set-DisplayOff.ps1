@@ -1,5 +1,3 @@
-# Turning off display http://community.idera.com/database-tools/powershell/powertips/b/tips/posts/turning-display-off-immediately
-# Turning on display  https://www.codeproject.com/Articles/11099/Turn-on-off-monitor
 
 function Set-DisplayOff {
 <#
@@ -8,7 +6,9 @@ function Set-DisplayOff {
 .DESCRIPTION
     Set-DisplayOff turns the display off via energy saver api
 .NOTES
-    Author:     Bill Riedy
+# Turning off display http://community.idera.com/database-tools/powershell/powertips/b/tips/posts/turning-display-off-immediately
+# Turning on display  https://www.codeproject.com/Articles/11099/Turn-on-off-monitor
+
 #>
 
     [cmdletbinding()]

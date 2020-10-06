@@ -4,10 +4,7 @@ Function Show-InvalidFileCharacter {
     Shows invalid filename characters
 .DESCRIPTION
     Shows invalid filename characters
-.NOTES
-    Author:     Bill Riedy
 #>
-
 
     [CmdletBinding(ConfirmImpact='None')]
     [outputtype([char[]])]

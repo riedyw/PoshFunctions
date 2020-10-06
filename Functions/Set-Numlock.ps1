@@ -15,7 +15,6 @@ Function Set-Numlock {
     Set-NumLock -Off
     Will turn off the NumLock
 .NOTES
-    Author:      Bill Riedy
     Inspiration: # Inspired by https://gallery.technet.microsoft.com/on-off-keyboad-lock-keys-6ba9885c
     Changes:     Created function to set on or off the NumLock. Requires use of helper function Test-IsNumLock
 .LINK

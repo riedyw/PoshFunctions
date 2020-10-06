@@ -18,7 +18,6 @@ Function mklink {
             Target  Specifies the path (relative or absolute) that the new link
                     refers to.
 .NOTES
-    Author:     Bill Riedy
     Passes all command line arguments to cmd.exe embedded command mklink
 .EXAMPLE
     mklink LINK REALFILE

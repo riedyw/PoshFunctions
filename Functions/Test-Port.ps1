@@ -16,11 +16,6 @@ Function Test-Port {
     Use UDP as the transport protocol
 .PARAMETER TimeOut
     Sets a timeout for TCP or UDP port query. (In milliseconds, Default is 1000)
-.NOTES
-    Author:     Bill Riedy
-    Version:    1.0
-    Date:       2018/03/13
-    To Do:      UDP port testing not currently working
 .EXAMPLE
     Test-Port -ComputerName 'server' -port 80
     Checks port 80 on server 'server' to see if it is listening

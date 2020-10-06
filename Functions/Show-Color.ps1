@@ -4,8 +4,6 @@ Function Show-Color {
     Show-Color displays the names and values of the console colors
 .DESCRIPTION
     Show-Color displays the names and values of the console colors
-.NOTES
-    Author:     Bill Riedy
 #>
 
     [CmdletBinding(ConfirmImpact='None')]

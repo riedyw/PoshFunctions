@@ -15,7 +15,6 @@ Function Set-Capslock {
     Set-CapsLock -Off
     Will turn off the CapsLock
 .NOTES
-    Author:      Bill Riedy
     Inspiration: # Inspired by https://gallery.technet.microsoft.com/on-off-keyboad-lock-keys-6ba9885c
     Changes:     Created function to set on or off the CapsLock. Requires use of helper function Test-IsCapsLock
 .LINK
