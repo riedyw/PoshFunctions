@@ -1,4 +1,4 @@
-# MyFunctions.psm1
+# PoshFunctions.psm1
 # Author: Bill Riedy
 
 Add-Type -AssemblyName Microsoft.VisualBasic
@@ -24,19 +24,9 @@ $ModulePath = split-path -parent $MyInvocation.MyCommand.Path
 
 $FunctionsPath = join-path -Path $ModulePath -ChildPath "Functions"
 $Functions = get-childitem -Path $FunctionsPath -Filter *.ps1
-# write-output ($functions | Select-Object fullname | findstr /i "parse")
 $Functions | foreach-object { . $_.FullName }
 
 $FunctionsToExport = $Functions | select-object -expand Basename
-
-<#
-Set-variable -name Testing -value 'Hello there'
-$VariablesToExport += 'Testing'
-$VariablesToExport += 'AliasesToExport'
-$VariablesToExport += 'VariablesToExport'
-$VariablesToExport += 'FunctionsToExport'
-
-#>
 
 <#
 The MyFunctions module is saved twice. Once as the file MyFunctions.psm1 A symbolic link of
@@ -52,4 +42,4 @@ if ($MyInvocation.MyCommand.Name -Match "\.psm1") {
     Export-ModuleMember -Variable $VariablesToExport
 }
 
-# EOF: MyFunctions.psm1 / MyFunctions.ps1
+# EOF: PoshFunctions.psm1 / PoshFunctions.ps1

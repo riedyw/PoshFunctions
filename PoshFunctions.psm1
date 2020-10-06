@@ -1,4 +1,4 @@
-# MyFunctions.psm1
+# PoshFunctions.psm1
 # Author: Bill Riedy
 
 Add-Type -AssemblyName Microsoft.VisualBasic
@@ -17,9 +17,9 @@ $Functions | foreach-object { . $_.FullName }
 $FunctionsToExport = $Functions | select-object -ExpandProperty Basename
 
 <#
-The MyFunctions module is saved twice. Once as the file MyFunctions.psm1 A symbolic link of
-MyFunctions.ps1 that points to MyFunctions.psm1 So the next line is merely determining if
-you are importing the module or if you dot sourced the MyFunctions.ps1 file.
+The MyFunctions module is saved twice. Once as the file PoshFunctions.psm1 A symbolic link of
+PoshFunctions.ps1 that points to PoshFunctions.psm1 So the next line is merely determining if
+you are importing the module or if you dot sourced the PoshFunctions.ps1 file.
 #>
 
 if ($MyInvocation.MyCommand.Name -Match "\.psm1") {
@@ -28,7 +28,6 @@ if ($MyInvocation.MyCommand.Name -Match "\.psm1") {
     Export-ModuleMember -Variable $VariablesToExport
 }
 
-# Creation of 'NetApi' class
 # inspired by: https://balladelli.com/netapi-et-powershell/
 # broke up into separate file for each function
 # Renamed public class 'Netapi' to 'NetApi32' to more accurately reflect its link back to DLL.
@@ -302,126 +301,4 @@ public class NetApi32 {
 
 Add-Type -TypeDefinition $NetApi32Code
 
-# Creation of of 'IniFileApi'
-# inspired by: http://powershell-scripting.com/index.php?option=com_joomlaboard&Itemid=76&func=view&view=threaded&id=24376&catid=5
-# also sourced at: https://gallery.technet.microsoft.com/Edit-old-fashioned-INI-f8fbc067?redir=0
-# changed class name from 'ProfileApi' to 'IniFileApi'
-# slightly changed formatting of code to make it more readable
-
-$IniFileApiCode=@'
-/* ======================================================================
-
-C# Source File -- Created with SAPIEN Technologies PrimalScript 2011
-
-NAME:
-
-AUTHOR: James Vierra, DSS
-DATE  : 8/30/2012
-
-COMMENT:
-
-Examples:
-add-type -Path IniFileApi.cs
-
-$sb = New-Object System.Text.StringBuilder(256)
-[IniFileApi]::GetPrivateProfileString('section1', 'test1', 'dummy', $sb, $sb.Capacity, "$pwd\test.ini")
-Write-Host ('Returned value is {0}.' -f $sb.ToString()) -ForegroundColor green
-
-[IniFileApi]::WritePrivateProfileString('section2', 'test5', 'Some new value', "$pwd\test.ini")
-
-[IniFileApi]::GetPrivateProfileString('section2', 'test5', 'dummy', $sb, $sb.Capacity, "$pwd\test.ini")
-Write-Host ('Returned value is {0}.' -f $sb.ToString()) -ForegroundColor green
-
-====================================================================== */
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Runtime.InteropServices;
-public class IniFileApi{
-
-    [DllImport("Kernel32.dll")]
-    public static extern bool WriteProfileSection(
-        string lpAppName,
-        string lpString
-    );
-
-    [DllImport("Kernel32.dll")]
-    public static extern bool WriteProfileString(
-        string lpAppName,
-        string lpKeyName,
-        string lpString
-    );
-
-    [DllImport("Kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-    [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool WritePrivateProfileString(
-        string lpAppName,
-        string lpKeyName,
-        string lpString,
-        string lpFileName
-    );
-
-    [DllImport("Kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
-    public static extern uint GetPrivateProfileSectionNames(
-        IntPtr lpReturnedString,
-        uint nSize,
-        string lpFileName
-    );
-
-    [DllImport("Kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
-    static extern uint GetPrivateProfileSection(
-        string lpAppName,
-        IntPtr lpReturnedString,
-        uint nSize,
-        string lpFileName
-    );
-
-    [DllImport("Kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-    public static extern uint GetPrivateProfileString(
-        string lpAppName,
-        string lpKeyName,
-        string lpDefault,
-        StringBuilder lpReturnedString,
-        uint nSize,
-        string lpFileName
-    );
-
-    public static string[] GetSectionNames(string iniFile) {
-        uint MAX_BUFFER = 32767;
-        IntPtr pReturnedString = Marshal.AllocCoTaskMem((int)MAX_BUFFER);
-        uint bytesReturned = GetPrivateProfileSectionNames(pReturnedString, MAX_BUFFER, iniFile);
-        if (bytesReturned == 0) {
-            Marshal.FreeCoTaskMem(pReturnedString);
-            return null;
-        }
-        string local = Marshal.PtrToStringAnsi(pReturnedString, (int)bytesReturned).ToString();
-        char[] c = new char[1];
-        c[0] = '\x0';
-        return local.Split(c, System.StringSplitOptions.RemoveEmptyEntries);
-        //Marshal.FreeCoTaskMem(pReturnedString);
-        //use of Substring below removes terminating null for split
-        //char[] c = local.ToCharArray();
-        //return MultistringToStringArray(ref c);
-        //return c;
-        //return local; //.Substring(0, local.Length - 1).Split('\0');
-    }
-
-    public static string[] GetSection(string iniFilePath, string sectionName) {
-        uint MAX_BUFFER = 32767;
-        IntPtr pReturnedString = Marshal.AllocCoTaskMem((int)MAX_BUFFER);
-        uint bytesReturned = GetPrivateProfileSection(sectionName, pReturnedString, MAX_BUFFER, iniFilePath);
-        if (bytesReturned == 0) {
-            Marshal.FreeCoTaskMem(pReturnedString);
-            return null;
-        }
-        string local = Marshal.PtrToStringAnsi(pReturnedString, (int)bytesReturned).ToString();
-        char[] c = new char[1] { '\x0' };
-        return local.Split(c, System.StringSplitOptions.RemoveEmptyEntries);
-    }
-
-}
-'@
-
-Add-Type $IniFileApiCode
-
-# EOF: MyFunctions.psm1 / MyFunctions.ps1
+# EOF: PoshFunctions.psm1 / PoshFunctions.ps1

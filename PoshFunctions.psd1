@@ -6,13 +6,13 @@
 RootModule = 'PoshFunctions.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.0.0'
+ModuleVersion = '2.3.0.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
 
 # ID used to uniquely identify this module
-GUID = 'd657facd-6cb6-4681-9285-c53790998e55'
+GUID = '188504d6-d6ed-4ee3-92c4-7b426ed3d611'
 
 # Author of this module
 Author = 'Bill Riedy'
@@ -24,7 +24,7 @@ CompanyName = ''
 Copyright = '(c) 2020 Bill Riedy. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'A curated collection of PowerShell scripts packaged into a module.'
+Description = 'A group of functions I find helpful'
 
 # Minimum version of the Windows PowerShell engine required by this module
 PowerShellVersion = '3.0'
@@ -95,7 +95,7 @@ PrivateData = @{
         # LicenseUri = ''
 
         # A URL to the main website for this project.
-        # ProjectUri = 'https://github.com/riedyw/PoshFunctions'
+        # ProjectUri = ''
 
         # A URL to an icon representing this module.
         # IconUri = ''
