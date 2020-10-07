@@ -3,10 +3,10 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'PoshFunctions.psm1'
+RootModule = 'MyFunctions.psm1'
 
 # Version number of this module.
-ModuleVersion = '2.3.0.0'
+ModuleVersion = '2.2.0.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -21,7 +21,7 @@ Author = 'Bill Riedy'
 CompanyName = ''
 
 # Copyright statement for this module
-Copyright = '(c) 2020 Bill Riedy. All rights reserved.'
+Copyright = '(c) 2019 Bill Riedy. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = 'A group of functions I find helpful'

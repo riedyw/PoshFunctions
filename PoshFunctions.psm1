@@ -1,4 +1,4 @@
-# PoshFunctions.psm1
+# MyFunctions.psm1
 # Author: Bill Riedy
 
 Add-Type -AssemblyName Microsoft.VisualBasic
@@ -17,9 +17,9 @@ $Functions | foreach-object { . $_.FullName }
 $FunctionsToExport = $Functions | select-object -ExpandProperty Basename
 
 <#
-The MyFunctions module is saved twice. Once as the file PoshFunctions.psm1 A symbolic link of
-PoshFunctions.ps1 that points to PoshFunctions.psm1 So the next line is merely determining if
-you are importing the module or if you dot sourced the PoshFunctions.ps1 file.
+The MyFunctions module is saved twice. Once as the file MyFunctions.psm1 A symbolic link of
+MyFunctions.ps1 that points to MyFunctions.psm1 So the next line is merely determining if
+you are importing the module or if you dot sourced the MyFunctions.ps1 file.
 #>
 
 if ($MyInvocation.MyCommand.Name -Match "\.psm1") {
@@ -301,4 +301,4 @@ public class NetApi32 {
 
 Add-Type -TypeDefinition $NetApi32Code
 
-# EOF: PoshFunctions.psm1 / PoshFunctions.ps1
+# EOF: MyFunctions.psm1 / MyFunctions.ps1
