@@ -1,0 +1,56 @@
+TOPIC
+    about_myFunctions
+
+SHORT DESCRIPTION
+    A short, one-line description of the topic contents.
+
+LONG DESCRIPTION
+    A detailed, full description of the subject or purpose of the module.
+
+    This set of functions are inspired by:
+    https://gallery.technet.microsoft.com/on-off-keyboad-lock-keys-6ba9885c
+
+        Set-Capslock
+        Set-Numlock
+        Set-Scrolllock
+        Test-IsCapsLock
+        Test-IsNumLock
+        Test-IsScrollLock
+
+    This set of functions are taken from the Powershell Cookbook by Lee Holmes.
+    Modified slightly to take out non-UTF8 characters, mostly smart quotes.
+
+        Get-PrivateProfileString
+        Invoke-WindowsAPI
+        Set-PrivateProfileString
+
+    This set of functions are inspired from the ISE-Color-Theme-Cmdlets found at
+    https://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
+    They have been heavily modified to include such things as error checking and
+    additional parameters to control behavior.
+
+        Add-ISEThemeMenu
+        Convert-ARGBToHex
+        Convert-HexToARGB
+        Export-ISEThemeFile
+        Get-CurrentISETheme
+        Get-FileName
+        Get-ImportedISEThemes
+        Get-ISETheme
+        Get-SaveFile
+        Import-GroupISEThemes
+        Import-ISEThemeFile
+        Remove-ISETheme
+        Select-ISETheme
+        Set-ISEColor
+        Set-ISETheme
+
+
+EXAMPLES
+    Examples of how to use the module or how the subject feature works in practice.
+
+KEYWORDS
+    Terms or titles on which you might expect your users to search for the information in this topic.
+
+SEE ALSO
+    about_ISE-Color-Theme-Cmdlets
