@@ -1,2 +1,0 @@
-This is the content of UTF8-BOM.txt
-
