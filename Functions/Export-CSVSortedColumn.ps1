@@ -1,6 +1,42 @@
-# source: https://stackoverflow.com/questions/3281999/format-list-sort-properties-by-name
-
 function Export-CSVSortedColumn {
+<#
+.SYNOPSIS
+    Sorts the column names alphabetically and exports to csv
+.DESCRIPTION
+    Sorts the column names alphabetically and exports to csv
+.PARAMETER InputObject
+    The object that will be exported
+.PARAMETER Descending
+    Switch if you want the columns to be in reverse alphabetical order.
+.PARAMETER Append
+    Optional parameter matches parameter in Export-CSV
+.PARAMETER Confirm
+    Optional parameter matches parameter in Export-CSV
+.PARAMETER Delimiter
+    Optional parameter matches parameter in Export-CSV
+.PARAMETER Encoding
+    Optional parameter matches parameter in Export-CSV
+.PARAMETER Force
+    Optional parameter matches parameter in Export-CSV
+.PARAMETER LiteralPath
+    Optional parameter matches parameter in Export-CSV
+.PARAMETER NoClobber
+    Optional parameter matches parameter in Export-CSV
+.PARAMETER NoTypeInformation
+    Optional parameter matches parameter in Export-CSV
+.PARAMETER Path
+    Optional parameter matches parameter in Export-CSV
+.PARAMETER UseCulture
+    Optional parameter matches parameter in Export-CSV
+.NOTES
+    Inspired by https://stackoverflow.com/questions/3281999/format-list-sort-properties-by-name
+
+    Made following changes
+    * added all parameters from Export-CSV
+.LINK
+    Export-CSV
+#>
+
     param (
         [Parameter(ValueFromPipeline = $true)]
         [Object[]] $InputObject,

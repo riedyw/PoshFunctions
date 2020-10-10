@@ -23,7 +23,7 @@ Function Test-ConnectionAsync {
     * removed $Buffer parameter
     * added $BufferSize parameter and dynamically create $Buffer from $BufferSize
     * added $IncludeSource so that source computer would be included in output
-.OUTPUT
+.OUTPUTS
     Net.AsyncPingResult
 .EXAMPLE
     Test-ConnectionAsync -Computername server1,server2
@@ -37,6 +37,7 @@ Function Test-ConnectionAsync {
     -----------
     Performs asynchronous ping test against listed systems.
 #>
+
     #Requires -Version 3.0
 
     [OutputType('Net.AsyncPingResult')]
