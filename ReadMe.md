@@ -1,6 +1,6 @@
 # PoshFunctions
 
-A variety of Powershell functions and filters wrapped into a module.
+A curated list of Powershell functions and filters wrapped into a module. Over 170 functions/filters.
 
 ## Install the module
 
