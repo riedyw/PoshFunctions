@@ -37,187 +37,196 @@ To import the module enter the following command
 
 For the functions themselves see [**Functions**](Functions) folder.
 
-- Add-Help
-- Add-ISEThemeMenu
-- audio-function
-- Compare-ObjectProperty
-- Convert-ARGBToHex
-- Convert-BitShift
-- Convert-HexToARGB
-- Convert-ObjectToHashtable
-- Convert-ROT13
-- Convert-SecureStringToString
-- Convert-UserFlag
-- ConvertFrom-Base64
-- ConvertFrom-DateTime
-- ConvertFrom-FsRight
-- ConvertFrom-UrlEncode
-- ConvertFrom-UTC
-- ConvertFrom-Xml
-- ConvertTo-Base64
-- ConvertTo-BinaryIPv4
-- ConvertTo-Bool
-- ConvertTo-DateTime
-- ConvertTo-DecimalIPv4
-- ConvertTo-DottedDecimalIPv4
-- ConvertTo-Markdown
-- ConvertTo-OrderedDictionary
-- ConvertTo-PlainText
-- ConvertTo-SecureText
-- ConvertTo-UncPath
-- ConvertTo-UrlEncode
-- ConvertTo-UTC
-- Copy-Object
-- Eexit
-- Enable-PowerShellFilePreview
-- Expand-String
-- Expand-Tab
-- Export-CSVSortedColumn
-- Export-ISEThemeFile
-- FileSizeAbove
-- FileSizeBelow
-- Format-MacAddress
-- Format-ReverseString
-- Format-SortedList
-- Format-WrapText
-- Get-BashPath
-- Get-BinaryType
-- Get-ComputerSite
-- Get-CurrentISETheme
-- Get-DNSHostEntryAsync
-- Get-DriveStat
-- Get-Enum
-- Get-ExecutableForFile
-- Get-FileEncoding
-- Get-FileName
-- Get-FileWithLeadingSpace
-- Get-Folder
-- Get-Font
-- Get-Fortune
-- Get-ImportedISETheme
-- Get-In
-- Get-IniContent
-- Get-IpRange
-- Get-ISETheme
-- Get-LastReboot
-- Get-MachineType
-- Get-MacVendor
-- Get-Magic8Ball
-- Get-Md5Sum
-- Get-ModuleVersionInformation
-- Get-NetStatistics
-- Get-NTFSPermission
-- Get-NtpDate
-- Get-OpenFiles
-- Get-OperatingSystemSKU
-- Get-Power
-- Get-PrivateProfileComment
-- Get-PrivateProfileSection
-- Get-PrivateProfileSectionNames
-- Get-PrivateProfileString
-- Get-PSWho
-- Get-RandomDate
-- Get-RandomHexDigit
-- Get-RandomMacAddress
-- Get-RegExpandString
-- Get-RegistryValue
-- Get-Round
-- Get-SaveFile
-- Get-Sessions
-- Get-Share
-- Get-SharePermission
-- Get-Shares
-- Get-ShareStat
-- Get-Shortcut
-- Get-SID
-- Get-StaticProperty
-- Get-SubnetMaskIPv4
-- Get-TruncatedDate
-- Get-Type
-- Get-UrlContent
-- Get-WordCount
-- grep
-- Help
-- Import-GroupISETheme
-- Import-ISEThemeFile
-- Invoke-Speak
-- Invoke-WindowsAPI
-- Join-Object
-- Lock-Workstation
-- mklink
-- Move-ToRecycleBin
-- New-InputBox
-- New-Popup
-- New-QR
-- New-Screenshot
-- New-Shortcut
-- New-WPFMessageBox
-- New-WPFMessageBox2
-- Read-HostWithDefault
-- Remove-BlankOrComment
-- Remove-BOMFromFile
-- Remove-EmptyProperty
-- Remove-InvalidFileNameChar
-- Remove-ISETheme
-- Remove-QuotesFromCsv
-- Remove-Trailing
-- Reset-Desktop
-- Resolve-ComputerName
-- Resolve-FQDN
-- Resolve-HostName
-- Search-Method
-- sed
-- Select-ISETheme
-- Set-Capslock
-- Set-Display
-- Set-DisplayOff
-- Set-DisplayOn
-- Set-ISEColor
-- Set-ISETheme
-- Set-Numlock
-- Set-PrivateProfileComment
-- Set-PrivateProfileString
-- Set-Scrolllock
-- Set-Speaker
-- Set-Type
-- Set-WindowStyle
-- Show-AllColor
-- Show-Calendar
-- Show-Color
-- Show-ColorsWithBackground
-- Show-DaysOfWeek
-- Show-FileAttribute
-- Show-FsRight
-- Show-InvalidFileCharacter
-- Show-Month
-- Show-NamedColor
-- Show-Object
-- Show-Progress
-- Show-ShortDaysOfWeek
-- Show-ShortMonth
-- Show-SpecialFolder
-- Show-SubnetMaskIPv4
-- Show-Timezone
-- Show-TypeAccelerator
-- Start-RecordSession
-- Stop-RecordSession
-- Switch-Mute
-- Test-ConnectionAsync
-- Test-IsAdmin
-- Test-IsCapsLock
-- Test-IsDate
-- Test-IsFileLocked
-- Test-IsHexString
-- Test-IsNumeric
-- Test-IsNumLock
-- Test-IsScrollLock
-- Test-IsValidEmailAddress
-- Test-IsValidIPv4
-- Test-NtpDateVsNow
-- Test-Port
-- Union-Object
-- Update-ExplorerIcon
-- Use-CallerPreference
+
+Name                           Synopsis
+----                           --------
+Add-Help                       Adds a template comment based block into the editor in the Powershell ISE.
+Add-ISEThemeMenu               Adds a theme to the ISE Theme menu
+Compare-ObjectProperty         Compares two objects property by property.
+Convert-ARGBToHex              Converts an ARGB color string to hex equivalent
+Convert-BitShift               Bit shifts an integer either LEFT or RIGHT.
+ConvertFrom-Base64             Convert from a Base64 string to normal string
+ConvertFrom-DateTime           Converts a datetime into a datetime represented in a different format.
+ConvertFrom-FsRight            To convert a [uint32] FileSystemRight value into a human readable form
+ConvertFrom-UrlEncode          Converts a URL encoded string back into a normal string
+ConvertFrom-UTC                Converts a datetime from UTC to local time
+ConvertFrom-XML                Convert XML to an object
+Convert-HexToARGB              Converts Hex to ARGB values
+Convert-ObjectToHashtable      Takes a single object and converts its properties and values into a hashtable.
+Convert-ROT13                  Shifts letters in string by 13 positions.
+Convert-SecureStringToString   Converts a SecureString value back to a plaintext string
+ConvertTo-Base64               ConvertTo-Base64 converts a normal string to a base 64 string
+ConvertTo-BinaryIPv4           Converts a Decimal IP address into a binary format.
+ConvertTo-Bool                 Parse a string and convert it to a Boolean
+ConvertTo-DateTime             Converts a formatted date string back into a datetime datatype.
+ConvertTo-DecimalIPv4          Converts a Dotted Decimal IP address into a 32-bit unsigned integer.
+ConvertTo-DottedDecimalIPv4    Returns a dotted decimal IP address.
+ConvertTo-Markdown             Convert pipeline output to a markdown document.
+ConvertTo-OrderedDictionary    Converts a HashTable, Array, or an OrderedDictionary to an OrderedDictionary.
+ConvertTo-PlainText            Converts the System.Security.SecureString to plain text.
+ConvertTo-SecureText           ...
+ConvertTo-UncPath              A simple function to convert a local file path and a computer name to a network UNC path.
+ConvertTo-UrlEncode            To encode plaintext using [Web.HttpUtility]::UrlEncode()
+ConvertTo-UTC                  Converts a datetime from local time to UTC
+Convert-UserFlag               Converts a userflag enumeration to a human readable list of attributes about an AD object.
+Copy-Object                    To copy an object to standard output
+Eexit                          Closes the transcript, and exits the PowerShell session
+Enable-PowerShellFilePreview   To enable previewing of Powershell files in the File Explorer.
+Expand-String                  Expanding a string expression. Can handle Powershell string expressions or Environment variable expansion.
+Expand-Tab                     To expand tab characters to spaces
+Export-CSVSortedColumn         ...
+Export-ISEThemeFile            Exports an ISE theme to an xml file
+FileSizeAbove                  To use as a filter against Get-ChildItem
+FileSizeBelow                  To use as a filter against Get-ChildItem
+Format-MacAddress              Function to cleanup a MACAddress string
+Format-ReverseString           To reverse a string, or an array of strings
+Format-SortedList              ...
+Format-WrapText                Wraps text at a particular column width
+Get-BashPath                   To take a normal Windows path and convert it to a bash path for things like git bash.
+Get-BinaryType                 Gets the binary executable type for a given set of files
+Get-ComputerSite               Describe purpose of "Get-ComputerSite" in 1-2 sentences.
+Get-CurrentISETheme            Gets current ISE theme
+Get-DNSHostEntryAsync          ...
+Get-DNSHostEntryAsync.ps1      Get-DNSHostEntryAsync.ps1 ...
+Get-DriveStat                  To get statistics on drives on a particular server or servers.
+Get-Enum                       To get the static values of enum datatypes
+Get-Enum.ps1                   Get-Enum.ps1 ...
+Get-ExecutableForFile          Given a file, determine what program is associated with file.
+Get-FileEncoding               To get the file encoding of a file
+Get-FileName                   Gets a filename through the native OpenFileDialog. Can select a single file or multiple files.
+Get-FileWithLeadingSpace       To find files that begin with a space character
+Get-Folder                     Gets a filename through the native OpenFileDialog. Can select a single file or multiple files.
+Get-Font                       Gets the fonts currently loaded on the system
+Get-Fortune                    Display a short quote
+Get-ImportedISETheme           Returns imported themes.
+Get-In                         To mimic the behavior of -in and -notin which are not present in Powershell version 2
+Get-IniContent                 Gets the content of an INI file
+Get-IpRange                    Given a subnet in CIDR format, get all of the valid IP addresses in that range.
+Get-ISETheme                   Gets an ISE theme
+Get-LastReboot                 Describe purpose of "Get-LastReboot" in 1-2 sentences.
+Get-MachineType                A quick function to determine if a computer is VM or physical box.
+Get-MacVendor                  Resolve MacAddresses To Vendors
+Get-Magic8Ball                 Get one of the answers from the magic 8 ball.
+Get-Md5Sum                     To calculate an Md5Sum for a file
+Get-ModuleVersionInformation   ...
+Get-NetStatistics              ...
+Get-NTFSPermission             To get permission information on a specified Path or folder name
+Get-NtpDate                    To get the time from an NTP server
+Get-OpenFiles                  ...
+Get-OperatingSystemSKU         Gets the sku information for the current operating system
+Get-Power                      Provides exponentian
+Get-PrivateProfileComment      To get comments from an .ini file
+Get-PrivateProfileSection      To get data out of an .ini file
+Get-PrivateProfileSectionNames To get the section names out of an .ini file
+Get-PrivateProfileString       To get data out of an .ini file
+Get-PSWho                      Get PowerShell user summary information
+Get-RandomDate                 Gets a random date
+Get-RandomHexDigit             Gets a random hex digit, or a string of hex digits
+Get-RandomMacAddress           Gets a random sequence of 12 hexadecimal digits
+Get-RegExpandString            Retrieves a null-terminated string that contains unexpanded references to environment variables (REG_EXPAND_SZ) from local or remote computers.
+Get-RegistryValue              Get the values from a specified registry key
+Get-Round                      Correctly rounds a number. Optionally can specify the number of digits to round to.
+Get-SaveFile                   Gets a filename through the native SaveFileDialog.
+Get-Sessions                   ...
+Get-Share                      To get information about shares on the local computer
+Get-SharePermission            To get permission information on specified ShareName
+Get-Shares                     ...
+Get-ShareStat                  To get statistics on a share
+Get-ShareStat.ps1              Get-ShareStat.ps1 ...
+Get-Shortcut                   Get information about a Shortcut (.lnk file)
+Get-SID                        To get the SID of a specified domain user passed as either an (email) or (domain,username)
+Get-StaticProperty             To list the static properties of a .NET class
+Get-SubnetMaskIPv4             Gets a dotted decimal subnet mask given the number of bits in the mask
+Get-TruncatedDate              To truncate a date at a given level
+Get-Type                       Get exported types in the current session
+Get-Type.ps1                   Get-Type.ps1 ...
+Get-UrlContent                 To get the HTML content of a specified URL
+Get-WordCount                  Gets summary statistics of all the words and how many of each there are
+grep                           A simple text filter to search for a string
+help                           Describe purpose of "Help" in 1-2 sentences.
+Import-GroupISETheme           Describe purpose of "Import-GroupISETheme" in 1-2 sentences.
+Import-ISEThemeFile            Imports an ISE theme XML file into the registry.
+Invoke-Speak
+Invoke-WindowsAPI              Describe purpose of "Invoke-WindowsAPI" in 1-2 sentences.
+Join-Object                    Combines two object lists based on a related property between them.
+Lock-Workstation               Locks the workstation
+mklink                         Mklink calls out to the Command Prompt (cmd.exe) and creates a link
+Move-ToRecycleBin              Instead of outright deleting a file, why not move it to the Recycle Bin?
+New-Inputbox                   Display a Visual Basic style inputbox.
+New-PopUp                      New-Popup will display a popup message
+New-QR                         Create New Quick Response Code
+New-ScreenShot                 To take a screenshot and save it to a file.
+New-Shortcut                   This script is used to create a  shortcut.
+New-WPFMessageBox              ...
+New-WPFMessageBox2             Describe purpose of "New-WPFMessageBox2" in 1-2 sentences.
+Read-HostWithDefault           A wrapper for Read-Host that includes a default value. Optionally can provide a prompt.
+Remove-BlankOrComment          A simple text filter to remove blank lines or lines that begin with a comment character.
+Remove-BomFromFile             To remove BOM (byte order marking) from a file.
+Remove-EmptyProperty           To take an object and return only non-empty properties
+Remove-InvalidFileNameChar     Removes characters from a string that are not valid in Windows file names.
+Remove-ISETheme                Deletes an ISE theme from the ISE.
+Remove-QuotesFromCsv           Removes quotes from a CSV data set. Can optionally set $Delimiter to another character.
+Remove-Trailing                Removes trailing spaces from a string or array of strings.
+Reset-Desktop                  Forces a reset of the desktop
+Resolve-ComputerName           To parse from a given computername and split it into the pieces that make it up
+Resolve-FQDN                   Resolves a hostname or IPv4 address to a fully qualified domain name
+Resolve-HostName               Resolves a hostname to an IPv4 address.
+Search-Method                  Search method
+sed                            A simple text filter to replace strings
+Select-ISETheme                ...
+Set-Capslock                   Sets the state of the CapsLock button.
+Set-Display                    Set-Display turns the display on or off via energy saver api
+Set-DisplayOff                 Set-DisplayOff turns the display off via energy saver api
+Set-DisplayOn                  Turns the display on
+Set-ISEColor                   Changes ISE Theme colors according to switch
+Set-ISETheme                   Applies ISE theme to current session.
+Set-Numlock                    Sets the state of the NumLock button. If you pass $true to function it will turn on NumLock.
+Set-PrivateProfileComment      To place comment(s) in an .ini file. Comments are lines that begin with a...
+Set-PrivateProfileString       To set data in an .ini file
+Set-Scrolllock                 Sets the state of the ScrollLock button.
+Set-Speaker                    Sets the speaker volume.
+Set-Type                       Sets the data type of a property given the property name and the data type.
+Set-WindowStyle                To control the behavior of a window
+Show-AllColor                  Shows all console colors
+Show-Calendar                  Displays a visual representation of a calendar.
+Show-Color                     Show-Color displays the names and values of the console colors
+Show-ColorsWithBackground      Show-ColorsWithBackground displays all combinations of foreground/background of the console colors.
+Show-DaysOfWeek                Shows the days of the week
+Show-FileAttribute             Shows the available file attributes
+Show-FsRight                   To list all potential file system rights
+Show-InvalidFileCharacter      Shows invalid filename characters
+Show-Month                     Shows the months
+Show-NamedColor                Shows all named colors
+Show-Object                    Takes an object and displays a new window containing the object, and you can drill down on its properties.
+Show-Progress                  Show progress as items pass through a section of the pipline
+Show-ShortDaysOfWeek           Show short days of the week
+Show-ShortMonth                Shows short month
+Show-SpecialFolder             Shows special folder names
+Show-SubnetMaskIPv4            Show IPv4 subnet masks
+Show-Timezone                  Show timezone information
+Show-TypeAccelerator           Shows type accelerators
+Start-RecordSession            Creates a transcript of current Powershell session
+Stop-RecordSession             Stops the running transcript
+Switch-Mute                    Toggles speaker mute
+Test-ConnectionAsync           ...
+Test-IsAdmin                   Determines if you are running elevated (as Administrator)
+Test-IsCapsLock                Determines if the CapsLock key is on or not
+Test-IsDate                    Tests to see if the specified string is a valid [datetime] string
+Test-IsFileLocked              Determine if a file is locked.
+Test-IsHexString               Tests to determine if a string is a valid hexadecimal number. Can optionally include a prefix of '0x' or '#'
+Test-IsNumeric                 Determines if specified string can be parsed to a number
+Test-IsNumLock                 Determines the state of NumLock
+Test-IsScrollLock              Sets the state of the ScrollLock button. If you pass $true to function it will turn on ScrollLock.
+Test-IsValidEmailAddress       Tests validity if specified string is an email address.
+Test-IsValidIPv4               Verifies if passed parameter is a valid IP v4 address
+Test-NtpDateVsNow              To test whether local time and NTP time fall within a particular tolerance
+Test-Port                      Tests a Port or a range of ports on a specific ComputerName(s).
+Union-Object                   ...
+Union-Object.ps1               Union-Object.ps1 ...
+Update-ExplorerIcon            Updates explorericon
+Use-CallerPreference           Sets the PowerShell preference variables in a module's function based on the callers preferences.
+
+
 
 
 ## EOF - End Of File Comment
