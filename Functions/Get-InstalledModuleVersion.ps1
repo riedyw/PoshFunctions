@@ -11,12 +11,15 @@ function Get-InstalledModuleVersion {
     Write-Host 'The following modules need to be updated'
     $NeedToUpgrade
     
-    $NeedToUpgrade | ForEach-Object { Update-Module -Name $_.Name }
+    # To update the modules remove comment from following line
+    # $NeedToUpgrade | ForEach-Object { Update-Module -Name $_.Name }
 .NOTES
     Inspired by https://tfl09.blogspot.com/2018/07/keeping-powershell-modules-up-to-date.html
 
     * Added comment help
-    * Changed to use Get-InstalledModule so that it just shows most recent version of installed module
+    * Changed to use Get-InstalledModule for 2 reasons:
+        1. Shows only installed modules
+        2. Shows only most recent version of installed module on PSGallery
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
@@ -24,7 +27,7 @@ function Get-InstalledModuleVersion {
 
     # Startup
     $Start = Get-Date
-    Write-Verbose -Message 'Get-ModuleVersionInformation'
+    Write-Verbose -Message 'Get-InstalledModuleVersion'
     Write-Verbose -Message "Started at: [$start]"
 
     # Get the modules on the local system

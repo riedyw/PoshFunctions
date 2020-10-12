@@ -1,17 +1,17 @@
-# Source: https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/refreshing-icon-cache
-
 function Update-ExplorerIcon {
 <#
 .SYNOPSIS
-    Updates explorericon
+    Updates Explorer icons
 .DESCRIPTION
-    Updates explorericon
+    Updates Explorer icons
+.NOTES
+    Source: https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/refreshing-icon-cache
 #>
 
-  [CmdletBinding(ConfirmImpact='Low')]
-  param()
+    [CmdletBinding(ConfirmImpact='Low')]
+    param()
 
-  $code = @'
+    $code = @'
 private static readonly IntPtr HWND_BROADCAST = new IntPtr(0xffff);
 private const int WM_SETTINGCHANGE = 0x1a;
 private const int SMTO_ABORTIFHUNG = 0x0002;
@@ -32,7 +32,7 @@ public static void Refresh()  {
 }
 '@
 
-  Add-Type -MemberDefinition $code -Namespace MyWinAPI -Name Explorer
-  [MyWinAPI.Explorer]::Refresh()
+    Add-Type -MemberDefinition $code -Namespace MyWinAPI -Name Explorer
+    [MyWinAPI.Explorer]::Refresh()
 
 }

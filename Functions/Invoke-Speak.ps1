@@ -1,14 +1,16 @@
 Function Invoke-Speak {
 <#
+.SYNOPSIS
+    Use the speech synthesizer in Powershell. Can be synchronous or asynchronous. Option for random voice.
 .DESCRIPTION
-    Use the speech synthesizer in powershell
+    Use the speech synthesizer in Powershell. Can be synchronous or asynchronous. Option for random voice.
 .PARAMETER Expression
     Type what you want the speech synthesizer to say
 .PARAMETER Async
-    Determines whether the speech is asynchronous. Normally the next statement in your script
+    Switch to make the text-to-speak asynchronous. Normally the next statement in your script
     does not run until the speech process is done saying the whole expression.
 .PARAMETER RandomVoice
-    Will select one of the installed voices at random to speak the expression
+    Will select one of the installed voices at random to speak the expression.
 .EXAMPLE
     Invoke-Speak -Expression 'Your computer is ON.'
 .EXAMPLE
@@ -21,6 +23,7 @@ Function Invoke-Speak {
     [Alias('Speak')]
     param(
         [Parameter (Mandatory, HelpMessage = 'Please enter an expression you wish to be spoken', ValueFromPipeline, Position = 0)]
+        [Alias('Text')]
         [string[]] $Expression,
 
         [switch] $Async,
@@ -34,25 +37,11 @@ Function Invoke-Speak {
 
     process {
         foreach ($CurrentExpression in $Expression) {
-            $String += ( $CurrentExpression + '')
+            $String += ( $CurrentExpression + ' ')
         }
     }
 
-<#
-    # this block worked only in PS 5.1
     end {
-        Add-Type -AssemblyName System.Speech
-        $SpeechSynth = New-Object -TypeName System.Speech.Synthesis.SpeechSynthesizer
-        if ($Async) {
-            $null = $SpeechSynth.SpeakAsync($String)
-        } else {
-            $SpeechSynth.Speak($String)
-        }
-    }
- #>
-
-    end {
-        #Add-Type -AssemblyName System.Speech
         $SpeechSynth = New-Object -ComObject SAPI.SpVoice
         if ($RandomVoice) {
             $Voices = $SpeechSynth.getvoices()

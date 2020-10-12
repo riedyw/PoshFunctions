@@ -1,6 +1,6 @@
 # PoshFunctions
 
-A curated list of Powershell functions and filters wrapped into a module. Over 170 functions/filters.
+A curated list of Powershell functions and filters wrapped into a module. Over 150 functions/filters.
 
 ## Install the module
 
@@ -74,23 +74,21 @@ Eexit                          Closes the transcript, and exits the PowerShell s
 Enable-PowerShellFilePreview   To enable previewing of Powershell files in the File Explorer.
 Expand-String                  Expanding a string expression. Can handle Powershell string expressions or Environment variable expansion.
 Expand-Tab                     To expand tab characters to spaces
-Export-CSVSortedColumn         ...
+Export-CSVSortedColumn         Sorts the column names alphabetically and exports to csv
 Export-ISEThemeFile            Exports an ISE theme to an xml file
 FileSizeAbove                  To use as a filter against Get-ChildItem
 FileSizeBelow                  To use as a filter against Get-ChildItem
 Format-MacAddress              Function to cleanup a MACAddress string
 Format-ReverseString           To reverse a string, or an array of strings
-Format-SortedList              ...
+Format-SortedList              Creates a formatted list with properties sorted alphabetically
 Format-WrapText                Wraps text at a particular column width
 Get-BashPath                   To take a normal Windows path and convert it to a bash path for things like git bash.
 Get-BinaryType                 Gets the binary executable type for a given set of files
 Get-ComputerSite               Describe purpose of "Get-ComputerSite" in 1-2 sentences.
 Get-CurrentISETheme            Gets current ISE theme
 Get-DNSHostEntryAsync          ...
-Get-DNSHostEntryAsync.ps1      Get-DNSHostEntryAsync.ps1 ...
 Get-DriveStat                  To get statistics on drives on a particular server or servers.
 Get-Enum                       To get the static values of enum datatypes
-Get-Enum.ps1                   Get-Enum.ps1 ...
 Get-ExecutableForFile          Given a file, determine what program is associated with file.
 Get-FileEncoding               To get the file encoding of a file
 Get-FileName                   Gets a filename through the native OpenFileDialog. Can select a single file or multiple files.
@@ -99,8 +97,7 @@ Get-Folder                     Gets a filename through the native OpenFileDialog
 Get-Font                       Gets the fonts currently loaded on the system
 Get-Fortune                    Display a short quote
 Get-ImportedISETheme           Returns imported themes.
-Get-In                         To mimic the behavior of -in and -notin which are not present in Powershell version 2
-Get-IniContent                 Gets the content of an INI file
+Get-InstalledModuleVersion     Get version information on installed modules and most recent version on PSGallery
 Get-IpRange                    Given a subnet in CIDR format, get all of the valid IP addresses in that range.
 Get-ISETheme                   Gets an ISE theme
 Get-LastReboot                 Describe purpose of "Get-LastReboot" in 1-2 sentences.
@@ -109,10 +106,8 @@ Get-MacVendor                  Resolve MacAddresses To Vendors
 Get-Magic8Ball                 Get one of the answers from the magic 8 ball.
 Get-Md5Sum                     To calculate an Md5Sum for a file
 Get-ModuleVersionInformation   ...
-Get-NetStatistics              ...
 Get-NTFSPermission             To get permission information on a specified Path or folder name
 Get-NtpDate                    To get the time from an NTP server
-Get-OpenFiles                  ...
 Get-OperatingSystemSKU         Gets the sku information for the current operating system
 Get-Power                      Provides exponentian
 Get-PrivateProfileComment      To get comments from an .ini file
@@ -127,19 +122,15 @@ Get-RegExpandString            Retrieves a null-terminated string that contains 
 Get-RegistryValue              Get the values from a specified registry key
 Get-Round                      Correctly rounds a number. Optionally can specify the number of digits to round to.
 Get-SaveFile                   Gets a filename through the native SaveFileDialog.
-Get-Sessions                   ...
 Get-Share                      To get information about shares on the local computer
 Get-SharePermission            To get permission information on specified ShareName
-Get-Shares                     ...
 Get-ShareStat                  To get statistics on a share
-Get-ShareStat.ps1              Get-ShareStat.ps1 ...
 Get-Shortcut                   Get information about a Shortcut (.lnk file)
 Get-SID                        To get the SID of a specified domain user passed as either an (email) or (domain,username)
 Get-StaticProperty             To list the static properties of a .NET class
 Get-SubnetMaskIPv4             Gets a dotted decimal subnet mask given the number of bits in the mask
 Get-TruncatedDate              To truncate a date at a given level
 Get-Type                       Get exported types in the current session
-Get-Type.ps1                   Get-Type.ps1 ...
 Get-UrlContent                 To get the HTML content of a specified URL
 Get-WordCount                  Gets summary statistics of all the words and how many of each there are
 grep                           A simple text filter to search for a string
@@ -147,7 +138,6 @@ help                           Describe purpose of "Help" in 1-2 sentences.
 Import-GroupISETheme           Describe purpose of "Import-GroupISETheme" in 1-2 sentences.
 Import-ISEThemeFile            Imports an ISE theme XML file into the registry.
 Invoke-Speak
-Invoke-WindowsAPI              Describe purpose of "Invoke-WindowsAPI" in 1-2 sentences.
 Join-Object                    Combines two object lists based on a related property between them.
 Lock-Workstation               Locks the workstation
 mklink                         Mklink calls out to the Command Prompt (cmd.exe) and creates a link
@@ -171,7 +161,7 @@ Resolve-FQDN                   Resolves a hostname or IPv4 address to a fully qu
 Resolve-HostName               Resolves a hostname to an IPv4 address.
 Search-Method                  Search method
 sed                            A simple text filter to replace strings
-Select-ISETheme                ...
+Select-ISETheme                Selects and applies an ISE theme from the registry.
 Set-Capslock                   Sets the state of the CapsLock button.
 Set-Display                    Set-Display turns the display on or off via energy saver api
 Set-DisplayOff                 Set-DisplayOff turns the display off via energy saver api
@@ -206,7 +196,7 @@ Show-TypeAccelerator           Shows type accelerators
 Start-RecordSession            Creates a transcript of current Powershell session
 Stop-RecordSession             Stops the running transcript
 Switch-Mute                    Toggles speaker mute
-Test-ConnectionAsync           ...
+Test-ConnectionAsync           Performs a ping test asynchronously
 Test-IsAdmin                   Determines if you are running elevated (as Administrator)
 Test-IsCapsLock                Determines if the CapsLock key is on or not
 Test-IsDate                    Tests to see if the specified string is a valid [datetime] string
@@ -219,9 +209,11 @@ Test-IsValidEmailAddress       Tests validity if specified string is an email ad
 Test-IsValidIPv4               Verifies if passed parameter is a valid IP v4 address
 Test-NtpDateVsNow              To test whether local time and NTP time fall within a particular tolerance
 Test-Port                      Tests a Port or a range of ports on a specific ComputerName(s).
-Union-Object                   ...
-Union-Object.ps1               Union-Object.ps1 ...
+Union-Object                   Returns a 'clean' array of objects that have all property names in each element of the array
 Update-ExplorerIcon            Updates explorericon
 Use-CallerPreference           Sets the PowerShell preference variables in a module's function based on the callers preferences.
+
+
+
 
 ## EOF - End Of File Comment
