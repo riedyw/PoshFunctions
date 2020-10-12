@@ -37,14 +37,10 @@ To import the module enter the following command
 
 For the functions themselves see [**Functions**](Functions) folder.
 
-
 Name                           Synopsis
 ----                           --------
-Add-Help                       Adds a template comment based block into the editor in the Powershell ISE.
-Add-ISEThemeMenu               Adds a theme to the ISE Theme menu
 Compare-ObjectProperty         Compares two objects property by property.
 Convert-ARGBToHex              Converts an ARGB color string to hex equivalent
-Convert-BitShift               Bit shifts an integer either LEFT or RIGHT.
 ConvertFrom-Base64             Convert from a Base64 string to normal string
 ConvertFrom-DateTime           Converts a datetime into a datetime represented in a different format.
 ConvertFrom-FsRight            To convert a [uint32] FileSystemRight value into a human readable form
@@ -71,11 +67,9 @@ ConvertTo-UTC                  Converts a datetime from local time to UTC
 Convert-UserFlag               Converts a userflag enumeration to a human readable list of attributes about an AD object.
 Copy-Object                    To copy an object to standard output
 Eexit                          Closes the transcript, and exits the PowerShell session
-Enable-PowerShellFilePreview   To enable previewing of Powershell files in the File Explorer.
 Expand-String                  Expanding a string expression. Can handle Powershell string expressions or Environment variable expansion.
 Expand-Tab                     To expand tab characters to spaces
 Export-CSVSortedColumn         Sorts the column names alphabetically and exports to csv
-Export-ISEThemeFile            Exports an ISE theme to an xml file
 FileSizeAbove                  To use as a filter against Get-ChildItem
 FileSizeBelow                  To use as a filter against Get-ChildItem
 Format-MacAddress              Function to cleanup a MACAddress string
@@ -85,7 +79,6 @@ Format-WrapText                Wraps text at a particular column width
 Get-BashPath                   To take a normal Windows path and convert it to a bash path for things like git bash.
 Get-BinaryType                 Gets the binary executable type for a given set of files
 Get-ComputerSite               Describe purpose of "Get-ComputerSite" in 1-2 sentences.
-Get-CurrentISETheme            Gets current ISE theme
 Get-DNSHostEntryAsync          ...
 Get-DriveStat                  To get statistics on drives on a particular server or servers.
 Get-Enum                       To get the static values of enum datatypes
@@ -96,16 +89,13 @@ Get-FileWithLeadingSpace       To find files that begin with a space character
 Get-Folder                     Gets a filename through the native OpenFileDialog. Can select a single file or multiple files.
 Get-Font                       Gets the fonts currently loaded on the system
 Get-Fortune                    Display a short quote
-Get-ImportedISETheme           Returns imported themes.
 Get-InstalledModuleVersion     Get version information on installed modules and most recent version on PSGallery
 Get-IpRange                    Given a subnet in CIDR format, get all of the valid IP addresses in that range.
-Get-ISETheme                   Gets an ISE theme
 Get-LastReboot                 Describe purpose of "Get-LastReboot" in 1-2 sentences.
 Get-MachineType                A quick function to determine if a computer is VM or physical box.
 Get-MacVendor                  Resolve MacAddresses To Vendors
 Get-Magic8Ball                 Get one of the answers from the magic 8 ball.
 Get-Md5Sum                     To calculate an Md5Sum for a file
-Get-ModuleVersionInformation   ...
 Get-NTFSPermission             To get permission information on a specified Path or folder name
 Get-NtpDate                    To get the time from an NTP server
 Get-OperatingSystemSKU         Gets the sku information for the current operating system
@@ -134,10 +124,8 @@ Get-Type                       Get exported types in the current session
 Get-UrlContent                 To get the HTML content of a specified URL
 Get-WordCount                  Gets summary statistics of all the words and how many of each there are
 grep                           A simple text filter to search for a string
-help                           Describe purpose of "Help" in 1-2 sentences.
-Import-GroupISETheme           Describe purpose of "Import-GroupISETheme" in 1-2 sentences.
-Import-ISEThemeFile            Imports an ISE theme XML file into the registry.
-Invoke-Speak
+Help                           Describe purpose of "Help" in 1-2 sentences.
+Invoke-Speak                   Use the speech synthesizer in Powershell. Can be synchronous or asynchronous. Option for random voice.
 Join-Object                    Combines two object lists based on a related property between them.
 Lock-Workstation               Locks the workstation
 mklink                         Mklink calls out to the Command Prompt (cmd.exe) and creates a link
@@ -152,22 +140,15 @@ Remove-BlankOrComment          A simple text filter to remove blank lines or lin
 Remove-BomFromFile             To remove BOM (byte order marking) from a file.
 Remove-EmptyProperty           To take an object and return only non-empty properties
 Remove-InvalidFileNameChar     Removes characters from a string that are not valid in Windows file names.
-Remove-ISETheme                Deletes an ISE theme from the ISE.
 Remove-QuotesFromCsv           Removes quotes from a CSV data set. Can optionally set $Delimiter to another character.
 Remove-Trailing                Removes trailing spaces from a string or array of strings.
 Reset-Desktop                  Forces a reset of the desktop
-Resolve-ComputerName           To parse from a given computername and split it into the pieces that make it up
 Resolve-FQDN                   Resolves a hostname or IPv4 address to a fully qualified domain name
 Resolve-HostName               Resolves a hostname to an IPv4 address.
 Search-Method                  Search method
 sed                            A simple text filter to replace strings
-Select-ISETheme                Selects and applies an ISE theme from the registry.
 Set-Capslock                   Sets the state of the CapsLock button.
 Set-Display                    Set-Display turns the display on or off via energy saver api
-Set-DisplayOff                 Set-DisplayOff turns the display off via energy saver api
-Set-DisplayOn                  Turns the display on
-Set-ISEColor                   Changes ISE Theme colors according to switch
-Set-ISETheme                   Applies ISE theme to current session.
 Set-Numlock                    Sets the state of the NumLock button. If you pass $true to function it will turn on NumLock.
 Set-PrivateProfileComment      To place comment(s) in an .ini file. Comments are lines that begin with a...
 Set-PrivateProfileString       To set data in an .ini file
@@ -210,10 +191,6 @@ Test-IsValidIPv4               Verifies if passed parameter is a valid IP v4 add
 Test-NtpDateVsNow              To test whether local time and NTP time fall within a particular tolerance
 Test-Port                      Tests a Port or a range of ports on a specific ComputerName(s).
 Union-Object                   Returns a 'clean' array of objects that have all property names in each element of the array
-Update-ExplorerIcon            Updates explorericon
-Use-CallerPreference           Sets the PowerShell preference variables in a module's function based on the callers preferences.
-
-
-
+Update-ExplorerIcon            Updates Explorer icons
 
 ## EOF - End Of File Comment
