@@ -157,8 +157,6 @@ New-PopUp                      New-Popup will display a popup message
 New-QR                         Create New Quick Response Code
 New-ScreenShot                 To take a screenshot and save it to a file.
 New-Shortcut                   This script is used to create a  shortcut.
-New-WPFMessageBox              ...
-New-WPFMessageBox2             Describe purpose of "New-WPFMessageBox2" in 1-2 sentences.
 Read-HostWithDefault           A wrapper for Read-Host that includes a default value. Optionally can provide a prompt.
 Remove-BlankOrComment          A simple text filter to remove blank lines or lines that begin with a comment character.
 Remove-BomFromFile             To remove BOM (byte order marking) from a file.
@@ -225,8 +223,5 @@ Union-Object                   ...
 Union-Object.ps1               Union-Object.ps1 ...
 Update-ExplorerIcon            Updates explorericon
 Use-CallerPreference           Sets the PowerShell preference variables in a module's function based on the callers preferences.
-
-
-
 
 ## EOF - End Of File Comment

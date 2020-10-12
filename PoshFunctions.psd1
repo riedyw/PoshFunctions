@@ -6,7 +6,7 @@
 RootModule = 'PoshFunctions.psm1'
 
 # Version number of this module.
-ModuleVersion = '2.2.0.0'
+ModuleVersion = '2.2.1.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -24,7 +24,7 @@ CompanyName = ''
 Copyright = '(c) 2020 Bill Riedy. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'A curated collection of PowerShell functions. Many functions written by me. Others are attributed wherever possible.'
+Description = 'A curated collection of over 150 PowerShell functions. Many functions written by me. Others are attributed wherever possible.'
 
 # Minimum version of the Windows PowerShell engine required by this module
 PowerShellVersion = '3.0'
@@ -89,7 +89,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        # Tags = @()
+        Tags = @('functions')
 
         # A URL to the license for this module.
         # LicenseUri = ''
