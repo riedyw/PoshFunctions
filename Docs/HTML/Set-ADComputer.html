@@ -1,0 +1,995 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: Microsoft.ActiveDirectory.Management.dll-help.xml
+Module Name: ActiveDirectory
+online version: http://go.microsoft.com/fwlink/p/?linkid=291114
+schema: 2.0.0</h2>
+<h1>Set-ADComputer</h1>
+<h2>SYNOPSIS</h2>
+<p>Modifies an Active Directory computer object.</p>
+<h2>SYNTAX</h2>
+<h3>Identity</h3>
+<pre><code>Set-ADComputer [-WhatIf] [-Confirm] [-AccountExpirationDate &lt;DateTime&gt;] [-AccountNotDelegated &lt;Boolean&gt;]
+ [-Add &lt;Hashtable&gt;] [-AllowReversiblePasswordEncryption &lt;Boolean&gt;]
+ [-AuthenticationPolicy &lt;ADAuthenticationPolicy&gt;] [-AuthenticationPolicySilo &lt;ADAuthenticationPolicySilo&gt;]
+ [-AuthType &lt;ADAuthType&gt;] [-CannotChangePassword &lt;Boolean&gt;] [-Certificates &lt;Hashtable&gt;]
+ [-ChangePasswordAtLogon &lt;Boolean&gt;] [-Clear &lt;String[]&gt;] [-CompoundIdentitySupported &lt;Boolean&gt;]
+ [-Credential &lt;PSCredential&gt;] [-Description &lt;String&gt;] [-DisplayName &lt;String&gt;] [-DNSHostName &lt;String&gt;]
+ [-Enabled &lt;Boolean&gt;] [-HomePage &lt;String&gt;] [-Identity] &lt;ADComputer&gt;
+ [-KerberosEncryptionType &lt;ADKerberosEncryptionType&gt;] [-Location &lt;String&gt;] [-ManagedBy &lt;ADPrincipal&gt;]
+ [-OperatingSystem &lt;String&gt;] [-OperatingSystemHotfix &lt;String&gt;] [-OperatingSystemServicePack &lt;String&gt;]
+ [-OperatingSystemVersion &lt;String&gt;] [-Partition &lt;String&gt;] [-PassThru] [-PasswordNeverExpires &lt;Boolean&gt;]
+ [-PasswordNotRequired &lt;Boolean&gt;] [-PrincipalsAllowedToDelegateToAccount &lt;ADPrincipal[]&gt;] [-Remove &lt;Hashtable&gt;]
+ [-Replace &lt;Hashtable&gt;] [-SAMAccountName &lt;String&gt;] [-Server &lt;String&gt;] [-ServicePrincipalNames &lt;Hashtable&gt;]
+ [-TrustedForDelegation &lt;Boolean&gt;] [-UserPrincipalName &lt;String&gt;] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>Instance</h3>
+<pre><code>Set-ADComputer [-WhatIf] [-Confirm] [-AuthType &lt;ADAuthType&gt;] [-Credential &lt;PSCredential&gt;]
+ -Instance &lt;ADComputer&gt; [-PassThru] [-Server &lt;String&gt;] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>The Set-ADComputer cmdlet modifies the properties of an Active Directory computer object.
+You can modify commonly used property values by using the cmdlet parameters.
+Property values that are not associated with cmdlet parameters can be modified by using the Add, Replace, Clear and Remove parameters.</p>
+<p>The Identity parameter specifies the Active Directory computer to modify.
+You can identify a computer by its distinguished name Members (DN), GUID, security identifier (SID) or Security Accounts Manager (SAM) account name.
+You can also set the Identity parameter to an object variable such as $&lt;localComputerObject&gt;, or you can pass an object through the pipeline to the Identity parameter.
+For example, you can use the Get-ADComputer cmdlet to retrieve a computer object and then pass the object through the pipeline to Set-ADComputer.</p>
+<p>The Instance parameter provides a way to update a computer by applying the changes made to a copy of the computer object.
+When you set the Instance parameter to a copy of an Active Directory computer object that has been modified, the Set-ADComputer cmdlet makes the same changes to the original computer object.
+To get a copy of the object to modify, use the Get-ADComputer object.
+When you specify the Instance parameter you should not pass the identity parameter.
+For more information about the Instance parameter, see the Instance parameter description.
+For more information about how the instance concept is used in Active Directory cmdlets, see about_ActiveDirectory_Instance.</p>
+<p>The following examples show how to modify the Location property of a computer object by using three methods:</p>
+<p>-By specifying the Identity and the Location parameters</p>
+<p>-By passing a computer object through the pipeline and specifying the Location parameter</p>
+<p>-By specifying the Instance parameter.</p>
+<p>Method 1: Modify the Location property for the saraDavisLaptop computer by using the Identity and Location parameters.</p>
+<p>Set-ADComputer  -Identity SaraDavisLaptop  -Location  &quot;W4013&quot;</p>
+<p>Method 2: Modify the Location property for the saraDavisLaptop computer by passing the computer object through the pipeline and specifying the Location parameter.</p>
+<p>Get-ADComputer SaraDavisLaptop | Set-ADcomputer -Location  &quot;W4013&quot;</p>
+<p>Method 3:  Modify the Location property for the saraDavisLaptop computer by using the Windows PowerShell command line to modify a local instance of the computer object.
+Then set the Instance parameter to the local instance.</p>
+<p>$computer = Get-ADcomputer saraDavisLaptop</p>
+<p>$computer.Location=  &quot;W4013&quot;</p>
+<p>Set-ADComputer -Instance $computer</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>C:\PS&gt;Set-ADComputer &quot;FABRIKAM-SRV1&quot; -ServicePrincipalName @{Replace=&quot;MSSQLSVC/FABRIKAM-SRV1.FABRIKAM.COM:1456&quot;,&quot;MSOLAPSVC.3/FABRIKAM-SRV1.FABRIKAM.COM:analyze&quot;}
+</code></pre>
+<p>Description</p>
+<hr />
+<p>Modify the SPN value for a given computer.</p>
+<h3>EXAMPLE 2</h3>
+<pre><code>C:\PS&gt;Set-ADComputer &quot;FABRIKAM-SRV1&quot; -Location &quot;NA/HQ/Building A&quot;
+</code></pre>
+<p>Description</p>
+<hr />
+<p>Modify the location for a given computer.</p>
+<h3>EXAMPLE 3</h3>
+<pre><code>C:\PS&gt;Set-ADComputer &quot;FABRIKAM-SRV1&quot; -ManagedBy &quot;CN=SQL Administrator 01,OU=UserAccounts,OU=Managed,DC=FABRIKAM,DC=COM&quot;
+</code></pre>
+<p>Description</p>
+<hr />
+<p>Set the managed by attribute value for a given computer using the SAM account name of the user.</p>
+<h3>EXAMPLE 4</h3>
+<pre><code>C:\PS&gt;$comp = Get-ADComputer &quot;FABRIKAM-SRV1&quot;; $comp.Location = &quot;NA/HQ/Building A&quot;; $comp.ManagedBy = &quot;CN=SQL Administrator 01,OU=UserAccounts,OU=Managed,DC=FABRIKAM,DC=COM&quot;; Set-ADComputer -Instance $comp
+</code></pre>
+<p>Description</p>
+<hr />
+<p>Set the location and managed-by attributes of a given computer using the instance parameter set.</p>
+<h2>PARAMETERS</h2>
+<h3>-AccountExpirationDate</h3>
+<p>Specifies the expiration date for an account.
+When you set this parameter to 0, the account never expires.
+This parameter sets the AccountExpirationDate property of an account object.
+The LDAP Display name (ldapDisplayName) for this property is accountExpires.</p>
+<p>Use the DateTime syntax when you specify this parameter.
+Time is assumed to be local time unless otherwise specified.
+When a time value is not specified, the time is assumed to 12:00:00 AM local time.
+When a date is not specified, the date is assumed to be the current date.
+The following examples show commonly-used syntax to specify a DateTime object.</p>
+<p>&quot;4/17/2006&quot;</p>
+<p>&quot;Monday, April 17, 2006&quot;</p>
+<p>&quot;2:22:45 PM&quot;</p>
+<p>&quot;Monday, April 17, 2006 2:22:45 PM&quot;</p>
+<p>These examples specify the same date and the time without the seconds.</p>
+<p>&quot;4/17/2006 2:22 PM&quot;</p>
+<p>&quot;Monday, April 17, 2006 2:22 PM&quot;</p>
+<p>&quot;2:22 PM&quot;</p>
+<p>The following example shows how to specify a date and time by using the RFC1123 standard.
+This example defines time by using Greenwich Mean Time (GMT).</p>
+<p>&quot;Mon, 17 Apr 2006 21:22:48 GMT&quot;</p>
+<p>The following example shows how to specify a round-trip value as Coordinated Universal Time (UTC).
+This example represents Monday, April 17, 2006 at 2:22:48 PM UTC.</p>
+<p>&quot;2006-04-17T14:22:48.0000000&quot;</p>
+<p>The following example shows how to set this parameter to the date May 1, 2012 at 5 PM.</p>
+<p>-AccountExpirationDate &quot;05/01/2012 5:00:00 PM&quot;</p>
+<pre><code class="language-yaml">Type: DateTime
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-AccountNotDelegated</h3>
+<p>Specifies whether the security context of the user is delegated to a service.
+When this parameter is set to true, the security context of the account is not delegated to a service even when the service account is set as trusted for Kerberos delegation.
+This parameter sets the AccountNotDelegated property for an Active Directory account.
+This parameter also sets the ADS_UF_NOT_DELEGATED flag of the Active Directory User Account Control (UAC) attribute.
+Possible values for this parameter include</p>
+<p>$false or 0</p>
+<p>$true or 1</p>
+<p>The following example shows how to set this parameter so that the security context of the account is not delegated to a service.</p>
+<p>-AccountNotDelegated $true</p>
+<pre><code class="language-yaml">Type: Boolean
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Add</h3>
+<p>Specifies values to add to an object property.
+Use this parameter to add one or more values to a property that cannot be modified using a cmdlet parameter.
+To modify an object property, you must use the LDAP display name.
+You can specify multiple values to a property by specifying a comma-separated list of values and more than one property by separating them using a semicolon..
+The format for this parameter is</p>
+<p>-Add @{Attribute1LDAPDisplayName=value1, value2, ...;   Attribute2LDAPDisplayName=value1, value2, ...; AttributeNLDAPDisplayName=value1, value2, ...}</p>
+<p>For example, if you want to remove the value &quot;555-222-2222&quot; and add the values &quot;555-222-1111&quot; and &quot;555-222-3333&quot; to Phone-Office-Other attribute (LDAP display name 'otherTelephone'), and add the value &quot;555-222-9999&quot; to Phone-Mobile-Other (LDAP display name 'otherMobile'), set the Add and Remove parameters as follows.</p>
+<p>-Add @{otherTelephone='555-222-1111', '555-222-3333'; otherMobile='555-222-9999' } -Remove @{otherTelephone='555-222-2222'}</p>
+<p>When you use the Add, Remove, Replace and Clear parameters together, the operations will be performed in the following order:</p>
+<p>..Remove</p>
+<p>..Add</p>
+<p>..Replace</p>
+<pre><code class="language-yaml">Type: Hashtable
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-AllowReversiblePasswordEncryption</h3>
+<p>Specifies whether reversible password encryption is allowed for the account.
+This parameter sets the AllowReversiblePasswordEncryption property of the account.
+This parameter also sets the ADS_UF_ENCRYPTED_TEXT_PASSWORD_ALLOWED flag of the Active Directory User Account Control (UAC) attribute.
+Possible values for this parameter include:</p>
+<p>$false or 0</p>
+<p>$true or 1</p>
+<p>The following example shows how to set this parameter to true.</p>
+<p>-AllowReversiblePasswordEncryption $true</p>
+<pre><code class="language-yaml">Type: Boolean
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-AuthenticationPolicy</h3>
+<p>@{Text=}</p>
+<pre><code class="language-yaml">Type: ADAuthenticationPolicy
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-AuthenticationPolicySilo</h3>
+<p>@{Text=}</p>
+<pre><code class="language-yaml">Type: ADAuthenticationPolicySilo
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-AuthType</h3>
+<p>Specifies the authentication method to use.
+Possible values for this parameter include:</p>
+<p>Negotiate or 0</p>
+<p>Basic or 1</p>
+<p>The default authentication method is Negotiate.</p>
+<p>A Secure Sockets Layer (SSL) connection is required for the Basic authentication method.</p>
+<p>The following example shows how to set this parameter to Basic.</p>
+<p>-AuthType Basic</p>
+<pre><code class="language-yaml">Type: ADAuthType
+Parameter Sets: (All)
+Aliases:
+Accepted values: Negotiate, Basic
+
+Required: False
+Position: Named
+Default value: Microsoft.ActiveDirectory.Management.AuthType.Negotiate
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-CannotChangePassword</h3>
+<p>Specifies whether the account password can be changed.
+This parameter sets the CannotChangePassword property of an account.
+Possible values for this parameter include:</p>
+<p>$false or 0</p>
+<p>$true or 1</p>
+<p>The following example shows how to set this parameter so that the account password can be changed.</p>
+<p>-CannotChangePassword $false</p>
+<pre><code class="language-yaml">Type: Boolean
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Certificates</h3>
+<p>Modifies the DER-encoded X.509v3 certificates of the account.
+These certificates include the public key certificates issued to this account by the Microsoft Certificate Service.
+This parameter sets the Certificates property of the account object.
+The LDAP Display Name (ldapDisplayName) for this property is &quot;userCertificate&quot;.</p>
+<p>Syntax:</p>
+<p>To add values:</p>
+<p>-Certificates @{Add=value1,value2,...}</p>
+<p>To remove values:</p>
+<p>-Certificates @{Remove=value3,value4,...}</p>
+<p>To replace values:</p>
+<p>-Certificates @{Replace=value1,value2,...}</p>
+<p>To clear all values:</p>
+<p>-Certificates $null</p>
+<p>You can specify more than one operation by using a list separated by semicolons.
+For example, use the following syntax to add and remove Certificate values</p>
+<p>-Certificates @{Add=value1,value2,...};@{Remove=value3,value4,...}</p>
+<p>The operators will be applied in the following sequence:</p>
+<p>..Remove</p>
+<p>..Add</p>
+<p>..Replace</p>
+<p>The following example shows how to create a certificate by using the New-Object cmdlet, and then add it to a user account.
+When this cmdlet is run, &lt;certificate password&gt; is replaced by the password used to add the certificate.</p>
+<p>$cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate certificate1.cer  &lt;certificate password&gt;</p>
+<p>Set-ADUser saradavis  -Certificates @{Add=$cert}</p>
+<p>The following example shows how to add a certificate that is specified as a byte array.</p>
+<p>Set-ADUser saradavis  -Certificates @{Add= [Byte[]](0xC5,0xEE,0x53,...)}</p>
+<pre><code class="language-yaml">Type: Hashtable
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-ChangePasswordAtLogon</h3>
+<p>Specifies whether a password must be changed during the next logon attempt.
+Possible values for this parameter include:</p>
+<p>$false or 0</p>
+<p>$true or 1</p>
+<p>This parameter cannot be set to $true or 1 for an account that also has the PasswordNeverExpires property set to true.</p>
+<p>The following example shows how to set this parameter so that the password must be changed at logon.</p>
+<p>-ChangePasswordAtLogon $true</p>
+<pre><code class="language-yaml">Type: Boolean
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Clear</h3>
+<p>Specifies an array of object properties that will be cleared in the directory.
+Use this parameter to clear one or more values of a property that cannot be modified using a cmdlet parameter.
+To modify an object property, you must use the LDAP display name.
+You can modify more than one property by specifying a comma-separated list.
+The format for this parameter is</p>
+<p>-Clear Attribute1LDAPDisplayName, Attribute2LDAPDisplayName</p>
+<p>For example, if you want to clear the value for the Phone-Office-Other attribute (LDAP display name 'otherTelephone') set the Clear parameter as follows.</p>
+<p>-Clear otherTelephone</p>
+<p>When you use the Add, Remove, Replace and Clear parameters together, the operations will be performed in the following order:</p>
+<p>..Remove</p>
+<p>..Add</p>
+<p>..Replace</p>
+<p>..Clear</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-CompoundIdentitySupported</h3>
+<p>Specifies whether an account supports Kerberos service tickets which includes the authorization data for the user's device.
+This value sets the compound identity supported flag of the Active Directory msDS-SupportedEncryptionTypes attribute.
+Possible values for this parameter are:</p>
+<p>$false or 0</p>
+<p>$true or 1</p>
+<p>The following example shows how to specify that an account supports service tickets with device authorization data.</p>
+<p>-SupportDeviceAuthz $true</p>
+<p>Warning: Domain-joined Windows systems and services such as clustering manage their own msDS-SupportedEncryptionTypes attribute.
+Therefore any changes to the flag on the msDS-SupportedEncryptionTypes attribute will be overwritten by the service or system which manages the setting.</p>
+<pre><code class="language-yaml">Type: Boolean
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Credential</h3>
+<p>Specifies the user account credentials to use to perform this task.
+The default credentials are the credentials of the currently logged on user unless the cmdlet is run from an Active Directory PowerShell provider drive.
+If the cmdlet is run from such a provider drive, the account associated with the drive is the default.</p>
+<p>To specify this parameter, you can type a user name, such as &quot;User1&quot; or &quot;Domain01\User01&quot; or you can specify a PSCredential object.
+If you specify a user name for this parameter, the cmdlet prompts for a password.</p>
+<p>You can also create a PSCredential object by using a script or by using the Get-Credential cmdlet.
+You can then set the Credential parameter to the PSCredential object The following example shows how to create credentials.</p>
+<p>$AdminCredentials = Get-Credential &quot;Domain01\User01&quot;</p>
+<p>The following shows how to set the Credential parameter to these credentials.</p>
+<p>-Credential $AdminCredentials</p>
+<p>If the acting credentials do not have directory-level permission to perform the task, Active Directory PowerShell returns a terminating error.</p>
+<pre><code class="language-yaml">Type: PSCredential
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-DNSHostName</h3>
+<p>Specifies the fully qualified domain name (FQDN) of the computer.
+This parameter sets the DNSHostName property for a computer object.
+The LDAP Display Name for this property is &quot;dNSHostName&quot;.</p>
+<p>The following example shows how to set this parameter to a FQDN.</p>
+<p>-DNSHostName &quot;corp.contoso.com&quot;</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Description</h3>
+<p>Specifies a description of the object.
+This parameter sets the value of the Description property for the object.
+The LDAP Display Name (ldapDisplayName) for this property is &quot;description&quot;.</p>
+<p>The following example shows how to set this parameter to a sample description.</p>
+<p>-Description &quot;Description of the object&quot;</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-DisplayName</h3>
+<p>Specifies the display name of the object.
+This parameter sets the DisplayName property of the object.
+The LDAP Display Name (ldapDisplayName) for this property is &quot;displayName&quot;.</p>
+<p>The following example shows how to set this parameter.</p>
+<p>-DisplayName &quot;Sara Davis Laptop&quot;</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Enabled</h3>
+<p>Specifies if an account is enabled.
+An enabled account requires a password.
+This parameter sets the Enabled property for an account object.
+This parameter also sets the ADS_UF_ACCOUNTDISABLE flag of the Active Directory User Account Control (UAC) attribute.
+Possible values for this parameter include:</p>
+<p>$false or 0</p>
+<p>$true or 1</p>
+<p>The following example shows how to set this parameter to enable the account.</p>
+<p>-Enabled $true</p>
+<pre><code class="language-yaml">Type: Boolean
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-HomePage</h3>
+<p>Specifies the URL of the home page of the object.
+This parameter sets the homePage property of an Active Directory object.
+The LDAP Display Name (ldapDisplayName) for this property is &quot;wWWHomePage&quot;.</p>
+<p>The following example shows how to set this parameter to a URL.</p>
+<p>-HomePage &quot;http://employees.contoso.com/sdavis&quot;</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Identity</h3>
+<p>Specifies an Active Directory computer object by providing one of the following property values.
+The identifier in parentheses is the LDAP display name for the attribute.</p>
+<p>Distinguished Name</p>
+<p>Example: CN=SaraDavisDesktop,CN=Europe,CN=Users,DC=corp,DC=contoso,DC=com</p>
+<p>GUID  (objectGUID)</p>
+<p>Example: 599c3d2e-f72d-4d20-8a88-030d99495f20</p>
+<p>Security Identifier (objectSid)</p>
+<p>Example: S-1-5-21-3165297888-301567370-576410423-1103</p>
+<p>Security Accounts Manager Account Name (sAMAccountName)</p>
+<p>Example: SaraDavisDesktop</p>
+<p>The cmdlet searches the default naming context or partition to find the object.
+If the identifier given is a DN, the partition to search will be computed from that DN.
+If two or more objects are found, the cmdlet returns a non-terminating error.</p>
+<p>This parameter can also get this object through the pipeline or you can set this parameter to a computer object instance.</p>
+<p>This example shows how to set the parameter to a distinguished name.</p>
+<p>-Identity  &quot;CN=saraDavisDesktop,CN=Europe,CN=Users,DC=corp,DC=contoso,DC=com&quot;</p>
+<p>This example shows how to set this parameter to a computer object instance named &quot;computerInstance&quot;.</p>
+<p>-Identity   $computerInstance</p>
+<pre><code class="language-yaml">Type: ADComputer
+Parameter Sets: Identity
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+</code></pre>
+<h3>-Instance</h3>
+<p>Specifies a modified copy of a computer object to use to update the actual Active Directory computer object.
+When this parameter is used, any modifications made to the modified copy of the object are also made to the corresponding Active Directory object.
+The cmdlet only updates the object properties that have changed.</p>
+<p>The Instance parameter can only update computer objects that have been retrieved by using the Get-ADComputer cmdlet.
+When you specify the Instance parameter, you cannot specify other parameters that set properties on the object.</p>
+<p>The following is an example of how to use the Get-ADComputer cmdlet to retrieve an instance of the ADComputer object.
+The object is modified by using the Windows PowerShell command line.
+Then the Set-ADComputer cmdlet saves the changes to the Active Directory object.</p>
+<p>Step 1: Retrieve a local instance of the object.</p>
+<p>$computerInstance = Get-ADComputer  -Identity saraDavisDesktop</p>
+<p>Step 2: Modify one or more properties of the object instance.</p>
+<p>$computerInstance.Description = &quot;Sara Davis Computer&quot;</p>
+<p>Step3: Save your changes to saraDavisDesktop.</p>
+<p>Set-ADComputer -Instance $computerInstance</p>
+<pre><code class="language-yaml">Type: ADComputer
+Parameter Sets: Instance
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-KerberosEncryptionType</h3>
+<p>Specifies whether an account supports Kerberos encryption types which are used during creation of service tickets.
+This value sets the encryption types supported flags of the Active Directory msDS-SupportedEncryptionTypes attribute.
+Possible values for this parameter are:</p>
+<p>None</p>
+<p>DES</p>
+<p>RC4</p>
+<p>AES128</p>
+<p>AES256</p>
+<p>None, will remove all encryption types from the account which may result in the KDC being unable to issue service tickets for services using the account.</p>
+<p>DES is a weak encryption type which is not supported by default since Windows 7 and Windows Server 2008 R2.</p>
+<p>The following example shows how to specify that an account supports service tickets with device authorization data.</p>
+<p>-KerberosEncryptionTypes RC4|AES128|AES256</p>
+<p>Warning: Domain-joined Windows systems and services such as clustering manage their own msDS-SupportedEncryptionTypes attribute.
+Therefore any changes to the flag on the msDS-SupportedEncryptionTypes attribute will be overwritten by the service or system which manages the setting.</p>
+<pre><code class="language-yaml">Type: ADKerberosEncryptionType
+Parameter Sets: Identity
+Aliases:
+Accepted values: None, DES, RC4, AES128, AES256
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Location</h3>
+<p>Specifies the location of the computer, such as an office number.
+This parameter sets the Location property of a computer.
+The LDAP display name (ldapDisplayName) of this property is &quot;location&quot;.</p>
+<p>The following example shows how to set this parameter.</p>
+<p>-Location  &quot;Test Lab A&quot;</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-ManagedBy</h3>
+<p>Specifies the user or group that manages the object by providing one of the following property values.
+Note: The identifier in parentheses is the LDAP display name for the property.</p>
+<p>Distinguished Name</p>
+<p>Example:  CN=SaraDavis,OU=Europe,CN=Users,DC=corp,DC=contoso,DC=com</p>
+<p>GUID (objectGUID)</p>
+<p>Example: 599c3d2e-f72d-4d20-8a88-030d99495f20</p>
+<p>Security Identifier (objectSid)</p>
+<p>Example: S-1-5-21-3165297888-301567370-576410423-1103</p>
+<p>SAM Account Name (sAMAccountName)</p>
+<p>Example: saradavis</p>
+<p>This parameter sets the Active Directory attribute with an LDAP Display Name of &quot;managedBy&quot;.</p>
+<p>The following example shows how to specify this parameter.</p>
+<p>-ManagedBy ContosoAdmins</p>
+<pre><code class="language-yaml">Type: ADPrincipal
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-OperatingSystem</h3>
+<p>Specifies an operating system name.
+This parameter sets the OperatingSystem property of the computer object.
+The LDAP Display Name (ldapDisplayName) for this property is &quot;operatingSystem&quot;.</p>
+<p>The following example shows how to set this parameter.</p>
+<p>-OperatingSystem &quot;Windows Server 2008 Enterprise&quot;</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-OperatingSystemHotfix</h3>
+<p>Specifies an operating system hotfix name.
+This parameter sets the operatingSystemHotfix property of the computer object.
+The LDAP display name for this property is &quot;operatingSystemHotfix&quot;.</p>
+<p>The following example shows how to specify this parameter.</p>
+<p>-operatingSystemHotfix &quot;523466&quot;</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-OperatingSystemServicePack</h3>
+<p>Specifies the name of an operating system service pack.
+This parameter sets the OperatingSystemServicePack property of the computer object.
+The LDAP display name (ldapDisplayName) for this property is &quot;operatingSystemServicePack&quot;.</p>
+<p>The following example shows how to specify this parameter.</p>
+<p>-OperatingSystemServicePack &quot;Service Pack 2&quot;</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-OperatingSystemVersion</h3>
+<p>Specifies an operating system version.
+This parameter sets the OperatingSystemVersion property of the computer object.
+The LDAP display name (ldapDisplayName) for this property is &quot;operatingSystemVersion&quot;.</p>
+<p>The following example shows how to specify this parameter.</p>
+<p>-OperatingSystemVersion &quot;6.0 (6001)&quot;</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Partition</h3>
+<p>Specifies the distinguished name of an Active Directory partition.
+The distinguished name must be one of the naming contexts on the current directory server.
+The cmdlet searches this partition to find the object defined by the Identity parameter.</p>
+<p>The following two examples show how to specify a value for this parameter.</p>
+<p>-Partition &quot;CN=Configuration,DC=EUROPE,DC=TEST,DC=CONTOSO,DC=COM&quot;</p>
+<p>-Partition &quot;CN=Schema,CN=Configuration,DC=EUROPE,DC=TEST,DC=CONTOSO,DC=COM&quot;</p>
+<p>In many cases, a default value will be used for the Partition parameter if no value is specified.
+The rules for determining the default value are given below.
+Note that rules listed first are evaluated first and once a default value can be determined, no further rules will be evaluated.</p>
+<p>In AD DS environments, a default value for Partition will be set in the following cases:  - If the Identity parameter is set to a distinguished name, the default value of Partition is automatically generated from this distinguished name.</p>
+<ul>
+<li>If running cmdlets from an Active Directory provider drive, the default value of Partition is automatically generated from the current path in the drive.</li>
+<li>If none of the previous cases apply, the default value of Partition will be set to the default partition or naming context of the target domain.</li>
+</ul>
+<p>In AD LDS environments, a default value for Partition will be set in the following cases:</p>
+<ul>
+<li>If the Identity parameter is set to a distinguished name, the default value of Partition is automatically generated from this distinguished name.</li>
+<li>If running cmdlets from an Active Directory provider drive, the default value of Partition is automatically generated from the current path in the drive.</li>
+<li>If the target AD LDS instance has a default naming context, the default value of Partition will be set to the default naming context.  To specify a default naming context for an AD LDS environment, set the msDS-defaultNamingContext property of the Active Directory directory service agent (DSA) object (nTDSDSA) for the AD LDS instance.</li>
+<li>If none of the previous cases apply, the Partition parameter will not take any default value.</li>
+</ul>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-PassThru</h3>
+<p>Returns the new or modified object.
+By default (i.e.
+if -PassThru is not specified), this cmdlet does not generate any output.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-PasswordNeverExpires</h3>
+<p>Specifies whether the password of an account can expire.
+This parameter sets the PasswordNeverExpires property of an account object.
+This parameter also sets the ADS_UF_DONT_EXPIRE_PASSWD flag of the Active Directory User Account Control attribute.
+Possible values for this parameter include:</p>
+<p>$false or 0</p>
+<p>$true or 1</p>
+<p>Note: This parameter cannot be set to $true or 1 for an account that also has the ChangePasswordAtLogon property set to true.</p>
+<p>The following example shows how to set this parameter so that the password can expire.</p>
+<p>-PasswordNeverExpires $false</p>
+<pre><code class="language-yaml">Type: Boolean
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-PasswordNotRequired</h3>
+<p>Specifies whether the account requires a password.
+This parameter sets the PasswordNotRequired property of an account, such as a user or computer account.
+This parameter also sets the ADS_UF_PASSWD_NOTREQD flag of the Active Directory User Account Control attribute.
+Possible values for this parameter are:</p>
+<p>$false or 0</p>
+<p>$true or 1</p>
+<p>The following example shows how to set this parameter so that as password is not required for the account.</p>
+<p>-PasswordNotRequired $true</p>
+<pre><code class="language-yaml">Type: Boolean
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-PrincipalsAllowedToDelegateToAccount</h3>
+<p>Specifies the accounts which can act on the behalf of users to services running as this computer account.
+This parameter sets the msDS-AllowedToActOnBehalfOfOtherIdentity attribute of a computer account object.</p>
+<pre><code class="language-yaml">Type: ADPrincipal[]
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Remove</h3>
+<p>Specifies that the cmdlet remove values of an object property.
+Use this parameter to remove one or more values of a property that cannot be modified using a cmdlet parameter.
+To remove an object property, you must use the LDAP display name.
+You can remove more than one property by specifying a semicolon-separated list.
+The format for this parameter is</p>
+<p>-Remove @{Attribute1LDAPDisplayName=value[];   Attribute2LDAPDisplayName=value[]}</p>
+<p>For example, if you want to add the values blue and green and remove the value pink from a property with a LDAP display name of FavColors, set the Add and Remove parameters as follows.</p>
+<p>-Add @{FavColors=Blue,Green} -Remove {FavColors=Pink}</p>
+<p>When you use the Add, Remove, Replace and Clear parameters together, the parameters will be applied in the following sequence:</p>
+<p>..Remove</p>
+<p>..Add</p>
+<p>..Replace</p>
+<p>..Clear</p>
+<pre><code class="language-yaml">Type: Hashtable
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Replace</h3>
+<p>Specifies values for an object property that will replace the current values.
+Use this parameter to replace one or more values of a property that cannot be modified using a cmdlet parameter.
+To modify an object property, you must use the LDAP display name.
+You can modify more than one property by specifying a comma-separated list.
+The format for this parameter is</p>
+<p>-Replace @{Attribute1LDAPDisplayName=value[],   Attribute2LDAPDisplayName=value[]}</p>
+<p>For example, if you want to replace the value &quot;555-222-2222&quot; with the values &quot;555-222-1111&quot; for Phone-Office-Other attribute (LDAP display name 'otherTelephone') set the Replace parameter as follows.</p>
+<p>-Replace @{otherTelephone='555-222-2222', '555-222-1111'}</p>
+<p>When you use the Add, Remove, Replace  and Clear parameters together, the operations will be performed in the following order:</p>
+<p>..Remove</p>
+<p>..Add</p>
+<p>..Replace</p>
+<p>..Clear</p>
+<pre><code class="language-yaml">Type: Hashtable
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-SAMAccountName</h3>
+<p>Specifies the Security Account Manager (SAM) account name of the user, group, computer, or service account.
+The maximum length of the description is 256 characters.
+To be compatible with older operating systems, create a SAM account name that is 20 characters or less.
+This parameter sets the SAMAccountName for an account object.
+The LDAP display name (ldapDisplayName) for this property is &quot;sAMAccountName&quot;.</p>
+<p>The following example shows how to specify this parameter.</p>
+<p>-SAMAccountName &quot;saradavis&quot;</p>
+<p>Note: If the string value provided is not terminated with a '$' character, the system adds one if needed.</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Server</h3>
+<p>Specifies the Active Directory Domain Services instance to connect to, by providing one of the following values for a corresponding domain name or directory server.
+The service may be any of the following:  Active Directory Lightweight Domain Services, Active Directory Domain Services or Active Directory Snapshot instance.</p>
+<p>Domain name values:</p>
+<p>Fully qualified domain name</p>
+<p>Examples: corp.contoso.com</p>
+<p>NetBIOS name</p>
+<p>Example: CORP</p>
+<p>Directory server values:</p>
+<p>Fully qualified directory server name</p>
+<p>Example: corp-DC12.corp.contoso.com</p>
+<p>NetBIOS name</p>
+<p>Example: corp-DC12</p>
+<p>Fully qualified directory server name and port</p>
+<p>Example: corp-DC12.corp.contoso.com:3268</p>
+<p>The default value for the Server parameter is determined by one of the following methods in the order that they are listed:</p>
+<p>-By using Server value from objects passed through the pipeline.</p>
+<p>-By using the server information associated with the Active Directory PowerShell provider drive, when running under that drive.</p>
+<p>-By using the domain of the computer running Powershell.</p>
+<p>The following example shows how to specify a full qualified domain name as the parameter value.</p>
+<p>-Server &quot;corp.contoso.com&quot;</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-ServicePrincipalNames</h3>
+<p>Specifies the service principal names for the account.
+This parameter sets the ServicePrincipalNames property of the account.
+The LDAP display name (ldapDisplayName) for this property is servicePrincipalName.
+This parameter uses the following syntax to add remove, replace or clear service principal name values.</p>
+<p>Syntax:</p>
+<p>To add values:</p>
+<p>-ServicePrincipalNames @{Add=value1,value2,...}</p>
+<p>To remove values:</p>
+<p>-ServicePrincipalNames @{Remove=value3,value4,...}</p>
+<p>To replace values:</p>
+<p>-ServicePrincipalNames @{Replace=value1,value2,...}</p>
+<p>To clear all values:</p>
+<p>-ServicePrincipalNames $null</p>
+<p>You can specify more than one change by using a list separated by semicolons.
+For example, use the following syntax to add and remove service principal names.</p>
+<p>@{Add=value1,value2,...};@{Remove=value3,value4,...}</p>
+<p>The operators will be applied in the following sequence:</p>
+<p>..Remove</p>
+<p>..Add</p>
+<p>..Replace</p>
+<p>The following example shows how to add and remove service principal names.</p>
+<p>-ServicePrincipalNames-@{Add=&quot;SQLservice\accounting.corp.contoso.com:1456&quot;};{Remove=&quot;SQLservice\finance.corp.contoso.com:1456&quot;}</p>
+<pre><code class="language-yaml">Type: Hashtable
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-TrustedForDelegation</h3>
+<p>Specifies whether an account is trusted for Kerberos delegation.
+A service that runs under an account that is trusted for Kerberos delegation can assume the identity of a client requesting the service.
+This parameter sets the TrustedForDelegation property of an account object.
+This value also sets the ADS_UF_TRUSTED_FOR_DELEGATION flag of the Active Directory User Account Control attribute.
+Possible values for this parameter are:</p>
+<p>$false or 0</p>
+<p>$true or 1</p>
+<p>The following example shows how to specify that an account is trusted for Kerberos delegation.</p>
+<p>-TrustedForDelegation $true</p>
+<pre><code class="language-yaml">Type: Boolean
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-UserPrincipalName</h3>
+<p>Each user account has a user principal name (UPN) in the format &lt;user&gt;@&lt;DNS-domain-name&gt;.
+A UPN is a friendly name assigned by an administrator that is shorter than the LDAP distinguished name used by the system and easier to remember.
+The UPN is independent of the user object's DN, so a user object can be moved or renamed without affecting the user logon name.
+When logging on using a UPN, users no longer have to choose a domain from a list on the logon dialog box.</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: Identity
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Confirm</h3>
+<p>Prompts you for confirmation before running the cmdlet.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-WhatIf</h3>
+<p>Shows what would happen if the cmdlet runs.
+The cmdlet is not run.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h3>Microsoft.ActiveDirectory.Management.ADComputer</h3>
+<p>A computer object is received by the Identity parameter.</p>
+<p>A computer object that was retrieved by using the Get-ADComputer cmdlet and then modified is received by the Instance parameter.</p>
+<h2>OUTPUTS</h2>
+<h3>None or Microsoft.ActiveDirectory.Management.ADComputer</h3>
+<p>Returns the modified computer object when the PassThru parameter is specified.
+By default, this cmdlet does not generate any output.</p>
+<h2>NOTES</h2>
+<p>This cmdlet does not work with AD LDS.</p>
+<p>This cmdlet does not work with an Active Directory Snapshot.</p>
+<p>This cmdlet does not work with a read-only domain controller.</p>
+<p>This cmdlet does not work when connected to Global Catalog port.</p>
+<h2>RELATED LINKS</h2>
+<p><a href="">Add-ADComputerServiceAccount</a></p>
+<p><a href="">Get-ADComputer</a></p>
+<p><a href="">Get-ADComputerServiceAccount</a></p>
+<p><a href="">New-ADComputer</a></p>
+<p><a href="">Remove-ADComputer</a></p>
+<p><a href="">Remove-ADComputerServiceAccount</a></p>
+
+</body>
+</html>
