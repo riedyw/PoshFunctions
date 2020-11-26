@@ -37,7 +37,7 @@ To import the module enter the following command
 
 For the functions themselves see [**Functions**](Functions) folder.
 
-
+    
     Name                           Synopsis
     ----                           --------
     Compare-ObjectProperty         Compares two objects property by property.
@@ -151,7 +151,7 @@ For the functions themselves see [**Functions**](Functions) folder.
     Set-Capslock                   Sets the state of the CapsLock button.
     Set-Display                    Set-Display turns the display on or off via energy saver api
     Set-Numlock                    Sets the state of the NumLock button. If you pass $true to function it will turn on NumLock.
-    Set-PrivateProfileComment      To place comment(s) in an .ini file. Comments are lines that begin with a...
+    Set-PrivateProfileComment      To place comment(s) in an .ini file. Comments are lines that begin with a semicolon ';'.
     Set-PrivateProfileString       To set data in an .ini file
     Set-Scrolllock                 Sets the state of the ScrollLock button.
     Set-Speaker                    Sets the speaker volume.
@@ -193,6 +193,6 @@ For the functions themselves see [**Functions**](Functions) folder.
     Test-Port                      Tests a Port or a range of ports on a specific ComputerName(s).
     Union-Object                   Returns a 'clean' array of objects that have all property names in each element of the array
     Update-ExplorerIcon            Updates Explorer icons
-
+    
 
 *EOF - End Of File Comment*

@@ -1,8 +1,7 @@
 function Set-PrivateProfileComment {
 <#
 .SYNOPSIS
-    To place comment(s) in an .ini file. Comments are lines that begin with a
-    semicolon ';'.
+    To place comment(s) in an .ini file. Comments are lines that begin with a semicolon ';'.
 .DESCRIPTION
     To set data in an .ini file. .ini files are plain text that is categorized
     in section names. Within a section there are key, value pairs. An example .ini

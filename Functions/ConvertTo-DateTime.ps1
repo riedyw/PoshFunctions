@@ -151,6 +151,7 @@ Function ConvertTo-DateTime {
 
     process {
         foreach ($DS in $DateString) {
+            write-verbose "Current datestring is [$DS]"
             switch ($PsCmdlet.ParameterSetName) {
                 'DMTF' {
                     Write-Verbose -Message "DTMF is [$DS]"
@@ -181,7 +182,7 @@ Function ConvertTo-DateTime {
                     $prop = ([ordered] @{ FileTime = $DS } )
                     if ( ([int64] $DS) -gt $MaxTicks ) {
                         Write-Verbose -Message "The number of ticks passed $FileTime is greater than $MaxTicks"
-                        if ( ([int64] $FileTime) -eq $Never ) {
+                        if ( ([int64] $DS) -eq $Never ) {
                             Write-Verbose -Message "The number of ticks passed $FileTime equals the value for Never $Never"
                             $ReturnVal = ([datetime]::MaxValue)
                         } else {
