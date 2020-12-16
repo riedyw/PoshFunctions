@@ -9,22 +9,22 @@ Function Convert-ROT13 {
 .NOTES
     Link:       https://en.wikipedia.org/wiki/ROT13
 .EXAMPLE
-    Convert-ROT13 -String 'Password'
+    Convert-ROT13 -String 'Hello World!'
 
     Would return
-    Cnffjbeq
+    Uryyb Jbeyq!
 .EXAMPLE
-    Convert-ROT13 -String 'Cnffjbeq'
+    Convert-ROT13 -String 'Uryyb Jbeyq!'
 
     Would return
-    Password
+    Hello World!
 .EXAMPLE
     Convert-ROT13 -String 'This is a secret'
 
     Would return
     Guvf vf n frperg
 .EXAMPLE
-    Convert-ROT13 -string 'one', 'two' -verbose
+    Convert-ROT13 -String 'one', 'two' -verbose
 
     Would return
     VERBOSE: String is [one|two]
@@ -52,29 +52,28 @@ Function Convert-ROT13 {
 
     begin {
         $Alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-        $Cipher = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
-        Write-Verbose -Message "Using parameter set $($PSCmdlet.ParameterSetName)"
-
+        $Cipher   = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
+        Write-Verbose -Message "Starting $($MyInvocation.MyCommand)"
     }
 
     process {
         Write-Verbose -Message "String is [$((($String | findstr.exe /r ".") -split "`n") -join '|')]"
-        Foreach ($line in $String) {
-            Write-Verbose -Message "Current line is [$($line)]"
+        Foreach ($Line in $String) {
+            Write-Verbose -Message "Current line is [$($Line)]"
             [string] $NewString = ''
-            Foreach ($Char in $line.ToCharArray()) {
-                If ( $Char -match '[A-Za-z]' )
-                { $NewString += $Cipher.Chars($Alphabet.IndexOf($Char)) }
-                else
-                { $NewString += $Char }
+            foreach ($Char in $Line.ToCharArray()) {
+                if ( $Char -cmatch '[A-Za-z]' ) {
+                    $NewString += $Cipher.Chars($Alphabet.IndexOf($Char))
+                } else {
+                    $NewString += $Char
+                }
             }
             Write-Output -InputObject $NewString
         }
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending $($MyInvocation.MyCommand)"
     }
 
-} # endfunction convert-rot13
+} # endfunction Convert-ROT13
