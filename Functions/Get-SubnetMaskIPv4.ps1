@@ -77,4 +77,4 @@ Function Get-SubnetMaskIPv4 {
 
 }
 
-Set-Alias -Name 'Get-SubnetMaskIP' -Value 'Get-SubnetMaskIPv4'
+Set-Alias -Name 'Get-SubnetMaskIP' -Value 'Get-SubnetMaskIPv4' -Description 'Alias for Get-SubnetMaskIPv4'

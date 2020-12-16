@@ -40,4 +40,4 @@ Function ConvertTo-DecimalIPv4 {
 
 } #EndFunction ConvertTo-DecimalIPv4
 
-Set-Alias -Name 'ConvertTo-DecimalIP' -Value 'ConvertTo-DecimalIPv4'
+Set-Alias -Name 'ConvertTo-DecimalIP' -Value 'ConvertTo-DecimalIPv4' -Description 'Alias for ConvertTo-DecimalIPv4'

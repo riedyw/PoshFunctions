@@ -25,4 +25,4 @@ Function Show-SubnetMaskIPv4 {
 
 }
 
-Set-Alias -Name 'Show-SubnetMaskIP' -Value 'Show-SubnetMaskIPv4'
+Set-Alias -Name 'Show-SubnetMaskIP' -Value 'Show-SubnetMaskIPv4' -Description 'Alias for Show-SubnetMaskIPv4'

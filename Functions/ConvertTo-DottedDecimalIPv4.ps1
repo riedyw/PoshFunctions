@@ -34,4 +34,4 @@ Function ConvertTo-DottedDecimalIPv4 {
 
 } #EndFunction ConvertTo-DottedDecimalIPv4
 
-Set-Alias -Name 'ConvertTo-DottedDecimalIP' -Value 'ConvertTo-DottedDecimalIPv4'
+Set-Alias -Name 'ConvertTo-DottedDecimalIP' -Value 'ConvertTo-DottedDecimalIPv4' -Description 'Alias for ConvertTo-DottedDecimalIPv4'

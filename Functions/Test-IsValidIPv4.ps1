@@ -69,3 +69,5 @@ Function Test-IsValidIPv4 {
         Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
     }
 } #EndFunction Test-IsValidIPv4
+
+Set-Alias -Name 'Test-IsValidIP' -Value 'Test-IsValidIPv4' -Description 'Alias for Test-IsValidIPv4'
