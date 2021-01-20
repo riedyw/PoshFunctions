@@ -6,6 +6,14 @@ Function Get-DNSHostEntryAsync {
     Performs a DNS Get Host asynchronously
 .EXAMPLE
     Get-DNSHostEntryAsync -Computername google.com,prox-hyperv,bing.com, github.com, powershellgallery.com, powershell.org
+.EXAMPLE
+    Get-DNSHostEntryAsync -ComputerName 8.8.8.8, ibm.com
+
+    Would return:
+    ComputerName Result
+    ------------ ------
+    8.8.8.8      dns.google
+    ibm.com      129.42.38.10
 .OUTPUTS
     Net.AsyncGetHostResult
 .NOTES
@@ -14,6 +22,10 @@ Function Get-DNSHostEntryAsync {
     Version History:
         1.0 - Boe Prox - 12/24/2015
             - Initial result
+
+    Changes:
+    * added example to comment based help
+    * slight formatting changes
 #>
 
     #Requires -Version 3.0
@@ -21,13 +33,13 @@ Function Get-DNSHostEntryAsync {
     [CmdletBinding(ConfirmImpact='None')]
     Param (
         [parameter(ValueFromPipeline)]
-        [string[]]$Computername
+        [string[]] $ComputerName
     )
 
     begin {
         $Computerlist = New-Object -TypeName System.Collections.ArrayList
-        If ($PSBoundParameters.ContainsKey('Computername')) {
-            $null = $Computerlist.AddRange($Computername)
+        If ($PSBoundParameters.ContainsKey('ComputerName')) {
+            $null = $Computerlist.AddRange($ComputerName)
         } Else {
             $IsPipeline = $True
         }
@@ -35,7 +47,7 @@ Function Get-DNSHostEntryAsync {
 
     process {
         If ($IsPipeline) {
-            $null = $Computerlist.Add($Computername)
+            $null = $Computerlist.Add($ComputerName)
         }
     }
 
@@ -67,7 +79,7 @@ Function Get-DNSHostEntryAsync {
                 }
             }
             $Object = [pscustomobject]@{
-                Computername = $_.Computername
+                ComputerName = $_.Computername
                 Result = $Result
             }
             $Object.pstypenames.insert(0,'Net.AsyncGetHostResult')

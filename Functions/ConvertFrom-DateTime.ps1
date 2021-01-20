@@ -1,4 +1,4 @@
-Function ConvertFrom-DateTime () {
+Function ConvertFrom-DateTime {
     <#
 .SYNOPSIS
     Converts a datetime into a datetime represented in a different format.
@@ -10,7 +10,7 @@ Function ConvertFrom-DateTime () {
 .PARAMETER DMTF
     A switch parameter to display in DMTF format. Default parameter set.
 
-    DmtfDateTime is of the form "yyyymmddHHMMSS.ffffff+UUU"
+    DmtfDateTime is of the form 'yyyymmddHHMMSS.ffffff+UUU'
 
     Where
         yyyy    is the 4 digit year
@@ -25,13 +25,13 @@ Function ConvertFrom-DateTime () {
 .PARAMETER Unix
     Converts a datetime to a UnixEpoch which is the number of seconds since '1/1/1970 12:00:00 AM UTC'
 .PARAMETER FileTime
-    Converts a large integer filetime [int64] into a datetime string. There is a special value that returns a value of "Never". Returns a [datetime] in Universal Time (UTC)
+    Converts a large integer filetime [int64] into a datetime string. There is a special value that returns a value of 'Never'. Returns a [datetime] in Universal Time (UTC)
 
     Filetimes are expressed in Ticks. Ticks can range from 0 - 2650467743999999999. Translating these into dates you get
                       0 = Monday, January 01, 1601 12:00:00.00000 AM
     2650467743999999999 = Friday, December 31, 9999 11:59:59.99999 PM
 .PARAMETER ICSDateTime
-    IcsDateTime is of the form "yyyymmddTHHMMSSZ"
+    IcsDateTime is of the form 'yyyymmddTHHMMSSZ'
 
     Where
         yyyy    is the 4 digit year
@@ -44,6 +44,8 @@ Function ConvertFrom-DateTime () {
         Z       is an optional suffix indicating UTC or Zulu time
 
     If the final character is NOT a Z then the time is local time.
+.PARAMETER Excel
+    Switch to indicate that the datestring is in Excel format which represents dates as the number of days since (get-date 1/1/1900)
 .PARAMETER Format
     See help for Get-Date and the -Format parameter. This duplicates that capability.
 .PARAMETER IncludeOriginal
@@ -59,7 +61,7 @@ Function ConvertFrom-DateTime () {
 .EXAMPLE
     ConvertFrom-DateTime -DateTime '1/25/2018 8:34:31 AM' -DMTF -IncludeOriginal
 
-    Assuming a timezone of "Eastern Time" and a culture of "en-US" this would return the string
+    Assuming a timezone of 'Eastern Time' and a culture of 'en-US' this would return the string
 
     20180125083431.000000-300
 .EXAMPLE
@@ -75,12 +77,14 @@ Function ConvertFrom-DateTime () {
     Assuming your current timezone is EST then the output would be:
     20180125133431.000000+000
 .EXAMPLE
-    "3/15/2018 12:00:00 PM" | ConvertFrom-DateTime -UTC
+    '3/15/2018 12:00:00 PM' | ConvertFrom-DateTime -UTC
 
-    Assuming a timezone of "Eastern Time" and a culture of "en-US" this would return the string
+    Assuming a timezone of 'Eastern Time' and a culture of 'en-US' this would return the string
     20180315160000.000000+000
 .NOTES
     Info:       For further information on DMTF time formats see https://docs.microsoft.com/en-us/windows/desktop/wmisdk/cim-datetime
+
+    Added Excel functionality
 #>
 
     #region parameter
@@ -93,6 +97,7 @@ Function ConvertFrom-DateTime () {
         [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'FileTime')]
         [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'ICSDateTime')]
         [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'Format')]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'Excel')]
         [Alias('Date')]
         [datetime[]] $DateTime,
 
@@ -108,6 +113,9 @@ Function ConvertFrom-DateTime () {
         [Parameter(ParameterSetName = 'ICSDateTime')]
         [switch] $ICSDateTime,
 
+        [Parameter(ParameterSetName = 'Excel')]
+        [switch] $Excel,
+
         [Parameter(ParameterSetName = 'Format')]
         [string] $Format,
 
@@ -116,6 +124,7 @@ Function ConvertFrom-DateTime () {
         [Parameter(ParameterSetName = 'FileTime')]
         [Parameter(ParameterSetName = 'ICSDateTime')]
         [Parameter(ParameterSetName = 'Format')]
+        [Parameter(ParameterSetName = 'Excel')]
         [Alias('Inc')]
         [switch] $IncludeOriginal,
 
@@ -124,6 +133,7 @@ Function ConvertFrom-DateTime () {
         [Parameter(ParameterSetName = 'FileTime')]
         [Parameter(ParameterSetName = 'ICSDateTime')]
         [Parameter(ParameterSetName = 'Format')]
+        [Parameter(ParameterSetName = 'Excel')]
         [Alias('Zulu')]
         [switch] $UTC
     )
@@ -133,7 +143,7 @@ Function ConvertFrom-DateTime () {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         Write-Verbose -Message "ParameterSetName [$($PsCmdlet.ParameterSetName)]"
         $BeginUnixEpoch = Get-Date -Date '1/1/1970'
-        $strCurrentTimeZone = (Get-CimInstance -ClassName win32_timezone).Description
+        $strCurrentTimeZone = (Get-CimInstance -ClassName win32_timezone -Verbose:$false).Description
         Write-Verbose -Message "Your local timezone is '$strCurrentTimeZone'"
     }
 
@@ -161,6 +171,13 @@ Function ConvertFrom-DateTime () {
                         $ReturnVal = Get-Date -Date $D -Format 'yyyyMMddTHHmmss'
                     }
                 }
+                'Excel' {
+                    if ($UTC) {
+                        $ReturnVal = ( (ConvertTo-UTC -Date (Get-Date -Date $D)) - (Get-Date 1/1/1900) ).TotalDays
+                    } else {
+                        $ReturnVal = ((Get-Date -Date $D) - (Get-Date 1/1/1900)).TotalDays
+                    }
+                }
                 'Format' {
                     $ReturnVal = Get-Date -Date $D -Format $Format
                 }
@@ -174,6 +191,7 @@ Function ConvertFrom-DateTime () {
                     'FileTime' { $prop.FileTime = $ReturnVal }
                     'ICSDateTime' { $prop.ICSDateTime = $ReturnVal }
                     'Format' { $prop.Format = $ReturnVal }
+                    'Excel' { $prop.Excel = $ReturnVal }
                 }
                 New-Object -typename psobject -prop $prop
             } else {

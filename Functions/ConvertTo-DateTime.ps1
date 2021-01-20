@@ -9,7 +9,7 @@ Function ConvertTo-DateTime {
 .PARAMETER DMTF
     A switch parameter to display in DMTF format. Default parameter set.
 
-    DmtfDateTime is of the form "yyyyMMddHHmmss.ffffff+UUU"
+    DmtfDateTime is of the form 'yyyyMMddHHmmss.ffffff+UUU'
 
     Where
         yyyy    is the 4 digit year
@@ -24,13 +24,13 @@ Function ConvertTo-DateTime {
 .PARAMETER Unix
     A switch parameter to convert from a UnixEpoch which is the number of seconds since '1/1/1970 12:00:00 AM UTC'.
 .PARAMETER FileTime
-    Converts a large integer filetime [int64] into a datetime string. There is a special value that returns a value of "Never".
+    Converts a large integer filetime [int64] into a datetime string. There is a special value that returns a value of 'Never'.
 
     Filetimes are expressed in Ticks. Ticks can range from 0 - 2650467743999999999. Translating these into dates you get
                       0 = Monday, January 01, 1601 12:00:00.00000 AM
     2650467743999999999 = Friday, December 31, 9999 11:59:59.99999 PM
 .PARAMETER ICSDateTime
-    IcsDateTime is of the form "yyyyMMddTHHmmssZ"
+    IcsDateTime is of the form 'yyyyMMddTHHmmssZ'
 
     Where
         yyyy    is the 4 digit year
@@ -43,6 +43,8 @@ Function ConvertTo-DateTime {
         Z       is an optional suffix indicating UTC or Zulu time
 
     If the final character is NOT a Z then the time is local time.
+.PARAMETER Excel
+    Switch to indicate that the datestring is in Excel format which represents dates as the number of days since (get-date 1/1/1900)
 .PARAMETER Format
     See help for Get-Date and the -Format parameter. This will parse the datestring using the Format as a template.
 .PARAMETER IncludeOriginal
@@ -50,7 +52,7 @@ Function ConvertTo-DateTime {
 .PARAMETER UTC
     Forces the output to be in the UTC timezone. Alias of this parameter is 'Zulu'
 .EXAMPLE
-    ConvertTo-DateTime "20161124225058.082190+060"
+    ConvertTo-DateTime '20161124225058.082190+060'
 
     If you were in the EST timezone this would return the datetime
 
@@ -61,7 +63,7 @@ Function ConvertTo-DateTime {
     Would return
     Friday, December 31, 1999 11:59:59 PM
 .EXAMPLE
-    ConvertTo-DateTime "20161124T225058Z" -ICSDateTime
+    ConvertTo-DateTime '20161124T225058Z' -ICSDateTime
 
     If in the EST timezone this would return
     Thursday, November 24, 2016 5:50:58 PM
@@ -86,6 +88,10 @@ Function ConvertTo-DateTime {
 
     Friday, December 31, 1999 6:59:59 PM
     VERBOSE: Ending ConvertTo-DateTime
+.NOTES
+    Info:       For further information on DMTF time formats see https://docs.microsoft.com/en-us/windows/desktop/wmisdk/cim-datetime
+
+    Added Excel functionality
 #>
 
     #region parameter
@@ -99,6 +105,7 @@ Function ConvertTo-DateTime {
         [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'FileTime')]
         [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'ICSDateTime')]
         [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'Format')]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'Excel')]
         [Alias('Date')]
         [string[]] $DateString,
 
@@ -118,11 +125,15 @@ Function ConvertTo-DateTime {
         [Parameter(ParameterSetName = 'Format')]
         [string] $Format,
 
+        [Parameter(ParameterSetName = 'Excel')]
+        [switch] $Excel,
+
         [Parameter(ParameterSetName = 'DMTF')]
         [Parameter(ParameterSetName = 'Unix')]
         [Parameter(ParameterSetName = 'FileTime')]
         [Parameter(ParameterSetName = 'ICSDateTime')]
         [Parameter(ParameterSetName = 'Format')]
+        [Parameter(ParameterSetName = 'Excel')]
         [Alias('Inc')]
         [switch] $IncludeOriginal,
 
@@ -131,6 +142,7 @@ Function ConvertTo-DateTime {
         [Parameter(ParameterSetName = 'FileTime')]
         [Parameter(ParameterSetName = 'ICSDateTime')]
         [Parameter(ParameterSetName = 'Format')]
+        [Parameter(ParameterSetName = 'Excel')]
         [Alias('Zulu')]
         [switch] $UTC
     )
@@ -222,6 +234,14 @@ Function ConvertTo-DateTime {
                 'Format' {
                     $prop = ([ordered] @{ DateString = $DS; Format = $Format } )
                     $ReturnVal = [datetime]::parseexact($DS, $Format, $null)
+                    if ($UTC) {
+                        $ReturnVal = ConvertTo-UTC -Date $ReturnVal -Verbose:$false
+                    }
+                    $prop.DateTime = $ReturnVal
+                }
+                'Excel' {
+                    $prop = ([ordered] @{ Excel = $DS } )
+                    $ReturnVal = (get-date 1/1/1900 ) + [timespan]::FromDays($DS)
                     if ($UTC) {
                         $ReturnVal = ConvertTo-UTC -Date $ReturnVal -Verbose:$false
                     }
