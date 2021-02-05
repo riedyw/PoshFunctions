@@ -4,14 +4,14 @@ Function Resolve-FQDN {
     Resolves a hostname or IPv4 address to a fully qualified domain name
 .DESCRIPTION
     Resolves a hostname or IPv4 address to a fully qualified domain name
-.PARAMETER Computer
-    Either the hostname or IPv4 address of the computer you want resolved to FQDN
+.PARAMETER ComputerName
+    Either the hostname or IPv4 address of the computer you want resolved to FQDN. Aliased to 'CN', and 'Host'
 .EXAMPLE
-    Resolve-FQDN -Computer $env:computername
+    Resolve-FQDN -ComputerName $env:computername
 
     Display the FQDN of this computer
 .EXAMPLE
-    Resolve-FQDN -Computer "10.28.99.101"
+    Resolve-FQDN -ComputerName "10.28.99.101"
 
     Display the FQDN of the computer whose IPv4 address is 10.28.99.101
 .EXAMPLE
@@ -28,7 +28,7 @@ Function Resolve-FQDN {
 
     Display the FQDN of the Active Directory Domain Controller that you authenticated against when you logged onto Windows.
 .EXAMPLE
-    PS C:\> Resolve-FQDN -Computer "NonExistentPC"
+    PS C:\> Resolve-FQDN -ComputerName "NonExistentPC"
 
     The computer "NonExistentPC" does not have an entry in DNS so the function will return the value $False
 .NOTES
@@ -37,8 +37,8 @@ Attempting to resolve a FQDN for a system that does not have an entry in DNS wil
     [CmdletBinding()]
     Param (
         [parameter(ValueFromPipeLine,HelpMessage='Add help message for user',ValueFromPipeLineByPropertyName,Mandatory)]
-        [Alias('host')]
-        [string] $Computer
+        [Alias('Host','CN')]
+        [string] $ComputerName
     )
 
     Begin {
@@ -46,11 +46,11 @@ Attempting to resolve a FQDN for a system that does not have an entry in DNS wil
     }
 
     Process {
-        if ($Computer -eq '.') {
-            $Computer = $env:computername
+        if ($ComputerName -eq '.') {
+            $ComputerName = $env:COMPUTERNAME
         }
         Try {
-            $FQDN = [System.Net.Dns]::GetHostEntry($Computer).HostName
+            $FQDN = [System.Net.Dns]::GetHostEntry($ComputerName).HostName
             write-output -InputObject $FQDN
         } Catch {
             Write-Output -InputObject $False
