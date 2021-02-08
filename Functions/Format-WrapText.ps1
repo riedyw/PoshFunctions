@@ -1,28 +1,28 @@
 Function Format-WrapText {
-    <#
-            .SYNOPSIS
-            Wraps text at a particular column width
-            .DESCRIPTION
-            Wraps text at a particular column width (Default=80)
-            .PARAMETER Text
-            The text to be formatted
-            .PARAMETER Width
-            Column width to wrap at. Default = 80
-            .PARAMETER Screen
-            A switch indicating that the wrap should occur at the width of the current Powershell window.
-            .EXAMPLE
-            Format-WrapText -Text "word1 word2 word3 word4 word5" -Width 10
+<#
+.SYNOPSIS
+    Wraps text at a particular column width
+.DESCRIPTION
+    Wraps text at a particular column width (Default=80)
+.PARAMETER Text
+    The text to be formatted
+.PARAMETER Width
+    Column width to wrap at. Default = 80
+.PARAMETER Screen
+    A switch indicating that the wrap should occur at the width of the current Powershell window.
+.EXAMPLE
+    Format-WrapText -Text "word1 word2 word3 word4 word5" -Width 10
 
-            Would return
-            word1 word2
-            word3 word4
-            word5
-            .OUTPUTS
-            [String]
-            .LINK
-            Format-Table
-            Format-List
-    #>
+    Would return
+    word1 word2
+    word3 word4
+    word5
+.OUTPUTS
+    [String]
+.LINK
+    Format-Table
+    Format-List
+#>
 
     #region Parameter
     [CmdletBinding(ConfirmImpact='Low',DefaultParameterSetName='Width')]

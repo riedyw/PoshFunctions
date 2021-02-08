@@ -17,11 +17,7 @@ Function Get-DNSHostEntryAsync {
 .OUTPUTS
     Net.AsyncGetHostResult
 .NOTES
-    Name: Get-DNSHostEntryAsync
-    Author: Boe Prox
-    Version History:
-        1.0 - Boe Prox - 12/24/2015
-            - Initial result
+    Inspired by: Get-DNSHostEntryAsync by Boe Prox
 
     Changes:
     * added example to comment based help
@@ -86,5 +82,4 @@ Function Get-DNSHostEntryAsync {
             $Object
         }
     }
-
 }

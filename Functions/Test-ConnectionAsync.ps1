@@ -4,16 +4,16 @@ Function Test-ConnectionAsync {
     Performs a ping test asynchronously
 .DESCRIPTION
     Performs a ping test asynchronously
-.PARAMETER Computername
+.PARAMETER ComputerName
     List of computers to test connection
 .PARAMETER Timeout
     Timeout in milliseconds. Default 2000 ms.
 .PARAMETER TimeToLive
-    Sets a time to live on ping request.
+    Sets a time to live on ping request. Default 128.
 .PARAMETER Fragment
-    Tells whether to fragment the request
+    Switch that determine if request can be fragmented
 .PARAMETER BufferSize
-    How large you want the buffer to be. Valid range 32-1500
+    How large you want the buffer to be. Valid range 32-1500, default of 32.
 .PARAMETER IncludeSource
     A switch determining if you want the source computer name to appear in the output
 .NOTES
@@ -26,9 +26,9 @@ Function Test-ConnectionAsync {
 .OUTPUTS
     Net.AsyncPingResult
 .EXAMPLE
-    Test-ConnectionAsync -Computername server1,server2
+    Test-ConnectionAsync -ComputerName server1,server2
 
-    Computername IPAddress    BufferSize  Result ResponseTime
+    ComputerName IPAddress    BufferSize  Result ResponseTime
     ------------ ---------    ----------  ------ ------------
     server1      192.168.1.31         32 Success           86
     server2      192.168.1.41         32 Success           79
@@ -44,7 +44,7 @@ Function Test-ConnectionAsync {
     [CmdletBinding(ConfirmImpact='None')]
     Param (
         [parameter(ValueFromPipeline,Position=0)]
-        [string[]] $Computername,
+        [string[]] $ComputerName,
 
         [parameter()]
         [int32] $Timeout = 2000,
@@ -65,7 +65,7 @@ Function Test-ConnectionAsync {
     )
 
     begin {
-        if ($IncludeSource) { $Source = $env:ComputerName }
+        if ($IncludeSource) { $Source = $env:COMPUTERNAME }
 
         $Buffer = New-Object -TypeName System.Collections.ArrayList
         1..$BufferSize | foreach-object { $null = $Buffer.Add(([byte] [char] 'A')) }
@@ -79,7 +79,7 @@ Function Test-ConnectionAsync {
     }
 
     process {
-        ForEach ($Computer in $Computername) {
+        ForEach ($Computer in $ComputerName) {
             [void] $Computerlist.Add($Computer)
             }
     }
@@ -87,7 +87,7 @@ Function Test-ConnectionAsync {
     end {
         $Task = foreach ($Computer in $ComputerList) {
             [pscustomobject] @{
-                Computername = $Computer
+                ComputerName = $Computer
                 Task         = (New-Object -TypeName System.Net.NetworkInformation.Ping).SendPingAsync($Computer, $Timeout, $Buffer, $PingOptions)
             }
         }
@@ -109,7 +109,7 @@ Function Test-ConnectionAsync {
             if ($IncludeSource) {
                 $Object = [pscustomobject] @{
                     Source       = $Source
-                    Computername = $_.Computername
+                    ComputerName = $_.ComputerName
                     IPAddress    = $IPAddress
                     BufferSize   = $BufferSize
                     Result       = $Result
@@ -117,7 +117,7 @@ Function Test-ConnectionAsync {
                 }
             } else {
                 $Object = [pscustomobject]@{
-                    Computername = $_.Computername
+                    ComputerName = $_.ComputerName
                     IPAddress    = $IPAddress
                     BufferSize   = $BufferSize
                     Result       = $Result
@@ -128,5 +128,4 @@ Function Test-ConnectionAsync {
             $Object
         }
     }
-
 }

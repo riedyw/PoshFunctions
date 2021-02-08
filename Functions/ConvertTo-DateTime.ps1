@@ -50,7 +50,7 @@ Function ConvertTo-DateTime {
 .PARAMETER IncludeOriginal
     Switch to enable the original datetime to appear in the output.
 .PARAMETER UTC
-    Forces the output to be in the UTC timezone. Alias of this parameter is 'Zulu'
+    Switch to force the output to be in the UTC timezone. Alias of this parameter is 'Zulu'
 .EXAMPLE
     ConvertTo-DateTime '20161124225058.082190+060'
 
@@ -96,7 +96,7 @@ Function ConvertTo-DateTime {
 
     #region parameter
     [CmdletBinding(DefaultParameterSetName = 'DMTF',ConfirmImpact='None')]
-    [OutputType('string')]
+    [OutputType('datetime')]
     Param
     (
 

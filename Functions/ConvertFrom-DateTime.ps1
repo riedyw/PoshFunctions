@@ -1,5 +1,5 @@
 Function ConvertFrom-DateTime {
-    <#
+<#
 .SYNOPSIS
     Converts a datetime into a datetime represented in a different format.
 .DESCRIPTION
@@ -23,15 +23,15 @@ Function ConvertFrom-DateTime {
         +       is a plus or minus to indicate offset from UTC
         UUU     is the 3 digit number of minutes offset from UTC (000-720)
 .PARAMETER Unix
-    Converts a datetime to a UnixEpoch which is the number of seconds since '1/1/1970 12:00:00 AM UTC'
+    Switch to convert a datetime to a UnixEpoch which is the number of seconds since '1/1/1970 12:00:00 AM UTC'
 .PARAMETER FileTime
-    Converts a large integer filetime [int64] into a datetime string. There is a special value that returns a value of 'Never'. Returns a [datetime] in Universal Time (UTC)
+    Switch to convert a datetime to a large integer filetime [int64]. There is a special value that returns a value of 'Never'. Returns a [datetime] in Universal Time (UTC)
 
     Filetimes are expressed in Ticks. Ticks can range from 0 - 2650467743999999999. Translating these into dates you get
                       0 = Monday, January 01, 1601 12:00:00.00000 AM
     2650467743999999999 = Friday, December 31, 9999 11:59:59.99999 PM
 .PARAMETER ICSDateTime
-    IcsDateTime is of the form 'yyyymmddTHHMMSSZ'
+    Switch to convert a datetime to IcsDateTime format is of the form 'yyyymmddTHHMMSSZ'
 
     Where
         yyyy    is the 4 digit year

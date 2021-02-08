@@ -11,7 +11,7 @@ Function Resolve-FQDN {
 
     Display the FQDN of this computer
 .EXAMPLE
-    Resolve-FQDN -ComputerName "10.28.99.101"
+    Resolve-FQDN -ComputerName '10.28.99.101'
 
     Display the FQDN of the computer whose IPv4 address is 10.28.99.101
 .EXAMPLE
@@ -19,7 +19,7 @@ Function Resolve-FQDN {
 
     Display the FQDN of this computer
 .EXAMPLE
-    "10.28.99.101" | Resolve-FQDN
+    '10.28.99.101' | Resolve-FQDN
 
     Display the FQDN of the computer whose IPv4 address is 10.28.99.101
 .EXAMPLE

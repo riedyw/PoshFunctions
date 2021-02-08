@@ -1,27 +1,33 @@
 Function Write-StringArray {
 <#
 .SYNOPSIS
-Wraps text at a particular column width
+    Takes [string] or [string[]] input and writes the code that would create a string array with that information.
 .DESCRIPTION
-Wraps text at a particular column width (Default=80)
+    Takes [string] or [string[]] input and writes the code that would create a string array with that information. Encloses strings in single quotes replacing any existing single quotes with 2 x single quotes.
 .PARAMETER Text
-The text to be formatted
-.PARAMETER Width
-Column width to wrap at. Default = 80
-.PARAMETER Screen
-A switch indicating that the wrap should occur at the width of the current Powershell window.
+    The text to be included in the string array
+.PARAMETER VariableName
+    The name of the string array variable
 .EXAMPLE
-Format-WrapText -Text "word1 word2 word3 word4 word5" -Width 10
+    Write-StringArray -Text Hello,World,"it's me"
 
-Would return
-word1 word2
-word3 word4
-word5
+    Would return
+    $StringArray = @(
+        'Hello',
+        'World',
+        'it''s me'
+    )
+.EXAMPLE
+    1,2,99 | Write-StringArray -VariableName MyVariable
+
+    Would return
+    $MyVariable = @(
+        '1',
+        '2',
+        '99'
+    )
 .OUTPUTS
-[String]
-.LINK
-Format-Table
-Format-List
+    [string[]]
 #>
 
     #region Parameter
@@ -30,15 +36,15 @@ Format-List
     Param(
         [Parameter(Mandatory,HelpMessage = 'Enter a long string of text',Position = 0,ValueFromPipeline)]
         [string[]] $Text,
-        
-        [string] $Variable = 'StringArray'
+
+        [string] $VariableName = 'StringArray'
 
         )
     #endregion Parameter
 
     begin {
         Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
-        $ReturnVal = "`$$Variable = @(`n"
+        $ReturnVal = "`$$VariableName = @(`n"
     }
 
     process {
@@ -46,12 +52,11 @@ Format-List
             $ReturnVal += "    `'$($CurLine -replace "`'", "`'`'")',`n"
         }
     }
+
     end {
         $ReturnVal = $ReturnVal -replace ",`n$", "`n"
         $ReturnVal += ')'
         write-output $ReturnVal
         Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
     }
-} #EndFunction Format-WrapText
-
-Set-Alias -Name 'WrapText' -Value 'Format-WrapText'
+}
