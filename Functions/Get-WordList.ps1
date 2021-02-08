@@ -1,3 +1,3 @@
 function Get-WordList {
-    $Script:Word
+    $Script:WordList
 }

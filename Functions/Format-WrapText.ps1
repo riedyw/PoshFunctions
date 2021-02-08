@@ -1,28 +1,28 @@
 Function Format-WrapText {
-<#
-.SYNOPSIS
-    Wraps text at a particular column width
-.DESCRIPTION
-    Wraps text at a particular column width (Default=80)
-.PARAMETER Text
-    The text to be formatted
-.PARAMETER Width
-    Column width to wrap at. Default = 80
-.PARAMETER Screen
-    A switch indicating that the wrap should occur at the width of the current Powershell window.
-.EXAMPLE
-    Format-WrapText -Text "word1 word2 word3 word4 word5" -Width 10
+    <#
+            .SYNOPSIS
+            Wraps text at a particular column width
+            .DESCRIPTION
+            Wraps text at a particular column width (Default=80)
+            .PARAMETER Text
+            The text to be formatted
+            .PARAMETER Width
+            Column width to wrap at. Default = 80
+            .PARAMETER Screen
+            A switch indicating that the wrap should occur at the width of the current Powershell window.
+            .EXAMPLE
+            Format-WrapText -Text "word1 word2 word3 word4 word5" -Width 10
 
-    Would return
-    word1 word2
-    word3 word4
-    word5
-.OUTPUTS
-    [String]
-.LINK
-    Format-Table
-    Format-List
-#>
+            Would return
+            word1 word2
+            word3 word4
+            word5
+            .OUTPUTS
+            [String]
+            .LINK
+            Format-Table
+            Format-List
+    #>
 
     #region Parameter
     [CmdletBinding(ConfirmImpact='Low',DefaultParameterSetName='Width')]
@@ -30,7 +30,7 @@ Function Format-WrapText {
     Param(
         [Parameter(Mandatory,HelpMessage = 'Enter a long string of text',Position = 0,ValueFromPipeline,ParameterSetName='Width')]
         [Parameter(Mandatory,HelpMessage = 'Enter a long string of text',Position = 0,ValueFromPipeline,ParameterSetName='Screen')]
-        [string] $Text,
+        [string[]] $Text,
 
         [Parameter(ParameterSetName='Width')]
         [int] $Width = 80,
@@ -47,19 +47,27 @@ Function Format-WrapText {
             $Width = $host.UI.RawUI.WindowSize.Width - 1
             Write-Verbose -Message "Setting width to $Width"
         }
+        $NewText = ''
     }
 
-    process
-    {
-    #    [string] $text = $text
-        $Words = $Text -split '\s+'
+    process {
+        foreach ($CurLine in $Text) {
+            $NewText = @($NewText, $CurLine) -join ' '
+        }
+    }
+    end {
+        $NewText = $NewText.TrimStart().TrimEnd()
+        write-verbose -Message "NewText is [$NewText]"
+        $Words = $NewText -split '\s+'
         $Col = 0
         [string] $Line = $null
         foreach ( $Word in $Words ) {
+
             $Col += $Word.Length + 1
+            Write-Verbose -Message "Currently on word [$Word], col [$Col]"            
             if ( $Col -gt $Width ) {
-                Write-output -inputobject "$line"
-                [string] $line = $null
+                Write-Output -InputObject $Line
+                [string] $Line = $null
                 $Line += "$word "
                 $Col = 0 + $word.Length + 1
             } else {
@@ -69,8 +77,6 @@ Function Format-WrapText {
         if ($null -ne $line) {
             write-output -inputobject "$line"
         }
-    }
-    end {
         Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
     }
 } #EndFunction Format-WrapText

@@ -44,7 +44,7 @@ Function Convert-ROT13 {
     #region Parameter
     [CmdletBinding(ConfirmImpact='None')]
     Param(
-        [Parameter(Position = 0, Mandatory, ValueFromPipeLine)]
+        [Parameter(Position = 0, HelpMessage='Please enter text to obfuscate', Mandatory, ValueFromPipeLine)]
         [Alias('Text')]
         [String[]] $String
     )
