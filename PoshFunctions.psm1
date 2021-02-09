@@ -16,7 +16,7 @@ $Functions | foreach-object { . $_.FullName }
 
 $FunctionsToExport = $Functions | select-object -ExpandProperty Basename
 
-$Script:WordList = Get-Content -Path $PSScriptRoot\Words.txt
+$Script:WordList = Get-Content -Path $PSScriptRoot\WordList.txt
 
 <#
 The PoshFunctions module is saved twice. Once as the file PoshFunctions.psm1

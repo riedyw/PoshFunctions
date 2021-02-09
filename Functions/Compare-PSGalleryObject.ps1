@@ -25,10 +25,11 @@ Function Compare-PSGalleryObject {
 
     Changes:
     * renamed function to Compare-PSGalleryObject
-    * switches to search for either Module or Script object types
-    * switch to display only those objects needing to be upgraded
+    * switches to search for either Module or Script object types, -Module or -Script
+    * switch to display only those objects needing to be upgraded, -NeedUpgrade
     * comment based help
     * write-verbose statements
+    * added -AllowPrerelease to Find-Module / Find-Script statements
 #>
 
     #region parameter
@@ -85,7 +86,7 @@ Function Compare-PSGalleryObject {
 
                     try {
                     #  Find module, and add gallery version number to hash table
-                        $GalObj = Find-Module -Name $Object.name -ErrorAction Stop
+                        $GalObj = Find-Module -Name $Object.name -ErrorAction Stop -AllowPrerelease
                         $UpdateObject.PSGalleryVersion = $GalObj.Version | Sort-Object -Descending | Select-Object -First 1
                     }
                     # here - find module could not find the module in the gallery
@@ -116,7 +117,7 @@ Function Compare-PSGalleryObject {
 
                     try {
                     #  Find module, and add gallery version number to hash table
-                        $GalObj = Find-Script -Name $Object.name -ErrorAction Stop
+                        $GalObj = Find-Script -Name $Object.name -ErrorAction Stop -AllowPrerelease
                         $UpdateObject.PSGalleryVersion = $GalObj.Version | Sort-Object -Descending | Select-Object -First 1
                     }
                     # here - find module could not find the module in the gallery

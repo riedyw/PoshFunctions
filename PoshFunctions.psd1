@@ -62,7 +62,7 @@
 
     # Functions export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 
-    $FunctionsToExport = @( 'Compare-ObjectProperty', 
+    FunctionsToExport = @( 'Compare-ObjectProperty', 
     'Compare-PSGalleryObject', 'Convert-ARGBToHex', 'Convert-HexToARGB', 
     'Convert-ObjectToHashtable', 'Convert-ROT13', 'Convert-SecureStringToString', 
     'Convert-UserFlag', 'ConvertFrom-Base64', 'ConvertFrom-DateTime', 'ConvertFrom-FsRight', 
