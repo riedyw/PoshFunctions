@@ -143,13 +143,13 @@
             )
 
             # A URL to the license for this module.
-            # LicenseUri = ''
+            # LicenseUri = 'https://github.com/riedyw/PoshFunctions/blob/master/License.txt'
 
             # A URL to the main website for this project.
-            # ProjectUri = ''
+            # ProjectUri = 'https://github.com/riedyw/PoshFunctions'
 
             # A URL to an icon representing this module.
-            # IconUri = ''
+            # IconUri = 'https://github.com/riedyw/PoshFunctions/blob/master/PoshFunctions.png'
 
             # ReleaseNotes of this module
             ReleaseNotes = '### 2.2.1.5
