@@ -4,7 +4,7 @@
     RootModule        = 'PoshFunctions.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '2.2.1.4'
+    ModuleVersion     = '2.2.1.5'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -62,47 +62,51 @@
 
     # Functions export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 
-    FunctionsToExport = @( 'Compare-ObjectProperty', 
-    'Compare-PSGalleryObject', 'Convert-ARGBToHex', 'Convert-HexToARGB', 
-    'Convert-ObjectToHashtable', 'Convert-ROT13', 'Convert-SecureStringToString', 
-    'Convert-UserFlag', 'ConvertFrom-Base64', 'ConvertFrom-DateTime', 'ConvertFrom-FsRight', 
-    'ConvertFrom-UrlEncode', 'ConvertFrom-UTC', 'ConvertFrom-Xml', 'ConvertTo-Base64', 
-    'ConvertTo-BinaryIPv4', 'ConvertTo-Bool', 'ConvertTo-DateTime', 'ConvertTo-DecimalIPv4', 
-    'ConvertTo-DottedDecimalIPv4', 'ConvertTo-Markdown', 'ConvertTo-OrderedDictionary', 
-    'ConvertTo-PlainText', 'ConvertTo-SecureText', 'ConvertTo-UncPath', 
-    'ConvertTo-UrlEncode', 'ConvertTo-UTC', 'Copy-Object', 'Eexit', 'Expand-IPv6', 
-    'Expand-String', 'Expand-Tab', 'Export-CSVSortedColumn', 'FileSizeAbove', 
-    'FileSizeBelow', 'Format-MacAddress', 'Format-RandomCase', 'Format-ReverseString', 
-    'Format-SortedList', 'Format-WrapText', 'Get-BashPath', 'Get-BinaryType', 
-    'Get-ComputerSite', 'Get-DNSHostEntryAsync', 'Get-DriveStat', 'Get-Enum', 
-    'Get-ExecutableForFile', 'Get-FileEncoding', 'Get-FileName', 'Get-FileWithLeadingSpace', 
-    'Get-Folder', 'Get-Font', 'Get-Fortune', 'Get-InstalledModuleVersion', 'Get-IpRange', 
-    'Get-LastReboot', 'Get-MachineType', 'Get-MacVendor', 'Get-Magic8Ball', 'Get-Md5Sum', 
-    'Get-NTFSPermission', 'Get-NtpDate', 'Get-OperatingSystemSKU', 
-    'Get-PoshFunctionsPrivateData', 'Get-Power', 'Get-PrintableAscii', 
-    'Get-PrivateProfileComment', 'Get-PrivateProfileSection', 
-    'Get-PrivateProfileSectionNames', 'Get-PrivateProfileString', 'Get-PSWho', 
-    'Get-RandomDate', 'Get-RandomHexDigit', 'Get-RandomMacAddress', 'Get-RegExpandString', 
-    'Get-RegistryValue', 'Get-Round', 'Get-SaveFile', 'Get-Share', 'Get-SharePermission', 
-    'Get-ShareStat', 'Get-Shortcut', 'Get-SID', 'Get-StaticProperty', 'Get-SubnetMaskIPv4', 
-    'Get-TruncatedDate', 'Get-Type', 'Get-UrlContent', 'Get-WordCount', 'Get-WordList', 
-    'grep', 'Help', 'Invoke-Beep', 'Invoke-Speak', 'Join-Object', 'Lock-Workstation', 
-    'Measure-Char', 'mklink', 'Move-ToRecycleBin', 'New-InputBox', 'New-Popup', 'New-QR', 
-    'New-Screenshot', 'New-Shortcut', 'Read-HostWithDefault', 'Remove-BlankOrComment', 
-    'Remove-BOMFromFile', 'Remove-EmptyProperty', 'Remove-InvalidFileNameChar', 
-    'Remove-QuotesFromCsv', 'Remove-Trailing', 'Reset-Desktop', 'Resolve-FQDN', 
-    'Resolve-HostName', 'Search-Method', 'sed', 'Set-Capslock', 'Set-Display', 'Set-Numlock', 
-    'Set-PrivateProfileComment', 'Set-PrivateProfileString', 'Set-Scrolllock', 'Set-Speaker', 
-    'Set-Type', 'Set-WindowStyle', 'Show-AllColor', 'Show-Calendar', 'Show-Color', 
-    'Show-ColorsWithBackground', 'Show-DaysOfWeek', 'Show-FileAttribute', 'Show-FsRight', 
-    'Show-InvalidFileCharacter', 'Show-Month', 'Show-NamedColor', 'Show-Object', 
-    'Show-Progress', 'Show-ShortDaysOfWeek', 'Show-ShortMonth', 'Show-SpecialFolder', 
-    'Show-SubnetMaskIPv4', 'Show-Timezone', 'Show-TypeAccelerator', 'Start-ADReplication', 
-    'Start-RecordSession', 'Stop-RecordSession', 'Switch-Mute', 'Test-ConnectionAsync', 
-    'Test-IsAdmin', 'Test-IsCapsLock', 'Test-IsDate', 'Test-IsFileLocked', 
-    'Test-IsHexString', 'Test-IsNumeric', 'Test-IsNumLock', 'Test-IsScrollLock', 
-    'Test-IsValidEmailAddress', 'Test-IsValidIPv4', 'Test-IsValidIPv6', 'Test-NtpDateVsNow', 
-    'Test-Port', 'Union-Object', 'Update-ExplorerIcon', 'Write-StringArray' ) 
+    FunctionsToExport = @( 'Compare-ObjectProperty', 'Compare-PSGalleryObject',
+        'Convert-ARGBToHex', 'Convert-HexToARGB', 'Convert-ObjectToHashtable',
+        'Convert-ROT13', 'Convert-SecureStringToString', 'Convert-UserFlag',
+        'ConvertFrom-Base64', 'ConvertFrom-DateTime', 'ConvertFrom-FsRight',
+        'ConvertFrom-UrlEncode', 'ConvertFrom-UTC', 'ConvertFrom-Xml', 'ConvertTo-Base64',
+        'ConvertTo-BinaryIPv4', 'ConvertTo-Bool', 'ConvertTo-DateTime',
+        'ConvertTo-DecimalIPv4', 'ConvertTo-DottedDecimalIPv4', 'ConvertTo-Markdown',
+        'ConvertTo-OrderedDictionary', 'ConvertTo-PlainText', 'ConvertTo-SecureText',
+        'ConvertTo-UncPath', 'ConvertTo-UrlEncode', 'ConvertTo-UTC', 'Copy-Object', 'Eexit',
+        'Expand-IPv6', 'Expand-String', 'Expand-Tab', 'Export-CSVSortedColumn',
+        'FileSizeAbove', 'FileSizeBelow', 'Format-MacAddress', 'Format-RandomCase',
+        'Format-ReverseString', 'Format-SortedList', 'Format-WrapText', 'Get-BashPath',
+        'Get-BinaryType', 'Get-ComputerSite', 'Get-DNSHostEntryAsync', 'Get-DriveStat',
+        'Get-Enum', 'Get-ExecutableForFile', 'Get-FileEncoding', 'Get-FileName',
+        'Get-FileWithLeadingSpace', 'Get-Folder', 'Get-Font', 'Get-Fortune',
+        'Get-InstalledModuleVersion', 'Get-IpRange', 'Get-LastReboot', 'Get-MachineType',
+        'Get-MacVendor', 'Get-Magic8Ball', 'Get-Md5Sum', 'Get-NetworkCredential',
+        'Get-NTFSPermission', 'Get-NtpDate', 'Get-OperatingSystemSKU',
+        'Get-PoshFunctionsPrivateData', 'Get-Power', 'Get-PrintableAscii',
+        'Get-PrivateProfileComment', 'Get-PrivateProfileSection',
+        'Get-PrivateProfileSectionNames', 'Get-PrivateProfileString', 'Get-PSWho',
+        'Get-RandomDate', 'Get-RandomHexDigit', 'Get-RandomMacAddress',
+        'Get-RegExpandString', 'Get-RegistryValue', 'Get-Round', 'Get-SaveFile',
+        'Get-Share', 'Get-SharePermission', 'Get-ShareStat', 'Get-Shortcut', 'Get-SID',
+        'Get-StaticProperty', 'Get-SubnetMaskIPv4', 'Get-TruncatedDate', 'Get-Type',
+        'Get-UrlContent', 'Get-WordCount', 'Get-WordList', 'grep', 'Help', 'Invoke-Beep',
+        'Invoke-Speak', 'Join-Object', 'Lock-Workstation', 'Measure-Char', 'mklink',
+        'Move-ToRecycleBin', 'New-Credential', 'New-InputBox', 'New-Popup', 'New-QR',
+        'New-Screenshot', 'New-Shortcut', 'Read-HostWithDefault', 'Remove-BlankOrComment',
+        'Remove-BOMFromFile', 'Remove-EmptyProperty', 'Remove-InvalidFileNameChar',
+        'Remove-QuotesFromCsv', 'Remove-Trailing', 'Reset-Desktop', 'Resolve-FQDN',
+        'Resolve-HostName', 'Search-Method', 'sed', 'Set-Capslock', 'Set-Display',
+        'Set-Numlock', 'Set-PrivateProfileComment', 'Set-PrivateProfileString',
+        'Set-Scrolllock', 'Set-Speaker', 'Set-Type', 'Set-WindowStyle', 'Show-AllColor',
+        'Show-Calendar', 'Show-Color', 'Show-ColorsWithBackground', 'Show-DaysOfWeek',
+        'Show-FileAttribute', 'Show-FsRight', 'Show-InvalidFileCharacter', 'Show-Month',
+        'Show-NamedColor', 'Show-Object', 'Show-Progress', 'Show-ShortDaysOfWeek',
+        'Show-ShortMonth', 'Show-SpecialFolder', 'Show-SubnetMaskIPv4', 'Show-Timezone',
+        'Show-TypeAccelerator', 'Start-ADReplication', 'Start-RecordSession',
+        'Stop-RecordSession', 'Switch-Mute', 'Test-ConnectionAsync', 'Test-IsAdmin',
+        'Test-IsCapsLock', 'Test-IsDate', 'Test-IsFileLocked', 'Test-IsHexString',
+        'Test-IsNumeric', 'Test-IsNumLock', 'Test-IsScrollLock', 'Test-IsValidEmailAddress',
+        'Test-IsValidIPv4', 'Test-IsValidIPv6', 'Test-NtpDateVsNow', 'Test-Port',
+        'Union-Object', 'Update-ExplorerIcon', 'Write-StringArray', 'Write-TextMenu' )
+
 
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -129,12 +133,12 @@
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags = @('base64', 'beep', 'binaryip', 'calendar', 'capslock', 'color-hex', 'color-rgb', 'color-show', 'computer-site', 'computersite', 
-            'datetime', 'date-random', 'date-truncate', 'days-week', 'decimalip', 'display', 'dns-async', 'dotteddecimalip', 'email-address', 
-            'expand-string', 'expand-tab', 'exponentiation', 'file', 'file-encoding', 'file-invalidchar', 'folder', 'format', 'functions', 'gui', 
-            'ini', 'inputbox', 'ip', 'iprange', 'isadmin', 'isdate', 'ishexstring', 'isnumeric', 'isvalidemail', 'isvalidip', 'library', 'macaddress', 
-            'magic8ball', 'markdown', 'md5sum', 'msgbox', 'numlock', 'ping-async', 'popup', 'progress', 'random-date', 'registry', 'reverse-string', 
-            'rot13', 'round', 'savefile', 'scrolllock', 'set-type', 'share-permission', 'share-stat', 'shortcut', 'sid', 'speak', 'subnetmask', 
+            Tags = @('base64', 'beep', 'binaryip', 'calendar', 'capslock', 'color-hex', 'color-rgb', 'color-show', 'computer-site', 'computersite', 'credential'
+            'datetime', 'date-random', 'date-truncate', 'days-week', 'decimalip', 'display', 'dns-async', 'dotteddecimalip', 'email-address',
+            'expand-string', 'expand-tab', 'exponentiation', 'file', 'file-encoding', 'file-invalidchar', 'folder', 'format', 'functions', 'gui',
+            'ini', 'inputbox', 'ip', 'iprange', 'isadmin', 'isdate', 'ishexstring', 'isnumeric', 'isvalidemail', 'isvalidip', 'library', 'macaddress',
+            'magic8ball', 'markdown', 'md5sum', 'msgbox', 'numlock', 'ping-async', 'popup', 'progress', 'random-date', 'registry', 'reverse-string',
+            'rot13', 'round', 'savefile', 'scrolllock', 'set-type', 'share-permission', 'share-stat', 'shortcut', 'sid', 'speak', 'subnetmask',
             'system', 'timezone', 'urlencode', 'utc', 'wrap-text', 'xml'
             )
 
@@ -148,7 +152,94 @@
             # IconUri = ''
 
             # ReleaseNotes of this module
-            # ReleaseNotes = ''
+            ReleaseNotes = '### 2.2.1.5
+* added Release Notes
+* added Get-NetworkCredential
+* added New-Credential
+* added Write-TextMenu - copied from my PSGallery script New-TextMenu
+
+### 2.2.1.4
+* added Compare-PSGalleryObject
+* added Get-PoshFunctionsPrivateData
+* added Get-WordList
+* added Start-ADReplication
+* added Write-StringArray
+* renamed Words.txt to WordList.txt
+* updated Convert-ROT13
+* updated ConvertFrom-DateTime
+* updated ConvertTo-DateTime
+* updated Format-WrapText
+* updated Get-DNSHostEntryAsync
+* updated Resolve-FQDN
+* updated Test-ConnectionAsync
+
+### 2.2.1.3
+* added Words.txt - list of English words
+* added Expand-IPv6
+* added Format-RandomCase
+* added Get-PrintableAscii
+* added Invoke-Beep
+* added Measure-Char
+* added Test-IsValidIPv6
+* updated Convert-ROT13
+* updated ConvertTo-DecimalIPv4
+* updated ConvertTo-DottedDecimalIPv4
+* updated ConvertTo-SecureText
+* updated Get-DNSHostEntryAsync
+* updated Get-SubnetMaskIPv4
+* updated Set-PrivateProfileComment
+* updated Show-SubnetMaskIPv4
+* updated Test-IsValidIPv4
+
+### 2.2.1.2
+* added Docs folder filled with .md files
+* added Docs\HTML folder
+* updated PSGetModuleInfo.xml
+* updated PoshFunctions.psd1
+* updated ReadMe.md
+
+### 2.2.1.1
+* added Compare-ObjectProperty, Convert-ARGBToHex, Convert-HexToARGB,
+    Convert-ObjectToHashtable,  Convert-ROT13, Convert-SecureStringToString,
+    Convert-UserFlag, ConvertFrom-Base64, ConvertFrom-DateTime,
+    ConvertFrom-FsRight, ConvertFrom-UrlEncode, ConvertFrom-UTC,
+    ConvertFrom-Xml, ConvertTo-Base64, ConvertTo-BinaryIPv4, ConvertTo-Bool,
+    ConvertTo-DateTime, ConvertTo-DecimalIPv4, ConvertTo-DottedDecimalIPv4,
+    ConvertTo-Markdown, ConvertTo-OrderedDictionary, ConvertTo-PlainText,
+    ConvertTo-SecureText, ConvertTo-UncPath, ConvertTo-UrlEncode, ConvertTo-UTC,
+    Copy-Object, Eexit, Expand-String, Expand-Tab, Export-CSVSortedColumn,
+    FileSizeAbove, FileSizeBelow, Format-MacAddress, Format-ReverseString,
+    Format-SortedList, Format-WrapText, Get-BashPath, Get-BinaryType,
+    Get-ComputerSite, Get-DNSHostEntryAsync, Get-DriveStat, Get-Enum,
+    Get-ExecutableForFile, Get-FileEncoding, Get-FileName,
+    Get-FileWithLeadingSpace, Get-Folder, Get-Font, Get-Fortune,
+    Get-InstalledModuleVersion, Get-IpRange, Get-LastReboot, Get-MachineType,
+    Get-MacVendor, Get-Magic8Ball, Get-Md5Sum, Get-NTFSPermission, Get-NtpDate,
+    Get-OperatingSystemSKU, Get-Power, Get-PrivateProfileComment,
+    Get-PrivateProfileSection, Get-PrivateProfileSectionNames,
+    Get-PrivateProfileString, Get-PSWho, Get-RandomDate, Get-RandomHexDigit,
+    Get-RandomMacAddress, Get-RegExpandString, Get-RegistryValue, Get-Round,
+    Get-SaveFile, Get-Share, Get-SharePermission, Get-ShareStat, Get-Shortcut,
+    Get-SID, Get-StaticProperty, Get-SubnetMaskIPv4, Get-TruncatedDate, Get-Type,
+    Get-UrlContent, Get-WordCount, grep, Help, Invoke-Speak, Join-Object,
+    Lock-Workstation, mklink, Move-ToRecycleBin, New-InputBox, New-Popup,
+    New-QR, New-Screenshot, New-Shortcut, Read-HostWithDefault,
+    Remove-BlankOrComment, Remove-BOMFromFile, Remove-EmptyProperty,
+    Remove-InvalidFileNameChar, Remove-QuotesFromCsv, Remove-Trailing,
+    Reset-Desktop, Resolve-FQDN, Resolve-HostName, Search-Method, sed,
+    Set-Capslock, Set-Display, Set-Numlock, Set-PrivateProfileComment,
+    Set-PrivateProfileString, Set-Scrolllock, Set-Speaker, Set-Type,
+    Set-WindowStyle, Show-AllColor, Show-Calendar, Show-Color,
+    Show-ColorsWithBackground, Show-DaysOfWeek, Show-FileAttribute,
+    Show-FsRight, Show-InvalidFileCharacter, Show-Month, Show-NamedColor,
+    Show-Object, Show-Progress, Show-ShortDaysOfWeek, Show-ShortMonth,
+    Show-SpecialFolder, Show-SubnetMaskIPv4, Show-Timezone, Show-TypeAccelerator,
+    Start-RecordSession, Stop-RecordSession, Switch-Mute, Test-ConnectionAsync,
+    Test-IsAdmin, Test-IsCapsLock, Test-IsDate, Test-IsFileLocked,
+    Test-IsHexString, Test-IsNumeric, Test-IsNumLock, Test-IsScrollLock,
+    Test-IsValidEmailAddress, Test-IsValidIPv4, Test-NtpDateVsNow, Test-Port,
+    Union-Object, Update-ExplorerIcon
+'
 
             # Flag to indicate whether the module requires explicit user acceptance for install/update/save
             # RequireLicenseAcceptance = False
