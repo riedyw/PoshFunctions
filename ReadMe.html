@@ -1,0 +1,542 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<style>body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+kbd {
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    background-color: #dddddd;
+    background-image: linear-gradient(#f1f1f1, #dddddd);
+    background-repeat: repeat-x;
+    border-radius: 2px;
+    border-width: 1px;
+    border-color: #dddddd #cccccc #cccccc #dddddd;
+    border-image: none;
+    border-style: solid;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}</style>
+</head>
+<body>
+<h1 id="PoshFunctions">PoshFunctions</h1>
+
+<p>A curated list of Powershell functions and filters wrapped into a module. Over 150 functions/filters.</p>
+
+<h2 id="Install.the.module">Install the module</h2>
+
+<p>To install the module run the following command:</p>
+
+<pre><code>Install-Module PoshFunctions
+</code></pre>
+
+<p>Copy the <code>PoshFunctions</code> folder into one of the folders specified in the <code>$env:PSMODULEPATH</code> folders.</p>
+
+<p>To display the paths enter the following command.</p>
+
+<pre><code>$env:PSMODULEPATH
+</code></pre>
+
+<p>To display in a way better understood by you the human:</p>
+
+<pre><code>$env:PSMODULEPATH -Split ';'
+</code></pre>
+
+<p>Or you can save it to a variable</p>
+
+<pre><code>$ModPath = $env:PSMODULEPATH -Split ';'
+</code></pre>
+
+<p>Then you can reference a particular path</p>
+
+<pre><code>$ModPath[1]
+</code></pre>
+
+<h2 id="Import.the.module">Import the module</h2>
+
+<p>To import the module enter the following command</p>
+
+<pre><code>Import-Module -Name PoshFunctions
+</code></pre>
+
+<h2 id="Functions">Functions</h2>
+
+<p>For the functions themselves see <a href="Functions"><strong>Functions</strong></a> folder.</p>
+
+<pre><code>Name                           Synopsis
+----                           --------
+Compare-ObjectProperty         Compares two objects property by property.
+Compare-PSGalleryObject        Compares the installed module(s) or script(s) that have been installed from PowerShellGallery.com
+Convert-ARGBToHex              Converts an ARGB color string to hex equivalent
+ConvertFrom-Base64             Convert from a Base64 string to normal string
+ConvertFrom-DateTime           Converts a datetime into a datetime represented in a different format.
+ConvertFrom-FsRight            To convert a [uint32] FileSystemRight value into a human readable form
+ConvertFrom-UrlEncode          Converts a URL encoded string back into a normal string
+ConvertFrom-UTC                Converts a datetime from UTC to local time
+ConvertFrom-XML                Convert XML to an object
+Convert-HexToARGB              Converts Hex to ARGB values
+Convert-ObjectToHashtable      Takes a single object and converts its properties and values into a hashtable.
+Convert-ROT13                  Shifts letters in string by 13 positions.
+Convert-SecureStringToString   Converts a SecureString value back to a plaintext string
+ConvertTo-Base64               ConvertTo-Base64 converts a normal string to a base 64 string
+ConvertTo-BinaryIPv4           Converts a Decimal IP address into a binary format.
+ConvertTo-Bool                 Parse a string and convert it to a Boolean
+ConvertTo-DateTime             Converts a formatted date string back into a datetime datatype.
+ConvertTo-DecimalIPv4          Converts a Dotted Decimal IP address into a 32-bit unsigned integer.
+ConvertTo-DottedDecimalIPv4    Returns a dotted decimal IP address.
+ConvertTo-Markdown             Convert pipeline output to a markdown document.
+ConvertTo-OrderedDictionary    Converts a HashTable, Array, or an OrderedDictionary to an OrderedDictionary.
+ConvertTo-PlainText            Converts the System.Security.SecureString to plain text.
+ConvertTo-SecureText           Converts plain text to secure string.
+ConvertTo-UncPath              A simple function to convert a local file path and a computer name to a network UNC path.
+ConvertTo-UrlEncode            To encode plaintext using [Web.HttpUtility]::UrlEncode()
+ConvertTo-UTC                  Converts a datetime from local time to UTC
+Convert-UserFlag               Converts a userflag enumeration to a human readable list of attributes about an AD object.
+Copy-Object                    To copy an object to standard output
+Eexit                          Closes the transcript, and exits the PowerShell session
+Expand-IPV6                    Takes an abbreviated IPv6 string and expands it fully
+Expand-String                  Expanding a string expression. Can handle Powershell string expressions or Environment variable expansion.
+Expand-Tab                     To expand tab characters to spaces
+Export-CSVSortedColumn         Sorts the column names alphabetically and exports to csv
+FileSizeAbove                  To use as a filter against Get-ChildItem
+FileSizeBelow                  To use as a filter against Get-ChildItem
+Format-MacAddress              Function to cleanup a MACAddress string
+Format-RandomCase              Formats a string character by character randomly into upper or lower case.
+Format-ReverseString           To reverse a string, or an array of strings
+Format-SortedList              Creates a formatted list with properties sorted alphabetically
+Format-WrapText                Wraps text at a particular column width
+Get-BashPath                   To take a normal Windows path and convert it to a bash path for things like git bash.
+Get-BinaryType                 Gets the binary executable type for a given set of files
+Get-ComputerSite               Describe purpose of "Get-ComputerSite" in 1-2 sentences.
+Get-DiceRoll                   Simulates rolling gaming dice
+Get-DNSHostEntryAsync          Performs a DNS Get Host asynchronously
+Get-DriveStat                  To get statistics on drives on a particular server or servers.
+Get-Enum                       To get the static values of enum datatypes
+Get-ExecutableForFile          Given a file, determine what program is associated with file.
+Get-FileEncoding               To get the file encoding of a file
+Get-FileName                   Gets a filename through the native OpenFileDialog. Can select a single file or multiple files.
+Get-FileWithLeadingSpace       To find files that begin with a space character
+Get-Folder                     Gets a filename through the native OpenFileDialog. Can select a single file or multiple files.
+Get-Font                       Gets the fonts currently loaded on the system
+Get-Fortune                    Display a short quote
+Get-InstalledModuleVersion     Get version information on installed modules and most recent version on PSGallery
+Get-IpRange                    Given a subnet in CIDR format, get all of the valid IP addresses in that range.
+Get-LastReboot                 Describe purpose of "Get-LastReboot" in 1-2 sentences.
+Get-MachineType                A quick function to determine if a computer is VM or physical box.
+Get-MacVendor                  Resolve MacAddresses To Vendors
+Get-Magic8Ball                 Get one of the answers from the magic 8 ball.
+Get-Md5Sum                     To calculate an Md5Sum for a file
+Get-NetworkCredential          Returns a [System.Net.NetworkCredential] given a passed [PSCredential] parameter
+Get-NTFSPermission             To get permission information on a specified Path or folder name
+Get-NtpDate                    To get the time from an NTP server
+Get-OperatingSystemSKU         Gets the sku information for the current operating system
+Get-PoshFunctionsPrivateData   Returns the private data as defined by the module manifest
+Get-Power                      Provides exponentian
+Get-PrintableAscii             Gets an array of objects that show printable Ascii characters.
+Get-PrivateProfileComment      To get comments from an .ini file
+Get-PrivateProfileSection      To get data out of an .ini file
+Get-PrivateProfileSectionNames To get the section names out of an .ini file
+Get-PrivateProfileString       To get data out of an .ini file
+Get-PSWho                      Get PowerShell user summary information
+Get-RandomDate                 Gets a random date
+Get-RandomHexDigit             Gets a random hex digit, or a string of hex digits
+Get-RandomMacAddress           Gets a random sequence of 12 hexadecimal digits
+Get-RegExpandString            Retrieves a null-terminated string that contains unexpanded references to environment variables (REG_EXPAND_SZ) from local or remote compu...
+Get-RegistryValue              Get the values from a specified registry key
+Get-Round                      Correctly rounds a number. Optionally can specify the number of digits to round to.
+Get-SaveFile                   Gets a filename through the native SaveFileDialog.
+Get-Share                      To get information about shares on the local computer
+Get-SharePermission            To get permission information on specified ShareName
+Get-ShareStat                  To get statistics on a share
+Get-Shortcut                   Get information about a Shortcut (.lnk file)
+Get-SID                        To get the SID of a specified domain user passed as either an (email) or (domain,username)
+Get-StaticProperty             To list the static properties of a .NET class
+Get-SubnetMaskIPv4             Gets a dotted decimal subnet mask given the number of bits in the mask
+Get-TruncatedDate              To truncate a date at a given level
+Get-Type                       Get exported types in the current session
+Get-UrlContent                 To get the HTML content of a specified URL
+Get-WordCount                  Gets summary statistics of all the words and how many of each there are
+Get-WordList                   Returns a list of over 38,000 words.
+grep                           A simple text filter to search for a string
+Help                           Describe purpose of "Help" in 1-2 sentences.
+Invoke-Beep                    Uses the Beep function of the .Net [Console] class
+Invoke-Speak                   Use the speech synthesizer in Powershell. Can be synchronous or asynchronous. Option for random voice.
+Join-Object                    Combines two object lists based on a related property between them.
+Lock-Workstation               Locks the workstation
+Measure-Char                   To count the number of times a character appears in a string, or an array of strings.
+mklink                         Mklink calls out to the Command Prompt (cmd.exe) and creates a link
+Move-ToRecycleBin              Instead of outright deleting a file, why not move it to the Recycle Bin?
+New-Credential                 Returns a [PSCredential] given a passed UserName, and either a string 'Password' or a securestring 'SecureString'
+New-Inputbox                   Display a Visual Basic style inputbox.
+New-PopUp                      New-Popup will display a popup message
+New-QR                         Create New Quick Response Code
+New-ScreenShot                 To take a screenshot and save it to a file.
+New-Shortcut                   This script is used to create a  shortcut.
+Read-HostWithDefault           A wrapper for Read-Host that includes a default value. Optionally can provide a prompt.
+Remove-BlankOrComment          A simple text filter to remove blank lines or lines that begin with a comment character.
+Remove-BomFromFile             To remove BOM (byte order marking) from a file.
+Remove-EmptyProperty           To take an object and return only non-empty properties
+Remove-InvalidFileNameChar     Removes characters from a string that are not valid in Windows file names.
+Remove-QuotesFromCsv           Removes quotes from a CSV data set. Can optionally set $Delimiter to another character.
+Remove-Trailing                Removes trailing spaces from a string or array of strings.
+Reset-Desktop                  Forces a reset of the desktop
+Resolve-FQDN                   Resolves a hostname or IPv4 address to a fully qualified domain name
+Resolve-HostName               Resolves a hostname to an IPv4 address.
+Search-Method                  Search method
+sed                            A simple text filter to replace strings
+Set-Capslock                   Sets the state of the CapsLock button.
+Set-Display                    Set-Display turns the display on or off via energy saver api
+Set-Numlock                    Sets the state of the NumLock button. If you pass $true to function it will turn on NumLock.
+Set-PrivateProfileComment      To place comment(s) in an .ini file. Comments are lines that begin with a semicolon ';'.
+Set-PrivateProfileString       To set data in an .ini file
+Set-Scrolllock                 Sets the state of the ScrollLock button.
+Set-Speaker                    Sets the speaker volume.
+Set-Type                       Sets the data type of a property given the property name and the data type.
+Set-WindowStyle                To control the behavior of a window
+Show-AllColor                  Shows all console colors
+Show-Calendar                  Displays a visual representation of a calendar.
+Show-Color                     Show-Color displays the names and values of the console colors
+Show-ColorsWithBackground      Show-ColorsWithBackground displays all combinations of foreground/background of the console colors.
+Show-DaysOfWeek                Shows the days of the week
+Show-FileAttribute             Shows the available file attributes
+Show-FsRight                   To list all potential file system rights
+Show-InvalidFileCharacter      Shows invalid filename characters
+Show-Month                     Shows the months
+Show-NamedColor                Shows all named colors
+Show-Object                    Takes an object and displays a new window containing the object, and you can drill down on its properties.
+Show-Progress                  Show progress as items pass through a section of the pipline
+Show-ShortDaysOfWeek           Show short days of the week
+Show-ShortMonth                Shows short month
+Show-SpecialFolder             Shows special folder names
+Show-SubnetMaskIPv4            Show IPv4 subnet masks
+Show-Timezone                  Show timezone information
+Show-TypeAccelerator           Shows type accelerators
+Start-ADReplication            Forces replication to occur between domain controllers in domain.
+Start-RecordSession            Creates a transcript of current Powershell session
+Stop-RecordSession             Stops the running transcript
+Switch-Mute                    Toggles speaker mute
+Test-ConnectionAsync           Performs a ping test asynchronously
+Test-IsAdmin                   Determines if you are running elevated (as Administrator)
+Test-IsCapsLock                Determines if the CapsLock key is on or not
+Test-IsDate                    Tests to see if the specified string is a valid [datetime] string
+Test-IsFileLocked              Determine if a file is locked.
+Test-IsHexString               Tests to determine if a string is a valid hexadecimal number. Can optionally include a prefix of '0x' or '#'
+Test-IsNull                    Given a passed [string] tests to determine if .IsNullOrEmpty() or .IsNullOrWhitespace(), with .IsNullOrEmpty() being the default
+Test-IsNumeric                 Determines if specified string can be parsed to a number
+Test-IsNumLock                 Determines the state of NumLock
+Test-IsScrollLock              Sets the state of the ScrollLock button. If you pass $true to function it will turn on ScrollLock.
+Test-IsValidEmailAddress       Tests validity if specified string is an email address.
+Test-IsValidIPv4               Verifies if passed parameter is a valid IP v4 address
+Test-IsValidIPv6               Verifies if passed parameter is a valid IP v6 address
+Test-NtpDateVsNow              To test whether local time and NTP time fall within a particular tolerance
+Test-Port                      Tests a Port or a range of ports on a specific ComputerName(s).
+Union-Object                   Returns a 'clean' array of objects that have all property names in each element of the array
+Update-ExplorerIcon            Updates Explorer icons
+Write-StringArray              Takes [string] or [string[]] input and writes the code that would create a string array with that information.
+Write-TextMenu                 Creates the logic for a new simple text based menu. Originally published as script New-TextMenu in the PowerShellGallery
+</code></pre>
+
+<p><strong>EOF</strong> - End Of File Comment</p>
+</body>
+</html>

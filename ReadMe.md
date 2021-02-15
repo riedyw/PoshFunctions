@@ -41,6 +41,7 @@ For the functions themselves see [**Functions**](Functions) folder.
     Name                           Synopsis
     ----                           --------
     Compare-ObjectProperty         Compares two objects property by property.
+    Compare-PSGalleryObject        Compares the installed module(s) or script(s) that have been installed from PowerShellGallery.com
     Convert-ARGBToHex              Converts an ARGB color string to hex equivalent
     ConvertFrom-Base64             Convert from a Base64 string to normal string
     ConvertFrom-DateTime           Converts a datetime into a datetime represented in a different format.
@@ -61,26 +62,29 @@ For the functions themselves see [**Functions**](Functions) folder.
     ConvertTo-Markdown             Convert pipeline output to a markdown document.
     ConvertTo-OrderedDictionary    Converts a HashTable, Array, or an OrderedDictionary to an OrderedDictionary.
     ConvertTo-PlainText            Converts the System.Security.SecureString to plain text.
-    ConvertTo-SecureText           ...
+    ConvertTo-SecureText           Converts plain text to secure string.
     ConvertTo-UncPath              A simple function to convert a local file path and a computer name to a network UNC path.
     ConvertTo-UrlEncode            To encode plaintext using [Web.HttpUtility]::UrlEncode()
     ConvertTo-UTC                  Converts a datetime from local time to UTC
     Convert-UserFlag               Converts a userflag enumeration to a human readable list of attributes about an AD object.
     Copy-Object                    To copy an object to standard output
     Eexit                          Closes the transcript, and exits the PowerShell session
+    Expand-IPV6                    Takes an abbreviated IPv6 string and expands it fully
     Expand-String                  Expanding a string expression. Can handle Powershell string expressions or Environment variable expansion.
     Expand-Tab                     To expand tab characters to spaces
     Export-CSVSortedColumn         Sorts the column names alphabetically and exports to csv
     FileSizeAbove                  To use as a filter against Get-ChildItem
     FileSizeBelow                  To use as a filter against Get-ChildItem
     Format-MacAddress              Function to cleanup a MACAddress string
+    Format-RandomCase              Formats a string character by character randomly into upper or lower case.
     Format-ReverseString           To reverse a string, or an array of strings
     Format-SortedList              Creates a formatted list with properties sorted alphabetically
     Format-WrapText                Wraps text at a particular column width
     Get-BashPath                   To take a normal Windows path and convert it to a bash path for things like git bash.
     Get-BinaryType                 Gets the binary executable type for a given set of files
     Get-ComputerSite               Describe purpose of "Get-ComputerSite" in 1-2 sentences.
-    Get-DNSHostEntryAsync          ...
+    Get-DiceRoll                   Simulates rolling gaming dice
+    Get-DNSHostEntryAsync          Performs a DNS Get Host asynchronously
     Get-DriveStat                  To get statistics on drives on a particular server or servers.
     Get-Enum                       To get the static values of enum datatypes
     Get-ExecutableForFile          Given a file, determine what program is associated with file.
@@ -97,10 +101,13 @@ For the functions themselves see [**Functions**](Functions) folder.
     Get-MacVendor                  Resolve MacAddresses To Vendors
     Get-Magic8Ball                 Get one of the answers from the magic 8 ball.
     Get-Md5Sum                     To calculate an Md5Sum for a file
+    Get-NetworkCredential          Returns a [System.Net.NetworkCredential] given a passed [PSCredential] parameter
     Get-NTFSPermission             To get permission information on a specified Path or folder name
     Get-NtpDate                    To get the time from an NTP server
     Get-OperatingSystemSKU         Gets the sku information for the current operating system
+    Get-PoshFunctionsPrivateData   Returns the private data as defined by the module manifest
     Get-Power                      Provides exponentian
+    Get-PrintableAscii             Gets an array of objects that show printable Ascii characters.
     Get-PrivateProfileComment      To get comments from an .ini file
     Get-PrivateProfileSection      To get data out of an .ini file
     Get-PrivateProfileSectionNames To get the section names out of an .ini file
@@ -109,7 +116,7 @@ For the functions themselves see [**Functions**](Functions) folder.
     Get-RandomDate                 Gets a random date
     Get-RandomHexDigit             Gets a random hex digit, or a string of hex digits
     Get-RandomMacAddress           Gets a random sequence of 12 hexadecimal digits
-    Get-RegExpandString            Retrieves a null-terminated string that contains unexpanded references to environment variables (REG_EXPAND_SZ) from local or remote computers.
+    Get-RegExpandString            Retrieves a null-terminated string that contains unexpanded references to environment variables (REG_EXPAND_SZ) from local or remote compu...
     Get-RegistryValue              Get the values from a specified registry key
     Get-Round                      Correctly rounds a number. Optionally can specify the number of digits to round to.
     Get-SaveFile                   Gets a filename through the native SaveFileDialog.
@@ -124,13 +131,17 @@ For the functions themselves see [**Functions**](Functions) folder.
     Get-Type                       Get exported types in the current session
     Get-UrlContent                 To get the HTML content of a specified URL
     Get-WordCount                  Gets summary statistics of all the words and how many of each there are
+    Get-WordList                   Returns a list of over 38,000 words.
     grep                           A simple text filter to search for a string
     Help                           Describe purpose of "Help" in 1-2 sentences.
+    Invoke-Beep                    Uses the Beep function of the .Net [Console] class
     Invoke-Speak                   Use the speech synthesizer in Powershell. Can be synchronous or asynchronous. Option for random voice.
     Join-Object                    Combines two object lists based on a related property between them.
     Lock-Workstation               Locks the workstation
+    Measure-Char                   To count the number of times a character appears in a string, or an array of strings.
     mklink                         Mklink calls out to the Command Prompt (cmd.exe) and creates a link
     Move-ToRecycleBin              Instead of outright deleting a file, why not move it to the Recycle Bin?
+    New-Credential                 Returns a [PSCredential] given a passed UserName, and either a string 'Password' or a securestring 'SecureString'
     New-Inputbox                   Display a Visual Basic style inputbox.
     New-PopUp                      New-Popup will display a popup message
     New-QR                         Create New Quick Response Code
@@ -175,6 +186,7 @@ For the functions themselves see [**Functions**](Functions) folder.
     Show-SubnetMaskIPv4            Show IPv4 subnet masks
     Show-Timezone                  Show timezone information
     Show-TypeAccelerator           Shows type accelerators
+    Start-ADReplication            Forces replication to occur between domain controllers in domain.
     Start-RecordSession            Creates a transcript of current Powershell session
     Stop-RecordSession             Stops the running transcript
     Switch-Mute                    Toggles speaker mute
@@ -184,15 +196,19 @@ For the functions themselves see [**Functions**](Functions) folder.
     Test-IsDate                    Tests to see if the specified string is a valid [datetime] string
     Test-IsFileLocked              Determine if a file is locked.
     Test-IsHexString               Tests to determine if a string is a valid hexadecimal number. Can optionally include a prefix of '0x' or '#'
+    Test-IsNull                    Given a passed [string] tests to determine if .IsNullOrEmpty() or .IsNullOrWhitespace(), with .IsNullOrEmpty() being the default
     Test-IsNumeric                 Determines if specified string can be parsed to a number
     Test-IsNumLock                 Determines the state of NumLock
     Test-IsScrollLock              Sets the state of the ScrollLock button. If you pass $true to function it will turn on ScrollLock.
     Test-IsValidEmailAddress       Tests validity if specified string is an email address.
     Test-IsValidIPv4               Verifies if passed parameter is a valid IP v4 address
+    Test-IsValidIPv6               Verifies if passed parameter is a valid IP v6 address
     Test-NtpDateVsNow              To test whether local time and NTP time fall within a particular tolerance
     Test-Port                      Tests a Port or a range of ports on a specific ComputerName(s).
     Union-Object                   Returns a 'clean' array of objects that have all property names in each element of the array
     Update-ExplorerIcon            Updates Explorer icons
+    Write-StringArray              Takes [string] or [string[]] input and writes the code that would create a string array with that information.
+    Write-TextMenu                 Creates the logic for a new simple text based menu. Originally published as script New-TextMenu in the PowerShellGallery
     
 
-*EOF - End Of File Comment*
+**EOF** - End Of File Comment
