@@ -24,19 +24,19 @@ Shifts letters in string by 13 positions.
 
 ### EXAMPLE 1
 ```
-Convert-ROT13 -String 'Password'
+Convert-ROT13 -String 'Hello World!'
 ```
 
 Would return
-Cnffjbeq
+Uryyb Jbeyq!
 
 ### EXAMPLE 2
 ```
-Convert-ROT13 -String 'Cnffjbeq'
+Convert-ROT13 -String 'Uryyb Jbeyq!'
 ```
 
 Would return
-Password
+Hello World!
 
 ### EXAMPLE 3
 ```
@@ -48,7 +48,7 @@ Guvf vf n frperg
 
 ### EXAMPLE 4
 ```
-Convert-ROT13 -string 'one', 'two' -verbose
+Convert-ROT13 -String 'one', 'two' -verbose
 ```
 
 Would return

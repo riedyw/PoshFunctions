@@ -5,42 +5,34 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-DNSHostEntryAsync
+# Format-RandomCase
 
 ## SYNOPSIS
-Performs a DNS Get Host asynchronously
+Formats a string character by character randomly into upper or lower case.
 
 ## SYNTAX
 
 ```
-Get-DNSHostEntryAsync [[-ComputerName] <String[]>] [<CommonParameters>]
+Format-RandomCase [[-String] <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Performs a DNS Get Host asynchronously
+Formats a string character by character randomly into upper or lower case.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-DNSHostEntryAsync -Computername google.com,prox-hyperv,bing.com, github.com, powershellgallery.com, powershell.org
+Format-RandomCase -String 'HELLO WORLD IT IS ME!'
 ```
 
-### EXAMPLE 2
-```
-Get-DNSHostEntryAsync -ComputerName 8.8.8.8, ibm.com
-```
-
-Would return:
-ComputerName Result
------------- ------
-8.8.8.8      dns.google
-ibm.com      129.42.38.10
+Example return
+HelLo worlD It is me!
 
 ## PARAMETERS
 
-### -ComputerName
-{{ Fill ComputerName Description }}
+### -String
+A \[string\[\]\] that you want formatted randomly into upper or lower case
 
 ```yaml
 Type: String[]
@@ -61,12 +53,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Net.AsyncGetHostResult
+### [string[]]
 ## NOTES
-Inspired by: Get-DNSHostEntryAsync by Boe Prox
+If you need to specify 10 or more of a particular type of dice use several entries of that dice type that add up to the value you want.
 
-Changes:
-* added example to comment based help
-* slight formatting changes
+You want to know results of rolling ten 6-sided dice
+
+Get-DiceRoll -Dice 2d6,8d6
 
 ## RELATED LINKS

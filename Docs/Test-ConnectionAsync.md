@@ -13,7 +13,7 @@ Performs a ping test asynchronously
 ## SYNTAX
 
 ```
-Test-ConnectionAsync [[-Computername] <String[]>] [-Timeout <Int32>] [-TimeToLive <Int32>] [-Fragment]
+Test-ConnectionAsync [[-ComputerName] <String[]>] [-Timeout <Int32>] [-TimeToLive <Int32>] [-Fragment]
  [-BufferSize <Int16>] [-IncludeSource] [<CommonParameters>]
 ```
 
@@ -24,10 +24,10 @@ Performs a ping test asynchronously
 
 ### EXAMPLE 1
 ```
-Test-ConnectionAsync -Computername server1,server2
+Test-ConnectionAsync -ComputerName server1,server2
 ```
 
-Computername IPAddress    BufferSize  Result ResponseTime
+ComputerName IPAddress    BufferSize  Result ResponseTime
 ------------ ---------    ----------  ------ ------------
 server1      192.168.1.31         32 Success           86
 server2      192.168.1.41         32 Success           79
@@ -38,7 +38,7 @@ Performs asynchronous ping test against listed systems.
 
 ## PARAMETERS
 
-### -Computername
+### -ComputerName
 List of computers to test connection
 
 ```yaml
@@ -71,6 +71,7 @@ Accept wildcard characters: False
 
 ### -TimeToLive
 Sets a time to live on ping request.
+Default 128.
 
 ```yaml
 Type: Int32
@@ -85,7 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### -Fragment
-Tells whether to fragment the request
+Switch that determine if request can be fragmented
 
 ```yaml
 Type: SwitchParameter
@@ -101,7 +102,7 @@ Accept wildcard characters: False
 
 ### -BufferSize
 How large you want the buffer to be.
-Valid range 32-1500
+Valid range 32-1500, default of 32.
 
 ```yaml
 Type: Int16

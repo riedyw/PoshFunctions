@@ -5,42 +5,51 @@ online version:
 schema: 2.0.0
 ---
 
-# Format-WrapText
+# Write-StringArray
 
 ## SYNOPSIS
-Wraps text at a particular column width
+Takes \[string\] or \[string\[\]\] input and writes the code that would create a string array with that information.
 
 ## SYNTAX
 
-### Width (Default)
 ```
-Format-WrapText [-Text] <String[]> [-Width <Int32>] [<CommonParameters>]
-```
-
-### Screen
-```
-Format-WrapText [-Text] <String[]> [-Screen] [<CommonParameters>]
+Write-StringArray [-Text] <String[]> [-VariableName <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Wraps text at a particular column width (Default=80)
+Takes \[string\] or \[string\[\]\] input and writes the code that would create a string array with that information.
+Encloses strings in single quotes replacing any existing single quotes with 2 x single quotes.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Format-WrapText -Text "word1 word2 word3 word4 word5" -Width 10
+Write-StringArray -Text Hello,World,"it's me"
 ```
 
 Would return
-word1 word2
-word3 word4
-word5
+$StringArray = @(
+    'Hello',
+    'World',
+    'it''s me'
+)
+
+### EXAMPLE 2
+```
+1,2,99 | Write-StringArray -VariableName MyVariable
+```
+
+Would return
+$MyVariable = @(
+    '1',
+    '2',
+    '99'
+)
 
 ## PARAMETERS
 
 ### -Text
-The text to be formatted
+The text to be included in the string array
 
 ```yaml
 Type: String[]
@@ -54,33 +63,17 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -Width
-Column width to wrap at.
-Default = 80
+### -VariableName
+The name of the string array variable
 
 ```yaml
-Type: Int32
-Parameter Sets: Width
+Type: String
+Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: 80
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Screen
-A switch indicating that the wrap should occur at the width of the current Powershell window.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: Screen
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
+Default value: StringArray
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -92,11 +85,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### [String]
+### [string[]]
 ## NOTES
 
 ## RELATED LINKS
-
-[Format-Table
-Format-List]()
-

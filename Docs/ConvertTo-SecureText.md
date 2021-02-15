@@ -8,7 +8,7 @@ schema: 2.0.0
 # ConvertTo-SecureText
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Converts plain text to secure string.
 
 ## SYNTAX
 
@@ -17,7 +17,7 @@ ConvertTo-SecureText [[-Prompt] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Converts plain text to secure string.
 
 ## EXAMPLES
 
@@ -31,7 +31,7 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -Prompt
-{{ Fill Prompt Description }}
+Text that you want to be displayed when prompting user.
 
 ```yaml
 Type: String
@@ -39,8 +39,8 @@ Parameter Sets: (All)
 Aliases: Ask
 
 Required: False
-Position: 0
-Default value: None
+Position: 1
+Default value: Please enter text
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
@@ -50,12 +50,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### System.String
-
 ## OUTPUTS
 
 ### string
-
 ## NOTES
 
 ## RELATED LINKS

@@ -9,8 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 To place comment(s) in an .ini file.
-Comments are lines that begin with a
-semicolon ';'.
+Comments are lines that begin with a semicolon ';'.
 
 ## SYNTAX
 

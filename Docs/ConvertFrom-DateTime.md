@@ -17,6 +17,11 @@ Converts a datetime into a datetime represented in a different format.
 ConvertFrom-DateTime [-DateTime] <DateTime[]> [-DMTF] [-IncludeOriginal] [-UTC] [<CommonParameters>]
 ```
 
+### Excel
+```
+ConvertFrom-DateTime [-DateTime] <DateTime[]> [-Excel] [-IncludeOriginal] [-UTC] [<CommonParameters>]
+```
+
 ### Format
 ```
 ConvertFrom-DateTime [-DateTime] <DateTime[]> [-Format <String>] [-IncludeOriginal] [-UTC] [<CommonParameters>]
@@ -58,7 +63,7 @@ DateTime                        FileTime
 ConvertFrom-DateTime -DateTime '1/25/2018 8:34:31 AM' -DMTF -IncludeOriginal
 ```
 
-Assuming a timezone of "Eastern Time" and a culture of "en-US" this would return the string
+Assuming a timezone of 'Eastern Time' and a culture of 'en-US' this would return the string
 
 20180125083431.000000-300
 
@@ -82,10 +87,10 @@ Assuming your current timezone is EST then the output would be:
 
 ### EXAMPLE 5
 ```
-"3/15/2018 12:00:00 PM" | ConvertFrom-DateTime -UTC
+'3/15/2018 12:00:00 PM' | ConvertFrom-DateTime -UTC
 ```
 
-Assuming a timezone of "Eastern Time" and a culture of "en-US" this would return the string
+Assuming a timezone of 'Eastern Time' and a culture of 'en-US' this would return the string
 20180315160000.000000+000
 
 ## PARAMETERS
@@ -110,7 +115,7 @@ Accept wildcard characters: False
 A switch parameter to display in DMTF format.
 Default parameter set.
 
-DmtfDateTime is of the form "yyyymmddHHMMSS.ffffff+UUU"
+DmtfDateTime is of the form 'yyyymmddHHMMSS.ffffff+UUU'
 
 Where
     yyyy    is the 4 digit year
@@ -136,7 +141,7 @@ Accept wildcard characters: False
 ```
 
 ### -Unix
-Converts a datetime to a UnixEpoch which is the number of seconds since '1/1/1970 12:00:00 AM UTC'
+Switch to convert a datetime to a UnixEpoch which is the number of seconds since '1/1/1970 12:00:00 AM UTC'
 
 ```yaml
 Type: SwitchParameter
@@ -151,8 +156,8 @@ Accept wildcard characters: False
 ```
 
 ### -FileTime
-Converts a large integer filetime \[int64\] into a datetime string.
-There is a special value that returns a value of "Never".
+Switch to convert a datetime to a large integer filetime \[int64\].
+There is a special value that returns a value of 'Never'.
 Returns a \[datetime\] in Universal Time (UTC)
 
 Filetimes are expressed in Ticks.
@@ -174,7 +179,7 @@ Accept wildcard characters: False
 ```
 
 ### -ICSDateTime
-IcsDateTime is of the form "yyyymmddTHHMMSSZ"
+Switch to convert a datetime to IcsDateTime format is of the form 'yyyymmddTHHMMSSZ'
 
 Where
     yyyy    is the 4 digit year
@@ -191,6 +196,21 @@ If the final character is NOT a Z then the time is local time.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ICSDateTime
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Excel
+Switch to indicate that the datestring is in Excel format which represents dates as the number of days since (get-date 1/1/1900)
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Excel
 Aliases:
 
 Required: False
@@ -257,5 +277,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### string
 ## NOTES
 Info:       For further information on DMTF time formats see https://docs.microsoft.com/en-us/windows/desktop/wmisdk/cim-datetime
+
+Added Excel functionality
 
 ## RELATED LINKS

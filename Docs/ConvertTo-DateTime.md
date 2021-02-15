@@ -17,6 +17,11 @@ Converts a formatted date string back into a datetime datatype.
 ConvertTo-DateTime [-DateString] <String[]> [-DMTF] [-IncludeOriginal] [-UTC] [<CommonParameters>]
 ```
 
+### Excel
+```
+ConvertTo-DateTime [-DateString] <String[]> [-Excel] [-IncludeOriginal] [-UTC] [<CommonParameters>]
+```
+
 ### Format
 ```
 ConvertTo-DateTime [-DateString] <String[]> [-Format <String>] [-IncludeOriginal] [-UTC] [<CommonParameters>]
@@ -44,7 +49,7 @@ Converts a formatted date string back into a datetime datatype.
 
 ### EXAMPLE 1
 ```
-ConvertTo-DateTime "20161124225058.082190+060"
+ConvertTo-DateTime '20161124225058.082190+060'
 ```
 
 If you were in the EST timezone this would return the datetime
@@ -61,7 +66,7 @@ Friday, December 31, 1999 11:59:59 PM
 
 ### EXAMPLE 3
 ```
-ConvertTo-DateTime "20161124T225058Z" -ICSDateTime
+ConvertTo-DateTime '20161124T225058Z' -ICSDateTime
 ```
 
 If in the EST timezone this would return
@@ -120,7 +125,7 @@ Accept wildcard characters: False
 A switch parameter to display in DMTF format.
 Default parameter set.
 
-DmtfDateTime is of the form "yyyyMMddHHmmss.ffffff+UUU"
+DmtfDateTime is of the form 'yyyyMMddHHmmss.ffffff+UUU'
 
 Where
     yyyy    is the 4 digit year
@@ -162,7 +167,7 @@ Accept wildcard characters: False
 
 ### -FileTime
 Converts a large integer filetime \[int64\] into a datetime string.
-There is a special value that returns a value of "Never".
+There is a special value that returns a value of 'Never'.
 
 Filetimes are expressed in Ticks.
 Ticks can range from 0 - 2650467743999999999.
@@ -183,7 +188,7 @@ Accept wildcard characters: False
 ```
 
 ### -ICSDateTime
-IcsDateTime is of the form "yyyyMMddTHHmmssZ"
+IcsDateTime is of the form 'yyyyMMddTHHmmssZ'
 
 Where
     yyyy    is the 4 digit year
@@ -225,6 +230,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Excel
+Switch to indicate that the datestring is in Excel format which represents dates as the number of days since (get-date 1/1/1900)
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Excel
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -IncludeOriginal
 Switch to enable the original datetime to appear in the output.
 
@@ -241,7 +261,7 @@ Accept wildcard characters: False
 ```
 
 ### -UTC
-Forces the output to be in the UTC timezone.
+Switch to force the output to be in the UTC timezone.
 Alias of this parameter is 'Zulu'
 
 ```yaml
@@ -263,7 +283,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### string
+### datetime
 ## NOTES
+Info:       For further information on DMTF time formats see https://docs.microsoft.com/en-us/windows/desktop/wmisdk/cim-datetime
+
+Added Excel functionality
 
 ## RELATED LINKS

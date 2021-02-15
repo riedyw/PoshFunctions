@@ -13,7 +13,7 @@ Resolves a hostname or IPv4 address to a fully qualified domain name
 ## SYNTAX
 
 ```
-Resolve-FQDN [-Computer] <String> [<CommonParameters>]
+Resolve-FQDN [-ComputerName] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,14 +23,14 @@ Resolves a hostname or IPv4 address to a fully qualified domain name
 
 ### EXAMPLE 1
 ```
-Resolve-FQDN -Computer $env:computername
+Resolve-FQDN -ComputerName $env:computername
 ```
 
 Display the FQDN of this computer
 
 ### EXAMPLE 2
 ```
-Resolve-FQDN -Computer "10.28.99.101"
+Resolve-FQDN -ComputerName '10.28.99.101'
 ```
 
 Display the FQDN of the computer whose IPv4 address is 10.28.99.101
@@ -44,7 +44,7 @@ Display the FQDN of this computer
 
 ### EXAMPLE 4
 ```
-"10.28.99.101" | Resolve-FQDN
+'10.28.99.101' | Resolve-FQDN
 ```
 
 Display the FQDN of the computer whose IPv4 address is 10.28.99.101
@@ -60,20 +60,21 @@ Display the FQDN of the Active Directory Domain Controller that you authenticate
 
 ### EXAMPLE 6
 ```
-Resolve-FQDN -Computer "NonExistentPC"
+Resolve-FQDN -ComputerName "NonExistentPC"
 ```
 
 The computer "NonExistentPC" does not have an entry in DNS so the function will return the value $False
 
 ## PARAMETERS
 
-### -Computer
-Either the hostname or IPv4 address of the computer you want resolved to FQDN
+### -ComputerName
+Either the hostname or IPv4 address of the computer you want resolved to FQDN.
+Aliased to 'CN', and 'Host'
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: host
+Aliases: Host, CN
 
 Required: True
 Position: 1
