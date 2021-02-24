@@ -1,6 +1,3 @@
-# source http://community.idera.com/powershell/powertips/b/tips/posts/finding-executable-for-file
-# requires explicit path NOT relative
-
 function Get-ExecutableForFile {
 <#
 .SYNOPSIS
@@ -13,6 +10,9 @@ function Get-ExecutableForFile {
     Get-ExecutableForFile -Path .\sample.docx
 
     C:\Program Files (x86)\Microsoft Office\Root\Office16\WINWORD.EXE
+.NOTES
+# source http://community.idera.com/powershell/powertips/b/tips/posts/finding-executable-for-file
+# requires explicit path NOT relative
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
@@ -22,8 +22,12 @@ function Get-ExecutableForFile {
         [string] $Path
     )
 
-    $Source = @'
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+    }
 
+    process {
+        $Source = @'
 using System;
 using System.Text;
 using System.Runtime.InteropServices;
@@ -49,12 +53,15 @@ public class Win32API
         }
     }
 '@
-
-    if (-not (Test-Path -Path $Path)) {
-        Write-Error -Message "File specified [$Path] does not exist."
-    } else {
-        Add-Type -TypeDefinition $Source -ErrorAction SilentlyContinue
-        [Win32API]::FindExecutable($Path)
+        if (-not (Test-Path -Path $Path)) {
+            Write-Error -Message "File specified [$Path] does not exist."
+        } else {
+            Add-Type -TypeDefinition $Source -ErrorAction SilentlyContinue
+            [Win32API]::FindExecutable($Path)
+        }
     }
 
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
+    }
 }

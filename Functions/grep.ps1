@@ -1,4 +1,4 @@
-Filter grep {
+filter grep {
 <#
 .SYNOPSIS
     A simple text filter to search for a string
@@ -29,26 +29,28 @@ Filter grep {
     )
     #endregion Parameter
 
-    Begin {
-        write-verbose -Message "String to search for is [$Keyword]"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+        Write-Verbose -Message "String to search for is [$Keyword]"
         $Line = 0
         $Count = 0
     }
 
-    Process {
+    process {
         foreach ($s in $String) {
             $Line ++
             $Count ++
-            write-verbose -Message "Line $Line is [$($s)]"
+            Write-Verbose -Message "Line $Line is [$($s)]"
             if ($s) {
-                $s | where-object { $_ -match $keyword }
+                $s | Where-Object { $_ -match $keyword }
             }
         }
     }
 
     End {
         if (-not $Count) {
-            write-verbose -Message 'No input'
+            Write-Verbose -Message 'No input'
         }
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }

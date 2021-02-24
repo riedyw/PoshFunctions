@@ -1,4 +1,4 @@
-Function Show-ShortMonth {
+function Show-ShortMonth {
 <#
 .SYNOPSIS
     Shows short month
@@ -9,16 +9,15 @@ Function Show-ShortMonth {
     [CmdletBinding(ConfirmImpact='None')]
     Param ()
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
+    process {
         [System.Globalization.DateTimeFormatInfo]::CurrentInfo.AbbreviatedMonthNames
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
 }

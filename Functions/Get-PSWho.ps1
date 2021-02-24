@@ -1,4 +1,4 @@
-Function Get-PSWho {
+function Get-PSWho {
 <#
 .SYNOPSIS
     Get PowerShell user summary information
@@ -72,7 +72,7 @@ Function Get-PSWho {
     )
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
@@ -87,8 +87,7 @@ Function Get-PSWho {
             $Elevated = $principal.IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
             $user = $current.Name
             $computer = $env:COMPUTERNAME
-        }
-        else {
+        } else {
             #non-Windows values
             $os = $PSVersionTable.OS
             $lsb = lsb_release -d
@@ -113,14 +112,12 @@ Function Get-PSWho {
         }
         if ($AsString) {
             $who | Out-String
-        }
-        else {
+        } else {
             $who
         }
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
-} #EndFunction Get-PSWho
+}

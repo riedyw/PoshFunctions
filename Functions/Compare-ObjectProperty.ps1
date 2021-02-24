@@ -1,15 +1,28 @@
-Function Compare-ObjectProperty {
+function Compare-ObjectProperty {
 <#
 .SYNOPSIS
     Compares two objects property by property.
 .DESCRIPTION
-    Compares two objects property by property. when a simple Compare-Object does not find equivalence, for instance when the order of properties is different between the 2 objects.
+    Compares two objects property by property. A simple Compare-Object only compares those properties with the same name in the two objects.
 .PARAMETER ReferenceObject
     The first object to compare
 .PARAMETER DifferenceObject
     The second object to compare
 .EXAMPLE
-    Compare-ObjectProperty -ReferenceObject $object1 -DifferenceObject $object2
+    $a = New-Object psobject -Prop ([ordered] @{ One = 1; Two = 2})
+    $b = New-Object psobject -Prop ([ordered] @{ One = 1; Two = 2; Three = 3})
+
+    Compare-Object $a $b
+
+    # would return $null because it only compares the properties that have common names but
+
+    Compare-ObjectProperty $a $b
+
+    # would return below because it compares the two objects property by property
+
+    PropertyName RefValue DiffValue
+    ------------ -------- ---------
+    Three                         3
 .OUTPUTS
     [psobject]
 .LINK
@@ -17,7 +30,7 @@ Function Compare-ObjectProperty {
 #>
 
     #region Parameters
-    [CmdletBinding(ConfirmImpact='None')]
+    [CmdletBinding(ConfirmImpact = 'None')]
     [outputtype('psobject')]
     Param(
         [Parameter(Mandatory, HelpMessage = 'First object to compare', Position = 0)]
@@ -29,7 +42,7 @@ Function Compare-ObjectProperty {
     #endregion Parameters
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
@@ -52,7 +65,7 @@ Function Compare-ObjectProperty {
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 }

@@ -1,4 +1,4 @@
-Function Show-Color {
+function Show-Color {
 <#
 .SYNOPSIS
     Show-Color displays the names and values of the console colors
@@ -9,19 +9,19 @@ Function Show-Color {
     [CmdletBinding(ConfirmImpact='None')]
     Param ()
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
+    process {
         [Enum]::GetValues([System.ConsoleColor]) |
-            select-object -Property @{'Name' = 'Name'; 'Expression' = {$_}},
+            Select-Object -Property @{'Name' = 'Name'; 'Expression' = {$_}},
                 @{'Name' = 'Dec'; 'Expression' = {[Int] $_}},
                 @{'Name' = 'Hex'; 'Expression' = {'0x{0:X1}' -f [Int] $_}}
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 }

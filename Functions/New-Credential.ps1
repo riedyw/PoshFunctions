@@ -1,5 +1,5 @@
 function New-Credential {
-    <#
+<#
 .SYNOPSIS
     Returns a [PSCredential] given a passed UserName, and either a string 'Password' or a securestring 'SecureString'
 .DESCRIPTION
@@ -29,6 +29,11 @@ function New-Credential {
 
     [CmdletBinding(DefaultParameterSetName = 'SecureString', ConfirmImpact = 'Medium')]
     [OutputType('PSCredential')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingPlainTextForPassword', '')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingUsernameAndPasswordParams', '')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingConvertToSecureStringWithPlainText', '')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions','')]
+
     Param
     (
 
@@ -56,7 +61,7 @@ function New-Credential {
             }
             'Password' {
                 Write-Verbose -Message 'Creating $SecureString'
-                $securestring = ConvertTo-SecureString -String $Password -AsPlainText -Force
+                $SecureString = ConvertTo-SecureString -String $Password -AsPlainText -Force
             }
         }
         New-Object -TypeName 'PSCredential' -ArgumentList $UserName, $SecureString

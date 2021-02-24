@@ -1,11 +1,10 @@
-Function Start-RecordSession {
-<#
+function Start-RecordSession {
+    <#
 .SYNOPSIS
     Creates a transcript of current Powershell session
 .DESCRIPTION
     Creates a transcript of current Powershell session
-
-#>
+.NOTES
     # Inspired by post https://groups.google.com/forum/#!topic/microsoft.public.exchange.admin/0z7249mOuzA
     # create a uniqely named transcript file for this session. It will have format of:
     # PS-date-pid.LOG
@@ -14,33 +13,35 @@ Function Start-RecordSession {
     # pid is the process id of the currently running powershell console.
     # creates it in the LOGS directory under persons userprofile directory.
     # sets global and environment variables so Stop-RecordSession can know the name of the transcript file
+#>
 
-    [CmdletBinding(ConfirmImpact='Low')]
+    [CmdletBinding(ConfirmImpact = 'Medium')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidGlobalVars', '')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
+
     Param ()
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
+    process {
         $logDate = Get-Date -Format 'yyyyMMdd'
-        $logPath = $env:userprofile + '\logs'
-        if (-Not (Test-Path -path $logPath)) {
-            mkdir -Path $logPath
+        $LogPath = Join-Path -Path $env:userprofile -ChildPath '\logs'
+        if (-not (Test-Path -Path $LogPath)) {
+            mkdir -Path $LogPath
         }
-        $logFile = $logPath + '\PS-' + $logDate + '-' + $PID + '.log'
-        $global:PSLOG = "$logFile"
-        $env:PSLOG = "$logfile"
-        # $global:Transcript = "$logfile"
-        if (-Not (Test-Path -path $logFile)) {
-            New-Item -Path $logFile -ItemType File | Out-Null
+        $Logfile = Join-Path -Path $LogPath -ChildPath ('\PS-' + $logDate + '-' + $PID + '.log')
+        $global:PSLOG = "$Logfile"
+        $env:PSLOG = "$Logfile"
+        # $global:Transcript = "$Logfile"
+        if (-not (Test-Path -Path $Logfile)) {
+            New-Item -Path $Logfile -ItemType File | Out-Null
         }
-        Start-Transcript -Path "$logFile" -append -force | Out-Null
-
+        Start-Transcript -Path "$Logfile" -Append -Force | Out-Null
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
-} #EndFunction Start-RecordSession
+}

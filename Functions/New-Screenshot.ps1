@@ -18,6 +18,9 @@ Function New-ScreenShot {
     Taking a full screenshot of the desktop and saving it to .\Screenshot.bmp
 #>
 
+    # todo overwrite file?
+    # todo better error checking
+
     [CmdletBinding(SupportsShouldProcess,ConfirmImpact='Low')]
 
     Param(

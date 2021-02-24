@@ -1,30 +1,27 @@
-Function Get-LastReboot {
+function Get-LastReboot {
 <#
 .SYNOPSIS
     Describe purpose of "Get-LastReboot" in 1-2 sentences.
-
 .DESCRIPTION
     Add a more complete description of what the function does.
-
 .EXAMPLE
     Get-LastReboot
     Describe what this call does
-
 .NOTES
     Place additional notes here.
-
 .LINK
     URLs to related sites
     The first link is opened by Get-Help -Online Get-LastReboot
-
 .INPUTS
     List of input types that are accepted by this function.
-
 .OUTPUTS
     List of output types produced by this function.
 #>
 
     # fixme works improperly in pwsh
+    # todo add write-verbose
+    # todo add -uptime switch
+    # todo rename to get-uptime
 
     [CmdletBinding(ConfirmImpact='None')]
     Param(

@@ -1,4 +1,4 @@
-Function ConvertTo-DecimalIPv4 {
+function ConvertTo-DecimalIPv4 {
 <#
 .SYNOPSIS
     Converts a Dotted Decimal IP address into a 32-bit unsigned integer.
@@ -16,26 +16,44 @@ Function ConvertTo-DecimalIPv4 {
 
     Would return
     16885952
+.EXAMPLE
+    ConvertTo-DecimalIP -IPAddress 192.168.1.1, 10.100.10.1 -IncludeInput
+
+    Would return
+    IPAddress   DecimalIP
+    ---------   ---------
+    192.168.1.1  16885952
+    10.100.10.1  17458186
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
     [OutputType('string')]
     param(
         [Parameter(Mandatory, Position = 0, ValueFromPipeline)]
-        [ipaddress] $IPAddress
+        [ipaddress[]] $IPAddress,
+
+        [switch] $IncludeInput
     )
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
-        $i = [ipaddress] $IPAddress
-        write-output -InputObject $i.Address
+        foreach ($curIPAddress in $IPAddress) {
+            if ($IncludeInput) {
+                New-Object -TypeName 'psobject' -Property ([ordered] @{
+                        IPAddress = $curIPAddress
+                        DecimalIP =$curIPAddress.Address
+                    })
+            } else {
+                Write-Output -InputObject $curIPAddress.Address
+            }
+        }
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 } #EndFunction ConvertTo-DecimalIPv4

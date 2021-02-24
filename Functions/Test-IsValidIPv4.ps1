@@ -1,4 +1,4 @@
-Function Test-IsValidIPv4 {
+function Test-IsValidIPv4 {
 <#
 .SYNOPSIS
     Verifies if passed parameter is a valid IP v4 address
@@ -31,11 +31,11 @@ Function Test-IsValidIPv4 {
     )
     #endregion Param
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
+    process {
         foreach ($i in $IPAddress) {
             Try {
                 Write-Verbose -Message "The string being tested if a valid IPv4 address is [$i]"
@@ -44,30 +44,30 @@ Function Test-IsValidIPv4 {
                 # [ipaddress] "10.1.4" resolves to "10.1.0.4"
                 if ($i -eq $check) {
                     if ($IncludeInput) {
-                        New-Object -TypeName psobject -Property @{Input = "$i"; Result = $true }
+                        New-Object -TypeName psobject -Property ([ordered] @{Input = "$i"; Result = $true })
                     } else {
                         Write-Output -InputObject $true
                     }
                 } else {
                     if ($IncludeInput) {
-                        New-Object -TypeName psobject -Property @{Input = "$i"; Result = $false }
+                        New-Object -TypeName psobject -Property ([ordered] @{Input = "$i"; Result = $false })
                     } else {
                         Write-Output -InputObject $false
                     }
                 }
             } Catch {
                 if ($IncludeInput) {
-                    New-Object -TypeName psobject -Property @{Input = "$i"; Result = $false }
+                    New-Object -TypeName psobject -Property ([ordered] @{Input = "$i"; Result = $false })
                 } else {
-                    Write-Output -inputobject $false
+                    Write-Output -InputObject $false
                 }
             }
         }
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-} #EndFunction Test-IsValidIPv4
+}
 
 Set-Alias -Name 'Test-IsValidIP' -Value 'Test-IsValidIPv4' -Description 'Alias for Test-IsValidIPv4'

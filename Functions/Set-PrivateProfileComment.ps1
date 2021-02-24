@@ -48,6 +48,10 @@ function Set-PrivateProfileComment {
 #>
     #region parameter
     [CmdletBinding(ConfirmImpact='Low')]
+    [outputtype('null')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions','')]
     param(
         [string] $File,
 
@@ -64,7 +68,7 @@ function Set-PrivateProfileComment {
     #endregion parameter
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         Write-Verbose -Message 'Trimming parameters.'
         $Section = $Section.Trim()
         foreach ($CurrentComment in $Comment) {
@@ -78,7 +82,7 @@ function Set-PrivateProfileComment {
         }
     }
 
-    Process {
+    process {
         if (-not (Test-Path -Path $File) -and $CreateFile) {
             Write-Verbose -Message "File [$File] does not exist, creating it."
             try {
@@ -146,7 +150,7 @@ function Set-PrivateProfileComment {
                     }
                     $Inserted = $true
                 }
-                $Inserted
+                Write-Output -InputObject $Inserted
                 if ($Inserted) {
                     $NewIniContent | Set-Content -Path $ResolveFile
                 }
@@ -157,7 +161,6 @@ function Set-PrivateProfileComment {
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
-} #EndFunction Set-PrivateProfileComment
+}

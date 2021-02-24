@@ -1,4 +1,4 @@
-Function Remove-QuotesFromCsv {
+function Remove-QuotesFromCsv {
 <#
 .SYNOPSIS
     Removes quotes from a CSV data set. Can optionally set $Delimiter to another character.
@@ -35,6 +35,7 @@ Function Remove-QuotesFromCsv {
 
     [CmdletBinding(ConfirmImpact='Low',SupportsShouldProcess)]
     [OutputType([string[]])]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
     param(
         [parameter(ValueFromPipeLine,HelpMessage='Add help message for user',Mandatory)]
         [string[]] $csv,
@@ -43,11 +44,11 @@ Function Remove-QuotesFromCsv {
         [char] $Delimiter = ','
     )
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
+    process {
         foreach ($line in $csv) {
             write-verbose -Message ('Current line: ' + $line)
             $line | foreach-object { $_ -replace ('"' + $Delimiter + '"'), $Delimiter} |
@@ -56,8 +57,7 @@ Function Remove-QuotesFromCsv {
         }
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
-} #EndFunction Remove-QuotesFromCsv
+}

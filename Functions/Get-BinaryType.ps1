@@ -43,9 +43,10 @@ function Get-BinaryType {
         [Alias('PassThru')]
         [switch] $PassThrough
     )
-    begin
-    {
-        $paths = resolve-path -path $path | select-object -expandproperty path
+
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+        $paths = Resolve-Path -Path $path | Select-Object -ExpandProperty Path
         try
         {
             #add the enum for the binary types
@@ -83,11 +84,11 @@ function Get-BinaryType {
             # Create a new type that lets us access the Windows API function
             Add-Type -MemberDefinition $Signature -Name BinaryType -Namespace Win32Utils
         } catch {
-            write-verbose -message 'Info'
+            Write-Verbose -Message 'Info'
         } #type already been loaded, do nothing
     }
-    process
-    {
+
+    process {
         foreach ($Item in $Paths)
         {
             $ReturnedType = -1
@@ -115,5 +116,9 @@ function Get-BinaryType {
                 }
             }
         }
+    }
+
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }

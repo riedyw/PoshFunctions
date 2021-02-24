@@ -19,70 +19,70 @@ The parameter RemoveOnly has been added. This will exempt certain characters fro
 
 function Remove-InvalidFileNameChar
 {
-<#
-.SYNOPSIS
-    Removes characters from a string that are not valid in Windows file names.
-.DESCRIPTION
-    Remove-InvalidFileNameChar accepts a string and removes characters that are invalid in Windows file names.  It then outputs the cleaned string.  By default the space character is ignored, but can be included using the RemoveSpace parameter.
+    <#
+            .SYNOPSIS
+            Removes characters from a string that are not valid in Windows file names.
+            .DESCRIPTION
+            Remove-InvalidFileNameChar accepts a string and removes characters that are invalid in Windows file names.  It then outputs the cleaned string.  By default the space character is ignored, but can be included using the RemoveSpace parameter.
 
-    The Replacement parameter will replace the invalid characters with the specified string. Its companion RemoveOnly will exempt given invalid characters from being replaced, and will simply be removed. Charcters in this list can be given as a string or their decimal or hexadecimal representation.
+            The Replacement parameter will replace the invalid characters with the specified string. Its companion RemoveOnly will exempt given invalid characters from being replaced, and will simply be removed. Charcters in this list can be given as a string or their decimal or hexadecimal representation.
 
-    The Name parameter can also clean file paths. If the string begins with "\\" or a drive like "C:\", it will then treat the string as a file path and clean the strings between "\".  This has the side effect of removing the ability to actually remove the "\" character from strings since it will then be considered a divider.
-.PARAMETER Name
-    Specifies the file name to strip of invalid characters.
-.PARAMETER Replacement
-    Specifies the string to use as a replacement for the invalid characters.
-.PARAMETER RemoveOnly
-    Specifes the list of invalid characters to remove from the string instead of being replaced by the Replacement parameter value. This may be given as one character strings, or their decimal or hexidecimal values.
-.PARAMETER RemoveSpace
-    The RemoveSpace parameter will include the space character (U+0020) in the removal process.
-.INPUTS
-    System.String
-    Remove-InvalidFileNameChar accepts System.String objects in the pipeline.
+            The Name parameter can also clean file paths. If the string begins with "\\" or a drive like "C:\", it will then treat the string as a file path and clean the strings between "\".  This has the side effect of removing the ability to actually remove the "\" character from strings since it will then be considered a divider.
+            .PARAMETER Name
+            Specifies the file name to strip of invalid characters.
+            .PARAMETER Replacement
+            Specifies the string to use as a replacement for the invalid characters.
+            .PARAMETER RemoveOnly
+            Specifes the list of invalid characters to remove from the string instead of being replaced by the Replacement parameter value. This may be given as one character strings, or their decimal or hexidecimal values.
+            .PARAMETER RemoveSpace
+            The RemoveSpace parameter will include the space character (U+0020) in the removal process.
+            .INPUTS
+            System.String
+            Remove-InvalidFileNameChar accepts System.String objects in the pipeline.
 
-    Remove-InvalidFileNameChar accepts System.String objects in a property Name from objects in the pipeline.
-.OUTPUTS
-    System.String
-.EXAMPLE
-    PS C:\> Remove-InvalidFileNameChar -Name "<This /name \is* an :illegal ?filename>.txt"
-    Will return
-    This name is an illegal filename.txt
-.EXAMPLE
-    PS C:\> Remove-InvalidFileNameChar -Name "<This /name \is* an :illegal ?filename>.txt" -RemoveSpace
-    Will return
-    Thisnameisanillegalfilename.txt
-.EXAMPLE
-    PS C:\> Remove-InvalidFileNameChar -Name '\\Path/:|?*<\With:*?>\:Illegal /Characters>?*.txt"'
-    Will return
-    \\Path\With\Illegal Characters.txt
+            Remove-InvalidFileNameChar accepts System.String objects in a property Name from objects in the pipeline.
+            .OUTPUTS
+            System.String
+            .EXAMPLE
+            PS C:\> Remove-InvalidFileNameChar -Name "<This /name \is* an :illegal ?filename>.txt"
+            Will return
+            This name is an illegal filename.txt
+            .EXAMPLE
+            PS C:\> Remove-InvalidFileNameChar -Name "<This /name \is* an :illegal ?filename>.txt" -RemoveSpace
+            Will return
+            Thisnameisanillegalfilename.txt
+            .EXAMPLE
+            PS C:\> Remove-InvalidFileNameChar -Name '\\Path/:|?*<\With:*?>\:Illegal /Characters>?*.txt"'
+            Will return
+            \\Path\With\Illegal Characters.txt
 
-    This command will strip the invalid characters from the path and output a valid path. Note: it would not be able to remove the "\" character.
-.EXAMPLE
-    PS C:\> Remove-InvalidFileNameChar -Name '\\Path/:|?*<\With:*?>\:Illegal /Characters>?*.txt"' -RemoveSpace
-    Output: \\Path\With\IllegalCharacters.txt
+            This command will strip the invalid characters from the path and output a valid path. Note: it would not be able to remove the "\" character.
+            .EXAMPLE
+            PS C:\> Remove-InvalidFileNameChar -Name '\\Path/:|?*<\With:*?>\:Illegal /Characters>?*.txt"' -RemoveSpace
+            Output: \\Path\With\IllegalCharacters.txt
 
-    This command will strip the invalid characters from the path and output a valid path, also removing the space character (U+0020) as well. Note: it would not be able to remove the "\" character.
-.EXAMPLE
-    PS C:\> Remove-InvalidFileNameChar -Name "<This /name \is* an :illegal ?filename>.txt" -Replacement +
-    Output: +This +name +is+ an +illegal +filename+.txt
+            This command will strip the invalid characters from the path and output a valid path, also removing the space character (U+0020) as well. Note: it would not be able to remove the "\" character.
+            .EXAMPLE
+            PS C:\> Remove-InvalidFileNameChar -Name "<This /name \is* an :illegal ?filename>.txt" -Replacement +
+            Output: +This +name +is+ an +illegal +filename+.txt
 
-    This command will strip the invalid characters from the string, replacing them with a "+", and outputting the result string.
-.EXAMPLE
-    PS  C:\> Remove-InvalidFileNameChar -Name "<This /name \is* an :illegal ?filename>.txt" -Replacemet + -RemoveOnly "*", 58, 0x3f
-    Output: +This +name +is an illegal filename+.txt
+            This command will strip the invalid characters from the string, replacing them with a "+", and outputting the result string.
+            .EXAMPLE
+            PS  C:\> Remove-InvalidFileNameChar -Name "<This /name \is* an :illegal ?filename>.txt" -Replacemet + -RemoveOnly "*", 58, 0x3f
+            Output: +This +name +is an illegal filename+.txt
 
-    This command will strip the invalid characters from the string, replacing them with a "+", except the "*", the charcter with a decimal value of 58 (:), and the character with a hexidecimal value of 0x3f (?). These will simply be removed, and the resulting string output.
-.NOTES
-    Author:  Chris Carter
-    Version: 1.5.1
-    Last Updated: August 8, 2016
-.LINK
-    System.RegEx
-.LINK
-    about_Join
-.LINK
-    about_Operators
-#>
+            This command will strip the invalid characters from the string, replacing them with a "+", except the "*", the charcter with a decimal value of 58 (:), and the character with a hexidecimal value of 0x3f (?). These will simply be removed, and the resulting string output.
+            .NOTES
+            Author:  Chris Carter
+            Version: 1.5.1
+            Last Updated: August 8, 2016
+            .LINK
+            System.RegEx
+            .LINK
+            about_Join
+            .LINK
+            about_Operators
+    #>
 
     #region Parameters
     #Requires -Version 2.0
@@ -90,7 +90,8 @@ function Remove-InvalidFileNameChar
             DefaultParameterSetName='Normal',
             HelpURI='https://gallery.technet.microsoft.com/scriptcenter/Remove-Invalid-Characters-39fa17b1'
     )]
-
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions','')]
     Param(
         [Parameter(Mandatory,HelpMessage='Add help message for user',Position=0,ValueFromPipeline,
                    ValueFromPipelineByPropertyName,ParameterSetName='Normal')]
@@ -130,7 +131,7 @@ function Remove-InvalidFileNameChar
             if ($Replacement -match "[$invalidCharsWithSpace]")
             {
                 Write-Error -Message 'The replacement string also contains invalid filename characters.'
-                return
+                #return
             }
         }
         else
@@ -138,7 +139,7 @@ function Remove-InvalidFileNameChar
             if ($Replacement -match "[$invalidCharsNoSpace]")
             {
                 Write-Error -Message 'The replacement string also contains invalid filename characters.'
-                return
+                #return
             }
         }
 
@@ -188,11 +189,11 @@ function Remove-InvalidFileNameChar
             #Perform replacement based on whether spaces are desired or not
             if ($RemoveSpace)
             {
-                [RegEx]::Replace($String, "[$invalidCharsWithSpace]", $Replacement)
+                Write-Output -inputobject ( [RegEx]::Replace($String, "[$invalidCharsWithSpace]", $Replacement))
             }
             else
             {
-                [RegEx]::Replace($String, "[$invalidCharsNoSpace]", $Replacement)
+                Write-Output -inputobject ( [RegEx]::Replace($String, "[$invalidCharsNoSpace]", $Replacement))
             }
         }
 
@@ -276,7 +277,7 @@ function Remove-InvalidFileNameChar
             }))
 
             #Remove the exempt characters first before sending back
-            [RegEx]::Replace($String, "[$RemoveOnly]", '')
+            Write-Output -inputObject ( [RegEx]::Replace($String, "[$RemoveOnly]", ''))
         }
     } #EndBegin
 

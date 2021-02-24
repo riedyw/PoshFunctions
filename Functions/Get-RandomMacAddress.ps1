@@ -16,5 +16,5 @@ function Get-RandomMacAddress {
     [CmdletBinding(ConfirmImpact='None')]
     param()
 
-    ( 1..12 | foreach-object {'{0:x}' -f (get-random -Maximum 16)}) -join ''
+    (1..12 | ForEach-Object {'{0:x}' -f (Get-Random -Maximum 16)}) -join ''
 }

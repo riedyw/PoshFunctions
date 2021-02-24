@@ -1,4 +1,4 @@
-Function Test-ConnectionAsync {
+function Test-ConnectionAsync {
 <#
 .SYNOPSIS
     Performs a ping test asynchronously
@@ -41,37 +41,38 @@ Function Test-ConnectionAsync {
     #Requires -Version 3.0
 
     [OutputType('Net.AsyncPingResult')]
-    [CmdletBinding(ConfirmImpact='None')]
+    [CmdletBinding(ConfirmImpact = 'None')]
     Param (
-        [parameter(ValueFromPipeline,Position=0)]
+        [parameter(ValueFromPipeline, Position = 0)]
         [string[]] $ComputerName,
 
         [parameter()]
-        [int32] $Timeout = 2000,
+        [int] $Timeout = 2000,
 
         [parameter()]
         [Alias('Ttl')]
-        [int32] $TimeToLive = 128,
+        [int] $TimeToLive = 128,
 
         [parameter()]
         [switch] $Fragment,
 
         [parameter()]
-        [validaterange(32,1500)]
-        [int16] $BufferSize = 32,
+        [validaterange(32, 1500)]
+        [int] $BufferSize = 32,
 
         [parameter()]
         [switch] $IncludeSource
     )
 
     begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         if ($IncludeSource) { $Source = $env:COMPUTERNAME }
 
         $Buffer = New-Object -TypeName System.Collections.ArrayList
-        1..$BufferSize | foreach-object { $null = $Buffer.Add(([byte] [char] 'A')) }
+        1..$BufferSize | ForEach-Object { $null = $Buffer.Add(([byte] [char] 'A')) }
         $PingOptions = New-Object -TypeName System.Net.NetworkInformation.PingOptions
         $PingOptions.Ttl = $TimeToLive
-        If (-NOT $PSBoundParameters.ContainsKey('Fragment')) {
+        If (-not $PSBoundParameters.ContainsKey('Fragment')) {
             $Fragment = $False
         }
         $PingOptions.DontFragment = $Fragment
@@ -79,9 +80,9 @@ Function Test-ConnectionAsync {
     }
 
     process {
-        ForEach ($Computer in $ComputerName) {
+        foreach ($Computer in $ComputerName) {
             [void] $Computerlist.Add($Computer)
-            }
+        }
     }
 
     end {
@@ -91,17 +92,17 @@ Function Test-ConnectionAsync {
                 Task         = (New-Object -TypeName System.Net.NetworkInformation.Ping).SendPingAsync($Computer, $Timeout, $Buffer, $PingOptions)
             }
         }
-        Try {
+        try {
             [void][Threading.Tasks.Task]::WaitAll($Task.Task)
-        } Catch {
+        } catch {
             Write-Error -Message "Error checking [$Computer]"
         }
         $Task | ForEach-Object {
-            If ($_.Task.IsFaulted) {
+            if ($_.Task.IsFaulted) {
                 $Result = $_.Task.Exception.InnerException.InnerException.Message
                 $IPAddress = $Null
                 $ResponseTime = $Null
-            } Else {
+            } else {
                 $Result = $_.Task.Result.Status
                 $IPAddress = $_.task.Result.Address.ToString()
                 $ResponseTime = $_.task.Result.RoundtripTime
@@ -116,7 +117,7 @@ Function Test-ConnectionAsync {
                     ResponseTime = $ResponseTime
                 }
             } else {
-                $Object = [pscustomobject]@{
+                $Object = [pscustomobject] @{
                     ComputerName = $_.ComputerName
                     IPAddress    = $IPAddress
                     BufferSize   = $BufferSize
@@ -127,5 +128,6 @@ Function Test-ConnectionAsync {
             $Object.pstypenames.insert(0, 'Net.AsyncPingResult')
             $Object
         }
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }

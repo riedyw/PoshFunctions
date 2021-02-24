@@ -4,7 +4,7 @@
     RootModule        = 'PoshFunctions.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '2.2.1.5'
+    ModuleVersion     = '2.2.1.6'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -22,7 +22,7 @@
     Copyright         = '(c) 2021 Bill Riedy. All rights reserved.'
 
     # Description of the functionality provided by this module
-    Description       = 'A curated collection of over 150 PowerShell functions. Many functions written by me. Others are attributed wherever possible.'
+    Description       = 'A curated collection of over 160 PowerShell functions. Many functions written by me. Others are attributed wherever possible.'
 
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '3.0'
@@ -62,54 +62,48 @@
 
     # Functions export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 
-    FunctionsToExport = @( 'Compare-ObjectProperty', 'Compare-PSGalleryObject', 
-    'Convert-ARGBToHex', 'Convert-HexToARGB', 'Convert-ObjectToHashtable', 
-    'Convert-ROT13', 'Convert-SecureStringToString', 'Convert-UserFlag', 
-    'ConvertFrom-Base64', 'ConvertFrom-DateTime', 'ConvertFrom-FsRight', 
-    'ConvertFrom-UrlEncode', 'ConvertFrom-UTC', 'ConvertFrom-Xml', 
-    'ConvertTo-Base64', 'ConvertTo-BinaryIPv4', 'ConvertTo-Bool', 
-    'ConvertTo-DateTime', 'ConvertTo-DecimalIPv4', 'ConvertTo-DottedDecimalIPv4', 
-    'ConvertTo-Markdown', 'ConvertTo-OrderedDictionary', 'ConvertTo-PlainText', 
-    'ConvertTo-SecureText', 'ConvertTo-UncPath', 'ConvertTo-UrlEncode', 
-    'ConvertTo-UTC', 'Copy-Object', 'Eexit', 'Expand-IPv6', 'Expand-String', 
-    'Expand-Tab', 'Export-CSVSortedColumn', 'FileSizeAbove', 'FileSizeBelow', 
-    'Format-MacAddress', 'Format-RandomCase', 'Format-ReverseString', 
-    'Format-SortedList', 'Format-WrapText', 'Get-BashPath', 'Get-BinaryType', 
-    'Get-ComputerSite', 'Get-DiceRoll', 'Get-DNSHostEntryAsync', 'Get-DriveStat', 
-    'Get-Enum', 'Get-ExecutableForFile', 'Get-FileEncoding', 'Get-FileName', 
-    'Get-FileWithLeadingSpace', 'Get-Folder', 'Get-Font', 'Get-Fortune', 
-    'Get-InstalledModuleVersion', 'Get-IpRange', 'Get-LastReboot', 
-    'Get-MachineType', 'Get-MacVendor', 'Get-Magic8Ball', 'Get-Md5Sum', 
-    'Get-NetworkCredential', 'Get-NTFSPermission', 'Get-NtpDate', 
-    'Get-OperatingSystemSKU', 'Get-PoshFunctionsPrivateData', 'Get-Power', 
-    'Get-PrintableAscii', 'Get-PrivateProfileComment', 'Get-PrivateProfileSection', 
-    'Get-PrivateProfileSectionNames', 'Get-PrivateProfileString', 'Get-PSWho', 
-    'Get-RandomDate', 'Get-RandomHexDigit', 'Get-RandomMacAddress', 
-    'Get-RegExpandString', 'Get-RegistryValue', 'Get-Round', 'Get-SaveFile', 
-    'Get-Share', 'Get-SharePermission', 'Get-ShareStat', 'Get-Shortcut', 'Get-SID', 
-    'Get-StaticProperty', 'Get-SubnetMaskIPv4', 'Get-TruncatedDate', 'Get-Type', 
-    'Get-UrlContent', 'Get-WordCount', 'Get-WordList', 'grep', 'Help', 
-    'Invoke-Beep', 'Invoke-Speak', 'Join-Object', 'Lock-Workstation', 
-    'Measure-Char', 'mklink', 'Move-ToRecycleBin', 'New-Credential', 
-    'New-InputBox', 'New-Popup', 'New-QR', 'New-Screenshot', 'New-Shortcut', 
-    'Read-HostWithDefault', 'Remove-BlankOrComment', 'Remove-BOMFromFile', 
-    'Remove-EmptyProperty', 'Remove-InvalidFileNameChar', 'Remove-QuotesFromCsv', 
-    'Remove-Trailing', 'Reset-Desktop', 'Resolve-FQDN', 'Resolve-HostName', 
-    'Search-Method', 'sed', 'Set-Capslock', 'Set-Display', 'Set-Numlock', 
-    'Set-PrivateProfileComment', 'Set-PrivateProfileString', 'Set-Scrolllock', 
-    'Set-Speaker', 'Set-Type', 'Set-WindowStyle', 'Show-AllColor', 'Show-Calendar', 
-    'Show-Color', 'Show-ColorsWithBackground', 'Show-DaysOfWeek', 
-    'Show-FileAttribute', 'Show-FsRight', 'Show-InvalidFileCharacter', 
-    'Show-Month', 'Show-NamedColor', 'Show-Object', 'Show-Progress', 
-    'Show-ShortDaysOfWeek', 'Show-ShortMonth', 'Show-SpecialFolder', 
-    'Show-SubnetMaskIPv4', 'Show-Timezone', 'Show-TypeAccelerator', 
-    'Start-ADReplication', 'Start-RecordSession', 'Stop-RecordSession', 
-    'Switch-Mute', 'Test-ConnectionAsync', 'Test-IsAdmin', 'Test-IsCapsLock', 
-    'Test-IsDate', 'Test-IsFileLocked', 'Test-IsHexString', 'Test-IsNull', 
-    'Test-IsNumeric', 'Test-IsNumLock', 'Test-IsScrollLock', 
-    'Test-IsValidEmailAddress', 'Test-IsValidIPv4', 'Test-IsValidIPv6', 
-    'Test-NtpDateVsNow', 'Test-Port', 'Union-Object', 'Update-ExplorerIcon', 
-    'Write-StringArray', 'Write-TextMenu' ) 
+    FunctionsToExport = @('Compare-ObjectProperty', 'Compare-PSGalleryObject',
+    'Convert-ARGBToHex', 'Convert-HexToARGB', 'Convert-ObjectToHashtable', 'Convert-ROT13',
+    'Convert-SecureStringToString', 'Convert-UserFlag', 'ConvertFrom-Base64',
+    'ConvertFrom-DateTime', 'ConvertFrom-FsRight', 'ConvertFrom-UrlEncode',
+    'ConvertFrom-UTC', 'ConvertFrom-Xml', 'ConvertTo-Base64', 'ConvertTo-BinaryIPv4',
+    'ConvertTo-Bool', 'ConvertTo-DateTime', 'ConvertTo-DecimalIPv4',
+    'ConvertTo-DottedDecimalIPv4', 'ConvertTo-OrderedDictionary', 'ConvertTo-PlainText',
+    'ConvertTo-SecureText', 'ConvertTo-UncPath', 'ConvertTo-UrlEncode', 'ConvertTo-UTC',
+    'Copy-Object', 'Eexit', 'Expand-IPv6', 'Expand-String', 'Expand-Tab',
+    'Export-CSVSortedColumn', 'FileSizeAbove', 'FileSizeBelow', 'Format-MacAddress',
+    'Format-RandomCase', 'Format-ReverseString', 'Format-SortedList', 'Format-WrapText',
+    'Get-BashPath', 'Get-BinaryType', 'Get-ComputerSite', 'Get-DiceRoll',
+    'Get-DNSHostEntryAsync', 'Get-DriveStat', 'Get-Enum', 'Get-ExecutableForFile',
+    'Get-FileEncoding', 'Get-FileName', 'Get-FileWithLeadingSpace', 'Get-Folder', 'Get-Font',
+    'Get-Fortune', 'Get-IpRange', 'Get-LastReboot', 'Get-MachineType', 'Get-MacVendor',
+    'Get-Magic8Ball', 'Get-Md5Sum', 'Get-NetworkCredential', 'Get-NTFSPermission',
+    'Get-NtpDate', 'Get-PoshFunctionsPrivateData', 'Get-Power', 'Get-PrintableAscii',
+    'Get-PrivateProfileComment', 'Get-PrivateProfileSection',
+    'Get-PrivateProfileSectionNames', 'Get-PrivateProfileString', 'Get-PSWho',
+    'Get-RandomDate', 'Get-RandomHexDigit', 'Get-RandomMacAddress', 'Get-RegExpandString',
+    'Get-RegistryValue', 'Get-Round', 'Get-SaveFile', 'Get-Shortcut', 'Get-SID',
+    'Get-SpecialFolder', 'Get-StaticProperty', 'Get-SubnetMaskIPv4', 'Get-TruncatedDate',
+    'Get-Type', 'Get-UrlContent', 'Get-WordCount', 'Get-WordList', 'grep', 'Invoke-Beep',
+    'Invoke-Speak', 'Join-Object', 'Lock-Workstation', 'Measure-Char', 'mklink',
+    'Move-ToRecycleBin', 'New-Credential', 'New-InputBox', 'New-Popup', 'New-QR',
+    'New-Screenshot', 'New-Shortcut', 'Read-HostWithDefault', 'Remove-BlankOrComment',
+    'Remove-BOMFromFile', 'Remove-EmptyProperty', 'Remove-InvalidFileNameChar',
+    'Remove-QuotesFromCsv', 'Remove-Trailing', 'Reset-Desktop', 'Resolve-FQDN',
+    'Resolve-HostName', 'Search-Method', 'sed', 'Set-Capslock', 'Set-Display', 'Set-Numlock',
+    'Set-PrivateProfileComment', 'Set-PrivateProfileString', 'Set-Scrolllock', 'Set-Speaker',
+    'Set-Type', 'Set-WindowStyle', 'Show-AllColor', 'Show-Calendar', 'Show-Color',
+    'Show-ColorsWithBackground', 'Show-DaysOfWeek', 'Show-FileAttribute', 'Show-FsRight',
+    'Show-InvalidFileCharacter', 'Show-Month', 'Show-NamedColor', 'Show-Object',
+    'Show-Progress', 'Show-ShortDaysOfWeek', 'Show-ShortMonth', 'Show-SpecialFolder',
+    'Show-SubnetMaskIPv4', 'Show-Timezone', 'Show-TypeAccelerator', 'Start-ADReplication',
+    'Start-RecordSession', 'Stop-RecordSession', 'Switch-Mute', 'Test-ConnectionAsync',
+    'Test-IsAdmin', 'Test-IsCapsLock', 'Test-IsDate', 'Test-IsFileLocked',
+    'Test-IsHexString', 'Test-IsNull', 'Test-IsNumeric', 'Test-IsNumLock',
+    'Test-IsScrollLock', 'Test-IsValidEmailAddress', 'Test-IsValidIPv4', 'Test-IsValidIPv6',
+    'Test-NtpDateVsNow', 'Test-Port', 'Union-Object', 'Update-ExplorerIcon',
+    'Write-StringArray', 'Write-TextMenu')
+
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     #CmdletsToExport = '*'
@@ -118,8 +112,14 @@
     #VariablesToExport = '*'
 
     # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-    AliasesToExport   = '*'
+    AliasesToExport = '*'
 
+<#     AliasesToExport   = @( 'Base64Decode', 'Base64Encode', 'Beep', 'ConvertTo-BinaryIP',
+        'ConvertTo-DecimalIP', 'ConvertTo-DottedDecimalIP', 'Fortune',
+        'Get-SubnetMaskIP', 'Md5Sum', 'Parse-Bool', 'Recycle', 'ReverseString',
+        'Show-SubnetMaskIP', 'Speak', 'Test-IsValidIP', 'Union', 'UrlDecode',
+        'UrlEncode', 'WrapText' )
+ #>
     # DSC resources to export from this module
     # DscResourcesToExport = @()
 
@@ -135,18 +135,18 @@
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags = @( 'base64', 'beep', 'binaryip', 'calendar', 'capslock', 'color-hex', 
-            'color-rgb', 'color-show', 'computersite', 'computer-site', 'credential', 
-            'date-random', 'datetime', 'date-truncate', 'days-week', 'decimalip', 
-            'display', 'dns-async', 'dotteddecimalip', 'email-address', 'expand-string', 
-            'expand-tab', 'exponentiation', 'file', 'file-encoding', 'file-invalidchar', 
-            'folder', 'format', 'functions', 'gui', 'ini', 'inputbox', 'ip', 'iprange', 
-            'isadmin', 'isdate', 'ishexstring', 'isnumeric', 'isvalidemail', 'isvalidip', 
-            'library', 'macaddress', 'magic8ball', 'markdown', 'md5sum', 'msgbox', 
-            'numlock', 'ping-async', 'popup', 'progress', 'random-date', 'registry', 
-            'reverse-string', 'rot13', 'round', 'savefile', 'scrolllock', 'set-type', 
-            'share-permission', 'share-stat', 'shortcut', 'sid', 'speak', 'subnetmask', 
-            'system', 'timezone', 'urlencode', 'utc', 'wrap-text', 'xml' ) 
+            Tags = @( 'base64', 'beep', 'binaryip', 'calendar', 'capslock', 'color-hex',
+            'color-rgb', 'color-show', 'computersite', 'computer-site', 'credential',
+            'date-random', 'datetime', 'date-truncate', 'days-week', 'decimalip',
+            'display', 'dns-async', 'dotteddecimalip', 'email-address', 'expand-string',
+            'expand-tab', 'exponentiation', 'file', 'file-encoding', 'file-invalidchar',
+            'folder', 'format', 'functions', 'gui', 'ini', 'inputbox', 'ip', 'iprange',
+            'isadmin', 'isdate', 'ishexstring', 'isnumeric', 'isvalidemail', 'isvalidip',
+            'library', 'macaddress', 'magic8ball', 'markdown', 'md5sum', 'msgbox',
+            'numlock', 'ping-async', 'popup', 'progress', 'random-date', 'registry',
+            'reverse-string', 'rot13', 'round', 'savefile', 'scrolllock', 'set-type',
+            'share-permission', 'share-stat', 'shortcut', 'sid', 'speak', 'subnetmask',
+            'system', 'timezone', 'urlencode', 'utc', 'wrap-text', 'xml' )
 
 
             # A URL to the license for this module.
@@ -159,7 +159,79 @@
             IconUri = 'https://github.com/riedyw/PoshFunctions/blob/master/PoshFunctions.png'
 
             # ReleaseNotes of this module
-            ReleaseNotes = '### 2.2.1.5
+            ReleaseNotes = @'
+### 2.2.1.6
+* updated PoshFunctions.psd1 to explicitly enumerate AliasesToExport
+* tested all functions work properly in both PowerShell 5.1 and 7.1.2
+* updated all *.ps* to pass Invoke-ScriptAnalyzer without throwing RuleViolation. The only one I could NOT fix is function Union-Object. If you wish this error to not affect you then I would suggest that when you import the module you include the -DisableNameChecking parameter
+* updated scripts to attempt to explicit and fully name all parameters and all functions and parameters match the case as found in official Microsoft documentation
+* made GitHub repository viewable to the public and updated PoshFunctions.psd1 to reflect the GitHub repository
+* updated Compare-ObjectProperty - updated comment help to give better .EXAMPLE
+* updated ConvertFrom-DateTime - changed -DateTime parameter to -Date to be more PowerShell-y
+* updated Format-MacAddress - change $prop from [hashtable] to ([ordered] [hashtable]) so behavior is consistent between PowerShell.exe and pwsh.exe
+* updated ConvertFrom-UTC - added -IncludeInput
+* updated ConvertTo-DateTime - changed -IncludeOriginal to -IncludeInput for consistency, aliased to 'IncludeOriginal'
+* updated Get-Power - added -IncludeInput
+* updated Get-RandomDate - added some examples in comment help, -IncludeInput parameter
+* updated Test-IsHexString - added .PARAMETER statements to comment help
+* updated Test-IsDate - changed New-Object parameter to match form "-Propery ([ordered] @{...})" so that output matches between PowerShell and pwsh
+* updated Test-IsNumeric - changed New-Object parameter to match form "-Propery ([ordered] @{...})" so that output matches between PowerShell and pwsh
+* updated sed - added process blocks and Write-Verbose
+* updated Get-BashPath - added example in comment help, changed New-Object parameter to match form "-Propery ([ordered] @{...})" so that output matches between PowerShell and pwsh, changed -IncludeOriginal to -IncludeInput to be consistent
+* updated Convert-ROT13 - added -IncludeInput parameter, added examples
+* updated Convert-ARGBToHex - changed -IncludeOriginal to -IncludeInput to be consistent
+* updated Get-ComputerSite - change -IncludeComputerName to -IncludeInput to be consistent
+* updated Expand-IPv6 - added code to handle multiple addresses to be expanded, added -IncludeInput
+* updated ConvertTo-Bool - changed -IncludeOriginal to -IncludeInput to be consistent
+* updated ConvertTo-BinaryIPv4 - changed -IncludeOriginal to -IncludeInput to be consistent
+* updated ConvertTo-Base64 - added -IncludeInput
+* updated ConvertFrom-Base64 - added -IncludeInput
+* updated Expand-String - changed -IncludeOriginal to -IncludeInput to be consistent aliased to 'IncludeOriginal', added to comment help
+* updated Get-RandomHexDigit - added begin, process, end blocks, updated comment help
+* updated Get-WordCount - updated comment help to more accurately reflect function
+* updated New-InputBox - added write-verbose statements
+* updated New-Popup - added example in help
+* updated Set-Display - corrected example in comment help, corrected example works flawlessly
+* removed Help - relied on external tool less.exe which is a port of a Linux tool that is a paginated more.com where you can go forward or backward
+* updated ConvertTo-UncPath - added -IncludeInput, additional example
+* updated ConvertTo-UrlEncode - changed -IncludeOriginal to -IncludeInput to be consistent and aliased to 'IncludeOriginal'
+* updated ConvertFrom-UrlEncode - changed -IncludeOriginal to -IncludeInput to be consistent aliased to 'IncludeOriginal', fixed minor logic error
+* updated ConvertTo-DecimalIPv4 - added code to handle multiple addresses to be converted, added -IncludeInput, added example
+* updated ConvertTo-DottedDecimalIPv4 - added code to handle multiple addresses to be converted, added -IncludeInput, added example
+* updated Show-FileAttribute - added examples
+* removed ConvertTo-Markdown - does not function as expected and I never use this function
+* updated Format-RandomCase - added -IncludeInput, renamed some variables inside of function, added example
+* updated Get-MachineType - added example, changed -ComputerName to [string[]] and added code to handle multiple
+* updated Get-NTFSPermission - changed $Path from [string] to [string[]] and function can now handle multiple paths
+* removed Get-OperatingSystemSKU - never use this function
+* updated Get-Font - added begin, process, end blocks. tightened up code in process block and slightly changed internal variable name
+* updated Get-Md5Sum - changed -IncludeFile to -IncludeInput to be consistent and aliased to 'IncludeFile', changed -File to -Path to be more Powershell-y and aliased to 'File', 'FileName'
+* updated Get-SID - changed -IncludeOriginal to -IncludeInput to be consistent and aliased to 'IncludeOriginal'
+* updated Get-TruncatedDate - changed -IncludeOriginal to -IncludeInput and aliased to 'IncludeOriginal'
+* updated Resolve-FQDN - added -IncludeInput, changed -ComputerName to [string[]]
+* updated Resolve-HostName - changed -HostName to [string[]], added -IncludeInput, added example
+* renamed Get-InvalidFileCharacter from Show-InvalidFileCharacter - added -IncludeValues where decimal and hexadecimal values are included in output, added -Printable where only printable characters (> 32) are in the output, added examples, added alias for function 'Show-InvalidFileCharacter', changed datatype of 'Char' from [char] to [string]
+* updated Get-Enum - changed -IncludeType to -IncludeInput aliased to 'IncludeType' fixed minor logic error
+* updated Get-Filename - added begin, process, end blocks, added Write-Verbose
+* updated Get-Folder - added begin, process, end blocks, added Write-Verbose
+* updated Get-SaveFile - changed -InitialDirectory to -Path and aliased to 'InitialDirectory'
+* updated Show-TypeAccelerator - added -MatchString string parameter to show only those that match, additional entries for Powershell -ge 7
+* updated Test-NTPDateVsNow - added -IncludeInput parameter, -ComputerName no longer mandatory and if left blank uses Get-ADDomainController to determine name of DC, added example
+* updated Get-Fortune - added Wisdom.txt to module and default -Path to this file
+* updated Get-MacVendor - added write-verbose, updated comment help, removed redundant portion of regex
+* renamed Get-SpecialFolder from Show-SpecialFolder - reworked Show-SpecialFolder, added -Name parameter with ValidateSet against it for valid SpecialFolder names and if not specified returns all SpecialFolders, added -IncludeInput to be consistent with other functions, aliased function to 'Show-SpecialFolder' for backward compatibility
+* removed Get-Share - use the Get-SMBShare command from SmbShare module
+* removed Get-SharePermission - use GetSMBShareAccess command from SmbShare module
+* removed Get-ShareStat
+* updated Get-SubnetMaskIPv4 - changed -NetworkLength to -Length and aliased to old name, changed -IncludeCIDR to -IncludeInput to be more consistent, changed field name with -IncludeInput
+* updated Convert-UserFlag - changed -UserFlag to [int[]], added -IncludeInput to be consistent
+* udpated Set-Type - added begin, process, end blocks, updated logic to properly accept input from pipeline and to be handled by both pwsh and Powershell
+* removed Get-PoshFunctionsPrivateData - can get the same information by: (Get-Module PoshFunctions).PrivateData
+* updated Get-Type - added begin, process, end blocks and write-verbose
+* removed Remove-InvalidFileNameChar - not needed can code around it with Get-InvalidFileCharacter
+
+
+### 2.2.1.5
 * added Release Notes
 * added Get-DiceRoll
 * added Get-NetworkCredential
@@ -255,7 +327,7 @@
     Test-IsHexString, Test-IsNumeric, Test-IsNumLock, Test-IsScrollLock,
     Test-IsValidEmailAddress, Test-IsValidIPv4, Test-NtpDateVsNow, Test-Port,
     Union-Object, Update-ExplorerIcon
-'
+'@
 
             # Flag to indicate whether the module requires explicit user acceptance for install/update/save
             # RequireLicenseAcceptance = False

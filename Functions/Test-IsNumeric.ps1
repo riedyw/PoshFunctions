@@ -4,6 +4,10 @@ Function Test-IsNumeric {
     Determines if specified string can be parsed to a number
 .DESCRIPTION
     Determines if specified string can be parsed to a number. Can specify a string, an array of strings, or input from the pipeline
+.PARAMETER NumString
+    A string or string array to test to determine if they are numeric. Aliased as 'Number'
+.PARAMETER IncludeInput
+    Switch to include the input parameters in the output
 .EXAMPLE
     Test-IsNumeric '1.2'
 
@@ -18,42 +22,43 @@ Function Test-IsNumeric {
         [parameter(ValueFromPipeLine,ValueFromPipeLineByPropertyName)]
         [Alias('Number')]
         [string[]] $NumString,
+
         [switch] $IncludeInput
     )
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
+    process {
         foreach ($n in $NumString) {
             $n = $n.Trim()
             if (($n -eq '') -or ($null -eq $n)) {
                 if ($IncludeInput) {
-                    new-object -TypeName psobject -Property @{Input="$n";Result=$false}
+                    New-Object -TypeName psobject -Property ([ordered] @{Input="$n";Result=$false})
                 } else {
-                    Write-Output -inputobject $false
+                    Write-Output -InputObject $false
                 }
             } else {
-                Try {
+                try {
                     0 + $n | Out-Null
                     if ($IncludeInput) {
-                        new-object -TypeName psobject -Property @{Input="$n";Result=$true}
+                        New-Object -TypeName psobject -Property ([ordered] @{Input="$n";Result=$true})
                     } else {
-                        Write-Output -inputobject $true
+                        Write-Output -InputObject $true
                     }
-                } Catch {
+                } catch {
                     if ($IncludeInput) {
-                        new-object -TypeName psobject -Property @{Input="$n";Result=$false}
+                        New-Object -TypeName psobject -Property ([ordered] @{Input="$n";Result=$false})
                     } else {
-                        Write-Output -inputobject $false
+                        Write-Output -InputObject $false
                     }
                 }
             }
         }
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 } #EndFunction Test-IsNumeric

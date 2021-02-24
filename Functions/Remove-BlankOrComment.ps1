@@ -1,4 +1,4 @@
-Filter Remove-BlankOrComment {
+filter Remove-BlankOrComment {
 <#
 .SYNOPSIS
     A simple text filter to remove blank lines or lines that begin with a comment character.
@@ -37,6 +37,8 @@ Filter Remove-BlankOrComment {
     #region Parameter
     [CmdletBinding(ConfirmImpact = 'None')]
     [OutputType('string[]')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions','')]
     Param(
         [Parameter(Position = 0, ValueFromPipeline)]
         [string[]] $String,
@@ -46,7 +48,7 @@ Filter Remove-BlankOrComment {
     #endregion Parameter
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         $Line = 0
         $Count = 0
     }
@@ -66,6 +68,6 @@ Filter Remove-BlankOrComment {
         if (-not $Count) {
             Write-Verbose -Message 'No input'
         }
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }

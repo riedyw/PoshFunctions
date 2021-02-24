@@ -1,8 +1,4 @@
-# main source: https://gallery.technet.microsoft.com/scriptcenter/New-Shortcut-4d6fb3d8
-
-# run as admin source: https://www.reddit.com/r/PowerShell/comments/7xa4sk/programmatically_create_shortcuts_w_run_as_admin/
-
-Function New-Shortcut {
+function New-Shortcut {
 <#
 .SYNOPSIS
     This script is used to create a  shortcut.
@@ -29,6 +25,9 @@ Function New-Shortcut {
 .NOTES
     Author        : Rhys Edwards
     Email        : powershell@nolimit.to
+    # main source: https://gallery.technet.microsoft.com/scriptcenter/New-Shortcut-4d6fb3d8
+
+    # run as admin source: https://www.reddit.com/r/PowerShell/comments/7xa4sk/programmatically_create_shortcuts_w_run_as_admin/
 .INPUTS
     Strings and Integer
 .OUTPUTS
@@ -96,7 +95,7 @@ Function New-Shortcut {
     #endregion Parameters
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
@@ -125,22 +124,22 @@ Function New-Shortcut {
             $Shortcut.HotKey = $HotKey
             $Shortcut.WorkingDirectory = $WorkDir
             $Shortcut.WindowStyle = $WindowStyle
-            If ($Icon){
+            if ($Icon){
                 $Shortcut.IconLocation = $Icon
             }
 
-            Try {
+            try {
                 # Create Shortcut
                 $Shortcut.Save()
                 # Set Shortcut to Run Elevated
-                If ($admin) {
+                if ($admin) {
                     $TempFileName = [IO.Path]::GetRandomFileName()
                     $TempFile = [IO.FileInfo][IO.Path]::Combine($Path.Directory, $TempFileName)
                     $Writer = New-Object -TypeName System.IO.FileStream -ArgumentList $TempFile, ([System.IO.FileMode]::Create)
                     $Reader = $Path.OpenRead()
-                    While ($Reader.Position -lt $Reader.Length) {
+                    while ($Reader.Position -lt $Reader.Length) {
                         $Byte = $Reader.ReadByte()
-                        If ($Reader.Position -eq 22) {$Byte = 34}
+                        if ($Reader.Position -eq 22) {$Byte = 34}
                         $Writer.WriteByte($Byte)
                     }
                     $Reader.Close()
@@ -148,17 +147,17 @@ Function New-Shortcut {
                     $Path.Delete()
                     Rename-Item -Path $TempFile -NewName $Path.Name | Out-Null
                 }
-                write-output -InputObject $True
-            } Catch {
+                Write-Output -InputObject $True
+            } catch {
                 Write-Verbose -Message "Unable to create $($Path.FullName)"
                 Write-Verbose -Message ($Error[0].Exception.Message)
-                write-output -InputObject $False
+                Write-Output -InputObject $False
             }
         }
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 } #EndFunction New-Shortcut

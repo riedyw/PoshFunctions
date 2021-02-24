@@ -8,8 +8,6 @@ function Lock-Workstation {
     Lock-Workstation
 
     Would lock the workstation
-.LINK
-    about_Properties
 #>
 
     #region parameter

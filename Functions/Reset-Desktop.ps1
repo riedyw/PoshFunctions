@@ -12,8 +12,19 @@ function Reset-Desktop {
 
     #region parameter
     [CmdletBinding(ConfirmImpact='Medium')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions','')]
     param()
     #endregion parameter
 
-    ie4uinit.exe -show
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+    }
+
+    process {
+        ie4uinit.exe -show
+    }
+
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
+    }
 }

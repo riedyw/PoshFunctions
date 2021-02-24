@@ -1,4 +1,4 @@
-Function Test-IsValidEmailAddress {
+function Test-IsValidEmailAddress {
 <#
 .SYNOPSIS
     Tests validity if specified string is an email address.
@@ -35,37 +35,37 @@ Function Test-IsValidEmailAddress {
     VERBOSE: Address valid, no guarantee that address [user@gmail.com] exists.
 #>
 
-    [CmdletBinding(ConfirmImpact='None')]
+    [CmdletBinding(ConfirmImpact = 'None')]
     [Outputtype('bool')]
     Param (
-        [parameter(Mandatory,HelpMessage='Add help message for user',Position=0,ValueFromPipeLine,ValueFromPipeLineByPropertyName)]
+        [parameter(Mandatory, HelpMessage = 'Add help message for user', Position = 0, ValueFromPipeLine, ValueFromPipeLineByPropertyName)]
         [Alias('Address')]
         [string] $EmailAddress
     )
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
-        Write-Verbose -message "You entered email address: [$($EmailAddress)]"
-        Try {
+    process {
+        Write-Verbose -Message "You entered email address: [$($EmailAddress)]"
+        try {
             $temp = [System.Net.Mail.MailAddress] $EmailAddress
-            write-verbose -message "Address resolved to: [$($temp.Address)]"
+            Write-Verbose -Message "Address resolved to: [$($temp.Address)]"
             if ($temp.Address -ne $EmailAddress) {
-                write-verbose -message "[$($temp.Address)] does not match [$($EmailAddress)]"
-                write-output -InputObject $false
+                Write-Verbose -Message "[$($temp.Address)] does not match [$($EmailAddress)]"
+                Write-Output -InputObject $false
             } else {
-                Write-Verbose -message "Address valid, no guarantee that address [$($EmailAddress)] exists."
+                Write-Verbose -Message "Address valid, no guarantee that address [$($EmailAddress)] exists."
                 Write-Output -InputObject $True
             }
-        } Catch {
-            Write-Verbose -message 'The address is NOT valid.'
-            Write-Output -inputobject $False
+        } catch {
+            Write-Verbose -Message 'The address is NOT valid.'
+            Write-Output -InputObject $False
         }
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-} #EndFunction Test-IsValidEmailAddress
+}

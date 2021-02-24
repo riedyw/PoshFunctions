@@ -1,4 +1,4 @@
-Function Resolve-FQDN {
+function Resolve-FQDN {
 <#
 .SYNOPSIS
     Resolves a hostname or IPv4 address to a fully qualified domain name
@@ -6,6 +6,8 @@ Function Resolve-FQDN {
     Resolves a hostname or IPv4 address to a fully qualified domain name
 .PARAMETER ComputerName
     Either the hostname or IPv4 address of the computer you want resolved to FQDN. Aliased to 'CN', and 'Host'
+.PARAMETER IncludeInput
+    Switch to include the input parameters in the output
 .EXAMPLE
     Resolve-FQDN -ComputerName $env:computername
 
@@ -32,33 +34,47 @@ Function Resolve-FQDN {
 
     The computer "NonExistentPC" does not have an entry in DNS so the function will return the value $False
 .NOTES
-Attempting to resolve a FQDN for a system that does not have an entry in DNS will be slow, and will take 1-5 seconds to return a value of $False
+    Attempting to resolve a FQDN for a system that does not have an entry in DNS will be slow, and will take 1-5 seconds to return a value of $False
 #>
     [CmdletBinding()]
     Param (
-        [parameter(ValueFromPipeLine,HelpMessage='Add help message for user',ValueFromPipeLineByPropertyName,Mandatory)]
-        [Alias('Host','CN')]
-        [string] $ComputerName
+        [parameter(ValueFromPipeLine, ValueFromPipeLineByPropertyName, Mandatory)]
+        [Alias('Host', 'CN', 'Server')]
+        [string[]] $ComputerName,
+
+        [switch] $IncludeInput
     )
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
-        if ($ComputerName -eq '.') {
-            $ComputerName = $env:COMPUTERNAME
+    process {
+        foreach ($curComputer in $ComputerName) {
+            if ($curComputer -eq '.') {
+                $curComputer = $env:COMPUTERNAME
+            }
+            $curComputer = $curComputer.ToLower()
+            try {
+                $FQDN = [System.Net.Dns]::GetHostEntry($curComputer).HostName
+                $FQDN = $FQDN.ToLower()
+                #Write-Output -InputObject $FQDN
+            } catch {
+                $FQDN = 'Not found' #Write-Output -InputObject $False
+            }
+            if ($IncludeInput) {
+                New-Object -TypeName psobject -Property ([ordered] @{
+                        HostName = $curComputer
+                        FQDN     = $FQDN
+                    })
+            } else {
+                Write-Output -InputObject $FQDN
+            }
         }
-        Try {
-            $FQDN = [System.Net.Dns]::GetHostEntry($ComputerName).HostName
-            write-output -InputObject $FQDN
-        } Catch {
-            Write-Output -InputObject $False
-        }
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
-} #EndFunction Resolve-FQDN
+}

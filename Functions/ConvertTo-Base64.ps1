@@ -1,4 +1,4 @@
-Function ConvertTo-Base64 {
+function ConvertTo-Base64 {
 <#
 .SYNOPSIS
     ConvertTo-Base64 converts a normal string to a base 64 string
@@ -6,37 +6,56 @@ Function ConvertTo-Base64 {
     ConvertTo-Base64 converts a normal string to a base 64 string
 .PARAMETER String
     The string you want manipulated
+.PARAMETER IncludeInput
+    Switch to enable input parameters to appear in output
 .EXAMPLE
     ConvertTo-Base64 -String 'Password'
 
     Would return
     UABhAHMAcwB3AG8AcgBkAA==
+.EXAMPLE
+    ConvertTo-Base64 -String Hello,Goodbye -IncludeInput
+
+    String  Base64
+    ------  ------
+    Hello   SABlAGwAbABvAA==
+    Goodbye RwBvAG8AZABiAHkAZQA=
 .OUTPUTS
-    [string]
+    [string[]]
 .LINK
     about_Properties
 #>
 
-    [CmdletBinding(ConfirmImpact='None')]
+    [CmdletBinding(ConfirmImpact = 'None')]
     param
     (
-        [string] $String
+        [Parameter(ValueFromPipeline)]
+        [string[]] $String,
+
+        [switch] $IncludeInput
     )
 
-    Begin {
-
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
-
-        $bytesto = [System.Text.Encoding]::Unicode.GetBytes($String)
-        $encodedto = [System.Convert]::ToBase64String($bytesto)
-        Write-Output -InputObject $encodedto
+    process {
+        foreach ($curString in $String) {
+            $bytesto = [System.Text.Encoding]::Unicode.GetBytes($curString)
+            $encodedto = [System.Convert]::ToBase64String($bytesto)
+            if ($IncludeInput) {
+                New-Object -TypeName psobject -Property ([ordered] @{
+                        String = $curString
+                        Base64 = $encodedto
+                    })
+            } else {
+                Write-Output -InputObject $encodedto
+            }
+        }
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 }

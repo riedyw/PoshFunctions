@@ -1,4 +1,4 @@
-Function ConvertTo-DateTime {
+function ConvertTo-DateTime {
 <#
 .SYNOPSIS
     Converts a formatted date string back into a datetime datatype.
@@ -12,43 +12,43 @@ Function ConvertTo-DateTime {
     DmtfDateTime is of the form 'yyyyMMddHHmmss.ffffff+UUU'
 
     Where
-        yyyy    is the 4 digit year
-        MM      is the 2 digit month
-        dd      is the 2 digit day of the month
-        HH      is the 2 digit in 24 hour format (00-23, 1 pm = 13)
-        mm      is the 2 digit minute (00-59)
-        ss      is the 2 digit second (00-59)
-        ffffff  is the 6 digit microsecond
-        +       is a plus or minus to indicate offset from UTC
-        UUU     is the 3 digit number of minutes offset from UTC (000-720)
+    yyyy    is the 4 digit year
+    MM      is the 2 digit month
+    dd      is the 2 digit day of the month
+    HH      is the 2 digit in 24 hour format (00-23, 1 pm = 13)
+    mm      is the 2 digit minute (00-59)
+    ss      is the 2 digit second (00-59)
+    ffffff  is the 6 digit microsecond
+    +       is a plus or minus to indicate offset from UTC
+    UUU     is the 3 digit number of minutes offset from UTC (000-720)
 .PARAMETER Unix
     A switch parameter to convert from a UnixEpoch which is the number of seconds since '1/1/1970 12:00:00 AM UTC'.
 .PARAMETER FileTime
     Converts a large integer filetime [int64] into a datetime string. There is a special value that returns a value of 'Never'.
 
     Filetimes are expressed in Ticks. Ticks can range from 0 - 2650467743999999999. Translating these into dates you get
-                      0 = Monday, January 01, 1601 12:00:00.00000 AM
+                0 = Monday, January 01, 1601 12:00:00.00000 AM
     2650467743999999999 = Friday, December 31, 9999 11:59:59.99999 PM
 .PARAMETER ICSDateTime
     IcsDateTime is of the form 'yyyyMMddTHHmmssZ'
 
     Where
-        yyyy    is the 4 digit year
-        MM      is the 2 digit month
-        dd      is the 2 digit day of the month
-        HH      is the 2 digit in 24 hour format (00-23, 1 pm = 13)
-        mm      is the 2 digit minute (00-59)
-        ss      is the 2 digit second (00-59)
-        T       is the letter T
-        Z       is an optional suffix indicating UTC or Zulu time
+    yyyy    is the 4 digit year
+    MM      is the 2 digit month
+    dd      is the 2 digit day of the month
+    HH      is the 2 digit in 24 hour format (00-23, 1 pm = 13)
+    mm      is the 2 digit minute (00-59)
+    ss      is the 2 digit second (00-59)
+    T       is the letter T
+    Z       is an optional suffix indicating UTC or Zulu time
 
     If the final character is NOT a Z then the time is local time.
 .PARAMETER Excel
     Switch to indicate that the datestring is in Excel format which represents dates as the number of days since (get-date 1/1/1900)
 .PARAMETER Format
     See help for Get-Date and the -Format parameter. This will parse the datestring using the Format as a template.
-.PARAMETER IncludeOriginal
-    Switch to enable the original datetime to appear in the output.
+.PARAMETER IncludeInput
+    Switch to enable the original datetime to appear in the output. Aliased to 'IncludeOriginal'
 .PARAMETER UTC
     Switch to force the output to be in the UTC timezone. Alias of this parameter is 'Zulu'
 .EXAMPLE
@@ -97,6 +97,7 @@ Function ConvertTo-DateTime {
     #region parameter
     [CmdletBinding(DefaultParameterSetName = 'DMTF',ConfirmImpact='None')]
     [OutputType('datetime')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
     Param
     (
 
@@ -108,7 +109,6 @@ Function ConvertTo-DateTime {
         [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'Excel')]
         [Alias('Date')]
         [string[]] $DateString,
-
 
         [Parameter(ParameterSetName = 'DMTF')]
         [switch] $DMTF,
@@ -134,8 +134,8 @@ Function ConvertTo-DateTime {
         [Parameter(ParameterSetName = 'ICSDateTime')]
         [Parameter(ParameterSetName = 'Format')]
         [Parameter(ParameterSetName = 'Excel')]
-        [Alias('Inc')]
-        [switch] $IncludeOriginal,
+        [Alias('IncludeOriginal')]
+        [switch] $IncludeInput,
 
         [Parameter(ParameterSetName = 'DMTF')]
         [Parameter(ParameterSetName = 'Unix')]
@@ -163,7 +163,7 @@ Function ConvertTo-DateTime {
 
     process {
         foreach ($DS in $DateString) {
-            write-verbose "Current datestring is [$DS]"
+            Write-Verbose -Message "Current datestring is [$DS]"
             switch ($PsCmdlet.ParameterSetName) {
                 'DMTF' {
                     Write-Verbose -Message "DTMF is [$DS]"
@@ -241,14 +241,14 @@ Function ConvertTo-DateTime {
                 }
                 'Excel' {
                     $prop = ([ordered] @{ Excel = $DS } )
-                    $ReturnVal = (get-date 1/1/1900 ) + [timespan]::FromDays($DS)
+                    $ReturnVal = (get-date -Date 1/1/1900 ) + [timespan]::FromDays($DS)
                     if ($UTC) {
                         $ReturnVal = ConvertTo-UTC -Date $ReturnVal -Verbose:$false
                     }
                     $prop.DateTime = $ReturnVal
                 }
             }
-            if ($IncludeOriginal) {
+            if ($IncludeInput) {
                 New-Object -TypeName psobject -Property $prop
             } else {
                 Write-Output -inputobject $ReturnVal
@@ -257,7 +257,7 @@ Function ConvertTo-DateTime {
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 } #EndFunction ConvertTo-DateTime

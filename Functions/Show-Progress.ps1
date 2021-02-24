@@ -1,8 +1,3 @@
-# Inspired by: https://www.powershellgallery.com/packages/Show-Progress/0.0.1
-# Added [switch] parameter $PassThru to pass items through the pipeline
-# Added [switch] parameter $SecondsRemaining
-# Added [int] parameter $Id to enable multiple progress bars
-
 function Show-Progress {
 <#
 .SYNOPSIS
@@ -42,11 +37,18 @@ function Show-Progress {
         Working - 2%
         [ooo                                                                                                           ]
         00:09:20 remaining.
+.NOTES
+    # Inspired by: https://www.powershellgallery.com/packages/Show-Progress/0.0.1
+    # Added [switch] parameter $PassThru to pass items through the pipeline
+    # Added [switch] parameter $SecondsRemaining
+    # Added [int] parameter $Id to enable multiple progress bars
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseProcessBlockForPipelineCommand','')]
     param (
-        [Parameter(Mandatory,HelpMessage='Add help message for user', Position = 0, ValueFromPipeline)]
+        [Parameter(Mandatory, Position = 0, ValueFromPipeline)]
         [PSObject[]]
         $InputObject,
 
@@ -107,4 +109,4 @@ function Show-Progress {
     }
     Write-Progress @writeProgressSplat
 
-} # EndFunction Show-Progress
+}

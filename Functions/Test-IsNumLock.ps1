@@ -1,4 +1,4 @@
-Function Test-IsNumLock {
+function Test-IsNumLock {
 <#
 .SYNOPSIS
     Determines the state of NumLock
@@ -10,6 +10,8 @@ Function Test-IsNumLock {
     Test-IsNumLock -Verbose
 .OUTPUTS
     bool
+.NOTES
+    Inspiration: # Inspired by https://gallery.technet.microsoft.com/on-off-keyboad-lock-keys-6ba9885c
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
@@ -17,15 +19,16 @@ Function Test-IsNumLock {
     Param()
 
     Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
+    process {
         write-verbose -Message 'Determining the state of [NumLock]'
-        [console]::NumberLock
+        $ReturnVal = [console]::NumberLock
+        Write-Output -InputObject $ReturnVal
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }

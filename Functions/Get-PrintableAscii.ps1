@@ -1,5 +1,5 @@
 function Get-PrintableAscii {
-<#
+    <#
 .SYNOPSIS
     Gets an array of objects that show printable Ascii characters.
 .DESCRIPTION
@@ -10,11 +10,11 @@ function Get-PrintableAscii {
     L - Lowercase letters
     N - Numbers
     S - Symbols (not U, L, or N)
-    
+
     Will also mark characters that are similar to one another at first glance which you may want to avoid when generating a password.
 .EXAMPLE
     Get-PrintableAscii | Select-Object -First 10
-    
+
     Would return:
     Ascii Hex Char Class Similar
     ----- --- ---- ----- -------
@@ -43,24 +43,32 @@ function Get-PrintableAscii {
     [CmdletBinding()]
     param ()
 
-    $PrintableAscii = 33..126 | ForEach-Object {
-        [pscustomobject] @{
-            Ascii   = $_;
-            Hex     = ('{0:x2}' -f $_) ;
-            Char    = ( [char] [byte] $_) ;
-            Class   = 'S'
-            Similar = $false
-        }
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    foreach ($char in $PrintableAscii) {
-        switch -regex -casesensitive ($char.Char) {
-            '[0-9]' { $char.Class = 'N' }
-            '[A-Z]' { $char.Class = 'U' }
-            '[a-z]' { $char.Class = 'L' }
-            '[0|O|o|1|l|I|\|+|t|-|_]' { $char.Similar = $true }
+    process {
+        $PrintableAscii = 33..126 | ForEach-Object {
+            [pscustomobject] @{
+                Ascii   = $_;
+                Hex     = ('{0:x2}' -f $_) ;
+                Char    = ( [char] [byte] $_) ;
+                Class   = 'S'
+                Similar = $false
+            }
         }
+        foreach ($char in $PrintableAscii) {
+            switch -regex -casesensitive ($char.Char) {
+                '[0-9]' { $char.Class = 'N' }
+                '[A-Z]' { $char.Class = 'U' }
+                '[a-z]' { $char.Class = 'L' }
+                '[0|O|o|1|l|I|\|+|t|-|_]' { $char.Similar = $true }
+            }
+        }
+        Write-Output -InputObject $PrintableAscii
     }
 
-    Write-Output $PrintableAscii
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
+    }
 }

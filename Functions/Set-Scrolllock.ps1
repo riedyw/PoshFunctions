@@ -1,6 +1,4 @@
-# Inspired by https://gallery.technet.microsoft.com/on-off-keyboad-lock-keys-6ba9885c
-
-Function Set-Scrolllock {
+function Set-Scrolllock {
 <#
 .SYNOPSIS
     Sets the state of the ScrollLock button.
@@ -20,13 +18,12 @@ Function Set-Scrolllock {
     Inspiration: # Inspired by https://gallery.technet.microsoft.com/on-off-keyboad-lock-keys-6ba9885c
     Changes:     Created function to set on or off the ScrollLock. Requires use of helper function Test-IsScrollLock
 .LINK
-    New-Object
-.LINK
     Wscript.Shell
 #>
 
     [CmdletBinding(ConfirmImpact='Low',SupportsShouldProcess,DefaultParameterSetName='On')]
     [OutputType($null)]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
     Param(
         [parameter(ParameterSetName='On')]
         [switch] $On,
@@ -36,7 +33,7 @@ Function Set-Scrolllock {
     )
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         Write-Verbose -Message "ParameterSetName [$($PsCmdlet.ParameterSetName)]"
     }
 
@@ -64,8 +61,8 @@ Function Set-Scrolllock {
         }
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 } #EndFunction Set-Scrolllock

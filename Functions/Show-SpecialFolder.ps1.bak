@@ -1,0 +1,49 @@
+function Show-SpecialFolder {
+<#
+.SYNOPSIS
+    Shows special folder names
+.DESCRIPTION
+    Shows special folder names
+.PARAMETER IncludeLocations
+    Switch to include the resolved locations to all of the special folders
+.EXAMPLE
+    (Show-SpecialFolder) -join ', ' | Format-WrapText -Width 80
+
+    AdminTools, ApplicationData, CDBurning, CommonAdminTools,
+    CommonApplicationData, CommonDesktopDirectory, CommonDocuments, CommonMusic,
+    CommonOemLinks, CommonPictures, CommonProgramFiles, CommonProgramFilesX86,
+    CommonPrograms, CommonStartMenu, CommonStartup, CommonTemplates, CommonVideos,
+    Cookies, Desktop, DesktopDirectory, Favorites, Fonts, History, InternetCache,
+    LocalApplicationData, LocalizedResources, MyComputer, MyDocuments, MyMusic,
+    MyPictures, MyVideos, NetworkShortcuts, Personal, PrinterShortcuts,
+    ProgramFiles, ProgramFilesX86, Programs, Recent, Resources, SendTo, StartMenu,
+    Startup, System, SystemX86, Templates, UserProfile, Windows
+#>
+
+    [CmdletBinding(ConfirmImpact = 'None')]
+    Param (
+        [switch] $IncludeLocations
+    )
+
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+    }
+
+    process {
+        $SpecialFolders = [System.Enum]::GetNames([System.Environment+SpecialFolder]) | Sort-Object
+        if (-not $IncludeLocations) {
+            Write-Output -InputObject $SpecialFolders
+        } else {
+            $SpecialFolders | ForEach-Object {
+                New-Object -TypeName psobject ([ordered] @{
+                        SpecialFolder = $_.tostring()
+                        Location      = [Environment]::GetFolderPath($_)
+                    })
+            }
+        }
+    }
+
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
+    }
+}

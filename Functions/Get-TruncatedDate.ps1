@@ -1,8 +1,5 @@
-# source
-# https://www.reddit.com/r/usefulscripts/comments/9ghdzo/powershell_setdatetruncate_is_that_dumb_function/
-
 function Get-TruncatedDate {
-    <#
+<#
 .SYNOPSIS
     To truncate a date at a given level
 .DESCRIPTION
@@ -12,8 +9,8 @@ function Get-TruncatedDate {
 .PARAMETER WhereToTruncate
     A string containing where in the date you wish to truncate. Has a ValidateSet
     against it of: 'Millisecond', 'Second', 'Minute', 'Hour', 'Day', 'Month'
-.PARAMETER IncludeOriginal
-    A switch determining if you wish to see the original date in the output
+.PARAMETER IncludeInput
+    A switch determining if you wish to see the original date in the output, aliased to 'IncludeOriginal'
 .EXAMPLE
     All of the following examples will be looking to truncate $testdate. Here is how $testdate
     is originally set.
@@ -31,7 +28,7 @@ function Get-TruncatedDate {
 .EXAMPLE
     Example of truncating at Millisecond and including original date in output
 
-    Get-TruncatedDate -Date $testdate -WhereToTruncate Millisecond -IncludeOriginal
+    Get-TruncatedDate -Date $testdate -WhereToTruncate Millisecond -IncludeInput
 
     Original                Where       Truncated
     --------                -----       ---------
@@ -61,23 +58,26 @@ function Get-TruncatedDate {
     Get-TruncatedDate -Date $testdate -WhereToTruncate Month
 
     Wednesday, January 1, 2020 12:00:00 AM
+.NOTES
+    # source   # https://www.reddit.com/r/usefulscripts/comments/9ghdzo/powershell_setdatetruncate_is_that_dumb_function/
+
 #>
 
-    [CmdletBinding(ConfirmImpact='None')]
+    [CmdletBinding(ConfirmImpact = 'None')]
     Param
     (
-        [Parameter(Position=0,ValueFromPipeline)]
+        [Parameter(Position = 0, ValueFromPipeline)]
         [datetime[]] $Date = $(Get-Date),
 
-        [Parameter()]
         [ValidateSet('Millisecond', 'Second', 'Minute', 'Hour', 'Day', 'Month')]
         [string] $WhereToTruncate = 'Hour',
 
-        [switch] $IncludeOriginal
+        [Alias('IncludeOriginal')]
+        [switch] $IncludeInput
     )
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
@@ -143,20 +143,20 @@ function Get-TruncatedDate {
 
         foreach ($currentDate in $Date) {
             $ReturnVal = $currentDate | Get-Date @GD_Params
-            if ($IncludeOriginal) {
+            if ($IncludeInput) {
                 New-Object -TypeName 'psobject' -Property ([ordered] @{
-                    Original  = Get-Date $currentDate -Format 'yyyy/MM/dd HH:mm:ss.fff'
-                    Where     = $Where
-                    Truncated = Get-Date $ReturnVal   -Format 'yyyy/MM/dd HH:mm:ss.fff'
-                })
+                        Original  = Get-Date -Date $currentDate -Format 'yyyy/MM/dd HH:mm:ss.fff'
+                        Where     = $Where
+                        Truncated = Get-Date -Date $ReturnVal   -Format 'yyyy/MM/dd HH:mm:ss.fff'
+                    })
             } else {
-                $ReturnVal
+                Write-Output -InputObject $ReturnVal
             }
         }
-    } # end >> process {}
-
-    end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
     }
 
-} # end >> function Get-TruncatedDate
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
+    }
+
+}

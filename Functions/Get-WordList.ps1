@@ -57,13 +57,14 @@ function Get-WordList {
     [string[]]
 #>
 
+    #region Parameter
     [CmdletBinding(ConfirmImpact='None')]
     [OutputType([string[]])]
     Param()
     #endregion Parameter
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
@@ -71,7 +72,6 @@ function Get-WordList {
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
 }

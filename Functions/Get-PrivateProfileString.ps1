@@ -50,14 +50,14 @@ function Get-PrivateProfileString {
     )
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
-        Write-Verbose -Message "Trimming parameters."
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+        Write-Verbose -Message 'Trimming parameters.'
         $Section = $Section.Trim()
         $Key = $Key.Trim()
     }
 
     process {
-        if (Test-Path $File) {
+        if (Test-Path -Path $File) {
             $ResolveFile = Resolve-Path -Path $File
             if ($ResolveFile.count -gt 1) {
                 Write-Error -Message "ERROR: File specification [$File] resolves to more than 1 file."
@@ -66,7 +66,7 @@ function Get-PrivateProfileString {
                 Write-Verbose -Message "Getting value from section [$Section]"
                 Write-Verbose -Message "Getting value from key [$Key]"
 
-                $sb = New-Object System.Text.StringBuilder(256)
+                $sb = New-Object -TypeName System.Text.StringBuilder -ArgumentList (256)
                 [ProfileApi]::GetPrivateProfileString($Section, $Key, $null, $sb, $sb.Capacity, $ResolveFile) | Out-Null
 
                 if ($IncludeOriginal) {
@@ -88,7 +88,6 @@ function Get-PrivateProfileString {
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
-} #EndFunction Get-PrivateProfileString
+}

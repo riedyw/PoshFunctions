@@ -1,5 +1,5 @@
-Function Set-Capslock {
-    <#
+function Set-Capslock {
+<#
 .SYNOPSIS
     Sets the state of the CapsLock button.
 .DESCRIPTION
@@ -18,13 +18,12 @@ Function Set-Capslock {
     Inspiration: # Inspired by https://gallery.technet.microsoft.com/on-off-keyboad-lock-keys-6ba9885c
     Changes:     Created function to set on or off the CapsLock. Requires use of helper function Test-IsCapsLock
 .LINK
-    New-Object
-.LINK
     Wscript.Shell
 #>
 
     [CmdletBinding(ConfirmImpact = 'Low', SupportsShouldProcess, DefaultParameterSetName = 'On')]
     [OutputType($null)]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
     Param(
         [parameter(ParameterSetName = 'On')]
         [switch] $On,
@@ -34,7 +33,7 @@ Function Set-Capslock {
     )
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         Write-Verbose -Message "ParameterSetName [$($PsCmdlet.ParameterSetName)]"
     }
 
@@ -63,7 +62,7 @@ Function Set-Capslock {
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 } #EndFunction Set-Capslock

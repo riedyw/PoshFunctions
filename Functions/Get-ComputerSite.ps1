@@ -1,54 +1,50 @@
 function Get-ComputerSite {
 <#
 .SYNOPSIS
-    Describe purpose of "Get-ComputerSite" in 1-2 sentences.
-
+    Determines the Active Directory site of a specified computername(s). Relies on nltest.exe that comes with Windows
 .DESCRIPTION
-    Add a more complete description of what the function does.
-
+    Determines the Active Directory site of a specified computername(s). Relies on nltest.exe that comes with Windows
 .PARAMETER ComputerName
-    Describe parameter -ComputerName.
-
+    The computername you want to run the command against, defaults to $env:COMPUTERNAME
+.PARAMETER IncludeInput
+    Switch that will display input parameter in the output. Aliased to 'IncludeComputerName'
 .EXAMPLE
-    Get-ComputerSite -ComputerName Value
-    Describe what this call does
+    Get-ComputerSite
 
-.NOTES
-    Place additional notes here.
+    Example result
+    CORP
+.EXAMPLE
+    Get-ComputerSite -IncludeInput
 
-.LINK
-    URLs to related sites
-    The first link is opened by Get-Help -Online Get-ComputerSite
-
-.INPUTS
-    List of input types that are accepted by this function.
-
-.OUTPUTS
-    List of output types produced by this function.
+    Example result
+    ComputerName Site
+    ------------ ----
+    DEMOLAPTOP   CORP
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
     param
     (
-        [Parameter()]
+        [Parameter(ValueFromPipeline)]
         [string[]] $ComputerName = $env:COMPUTERNAME,
 
-        [switch] $IncludeComputerName
+        [Alias('IncludeComputerName')]
+        [switch] $IncludeInput
     )
 
     begin {
-
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
-        foreach ($C in $ComputerName) {
-            $site = nltest.exe /server:$C /dsgetsite 2>$null
+        foreach ($curCN in $ComputerName) {
+            $site = nltest.exe /server:$curCN /dsgetsite 2>$null
             if ($LASTEXITCODE -eq 0) {
-                if ($IncludeComputerName){
-                    New-Object -TypeName 'psobject' -Property @{
-                        ComputerName = $c
+                if ($IncludeInput) {
+                    New-Object -TypeName 'psobject' -Property ([ordered] @{
+                        ComputerName = $curCN
                         Site         = $site[0]
-                    }
+                    })
                 } else {
                     $site[0]
                 }
@@ -57,7 +53,7 @@ function Get-ComputerSite {
     }
 
     end {
-
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 }

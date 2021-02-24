@@ -1,15 +1,15 @@
-Function Invoke-Beep {
+function Invoke-Beep {
 <#
 .SYNOPSIS
     Uses the Beep function of the .Net [Console] class
 .DESCRIPTION
-    Uses the Beep function of the .Net [Console] class. Alias as 'Beep'. Has the 
+    Uses the Beep function of the .Net [Console] class. Alias as 'Beep'. Has the
     ability to play a number of different pre-defined set of tones.
 .PARAMETER Frequency
     The frequency, in mHz, of the tone that you want to play. Defaults to 800.
     Minimum 37 Hz, maximum 32,767 Hz.
 .PARAMETER Duration
-    The duration, in milliseconds, that you wish to play the tone. Defaults to 200. 
+    The duration, in milliseconds, that you wish to play the tone. Defaults to 200.
     Minimum 61 ms, maximum 3000 ms (3 seconds).
 .PARAMETER Nasa
     A switch to play the NASA beep circa Apollo.
@@ -33,6 +33,7 @@ Function Invoke-Beep {
 
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     [Alias('Beep')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
     param(
         [Parameter(ParameterSetName = 'Default')]
         [ValidateRange(37, 32767)]
@@ -63,7 +64,7 @@ Function Invoke-Beep {
     )
 
     begin {
-
+        Write-Verbose -Message "Starting [$($MyInvocation.MyCommand)]"
     }
 
     process {
@@ -198,13 +199,13 @@ Function Invoke-Beep {
                 [System.Console]::Beep(392,200)
                 [System.Console]::Beep(349,200)
             }
-    }
+        }
 
 
     }
 
     end {
-
+        Write-Verbose -Message "Ending [$($MyInvocation.MyCommand)]"
     }
 
 }

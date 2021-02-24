@@ -1,16 +1,11 @@
-# source: https://www.powershellgallery.com/packages/RemoteRegistry/1.0.3/Content/Public%5CGet-RegExpandString.ps1
-
 function Get-RegExpandString {
-    <#
+<#
 .SYNOPSIS
     Retrieves a null-terminated string that contains unexpanded references to environment variables (REG_EXPAND_SZ) from local or remote computers.
-
 .DESCRIPTION
     Use Get-RegExpandString to retrieve a null-terminated string that contains unexpanded references to environment variables (REG_EXPAND_SZ) from local or remote computers.
-
 .PARAMETER ComputerName
     An array of computer names. The default is the local computer.
-
 .PARAMETER Hive
     The HKEY to open, from the RegistryHive enumeration. The default is 'LocalMachine'.
     Possible values:
@@ -22,27 +17,22 @@ function Get-RegExpandString {
     - PerformanceData
     - CurrentConfig
     - DynData
-
  .PARAMETER Key
     The path of the registry key to open.
-
  .PARAMETER Value
     The name of the registry value.
-
  .PARAMETER ExpandEnvironmentNames
     Expands values containing references to environment variables using data from the local environment.
-
  .PARAMETER Ping
     Use ping to test if the machine is available before connecting to it.
     If the machine is not responding to the test a warning message is output.
-
  .EXAMPLE
     $Key = "SOFTWARE\Microsoft\Windows\CurrentVersion"
     Get-RegExpandString -Key $Key -Value ProgramFilesPath
 
-    ComputerName Hive Key Value Data Type
-    ------------ ---- --- ----- ---- ----
-    COMPUTER1 LocalMachine SOFTWARE\Microsof... ProgramFilesPath %ProgramFiles% ExpandString
+    ComputerName Hive         Value            Key                                       Data                   Type
+    ------------ ----         -----            ---                                       ----                   ----
+    DemoLaptop   LocalMachine ProgramFilesPath SOFTWARE\Microsoft\Windows\CurrentVersion %ProgramFiles% ExpandString
 
     Description
     -----------
@@ -50,13 +40,12 @@ function Get-RegExpandString {
     The returned value contains unexpanded references to environment variables.
 
  .EXAMPLE
-    Get-RegExpandString -Key $Key -Value ProgramFilesPath -ComputerName SERVER1,SERVER2,SERVER3 -ExpandEnvironmentNames -Ping
+    Get-RegExpandString -Key $Key -Value ProgramFilesPath -ComputerName server1, server2 -ExpandEnvironmentNames -Ping
 
-    ComputerName Hive Key Value Data Type
-    ------------ ---- --- ----- ---- ----
-    SERVER1 LocalMachine SOFTWARE\Microsof... ProgramFilesPath C:\Program Files ExpandString
-    SERVER2 LocalMachine SOFTWARE\Microsof... ProgramFilesPath C:\Program Files ExpandString
-    SERVER3 LocalMachine SOFTWARE\Microsof... ProgramFilesPath C:\Program Files ExpandString
+    ComputerName Hive         Value            Key                                       Data                     Type
+    ------------ ----         -----            ---                                       ----                     ----
+    server1      LocalMachine ProgramFilesPath SOFTWARE\Microsoft\Windows\CurrentVersion C:\Program Files ExpandString
+    server2      LocalMachine ProgramFilesPath SOFTWARE\Microsoft\Windows\CurrentVersion C:\Program Files ExpandString
 
     Description
     -----------
@@ -64,60 +53,45 @@ function Get-RegExpandString {
     When the ExpandEnvironmentNames Switch parameter is used, the data of the value is expnaded based on the environment variables data from the local environment.
     When the Switch parameter Ping is specified the command issues a ping test to each computer.
     If the computer is not responding to the ping request a warning message is written to the console and the computer is not processed.
-
  .OUTPUTS
     PSFanatic.Registry.RegistryValue (PSCustomObject)
-
  .NOTES
     Author: Shay Levy
     Blog : http://blogs.microsoft.co.il/blogs/ScriptFanatic/
 
+    # source: https://www.powershellgallery.com/packages/RemoteRegistry/1.0.3/Content/Public%5CGet-RegExpandString.ps1
+
+    * notes for remote servers you need administrative privileges to that remote computername
+    * added write-verbose statements
+    * corrected some spelling
+    * commented out return for ping that fails
+    * modified statement for new-object -typename psobject, changed -Property @{} to -Property ([ordered] @{}) so columns come out in order desired
+    * updated examples
  .LINK
     http://code.msdn.microsoft.com/PSRemoteRegistry
-
  .LINK
     Set-RegExpandString
     Get-RegValue
     Remove-RegValue
     Test-RegValue
-
  #>
 
     [OutputType('PSFanatic.Registry.RegistryValue')]
     [CmdletBinding(DefaultParameterSetName = '__AllParameterSets')]
 
     param(
-        [Parameter(
-            Position = 0,
-            ValueFromPipeline,
-            ValueFromPipelineByPropertyName,
-            HelpMessage = 'An array of computer names. The default is the local computer.'
-        )]
+        [Parameter(Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName)]
         [Alias('CN', '__SERVER', 'IPAddress')]
-        [string[]] $ComputerName = '',
+        [string[]] $ComputerName = $env:COMPUTERNAME,
 
-        [Parameter(
-            Position = 1,
-            ValueFromPipelineByPropertyName,
-            HelpMessage = "The HKEY to open, from the RegistryHive enumeration. The default is 'LocalMachine'."
-        )]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName)]
         [ValidateSet('ClassesRoot', 'CurrentUser', 'LocalMachine', 'Users', 'PerformanceData', 'CurrentConfig', 'DynData')]
         [string] $Hive = 'LocalMachine',
 
-        [Parameter(
-            Mandatory,
-            Position = 2,
-            ValueFromPipelineByPropertyName,
-            HelpMessage = 'The path of the subkey to open.'
-        )]
+        [Parameter(Mandatory, Position = 2, ValueFromPipelineByPropertyName, HelpMessage = 'The path of the subkey to open.')]
         [string] $Key,
 
-        [Parameter(
-            Mandatory,
-            Position = 3,
-            ValueFromPipelineByPropertyName,
-            HelpMessage = 'The name of the value to get.'
-        )]
+        [Parameter(Mandatory, Position = 3, ValueFromPipelineByPropertyName, HelpMessage = 'The name of the value to get.')]
         [string] $Value,
 
         [switch] $ExpandEnvironmentNames,
@@ -126,7 +100,7 @@ function Get-RegExpandString {
     )
 
     begin {
-
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
@@ -138,11 +112,11 @@ function Get-RegExpandString {
                     Write-Verbose -Message "Parameter [ComputerName] is not presnet, setting its value to local computer name: [$c]."
                 }
                 if ($Ping) {
-                    Write-Verbose -Message 'Parameter [Ping] is presnet, initiating Ping test'
+                    Write-Verbose -Message 'Parameter [Ping] is present, initiating Ping test'
 
                     if ( -not (Test-Connection -ComputerName $c -Count 1 -Quiet)) {
                         Write-Warning -Message "[$c] doesn't respond to ping."
-                        return
+                        #return
                     }
                 }
                 Write-Verbose -Message "Starting remote registry connection against: [$c]."
@@ -167,14 +141,14 @@ function Get-RegExpandString {
                     Write-Error -Message "Cannot find value [$Value] because it does not exist."
                 } else {
                     Write-Verbose -Message 'Create PSFanatic registry value custom object.'
-                    $pso = New-Object -TypeName PSObject -Property @{
+                    $pso = New-Object -TypeName PSObject -Property ([ordered] @{
                         ComputerName = $c
                         Hive         = $Hive
                         Value        = $Value
                         Key          = $Key
                         Data         = $rv
                         Type         = $subKey.GetValueKind($Value)
-                    }
+                    })
 
                     Write-Verbose -Message 'Adding format type name to custom object.'
                     $pso.PSTypeNames.Clear()
@@ -188,12 +162,10 @@ function Get-RegExpandString {
                 Write-Error -Message $_
             }
         }
-
         Write-Verbose -Message 'Exit process block...'
     }
 
     end {
-
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
 }

@@ -1,4 +1,4 @@
-Function Test-IsCapsLock {
+function Test-IsCapsLock {
 <#
 .SYNOPSIS
     Determines if the CapsLock key is on or not
@@ -8,10 +8,8 @@ Function Test-IsCapsLock {
     Test-IsCapsLock
 .EXAMPLE
     Test-IsCapsLock -Verbose
-.LINK
-http://www.google.com
-.LINK
-System.Console
+.NOTES
+    Inspiration: # Inspired by https://gallery.technet.microsoft.com/on-off-keyboad-lock-keys-6ba9885c
 #>
 
     #region Parameter
@@ -20,16 +18,17 @@ System.Console
     Param()
     #endregion Parameter
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
-        write-verbose -Message 'Determining the state of [CapsLock]'
-        [System.Console]::CapsLock
+        Write-Verbose -Message 'Determining the state of [CapsLock]'
+        $ReturnVal = [System.Console]::CapsLock
+        Write-Output -InputObject $ReturnVal
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }

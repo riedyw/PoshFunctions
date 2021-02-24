@@ -37,11 +37,13 @@ function Export-CSVSortedColumn {
     Export-CSV
 #>
 
+    [cmdletbinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSupportsShouldProcess', '')]
     param (
         [Parameter(ValueFromPipeline = $true)]
         [Object[]] $InputObject,
 
-        [Parameter(Mandatory = $false)]
         [Switch] $Descending,
 
         [Switch] $Append,
@@ -68,6 +70,7 @@ function Export-CSVSortedColumn {
 
     begin {
         $Result = ( [System.Collections.ArrayList] @() )
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
@@ -132,6 +135,7 @@ function Export-CSVSortedColumn {
     }
 
     end {
-        $Result | select $Properties.name | export-csv @CsvParams
+        $Result | Select-Object $Properties.name | Export-Csv @CsvParams
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }

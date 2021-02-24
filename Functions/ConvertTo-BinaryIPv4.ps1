@@ -1,4 +1,4 @@
-Function ConvertTo-BinaryIPv4 {
+function ConvertTo-BinaryIPv4 {
 <#
 .SYNOPSIS
     Converts a Decimal IP address into a binary format.
@@ -6,15 +6,15 @@ Function ConvertTo-BinaryIPv4 {
     ConvertTo-BinaryIP uses System.Convert to switch between decimal and binary format. The output from this function is dotted binary string.
 .PARAMETER IPAddress
     An IPv4 Address to convert.
-.PARAMETER IncludeOriginal
-    A switch indicating if you want to display original IPv4 address. If true then it will output a PsObject with the property fields of IPv4 and Binary
+.PARAMETER IncludeInput
+    A switch indicating if you want to display original IPv4 address. If true then it will output a PsObject with the property fields of IPv4 and Binary. Aliased to 'IncludeOriginal'
 .EXAMPLE
     (PS)> ConvertTo-BinaryIPv4 -IPAddress 24.3.1.1
 
     Would return
     00011000.00000011.00000001.00000001
 .EXAMPLE
-    (PS)> ConvertTo-BinaryIPv4 -IPAddress 10.1.1.1,192.168.1.1  -verbose -IncludeOriginal
+    (PS)> ConvertTo-BinaryIPv4 -IPAddress 10.1.1.1,192.168.1.1  -verbose -IncludeInput
 
     Would return
     VERBOSE: IPv4Address entered [10.1.1.1,192.168.1.1]
@@ -43,45 +43,40 @@ Function ConvertTo-BinaryIPv4 {
     [System.Net.IPAddress]
 #>
 
-#region Parameter
+    #region Parameter
 
-    [CmdletBinding(ConfirmImpact='None')]
+    [CmdletBinding(ConfirmImpact = 'None')]
     [OutputType('PsObject')]
     param(
         [Parameter(Mandatory, Position = 0, ValueFromPipeline)]
         [IPAddress[]] $IPAddress,
 
         [Parameter(Position = 1)]
-        [switch] $IncludeOriginal
+        [Alias('IncludeOriginal')]
+        [switch] $IncludeInput
     )
-#endregion Parameter
+    #endregion Parameter
 
-    begin
-    {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
-        write-verbose -Message "IPv4Address entered [$($ipaddress.ipAddressToString -join ',')]"
-        if ($IncludeOriginal)
-        {
-            write-verbose -Message 'You selected to include original value in output'
+        Write-Verbose -Message "IPv4Address entered [$($ipaddress.ipAddressToString -join ',')]"
+        if ($IncludeInput) {
+            Write-Verbose -Message 'You selected to include original value in output'
         }
         foreach ($curIpAddress in $IPAddress) {
-            write-verbose -Message "Processing [$($curIpAddress)]"
+            Write-Verbose -Message "Processing [$($curIpAddress)]"
             $curBinary = ($curIpAddress.GetAddressBytes() | ForEach-Object { [Convert]::ToString($_, 2).PadLeft(8, '0') } ) -join '.'
-            write-verbose -Message "Binary representation [$($curBinary)]"
-            if ($IncludeOriginal)
-            {
-                $prop = @{
+            Write-Verbose -Message "Binary representation [$($curBinary)]"
+            if ($IncludeInput) {
+                New-Object -TypeName psobject -Property ([ordered] @{
                     IPv4   = $curIpAddress
                     Binary = $curBinary
-                }
-                new-object -TypeName psobject -Property $prop | select-object -property IPv4, Binary
-            }
-            else
-            {
-                write-output -inputobject ($curBinary)
+                })
+            } else {
+                Write-Output -InputObject $curBinary
             }
         }
     }

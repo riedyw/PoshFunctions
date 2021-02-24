@@ -67,13 +67,13 @@ function Get-PrivateProfileSection {
     )
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
-        Write-Verbose -Message "Trimming parameters."
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+        Write-Verbose -Message 'Trimming parameters.'
         $Section = $Section.Trim()
     }
 
     process {
-        if (Test-Path $File) {
+        if (Test-Path -Path $File) {
             $ResolveFile = Resolve-Path -Path $File
             if ($ResolveFile.count -gt 1) {
                 Write-Error -Message "ERROR: File specification [$File] resolves to more than 1 file."
@@ -83,10 +83,12 @@ function Get-PrivateProfileSection {
                 # Write-Verbose -Message "Getting value from key [$Key]"
 
                 If ($AsString) {
-                    [ProfileAPI]::GetSection($ResolveFile, $Section)
+                    $ReturnVal = [ProfileAPI]::GetSection($ResolveFile, $Section)
                 } else {
-                    [ProfileAPI]::GetSection($ResolveFile, $Section) | ConvertFrom-StringData
+                    $ReturnVal = [ProfileAPI]::GetSection($ResolveFile, $Section) | ConvertFrom-StringData
                 }
+
+                Write-Output -InputObject $ReturnVal
 
             }
 
@@ -97,7 +99,6 @@ function Get-PrivateProfileSection {
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
-} #EndFunction Get-PrivateProfileSection
+}

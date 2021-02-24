@@ -1,4 +1,4 @@
-Function ConvertTo-Bool {
+function ConvertTo-Bool {
 <#
 .SYNOPSIS
     Parse a string and convert it to a Boolean
@@ -9,8 +9,8 @@ Function ConvertTo-Bool {
 .PARAMETER TrueString
     The string or array of strings that are considered as $true values.
     Defaults to 'true', 'yes', 'on', 'enabled', 't', 'y'
-.PARAMETER IncludeOriginal
-    Determines if you wish to see the original in the output
+.PARAMETER IncludeInput
+    Determines if you wish to see the original in the output, aliased to 'IncludeOriginal'
 .NOTES
     ConvertTo-Bool will .Trim() the InputVal before trying to parse it.
 .EXAMPLE
@@ -37,7 +37,7 @@ Function ConvertTo-Bool {
     ConvertTo-Bool 'radical' -TrueString 'radical', 'cool'
     True
 .EXAMPLE
-    '0',1,2,'t','enabled','darn','on' | ConvertTo-Bool -IncludeOriginal
+    '0',1,2,'t','enabled','darn','on' | ConvertTo-Bool -IncludeInput
 
 
     Original  Bool TrueString
@@ -63,11 +63,12 @@ Function ConvertTo-Bool {
 
         [string[]] $TrueString = @('true', 'yes', 'on', 'enabled', 't', 'y'),
 
-        [switch] $IncludeOriginal
+        [Alias('IncludeOriginal')]
+        [switch] $IncludeInput
     )
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         $TrueRegex = '^(' + ($TrueString -join '|') + ')$'
         $TrueVerbose = $TrueString -join ', '
         Write-Verbose -Message "TrueString is [$TrueVerbose]"
@@ -79,7 +80,7 @@ Function ConvertTo-Bool {
             if (($currentInput -eq '') -or ($null -eq $currentInput)) {
                 $ReturnVal = $false
             } else {
-                if (test-isNumeric -NumString $currentInput) {
+                if (Test-IsNumeric -NumString $currentInput) {
                     if ($currentInput -eq 0) {
                         $ReturnVal = $false
                     }
@@ -95,7 +96,7 @@ Function ConvertTo-Bool {
                     }
                 }
             }
-            if ($IncludeOriginal) {
+            if ($IncludeInput) {
                 New-Object -TypeName 'psobject' -Property ([ordered] @{
                     Original = $currentInput
                     Bool = $ReturnVal
@@ -108,7 +109,7 @@ Function ConvertTo-Bool {
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 } # endfunction ConvertTo-Bool

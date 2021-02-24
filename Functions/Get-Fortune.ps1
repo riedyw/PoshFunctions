@@ -1,5 +1,5 @@
-Function Get-Fortune {
-    <#
+function Get-Fortune {
+<#
 .SYNOPSIS
     Display a short quote
 .DESCRIPTION
@@ -27,37 +27,48 @@ Function Get-Fortune {
     Get-Content
     Get-Random
     Split-Path
+
+    todo put wisdom.txt in module and default path to it
 #>
 
     #region Parameter
     [CmdletBinding(ConfirmImpact='None')]
     [OutputType('string')]
     Param(
-        [Parameter()]
         [Alias('FileName', 'Fortune')]
-        [string] $Path = 'c:\Scripts\wisdom.txt',
+        [string] $Path = $script:FortuneFile,
 
-        [Parameter()]
         [string] $Delimiter = "`n%`n",
 
         [switch] $Speak
     )
     #endregion Parameter
 
-    if (Test-Path -Path $Path) {
-        Write-Verbose -Message "Using [$path] for fortune file"
-        Write-Verbose -Message "Delimiter [$Delimiter]"
-        $Fortune = (Get-Content -Raw -Path $path) -replace "`r`n", "`n" -split $Delimiter | Get-Random
-        if ($Speak) {
-            $Fortune
-            $Fortune | Invoke-Speak
-        } else {
-            $Fortune
-        }
-    } else {
-        Write-Error -Message "ERROR: File [$Path] does not exist."
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+        Write-Verbose -Message "Using fortune file [$Path]"
     }
 
-} #EndFunction Get-Fortune
+    process {
+        if (Test-Path -Path $Path) {
+            Write-Verbose -Message "Using [$path] for fortune file"
+            Write-Verbose -Message "Delimiter [$Delimiter]"
+            $Fortune = (Get-Content -Raw -Path $path) -replace "`r`n", "`n" -split $Delimiter | Get-Random
+            if ($Speak) {
+                $Fortune
+                $Fortune | Invoke-Speak
+            } else {
+                $Fortune
+            }
+        } else {
+            Write-Error -Message "ERROR: File [$Path] does not exist."
+        }
+    }
+
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
+    }
+
+}
 
 Set-Alias -Name 'Fortune' -Value 'Get-Fortune'

@@ -1,4 +1,4 @@
-Function Eexit {
+function Eexit {
 <#
 .SYNOPSIS
     Closes the transcript, and exits the PowerShell session

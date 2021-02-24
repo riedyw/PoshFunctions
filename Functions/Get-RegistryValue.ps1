@@ -1,5 +1,4 @@
-function Get-RegistryValue
-{
+function Get-RegistryValue {
 <#
 .SYNOPSIS
     Get the values from a specified registry key
@@ -9,6 +8,8 @@ function Get-RegistryValue
     are NOT expanded.
 .PARAMETER RegistryKey
     The full registry key. Values can actually be copied from regedit.exe in the address bar.
+.PARAMETER IncludeInput
+    Changed name from -IncludeRegistryKey to be consistent, aliased to 'IncludeRegistryKey' for backward compatibility
 .EXAMPLE
     Get-RegistryValue -RegistryKey 'HKEY_CURRENT_USER\Environment'
 
@@ -18,23 +19,25 @@ function Get-RegistryValue
     TEMP ExpandString %USERPROFILE%\AppData\Local\Temp
     TMP  ExpandString %USERPROFILE%\AppData\Local\Temp
 .EXAMPLE
-    Get-RegistryValue 'HKCU\Control Panel\Cursors' -IncludeRegistryKey | Select-Object -Last 4
+    Get-RegistryValue 'HKCU\Control Panel\Cursors' -IncludeInput | Select-Object -Last 4
 
-    RegistryKey                Name      Type         Value
-    -----------                ----      ----         -----
-    HKCU\Control Panel\Cursors SizeWE    ExpandString %SystemRoot%\cursors\aero_ew.cur
-    HKCU\Control Panel\Cursors UpArrow   ExpandString %SystemRoot%\cursors\aero_up.cur
-    HKCU\Control Panel\Cursors Wait      ExpandString %SystemRoot%\cursors\aero_busy.ani
-    HKCU\Control Panel\Cursors (Default) String       Windows Default
+    RegistryKey                Name      Type   Value
+    -----------                ----      ----   -----
+    HKCU\Control Panel\Cursors SizeWE    String C:\WINDOWS\cursors\aero_ew.cur
+    HKCU\Control Panel\Cursors UpArrow   String C:\WINDOWS\cursors\aero_up.cur
+    HKCU\Control Panel\Cursors Wait      String C:\WINDOWS\cursors\aero_busy.ani
+    HKCU\Control Panel\Cursors (Default) String Windows Default
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
     param
     (
-        [Parameter(Mandatory = $true,HelpMessage='Enter a registry key',Position=0)]
+        [Parameter(Mandatory,HelpMessage='Enter a registry key',Position=0)]
         [string] $RegistryKey,
 
-        [switch] $IncludeRegistryKey
+        [Alias('IncludeRegistryKey')]
+        [switch] $IncludeInput
     )
 
     begin {
@@ -48,18 +51,18 @@ function Get-RegistryValue
         ForEach-Object {
             $name = $_
 
-            if ($IncludeRegistryKey) {
+            if ($IncludeInput) {
                 $rv = ([ordered] @{
-                    RegistryKey = $RegistryKey
-                    Name        = ''
-                    Type        = ''
-                    Value       = ''
+                        RegistryKey = $RegistryKey
+                        Name        = ''
+                        Type        = ''
+                        Value       = ''
                 })
             } else {
                 $rv = ([ordered] @{
-                    Name        = ''
-                    Type        = ''
-                    Value       = ''
+                        Name        = ''
+                        Type        = ''
+                        Value       = ''
                 })
             }
 

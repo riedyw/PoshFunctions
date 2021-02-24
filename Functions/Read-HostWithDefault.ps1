@@ -25,28 +25,28 @@ function Read-HostWithDefault {
     [CmdletBinding(ConfirmImpact='Low')]
     [OutputType('string')]
     param(
-        [parameter(Mandatory,HelpMessage='Add help message for user')]
+        [parameter(Mandatory,HelpMessage='Please enter what the default value will be if user just hits [Enter]')]
         [string] $Default,
 
         [parameter()]
         [string] $Prompt = 'Enter a password value or accept default of'
     )
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
-        $Response = read-host -Prompt ($Prompt + " [$Default]")
+    process {
+        $Response = Read-Host -Prompt ($Prompt + " [$Default]")
         if ('' -eq $response) {
-            $Default
+            Write-Output -InputObject $Default
         }
         else {
-            $Response
+            Write-Output -InputObject $Response
         }
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 } #EndFunction Read-HostWithDefault

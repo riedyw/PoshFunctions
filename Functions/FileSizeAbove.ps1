@@ -1,4 +1,4 @@
-Filter FileSizeAbove ($Size) {
+filter FileSizeAbove ($Size) {
 <#
 .SYNOPSIS
     To use as a filter against Get-ChildItem

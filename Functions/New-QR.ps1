@@ -127,45 +127,23 @@ Description
 #>
 
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'low')]
-
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSShouldProcess','')]
     param(
-        [Parameter(
-        Mandatory=$false,
-        ValueFromPipeline=$false)]
-        $chs = '150x150',
+        [string] $chs = '150x150',
 
-        [Parameter(
-        Mandatory=$false,
-        ValueFromPipeline=$false)]
-        $ECL = 'L',
+        [string] $ECL = 'L',
 
-        [Parameter(
-        Mandatory=$false,
-        ValueFromPipeline=$false)]
-        $Enc = 'UTF-8',
+        [string] $Enc = 'UTF-8',
 
-        [Parameter(
-        Mandatory=$false,
-        Position=1,
-        ValueFromPipelineByPropertyName)]
+        [Parameter(Position=1, ValueFromPipelineByPropertyName)]
         [string] $fileName="$env:temp\QR.png",
 
-        [Parameter(
-        Mandatory=$false,
-        ValueFromPipeline=$false)]
-        $margin = 4,
+        [int] $margin = 4,
 
-        [Parameter(
-        Mandatory,
-        Position=0,
-        HelpMessage='Message to be encoded',
-        ValueFromPipelineByPropertyName)]
+        [Parameter(Mandatory, Position=0, HelpMessage='Message to be encoded', ValueFromPipelineByPropertyName)]
         [object] $Message,
 
-        [Parameter(
-        Mandatory=$false,
-        ValueFromPipeline=$false)]
-        $Size = 'M'
+        [string] $Size = 'M'
     )
 
     Begin {

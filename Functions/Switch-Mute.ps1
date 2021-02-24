@@ -1,4 +1,4 @@
-Function Switch-Mute (){
+function Switch-Mute {
 <#
 .SYNOPSIS
     Toggles speaker mute
@@ -9,16 +9,15 @@ Function Switch-Mute (){
     [CmdletBinding(ConfirmImpact='Low')]
     Param ()
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
-        $wshShell = new-object -com wscript.shell;$wshShell.SendKeys([char]173)
+    process {
+        $wshShell = New-Object -ComObject wscript.shell;$wshShell.SendKeys([char]173)
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
 }

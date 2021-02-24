@@ -1,4 +1,4 @@
-Function Write-StringArray {
+function Write-StringArray {
 <#
 .SYNOPSIS
     Takes [string] or [string[]] input and writes the code that would create a string array with that information.
@@ -34,7 +34,7 @@ Function Write-StringArray {
     [CmdletBinding(ConfirmImpact='None')]
     [OutputType('string')]
     Param(
-        [Parameter(Mandatory,HelpMessage = 'Enter a long string of text',Position = 0,ValueFromPipeline)]
+        [Parameter(Mandatory,HelpMessage = 'Enter a series of values',Position = 0,ValueFromPipeline)]
         [string[]] $Text,
 
         [string] $VariableName = 'StringArray'
@@ -43,7 +43,7 @@ Function Write-StringArray {
     #endregion Parameter
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         $ReturnVal = "`$$VariableName = @(`n"
     }
 
@@ -56,7 +56,7 @@ Function Write-StringArray {
     end {
         $ReturnVal = $ReturnVal -replace ",`n$", "`n"
         $ReturnVal += ')'
-        write-output $ReturnVal
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Output -InputObject $ReturnVal
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }

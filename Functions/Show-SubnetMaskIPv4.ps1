@@ -1,4 +1,4 @@
-Function Show-SubnetMaskIPv4 {
+function Show-SubnetMaskIPv4 {
 <#
 .SYNOPSIS
     Show IPv4 subnet masks
@@ -11,18 +11,17 @@ Function Show-SubnetMaskIPv4 {
     [CmdletBinding(ConfirmImpact='None')]
     Param ()
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
+    process {
         1..32 | Get-SubnetMaskIPv4 -IncludeCIDR
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
 }
 
 Set-Alias -Name 'Show-SubnetMaskIP' -Value 'Show-SubnetMaskIPv4' -Description 'Alias for Show-SubnetMaskIPv4'

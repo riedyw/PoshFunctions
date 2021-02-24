@@ -1,16 +1,17 @@
 
 function Search-Method {
-<#
-.SYNOPSIS
-    Search method
-.DESCRIPTION
-    Search method
-.NOTES
-    Inspiration: <https://blogs.msdn.microsoft.com/mediaandmicrocode/2008/10/23/microcode-powershell-scripting-tricks-exploring-net-types-with-a-get-type-function-and-reflection/>
-    Changed: Minor clean ups
-#>
+    <#
+            .SYNOPSIS
+            Search method
+            .DESCRIPTION
+            Search method
+            .NOTES
+            Inspiration: <https://blogs.msdn.microsoft.com/mediaandmicrocode/2008/10/23/microcode-powershell-scripting-tricks-exploring-net-types-with-a-get-type-function-and-reflection/>
+            Changed: Minor clean ups
+    #>
 
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
     param
     (
         [type] $parameterType,
@@ -127,5 +128,5 @@ Hope this helps,
 
 James Brundage [MSFT]
 
-Pasted from 
+Pasted from
  #>

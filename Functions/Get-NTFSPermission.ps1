@@ -28,32 +28,42 @@ function Get-NTFSPermission {
     An array of objects containing the fields ComputerName, ShareName, Type, Status
 #>
     [CmdletBinding()]
-    param([string] $Path)
+    param([string[]] $Path)
 
-    write-verbose -message "Path specified was [$($Path)]"
-    if (-not(Test-Path -Path $Path)) {
-        Write-Error -message "Path [$($Path)] does not exist"
-        return
-    } else {
-        Write-Verbose -message "The path [$($Path)] exists"
-    }
-    $acl = get-acl -path $Path
-    $aclPermissions = $acl | select-object -expandproperty access
-    $ComputerName = $env:COMPUTERNAME
-    $returnVariable = @()
-
-    $aclPermissions | foreach-object {
-        $tmpObject = '' | Select-object -property ComputerName, Path, AccessType, IdentityReference, Rights, IsInherited, InheritanceFlags, PropogationFlags
-        $tmpObject.ComputerName         = $ComputerName
-        $tmpObject.Path                 = $Path
-        $tmpObject.AccessType           = $_.AccessControlType
-        $tmpObject.IdentityReference    = $_.IdentityReference
-        $tmpObject.InheritanceFlags     = $_.InheritanceFlags
-#        $tmpObject.Rights               = ConvertFrom-AccessMask -AccessMask $_.FileSystemRights.value__
-        $tmpObject.Rights               = ConvertFrom-FsRight -Rights $_.FileSystemRights.value__
-        $tmpObject.PropogationFlags     = $_.PropogationFlags
-        $returnVariable                += $tmpObject
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    write-output -inputobject $returnVariable
-} # EndFunction Get-NTFSPermission
+    process {
+        foreach ($curPath in $Path) {
+            Write-Verbose -Message "Path specified was [$($curPath)]"
+            if (-not (Test-Path -Path $curPath)) {
+                Write-Error -Message "Path [$($curPath)] does not exist"
+                return
+            } else {
+                Write-Verbose -Message "The path [$($curPath)] exists"
+            }
+            $acl = Get-Acl -Path $curPath
+            $aclPermissions = $acl | Select-Object -ExpandProperty access
+            $ComputerName = $env:COMPUTERNAME
+            $returnVariable = @()
+            $aclPermissions | ForEach-Object {
+                $tmpObject = '' | Select-Object -Property ComputerName, Path, AccessType, IdentityReference, Rights, IsInherited, InheritanceFlags, PropogationFlags
+                $tmpObject.ComputerName = $ComputerName
+                $tmpObject.Path = $curPath
+                $tmpObject.AccessType = $_.AccessControlType
+                $tmpObject.IdentityReference = $_.IdentityReference
+                $tmpObject.InheritanceFlags = $_.InheritanceFlags
+                #        $tmpObject.Rights               = ConvertFrom-AccessMask -AccessMask $_.FileSystemRights.value__
+                $tmpObject.Rights = ConvertFrom-FsRight -Rights $_.FileSystemRights.value__
+                $tmpObject.PropogationFlags = $_.PropogationFlags
+                $returnVariable += $tmpObject
+            }
+        }
+    }
+
+    end {
+        Write-Output -InputObject $returnVariable
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
+    }
+}

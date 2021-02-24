@@ -42,7 +42,7 @@ function Copy-Object {
     #endregion Parameter
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         $result = @()
     }
 
@@ -62,7 +62,6 @@ function Copy-Object {
 
     end {
         Write-Output -InputObject $result
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
 }

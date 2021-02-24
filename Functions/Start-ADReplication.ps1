@@ -1,4 +1,4 @@
-Function Start-ADReplication {
+function Start-ADReplication {
 <#
 .SYNOPSIS
     Forces replication to occur between domain controllers in domain.
@@ -24,6 +24,7 @@ Function Start-ADReplication {
     #region parameter
     [CmdletBinding(ConfirmImpact='Medium')]
     [OutputType('string')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions','')]
     Param
     (
 
@@ -35,21 +36,20 @@ Function Start-ADReplication {
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
-        write-verbose -Message "`$DC is [$DC]"
+        Write-Verbose -Message "`$DC is [$DC]"
     }
 
     process {
-        write-verbose -Message "Testing network connectivity to [$DC]"
-        if (test-connection -computername $dc -count 1 -quiet -ea silentlycontinue -verbose:$false) {
-            Write-Output "Running command [repadmin.exe /syncall /AdeP] on [$dc]"
-            Invoke-command -computername $dc -scriptblock { repadmin.exe /syncall /AdeP } | out-null
+        Write-Verbose -Message "Testing network connectivity to [$DC]"
+        if (Test-Connection -ComputerName $dc -Count 1 -Quiet -ErrorAction silentlycontinue -Verbose:$false) {
+            Write-Output -InputObject "Running command [repadmin.exe /syncall /AdeP] on [$dc]"
+            Invoke-Command -ComputerName $dc -ScriptBlock { repadmin.exe /syncall /AdeP } | Out-Null
         } else {
-            Write-Error "The DC specified [$DC] could not be reached"
+            Write-Error -Message "The DC specified [$DC] could not be reached"
         }
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
-} #EndFunction Start-ADReplication
+}

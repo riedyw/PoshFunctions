@@ -10,17 +10,17 @@ Filter sed {
     The string to replace it with
 .EXAMPLE
     'Hello There' | sed 'Hello' 'Goodbye'
+
     Would return
     Goodbye There
 .OUTPUTS
     [string]
-.LINK
-    about_Functions
 #>
 
     #region Parameter
-    [CmdletBinding(ConfirmImpact='None')]
+    [CmdletBinding(ConfirmImpact = 'None')]
     [OutputType('string')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
     Param(
         [Parameter(Mandatory, HelpMessage = 'Enter a string to search for', Position = 0, ValueFromPipeline = $False)]
         [string] $Before,
@@ -31,7 +31,17 @@ Filter sed {
     )
     #endregion Parameter
 
-    foreach-object {
-        $_ -replace $before,$after
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+    }
+
+    process {
+        ForEach-Object {
+            $_ -replace $before, $after
+        }
+    }
+
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }

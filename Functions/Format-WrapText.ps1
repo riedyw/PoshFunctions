@@ -1,4 +1,4 @@
-Function Format-WrapText {
+function Format-WrapText {
 <#
 .SYNOPSIS
     Wraps text at a particular column width
@@ -11,7 +11,7 @@ Function Format-WrapText {
 .PARAMETER Screen
     A switch indicating that the wrap should occur at the width of the current Powershell window.
 .EXAMPLE
-    Format-WrapText -Text "word1 word2 word3 word4 word5" -Width 10
+    Format-WrapText -Text "word1 word2 word3 word4 word5" -Width 12
 
     Would return
     word1 word2
@@ -25,19 +25,20 @@ Function Format-WrapText {
 #>
 
     #region Parameter
-    [CmdletBinding(ConfirmImpact='Low',DefaultParameterSetName='Width')]
+    [CmdletBinding(ConfirmImpact = 'Low', DefaultParameterSetName = 'Width')]
     [OutputType('string')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
     Param(
-        [Parameter(Mandatory,HelpMessage = 'Enter a long string of text',Position = 0,ValueFromPipeline,ParameterSetName='Width')]
-        [Parameter(Mandatory,HelpMessage = 'Enter a long string of text',Position = 0,ValueFromPipeline,ParameterSetName='Screen')]
+        [Parameter(Mandatory, HelpMessage = 'Enter a long string of text', Position = 0, ValueFromPipeline, ParameterSetName = 'Width')]
+        [Parameter(Mandatory, HelpMessage = 'Enter a long string of text', Position = 0, ValueFromPipeline, ParameterSetName = 'Screen')]
         [string[]] $Text,
 
-        [Parameter(ParameterSetName='Width')]
+        [Parameter(ParameterSetName = 'Width')]
         [int] $Width = 80,
 
-        [Parameter(ParameterSetName='Screen')]
+        [Parameter(ParameterSetName = 'Screen')]
         [switch] $Screen
-        )
+    )
     #endregion Parameter
 
     begin {
@@ -55,30 +56,31 @@ Function Format-WrapText {
             $NewText = @($NewText, $CurLine) -join ' '
         }
     }
+
     end {
         $NewText = $NewText.TrimStart().TrimEnd()
-        write-verbose -Message "NewText is [$NewText]"
+        Write-Verbose -Message "NewText is [$NewText]"
         $Words = $NewText -split '\s+'
         $Col = 0
         [string] $Line = $null
         foreach ( $Word in $Words ) {
 
             $Col += $Word.Length + 1
-            Write-Verbose -Message "Currently on word [$Word], col [$Col]"            
+            Write-Verbose -Message "Currently on word [$Word], col [$Col]"
             if ( $Col -gt $Width ) {
                 Write-Output -InputObject $Line
                 [string] $Line = $null
-                $Line += "$word "
-                $Col = 0 + $word.Length + 1
+                $Line += "$Word "
+                $Col = 0 + $Word.Length + 1
             } else {
-                $Line += "$word "
+                $Line += "$Word "
             }
         }
-        if ($null -ne $line) {
-            write-output -inputobject "$line"
+        if ($null -ne $Line) {
+            Write-Output -InputObject "$Line"
         }
         Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
     }
-} #EndFunction Format-WrapText
+}
 
 Set-Alias -Name 'WrapText' -Value 'Format-WrapText'

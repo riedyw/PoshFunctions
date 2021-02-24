@@ -1,5 +1,4 @@
 function New-PopUp {
-
 <#
 .SYNOPSIS
     New-Popup will display a popup message
@@ -19,18 +18,6 @@ function New-PopUp {
     No     = 7
 
     If no button is clicked, the return value is -1.
-.EXAMPLE
-    new-popup -message "The update script has completed" -title "Finished" -time 5
-
-    This will display a popup message using the default OK button and default
-    Information icon. The popup will automatically dismiss after 5 seconds.
-.EXAMPLE
-    $answer = new-popup -Message "Please pick" -Title "form" -buttons "OKCancel" -icon "information"
-
-    If the user clicks "OK" the $answer variable will be equal to 1. If the user clicks "Cancel" the
-    $answer variable will be equal to 2.
-.NOTES
-    Last Updated: 6/17/2018
 .PARAMETER Message
     The message you want displayed
 .PARAMETER Title
@@ -56,8 +43,21 @@ function New-PopUp {
     Switch which will force the popup window to appear on top of all other windows.
 .PARAMETER  AsString
     Will return a human readable representation of which button was pressed as opposed to an integer value.
-.INPUTS
-    None
+.EXAMPLE
+    new-popup -message "The update script has completed" -title "Finished" -time 5
+
+    This will display a popup message using the default OK button and default
+    Information icon. The popup will automatically dismiss after 5 seconds.
+.EXAMPLE
+    $answer = new-popup -Message "Please pick" -Title "form" -buttons "OKCancel" -icon "information"
+
+    If the user clicks "OK" the $answer variable will be equal to 1. If the user clicks "Cancel" the
+    $answer variable will be equal to 2.
+.EXAMPLE
+    $answer = new-popup -Message "Please pick" -Title "form" -buttons "OKCancel" -icon "information" -AsString
+
+    If the user clicks "OK" the $answer variable will be equal to 'OK'. If the user clicks "Cancel" the
+    $answer variable will be 'Cancel'
 .OUTPUTS
     An integer with the following value depending upon the button pushed.
 
@@ -76,6 +76,7 @@ function New-PopUp {
     #region Parameters
     [CmdletBinding()]
     [OutputType('int')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions','')]
     Param (
         [Parameter(Position=0,Mandatory,HelpMessage='Enter a message for the popup')]
         [ValidateNotNullorEmpty()]
@@ -108,8 +109,8 @@ function New-PopUp {
     )
     #endregion Parameters
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
@@ -152,14 +153,14 @@ function New-PopUp {
         }
 
         #create the COM Object
-        Try {
+        try {
             $wshell = New-Object -ComObject Wscript.Shell -ErrorAction Stop
             #Button and icon type values are added together to create an integer value
             $return = $wshell.Popup($Message,$Time,$Title,$ButtonsKey[$Buttons] + $Iconkey[$Icon] + $ShowOnTopValue)
             if ($return -eq -1) {
-                write-verbose -Message "User timedout [$($returnkey[$return])] after [$time] seconds"
+                Write-Verbose -Message "User timedout [$($returnkey[$return])] after [$time] seconds"
             } else {
-                write-verbose -Message "User pressed [$($returnkey[$return])]"
+                Write-Verbose -Message "User pressed [$($returnkey[$return])]"
             }
             if ($AsString) {
                 $ReturnKey[$return]
@@ -168,15 +169,15 @@ function New-PopUp {
                 $return
             }
         }
-        Catch {
+        catch {
             #You should never really run into an exception in normal usage
             Write-Warning -Message 'Failed to create Wscript.Shell COM object'
             Write-Warning -Message ($_.exception.message)
         }
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 } # EndFunction New-PopUp

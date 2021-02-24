@@ -1,4 +1,4 @@
-Function Convert-HexToARGB {
+function Convert-HexToARGB {
 <#
 .SYNOPSIS
     Converts Hex to ARGB values
@@ -21,15 +21,15 @@ Function Convert-HexToARGB {
 #>
 
     #region Parameter
-    [CmdletBinding(ConfirmImpact='None')]
+    [CmdletBinding(ConfirmImpact = 'None')]
     Param(
-        [parameter(Mandatory)]
+        [parameter(Mandatory, HelpMessage = 'Enter hex color val ARGB in form #AARRGGBB')]
         [string] $Hex_Val
     )
     #endregion Parameter
 
     begin {
-    Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
     }
 
     process {

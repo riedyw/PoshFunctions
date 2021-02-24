@@ -1,4 +1,4 @@
-Function ConvertTo-PlainText {
+function ConvertTo-PlainText {
 <#
 .SYNOPSIS
     Converts the System.Security.SecureString to plain text.
@@ -22,7 +22,8 @@ Function ConvertTo-PlainText {
     } #close begin block
 
     process {
-        [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($SecureString))
+        $ReturnVal = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($SecureString))
+        write-output $ReturnVal
     }
 
     end {

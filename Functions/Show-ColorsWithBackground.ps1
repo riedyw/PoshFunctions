@@ -1,38 +1,39 @@
-Function Show-ColorsWithBackground {
-<#
-.SYNOPSIS
-    Show-ColorsWithBackground displays all combinations of foreground/background of the console colors.
-.DESCRIPTION
-    Show-ColorsWithBackground displays all combinations of foreground/background of the console colors.
-.NOTES
-    Uses Write-Host to display colors and as such does not use the pipeline.
-.LINK
-    Write-Host
-#>
+function Show-ColorsWithBackground {
+    <#
+            .SYNOPSIS
+            Show-ColorsWithBackground displays all combinations of foreground/background of the console colors.
+            .DESCRIPTION
+            Show-ColorsWithBackground displays all combinations of foreground/background of the console colors.
+            .NOTES
+            Uses Write-Host to display colors and as such does not use the pipeline.
+            .LINK
+            Write-Host
+    #>
 
     [CmdletBinding(ConfirmImpact='None')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost','')]
     Param ()
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
+    process {
         $colors = [Enum]::GetValues( [ConsoleColor] )
         $bgcolors = $colors
-        $max = ($colors | foreach-object { "$_ ".Length } | Measure-Object -Maximum).Maximum
+        $max = ($colors | ForEach-Object { "$_ ".Length } | Measure-Object -Maximum).Maximum
         foreach ( $bgcolor in $bgcolors ) {
-            write-host ("{0,2}{1,$max}" -f [int] $bgcolor, $bgcolor) -nonewline
+            Write-Host ("{0,2}{1,$max}" -f [int] $bgcolor, $bgcolor) -NoNewline
             foreach ($color in $colors) {
-                Write-Host ("{0,$max}" -f ,$color) -NoNewline -background $bgcolor -foreground $color
+                Write-Host ("{0,$max}" -f ,$color) -NoNewline -BackgroundColor $bgcolor -ForegroundColor $color
                 #if ($color -eq "Gray") { write-host " " ; write-host "  " -NoNewLine}
             }
-        write-host ' '
+            Write-Host ' '
         }
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
-} #EndFunction Show-ColorsWithBackground
+}

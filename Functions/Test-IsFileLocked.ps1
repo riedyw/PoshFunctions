@@ -1,7 +1,4 @@
-# inspired by https://mcpmag.com/articles/2018/07/10/check-for-locked-file-using-powershell.aspx
-# changed logic for testing if file exists
-
-Function Test-IsFileLocked {
+function Test-IsFileLocked {
 <#
 .SYNOPSIS
     Determine if a file is locked.
@@ -25,6 +22,10 @@ Function Test-IsFileLocked {
     Test-IsFileLocked -Path .\FileDoesNotExist
 
     Test-IsFileLocked : ERROR: Path [.\FileDoesNotExist] does not exist
+.NOTES
+    # inspired by https://mcpmag.com/articles/2018/07/10/check-for-locked-file-using-powershell.aspx
+    # changed logic for testing if file exists
+
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
@@ -35,11 +36,15 @@ Function Test-IsFileLocked {
         [string[]]$Path
     )
 
-    Process {
-        ForEach ($Item in $Path) {
-            if (Test-Path $Item) {
-                if (Test-Path $Item -Pathtype Container) {
-                    Write-Error "ERROR: Path [$Item] is a folder"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+    }
+
+    process {
+        foreach ($Item in $Path) {
+            if (Test-Path -Path $Item) {
+                if (Test-Path -Path $Item -PathType Container) {
+                    Write-Error -Message "ERROR: Path [$Item] is a folder"
                 } else {
                     $Files = Convert-Path -Path $Item
                     foreach ($File in $Files) {
@@ -63,5 +68,9 @@ Function Test-IsFileLocked {
                 Write-Error -Message "ERROR: Path [$Item] does not exist"
             }
         }
+    }
+
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }

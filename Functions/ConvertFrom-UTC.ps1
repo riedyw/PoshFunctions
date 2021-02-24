@@ -1,11 +1,13 @@
-# inspired by: https://blogs.technet.microsoft.com/heyscriptingguy/2017/02/01/powertip-convert-from-utc-to-my-local-time-zone/
-
-Function ConvertFrom-UTC {
+function ConvertFrom-UTC {
 <#
 .SYNOPSIS
     Converts a datetime from UTC to local time
 .DESCRIPTION
     Converts a datetime from Universal Coordinated Time to local time
+.PARAMETER Date
+    The date you wish to convert to UTC
+.PARAMETER IncludeInput
+    Switch to enable displaying input parameters in the output
 .EXAMPLE
     ConvertFrom-UTC -DateTime "1/25/2018 1:34:31 PM"
 
@@ -35,34 +37,53 @@ Function ConvertFrom-UTC {
     Assuming that your local time zone is EST, and your region/culture is EN-US this would return the datetime
 
     Thursday, March 15, 2018 8:00:00 AM
+.EXAMPLE
+    ConvertFrom-UTC -date '2/1/2018 9:27:59 PM' -IncludeInput
+
+    Would return the following if your local time zone is EST, and your region/culture is EN-US
+    UTC                 LocalTime
+    ---                 ---------
+    2/1/2018 9:27:59 PM 2/1/2018 4:27:59 PM
+.NOTES
+    # inspired by: https://blogs.technet.microsoft.com/heyscriptingguy/2017/02/01/powertip-convert-from-utc-to-my-local-time-zone/
 .LINK
     [System.TimeZoneInfo]
 #>
     [CmdletBinding()]
     [OutputType('datetime')]
     param(
-        [parameter(Mandatory, ValueFromPipeline, Position=0 )]
-        [string] $UTCTime
+        [parameter(Mandatory, ValueFromPipeline, Position = 0)]
+        [datetime[]] $Date,
+
+        [switch] $IncludeInput
     )
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
-    } #close begin block
-
-    Process {
-        $newUTCTime = get-date -Date $UTCTime
-        write-verbose -Message "You entered a UTC Time of:  '$UTCTime'"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         $strCurrentTimeZone = (Get-CimInstance -ClassName win32_timezone).StandardName
         $strCurrentTimeZoneDescription = (Get-CimInstance -ClassName win32_timezone).Description
-        write-verbose -Message "Your local timezone is '$strCurrentTimeZoneDescription'"
-        $TZ = [System.TimeZoneInfo]::FindSystemTimeZoneById($strCurrentTimeZone)
-        $LocalTime = [System.TimeZoneInfo]::ConvertTimeFromUtc($newUTCTime, $TZ)
-        write-verbose -Message "Your local time is: '$LocalTime'"
-        write-output -InputObject $LocalTime
+        Write-Verbose -Message "Your local timezone is '$strCurrentTimeZoneDescription'"
+        $TZ = [TimeZoneInfo]::FindSystemTimeZoneById($strCurrentTimeZone)
+    } #close begin block
+
+    process {
+        foreach ($currentDate in $Date) {
+            $newUTCTime = Get-Date -Date $currentDate
+            Write-Verbose -Message "You entered a UTC Time of:  [$currentDate]"
+            $ReturnVal = [TimeZoneInfo]::ConvertTimeFromUtc($newUTCTime, $TZ)
+            if ($IncludeInput) {
+                New-Object -TypeName 'psobject' -Property ([ordered] @{
+                        UTC       = $currentDate
+                        LocalTime = $ReturnVal
+                    })
+            } else {
+                Write-Output -InputObject $ReturnVal
+            }
+        }
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
-    } #close end block
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
+    }
 
-} #EndFunction ConvertFrom-UTC
+}

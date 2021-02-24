@@ -1,4 +1,4 @@
-Function Get-SID {
+function Get-SID {
 <#
 .SYNOPSIS
     To get the SID of a specified domain user passed as either an (email) or (domain,username)
@@ -15,21 +15,21 @@ Function Get-SID {
 .PARAMETER Email
     The email that you wish to query. Not mandatory
     Part of ParameterSetName Email
-.PARAMETER IncludeOriginal
-    Switch to enable the original input parameters to appear in the output.
+.PARAMETER IncludeInput
+    Switch to enable the original input parameters to appear in the output. Aliased to 'IncludeOriginal'
     Is present in both ParameterSetName DomainUser and Email
 .EXAMPLE
     Get-SID
 
     S-1-5-21-1482476501-746137067-839522115-29321
 .EXAMPLE
-    Get-SID -IncludeOriginal
+    Get-SID -IncludeInput
 
     Domain      UserName      SID
     ------      --------      ---
     contosco    administrator S-1-5-21-1482476501-846137067-872522115-500
 .EXAMPLE
-    Get-SID -Email Administrator@Contosco.com -IncludeOriginal
+    Get-SID -Email Administrator@Contosco.com -IncludeInput
 
     Email                      SID
     -----                      ---
@@ -54,7 +54,8 @@ Function Get-SID {
 
         [Parameter(ParameterSetName = 'DomainUser')]
         [Parameter(ParameterSetName = 'Email')]
-        [switch] $IncludeOriginal
+        [Alias('IncludeOriginal')]
+        [switch] $IncludeInput
 
     )
     #endregion parameter
@@ -70,13 +71,13 @@ Function Get-SID {
                 $ADObj = [System.Security.Principal.NTAccount]::new($Domain, $Username)
                 $SID = $AdObj.Translate([System.Security.Principal.SecurityIdentifier])
                 $ReturnVal = $SID.Value
-                if ($IncludeOriginal) {
+                if ($IncludeInput) {
                     $prop = ([ordered] @{
                             Domain   = $Domain.ToLower()
                             UserName = $Username.ToLower()
                             SID      = $ReturnVal
                         } )
-                    New-Object -TypeName psobject -prop $prop
+                    New-Object -TypeName psobject -Property $prop
                 } else {
                     Write-Output -InputObject $ReturnVal
                 }
@@ -85,12 +86,12 @@ Function Get-SID {
                 $AdObj = [System.Security.Principal.NTAccount]::new($Email)
                 $SID = $AdObj.Translate([System.Security.Principal.SecurityIdentifier])
                 $ReturnVal = $SID.Value
-                if ($IncludeOriginal) {
+                if ($IncludeInput) {
                     $prop = ([ordered] @{
                             Email = $Email.ToLower()
                             SID   = $ReturnVal
                         } )
-                    New-Object -TypeName psobject -prop $prop
+                    New-Object -TypeName psobject -Property $prop
                 } else {
                     Write-Output -InputObject $ReturnVal
                 }
@@ -101,5 +102,4 @@ Function Get-SID {
     end {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
-} #EndFunction Get-SID
+}

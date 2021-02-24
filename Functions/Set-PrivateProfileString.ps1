@@ -39,6 +39,7 @@ function Set-PrivateProfileString {
 #>
 
     [CmdletBinding(ConfirmImpact='Low')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions','')]
     param(
         [string] $File,
 
@@ -52,14 +53,14 @@ function Set-PrivateProfileString {
     )
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
-        Write-Verbose -Message "Trimming parameters."
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+        Write-Verbose -Message 'Trimming parameters.'
         $Section = $Section.Trim()
         $Key = $Key.Trim()
         $Value = $Value.Trim()
     }
 
-    Process {
+    process {
         if (-not (Test-Path -Path $File) -and $CreateFile) {
             Write-Verbose -Message "File [$File] does not exist, creating it."
             try {
@@ -68,7 +69,7 @@ function Set-PrivateProfileString {
                 Write-Error -Message "Could not create file [$File], probably permissions not valid."
             }
         }
-        if (Test-Path $File) {
+        if (Test-Path -Path $File) {
             $ResolveFile = Resolve-Path -Path $File
             if ($ResolveFile.count -gt 1) {
                 Write-Error -Message "ERROR: File specification [$File] resolves to more than 1 file."
@@ -82,11 +83,9 @@ function Set-PrivateProfileString {
         } else {
             Write-Error -Message "ERROR: File [$File] does not exist"
         }
-
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
-} #EndFunction Set-PrivateProfileString
+}

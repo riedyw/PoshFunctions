@@ -1,4 +1,4 @@
-Function Invoke-Speak {
+function Invoke-Speak {
 <#
 .SYNOPSIS
     Use the speech synthesizer in Powershell. Can be synchronous or asynchronous. Option for random voice.
@@ -27,12 +27,13 @@ Function Invoke-Speak {
         [string[]] $Expression,
 
         [switch] $Async,
-        
+
         [switch] $RandomVoice
     )
 
     begin {
         $String = ''
+        Write-Verbose -Message "Starting [$($MyInvocation.MyCommand)]"
     }
 
     process {
@@ -52,6 +53,7 @@ Function Invoke-Speak {
         } else {
             $null = $SpeechSynth.Speak($String)
         }
+        Write-Verbose -Message "Ending [$($MyInvocation.MyCommand)]"
     }
 
 }

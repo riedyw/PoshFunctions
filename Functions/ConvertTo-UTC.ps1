@@ -1,5 +1,5 @@
-Function ConvertTo-UTC {
-    <#
+function ConvertTo-UTC {
+<#
 .SYNOPSIS
     Converts a datetime from local time to UTC
 .DESCRIPTION
@@ -37,7 +37,7 @@ Function ConvertTo-UTC {
     3/15/2018 12:00:00 PM 3/15/2018 4:00:00 PM
 #>
 
-    [CmdletBinding(ConfirmImpact='None')]
+    [CmdletBinding(ConfirmImpact = 'None')]
     [OutputType('datetime')]
     Param
     (
@@ -49,18 +49,18 @@ Function ConvertTo-UTC {
     )
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
-    } #close begin block
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+        $strCurrentTimeZone = (Get-CimInstance -ClassName win32_timezone).Description
+        Write-Verbose -Message "Your local timezone is '$strCurrentTimeZone'"
+    }
 
     process {
         foreach ($currentDate in $Date) {
             Write-Verbose -Message "You entered a Local Time of:  '$currentDate'"
-            $strCurrentTimeZone = (Get-CimInstance -ClassName win32_timezone).Description
-            Write-Verbose -Message "Your local timezone is '$strCurrentTimeZone'"
             $ReturnVal = $currentDate.ToUniversalTime()
             Write-Verbose -Message "The UTC time is: '$ReturnVal'"
             if ($IncludeOriginal) {
-                New-Object 'psobject' -Property ([ordered] @{Original = $currentDate; UTC = $ReturnVal })
+                New-Object -TypeName 'psobject' -Property ([ordered] @{LocalTime = $currentDate; UTC = $ReturnVal })
             } else {
                 Write-Output -InputObject $ReturnVal
             }
@@ -68,7 +68,7 @@ Function ConvertTo-UTC {
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
-    } #close end block
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
+    }
 
 } #EndFunction ConvertTo-UTC

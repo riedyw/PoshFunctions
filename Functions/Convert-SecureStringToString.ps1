@@ -1,5 +1,3 @@
-# inspired by: https://gallery.technet.microsoft.com/Execute-PowerShell-Script-38881dce
-
 function Convert-SecureStringToString {
 <#
 .SYNOPSIS
@@ -15,17 +13,19 @@ function Convert-SecureStringToString {
     Convert-SecureStringToString -SecureString $SecureString
 
     Password
+.NOTES
+    # inspired by: https://gallery.technet.microsoft.com/Execute-PowerShell-Script-38881dce
 #>
 
     [CmdletBinding(ConfirmImpact='Low')]
     [OutputType('string')]
     Param (
         [Parameter(Mandatory)]
-        [System.Security.SecureString] $SecureString
+        [securestring] $SecureString
     )
 
     $UserName = 'domain\user'
     $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $UserName, $SecureString
-    $Credential.GetNetworkCredential().Password
+    Write-Output -InputObject $Credential.GetNetworkCredential().Password
 
 }

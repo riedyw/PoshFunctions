@@ -1,4 +1,4 @@
-Function ConvertTo-OrderedDictionary {
+function ConvertTo-OrderedDictionary {
 <#
 .SYNOPSIS
     Converts a HashTable, Array, or an OrderedDictionary to an OrderedDictionary.

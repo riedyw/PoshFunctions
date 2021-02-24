@@ -20,7 +20,7 @@ function Get-Shortcut {
 
     [CmdletBinding(ConfirmImpact='None')]
     param(
-        $path = $null
+        [string] $path
     )
 
     $obj = New-Object -ComObject WScript.Shell
@@ -34,23 +34,24 @@ function Get-Shortcut {
         $path = Get-ChildItem -Path $path -Filter *.lnk
     }
     $path | ForEach-Object {
-        if ($_ -is [string]) {
-        $_ = Get-ChildItem -Path $_ -Filter *.lnk
+        $tmpfile = $_
+        if ($tmpfile -is [string]) {
+            $tmpfile = Get-ChildItem -Path $_ -Filter *.lnk
         }
-        if ($_) {
-        $link = $obj.CreateShortcut($_.FullName)
+        if ($tmpfile) {
+            $link = $obj.CreateShortcut($_.FullName)
 
-        $info = @{}
-        $info.Hotkey = $link.Hotkey
-        $info.TargetPath = $link.TargetPath
-        $info.LinkPath = $link.FullName
-        $info.Arguments = $link.Arguments
-        $info.Target = try {Split-Path -Path $info.TargetPath -Leaf } catch { 'n/a'}
-        $info.Link = try { Split-Path -Path $info.LinkPath -Leaf } catch { 'n/a'}
-        $info.WindowStyle = $link.WindowStyle
-        $info.IconLocation = $link.IconLocation
+            $info = @{}
+            $info.Hotkey = $link.Hotkey
+            $info.TargetPath = $link.TargetPath
+            $info.LinkPath = $link.FullName
+            $info.Arguments = $link.Arguments
+            $info.Target = try {Split-Path -Path $info.TargetPath -Leaf } catch { 'n/a'}
+            $info.Link = try { Split-Path -Path $info.LinkPath -Leaf } catch { 'n/a'}
+            $info.WindowStyle = $link.WindowStyle
+            $info.IconLocation = $link.IconLocation
 
-        New-Object -TypeName PSObject -Property $info
+            New-Object -TypeName PSObject -Property $info
         }
     }
 }

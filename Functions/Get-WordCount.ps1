@@ -1,4 +1,4 @@
-Function Get-WordCount {
+function Get-WordCount {
 <#
 .SYNOPSIS
     Gets summary statistics of all the words and how many of each there are
@@ -7,7 +7,7 @@ Function Get-WordCount {
 .PARAMETER Path
     The path of the file
 .PARAMETER Exclude
-    A string or array of strings that should be excluded.
+    The path to a file containing strings you want excluded from the count
 .EXAMPLE
     For all the examples assume you have a file called Sample.txt that contains the following:
     unicorn unicorn unicorn unicorn
@@ -37,43 +37,44 @@ Function Get-WordCount {
 #>
 
     [CmdletBinding()]
-    param ([Parameter(Mandatory,HelpMessage='Please enter a filename so we can count the words',ValueFromPipeline)]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '')]
+    param ([Parameter(Mandatory, HelpMessage = 'Please enter a filename so we can count the words', ValueFromPipeline)]
         [string] $Path,
 
-        [string[]] $Exclude
+        [string] $Exclude
     )
 
     begin {
-
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
-        write-verbose -message "PATH    = [$($Path)]"
-        $textString = $(get-content -path $Path) -join ' '
+        Write-Verbose -Message "PATH    = [$($Path)]"
+        $textString = $(Get-Content -Path $Path) -join ' '
         $textString = $textString -replace "`n", ' '
         $textString = $textString -replace '[^a-z| ]'
         $textWords = $textString -split '\s+'
 
-        $statistic = $textWords | foreach-object -Begin {$hash=@{}} -Process {$hash.$_ ++} -End {$hash}
+        $statistic = $textWords | ForEach-Object -Begin { $hash = @{} } -Process { $hash.$_ ++ } -End { $hash }
 
         if ( $exclude ) {
-            write-verbose -message "EXCLUDE = $Exclude"
-            $excludeString = $(get-content -path $exclude) -join ' '
+            Write-Verbose -Message "EXCLUDE = $Exclude"
+            $excludeString = $(Get-Content -Path $exclude) -join ' '
             $excludeString = $excludeString -replace "`n", ' '
             $excludeString = $excludeString -replace '[^a-z| ]'
             $excludeWords = $excludeString -split '\s+'
-            $excludeWords | foreach-object {
+            $excludeWords | ForEach-Object {
                 if ($statistic.ContainsKey($_)) {
                     $statistic.Remove($_)
                 }
             }
         }
-        write-verbose -message 'Word frequency in descending order'
-        $statistic.GetEnumerator() | sort-object -Property value -Descending
+        Write-Verbose -Message 'Word frequency in descending order'
+        $statistic.GetEnumerator() | Sort-Object -Property Value -Descending
     }
 
     end {
-
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 } #EndFunction Get-WordCount

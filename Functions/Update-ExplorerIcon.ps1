@@ -9,6 +9,7 @@ function Update-ExplorerIcon {
 #>
 
     [CmdletBinding(ConfirmImpact='Low')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions','')]
     param()
 
     $code = @'

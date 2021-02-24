@@ -1,7 +1,4 @@
-# Source: https://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
-# get-help about_ISE-Color-Theme-Cmdlets for more information
-
-Function Get-Folder {
+function Get-Folder {
 <#
 .SYNOPSIS
     Gets a filename through the native OpenFileDialog. Can select a single file or multiple files.
@@ -50,38 +47,47 @@ Function Get-Folder {
                 to $pwd and to give an alias of 'Path' which is commonly used parameter name.
                 Also changed syntax to Add-Type -AssemblyName to conform with
                 Powershell 2+ and to be more "Powershelly".
+
+    # Source: https://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
+    # get-help about_ISE-Color-Theme-Cmdlets for more information
 #>
 
-    [CmdletBinding(ConfirmImpact='None')]
+    [CmdletBinding(ConfirmImpact = 'None')]
     [OutputType([string[]])]
     Param(
-        [parameter(Mandatory=$false)]
-        [alias('InitialDirectory','RootFolder')]
+        [Alias('InitialDirectory', 'RootFolder')]
         [string] $Path = "$pwd", #default
 
-        [parameter()]
         [switch] $NoNewFolder, #default
 
-        [parameter()]
-        [alias('Description')]
+        [Alias('Description')]
         [string] $Title
 
     )
-    Add-Type -AssemblyName System.Windows.Forms
 
-    $FolderBrowserDialog = New-Object -typename System.Windows.Forms.FolderBrowserDialog
-    $FolderBrowserDialog.RootFolder = 'MyComputer'
-    $FolderBrowserDialog.SelectedPath = $Path
-    if ($NoNewFolder) { $FolderBrowserDialog.ShowNewFolderButton      = $false }
-    if ($Title) { $FolderBrowserDialog.Description = $Title }
-
-    $Result = $FolderBrowserDialog.ShowDialog()
-
-    # needed to play around to force PowerShell to return an array.
-    if ($Result -eq 'OK') {
-        [array] $ReturnArray = $FolderBrowserDialog.SelectedPath
-        return (,$ReturnArray)
-    } else {
-        # nothing to return
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
-} #end function Get-Folder
+
+    process {
+        Add-Type -AssemblyName System.Windows.Forms
+
+        $FolderBrowserDialog = New-Object -TypeName System.Windows.Forms.FolderBrowserDialog
+        $FolderBrowserDialog.RootFolder = 'MyComputer'
+        $FolderBrowserDialog.SelectedPath = $Path
+        if ($NoNewFolder) { $FolderBrowserDialog.ShowNewFolderButton = $false }
+        if ($Title) { $FolderBrowserDialog.Description = $Title }
+
+        $Result = $FolderBrowserDialog.ShowDialog()
+
+        # needed to play around to force PowerShell to return an array.
+        if ($Result -eq 'OK') {
+            [array] $ReturnArray = $FolderBrowserDialog.SelectedPath
+            Write-Output -InputObject (, $ReturnArray)
+        }
+    }
+
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
+    }
+}

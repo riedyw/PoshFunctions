@@ -1,4 +1,4 @@
-Function Get-RandomDate {
+function Get-RandomDate {
 <#
 .SYNOPSIS
     Gets a random date
@@ -46,6 +46,19 @@ Function Get-RandomDate {
     Get-RandomDate  -MinDate 1/1/19 -MaxDate 2/1/19
     Would return something similar to the following:
     Wednesday, January 30, 2019 1:25:06 AM
+.EXAMPLE
+    # Desire to get random date between a year in the past, and a year in the future
+
+    Get-RandomDate  -MinDate (Get-Date).AddMonths(-12) -MaxDate (Get-Date).AddMonths(12)
+
+    Saturday, March 27, 2021 3:22:55 AM
+.EXAMPLE
+    Get-RandomDate -DateLimit UnixEpoch -IncludeInput
+
+
+    DateLimit MinDate              MaxDate              RandomDate
+    --------- -------              -------              ----------
+    UnixEpoch 1/1/1970 12:00:00 AM 1/19/2038 3:14:07 AM 9/19/2003 1:50:32 PM
 .OUTPUTS
     [datetime]
 .LINK
@@ -53,10 +66,10 @@ Function Get-RandomDate {
 #>
 
     #region Parameter
-    [CmdletBinding(ConfirmImpact='None')]
+    [CmdletBinding(ConfirmImpact = 'None')]
     [OutputType('psobject')]
     Param(
-        [Parameter(Position = 0, ValueFromPipeline)]
+        [Parameter(Position = 0)]
         [datetime] $MinDate,
 
         [Parameter(Position = 1)]
@@ -64,15 +77,14 @@ Function Get-RandomDate {
 
         [Parameter()]
         [ValidateSet('DateTime', 'UnixEpoch', 'FileTime')]
-        [String] $DateLimit = 'DateTime'
+        [String] $DateLimit = 'DateTime',
+
+        [switch] $IncludeInput
     )
     #endregion Parameter
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
-    }
-
-    process {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         if (-not $MinDate) {
             $MinDate = [datetime]::MinValue
             Write-Verbose -Message "`$MinDate not specified, setting it to [$($MinDate)]"
@@ -124,12 +136,24 @@ Function Get-RandomDate {
             Write-Error -Message "`$MinDate can not be greater than `$MaxDate"
             return
         }
+    }
+
+    process {
         $ReturnValue = Get-Date -Date (Get-Random -Minimum ($MinDate.Ticks) -Maximum ($MaxDate.Ticks + 1))
         Write-Verbose -Message "The random date calculated is [$ReturnValue]"
-        $ReturnValue
+        if ($IncludeInput) {
+            New-Object -TypeName psobject -Property ([ordered] @{
+                    DateLimit  = $DateLimit
+                    MinDate    = $MinDate
+                    MaxDate    = $MaxDate
+                    RandomDate = $ReturnValue
+                })
+        } else {
+            Write-Output -InputObject $ReturnValue
+        }
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 } #EndFunction Get-RandomDate

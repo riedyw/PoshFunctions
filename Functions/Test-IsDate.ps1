@@ -1,4 +1,4 @@
-Function Test-IsDate {
+function Test-IsDate {
 <#
 .SYNOPSIS
     Tests to see if the specified string is a valid [datetime] string
@@ -40,34 +40,32 @@ Function Test-IsDate {
     )
     #endregion Param
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    #region Main
-    Process {
+    process {
         foreach ($d in $DateString) {
-            Try {
-                write-verbose -Message "The string you entered is [$DateString]"
+            try {
+                Write-Verbose -Message "The string you entered is [$DateString]"
                 [DateTime] $d | Out-Null
                 if ($IncludeInput) {
-                    new-object -TypeName psobject -Property @{Input="$d";Result=$true; DateTime=[DateTime] $d}
+                    New-Object -TypeName psobject -Property ([ordered] @{Input="$d";Result=$true; DateTime=[DateTime] $d})
                 } else {
-                    Write-Output -inputobject $True
+                    Write-Output -InputObject $True
                 }
-            } Catch {
+            } catch {
                 if ($IncludeInput) {
-                    new-object -TypeName psobject -Property @{Input="$d";Result=$false; DateTime=$null}
+                    New-Object -TypeName psobject -Property ([ordered] @{Input="$d";Result=$false; DateTime=$null})
                 } else {
-                    Write-Output -inputobject $false
+                    Write-Output -InputObject $false
                 }
             }
         }
     }
-    #endregion Main
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 } #EndFunction Test-IsDate

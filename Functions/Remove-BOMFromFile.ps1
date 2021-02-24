@@ -1,6 +1,3 @@
-
-# Source: http://community.idera.com/powershell/powertips/b/tips/posts/dealing-with-file-encoding-and-bom
-
 function Remove-BomFromFile {
 <#
 .SYNOPSIS
@@ -16,9 +13,12 @@ function Remove-BomFromFile {
 
     Takes the contents of .\UTF8-BOM.txt, removes the byte order marking
     and writes to .\UTF8.txt
+.NOTES
+    # Source: http://community.idera.com/powershell/powertips/b/tips/posts/dealing-with-file-encoding-and-bom
 #>
 
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions','')]
     param
     (
         [Alias('OldPath')]

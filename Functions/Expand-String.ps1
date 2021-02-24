@@ -8,8 +8,13 @@ function Expand-String {
     The string that you want expanded.
 .PARAMETER EnvironmentVariable
     A switch to expand the string expression as an environment variable.
-.PARAMETER IncludeOriginal
-    A switch to determine if you want the original string expression to appear in the output.
+.PARAMETER PowershellString
+    A switch to expand the string expression as a Powershell string
+.PARAMETER StringResource
+    A switch to expand the string expression as a StringResource which can be found in desktop.ini and registry entries.
+    An example is '@%SystemRoot%\system32\shell32.dll,-21770'
+.PARAMETER IncludeInput
+    A switch to determine if you want the original string expression to appear in the output. Aliased to 'IncludeOriginal'
 .EXAMPLE
     # Expanding Powershell string
     Expand-String '$psculture'
@@ -18,7 +23,7 @@ function Expand-String {
     en-US
 .EXAMPLE
     # Expanding Powershell string including original string in the output
-    Expand-String '$psculture' -PsString -IncludeOriginal
+    Expand-String '$psculture' -PsString -IncludeInput
 
     #Assuming you have English US as the local installed culture this would return:
     String     Conversion Expanded
@@ -32,7 +37,7 @@ function Expand-String {
     AMD64
 .EXAMPLE
     # Expanding environment variable including orginal string
-    Expand-String -String '%PROCESSOR_ARCHITECTURE%' -EnvironmentVariable -IncludeOriginal
+    Expand-String -String '%PROCESSOR_ARCHITECTURE%' -EnvironmentVariable -IncludeInput
 
     #Assuming you are a 64 bit machine, the function would return:
     String                   Conversion Expanded
@@ -43,47 +48,50 @@ function Expand-String {
     # @%SystemRoot%\system32\shell32.dll,-21770
     # and they are found in Desktop.ini files and also the registry.
 
-    $ResourceString = ((get-content $env:USERPROFILE\Documents\desktop.ini | Select-String -Pattern 'LocalizedResourceName') -split '=')[1]
-    Expand-String -String $ResourceString -StringResource -IncludeOriginal
+    $ResourceString = (Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanWorkstation').DisplayName
+    Expand-String -String $ResourceString -StringResource -IncludeInput
 
-    # Would return
-    String                                    Conversion  Expanded
-    ------                                    ----------  --------
-    @%SystemRoot%\system32\shell32.dll,-21770 StrResource Documents
+    # Would return the following if your Windows install culture was en-US
+    String                                 Conversion  Expanded
+    ------                                 ----------  --------
+    @%systemroot%\system32\wkssvc.dll,-100 StrResource Workstation
 .NOTES
-
+    The c# source code was found by me on the Internet, but I can't determine where I originally found it. The ability to expand
+    a StrResource is thanks to that code.
 #>
 
     #region parameter
     [CmdletBinding(DefaultParameterSetName = 'PsString',ConfirmImpact='None')]
     [outputtype('string')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
     param(
-       [Parameter(Mandatory,HelpMessage='Enter a string to expand',Position=0,ValueFromPipeline,ParameterSetName='PsString')]
-       [Parameter(Mandatory,HelpMessage='Enter a string to expand',Position=0,ValueFromPipeline,ParameterSetName='EnvVar')]
-       [Parameter(Mandatory,HelpMessage='Enter a string to expand',Position=0,ValueFromPipeline,ParameterSetName='StrResource')]
-       [string[]] $String,
+        [Parameter(Mandatory,HelpMessage='Enter a string to expand',Position=0,ValueFromPipeline,ParameterSetName='PsString')]
+        [Parameter(Mandatory,HelpMessage='Enter a string to expand',Position=0,ValueFromPipeline,ParameterSetName='EnvVar')]
+        [Parameter(Mandatory,HelpMessage='Enter a string to expand',Position=0,ValueFromPipeline,ParameterSetName='StrResource')]
+        [string[]] $String,
 
-       [Parameter(ParameterSetName='PsString')]
-       [Alias('PsString')]
-       [switch] $PowershellString,
+        [Parameter(ParameterSetName='PsString')]
+        [Alias('PsString')]
+        [switch] $PowershellString,
 
-       [Parameter(ParameterSetName='EnvVar')]
-       [Alias('EnvVar')]
-       [switch] $EnvironmentVariable,
+        [Parameter(ParameterSetName='EnvVar')]
+        [Alias('EnvVar')]
+        [switch] $EnvironmentVariable,
 
-       [Parameter(ParameterSetName='StrResource')]
-       [Alias('StrResource')]
-       [switch] $StringResource,
+        [Parameter(ParameterSetName='StrResource')]
+        [Alias('StrResource')]
+        [switch] $StringResource,
 
-       [Parameter(ParameterSetName='PsString')]
-       [Parameter(ParameterSetName='EnvVar')]
-       [Parameter(ParameterSetName='StrResource')]
-       [switch] $IncludeOriginal
-   )
-   #endregion parameter
+        [Parameter(ParameterSetName='PsString')]
+        [Parameter(ParameterSetName='EnvVar')]
+        [Parameter(ParameterSetName='StrResource')]
+        [Alias('IncludeOriginal')]
+        [switch] $IncludeInput
+    )
+    #endregion parameter
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         Write-Verbose -Message "ParameterSetName [$($PsCmdlet.ParameterSetName)]"
         $source = @'
 using System;
@@ -133,12 +141,12 @@ public string ExtractStringFromDLL(string file, int number) {
                     $prop.Conversion = 'StrResource'
                     $Resource = $currentString -split ','
                     $ReturnVal = $ed.ExtractStringFromDLL([Environment]::ExpandEnvironmentVariables($Resource[0]).substring(1), $Resource[1].substring(1))
-#                    $ReturnVal = 'Placeholder'
+                    #                    $ReturnVal = 'Placeholder'
                 }
             }
             Write-Verbose -Message "ReturnVal is [$ReturnVal]"
             $prop.Expanded = $ReturnVal
-            if ($IncludeOriginal) {
+            if ($IncludeInput) {
                 New-Object -TypeName psobject -Property $prop
             } else {
                 Write-Output -inputobject $ReturnVal
@@ -147,7 +155,7 @@ public string ExtractStringFromDLL(string file, int number) {
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 } #End function Expand-String

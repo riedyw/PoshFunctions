@@ -1,4 +1,4 @@
-Function Get-MachineType {
+function Get-MachineType {
 <#
 .SYNOPSIS
     A quick function to determine if a computer is VM or physical box.
@@ -22,63 +22,59 @@ Function Get-MachineType {
     Get-MachineType -ComputerName SERVER01
     Query if SERVER01 is a physical or virtual machine.
 .EXAMPLE
+    Get-MachineType -ComputerName DEMOLAPTOP, CORPDC1
+
+    ComputerName Type     Manufacturer          Model
+    ------------ ----     ------------          -----
+    DEMOLAPTOP   Physical Microsoft Corporation Surface Pro 6
+    CORPDC1      VM       VMware, Inc.          VMware Virtual Platform
+.EXAMPLE
     Get-MachineType -ComputerName (Get-Content c:\temp\computerlist.txt)
     Query if a list of computers are physical or virtual machines.
 .LINK
     https://gallery.technet.microsoft.com/scriptcenter/Get-MachineType-VM-or-ff43f3a9
 #>
 
-    # fixme doesn't work in pwsh
-
     [CmdletBinding()]
     [OutputType('PSCustomObject')]
     Param
     (
         # ComputerName
-        [Parameter(ValueFromPipeline,
-            ValueFromPipelineByPropertyName,
-            Position = 0)]
+        [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, Position = 0)]
         [string[]] $ComputerName = $env:COMPUTERNAME
     )
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
         foreach ($Computer in $ComputerName) {
             Write-Verbose -Message "Checking $Computer"
             try {
-                $ComputerSystemInfo = Get-WmiObject -Class Win32_ComputerSystem -ComputerName $Computer -ErrorAction Stop
-
+                $ComputerSystemInfo = Get-CimInstance -Class Win32_ComputerSystem -ComputerName $Computer -ErrorAction Stop
                 switch -regex ($ComputerSystemInfo.Model) {
-
                     # Check for Hyper-V Machine Type
                     'Virtual Machine' {
                         $MachineType = 'VM'
                     }
-
                     # Check for VMware Machine Type
                     'VMware' {
                         $MachineType = 'VM'
                     }
-
                     # Check for Oracle VM Machine Type
                     'VirtualBox' {
                         $MachineType = 'VM'
                     }
-
                     # Check for Xen
                     'HVM domU' {
                         $MachineType = 'VM'
                     }
-
                     # Otherwise it is a physical Box
                     default {
                         $MachineType = 'Physical'
                     }
                 }
-
                 # Building MachineTypeInfo Object
                 $MachineTypeInfo = New-Object -TypeName PSObject -Property ([ordered]@{
                         ComputerName = $ComputerSystemInfo.PSComputername
@@ -86,15 +82,15 @@ Function Get-MachineType {
                         Manufacturer = $ComputerSystemInfo.Manufacturer
                         Model        = $ComputerSystemInfo.Model
                     })
-                $MachineTypeInfo
-            } catch [Exception] {
+                Write-Output -InputObject $MachineTypeInfo
+            } catch {
                 Write-Error -Message "$Computer`: $($_.Exception.Message)"
             }
         }
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
-} #Endfunction Get-MachineType
+}

@@ -1,4 +1,4 @@
-Function Show-DaysOfWeek {
+function Show-DaysOfWeek {
 <#
 .SYNOPSIS
     Shows the days of the week
@@ -12,16 +12,15 @@ Function Show-DaysOfWeek {
     [outputtype([string[]])]
     Param ()
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
-        [System.Enum]::GetNames( [System.DayOfWeek] )
+    process {
+        [System.Globalization.DateTimeFormatInfo]::CurrentInfo.DayNames
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
 }

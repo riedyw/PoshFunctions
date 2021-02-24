@@ -1,6 +1,4 @@
-# Inspired by https://gallery.technet.microsoft.com/on-off-keyboad-lock-keys-6ba9885c
-
-Function Test-IsScrollLock {
+function Test-IsScrollLock {
 <#
 .SYNOPSIS
     Sets the state of the ScrollLock button. If you pass $true to function it will turn on ScrollLock.
@@ -21,23 +19,23 @@ Function Test-IsScrollLock {
     bool
 .NOTES
     Inspiration: # Inspired by https://gallery.technet.microsoft.com/on-off-keyboad-lock-keys-6ba9885c
-    Changes:     Created function to set on or off the ScrollLock. Requires use of helper function Test-IsScrollLock
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
     [OutputType('bool')]
     Param()
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
+    process {
         write-verbose -Message 'Determining the state of [ScrollLock]'
-        [System.Windows.Forms.Control]::IsKeyLocked('Scroll')
+        $ReturnVal = [System.Windows.Forms.Control]::IsKeyLocked('Scroll')
+        Write-Output -InputObject $ReturnVal
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }

@@ -1,4 +1,4 @@
-Function Set-Speaker {
+function Set-Speaker {
 <#
 .SYNOPSIS
     Sets the speaker volume.
@@ -21,39 +21,40 @@ Function Set-Speaker {
 .NOTES
     The interface to setting the speaker volume really accepts values 0-50, and displays as 0-100.
     Given this oddity, the function will round DOWN to an even number. So if you run
-        Set-Speaker -Volume 99
+    Set-Speaker -Volume 99
     The icon for the speaker will display 98% if you hover over it.
 #>
 
-
-
-    [CmdletBinding(ConfirmImpact='Low')]
+    [CmdletBinding(ConfirmImpact = 'Low')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
     Param(
-        [Parameter(Mandatory,ValueFromPipeline,HelpMessage='Enter the speaker volume from 0-100')]
-        [ValidateRange(0,100)]
+        [Parameter(Mandatory, ValueFromPipeline, HelpMessage = 'Enter the speaker volume from 0-100')]
+        [ValidateRange(0, 100)]
         [int] $Volume
     )
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
-        write-verbose -Message "You specified the speaker volume should be $Volume%"
+    process {
+        Write-Verbose -Message "You specified the speaker volume should be $Volume%"
         if (($Volume % 2) -ne 0) {
             $Volume = $Volume - 1
-            write-verbose -Message "Rounding down to $Volume%"
+            Write-Verbose -Message "Rounding down to $Volume%"
         }
         [int] $workingVolume = [math]::floor($Volume / 2)
-        $wshShell = new-object -ComObject wscript.shell
-        write-verbose -Message 'Turning volume down to 0%'
-        1..50 | foreach-object -Process {$wshShell.SendKeys([char]174)}
-        write-verbose -Message "Turning volume up to $Volume%"
-        1..$workingVolume | foreach-object -Process {$wshShell.SendKeys([char]175)}
+        $wshShell = New-Object -ComObject wscript.shell
+        Write-Verbose -Message 'Turning volume down to 0%'
+        1..50 | ForEach-Object -Process { $wshShell.SendKeys([char]174) }
+        if ($workingVolume -gt 0) {
+            Write-Verbose -Message "Turning volume up to $Volume%"
+            1..$workingVolume | ForEach-Object -Process { $wshShell.SendKeys([char]175) }
+        }
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 }

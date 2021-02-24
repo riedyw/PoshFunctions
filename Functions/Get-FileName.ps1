@@ -1,7 +1,4 @@
-# Source: https://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
-# get-help about_ISE-Color-Theme-Cmdlets for more information
-
-Function Get-FileName {
+function Get-FileName {
 <#
 .SYNOPSIS
     Gets a filename through the native OpenFileDialog. Can select a single file or multiple files.
@@ -51,53 +48,63 @@ Function Get-FileName {
                 to $pwd and to give an alias of 'Path' which is commonly used parameter name.
                 Also changed syntax to Add-Type -AssemblyName to conform with
                 Powershell 2+ and to be more "Powershelly".
+
+    # Source: https://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
+    # get-help about_ISE-Color-Theme-Cmdlets for more information
+
 #>
 
-    [CmdletBinding(ConfirmImpact='None')]
+    [CmdletBinding(ConfirmImpact = 'None')]
     [OutputType([string[]])]
     Param(
-        [parameter(Mandatory=$false)]
+        [parameter(Mandatory = $false)]
         [alias('Path')]
         [string] $InitialDirectory = "$pwd", #default
 
-        [parameter()]
         [alias('Multi')]
         [switch] $MultiSelect, #default
 
-        [parameter()]
         [string] $Filter = 'All files (*.*)|*.*', #default
 
-        [parameter()]
         [string] $Title,
 
-        [parameter()]
         [switch] $AddExtension,
 
-        [parameter()]
         [string] $DefaultExt
 
     )
-    Add-Type -AssemblyName System.Windows.Forms
 
-    $OpenFileDialog = New-Object -typename System.Windows.Forms.OpenFileDialog
-    $OpenFileDialog.InitialDirectory = $InitialDirectory
-    $OpenFileDialog.Filter           = $Filter
-    $OpenFileDialog.MultiSelect      = $MultiSelect
-    if ($AddExtension) { $OpenFileDialog.AddExtension = $true }
-    if ($Title) { $OpenFileDialog.Title = $Title }
-    if ($DefaultExt) { $OpenFileDialog.DefaultExt = $DefaultExt }
-    $Result = $OpenFileDialog.ShowDialog()
-
-    # needed to play around to force PowerShell to return an array.
-    if ($Result -eq 'OK') {
-        if ($MultiSelect) {
-            [array] $ReturnArray = $OpenFileDialog.FileNames
-            return (,$ReturnArray)
-        } else {
-            [array] $ReturnArray = $OpenFileDialog.FileName
-            return (,$ReturnArray)
-        }
-    } else {
-        # nothing to return
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
-} #end function Get-FileName
+
+    process {
+        Add-Type -AssemblyName System.Windows.Forms
+
+        $OpenFileDialog = New-Object -TypeName System.Windows.Forms.OpenFileDialog
+        $OpenFileDialog.InitialDirectory = $InitialDirectory
+        $OpenFileDialog.Filter = $Filter
+        $OpenFileDialog.MultiSelect = $MultiSelect
+        if ($AddExtension) { $OpenFileDialog.AddExtension = $true }
+        if ($Title) { $OpenFileDialog.Title = $Title }
+        if ($DefaultExt) { $OpenFileDialog.DefaultExt = $DefaultExt }
+        $Result = $OpenFileDialog.ShowDialog()
+
+        # needed to play around to force PowerShell to return an array.
+        if ($Result -eq 'OK') {
+            if ($MultiSelect) {
+                [array] $ReturnArray = $OpenFileDialog.FileNames
+                return (, $ReturnArray)
+            } else {
+                [array] $ReturnArray = $OpenFileDialog.FileName
+                return (, $ReturnArray)
+            }
+        } else {
+            # nothing to return
+        }
+    }
+
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
+    }
+}

@@ -28,6 +28,17 @@ function Get-Power {
 
     Returns 2
 .EXAMPLE
+    Get-Power -Base 2 -Power 5 -IncludeOriginal
+
+    Base Power Result
+    ---- ----- ------
+    2     5     32
+.EXAMPLE
+    Get-Power -Base 27 -Power (1/3) -IncludeOriginal
+
+    Base             Power Result
+    ----             ----- ------
+    27 0.333333333333333      3
 .OUTPUTS
     [double]
 .LINK
@@ -48,7 +59,7 @@ function Get-Power {
     #endregion parameter
 
     begin {
-
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
@@ -61,13 +72,13 @@ function Get-Power {
                     Result = $ReturnVal
                 })
             } else {
-                $ReturnVal
+                Write-Output -InputObject $ReturnVal
             }
         }
     }
 
     end {
-
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 }

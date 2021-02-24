@@ -6,49 +6,66 @@ function Format-RandomCase {
     Formats a string character by character randomly into upper or lower case.
 .PARAMETER String
     A [string[]] that you want formatted randomly into upper or lower case
+.PARAMETER IncludeInput
+    Switch that will display input parameters in the output
 .EXAMPLE
     Format-RandomCase -String 'HELLO WORLD IT IS ME!'
 
     Example return
     HelLo worlD It is me!
-.NOTES
-    If you need to specify 10 or more of a particular type of dice use several entries of that dice type that add up to the value you want.
+.EXAMPLE
+    Format-RandomCase -String HELLO, WORLD, IT, IS, ME -IncludeInput
 
-    You want to know results of rolling ten 6-sided dice
-
-    Get-DiceRoll -Dice 2d6,8d6
+    Example return
+    Original Return
+    -------- ------
+    HELLO    hELLo
+    WORLD    wORLd
+    IT       It
+    IS       is
+    ME       ME
 .OUTPUTS
-    [string[]]
+[string[]]
 #>
 
 
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]
     param (
         [parameter(ValueFromPipeline)]
-        [string[]] $String
+        [string[]] $String,
+
+        [switch] $IncludeInput
     )
 
     begin {
-
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
         foreach ($CurrentString in $String) {
-            $tmp = [char[]] $CurrentString
-            $tmp | ForEach-Object -Begin { $returnVal = '' } -Process {
-                $random = 0,1 | Get-Random
-                if ($random -eq 0) {
-                    $returnVal += ([string] $_).ToLower()
+            $CharArray = [char[]] $CurrentString
+            $CharArray | ForEach-Object -Begin { $ReturnVal = '' } -Process {
+                $Random = 0,1 | Get-Random
+                if ($Random -eq 0) {
+                    $ReturnVal += ([string] $_).ToLower()
                 } else {
-                    $returnVal += ([string] $_).ToUpper()
+                    $ReturnVal += ([string] $_).ToUpper()
                 }
             }
-            Write-Output $returnVal
+            if ($IncludeInput) {
+                New-Object -TypeName psobject -Property ([ordered] @{
+                    Original = $CurrentString
+                    Return   = $ReturnVal
+                })
+            } else {
+                Write-Output $ReturnVal
+            }
         }
-
     }
 
     end {
-
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
+
 }

@@ -1,4 +1,4 @@
-Function Test-IsValidIPv6 {
+function Test-IsValidIPv6 {
 <#
 .SYNOPSIS
     Verifies if passed parameter is a valid IP v6 address
@@ -6,7 +6,7 @@ Function Test-IsValidIPv6 {
     Verifies if passed parameter is a valid IP v6 address. Can take single string or array of strings. Can also accept input from the pipeline.
 .EXAMPLE
     Test-IsValidIPv6 '::1'
-    
+
     Would return
     True
 .EXAMPLE
@@ -27,52 +27,52 @@ Function Test-IsValidIPv6 {
 #>
 
     #region Param
-    [CmdletBinding(ConfirmImpact='None')]
+    [CmdletBinding(ConfirmImpact = 'None')]
     [Outputtype('bool')]
     Param (
         [parameter(ValueFromPipeLine, ValueFromPipeLineByPropertyName)]
         [Alias('IP')]
         [string[]] $IPAddress,
-        
+
         [switch] $IncludeInput
     )
     #endregion Param
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
+    process {
         foreach ($i in $IPAddress) {
-            Try {
+            try {
                 Write-Verbose -Message "The string being tested if a valid IPv6 address is [$i]"
                 $check = [ipaddress] $i
                 # added check below to cover issue if enter only 3 octets
                 # [ipaddress] "10.1.4" resolves to "10.1.0.4"
                 if (($i -eq $check) -and ($check.AddressFamily -eq 'InterNetworkV6')) {
                     if ($IncludeInput) {
-                        New-Object -TypeName psobject -Property @{Input = $i; Result = $true }
+                        New-Object -TypeName psobject -Property ([ordered] @{Input = $i; Result = $true })
                     } else {
                         Write-Output -InputObject $true
                     }
                 } else {
                     if ($IncludeInput) {
-                        New-Object -TypeName psobject -Property @{Input = $i; Result = $false }
+                        New-Object -TypeName psobject -Property ([ordered] @{Input = $i; Result = $false })
                     } else {
                         Write-Output -InputObject $false
                     }
                 }
-            } Catch {
+            } catch {
                 if ($IncludeInput) {
-                    New-Object -TypeName psobject -Property @{Input = $i; Result = $false }
+                    New-Object -TypeName psobject -Property ([ordered] @{Input = $i; Result = $false })
                 } else {
-                    Write-Output -inputobject $false
+                    Write-Output -InputObject $false
                 }
             }
         }
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-} #EndFunction Test-IsValidIPv6
+}

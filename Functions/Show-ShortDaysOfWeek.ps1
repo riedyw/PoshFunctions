@@ -1,4 +1,4 @@
-Function Show-ShortDaysOfWeek {
+function Show-ShortDaysOfWeek {
 <#
 .SYNOPSIS
     Show short days of the week
@@ -9,16 +9,15 @@ Function Show-ShortDaysOfWeek {
     [CmdletBinding(ConfirmImpact='None')]
     Param ()
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    Process {
-        Show-DaysOfWeek | foreach-object { $_.substring(0,3)}
+    process {
+        [System.Globalization.DateTimeFormatInfo]::CurrentInfo.AbbreviatedDayNames
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
 }

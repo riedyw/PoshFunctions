@@ -63,6 +63,7 @@ function Get-DiceRoll {
     'psobject'
 #>
 
+    #region Parameter
     [CmdletBinding(ConfirmImpact = 'Low')]
     [OutputType('int')]
     Param
@@ -115,19 +116,19 @@ function Get-DiceRoll {
 
     end {
         if (-not $ValidDice) {
-            Write-Error "Invalid dice specified"
+            Write-Error -Message  'Invalid dice specified'
         } else {
             foreach ($R in $Roll.GetEnumerator()) {
-                write-verbose "`$R.Value is [$($R.Value -join ', ')]"
+                Write-Verbose -Message  "`$R.Value is [$($R.Value -join ', ')]"
                 $Total += ($R.Value | Measure-Object -Sum).Sum
                 [string] $CurrentRoll = ($R.Value | Sort-Object -Descending) -join ', '
-                $ReturnVal += New-Object PSObject -Property ([ordered] @{DiceType = ('D' + $R.Name); Roll = $CurrentRoll })
+                $ReturnVal += New-Object -TypeName PSObject -Property ([ordered] @{DiceType = ('D' + $R.Name); Roll = $CurrentRoll })
             }
             if ($ShowRoll) {
-                $ReturnVal += New-Object PSObject -Property ([ordered] @{DiceType = 'TOTAL'; Roll = $Total })
+                $ReturnVal += New-Object -TypeName PSObject -Property ([ordered] @{DiceType = 'TOTAL'; Roll = $Total })
                 $ReturnVal
             } else {
-                $Total
+                Write-Output -InputObject  $Total
             }
         }
 

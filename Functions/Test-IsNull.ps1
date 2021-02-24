@@ -12,17 +12,17 @@ function Test-IsNull {
     A switch to control if looking for .IsNullOrWhitespace()
 .EXAMPLE
     Test-IsNull -String ''
-    
+
     Would return
     $true
 .EXAMPLE
     Test-IsNull -String ' '
-    
+
     Would return
     $false
 .EXAMPLE
     Test-IsNull -String " `t " -WhiteSpace
-    
+
     Would return
     $true
 .OUTPUTS
@@ -31,6 +31,7 @@ function Test-IsNull {
 
     [CmdletBinding(DefaultParameterSetName = 'Empty', ConfirmImpact = 'Low')]
     [OutputType('bool')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
     Param
     (
 
@@ -55,16 +56,16 @@ function Test-IsNull {
     process {
         switch ($PsCmdlet.ParameterSetName) {
             'Empty' {
-                [string]::IsNullOrEmpty($String)
+                $ReturnVal = [string]::IsNullOrEmpty($String)
             }
             'WhiteSpace' {
-                [string]::IsNullOrWhitespace($String)
+                $ReturnVal = [string]::IsNullOrWhitespace($String)
             }
         }
     }
 
     end {
+        Write-Output -InputObject $ReturnVal
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
 }

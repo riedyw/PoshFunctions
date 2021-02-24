@@ -11,8 +11,8 @@ function Get-Enum {
     A switch that will also display the value in binary form.
 .PARAMETER Hex
     A switch that will also display the value in hexadecimal form.
-.PARAMETER IncludeType
-    A switch determining if you want the TypeName to appear in the output.
+.PARAMETER IncludeInput
+    A switch determining if you want the TypeName to appear in the output. Aliased to 'IncludeType'
 .EXAMPLE
     Get-Enum -TypeName 'System.Windows.Forms.DialogResult'
 
@@ -27,7 +27,7 @@ function Get-Enum {
     Yes        6
     No         7
 .EXAMPLE
-    Get-Enum -TypeName 'System.Windows.Forms.MessageBoxButtons' -Hex -IncludeType
+    Get-Enum -TypeName 'System.Windows.Forms.MessageBoxButtons' -Hex -IncludeInput
 
     TypeName                               Name             Value Hex
     --------                               ----             ----- ---
@@ -52,6 +52,8 @@ function Get-Enum {
 
     [CmdletBinding(ConfirmImpact='None')]
     [OutputType('psobject')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingInvokeExpression','')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseProcessBlockForPipelineCommand','')]
     param (
         [Parameter(Mandatory,Position=0,ValueFromPipeline)]
         [type[]] $TypeName,
@@ -60,49 +62,54 @@ function Get-Enum {
 
         [switch] $Hex,
 
-        [switch] $IncludeType
+        [Alias('IncludeType')]
+        [switch] $IncludeInput
     )
 
-    if ($Binary) {
-        Write-Verbose -Message 'Binary included in output.'
-    }
-    if ($Hex) {
-        Write-Verbose -Message 'Hex included in output.'
-    }
-    if ($IncludeEnum) {
-        Write-Verbose -Message 'IncludeType included in output.'
-    }
-    foreach ($currentType in $TypeName) {
-        write-verbose "currentType [$currentType]"
-
-        if ($currentType.BaseType.FullName -ne 'System.Enum')
-        {
-            Write-Error -message "Type '$curExpandType' is not an enum"
-            break
-        }
-
-        if ($IncludeType) {
-            $props = @(
-                @{ Name = 'TypeName' ; Expression = { Invoke-Expression  "write-output $($currenttype)" }}
-                @{ Name = 'Name'     ; Expression = { [string] $_ } }
-                @{ Name = 'Value'    ; Expression = {  [int32](Invoke-Expression -Command "[$($currentType.FullName)]'$_'") }}
-            )
-        } else {
-            $props = @(
-                @{ Name = 'Name'     ; Expression = { [string] $_ } }
-                @{ Name = 'Value'    ; Expression = { [int32](Invoke-Expression -Command "[$($currentType.FullName)]'$_'") }}
-            )
-        }
-
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         if ($Binary) {
-            $props += @{ Name = 'Binary'; Expression={[Convert]::ToString([int32](Invoke-Expression -Command "[$($currentType.FullName)]'$_'"), 2)}}
+            Write-Verbose -Message 'Binary included in output.'
         }
-
         if ($Hex) {
-            $props += @{ Name = 'Hex'; Expression={'0x{0}' -f ([Convert]::ToString([int32](Invoke-Expression -Command "[$($currentType.FullName)]'$_'"), 16))}}
+            Write-Verbose -Message 'Hex included in output.'
         }
-        [enum]::GetNames($currentType) | Select-Object -Property $props
-
+        if ($IncludeInput) {
+            Write-Verbose -Message 'TypeName included in output.'
+        }
     }
 
-} #EndFunction: Get-Enum
+    process {
+        foreach ($currentType in $TypeName) {
+            write-verbose "currentType [$currentType]"
+            if ($currentType.BaseType.FullName -ne 'System.Enum')
+            {
+                Write-Error -message "Type '$curExpandType' is not an enum"
+                break
+            }
+            if ($IncludeInput) {
+                $props = @(
+                    @{ Name = 'TypeName' ; Expression = { Invoke-Expression  "write-output $($currenttype)" }}
+                    @{ Name = 'Name'     ; Expression = { [string] $_ } }
+                    @{ Name = 'Value'    ; Expression = {  [int32](Invoke-Expression -Command "[$($currentType.FullName)]'$_'") }}
+                )
+            } else {
+                $props = @(
+                    @{ Name = 'Name'     ; Expression = { [string] $_ } }
+                    @{ Name = 'Value'    ; Expression = { [int32](Invoke-Expression -Command "[$($currentType.FullName)]'$_'") }}
+                )
+            }
+            if ($Binary) {
+                $props += @{ Name = 'Binary'; Expression={[Convert]::ToString([int32](Invoke-Expression -Command "[$($currentType.FullName)]'$_'"), 2)}}
+            }
+            if ($Hex) {
+                $props += @{ Name = 'Hex'; Expression={'0x{0}' -f ([Convert]::ToString([int32](Invoke-Expression -Command "[$($currentType.FullName)]'$_'"), 16))}}
+            }
+            [enum]::GetNames($currentType) | Select-Object -Property $props
+        }
+    }
+
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
+    }
+}

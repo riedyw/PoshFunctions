@@ -1,9 +1,9 @@
-Function mklink {
+function mklink {
 <#
 .SYNOPSIS
-    Mklink calls out to the Command Prompt (cmd.exe) and creates a link
+    mklink calls out to the Command Prompt (cmd.exe) and creates a link
 .DESCRIPTION
-    Mklink calls out to the Command Prompt (cmd.exe) and creates a link
+    mklink calls out to the Command Prompt (cmd.exe) and creates a link
 
     mklink /?
     Creates a symbolic link.

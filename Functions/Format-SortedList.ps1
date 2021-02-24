@@ -15,10 +15,8 @@ function Format-SortedList {
     * changed logic slightly to handle properties that are currently set to $null
     * added [cmdletbinding()] and write-verbose statements
     * changed write-host statements to write-output
-    * performed calculations of $logestvalue as a positive number then multiplied by -1 in -f statement
-      so that the property name is right justified
-    * sorted properties by name as one object could have multiple property types (property, noteproperty, etc) and 
-      the resulting set of all properties would not be alphabetical
+    * performed calculations of $logestvalue as a positive number then multiplied by -1 in -f statement so that the property name is right justified
+    * sorted properties by name as one object could have multiple property types (property, noteproperty, etc) and the resulting set of all properties would not be alphabetical
 .EXAMPLE
     # Assuming I have one instance of notepad.exe running
 
@@ -69,7 +67,7 @@ function Format-SortedList {
        PrivilegedProcessorTime : 00:00:00.3750000
                    ProcessName : notepad
              ProcessorAffinity : 255
-                       Product : Microsoft® Windows® Operating System
+                       Product : Microsoft(r) Windows(r) Operating System
                 ProductVersion : 10.0.19041.1
                     Responding : True
                     SafeHandle : Microsoft.Win32.SafeHandles.SafeProcessHandle
@@ -101,9 +99,13 @@ function Format-SortedList {
         [Switch] $Descending
     )
 
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+    }
+
     process {
         $properties = $InputObject | Get-Member -MemberType Properties | Sort-Object -Property Name
-        Write-Verbose "Properties are [$($properties.name -join ', ')]"
+        Write-Verbose -Message "Properties are [$($properties.name -join ', ')]"
 
         if ($Descending) {
             $properties = $properties | Sort-Object -Property Name -Descending
@@ -113,7 +115,7 @@ function Format-SortedList {
         $longestValue = 0
 
         $properties | ForEach-Object {
-            write-verbose "Working on [$($_.tostring())]"
+            Write-Verbose -Message "Working on [$($_.tostring())]"
             if ($_.Name.Length -gt $longestName) {
                 $longestName = $_.Name.Length
             }
@@ -122,14 +124,18 @@ function Format-SortedList {
                 $longestValue = $InputObject."$($_.Name)".Length
             }
         }
-        Write-Verbose "Longest name is [$LongestName], Longest value is [$longestValue]"
+        Write-Verbose -Message "Longest name is [$LongestName], Longest value is [$longestValue]"
 
         $properties | ForEach-Object {
             if ( ($null -eq $InputObject."$($_.Name)") -or ('' -eq $InputObject."$($_.Name)")  ) {
-                Write-Output ("{0,$longestName} : {1,$($longestValue*-1)}" -f $_.Name, '')
+                Write-Output -InputObject ("{0,$longestName} : {1,$($longestValue*-1)}" -f $_.Name, '')
             } else {
-                Write-Output ("{0,$longestName} : {1,$($longestValue*-1)}" -f $_.Name, $InputObject."$($_.Name)".ToString())
+                Write-Output -InputObject ("{0,$longestName} : {1,$($longestValue*-1)}" -f $_.Name, $InputObject."$($_.Name)".ToString())
             }
         }
+    }
+
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }

@@ -6,28 +6,25 @@ function Set-WindowStyle {
     To control the behavior of a window
 .PARAMETER Style
     Describe parameter -Style.
-
 .PARAMETER MainWindowHandle
     Describe parameter -MainWindowHandle.
-
 .EXAMPLE
     (Get-Process -Name notepad).MainWindowHandle | foreach { Set-WindowStyle MAXIMIZE $_ }
 #>
 
     [CmdletBinding(ConfirmImpact='Low')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions','')]
     param(
-        [Parameter()]
         [ValidateSet('FORCEMINIMIZE', 'HIDE', 'MAXIMIZE', 'MINIMIZE', 'RESTORE',
                     'SHOW', 'SHOWDEFAULT', 'SHOWMAXIMIZED', 'SHOWMINIMIZED',
                     'SHOWMINNOACTIVE', 'SHOWNA', 'SHOWNOACTIVATE', 'SHOWNORMAL')]
         [string] $Style = 'SHOW',
 
-        [Parameter()]
         $MainWindowHandle = (Get-Process -Id $pid).MainWindowHandle
     )
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
 
         $WindowStates = @{
             FORCEMINIMIZE   = 11; HIDE            = 0
@@ -40,7 +37,7 @@ function Set-WindowStyle {
         }
     }
 
-    Process {
+    process {
         Write-Verbose -Message ('Set Window Style {1} on handle {0}' -f $MainWindowHandle, $($WindowStates[$style]))
 
         $Win32ShowWindowAsync = Add-Type -memberDefinition @'
@@ -51,8 +48,7 @@ public static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow);
         $Win32ShowWindowAsync::ShowWindowAsync($MainWindowHandle, $WindowStates[$Style]) | Out-Null
     }
 
-    End {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
 }

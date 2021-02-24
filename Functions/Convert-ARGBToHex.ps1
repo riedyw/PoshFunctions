@@ -1,7 +1,4 @@
-# inspired by  http://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
-# many changes
-
-Function Convert-ARGBToHex {
+function Convert-ARGBToHex {
     <#
 .SYNOPSIS
     Converts an ARGB color string to hex equivalent
@@ -11,8 +8,8 @@ Function Convert-ARGBToHex {
     An ARGB color string in the form '#,#,#,#' where each number is between 0 and 255.
 .PARAMETER IncludeHash
     A switch indicating whether hex string should be preceded by a hash symbol #.
-.PARAMETER IncludeOriginal
-    A switch indicating whether to include the original decimal ARGB input in the output
+.PARAMETER IncludeInput
+    A switch indicating whether to include the original decimal ARGB input in the output, aliased to 'IncludeOriginal'
 .NOTES
     Part of the ISEColorThemeCmdlets.ps1 Script by Jeff Pollock
     http://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
@@ -43,7 +40,7 @@ Function Convert-ARGBToHex {
     Would return
     FF80805C
 .EXAMPLE
-    Convert-ARGBToHex -ARGB @('255,0,0','255,128,80,80') -IncludeHash -IncludeOriginal
+    Convert-ARGBToHex -ARGB @('255,0,0','255,128,80,80') -IncludeHash -IncludeInput
 
     Would return
     DecimalARGB   HexARGB
@@ -58,6 +55,8 @@ Function Convert-ARGBToHex {
     [string]
 #>
 
+    # todo parameter sets for rgb_string and integer r g b values
+    # todo drop a from the string type
     #region Parameters
     [CmdletBinding(ConfirmImpact = 'None')]
     [OutputType('string')]
@@ -67,17 +66,17 @@ Function Convert-ARGBToHex {
 
         [switch] $IncludeHash,
 
-        [switch] $IncludeOriginal
+        [Alias('IncludeOriginal')]
+        [switch] $IncludeInput
     )
     #endregion Parameters
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
         foreach ($currentARGB in $ARGB) {
-            Write-Verbose -Message "`$ARGB = [$currentARGB]"
             $currentARGB = $currentARGB -replace ' ', ''
             if ( $currentARGB -match '^\d{1,3}\,\d{1,3}\,\d{1,3}\,\d{1,3}$') {
                 #$true
@@ -89,7 +88,7 @@ Function Convert-ARGBToHex {
                     throw "You must provide an ARGB string value in the form '#,#,#,#' where each number is between 0 and 255"
                 }
             }
-            Write-Verbose -Message "`$ARGB = [$currentARGB]"
+            Write-Verbose -Message "Current `$ARGB = [$currentARGB]"
             #-separate the ARGB values
             $var_ARGB = $currentARGB.split(',')
 
@@ -106,19 +105,19 @@ Function Convert-ARGBToHex {
                 $ReturnVal = "$var_A$var_R$var_G$var_B"
             }
 
-            if ($IncludeOriginal) {
+            if ($IncludeInput) {
                 New-Object -TypeName 'psobject' -Property @{
                     DecimalARGB = $currentARGB
                     HexARGB     = $ReturnVal
                 }
             } else {
-                $ReturnVal
+                write-output $ReturnVal
             }
         }
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 } #EndFunction Convert-ARGBToHex

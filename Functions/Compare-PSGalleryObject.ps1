@@ -1,4 +1,4 @@
-Function Compare-PSGalleryObject {
+function Compare-PSGalleryObject {
 <#
 .SYNOPSIS
     Compares the installed module(s) or script(s) that have been installed from PowerShellGallery.com
@@ -32,11 +32,13 @@ Function Compare-PSGalleryObject {
     * added -AllowPrerelease to Find-Module / Find-Script statements
 #>
 
+    # todo doesn't work properly in pwsh
+
     #region parameter
-    [CmdletBinding(DefaultParameterSetName = 'Module',ConfirmImpact='None')]
+    [CmdletBinding(DefaultParameterSetName = 'Module', ConfirmImpact = 'None')]
     [OutputType('psobject')]
-    Param
-    (
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
+    Param (
 
         [Parameter(ParameterSetName = 'Module')]
         [Parameter(ParameterSetName = 'Script')]
@@ -59,11 +61,11 @@ Function Compare-PSGalleryObject {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         Write-Verbose -Message "ParameterSetName [$($PsCmdlet.ParameterSetName)]"
         switch ($PsCmdlet.ParameterSetName) {
-            'Module' { 
-                Write-Verbose "Searching for object type MODULE"
+            'Module' {
+                Write-Verbose -Message 'Searching for object type MODULE'
             }
-            'Script' { 
-                Write-Verbose "Searching for object type SCRIPT"
+            'Script' {
+                Write-Verbose -Message 'Searching for object type SCRIPT'
             }
         }
 
@@ -74,30 +76,30 @@ Function Compare-PSGalleryObject {
     process {
         switch ($PsCmdlet.ParameterSetName) {
             'Module' {
-                $Objects  = Get-InstalledModule -Verbose:$False | Where-Object { $_.Name -like $Name }
+                $Objects = Get-InstalledModule -Verbose:$False | Where-Object { $_.Name -like $Name }
                 Write-Verbose -Message ('{0} modules locally that match [{1}]' -f $Objects.count, $Name)
                 Foreach ($Object in $Objects) {
                     Write-Verbose -Message "Processing $($Object.name)"
-                    
-                    $UpdateObject         = [ordered] @{}    # create the hash table
+
+                    $UpdateObject = [ordered] @{}    # create the hash table
                     $UpdateObject.ObjectType = 'Module'
-                    $UpdateObject.Name    = $Object.Name     # Add name
+                    $UpdateObject.Name = $Object.Name     # Add name
                     $UpdateObject.InstalledVersion = $Object.Version  # And local version
 
                     try {
-                    #  Find module, and add gallery version number to hash table
+                        #  Find module, and add gallery version number to hash table
                         $GalObj = Find-Module -Name $Object.name -ErrorAction Stop -AllowPrerelease
                         $UpdateObject.PSGalleryVersion = $GalObj.Version | Sort-Object -Descending | Select-Object -First 1
                     }
                     # here - find module could not find the module in the gallery
                     Catch {
                         # If module isn't in the gallery
-                        $UpdateObject.PSGalleryVersion = [System.Version]::new(0,0)
+                        $UpdateObject.PSGalleryVersion = [version]::new(0, 0)
                     }
 
                     # now emit the object
                     if ($NeedUpgrade) {
-                        New-Object -TypeName PSObject -Property $UpdateObject | where-object { $_.InstalledVersion -ne $_.PSGalleryVersion }
+                        New-Object -TypeName PSObject -Property $UpdateObject | Where-Object { $_.InstalledVersion -ne $_.PSGalleryVersion }
                     } else {
                         New-Object -TypeName PSObject -Property $UpdateObject
                     }
@@ -105,30 +107,30 @@ Function Compare-PSGalleryObject {
             }
 
             'Script' {
-                $Objects  = Get-InstalledScript -Verbose:$False | Where-Object { $_.Name -like $Name }
+                $Objects = Get-InstalledScript -Verbose:$False | Where-Object { $_.Name -like $Name }
                 Write-Verbose -Message ('{0} scripts locally that match [{1}]' -f $Objects.count, $Name)
                 Foreach ($Object in $Objects) {
                     Write-Verbose -Message "Processing $($Object.name)"
-                    
-                    $UpdateObject         = [ordered] @{}    # create the hash table
+
+                    $UpdateObject = [ordered] @{}    # create the hash table
                     $UpdateObject.ObjectType = 'Script'
-                    $UpdateObject.Name    = $Object.Name     # Add name
+                    $UpdateObject.Name = $Object.Name     # Add name
                     $UpdateObject.InstalledVersion = $Object.Version  # And local version
 
                     try {
-                    #  Find module, and add gallery version number to hash table
+                        #  Find module, and add gallery version number to hash table
                         $GalObj = Find-Script -Name $Object.name -ErrorAction Stop -AllowPrerelease
                         $UpdateObject.PSGalleryVersion = $GalObj.Version | Sort-Object -Descending | Select-Object -First 1
                     }
                     # here - find module could not find the module in the gallery
                     Catch {
                         # If module isn't in the gallery
-                        $UpdateObject.PSGalleryVersion = [System.Version]::new(0,0)
+                        $UpdateObject.PSGalleryVersion = [version]::new(0, 0)
                     }
 
                     # now emit the object
                     if ($NeedUpgrade) {
-                        New-Object -TypeName PSObject -Property $UpdateObject | where-object { $_.InstalledVersion -ne $_.PSGalleryVersion }
+                        New-Object -TypeName PSObject -Property $UpdateObject | Where-Object { $_.InstalledVersion -ne $_.PSGalleryVersion }
                     } else {
                         New-Object -TypeName PSObject -Property $UpdateObject
                     }
@@ -138,7 +140,7 @@ Function Compare-PSGalleryObject {
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-    
+
 }

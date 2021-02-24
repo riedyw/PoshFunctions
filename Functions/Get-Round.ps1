@@ -1,5 +1,3 @@
-# Inspired by: https://stackoverflow.com/questions/41700200/how-to-correctly-round-numbers-in-powershell
-
 function Get-Round {
 <#
 .SYNOPSIS
@@ -46,6 +44,8 @@ function Get-Round {
     https://social.msdn.microsoft.com/Forums/vstudio/en-US/0221d962-26e6-4a7e-be7a-72cd669a0dfc/why-systemmathround0251-2?forum=vbgeneral
 
     Talks about Visual Basic but the same info applies to Powershell.
+.NOTES
+    # Inspired by: https://stackoverflow.com/questions/41700200/how-to-correctly-round-numbers-in-powershell
 #>
 
     #region parameter
@@ -76,13 +76,13 @@ function Get-Round {
                     Rounded = $ReturnVal
                 })
             } else {
-                $ReturnVal
+                Write-Output -InputObject $ReturnVal
             }
         }
     }
 
     end {
-
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 }

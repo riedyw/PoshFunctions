@@ -1,4 +1,4 @@
-Function ConvertTo-SecureText {
+function ConvertTo-SecureText {
 <#
 .SYNOPSIS
     Converts plain text to secure string.
@@ -11,7 +11,7 @@ Function ConvertTo-SecureText {
     [CmdletBinding()]
     [OutputType('string')]
     Param (
-        [parameter(ValueFromPipeLine=$True,ValueFromPipeLineByPropertyName=$True)]
+        [parameter(ValueFromPipeLine = $True, ValueFromPipeLineByPropertyName = $True)]
         [Alias('Ask')]
         [string] $Prompt = 'Please enter text'
     )

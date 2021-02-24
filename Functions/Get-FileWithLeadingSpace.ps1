@@ -1,10 +1,10 @@
-Function Get-FileWithLeadingSpace {
+function Get-FileWithLeadingSpace {
 <#
 .SYNOPSIS
     To find files that begin with a space character
 .DESCRIPTION
     To find files that begin with a space character
-.PARAMETER path
+.PARAMETER Path
     The path where you want to begin looking
 .EXAMPLE
     Get-FileWithLeadingSpace -path Value
@@ -12,14 +12,27 @@ Function Get-FileWithLeadingSpace {
 
 #>
 
-    [CmdletBinding(ConfirmImpact='None')]
-    Param([string] $path = 'c:\a')
+    # todo add begin, process, end blocks
+    # todo add write-verbose
 
-    Get-ChildItem -Path $path -Recurse |
+    [CmdletBinding(ConfirmImpact='None')]
+    Param([string] $Path)
+
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+    }
+
+    process {
+        Get-ChildItem -Path $Path -Recurse |
         foreach-object {
-            if($_.name.length -ne $_.name.trim().length)
-            {
+            if ($_.name.length -ne $_.name.trim().length) {
                 "$($_.basename) contains a leading space"
             }
         }
-} #end function Get-FileWithLeadingSpace
+
+    }
+
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
+    }
+}

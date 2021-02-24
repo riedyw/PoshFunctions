@@ -1,4 +1,4 @@
-Function Get-UrlContent {
+function Get-UrlContent {
 <#
 .SYNOPSIS
     To get the HTML content of a specified URL
@@ -25,7 +25,12 @@ Function Get-UrlContent {
 .OUTPUTS
     Either $Null if any errors exist or a [string] if successful
 #>
+
+    # todo add begin, process, end blocks
+    # todo add write-verbose
+
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseProcessBlockForPipelineCommand','')]
     Param (
         [parameter(ValueFromPipeLine,HelpMessage='Add help message for user',ValueFromPipeLineByPropertyName,Mandatory)]
         [string] $URL,
@@ -35,35 +40,35 @@ Function Get-UrlContent {
     )
     $oldEA = $ErrorActionPreference
     $ErrorActionPreference = 'continue'
-    write-verbose -message "Saving current value of `$ErrorActionPreference [$($oldEa)] and setting it to 'Stop'"
+    Write-Verbose -Message "Saving current value of `$ErrorActionPreference [$($oldEa)] and setting it to 'Stop'"
     if ($IgnoreSslError) {
-        write-verbose -message 'Turning on IgoreSslError'
+        Write-Verbose -Message 'Turning on IgoreSslError'
         [System.Net.ServicePointManager]::ServerCertificateValidationCallBack = { $true }
     }
     $htmlContent = $null
-    write-verbose -message 'Creating a webclient'
+    Write-Verbose -Message 'Creating a webclient'
     $webClient = New-Object -TypeName System.Net.WebClient
-    write-verbose -message "Requesting content from [$($URL)]"
+    Write-Verbose -Message "Requesting content from [$($URL)]"
     try {
         $htmlContent = $webClient.downloadstring($URL)
     } catch {
-        write-error -message "Could not connect to [$($URL)]"
+        Write-Error -Message "Could not connect to [$($URL)]"
     } finally {
         if ($IgnoreSslError) {
-            write-verbose -message 'Turning off IgoreSslError'
+            Write-Verbose -Message 'Turning off IgoreSslError'
             [System.Net.ServicePointManager]::ServerCertificateValidationCallBack = { $false }
         }
     }
-    write-verbose -message "Resetting value of `$ErrorActionPreference back to [$($oldEa)]"
+    Write-Verbose -Message "Resetting value of `$ErrorActionPreference back to [$($oldEa)]"
     $ErrorActionPreference = $oldEA
-    write-verbose -message 'Disposing of webClient connection'
+    Write-Verbose -Message 'Disposing of webClient connection'
     $webClient.Dispose()
     remove-variable -name webClient
     if ($htmlContent) {
-        write-verbose -message 'Successful download of HTML content'
-        write-output -inputobject $htmlContent
+        Write-Verbose -Message 'Successful download of HTML content'
+        Write-Output -InputObject $htmlContent
     } else {
-        write-verbose -message 'Unsuccessful download of HTML content'
+        Write-Verbose -Message 'Unsuccessful download of HTML content'
         return
     }
 } #EndFunction Get-UrlContent

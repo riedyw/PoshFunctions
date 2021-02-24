@@ -34,22 +34,25 @@ function Get-PrivateProfileSectionNames {
 #>
 
     [CmdletBinding()]
+    [outputtype([string[]])]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns','')]
     param(
         [string] $File
     )
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
-        if (Test-Path $File) {
+        if (Test-Path -Path $File) {
             $ResolveFile = Resolve-Path -Path $File
             if ($ResolveFile.count -gt 1) {
                 Write-Error -Message "ERROR: File specification [$File] resolves to more than 1 file."
             } else {
                 Write-Verbose -Message "Getting section names from .ini file [$ResolveFile]"
-                [ProfileAPI]::GetSectionNames($ResolveFile)
+                $ReturnVal = [ProfileAPI]::GetSectionNames($ResolveFile)
+                Write-Output -InputObject $ReturnVal
             }
         } else {
             Write-Error -Message "ERROR: File [$File] does not exist"
@@ -57,7 +60,6 @@ function Get-PrivateProfileSectionNames {
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
-} #EndFunction Get-PrivateProfileSectionNames
+}

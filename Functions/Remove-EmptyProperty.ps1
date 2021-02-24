@@ -1,5 +1,3 @@
-# from: http://community.idera.com/powershell/powertips/b/tips/posts/listing-properties-with-values-part-3
-
 function Remove-EmptyProperty  {
 <#
 .SYNOPSIS
@@ -12,8 +10,8 @@ function Remove-EmptyProperty  {
     To return a hashtable as opposed to another object
 .EXAMPLE
     $A = New-Object -TypeName 'psobject' -Property ([Ordered] @{
-        Name          = 'test'
-        EmptyProperty = $null
+    Name          = 'test'
+    EmptyProperty = $null
     })
     $A
 
@@ -32,9 +30,13 @@ function Remove-EmptyProperty  {
     Name                           Value
     ----                           -----
     Name                           test
+.NOTES
+    # from: http://community.idera.com/powershell/powertips/b/tips/posts/listing-properties-with-values-part-3
 #>
 
     [CmdletBinding(ConfirmImpact='Low')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions','')]
     param (
         [Parameter(Mandatory,Position=0,ValueFromPipeline)]
             $InputObject,
@@ -44,6 +46,7 @@ function Remove-EmptyProperty  {
     )
 
     begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         $props = @()
     }
 
@@ -57,14 +60,14 @@ function Remove-EmptyProperty  {
 
         $notEmpty = $props | Where-Object {
             -not (($null -eq $InputObject.$_ ) -or
-            ($InputObject.$_ -eq '') -or
+                ($InputObject.$_ -eq '') -or
             ($InputObject.$_.Count -eq 0)) |
                 Sort-Object
 
         }
 
         if ($AsHashTable) {
-          $notEmpty |
+            $notEmpty |
             ForEach-Object {
                 $h = [Ordered]@{}} {
                     $h.$_ = $InputObject.$_
@@ -74,5 +77,9 @@ function Remove-EmptyProperty  {
         } else {
             $InputObject | Select-Object -Property $notEmpty
         }
+    }
+
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }

@@ -89,40 +89,47 @@ while ($Choice -ne 'q') {
         )
     #endregion Parameter
 
-    $result = [string[]] @()
-    $result += "`$$VariableName = ''"
-    $result += "while (`$$VariableName -ne 'q') {"
-    $result += "    Write-Host '$title'"
-    $result += "    Write-Host '$('='*$title.length)'"
-    $result += "    Write-Host ' '"
-    for ($i = 0; $i -lt $option.count; $i++) {
-        $result += "    Write-Host '$($i+1) - $($option[$i])'"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
-    $result += "    Write-Host 'Q - Quit'"
-    $result += "    Write-Host ' '"
-    $result += "    `$$VariableName = Read-Host 'Selection'"
-    $result += "    switch (`$$VariableName) {"
-    $result += "        q { 'Exit message and code' }"
-    #$result += "             break }"
-    for ($i = 0; $i -lt $option.count; $i++) { $result += "        $($i+1) { 'Option $($i+1) code' }" }
-    $result += "        default { Write-Host 'Please enter a valid selection' }"
-    $result += '    }'
-    $result += '}'
 
-    if ($TestMenu) {
-        $tempFilename = New-TemporaryFile
-        Remove-Item $tempFilename
-        $tempFilename = $tempFilename.Directory.ToString() + '\' + $tempFilename.BaseName + ''
-        $result > $tempFilename
-        & $tempFilename
-        Remove-Item $tempFilename
+    process {
+        $result = [string[]] @()
+        $result += "`$$VariableName = ''"
+        $result += "while (`$$VariableName -ne 'q') {"
+        $result += "    Write-Host '$title'"
+        $result += "    Write-Host '$('='*$title.length)'"
+        $result += "    Write-Host ' '"
+        for ($i = 0; $i -lt $option.count; $i++) {
+            $result += "    Write-Host '$($i+1) - $($option[$i])'"
+        }
+        $result += "    Write-Host 'Q - Quit'"
+        $result += "    Write-Host ' '"
+        $result += "    `$$VariableName = Read-Host 'Selection'"
+        $result += "    switch (`$$VariableName) {"
+        $result += "        q { 'Exit message and code' }"
+        #$result += "             break }"
+        for ($i = 0; $i -lt $option.count; $i++) { $result += "        $($i+1) { 'Option $($i+1) code' }" }
+        $result += "        default { Write-Host 'Please enter a valid selection' }"
+        $result += '    }'
+        $result += '}'
     }
-    else {
-        $result
-    }
-    if ($Clipboard) {
-        $result | clip.exe
-        Write-Host 'Menu logic copied to clipboard' -Foreground cyan
+
+    end {
+        if ($TestMenu) {
+            $tempFilename = New-TemporaryFile
+            Remove-Item -Path $tempFilename
+            $tempFilename = $tempFilename.Directory.ToString() + '\' + $tempFilename.BaseName + '.ps1'
+            $result | Out-File -FilePath $tempFilename
+            & $tempFilename
+            Remove-Item -Path $tempFilename
+        } else {
+            Write-Output -InputObject $result
+        }
+        if ($Clipboard) {
+            $result | clip.exe
+            Write-Warning -Message 'Menu logic copied to clipboard'
+        }
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
-# EOF Write-TextMenu

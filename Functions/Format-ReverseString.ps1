@@ -36,7 +36,7 @@ Function Format-ReverseString {
     )
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
@@ -48,14 +48,13 @@ Function Format-ReverseString {
                     Reverse  = $ReturnVal
                 })
             } else {
-                $ReturnVal
+                write-output $ReturnVal
             }
         }
-
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 }

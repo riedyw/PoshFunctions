@@ -64,6 +64,10 @@ function Format-MacAddress {
     -----------       ------------
     00:11:22:dD:ee:FF 0011.22dd.eeff
     10005a123456      1000.5a12.3456
+.EXAMPLE
+    Format-MacAddress -MacAddress (Get-RandomMacAddress) -Separator '.'
+
+    95.4a.e6.39.05.aa
 .OUTPUTS
     System.String
 .NOTES
@@ -110,7 +114,7 @@ function Format-MacAddress {
 
     begin {
         if ($Separator -eq 'Space') { $Separator = ' ' }
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
@@ -147,7 +151,7 @@ function Format-MacAddress {
             if ( -not ($IncludeOriginal) ) {
                 write-output -InputObject $Mac
             } else {
-                $prop = @{ OriginalMac = $oldMac ; FormattedMac = $mac   }
+                $prop = ([ordered] @{ OriginalMac = $oldMac ; FormattedMac = $mac   })
                 $obj = new-object -TypeName psobject -Property $prop
                 write-output -InputObject $obj
             }
@@ -155,7 +159,7 @@ function Format-MacAddress {
     } #EndBlock Process
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 } #EndFunction Format-MacAddress

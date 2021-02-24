@@ -1,8 +1,5 @@
-﻿# inspired by https://gallery.technet.microsoft.com/scriptcenter/Get-Type-Get-exported-fee19cf7
-# changed what is output by the function
-
-function Get-Type {
-<#
+﻿function Get-Type {
+    <#
 .SYNOPSIS
     Get exported types in the current session
 .DESCRIPTION
@@ -116,9 +113,12 @@ function Get-Type {
     TypeHandle                 Property   System.RuntimeTypeHandle TypeHandle {get;}
     TypeInitializer            Property   System.Reflection.ConstructorInfo TypeInitializer {get;}
     UnderlyingSystemType       Property   type UnderlyingSystemType {get;}
+.NOTES
+    # inspired by https://gallery.technet.microsoft.com/scriptcenter/Get-Type-Get-exported-fee19cf7
+    # changed what is output by the function
 #>
 
-    [CmdletBinding(ConfirmImpact='None')]
+    [CmdletBinding(ConfirmImpact = 'None')]
     param(
         [string] $Module = '*',
         [string] $Assembly = '*',
@@ -128,30 +128,40 @@ function Get-Type {
         [switch] $IsEnum
     )
 
-    #Build up the Where statement
-    $WhereArray = @('$_.IsPublic')
-    if ($Module -ne '*')    {$WhereArray += '$_.Module -like $Module'}
-    if ($Assembly -ne '*')  {$WhereArray += '$_.Assembly -like $Assembly'}
-    if ($FullName -ne '*')  {$WhereArray += '$_.FullName -like $FullName'}
-    if ($Namespace -ne '*') {$WhereArray += '$_.Namespace -like $Namespace'}
-    if ($BaseType -ne '*')  {$WhereArray += '$_.BaseType -like $BaseType'}
-    #This clause is only evoked if IsEnum is passed in
-    if($PSBoundParameters.ContainsKey('IsEnum')) { $WhereArray += '$_.IsENum -like $IsENum' }
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+    }
 
-    #Give verbose output, convert where string to scriptblock
-    $WhereString = $WhereArray -Join ' -and '
-    $WhereBlock = [scriptblock]::Create( $WhereString )
-    Write-Verbose -message "Where ScriptBlock: { $WhereString }"
+    process {
+        #Build up the Where statement
+        $WhereArray = @('$_.IsPublic')
+        if ($Module -ne '*') { $WhereArray += '$_.Module -like $Module' }
+        if ($Assembly -ne '*') { $WhereArray += '$_.Assembly -like $Assembly' }
+        if ($FullName -ne '*') { $WhereArray += '$_.FullName -like $FullName' }
+        if ($Namespace -ne '*') { $WhereArray += '$_.Namespace -like $Namespace' }
+        if ($BaseType -ne '*') { $WhereArray += '$_.BaseType -like $BaseType' }
+        #This clause is only evoked if IsEnum is passed in
+        if ($PSBoundParameters.ContainsKey('IsEnum')) { $WhereArray += '$_.IsENum -like $IsENum' }
 
-    #Invoke the search!
-    [AppDomain]::CurrentDomain.GetAssemblies() | ForEach-Object {
-        Write-Verbose -message "Getting types from $($_.FullName)"
-        Try {
-            $_.GetExportedTypes()
-        } Catch {
-            Write-Verbose -message "$($_.FullName) error getting Exported Types: $_"
-            $null
-        }
-    } | Where-Object -FilterScript $WhereBlock
-    # | Select-Object -Property Name, FullName, IsPublic, IsSerializable, IsEnum, BaseType, Module, Assembly, NameSpace
+        #Give verbose output, convert where string to scriptblock
+        $WhereString = $WhereArray -Join ' -and '
+        $WhereBlock = [scriptblock]::Create( $WhereString )
+        Write-Verbose -Message "Where ScriptBlock: { $WhereString }"
+
+        #Invoke the search!
+        [AppDomain]::CurrentDomain.GetAssemblies() | ForEach-Object {
+            Write-Verbose -Message "Getting types from $($_.FullName)"
+            try {
+                $_.GetExportedTypes()
+            } catch {
+                Write-Verbose -Message "$($_.FullName) error getting Exported Types: $_"
+                $null
+            }
+        } | Where-Object -FilterScript $WhereBlock |
+            Select-Object -Property Name, FullName, IsPublic, IsSerializable, IsEnum, BaseType, Module, Assembly, NameSpace
+    }
+
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
+    }
 }

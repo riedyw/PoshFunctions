@@ -1,4 +1,4 @@
-Function Get-Font {
+function Get-Font {
 <#
 .SYNOPSIS
     Gets the fonts currently loaded on the system
@@ -6,7 +6,7 @@ Function Get-Font {
     Uses the type System.Windows.Media.Fonts static property SystemFontFamilies,
     to retrieve all of the fonts loaded by the system.  If the Fonts type is not found,
     the PresentationCore assembly will be automatically loaded
-.PARAMETER font
+.PARAMETER Font
     A wildcard to search for font names
 .EXAMPLE
     # Get All Fonts
@@ -16,23 +16,27 @@ Function Get-Font {
     Get-Font *Lucida*
 #>
 
-    # fixme invalid behavior in pwsh
-
-    [CmdletBinding(ConfirmImpact='None')]
+    [CmdletBinding(ConfirmImpact = 'None')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
     param(
-        [string] $font = ''
+        [string] $Font = ''
     )
 
-    if (-not ('Windows.Media.Fonts' -as [Type])) {
-        Add-Type -AssemblyName 'PresentationCore'
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
-    #[Windows.Media.Fonts]::SystemFontFamilies |
-    #    Where-Object { $_.Source -like "$font" }
-    # $FontList1 = [Windows.Media.Fonts]::SystemFontFamilies.Source
-    $null =  [System.Reflection.Assembly]::LoadWithPartialName('System.Drawing')
-    $FontList2 = (New-Object -typename System.Drawing.Text.InstalledFontCollection).Families.Name
-#    $FontList = $FontList1 + $FontList2 | sort-object | select-object -unique
-# The first method of getting fonts returns values that can NOT be picked from drop down list box of Word.
-    $FontList = $FontList2 | sort-object | select-object -unique
-    $FontList | where-object { $_ -match "$font" }
-} #EndFunction Get-Font
+
+    process {
+        if (-not ('Windows.Media.Fonts' -as [Type])) {
+            $null = Add-Type -AssemblyName 'PresentationCore'
+        }
+        $null = Add-Type -AssemblyName System.Drawing
+        $FontList = (New-Object -TypeName System.Drawing.Text.InstalledFontCollection).Families.Name
+        $FontList = $FontList | Sort-Object | Select-Object -Unique
+        $FontList | Where-Object { $_ -match $Font }
+    }
+
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
+    }
+}

@@ -1,8 +1,4 @@
-
-
-# a filler comment
-
-Filter FileSizeBelow ($Size) {
+filter FileSizeBelow ($Size) {
 <#
 .SYNOPSIS
     To use as a filter against Get-ChildItem

@@ -1,7 +1,5 @@
-# inspired by https://gallery.technet.microsoft.com/scriptcenter/97119ed6-6fb2-446d-98d8-32d823867131
-
-Function Test-Port {
-    <#
+function Test-Port {
+<#
 .SYNOPSIS
     Tests a Port or a range of ports on a specific ComputerName(s).
 .DESCRIPTION
@@ -47,6 +45,8 @@ Function Test-Port {
     Notes           Any notes when attempting to make a connection
 .LINK
     about_Properties
+.NOTES
+    # inspired by https://gallery.technet.microsoft.com/scriptcenter/97119ed6-6fb2-446d-98d8-32d823867131
 #>
 
     #region Parameter
@@ -67,7 +67,7 @@ Function Test-Port {
     #endregion Parameter
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         if (!$tcp -AND !$udp) {
             $tcp = $True
         }
@@ -179,8 +179,7 @@ Function Test-Port {
         #Generate Report
         Write-Output -InputObject $report
         Write-Verbose -Message "Resetting value of `$ErrorActionPreference back to [$($oldEa)]"
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
         $ErrorActionPreference = $oldEA
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
-} #EndFunction Test-Port
+}

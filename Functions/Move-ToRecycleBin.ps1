@@ -34,12 +34,13 @@ Function Move-ToRecycleBin {
 
     begin {
         $FileSystem = New-Object -TypeName 'Microsoft.VisualBasic.FileIO.FileSystem'
+        Write-Verbose -Message "Starting [$($MyInvocation.MyCommand)]"
     }
 
     process {
         foreach ($currentPath in $Path) {
-            if (Test-Path $currentPath) {
-                $File = Resolve-Path $currentPath
+            if (Test-Path -Path $currentPath) {
+                $File = Resolve-Path -Path $currentPath
                 foreach ($currentFile in $File) {
                     Write-Verbose -Message ("Moving '{0}' to the Recycle Bin" -f $currentFile)
                     if (Test-Path -Path $currentFile -PathType Container) {
@@ -56,6 +57,7 @@ Function Move-ToRecycleBin {
 
     end {
         Remove-Variable -Name FileSystem
+        Write-Verbose -Message "Ending [$($MyInvocation.MyCommand)]"
     }
 
 } #Endfunction Move-ToRecycleBin

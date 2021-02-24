@@ -1,4 +1,4 @@
-Function Convert-ROT13 {
+function Convert-ROT13 {
 <#
 .SYNOPSIS
     Shifts letters in string by 13 positions.
@@ -6,6 +6,8 @@ Function Convert-ROT13 {
     Shifts letters in string by 13 positions. 'A' becomes 'N' and so on.
 .PARAMETER String
     A simple string or array of strings that you want Convert-ROT13 run against.
+.PARAMETER IncludeInput
+    Switch that indicates input parameters should be included in output
 .NOTES
     Link:       https://en.wikipedia.org/wiki/ROT13
 .EXAMPLE
@@ -32,28 +34,38 @@ Function Convert-ROT13 {
     bar
     VERBOSE: Current line is [two]
     gjb
+.EXAMPLE
+    'Hello', 'There', 'World!' | Convert-ROT13 -IncludeInput
+
+
+    String ROT13
+    ------ -----
+    Hello  Uryyb
+    There  Gurer
+    World! Jbeyq!
 .INPUTS
     [string[]]
 .OUTPUTS
     [string[]]
 .LINK
     https://en.wikipedia.org/wiki/ROT13
-
 #>
 
     #region Parameter
-    [CmdletBinding(ConfirmImpact='None')]
+    [CmdletBinding(ConfirmImpact = 'None')]
     Param(
-        [Parameter(Position = 0, HelpMessage='Please enter text to obfuscate', Mandatory, ValueFromPipeLine)]
+        [Parameter(Position = 0, HelpMessage = 'Please enter text to obfuscate', Mandatory, ValueFromPipeLine)]
         [Alias('Text')]
-        [String[]] $String
+        [String[]] $String,
+
+        [switch] $IncludeInput
     )
     #endregion Parameter
 
     begin {
         $Alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-        $Cipher   = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
-        Write-Verbose -Message "Starting $($MyInvocation.MyCommand)"
+        $Cipher = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
+        Write-Verbose -Message "Starting [$($MyInvocation.MyCommand)]"
     }
 
     process {
@@ -68,12 +80,19 @@ Function Convert-ROT13 {
                     $NewString += $Char
                 }
             }
-            Write-Output -InputObject $NewString
+            if ($IncludeInput) {
+                New-Object -TypeName psobject -Property ([ordered] @{
+                        String = $Line
+                        ROT13  = $NewString
+                    })
+            } else {
+                Write-Output -InputObject $NewString
+            }
         }
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.MyCommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.MyCommand)]"
     }
 
 } # endfunction Convert-ROT13

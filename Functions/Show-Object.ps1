@@ -18,6 +18,10 @@ Function Show-Object {
 #>
 
     [CmdletBinding(ConfirmImpact='Low')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidAssignmentToAutomaticVariable','')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingInvokeExpression','')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseProcessBlockForPipelineCommand','')]
     param(
         [Parameter(ValueFromPipeline,Position=0)]
         $InputObject
@@ -50,49 +54,49 @@ Function Show-Object {
     function PopulateNode
     {
         <#
-            .SYNOPSIS
-            Describe purpose of "PopulateNode" in 1-2 sentences.
+                .SYNOPSIS
+                Describe purpose of "PopulateNode" in 1-2 sentences.
 
-            .DESCRIPTION
-            Add a more complete description of what the function does.
+                .DESCRIPTION
+                Add a more complete description of what the function does.
 
-            .PARAMETER node
-            Describe parameter -node.
+                .PARAMETER node
+                Describe parameter -node.
 
-            .PARAMETER object
-            Describe parameter -object.
+                .PARAMETER object
+                Describe parameter -object.
 
-            .EXAMPLE
-            PopulateNode -node Value -object Value
-            Describe what this call does
+                .EXAMPLE
+                PopulateNode -node Value -object Value
+                Describe what this call does
 
-            .NOTES
-            Place additional notes here.
+                .NOTES
+                Place additional notes here.
 
-            .LINK
-            URLs to related sites
-            The first link is opened by Get-Help -Online PopulateNode
+                .LINK
+                URLs to related sites
+                The first link is opened by Get-Help -Online PopulateNode
 
-            .INPUTS
-            List of input types that are accepted by this function.
+                .INPUTS
+                List of input types that are accepted by this function.
 
-            .OUTPUTS
-            List of output types produced by this function.
+                .OUTPUTS
+                List of output types produced by this function.
         #>
 
         ## If we've been asked to add a NULL object, just return
 
-    [CmdletBinding()]
-    param
-    (
-        $node,
+        [CmdletBinding()]
+        param
+        (
+            $node,
 
-        $object
-    )
+            $object
+        )
 
-    if(-not $object) {
-        write-output -InputObject $null
-    }
+        if(-not $object) {
+            write-output -InputObject $null
+        }
 
         ## If the object is a collection, then we need to add multiple
         ## children to the node
@@ -171,34 +175,34 @@ Function Show-Object {
     function AddPlaceholderIfRequired
     {
         <#
-            .SYNOPSIS
-            Describe purpose of "AddPlaceholderIfRequired" in 1-2 sentences.
+                .SYNOPSIS
+                Describe purpose of "AddPlaceholderIfRequired" in 1-2 sentences.
 
-            .DESCRIPTION
-            Add a more complete description of what the function does.
+                .DESCRIPTION
+                Add a more complete description of what the function does.
 
-            .PARAMETER node
-            Describe parameter -node.
+                .PARAMETER node
+                Describe parameter -node.
 
-            .PARAMETER object
-            Describe parameter -object.
+                .PARAMETER object
+                Describe parameter -object.
 
-            .EXAMPLE
-            AddPlaceholderIfRequired -node Value -object Value
-            Describe what this call does
+                .EXAMPLE
+                AddPlaceholderIfRequired -node Value -object Value
+                Describe what this call does
 
-            .NOTES
-            Place additional notes here.
+                .NOTES
+                Place additional notes here.
 
-            .LINK
-            URLs to related sites
-            The first link is opened by Get-Help -Online AddPlaceholderIfRequired
+                .LINK
+                URLs to related sites
+                The first link is opened by Get-Help -Online AddPlaceholderIfRequired
 
-            .INPUTS
-            List of input types that are accepted by this function.
+                .INPUTS
+                List of input types that are accepted by this function.
 
-            .OUTPUTS
-            List of output types produced by this function.
+                .OUTPUTS
+                List of output types produced by this function.
         #>
 
         [CmdletBinding()]
@@ -208,7 +212,7 @@ Function Show-Object {
 
             $object
         )
-    if(-not $object) { write-output -InputObject $null }
+        if(-not $object) { write-output -InputObject $null }
 
         if([System.Management.Automation.LanguagePrimitives]::GetEnumerator($object) -or
             @($object.PSObject.Properties))
@@ -221,34 +225,34 @@ Function Show-Object {
     function OnAfterSelect
     {
         <#
-            .SYNOPSIS
-            Describe purpose of "OnAfterSelect" in 1-2 sentences.
+                .SYNOPSIS
+                Describe purpose of "OnAfterSelect" in 1-2 sentences.
 
-            .DESCRIPTION
-            Add a more complete description of what the function does.
+                .DESCRIPTION
+                Add a more complete description of what the function does.
 
-            .PARAMETER Sender
-            Describe parameter -Sender.
+                .PARAMETER Sender
+                Describe parameter -Sender.
 
-            .PARAMETER TreeViewEventArgs
-            Describe parameter -TreeViewEventArgs.
+                .PARAMETER TreeViewEventArgs
+                Describe parameter -TreeViewEventArgs.
 
-            .EXAMPLE
-            OnAfterSelect -Sender Value -TreeViewEventArgs Value
-            Describe what this call does
+                .EXAMPLE
+                OnAfterSelect -Sender Value -TreeViewEventArgs Value
+                Describe what this call does
 
-            .NOTES
-            Place additional notes here.
+                .NOTES
+                Place additional notes here.
 
-            .LINK
-            URLs to related sites
-            The first link is opened by Get-Help -Online OnAfterSelect
+                .LINK
+                URLs to related sites
+                The first link is opened by Get-Help -Online OnAfterSelect
 
-            .INPUTS
-            List of input types that are accepted by this function.
+                .INPUTS
+                List of input types that are accepted by this function.
 
-            .OUTPUTS
-            List of output types produced by this function.
+                .OUTPUTS
+                List of output types produced by this function.
         #>
 
         [CmdletBinding()]
@@ -279,34 +283,34 @@ Function Show-Object {
     function OnBeforeExpand
     {
         <#
-            .SYNOPSIS
-            Describe purpose of "OnBeforeExpand" in 1-2 sentences.
+                .SYNOPSIS
+                Describe purpose of "OnBeforeExpand" in 1-2 sentences.
 
-            .DESCRIPTION
-            Add a more complete description of what the function does.
+                .DESCRIPTION
+                Add a more complete description of what the function does.
 
-            .PARAMETER Sender
-            Describe parameter -Sender.
+                .PARAMETER Sender
+                Describe parameter -Sender.
 
-            .PARAMETER TreeViewCancelEventArgs
-            Describe parameter -TreeViewCancelEventArgs.
+                .PARAMETER TreeViewCancelEventArgs
+                Describe parameter -TreeViewCancelEventArgs.
 
-            .EXAMPLE
-            OnBeforeExpand -Sender Value -TreeViewCancelEventArgs Value
-            Describe what this call does
+                .EXAMPLE
+                OnBeforeExpand -Sender Value -TreeViewCancelEventArgs Value
+                Describe what this call does
 
-            .NOTES
-            Place additional notes here.
+                .NOTES
+                Place additional notes here.
 
-            .LINK
-            URLs to related sites
-            The first link is opened by Get-Help -Online OnBeforeExpand
+                .LINK
+                URLs to related sites
+                The first link is opened by Get-Help -Online OnBeforeExpand
 
-            .INPUTS
-            List of input types that are accepted by this function.
+                .INPUTS
+                List of input types that are accepted by this function.
 
-            .OUTPUTS
-            List of output types produced by this function.
+                .OUTPUTS
+                List of output types produced by this function.
         #>
 
         [CmdletBinding()]
@@ -345,34 +349,34 @@ Function Show-Object {
     function OnKeyPress
     {
         <#
-            .SYNOPSIS
-            Describe purpose of "OnKeyPress" in 1-2 sentences.
+                .SYNOPSIS
+                Describe purpose of "OnKeyPress" in 1-2 sentences.
 
-            .DESCRIPTION
-            Add a more complete description of what the function does.
+                .DESCRIPTION
+                Add a more complete description of what the function does.
 
-            .PARAMETER Sender
-            Describe parameter -Sender.
+                .PARAMETER Sender
+                Describe parameter -Sender.
 
-            .PARAMETER KeyPressEventArgs
-            Describe parameter -KeyPressEventArgs.
+                .PARAMETER KeyPressEventArgs
+                Describe parameter -KeyPressEventArgs.
 
-            .EXAMPLE
-            OnKeyPress -Sender Value -KeyPressEventArgs Value
-            Describe what this call does
+                .EXAMPLE
+                OnKeyPress -Sender Value -KeyPressEventArgs Value
+                Describe what this call does
 
-            .NOTES
-            Place additional notes here.
+                .NOTES
+                Place additional notes here.
 
-            .LINK
-            URLs to related sites
-            The first link is opened by Get-Help -Online OnKeyPress
+                .LINK
+                URLs to related sites
+                The first link is opened by Get-Help -Online OnKeyPress
 
-            .INPUTS
-            List of input types that are accepted by this function.
+                .INPUTS
+                List of input types that are accepted by this function.
 
-            .OUTPUTS
-            List of output types produced by this function.
+                .OUTPUTS
+                List of output types produced by this function.
         #>
 
         [CmdletBinding()]
@@ -397,31 +401,31 @@ Function Show-Object {
     function GetPathForNode
     {
         <#
-            .SYNOPSIS
-            Describe purpose of "GetPathForNode" in 1-2 sentences.
+                .SYNOPSIS
+                Describe purpose of "GetPathForNode" in 1-2 sentences.
 
-            .DESCRIPTION
-            Add a more complete description of what the function does.
+                .DESCRIPTION
+                Add a more complete description of what the function does.
 
-            .PARAMETER Node
-            Describe parameter -Node.
+                .PARAMETER Node
+                Describe parameter -Node.
 
-            .EXAMPLE
-            GetPathForNode -Node Value
-            Describe what this call does
+                .EXAMPLE
+                GetPathForNode -Node Value
+                Describe what this call does
 
-            .NOTES
-            Place additional notes here.
+                .NOTES
+                Place additional notes here.
 
-            .LINK
-            URLs to related sites
-            The first link is opened by Get-Help -Online GetPathForNode
+                .LINK
+                URLs to related sites
+                The first link is opened by Get-Help -Online GetPathForNode
 
-            .INPUTS
-            List of input types that are accepted by this function.
+                .INPUTS
+                List of input types that are accepted by this function.
 
-            .OUTPUTS
-            List of output types produced by this function.
+                .OUTPUTS
+                List of output types produced by this function.
         #>
 
         [CmdletBinding()]

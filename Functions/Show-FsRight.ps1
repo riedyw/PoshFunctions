@@ -1,4 +1,4 @@
-Function Show-FsRight {
+function Show-FsRight {
 <#
 .SYNOPSIS
     To list all potential file system rights
@@ -6,7 +6,8 @@ Function Show-FsRight {
     To list all potential file system rights
 .EXAMPLE
     Show-FsRight
-    Would return:
+
+    Would return
     A listing of all of the explicit filesystemrights
 
                         Name Type   Hex                    Dec
@@ -47,66 +48,76 @@ DeleteSubdirectoriesAndFiles Single 0x00000040              64
 #>
 
     #region Parameter
-    [CmdletBinding(ConfirmImpact='None')]
+    [CmdletBinding(ConfirmImpact = 'None')]
     [OutputType('psobject')]
     Param()
     #endregion Parameter
 
-    $returnVar = @()
-    $prop       = @{ Name = 'GenericRead' ; Dec = [uint64] '0x80000000'; Hex = '0x80000000'; Type = 'Single' }
-    $object     = New-Object -TypeName PSObject -Property $prop
-    $returnVar += $object
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+    }
 
-    $prop       = @{ Name = 'GenericWrite' ;  Dec = [uint64] '0x40000000'; Hex = '0x40000000'; Type = 'Single' }
-    $object     = New-Object -TypeName PSObject -Property $prop
-    $returnVar += $object
+    process {
+        $returnVar = @()
+        $prop = @{ Name = 'GenericRead' ; Dec = [uint64] '0x80000000'; Hex = '0x80000000'; Type = 'Single' }
+        $object = New-Object -TypeName PSObject -Property $prop
+        $returnVar += $object
 
-    $prop       = @{ Name = 'GenericExecute' ;  Dec = [uint64] '0x20000000'; Hex = '0x20000000'; Type = 'Single' }
-    $object     = New-Object -TypeName PSObject -Property $prop
-    $returnVar += $object
+        $prop = @{ Name = 'GenericWrite' ; Dec = [uint64] '0x40000000'; Hex = '0x40000000'; Type = 'Single' }
+        $object = New-Object -TypeName PSObject -Property $prop
+        $returnVar += $object
 
-    $prop       = @{ Name = 'GenericAll' ;  Dec = [uint64] '0x10000000'; Hex = '0x10000000'; Type = 'Single' }
-    $object     = New-Object -TypeName PSObject -Property $prop
-    $returnVar += $object
+        $prop = @{ Name = 'GenericExecute' ; Dec = [uint64] '0x20000000'; Hex = '0x20000000'; Type = 'Single' }
+        $object = New-Object -TypeName PSObject -Property $prop
+        $returnVar += $object
 
-    $prop       = @{ Name = 'MaximumAllowed' ;  Dec = [uint64] '0x02000000'; Hex = '0x02000000'; Type = 'Single' }
-    $object     = New-Object -TypeName PSObject -Property $prop
-    $returnVar += $object
+        $prop = @{ Name = 'GenericAll' ; Dec = [uint64] '0x10000000'; Hex = '0x10000000'; Type = 'Single' }
+        $object = New-Object -TypeName PSObject -Property $prop
+        $returnVar += $object
 
-    $prop       = @{ Name = 'AccessSystemSecurity' ;  Dec = [uint64] '0x01000000'; Hex = '0x01000000'; Type = 'Single' }
-    $object     = New-Object -TypeName PSObject -Property $prop
-    $returnVar += $object
+        $prop = @{ Name = 'MaximumAllowed' ; Dec = [uint64] '0x02000000'; Hex = '0x02000000'; Type = 'Single' }
+        $object = New-Object -TypeName PSObject -Property $prop
+        $returnVar += $object
 
-    $prop       = @{ Name ='Read' ; Dec = [uint64] 1179785 ; Hex = '0x00120089'; Type = 'Combo' }
-    $object     = New-Object -TypeName PSObject -Property $prop
-    $returnVar += $object
+        $prop = @{ Name = 'AccessSystemSecurity' ; Dec = [uint64] '0x01000000'; Hex = '0x01000000'; Type = 'Single' }
+        $object = New-Object -TypeName PSObject -Property $prop
+        $returnVar += $object
 
-    $prop       = @{ Name ='Read,Write' ; Dec = [uint64] 1180063 ; Hex = '0x0012019F'; Type = 'Combo' }
-    $object     = New-Object -TypeName PSObject -Property $prop
-    $returnVar += $object
+        $prop = @{ Name = 'Read' ; Dec = [uint64] 1179785 ; Hex = '0x00120089'; Type = 'Combo' }
+        $object = New-Object -TypeName PSObject -Property $prop
+        $returnVar += $object
 
-    $prop       = @{ Name ='ReadAndExecute' ; Dec = [uint64] 1179817 ; Hex = '0x001200A9'; Type = 'Combo' }
-    $object     = New-Object -TypeName PSObject -Property $prop
-    $returnVar += $object
+        $prop = @{ Name = 'Read,Write' ; Dec = [uint64] 1180063 ; Hex = '0x0012019F'; Type = 'Combo' }
+        $object = New-Object -TypeName PSObject -Property $prop
+        $returnVar += $object
 
-    $prop       = @{ Name ='ReadAndExecuteExtended' ; Dec = [uint64] '0xFFA0000000'; Hex = '0xFFA0000000'; Type = 'Combo' }
-    $object     = New-Object -TypeName PSObject -Property $prop
-    $returnVar += $object
+        $prop = @{ Name = 'ReadAndExecute' ; Dec = [uint64] 1179817 ; Hex = '0x001200A9'; Type = 'Combo' }
+        $object = New-Object -TypeName PSObject -Property $prop
+        $returnVar += $object
 
-    $prop       = @{ Name ='ReadAndExecute,Modify,Write' ; Dec = [uint64] 1245631 ; Hex = '0x001301BF'; Type = 'Combo' }
-    $object     = New-Object -TypeName PSObject -Property $prop
-    $returnVar += $object
+        $prop = @{ Name = 'ReadAndExecuteExtended' ; Dec = [uint64] '0xFFA0000000'; Hex = '0xFFA0000000'; Type = 'Combo' }
+        $object = New-Object -TypeName PSObject -Property $prop
+        $returnVar += $object
 
-    $prop       = @{ Name ='ReadAndExecute,Write' ; Dec = [uint64] 1180095 ; Hex = '0x001201BF'; Type = 'Combo' }
-    $object     = New-Object -TypeName PSObject -Property $prop
-    $returnVar += $object
+        $prop = @{ Name = 'ReadAndExecute,Modify,Write' ; Dec = [uint64] 1245631 ; Hex = '0x001301BF'; Type = 'Combo' }
+        $object = New-Object -TypeName PSObject -Property $prop
+        $returnVar += $object
+
+        $prop = @{ Name = 'ReadAndExecute,Write' ; Dec = [uint64] 1180095 ; Hex = '0x001201BF'; Type = 'Combo' }
+        $object = New-Object -TypeName PSObject -Property $prop
+        $returnVar += $object
 
         $returnVar += [System.Enum]::Getvalues([system.security.accesscontrol.filesystemrights]) |
-        select-object -Property @{Name = 'Name'; Expression = {$_}},
-            @{Name = 'Dec';     Expression = {[Int32] $_}},
-            @{Name = 'Hex';     Expression = {'0x{0:X8}' -f [uint64] $_}},
-            @{Name = 'Type';    Expression = {if (('0x{0:X8}' -f [uint64] $_) -match '^0x0*\d0*$') {'Single'} else {'Combo'} }} |
-            select-object -Property name, dec, hex, type -Unique
-    $returnVar = $returnVar | sort-object -Property Dec
-    write-output -InputObject ($returnVar | select-object -Property Name, Type, Hex, Dec)
+            Select-Object -Property @{Name = 'Name'; Expression = { $_ } },
+            @{Name = 'Dec'; Expression = { [int] $_ } },
+            @{Name = 'Hex'; Expression = { '0x{0:X8}' -f [uint64] $_ } },
+            @{Name = 'Type'; Expression = { if (('0x{0:X8}' -f [uint64] $_) -match '^0x0*\d0*$') { 'Single' } else { 'Combo' } } } |
+            Select-Object -Property name, dec, hex, type -Unique
+        $returnVar = $returnVar | Sort-Object -Property Dec
+        Write-Output -InputObject ($returnVar | Select-Object -Property Name, Type, Hex, Dec)
+    }
+
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
+    }
 }

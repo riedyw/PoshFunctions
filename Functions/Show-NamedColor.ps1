@@ -1,4 +1,4 @@
-Function Show-NamedColor {
+function Show-NamedColor {
 <#
 .SYNOPSIS
     Shows all named colors
@@ -13,6 +13,8 @@ Function Show-NamedColor {
     #region Parameter
     [CmdletBinding(ConfirmImpact='None')]
     [OutputType('psobject')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]
+
     Param(
         [Parameter(Position = 0, ValueFromPipeline) ]
         [ValidateSet('AliceBlue',
@@ -160,46 +162,45 @@ Function Show-NamedColor {
         )]
         [string] $ColorName,
 
-        [Parameter()]
-            [switch] $ExcludeEmpty
+        [switch] $ExcludeEmpty
         )
     #endregion Parameter
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
-        write-verbose -Message 'Determining names of colors'
-        [System.Drawing.Color] | get-member -MemberType *property -Static | findstr.exe /i 'Property' |
-            foreach-object -begin {
+        Write-Verbose -Message 'Determining names of colors'
+        [System.Drawing.Color] | Get-Member -MemberType *property -Static | findstr.exe /i 'Property' |
+            ForEach-Object -Begin {
                     $result1=@()
-                } -process {
+                } -Process {
                     $tmp = $_ -split '\s+'
                     $result1 += $tmp[0]
-                } -end { }
-        write-verbose -Message "There are $($result1.count) named system colors."
+                } -End { }
+        Write-Verbose -Message "There are $($result1.count) named system colors."
         if ($ExcludeEmpty) {
-            write-verbose -Message 'Excluding empty and transparent'
-            $result1 = $result1 | where-object {$_ -notin @('Empty', 'Transparent')}
+            Write-Verbose -Message 'Excluding empty and transparent'
+            $result1 = $result1 | Where-Object {$_ -notin @('Empty', 'Transparent')}
         }
 
         if (-not $ColorName) {
-            $ReturnVal = $result1 | foreach-object { [system.drawing.color]::$_ } |
-                select-object -property Name, IsKnownColor, IsNamedColor, IsSystemColor, IsEmpty, R, G, B, A
+            $ReturnVal = $result1 | ForEach-Object { [system.drawing.color]::$_ } |
+                Select-Object -Property Name, IsKnownColor, IsNamedColor, IsSystemColor, IsEmpty, R, G, B, A
         }
         else {
             $result2 = @()
             $result2 += $result1 | where-object { $_ -eq "$ColorName" } | foreach-object { [system.drawing.color]::$_ }
             write-verbose -Message "There are $($result2.count) named system colors in the result set."
-            $ReturnVal = $result2 | select-object -property Name, IsKnownColor, IsNamedColor, IsSystemColor, IsEmpty, R, G, B, A
+            $ReturnVal = $result2 | Select-Object -Property Name, IsKnownColor, IsNamedColor, IsSystemColor, IsEmpty, R, G, B, A
         }
         foreach ($R in $ReturnVal) { if ($R.Name -eq '0') { $R.Name = 'Empty' }}
-        $ReturnVal
+        Write-Output -InputObject $ReturnVal
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 }

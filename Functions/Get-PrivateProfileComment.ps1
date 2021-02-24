@@ -37,20 +37,20 @@ function Get-PrivateProfileComment {
     )
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
-        Write-Verbose -Message "Trimming parameters."
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+        Write-Verbose -Message 'Trimming parameters.'
         $Section = $Section.Trim()
         $InSection = $false
     }
 
-    Process {
-        if (Test-Path $File) {
+    process {
+        if (Test-Path -Path $File) {
             $ResolveFile = Resolve-Path -Path $File
             if ($ResolveFile.count -gt 1) {
                 Write-Error -Message "ERROR: File specification [$File] resolves to more than 1 file."
             } else {
                 Write-Verbose -Message "Using file [$ResolveFile] in section [$Section], getting comments"
-                $IniContent = Get-Content $ResolveFile
+                $IniContent = Get-Content -Path $ResolveFile
                 if ($Section -eq '') {
                     $InSection = $true
                 }
@@ -61,8 +61,6 @@ function Get-PrivateProfileComment {
                         } elseif ($_ -match '^(\s*\[\s*)([\S\s+\S|\S]+)(\s*\]).*$') {
                             break
                         }
-                    } else {
-                        # no code necessary
                     }
                     if ($_ -match '^(\s*\[\s*)([\S\s+\S|\S]+)(\s*\]).*$') {
                         $MatchSection = $matches[2].Trim()
@@ -78,7 +76,6 @@ function Get-PrivateProfileComment {
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
-} #EndFunction Get-PrivateProfileComment
+}

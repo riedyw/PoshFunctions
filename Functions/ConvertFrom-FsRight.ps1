@@ -1,4 +1,4 @@
-Function ConvertFrom-FsRight {
+function ConvertFrom-FsRight {
 <#
 .SYNOPSIS
     To convert a [uint32] FileSystemRight value into a human readable form
@@ -28,11 +28,13 @@ Function ConvertFrom-FsRight {
     #region Parameters
     [CmdletBinding()]
     [OutputType('string')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '')]
     param([uint64] $Rights)
     #endregion Parameters
 
-    Begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
@@ -45,7 +47,7 @@ Function ConvertFrom-FsRight {
                 $temp += $_.Name
                 $MatchFound = $true
                 Write-Verbose -Message "Temp now equal to [$($temp -join ',')]"
-                Write-Output -inputobject ( $_.Name )
+                Write-Output -InputObject ( $_.Name )
                 #break
             }
         }
@@ -67,15 +69,14 @@ Function ConvertFrom-FsRight {
             $MatchFound | Out-Null
             # Simple permissions hit a match, output the variable and return
             if ( $MatchFound ) {
-                Write-Output -inputobject ( $temp -join ',' )
+                Write-Output -InputObject ( $temp -join ',' )
             } else {
-                Write-Output -inputobject $null
+                Write-Output -InputObject $null
             }
         }
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
-} #EndFunction ConvertFrom-FsRight
+}
