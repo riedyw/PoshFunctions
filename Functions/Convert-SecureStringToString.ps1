@@ -24,8 +24,17 @@ function Convert-SecureStringToString {
         [securestring] $SecureString
     )
 
-    $UserName = 'domain\user'
-    $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $UserName, $SecureString
-    Write-Output -InputObject $Credential.GetNetworkCredential().Password
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+    }
 
+    process {
+        $UserName = 'domain\user'
+        $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $UserName, $SecureString
+        Write-Output -InputObject $Credential.GetNetworkCredential().Password
+    }
+
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
+    }
 }

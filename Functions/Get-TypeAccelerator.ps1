@@ -1,13 +1,29 @@
-function Show-TypeAccelerator {
+function Get-TypeAccelerator {
 <#
 .SYNOPSIS
-    Shows type accelerators
+    Gets type accelerators
 .DESCRIPTION
-    Shows type accelerators [int32] [datetime] etc.
+    Gets type accelerators [int32] [datetime] etc.
 .PARAMETER MatchString
     String to limit the display to those type accelerators that match the string specified
 .NOTES
-    The additional entries in the result set does not display properly in Powershell versions prior to 7.x and extra logic added to handle
+    This function contains a here string. The contents of the here string to its closing token MUST, MUST, MUST be at column 0. Autoformatting and indentation will break the here string. Please do NOT autoformat this document.
+.EXAMPLE
+    Get-TypeAccelerator -MatchString array
+
+    Name      FullName
+    ----      --------
+    array     System.Array
+    arraylist System.Collections.ArrayList
+    bitarray  System.Collections.BitArray
+.EXAMPLE
+    Get-TypeAccelerator -MatchString 32
+
+    Name   FullName
+    ----   --------
+    int    System.Int32
+    int32  System.Int32
+    uint32 System.UInt32
 #>
 
     [CmdletBinding(ConfirmImpact = 'None')]
@@ -23,6 +39,7 @@ function Show-TypeAccelerator {
         } else {
             $split = "`r`n"
         }
+         # The contents of the here string to its closing token MUST, MUST, MUST be at column 0. Autoformatting and indentation will break the here string.
         $HereString = @"
 Name,FullName
 arraylist,System.Collections.ArrayList
@@ -56,3 +73,5 @@ webrequest,System.Net.WebRequest
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
+
+Set-Alias -Name 'Show-TypeAccelerator' -Value 'Get-TypeAccelerator' -Description 'Alias for Get-TypeAccelerator for backward compatibility'

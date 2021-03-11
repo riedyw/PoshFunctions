@@ -1,5 +1,4 @@
-
-Function New-ScreenShot {
+function New-ScreenShot {
 <#
 .SYNOPSIS
     To take a screenshot and save it to a file.
@@ -18,11 +17,8 @@ Function New-ScreenShot {
     Taking a full screenshot of the desktop and saving it to .\Screenshot.bmp
 #>
 
-    # todo overwrite file?
-    # todo better error checking
-
     [CmdletBinding(SupportsShouldProcess,ConfirmImpact='Low')]
-
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]
     Param(
         [Parameter(Position=0,Mandatory,HelpMessage='Enter the path and filename')]
         [ValidateNotNullorEmpty()]
@@ -35,9 +31,9 @@ Function New-ScreenShot {
             } else {
                 if (! (Test-Path -Path $folder)) {
                     #write a custom error message for v3
-                    Throw "Can't verify that $folder exists."
+                    throw "Can't verify that $folder exists."
                 } else {
-                    $True
+                    $true
                 }
             }
         })]
@@ -48,67 +44,77 @@ Function New-ScreenShot {
         [switch] $Passthru
     )
 
-    If ($host.Runspace.ApartmentState -ne 'STA') {
-        Write-Warning -Message 'You must run this in a PowerShell session with an apartment state of STA'
-        Return
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+        $obj = New-Object -ComObject WScript.Shell
     }
 
-    #load the necessary assemblies
-    Add-Type -AssemblyName 'System.Drawing','System.Windows.Forms'
-
-    if ($Full) {
-        #capture the full desktop
-        [Windows.Forms.Sendkeys]::SendWait('{PrtSc}')
-    }
-    else {
-        #capture the current window
-        [Windows.Forms.Sendkeys]::SendWait('%{PrtSc}')
-    }
-
-    #pause enough to give time for the capture to take place
-    start-sleep -Milliseconds 250
-
-    #create bitmap object from the screenshot
-    $bitmap = [Windows.Forms.Clipboard]::GetImage()
-
-    #split off the file extension and use it as the type
-    [string] $filename=Split-Path -Path $Path -Leaf
-    [string] $FileExtension= $Filename.Split('.')[1].Trim()
-
-    #get the right format value based on the file extension
-    Switch ($FileExtension) {
-        'png'  {$FileType=[System.Drawing.Imaging.ImageFormat]::Png}
-        'bmp'  {$FileType=[System.Drawing.Imaging.ImageFormat]::Bmp}
-        'gif'  {$FileType=[System.Drawing.Imaging.ImageFormat]::Gif}
-        'emf'  {$FileType=[System.Drawing.Imaging.ImageFormat]::Emf}
-        'jpg'  {$FileType=[System.Drawing.Imaging.ImageFormat]::Jpeg}
-        'tiff' {$FileType=[System.Drawing.Imaging.ImageFormat]::Tiff}
-        'wmf'  {$FileType=[System.Drawing.Imaging.ImageFormat]::Wmf}
-        'exif' {$FileType=[System.Drawing.Imaging.ImageFormat]::Exif}
-
-        Default {
-        Write-Warning -Message 'Failed to find a valid graphic file type'
-        $FileType=$False
+    process {
+        if ($host.Runspace.ApartmentState -ne 'STA') {
+            Write-Warning -Message 'You must run this in a PowerShell session with an apartment state of STA'
+            Return
         }
-    } #switch
 
-    #Save the file if a valid file type was determined
-    if ($FileType) {
-        If ($PSCmdlet.ShouldProcess($path)) {
-            Try {
-                $bitmap.Save($Path.Trim(),$FileType)
-                if ($Passthru) {
-                    #write the file object to the pipeline
-                    Get-Item -Path $Path.Trim()
-                } #if $passthru
-            } #try
-            Catch {
-                Write-Warning -Message "Failed to save screen capture. $($_.Exception.Message)"
-            } #catch
-        } #if shouldprocess
-    } #if $filetype
+        #load the necessary assemblies
+        Add-Type -AssemblyName 'System.Drawing','System.Windows.Forms'
 
-    #clear the clipboard
-    [Windows.Forms.Clipboard]::Clear()
+        if ($Full) {
+            #capture the full desktop
+            [Windows.Forms.Sendkeys]::SendWait('{PrtSc}')
+        }
+        else {
+            #capture the current window
+            [Windows.Forms.Sendkeys]::SendWait('%{PrtSc}')
+        }
 
-} #end function
+        #pause enough to give time for the capture to take place
+        Start-Sleep -Milliseconds 250
+
+        #create bitmap object from the screenshot
+        $bitmap = [Windows.Forms.Clipboard]::GetImage()
+
+        #split off the file extension and use it as the type
+        [string] $filename=Split-Path -Path $Path -Leaf
+        [string] $FileExtension= $Filename.Split('.')[1].Trim()
+
+        #get the right format value based on the file extension
+        switch ($FileExtension) {
+            'png'  {$FileType=[System.Drawing.Imaging.ImageFormat]::Png}
+            'bmp'  {$FileType=[System.Drawing.Imaging.ImageFormat]::Bmp}
+            'gif'  {$FileType=[System.Drawing.Imaging.ImageFormat]::Gif}
+            'emf'  {$FileType=[System.Drawing.Imaging.ImageFormat]::Emf}
+            'jpg'  {$FileType=[System.Drawing.Imaging.ImageFormat]::Jpeg}
+            'tiff' {$FileType=[System.Drawing.Imaging.ImageFormat]::Tiff}
+            'wmf'  {$FileType=[System.Drawing.Imaging.ImageFormat]::Wmf}
+            'exif' {$FileType=[System.Drawing.Imaging.ImageFormat]::Exif}
+
+            default {
+                Write-Warning -Message 'Failed to find a valid graphic file type'
+                $FileType=$False
+            }
+        } #switch
+
+        #Save the file if a valid file type was determined
+        if ($FileType) {
+            if ($PSCmdlet.ShouldProcess($path)) {
+                try {
+                    $bitmap.Save($Path.Trim(),$FileType)
+                    if ($Passthru) {
+                        #write the file object to the pipeline
+                        Get-Item -Path $Path.Trim()
+                    } #if $passthru
+                } #try
+                catch {
+                    Write-Warning -Message "Failed to save screen capture. $($_.Exception.Message)"
+                } #catch
+            } #if shouldprocess
+        } #if $filetype
+
+        #clear the clipboard
+        # [Windows.Forms.Clipboard]::Clear()
+    }
+
+    end {
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
+    }
+}

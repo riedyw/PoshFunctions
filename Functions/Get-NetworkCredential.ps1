@@ -16,15 +16,12 @@ function Get-NetworkCredential {
     Medium to High impact as this function will return the password, albeit hidden from default view
 #>
 
-# todo blah blah
     [CmdletBinding(ConfirmImpact = 'Medium')]
     [OutputType('System.Net.NetworkCredential')]
     Param
     (
-
         [Parameter(Mandatory, Position = 0)]
         [PSCredential] $Credential
-
     )
     #endregion parameter
 
@@ -39,5 +36,4 @@ function Get-NetworkCredential {
     end {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
 }

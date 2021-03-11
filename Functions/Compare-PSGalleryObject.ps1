@@ -21,6 +21,8 @@ function Compare-PSGalleryObject {
 
     Would return the state of the installed script 'New-TextMenu'
 .NOTES
+    Does NOT appear to work properly in pwsh
+
     Inspired by Get-ModuleVersionInformation at: https://tfl09.blogspot.com/2018/07/keeping-powershell-modules-up-to-date.html
 
     Changes:
@@ -31,8 +33,6 @@ function Compare-PSGalleryObject {
     * write-verbose statements
     * added -AllowPrerelease to Find-Module / Find-Script statements
 #>
-
-    # todo doesn't work properly in pwsh
 
     #region parameter
     [CmdletBinding(DefaultParameterSetName = 'Module', ConfirmImpact = 'None')]
@@ -68,7 +68,6 @@ function Compare-PSGalleryObject {
                 Write-Verbose -Message 'Searching for object type SCRIPT'
             }
         }
-
         Write-Verbose -Message "Finding installed objects that match name [$Name]. A '*' within the brackets indicates all objects."
         Write-Verbose -Message "Searching for just those objects that need an upgrade [$NeedUpgrade]"
     }
@@ -76,27 +75,24 @@ function Compare-PSGalleryObject {
     process {
         switch ($PsCmdlet.ParameterSetName) {
             'Module' {
-                $Objects = Get-InstalledModule -Verbose:$False | Where-Object { $_.Name -like $Name }
+                $Objects = Get-InstalledModule -Name $Name -Verbose:$False
                 Write-Verbose -Message ('{0} modules locally that match [{1}]' -f $Objects.count, $Name)
-                Foreach ($Object in $Objects) {
+                foreach ($Object in $Objects) {
                     Write-Verbose -Message "Processing $($Object.name)"
-
                     $UpdateObject = [ordered] @{}    # create the hash table
                     $UpdateObject.ObjectType = 'Module'
                     $UpdateObject.Name = $Object.Name     # Add name
                     $UpdateObject.InstalledVersion = $Object.Version  # And local version
-
                     try {
                         #  Find module, and add gallery version number to hash table
                         $GalObj = Find-Module -Name $Object.name -ErrorAction Stop -AllowPrerelease
                         $UpdateObject.PSGalleryVersion = $GalObj.Version | Sort-Object -Descending | Select-Object -First 1
                     }
                     # here - find module could not find the module in the gallery
-                    Catch {
+                    catch {
                         # If module isn't in the gallery
                         $UpdateObject.PSGalleryVersion = [version]::new(0, 0)
                     }
-
                     # now emit the object
                     if ($NeedUpgrade) {
                         New-Object -TypeName PSObject -Property $UpdateObject | Where-Object { $_.InstalledVersion -ne $_.PSGalleryVersion }
@@ -105,29 +101,25 @@ function Compare-PSGalleryObject {
                     }
                 }
             }
-
             'Script' {
-                $Objects = Get-InstalledScript -Verbose:$False | Where-Object { $_.Name -like $Name }
+                $Objects = Get-InstalledScript -Name $Name -Verbose:$False
                 Write-Verbose -Message ('{0} scripts locally that match [{1}]' -f $Objects.count, $Name)
                 Foreach ($Object in $Objects) {
                     Write-Verbose -Message "Processing $($Object.name)"
-
                     $UpdateObject = [ordered] @{}    # create the hash table
                     $UpdateObject.ObjectType = 'Script'
                     $UpdateObject.Name = $Object.Name     # Add name
                     $UpdateObject.InstalledVersion = $Object.Version  # And local version
-
                     try {
                         #  Find module, and add gallery version number to hash table
                         $GalObj = Find-Script -Name $Object.name -ErrorAction Stop -AllowPrerelease
                         $UpdateObject.PSGalleryVersion = $GalObj.Version | Sort-Object -Descending | Select-Object -First 1
                     }
                     # here - find module could not find the module in the gallery
-                    Catch {
+                    catch {
                         # If module isn't in the gallery
                         $UpdateObject.PSGalleryVersion = [version]::new(0, 0)
                     }
-
                     # now emit the object
                     if ($NeedUpgrade) {
                         New-Object -TypeName PSObject -Property $UpdateObject | Where-Object { $_.InstalledVersion -ne $_.PSGalleryVersion }
@@ -142,5 +134,4 @@ function Compare-PSGalleryObject {
     end {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
 }

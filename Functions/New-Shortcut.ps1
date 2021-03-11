@@ -159,5 +159,4 @@ function New-Shortcut {
     end {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
-} #EndFunction New-Shortcut
+}

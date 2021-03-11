@@ -33,13 +33,13 @@ function Convert-ObjectToHashtable {
         $object.PSObject.Properties |
         # sort property names
         Sort-Object -Property Name |
-        # exclude empty properties if requested
-        Where-Object { ($ExcludeEmpty.IsPresent -eq $false) -or ($null -ne $_.Value) } |
-            ForEach-Object -begin {
-                $hashtable = [Ordered]@{}} -process {
-                $hashtable[$_.Name] = $_.Value
-            } -end {
-                write-object $hashtable
-            }
+            # exclude empty properties if requested
+            Where-Object { ($ExcludeEmpty.IsPresent -eq $false) -or ($null -ne $_.Value) } |
+                ForEach-Object -begin {
+                    $hashtable = ([Ordered]@{}) } -process {
+                    $hashtable[$_.Name] = $_.Value
+                } -end {
+                    Write-Output $hashtable
+                }
     }
 }
