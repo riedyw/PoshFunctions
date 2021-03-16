@@ -75,32 +75,33 @@
     'Expand-Tab', 'Export-CSVSortedColumn', 'FileSizeAbove', 'FileSizeBelow',
     'Format-MacAddress', 'Format-RandomCase', 'Format-ReverseString',
     'Format-SortedList', 'Format-TitleCase', 'Format-WrapText', 'Get-Address',
-    'Get-BashPath', 'Get-BinaryType', 'Get-ComputerSite', 'Get-DiceRoll',
-    'Get-DNSHostEntryAsync', 'Get-DriveStat', 'Get-Enum', 'Get-ExecutableForFile',
-    'Get-FileEncoding', 'Get-FileName', 'Get-FileWithLeadingSpace', 'Get-Folder',
-    'Get-Font', 'Get-Fortune', 'Get-GeoCode', 'Get-InvalidFileCharacter',
-    'Get-IpRange', 'Get-LastDayInMonth', 'Get-LastReboot', 'Get-LongName',
-    'Get-MachineType', 'Get-MacVendor', 'Get-Magic8Ball', 'Get-Md5Sum',
-    'Get-NetworkCredential', 'Get-NTFSPermission', 'Get-NtpDate', 'Get-Power',
-    'Get-PrintableAscii', 'Get-PrivateProfileComment', 'Get-PrivateProfileSection',
-    'Get-PrivateProfileSectionNames', 'Get-PrivateProfileString', 'Get-PSWho',
-    'Get-RandomDate', 'Get-RandomHexDigit', 'Get-RandomMacAddress',
-    'Get-RegExpandString', 'Get-RegistryValue', 'Get-Round', 'Get-SaveFile',
-    'Get-Shortcut', 'Get-ShortName', 'Get-SID', 'Get-SpecialFolder',
-    'Get-StaticProperty', 'Get-SubnetMaskIPv4', 'Get-TruncatedDate', 'Get-Type',
-    'Get-TypeAccelerator', 'Get-ComputerUptime', 'Get-UrlContent', 'Get-WordCount',
-    'Get-WordList', 'grep', 'Invoke-Beep', 'Invoke-Speak', 'Join-Object',
-    'Lock-Workstation', 'Measure-Char', 'mklink', 'Move-ToRecycleBin',
-    'New-Credential', 'New-InputBox', 'New-Popup', 'New-QR', 'New-RandomPassword',
-    'New-Screenshot', 'New-Shortcut', 'Out-PDFToPrinter', 'Read-HostWithDefault',
-    'Remove-BlankOrComment', 'Remove-EmptyProperty', 'Remove-QuotesFromCsv',
-    'Remove-TeamsCache', 'Remove-Trailing', 'Reset-Desktop', 'Resolve-FQDN',
-    'Resolve-HostName', 'sed', 'Set-Capslock', 'Set-Display', 'Set-Numlock',
-    'Set-PrivateProfileComment', 'Set-PrivateProfileString', 'Set-Scrolllock',
-    'Set-Speaker', 'Set-Type', 'Set-WindowStyle', 'Show-AllColor', 'Show-Calendar',
-    'Show-Color', 'Show-ColorsWithBackground', 'Show-DaysOfWeek',
-    'Show-FileAttribute', 'Show-FsRight', 'Show-Month', 'Show-NamedColor',
-    'Show-Object', 'Show-Progress', 'Show-ShortDaysOfWeek', 'Show-ShortMonth',
+    'Get-BashPath', 'Get-BinaryType', 'Get-ComputerSite', 'Get-ComputerUptime',
+    'Get-DiceRoll', 'Get-DNSHostEntryAsync', 'Get-DriveStat', 'Get-Enum',
+    'Get-ExecutableForFile', 'Get-FileEncoding', 'Get-FileName',
+    'Get-FileWithLeadingSpace', 'Get-Folder', 'Get-Font', 'Get-Fortune',
+    'Get-GeoCode', 'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-LastDayInMonth',
+    'Get-LastReboot', 'Get-LongName', 'Get-MachineType', 'Get-MacVendor',
+    'Get-Magic8Ball', 'Get-Md5Sum', 'Get-NetworkCredential', 'Get-NTFSPermission',
+    'Get-NtpDate', 'Get-Power', 'Get-PrintableAscii', 'Get-PrivateProfileComment',
+    'Get-PrivateProfileSection', 'Get-PrivateProfileSectionNames',
+    'Get-PrivateProfileString', 'Get-PSWho', 'Get-RandomDate',
+    'Get-RandomHexDigit', 'Get-RandomMacAddress', 'Get-RegExpandString',
+    'Get-RegistryValue', 'Get-Round', 'Get-SaveFile', 'Get-Shortcut',
+    'Get-ShortName', 'Get-SID', 'Get-SpecialFolder', 'Get-StaticProperty',
+    'Get-SubnetMaskIPv4', 'Get-TruncatedDate', 'Get-Type', 'Get-TypeAccelerator',
+    'Get-UrlContent', 'Get-WordCount', 'Get-WordList', 'grep', 'Invoke-Beep',
+    'Invoke-Speak', 'Join-Object', 'Lock-Workstation', 'Measure-Char', 'mklink',
+    'Move-ToRecycleBin', 'New-Credential', 'New-InputBox', 'New-Popup', 'New-QR',
+    'New-RandomPassword', 'New-Screenshot', 'New-Shortcut', 'Out-PDFToPrinter',
+    'Read-HostWithDefault', 'Remove-BlankOrComment', 'Remove-EmptyProperty',
+    'Remove-QuotesFromCsv', 'Remove-TeamsCache', 'Remove-Trailing',
+    'Reset-Desktop', 'Resolve-FQDN', 'Resolve-HostName', 'sed', 'Set-Capslock',
+    'Set-Display', 'Set-Numlock', 'Set-PrivateProfileComment',
+    'Set-PrivateProfileString', 'Set-Scrolllock', 'Set-Speaker', 'Set-Type',
+    'Set-WindowStyle', 'Show-AllColor', 'Show-Calendar', 'Show-Color',
+    'Show-ColorsWithBackground', 'Show-DaysOfWeek', 'Show-FileAttribute',
+    'Show-FsRight', 'Show-Month', 'Show-NamedColor', 'Show-Object',
+    'Show-Progress', 'Show-ShortDaysOfWeek', 'Show-ShortMonth',
     'Show-SubnetMaskIPv4', 'Show-Timezone', 'Start-ADReplication',
     'Start-RecordSession', 'Stop-RecordSession', 'Switch-Mute',
     'Test-ConnectionAsync', 'Test-IsAdmin', 'Test-IsCapsLock', 'Test-IsDate',
@@ -108,7 +109,8 @@
     'Test-IsNumLock', 'Test-IsScrollLock', 'Test-IsValidEmailAddress',
     'Test-IsValidIPv4', 'Test-IsValidIPv6', 'Test-Network', 'Test-NtpDateVsNow',
     'Test-Password', 'Test-Port', 'Union-Object', 'Update-ExplorerIcon',
-    'Write-StringArray', 'Write-TextMenu')
+    'Write-StringArray', 'Write-TextMenu' )
+
 
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -119,6 +121,7 @@
 
     # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
     # AliasesToExport = '*'
+
     AliasesToExport = @( 'Base64Decode', 'Base64Encode', 'Beep',
     'ConvertTo-BinaryIP', 'ConvertTo-DecimalIP', 'ConvertTo-DottedDecimalIP',
     'Fortune', 'Get-LastReboot', 'Get-SubnetMaskIP', 'Md5Sum', 'Parse-Bool',
@@ -126,7 +129,7 @@
     'Show-SubnetMaskIP', 'Show-TypeAccelerator', 'Speak', 'Test-IsValidIP',
     'Union', 'UrlDecode', 'UrlEncode', 'WrapText' )
 
- #>
+
 
     # DSC resources to export from this module
     # DscResourcesToExport = @()
