@@ -74,40 +74,42 @@
     'ConvertTo-UTC', 'Copy-Object', 'Eexit', 'Expand-IPv6', 'Expand-String',
     'Expand-Tab', 'Export-CSVSortedColumn', 'FileSizeAbove', 'FileSizeBelow',
     'Format-MacAddress', 'Format-RandomCase', 'Format-ReverseString',
-    'Format-SortedList', 'Format-WrapText', 'Get-Address', 'Get-BashPath',
-    'Get-BinaryType', 'Get-ComputerSite', 'Get-DiceRoll', 'Get-DNSHostEntryAsync',
-    'Get-DriveStat', 'Get-Enum', 'Get-ExecutableForFile', 'Get-FileEncoding',
-    'Get-FileName', 'Get-FileWithLeadingSpace', 'Get-Folder', 'Get-Font',
-    'Get-Fortune', 'Get-GeoCode', 'Get-InvalidFileCharacter', 'Get-IpRange',
-    'Get-LastReboot', 'Get-MachineType', 'Get-MacVendor', 'Get-Magic8Ball',
-    'Get-Md5Sum', 'Get-NetworkCredential', 'Get-NTFSPermission', 'Get-NtpDate',
-    'Get-Power', 'Get-PrintableAscii', 'Get-PrivateProfileComment',
-    'Get-PrivateProfileSection', 'Get-PrivateProfileSectionNames',
-    'Get-PrivateProfileString', 'Get-PSWho', 'Get-RandomDate',
-    'Get-RandomHexDigit', 'Get-RandomMacAddress', 'Get-RegExpandString',
-    'Get-RegistryValue', 'Get-Round', 'Get-SaveFile', 'Get-Shortcut', 'Get-SID',
-    'Get-SpecialFolder', 'Get-StaticProperty', 'Get-SubnetMaskIPv4',
-    'Get-TruncatedDate', 'Get-Type', 'Get-TypeAccelerator', 'Get-Uptime',
-    'Get-UrlContent', 'Get-WordCount', 'Get-WordList', 'grep', 'Invoke-Beep',
-    'Invoke-Speak', 'Join-Object', 'Lock-Workstation', 'Measure-Char', 'mklink',
-    'Move-ToRecycleBin', 'New-Credential', 'New-InputBox', 'New-Popup', 'New-QR',
-    'New-RandomPassword', 'New-Screenshot', 'New-Shortcut', 'Read-HostWithDefault',
+    'Format-SortedList', 'Format-TitleCase', 'Format-WrapText', 'Get-Address',
+    'Get-BashPath', 'Get-BinaryType', 'Get-ComputerSite', 'Get-DiceRoll',
+    'Get-DNSHostEntryAsync', 'Get-DriveStat', 'Get-Enum', 'Get-ExecutableForFile',
+    'Get-FileEncoding', 'Get-FileName', 'Get-FileWithLeadingSpace', 'Get-Folder',
+    'Get-Font', 'Get-Fortune', 'Get-GeoCode', 'Get-InvalidFileCharacter',
+    'Get-IpRange', 'Get-LastDayInMonth', 'Get-LastReboot', 'Get-LongName',
+    'Get-MachineType', 'Get-MacVendor', 'Get-Magic8Ball', 'Get-Md5Sum',
+    'Get-NetworkCredential', 'Get-NTFSPermission', 'Get-NtpDate', 'Get-Power',
+    'Get-PrintableAscii', 'Get-PrivateProfileComment', 'Get-PrivateProfileSection',
+    'Get-PrivateProfileSectionNames', 'Get-PrivateProfileString', 'Get-PSWho',
+    'Get-RandomDate', 'Get-RandomHexDigit', 'Get-RandomMacAddress',
+    'Get-RegExpandString', 'Get-RegistryValue', 'Get-Round', 'Get-SaveFile',
+    'Get-Shortcut', 'Get-ShortName', 'Get-SID', 'Get-SpecialFolder',
+    'Get-StaticProperty', 'Get-SubnetMaskIPv4', 'Get-TruncatedDate', 'Get-Type',
+    'Get-TypeAccelerator', 'Get-ComputerUptime', 'Get-UrlContent', 'Get-WordCount',
+    'Get-WordList', 'grep', 'Invoke-Beep', 'Invoke-Speak', 'Join-Object',
+    'Lock-Workstation', 'Measure-Char', 'mklink', 'Move-ToRecycleBin',
+    'New-Credential', 'New-InputBox', 'New-Popup', 'New-QR', 'New-RandomPassword',
+    'New-Screenshot', 'New-Shortcut', 'Out-PDFToPrinter', 'Read-HostWithDefault',
     'Remove-BlankOrComment', 'Remove-EmptyProperty', 'Remove-QuotesFromCsv',
-    'Remove-Trailing', 'Reset-Desktop', 'Resolve-FQDN', 'Resolve-HostName', 'sed',
-    'Set-Capslock', 'Set-Display', 'Set-Numlock', 'Set-PrivateProfileComment',
-    'Set-PrivateProfileString', 'Set-Scrolllock', 'Set-Speaker', 'Set-Type',
-    'Set-WindowStyle', 'Show-AllColor', 'Show-Calendar', 'Show-Color',
-    'Show-ColorsWithBackground', 'Show-DaysOfWeek', 'Show-FileAttribute',
-    'Show-FsRight', 'Show-Month', 'Show-NamedColor', 'Show-Object',
-    'Show-Progress', 'Show-ShortDaysOfWeek', 'Show-ShortMonth',
+    'Remove-TeamsCache', 'Remove-Trailing', 'Reset-Desktop', 'Resolve-FQDN',
+    'Resolve-HostName', 'sed', 'Set-Capslock', 'Set-Display', 'Set-Numlock',
+    'Set-PrivateProfileComment', 'Set-PrivateProfileString', 'Set-Scrolllock',
+    'Set-Speaker', 'Set-Type', 'Set-WindowStyle', 'Show-AllColor', 'Show-Calendar',
+    'Show-Color', 'Show-ColorsWithBackground', 'Show-DaysOfWeek',
+    'Show-FileAttribute', 'Show-FsRight', 'Show-Month', 'Show-NamedColor',
+    'Show-Object', 'Show-Progress', 'Show-ShortDaysOfWeek', 'Show-ShortMonth',
     'Show-SubnetMaskIPv4', 'Show-Timezone', 'Start-ADReplication',
     'Start-RecordSession', 'Stop-RecordSession', 'Switch-Mute',
     'Test-ConnectionAsync', 'Test-IsAdmin', 'Test-IsCapsLock', 'Test-IsDate',
     'Test-IsFileLocked', 'Test-IsHexString', 'Test-IsNull', 'Test-IsNumeric',
     'Test-IsNumLock', 'Test-IsScrollLock', 'Test-IsValidEmailAddress',
     'Test-IsValidIPv4', 'Test-IsValidIPv6', 'Test-Network', 'Test-NtpDateVsNow',
-    'Test-Port', 'Union-Object', 'Update-ExplorerIcon', 'Write-StringArray',
-    'Write-TextMenu' )
+    'Test-Password', 'Test-Port', 'Union-Object', 'Update-ExplorerIcon',
+    'Write-StringArray', 'Write-TextMenu')
+
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     #CmdletsToExport = '*'
@@ -116,6 +118,7 @@
     #VariablesToExport = '*'
 
     # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
+    # AliasesToExport = '*'
     AliasesToExport = @( 'Base64Decode', 'Base64Encode', 'Beep',
     'ConvertTo-BinaryIP', 'ConvertTo-DecimalIP', 'ConvertTo-DottedDecimalIP',
     'Fortune', 'Get-LastReboot', 'Get-SubnetMaskIP', 'Md5Sum', 'Parse-Bool',
@@ -171,89 +174,95 @@
 * updated all *.ps* to pass Invoke-ScriptAnalyzer without throwing RuleViolation. The only one I could NOT fix is function Union-Object. If you wish this error to not affect you then I would suggest that when you import the module you include the -DisableNameChecking parameter
 * updated scripts to attempt to explicit and fully name all parameters and all functions and parameters match the case as found in official Microsoft documentation
 * made GitHub repository viewable to the public and updated PoshFunctions.psd1 to reflect the GitHub repository
-* updated Compare-ObjectProperty - updated comment help to give better .EXAMPLE
-* updated ConvertFrom-DateTime - changed -DateTime parameter to -Date to be more PowerShell-y
-* updated Format-MacAddress - change $prop from [hashtable] to ([ordered] [hashtable]) so behavior is consistent between PowerShell.exe and pwsh.exe
-* updated ConvertFrom-UTC - added -IncludeInput
-* updated ConvertTo-DateTime - changed -IncludeOriginal to -IncludeInput for consistency, aliased to 'IncludeOriginal'
-* updated Get-Power - added -IncludeInput
-* updated Get-RandomDate - added some examples in comment help, -IncludeInput parameter
-* updated Test-IsHexString - added .PARAMETER statements to comment help
-* updated Test-IsDate - changed New-Object parameter to match form "-Propery ([ordered] @{...})" so that output matches between PowerShell and pwsh
-* updated Test-IsNumeric - changed New-Object parameter to match form "-Propery ([ordered] @{...})" so that output matches between PowerShell and pwsh
-* updated sed - added process blocks and Write-Verbose
-* updated Get-BashPath - added example in comment help, changed New-Object parameter to match form "-Propery ([ordered] @{...})" so that output matches between PowerShell and pwsh, changed -IncludeOriginal to -IncludeInput to be consistent
-* updated Convert-ROT13 - added -IncludeInput parameter, added examples
-* updated Convert-ARGBToHex - changed -IncludeOriginal to -IncludeInput to be consistent
-* updated Get-ComputerSite - change -IncludeComputerName to -IncludeInput to be consistent
-* updated Expand-IPv6 - added code to handle multiple addresses to be expanded, added -IncludeInput
-* updated ConvertTo-Bool - changed -IncludeOriginal to -IncludeInput to be consistent
-* updated ConvertTo-BinaryIPv4 - changed -IncludeOriginal to -IncludeInput to be consistent
-* updated ConvertTo-Base64 - added -IncludeInput
-* updated ConvertFrom-Base64 - added -IncludeInput
-* updated Expand-String - changed -IncludeOriginal to -IncludeInput to be consistent aliased to 'IncludeOriginal', added to comment help
-* updated Get-RandomHexDigit - added begin, process, end blocks, updated comment help
-* updated Get-WordCount - updated comment help to more accurately reflect function
-* updated New-InputBox - added write-verbose statements
-* updated New-Popup - added example in help
-* updated Set-Display - corrected example in comment help, corrected example works flawlessly
-* removed Help - relied on external tool less.exe which is a port of a Linux tool that is a paginated more.com where you can go forward or backward
-* updated ConvertTo-UncPath - added -IncludeInput, additional example
-* updated ConvertTo-UrlEncode - changed -IncludeOriginal to -IncludeInput to be consistent and aliased to 'IncludeOriginal'
-* updated ConvertFrom-UrlEncode - changed -IncludeOriginal to -IncludeInput to be consistent aliased to 'IncludeOriginal', fixed minor logic error
-* updated ConvertTo-DecimalIPv4 - added code to handle multiple addresses to be converted, added -IncludeInput, added example
-* updated ConvertTo-DottedDecimalIPv4 - added code to handle multiple addresses to be converted, added -IncludeInput, added example
-* updated Show-FileAttribute - added examples
+* added Convert-HexToRGB - accepts HEX strings with or without # prefix, has -IncludeInput parameter which will list not only the RGBString but also Red, Green, Blue values, changed to allow for pipeline input and multiple hex strings
+* added Convert-RGBToHex - can either accept RGB strings or explicitly specified -Red -Green -Blue parameters, has -IncludeInput and -Prefix parameters
+* added ConvertFrom-Binary
+* added ConvertFrom-Hex
+* added ConvertTo-Binary
+* added ConvertTo-Hex
+* added Format-TitleCase - which will capitalize the first letter of each word in a string. Optionally can convert to lowercase first, then title case it.
+* added Get-Address - will get address given specified latitude and longitude coordinates. Requires active internet connection. External site is throttled so don't make too many calls in short period of time.
+* added Get-GeoCode - will get latitude and longitude coordinates for specified address. Requires active internet connection. External site is throttled so don't make too many calls in short period of time.
+* added Get-LastDayInMonth
+* added Get-LongName - get the longname of a passed shortname (8.3) of a file/folder. Will expand relatively named files to explicitly defined files '.\test.txt' to 'c:\temp\test.txt'
+* added Get-ShortName - get the shortname (8.3) of the passed file/folder. Will expand relatively named files to explicitly defined files '.\test.txt' to 'c:\temp\test.txt'
+* added New-RandomPassword - can specify minimum and maximum password lengths, whether to avoid similar characters or limit the alphabetic characters to short English words
+* added Out-PrinterPDF - prints specified PDF files to the current default printer
+* added Test-Network - wrapper for Get-IpRange, Test-ConnectionAsync, and Get-DNSHostEntryAsync to give summary table of ip addresses that either resolve to a host name or respond to a ping
+* added Test-Password - can either check against local computer or domain. can pass either credential or username / password (as securestring)
+* removed Convert-ARGBToHex - I didn't use any colors with the A attribute, and the function didn't provide flexibility in output
+* removed Convert-HexToARGB - I didn't use any colors with the A attribute, and the function didn't provide flexibility in output
 * removed ConvertTo-Markdown - does not function as expected and I never use this function
-* updated Format-RandomCase - added -IncludeInput, renamed some variables inside of function, added example
-* updated Get-MachineType - added example, changed -ComputerName to [string[]] and added code to handle multiple
-* updated Get-NTFSPermission - changed $Path from [string] to [string[]] and function can now handle multiple paths
+* removed ConvertTo-PlainText - better to use Convert-SecureStringToString
+* removed ConvertTo-SecureText
 * removed Get-OperatingSystemSKU - never use this function
-* updated Get-Font - added begin, process, end blocks. tightened up code in process block and slightly changed internal variable name
-* updated Get-Md5Sum - changed -IncludeFile to -IncludeInput to be consistent and aliased to 'IncludeFile', changed -File to -Path to be more Powershell-y and aliased to 'File', 'FileName'
-* updated Get-SID - changed -IncludeOriginal to -IncludeInput to be consistent and aliased to 'IncludeOriginal'
-* updated Get-TruncatedDate - changed -IncludeOriginal to -IncludeInput and aliased to 'IncludeOriginal'
-* updated Resolve-FQDN - added -IncludeInput, changed -ComputerName to [string[]]
-* updated Resolve-HostName - changed -HostName to [string[]], added -IncludeInput, added example
-* renamed Get-InvalidFileCharacter from Show-InvalidFileCharacter - added -IncludeValues where decimal and hexadecimal values are included in output, added -Printable where only printable characters (> 32) are in the output, added examples, added alias for function 'Show-InvalidFileCharacter', changed datatype of 'Char' from [char] to [string]
-* updated Get-Enum - changed -IncludeType to -IncludeInput aliased to 'IncludeType' fixed minor logic error
-* updated Get-Filename - added begin, process, end blocks, added Write-Verbose
-* updated Get-Folder - added begin, process, end blocks, added Write-Verbose
-* updated Get-SaveFile - changed -InitialDirectory to -Path and aliased to 'InitialDirectory'
-* renamed Get-TypeAccelerator from Show-TypeAccelerator - added -MatchString string parameter to show only those that match, here string entries for some type accelerators that don't show up automatically, added $split delimiter depending on Powershell major version number
-* updated Test-NTPDateVsNow - added -IncludeInput parameter, -ComputerName no longer mandatory and if left blank uses Get-ADDomainController to determine name of DC, added example
-* updated Get-Fortune - added Wisdom.txt to module and default -Path to this file
-* updated Get-MacVendor - added write-verbose, updated comment help, removed redundant portion of regex
-* renamed Get-SpecialFolder from Show-SpecialFolder - reworked Show-SpecialFolder, added -Name parameter with ValidateSet against it for valid SpecialFolder names and if not specified returns all SpecialFolders, added -IncludeInput to be consistent with other functions, aliased function to 'Show-SpecialFolder' for backward compatibility
+* removed Get-PoshFunctionsPrivateData - can get the same information by: (Get-Module PoshFunctions).PrivateData
 * removed Get-Share - use the Get-SMBShare command from SmbShare module
 * removed Get-SharePermission - use GetSMBShareAccess command from SmbShare module
 * removed Get-ShareStat
-* updated Get-SubnetMaskIPv4 - changed -NetworkLength to -Length and aliased to old name, changed -IncludeCIDR to -IncludeInput to be more consistent, changed field name with -IncludeInput
-* updated Convert-UserFlag - changed -UserFlag to [int[]], added -IncludeInput to be consistent
-* udpated Set-Type - added begin, process, end blocks, updated logic to properly accept input from pipeline and to be handled by both pwsh and Powershell
-* removed Get-PoshFunctionsPrivateData - can get the same information by: (Get-Module PoshFunctions).PrivateData
-* updated Get-Type - added begin, process, end blocks and write-verbose
-* removed Remove-InvalidFileNameChar - not needed can code around it with Get-InvalidFileCharacter
-* added ConvertTo-Binary
-* added ConvertFrom-Binary
-* added ConvertTo-Hex
-* added ConvertFrom-Hex
-* removed ConvertTo-PlainText - better to use Convert-SecureStringToString
-* removed ConvertTo-SecureText
-* renamed Get-Uptime from Get-LastReboot - made function more closely mimic Get-Uptime from PowerShell 6 and 7, aliased to Get-LastReboot
+* removed Help - relied on external tool less.exe which is a port of a Linux tool that is a paginated more.com where you can go forward or backward
 * removed Remove-BOMFromFile - can get functionality by using Notepad++
+* removed Remove-InvalidFileNameChar - not needed can code around it with Get-InvalidFileCharacter
 * removed Search-Method - really didn't work
-* updated New-Shortcut - fixed logic errors that prevented proper functioning
-* updated New-Screenshot - added begin, process, end blocks, added write-verbose
-* removed Convert-ARGBToHex - I didn't use any colors with the A attribute, and the function didn't provide flexibility in output
-* removed Convert-HexToARGB - I didn't use any colors with the A attribute, and the function didn't provide flexibility in output
-* added Convert-RGBToHex - can either accept RGB strings or explicitly specified -Red -Green -Blue parameters, has -IncludeInput and -Prefix parameters
-* added Convert-HexToRGB - accepts HEX strings with or without # prefix, has -IncludeInput parameter which will list not only the RGBString but also Red, Green, Blue values, changed to allow for pipeline input and multiple hex strings
-* added New-RandomPassword - can specify minimum and maximum password lengths, whether to avoid similar characters or limit the alphabetic characters to short English words
+* renamed Get-InvalidFileCharacter from Show-InvalidFileCharacter - added -IncludeValues where decimal and hexadecimal values are included in output, added -Printable where only printable characters (> 32) are in the output, added examples, added alias for function 'Show-InvalidFileCharacter', changed datatype of 'Char' from [char] to [string]
+* renamed Get-SpecialFolder from Show-SpecialFolder - reworked Show-SpecialFolder, added -Name parameter with ValidateSet against it for valid SpecialFolder names and if not specified returns all SpecialFolders, added -IncludeInput to be consistent with other functions, aliased function to 'Show-SpecialFolder' for backward compatibility
+* renamed Get-TypeAccelerator from Show-TypeAccelerator - added -MatchString string parameter to show only those that match, here string entries for some type accelerators that don't show up automatically, added $split delimiter depending on Powershell major version number
+* renamed Get-ComputerUptime from Get-LastReboot - made function more closely mimic Get-Uptime from PowerShell 6 and 7, aliased to Get-LastReboot
+* udpated Set-Type - added begin, process, end blocks, updated logic to properly accept input from pipeline and to be handled by both pwsh and Powershell
+* updated Compare-ObjectProperty - updated comment help to give better .EXAMPLE
+* updated Convert-ARGBToHex - changed -IncludeOriginal to -IncludeInput to be consistent
+* updated Convert-ROT13 - added -IncludeInput parameter, added examples
+* updated Convert-UserFlag - changed -UserFlag to [int[]], added -IncludeInput to be consistent
+* updated ConvertFrom-Base64 - added -IncludeInput
+* updated ConvertFrom-DateTime - changed -DateTime parameter to -Date to be more PowerShell-y
+* updated ConvertFrom-UTC - added -IncludeInput
+* updated ConvertFrom-UrlEncode - changed -IncludeOriginal to -IncludeInput to be consistent aliased to 'IncludeOriginal', fixed minor logic error
+* updated ConvertTo-Base64 - added -IncludeInput
+* updated ConvertTo-BinaryIPv4 - changed -IncludeOriginal to -IncludeInput to be consistent
+* updated ConvertTo-Bool - changed -IncludeOriginal to -IncludeInput to be consistent
+* updated ConvertTo-DateTime - changed -IncludeOriginal to -IncludeInput for consistency, aliased to 'IncludeOriginal'
+* updated ConvertTo-DecimalIPv4 - added code to handle multiple addresses to be converted, added -IncludeInput, added example
+* updated ConvertTo-DottedDecimalIPv4 - added code to handle multiple addresses to be converted, added -IncludeInput, added example
+* updated ConvertTo-UncPath - added -IncludeInput, additional example
+* updated ConvertTo-UrlEncode - changed -IncludeOriginal to -IncludeInput to be consistent and aliased to 'IncludeOriginal'
+* updated Expand-IPv6 - added code to handle multiple addresses to be expanded, added -IncludeInput
+* updated Expand-String - changed -IncludeOriginal to -IncludeInput to be consistent aliased to 'IncludeOriginal', added to comment help
+* updated Format-MacAddress - change $prop from [hashtable] to ([ordered] [hashtable]) so behavior is consistent between PowerShell.exe and pwsh.exe
+* updated Format-RandomCase - added -IncludeInput, renamed some variables inside of function, added example
+* updated Get-BashPath - added example in comment help, changed New-Object parameter to match form "-Propery ([ordered] @{...})" so that output matches between PowerShell and pwsh, changed -IncludeOriginal to -IncludeInput to be consistent
+* updated Get-ComputerSite - change -IncludeComputerName to -IncludeInput to be consistent
+* updated Get-Enum - changed -IncludeType to -IncludeInput aliased to 'IncludeType' fixed minor logic error
+* updated Get-Filename - added begin, process, end blocks, added Write-Verbose
+* updated Get-Folder - added begin, process, end blocks, added Write-Verbose
+* updated Get-Font - added begin, process, end blocks. tightened up code in process block and slightly changed internal variable name
+* updated Get-Fortune - added Wisdom.txt to module and default -Path to this file
 * updated Get-IpRange - changed -Subnets to -Subnet to conform to Powershell standards, aliased to 'Subnets'
-* added Test-Network - wrapper for Get-IpRange, Test-ConnectionAsync, and Get-DNSHostEntryAsync to give summary table of ip addresses that either resolve to a host name or respond to a ping
-* added Get-GeoCode
-* added Get-Address
+* updated Get-MacVendor - added write-verbose, updated comment help, removed redundant portion of regex
+* updated Get-MachineType - added example, changed -ComputerName to [string[]] and added code to handle multiple
+* updated Get-Md5Sum - changed -IncludeFile to -IncludeInput to be consistent and aliased to 'IncludeFile', changed -File to -Path to be more Powershell-y and aliased to 'File', 'FileName'
+* updated Get-NTFSPermission - changed $Path from [string] to [string[]] and function can now handle multiple paths
+* updated Get-Power - added -IncludeInput
+* updated Get-RandomDate - added some examples in comment help, -IncludeInput parameter
+* updated Get-RandomHexDigit - added begin, process, end blocks, updated comment help
+* updated Get-SID - changed -IncludeOriginal to -IncludeInput to be consistent and aliased to 'IncludeOriginal'
+* updated Get-SaveFile - changed -InitialDirectory to -Path and aliased to 'InitialDirectory'
+* updated Get-SubnetMaskIPv4 - changed -NetworkLength to -Length and aliased to old name, changed -IncludeCIDR to -IncludeInput to be more consistent, changed field name with -IncludeInput
+* updated Get-TruncatedDate - changed -IncludeOriginal to -IncludeInput and aliased to 'IncludeOriginal'
+* updated Get-Type - added begin, process, end blocks and write-verbose
+* updated Get-WordCount - updated comment help to more accurately reflect function
+* updated New-InputBox - added write-verbose statements
+* updated New-Popup - added example in help
+* updated New-Screenshot - added begin, process, end blocks, added write-verbose
+* updated New-Shortcut - fixed logic errors that prevented proper functioning
+* updated Resolve-FQDN - added -IncludeInput, changed -ComputerName to [string[]]
+* updated Resolve-HostName - changed -HostName to [string[]], added -IncludeInput, added example
+* updated Set-Display - corrected example in comment help, corrected example works flawlessly
+* updated Show-FileAttribute - added examples
+* updated Test-IsDate - changed New-Object parameter to match form "-Propery ([ordered] @{...})" so that output matches between PowerShell and pwsh
+* updated Test-IsHexString - added .PARAMETER statements to comment help
+* updated Test-IsNumeric - changed New-Object parameter to match form "-Propery ([ordered] @{...})" so that output matches between PowerShell and pwsh
+* updated Test-NTPDateVsNow - added -IncludeInput parameter, -ComputerName no longer mandatory and if left blank uses Get-ADDomainController to determine name of DC, added example
+* updated sed - added process blocks and Write-Verbose
 
 
 ### 2.2.1.5

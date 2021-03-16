@@ -1,7 +1,7 @@
 function New-QR {
-    <#
+<#
 .SYNOPSIS
-       Create New Quick Response Code
+    Create New Quick Response Code
 .DESCRIPTION
     Create New Quick Response Code
 
@@ -9,11 +9,6 @@ function New-QR {
     Script will compose QR request and then download generated image.
 
     New-QR returns the properties of the new QR code created.
-.PARAMETER FileName
-    file name of QR code to be created.
-    Can specify fullpath, please use .PNG file extension.
-    If specifying fullpath ensure directory structure exists.
-
 .PARAMETER Message
     Message to be encoded in QR code.
     Script will check the message length to ensure it does not exceed the max allowed size
@@ -24,10 +19,13 @@ function New-QR {
     "SMSTO:0416123456:Hi Matt,`nI am at your desk." (An SMS to me. Note the new line character)
     "http://painterinfo.com" (Open this website)
     "This is the Pishkin Building" (A plain text message encoded in the QR Code)
-.PARAMETER Enc
-    Allowed encoding types are:
-    UTF-8, Shift_JIS, ISO-8859-1
-    UTF-8 is default and recommended type
+.PARAMETER Path
+    File name of QR code to be created. Aliased to 'FileName' for backward compatibility. Can specify fullpath, please use .PNG file extension. If specifying fullpath ensure directory structure exists.
+.PARAMETER CHS
+    This is the custom size of the image in pixels e.g. 150x150
+    This parameter is only read when -Size C parameter is specified. (Otherwise ignored)
+    Min = 50x50 [approximate] Large QR codes may need to be physically larger to fit the data.
+    Max = 547x547
 .PARAMETER ECL
     Error Correction Level
 
@@ -38,6 +36,14 @@ function New-QR {
 
     Use L for maximum storage capacity in QR code
     Use H if you think the QR code might get damaged or if you want to embed plain text or logo after.
+.PARAMETER Enc
+    Allowed encoding types are:
+    UTF-8, Shift_JIS, ISO-8859-1
+    UTF-8 is default and recommended type
+.PARAMETER Margin
+    Defaults to 4 and it is recommended to leave it at that.
+    A white space margin of 4 is required for reliable QR code reading.
+    Valid Values are 1..4
 .PARAMETER Size
     The QR code's physical size in pixels, not to be confused with the data storage size.
     Function caters for several pre-set sizes and a custom size option
@@ -48,43 +54,34 @@ function New-QR {
     C - Custom size to be used - Warning too small will result QR code generation failure.
         If too large a value is specified then the 150x150 default will be generated instead.
         Use -CHS parameter in conjunction with -Size C or Custom size will default to 150x150
-.PARAMETER CHS
-    This is the custom size of the image in pixels e.g. 150x150
-    This parameter is only read when -Size C parameter is specified. (Otherwise ignored)
-    Min = 50x50 [approximate] Large QR codes may need to be physically larger to fit the data.
-    Max = 547x547
-.PARAMETER Margin
-    Defaults to 4 and it is recommended to leave it at that.
-    A white space margin of 4 is required for reliable QR code reading.
-    Valid Values are 1..4
 .EXAMPLE
     New-QR http://painterinfo.com
 
-Description
------------
+    Description
+    -----------
     Creates a new QR code (URL)
     Path to QR code image is returned by script
 .EXAMPLE
     New-QR -Message "This is a test" -Size C -CHS 200x200
 
-Description
------------
+    Description
+    -----------
     Creates a new QR code (TEXT)
     Custom image size 200x200 is created.
     Path to QR code is returned by script
 .EXAMPLE
     ii (New-QR -message TEL:0754419999 -Size L -ECL H).fullname
 
-Description
------------
+    Description
+    -----------
     Creates a new QR code (Phone Number) and is opened with default image viewer.
     -Size L (image size is 300x300 pixels)
     -ECL H (30% of image is redundant)
 .EXAMPLE
     Import-Csv "C:\QR\users.csv" | New-QR -S L
 
-Description
------------
+    Description
+    -----------
     Using the following CSV, multiple 300x300 QR Codes are generated.
 
     "Message","FileName"
@@ -106,6 +103,10 @@ Description
     LASTEDIT:  06/August/2011
 
     # Source https://gallery.technet.microsoft.com/scriptcenter/f615d7e8-ed15-498d-b7cc-078377f523bf
+
+    Changes
+    * renamed FileName to Path to be more in line with other Powershell commands. Aliased to 'FileName' for backward compatibility
+    * reordered parameters by position, also reordered .PARAMETER entries in comment help to match order in parameter section
 .LINK
     http://code.google.com/apis/chart/infographics/docs/qr_codes.html
 #>
@@ -113,6 +114,13 @@ Description
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'low')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSShouldProcess', '')]
     param(
+        [Parameter(Mandatory, Position = 0, HelpMessage = 'Message to be encoded', ValueFromPipelineByPropertyName)]
+        [string] $Message,
+
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName)]
+        [Alias('FileName')]
+        [string] $Path = "$env:temp\QR.png",
+
         [string] $CHS = '150x150',
 
         [ValidateSet('L', 'M', 'Q', 'H')]
@@ -121,13 +129,7 @@ Description
         [ValidateSet('UTF-8', 'Shift_JIS', 'ISO-8859-1')]
         [string] $Enc = 'UTF-8',
 
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName)]
-        [string] $FileName = "$env:temp\QR.png",
-
         [int] $Margin = 4,
-
-        [Parameter(Mandatory, Position = 0, HelpMessage = 'Message to be encoded', ValueFromPipelineByPropertyName)]
-        [object] $Message,
 
         [ValidateSet('S', 'M', 'L', 'X', 'C')]
         [string] $Size = 'M'
@@ -230,7 +232,7 @@ Description
         if ($res.StatusCode -eq 200) {
             $reader = $res.GetResponseStream()
             try {
-                $writer = New-Object -TypeName System.IO.FileStream -ArgumentList $FileName, 'Create'
+                $writer = New-Object -TypeName System.IO.FileStream -ArgumentList $Path, 'Create'
             } catch {
                 Write-Error -Message 'Invalid File Path?'
                 break
@@ -248,7 +250,7 @@ Description
 
             # Output properties
             $QRProperties = @{
-                FullName   = (Get-ChildItem -Path $FileName).fullname
+                FullName   = (Get-ChildItem -Path $Path).fullname
                 DataSize   = $Message.length
                 Dimensions = $CHS
                 ECLevel    = $chld.split('|')[0]
@@ -258,7 +260,7 @@ Description
 
         }
 
-        Write-Verbose -Message "FileName $FileName"
+        Write-Verbose -Message "FileName $Path"
         Write-Verbose -Message "CHS $CHS"
         Write-Verbose -Message "chld $chld"
         Write-Verbose -Message "choe $choe"

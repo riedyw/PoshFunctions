@@ -1,4 +1,4 @@
-Function Move-ToRecycleBin {
+function Move-ToRecycleBin {
 <#
 .SYNOPSIS
     Instead of outright deleting a file, why not move it to the Recycle Bin?
@@ -26,9 +26,9 @@ Function Move-ToRecycleBin {
     Would move both File1.txt and File2.txt to the Recycle Bin
 #>
 
-    [CmdletBinding(ConfirmImpact='Medium')]
+    [CmdletBinding(ConfirmImpact = 'Medium')]
     param (
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline, ValueFromPipelineByPropertyName)]
         [string[]] $Path
     )
 
@@ -44,9 +44,9 @@ Function Move-ToRecycleBin {
                 foreach ($currentFile in $File) {
                     Write-Verbose -Message ("Moving '{0}' to the Recycle Bin" -f $currentFile)
                     if (Test-Path -Path $currentFile -PathType Container) {
-                        $FileSystem::DeleteDirectory($currentFile,'OnlyErrorDialogs','SendToRecycleBin')
+                        $FileSystem::DeleteDirectory($currentFile, 'OnlyErrorDialogs', 'SendToRecycleBin')
                     } else {
-                        $FileSystem::DeleteFile($currentFile,'OnlyErrorDialogs','SendToRecycleBin')
+                        $FileSystem::DeleteFile($currentFile, 'OnlyErrorDialogs', 'SendToRecycleBin')
                     }
                 }
             } else {
@@ -59,7 +59,6 @@ Function Move-ToRecycleBin {
         Remove-Variable -Name FileSystem
         Write-Verbose -Message "Ending [$($MyInvocation.MyCommand)]"
     }
-
-} #Endfunction Move-ToRecycleBin
+}
 
 Set-Alias -Name 'Recycle' -Value 'Move-ToRecycleBin'

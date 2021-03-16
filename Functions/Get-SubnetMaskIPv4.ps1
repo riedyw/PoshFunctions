@@ -8,7 +8,7 @@ function Get-SubnetMaskIPv4 {
     A mandatory [int] or array of [int] for which you want the subnet mask. Can be fed from the pipeline.
     Aliased to both 'NetworkLength' and 'CIDR'
 .PARAMETER IncludeInput
-    A switch controlling whether you want to see the CIDR length. Aliased to 'IncludeCIDR'
+    A switch controlling whether you want to see the CIDR length. Aliased to 'IncludeCIDR' for backward compatibility
 .EXAMPLE
     Get-SubnetMaskIPv4 -Length 22 -IncludeInput
 

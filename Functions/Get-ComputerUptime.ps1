@@ -1,4 +1,4 @@
-function Get-Uptime {
+function Get-ComputerUptime {
 <#
 .SYNOPSIS
     To mimic the Get-Uptime function found in PowerShell 6 or 7
@@ -7,7 +7,7 @@ function Get-Uptime {
 .PARAMETER Since
     Switch to show last boot time, not the timespan since last boot
 .EXAMPLE
-    Get-Uptime
+    Get-ComputerUptime
 
     Days              : 0
     Hours             : 8
@@ -21,7 +21,7 @@ function Get-Uptime {
     TotalSeconds      : 30037.3061593
     TotalMilliseconds : 30037306.1593
 .EXAMPLE
-    Get-Uptime -Since
+    Get-ComputerUptime -Since
 
     Sunday, February 28, 2021 12:47:04 PM
 .NOTES
@@ -54,4 +54,4 @@ function Get-Uptime {
     }
 }
 
-Set-Alias -Name Get-LastReboot -Value Get-Uptime -Description 'Alias for Get-Uptime'
+Set-Alias -Name Get-LastReboot -Value Get-ComputerUptime -Description 'Alias for Get-ComputerUptime'

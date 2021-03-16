@@ -26,49 +26,58 @@ function Get-UrlContent {
     Either $Null if any errors exist or a [string] if successful
 #>
 
-    # todo add begin, process, end blocks
-    # todo add write-verbose
-
     [CmdletBinding()]
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseProcessBlockForPipelineCommand','')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseProcessBlockForPipelineCommand', '')]
     Param (
-        [parameter(ValueFromPipeLine,HelpMessage='Add help message for user',ValueFromPipeLineByPropertyName,Mandatory)]
+        [parameter(ValueFromPipeLine, HelpMessage = 'Add help message for user', ValueFromPipeLineByPropertyName, Mandatory)]
         [string] $URL,
 
         [parameter()]
         [switch] $IgnoreSslError
     )
-    $oldEA = $ErrorActionPreference
-    $ErrorActionPreference = 'continue'
-    Write-Verbose -Message "Saving current value of `$ErrorActionPreference [$($oldEa)] and setting it to 'Stop'"
-    if ($IgnoreSslError) {
-        Write-Verbose -Message 'Turning on IgoreSslError'
-        [System.Net.ServicePointManager]::ServerCertificateValidationCallBack = { $true }
+
+    begin {
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+        $oldEA = $ErrorActionPreference
+        $ErrorActionPreference = 'continue'
+        Write-Verbose -Message "Saving current value of `$ErrorActionPreference [$($oldEa)] and setting it to 'Stop'"
     }
-    $htmlContent = $null
-    Write-Verbose -Message 'Creating a webclient'
-    $webClient = New-Object -TypeName System.Net.WebClient
-    Write-Verbose -Message "Requesting content from [$($URL)]"
-    try {
-        $htmlContent = $webClient.downloadstring($URL)
-    } catch {
-        Write-Error -Message "Could not connect to [$($URL)]"
-    } finally {
+
+    process {
         if ($IgnoreSslError) {
-            Write-Verbose -Message 'Turning off IgoreSslError'
-            [System.Net.ServicePointManager]::ServerCertificateValidationCallBack = { $false }
+            Write-Verbose -Message 'Turning on IgoreSslError'
+            [System.Net.ServicePointManager]::ServerCertificateValidationCallBack = { $true }
+        }
+        $htmlContent = $null
+        Write-Verbose -Message 'Creating a webclient'
+        $webClient = New-Object -TypeName System.Net.WebClient
+        Write-Verbose -Message "Requesting content from [$($URL)]"
+        try {
+            $htmlContent = $webClient.downloadstring($URL)
+        } catch {
+            Write-Error -Message "Could not connect to [$($URL)]"
+        } finally {
+            if ($IgnoreSslError) {
+                Write-Verbose -Message 'Turning off IgoreSslError'
+                [System.Net.ServicePointManager]::ServerCertificateValidationCallBack = { $false }
+            }
+        }
+
+        Write-Verbose -Message 'Disposing of webClient connection'
+        $webClient.Dispose()
+        Remove-Variable -Name webClient
+        if ($htmlContent) {
+            Write-Verbose -Message 'Successful download of HTML content'
+            Write-Output -InputObject $htmlContent
+        } else {
+            Write-Verbose -Message 'Unsuccessful download of HTML content'
+            return
         }
     }
-    Write-Verbose -Message "Resetting value of `$ErrorActionPreference back to [$($oldEa)]"
-    $ErrorActionPreference = $oldEA
-    Write-Verbose -Message 'Disposing of webClient connection'
-    $webClient.Dispose()
-    remove-variable -name webClient
-    if ($htmlContent) {
-        Write-Verbose -Message 'Successful download of HTML content'
-        Write-Output -InputObject $htmlContent
-    } else {
-        Write-Verbose -Message 'Unsuccessful download of HTML content'
-        return
+
+    end {
+        Write-Verbose -Message "Resetting value of `$ErrorActionPreference back to [$($oldEa)]"
+        $ErrorActionPreference = $oldEA
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-} #EndFunction Get-UrlContent
+}
