@@ -176,13 +176,13 @@
 * updated all *.ps* to pass Invoke-ScriptAnalyzer without throwing RuleViolation. The only one I could NOT fix is function Union-Object. If you wish this error to not affect you then I would suggest that when you import the module you include the -DisableNameChecking parameter
 * updated scripts to attempt to explicit and fully name all parameters and all functions and parameters match the case as found in official Microsoft documentation
 * made GitHub repository viewable to the public and updated PoshFunctions.psd1 to reflect the GitHub repository
-* added Convert-HexToRGB - accepts HEX strings with or without # prefix, has -IncludeInput parameter which will list not only the RGBString but also Red, Green, Blue values, changed to allow for pipeline input and multiple hex strings
-* added Convert-RGBToHex - can either accept RGB strings or explicitly specified -Red -Green -Blue parameters, has -IncludeInput and -Prefix parameters
+* added Convert-HexToRGB - accepts HEX strings with or without # prefix, has -IncludeInput parameter
+* added Convert-RGBToHex - can either accept RGB strings or explicitly specified -Red -Green -Blue parameters
 * added ConvertFrom-Binary
 * added ConvertFrom-Hex
 * added ConvertTo-Binary
 * added ConvertTo-Hex
-* added Format-TitleCase - which will capitalize the first letter of each word in a string. Optionally can convert to lowercase first, then title case it.
+* added Format-TitleCase - which will capitalize the first letter of each word in a string.
 * added Get-Address - will get address given specified latitude and longitude coordinates. Requires active internet connection. External site is throttled so don't make too many calls in short period of time.
 * added Get-GeoCode - will get latitude and longitude coordinates for specified address. Requires active internet connection. External site is throttled so don't make too many calls in short period of time.
 * added Get-LastDayInMonth
@@ -192,20 +192,20 @@
 * added Out-PrinterPDF - prints specified PDF files to the current default printer
 * added Test-Network - wrapper for Get-IpRange, Test-ConnectionAsync, and Get-DNSHostEntryAsync to give summary table of ip addresses that either resolve to a host name or respond to a ping
 * added Test-Password - can either check against local computer or domain. can pass either credential or username / password (as securestring)
-* removed Convert-ARGBToHex - I didn't use any colors with the A attribute, and the function didn't provide flexibility in output
-* removed Convert-HexToARGB - I didn't use any colors with the A attribute, and the function didn't provide flexibility in output
-* removed ConvertTo-Markdown - does not function as expected and I never use this function
-* removed ConvertTo-PlainText - better to use Convert-SecureStringToString
+* removed Convert-ARGBToHex
+* removed Convert-HexToARGB
+* removed ConvertTo-Markdown
+* removed ConvertTo-PlainText
 * removed ConvertTo-SecureText
-* removed Get-OperatingSystemSKU - never use this function
-* removed Get-PoshFunctionsPrivateData - can get the same information by: (Get-Module PoshFunctions).PrivateData
-* removed Get-Share - use the Get-SMBShare command from SmbShare module
-* removed Get-SharePermission - use GetSMBShareAccess command from SmbShare module
+* removed Get-OperatingSystemSKU
+* removed Get-PoshFunctionsPrivateData
+* removed Get-Share
+* removed Get-SharePermission
 * removed Get-ShareStat
-* removed Help - relied on external tool less.exe which is a port of a Linux tool that is a paginated more.com where you can go forward or backward
-* removed Remove-BOMFromFile - can get functionality by using Notepad++
-* removed Remove-InvalidFileNameChar - not needed can code around it with Get-InvalidFileCharacter
-* removed Search-Method - really didn't work
+* removed Help
+* removed Remove-BOMFromFile
+* removed Remove-InvalidFileNameChar
+* removed Search-Method
 * renamed Get-InvalidFileCharacter from Show-InvalidFileCharacter - added -IncludeValues where decimal and hexadecimal values are included in output, added -Printable where only printable characters (> 32) are in the output, added examples, added alias for function 'Show-InvalidFileCharacter', changed datatype of 'Char' from [char] to [string]
 * renamed Get-SpecialFolder from Show-SpecialFolder - reworked Show-SpecialFolder, added -Name parameter with ValidateSet against it for valid SpecialFolder names and if not specified returns all SpecialFolders, added -IncludeInput to be consistent with other functions, aliased function to 'Show-SpecialFolder' for backward compatibility
 * renamed Get-TypeAccelerator from Show-TypeAccelerator - added -MatchString string parameter to show only those that match, here string entries for some type accelerators that don't show up automatically, added $split delimiter depending on Powershell major version number
@@ -265,104 +265,6 @@
 * updated Test-IsNumeric - changed New-Object parameter to match form "-Propery ([ordered] @{...})" so that output matches between PowerShell and pwsh
 * updated Test-NTPDateVsNow - added -IncludeInput parameter, -ComputerName no longer mandatory and if left blank uses Get-ADDomainController to determine name of DC, added example
 * updated sed - added process blocks and Write-Verbose
-
-
-### 2.2.1.5
-* added Release Notes
-* added Get-DiceRoll
-* added Get-NetworkCredential
-* added New-Credential
-* added PoshFunctions.png
-* added PoshFunctions.xcf
-* added ReadMe.html
-* added Test-IsNull
-* updated Format-RandomCase
-* updated Get-PoshFunctionsPrivateData
-* updated PoshFunctions.psd1
-* updated ReadMe.md
-
-### 2.2.1.4 - Published 9 February 2021
-* added Compare-PSGalleryObject
-* added Get-PoshFunctionsPrivateData
-* added Get-WordList
-* added Start-ADReplication
-* added Write-StringArray
-* added Write-TextMenu - copied from my PSGallery script New-TextMenu
-* renamed Words.txt to WordList.txt
-* updated Convert-ROT13
-* updated ConvertFrom-DateTime
-* updated ConvertTo-DateTime
-* updated Format-WrapText
-* updated Get-DNSHostEntryAsync
-* updated Resolve-FQDN
-* updated Test-ConnectionAsync
-
-### 2.2.1.3 - Published 16 December 2020
-* added Words.txt - list of English words
-* added Expand-IPv6
-* added Format-RandomCase
-* added Get-PrintableAscii
-* added Invoke-Beep
-* added Measure-Char
-* added Test-IsValidIPv6
-* updated Convert-ROT13
-* updated ConvertTo-DecimalIPv4
-* updated ConvertTo-DottedDecimalIPv4
-* updated ConvertTo-SecureText
-* updated Get-DNSHostEntryAsync
-* updated Get-SubnetMaskIPv4
-* updated Set-PrivateProfileComment
-* updated Show-SubnetMaskIPv4
-* updated Test-IsValidIPv4
-
-### 2.2.1.2
-* added Docs folder filled with .md files
-* added Docs\HTML folder
-* updated PSGetModuleInfo.xml
-* updated PoshFunctions.psd1
-* updated ReadMe.md
-
-### 2.2.1.1
-* added Compare-ObjectProperty, Convert-ARGBToHex, Convert-HexToARGB,
-    Convert-ObjectToHashtable,  Convert-ROT13, Convert-SecureStringToString,
-    Convert-UserFlag, ConvertFrom-Base64, ConvertFrom-DateTime,
-    ConvertFrom-FsRight, ConvertFrom-UrlEncode, ConvertFrom-UTC,
-    ConvertFrom-Xml, ConvertTo-Base64, ConvertTo-BinaryIPv4, ConvertTo-Bool,
-    ConvertTo-DateTime, ConvertTo-DecimalIPv4, ConvertTo-DottedDecimalIPv4,
-    ConvertTo-Markdown, ConvertTo-OrderedDictionary, ConvertTo-PlainText,
-    ConvertTo-SecureText, ConvertTo-UncPath, ConvertTo-UrlEncode, ConvertTo-UTC,
-    Copy-Object, Eexit, Expand-String, Expand-Tab, Export-CSVSortedColumn,
-    FileSizeAbove, FileSizeBelow, Format-MacAddress, Format-ReverseString,
-    Format-SortedList, Format-WrapText, Get-BashPath, Get-BinaryType,
-    Get-ComputerSite, Get-DNSHostEntryAsync, Get-DriveStat, Get-Enum,
-    Get-ExecutableForFile, Get-FileEncoding, Get-FileName,
-    Get-FileWithLeadingSpace, Get-Folder, Get-Font, Get-Fortune,
-    Get-InstalledModuleVersion, Get-IpRange, Get-LastReboot, Get-MachineType,
-    Get-MacVendor, Get-Magic8Ball, Get-Md5Sum, Get-NTFSPermission, Get-NtpDate,
-    Get-OperatingSystemSKU, Get-Power, Get-PrivateProfileComment,
-    Get-PrivateProfileSection, Get-PrivateProfileSectionNames,
-    Get-PrivateProfileString, Get-PSWho, Get-RandomDate, Get-RandomHexDigit,
-    Get-RandomMacAddress, Get-RegExpandString, Get-RegistryValue, Get-Round,
-    Get-SaveFile, Get-Share, Get-SharePermission, Get-ShareStat, Get-Shortcut,
-    Get-SID, Get-StaticProperty, Get-SubnetMaskIPv4, Get-TruncatedDate, Get-Type,
-    Get-UrlContent, Get-WordCount, grep, Help, Invoke-Speak, Join-Object,
-    Lock-Workstation, mklink, Move-ToRecycleBin, New-InputBox, New-Popup,
-    New-QR, New-Screenshot, New-Shortcut, Read-HostWithDefault,
-    Remove-BlankOrComment, Remove-BOMFromFile, Remove-EmptyProperty,
-    Remove-InvalidFileNameChar, Remove-QuotesFromCsv, Remove-Trailing,
-    Reset-Desktop, Resolve-FQDN, Resolve-HostName, Search-Method, sed,
-    Set-Capslock, Set-Display, Set-Numlock, Set-PrivateProfileComment,
-    Set-PrivateProfileString, Set-Scrolllock, Set-Speaker, Set-Type,
-    Set-WindowStyle, Show-AllColor, Show-Calendar, Show-Color,
-    Show-ColorsWithBackground, Show-DaysOfWeek, Show-FileAttribute,
-    Show-FsRight, Show-InvalidFileCharacter, Show-Month, Show-NamedColor,
-    Show-Object, Show-Progress, Show-ShortDaysOfWeek, Show-ShortMonth,
-    Show-SpecialFolder, Show-SubnetMaskIPv4, Show-Timezone, Show-TypeAccelerator,
-    Start-RecordSession, Stop-RecordSession, Switch-Mute, Test-ConnectionAsync,
-    Test-IsAdmin, Test-IsCapsLock, Test-IsDate, Test-IsFileLocked,
-    Test-IsHexString, Test-IsNumeric, Test-IsNumLock, Test-IsScrollLock,
-    Test-IsValidEmailAddress, Test-IsValidIPv4, Test-NtpDateVsNow, Test-Port,
-    Union-Object, Update-ExplorerIcon
 '@
 
             # Flag to indicate whether the module requires explicit user acceptance for install/update/save
