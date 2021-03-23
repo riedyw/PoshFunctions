@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -27,7 +27,7 @@ $A = New-Object -TypeName 'psobject' -Property ([Ordered] @{
 ```
 
 Name          = 'test'
-    EmptyProperty = $null
+EmptyProperty = $null
 })
 $A
 
@@ -91,5 +91,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+# from: http://community.idera.com/powershell/powertips/b/tips/posts/listing-properties-with-values-part-3
 
 ## RELATED LINKS

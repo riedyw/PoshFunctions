@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://gallery.technet.microsoft.com/scriptcenter/Get-MachineType-VM-or-ff43f3a9
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ To calculate an Md5Sum for a file
 ## SYNTAX
 
 ```
-Get-Md5Sum [[-File] <String[]>] [-IncludeFile] [<CommonParameters>]
+Get-Md5Sum [[-Path] <String[]>] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,14 +33,14 @@ fish
 
 ### EXAMPLE 2
 ```
-Get-Md5Sum -File .\sample.txt
+Get-Md5Sum -Path .\sample.txt
 ```
 
 351a0b1fd339ec74e3ddd2ddde694d82
 
 ### EXAMPLE 3
 ```
-Get-Md5Sum -File .\sample.txt -IncludeFile
+Get-Md5Sum -Path .\sample.txt -IncludeInput
 ```
 
 File         Md5Sum
@@ -49,15 +49,16 @@ File         Md5Sum
 
 ## PARAMETERS
 
-### -File
+### -Path
 The path to the file you wish to calculate the Md5Sum.
 Can be a single string or an array of strings.
 Can also accept pipeline input.
+Aliased to 'File' and 'FileName'
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: FileName, Path
+Aliases: FileName, File
 
 Required: False
 Position: 1
@@ -66,13 +67,14 @@ Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -IncludeFile
-{{ Fill IncludeFile Description }}
+### -IncludeInput
+Switch to include input in the output stream.
+Aliased to 'IncludeFile'
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: IncludeFile
 
 Required: False
 Position: Named

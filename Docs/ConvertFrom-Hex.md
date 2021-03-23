@@ -1,62 +1,72 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
 
-# Remove-BomFromFile
+# ConvertFrom-Hex
 
 ## SYNOPSIS
-To remove BOM (byte order marking) from a file.
+Convert an string or string array from hexadecimal to an integer
 
 ## SYNTAX
 
 ```
-Remove-BomFromFile [[-Path] <String>] [[-Destination] <String>] [<CommonParameters>]
+ConvertFrom-Hex [-Hex] <String[]> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-To remove BOM (byte order marking) from a file.
+Convert an string or string array from hexadecimal to an integer
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Remove-BomFromFiles -Path .\UTF8-BOM.txt -Destination .\UTF.txt
+ConvertFrom-Hex -Hex 'f0','20'
 ```
 
-Takes the contents of .\UTF8-BOM.txt, removes the byte order marking
-and writes to .\UTF8.txt
+240
+32
+
+### EXAMPLE 2
+```
+ConvertFrom-Hex -Hex '0xff','20' -IncludeInput
+```
+
+Hex  Number
+---  ------
+0xff    255
+20       32
 
 ## PARAMETERS
 
-### -Path
-The path to the source file.
+### -Hex
+{{ Fill Hex Description }}
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: (All)
-Aliases: OldPath
+Aliases:
 
-Required: False
+Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -Destination
-The path to the destination file.
+### -IncludeInput
+{{ Fill IncludeInput Description }}
 
 ```yaml
-Type: String
+Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: NewPath
+Aliases:
 
 Required: False
-Position: 2
-Default value: None
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -68,6 +78,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### int
 ## NOTES
+General notes
 
 ## RELATED LINKS

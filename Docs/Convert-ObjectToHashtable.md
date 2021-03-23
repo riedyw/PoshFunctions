@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -17,7 +17,7 @@ Convert-ObjectToHashtable [-object] <Object> [-ExcludeEmpty] [<CommonParameters>
 ```
 
 ## DESCRIPTION
-Add a more complete description of what the function does.
+Takes a single object and converts its properties and values into a hashtable.
 
 ## EXAMPLES
 
@@ -26,12 +26,10 @@ Add a more complete description of what the function does.
 Convert-ObjectToHashtable -object Value -ExcludeEmpty
 ```
 
-Describe what this call does
-
 ## PARAMETERS
 
 ### -object
-Describe parameter -object.
+The Object to turn into a hashtable
 
 ```yaml
 Type: Object
@@ -46,7 +44,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExcludeEmpty
-Describe parameter -ExcludeEmpty.
+Switch to exclude empty properties
 
 ```yaml
 Type: SwitchParameter
@@ -65,15 +63,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### List of input types that are accepted by this function.
 ## OUTPUTS
 
-### List of output types produced by this function.
+### System.Collections.Hashtable[]
 ## NOTES
-Place additional notes here.
+Source: https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/turning-objects-into-hash-tables-2
 
 ## RELATED LINKS
-
-[URLs to related sites
-The first link is opened by Get-Help -Online Convert-ObjectToHashtable]()
-

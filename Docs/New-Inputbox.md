@@ -1,7 +1,7 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
-online version:
+Module Name: poshfunctions
+online version: https://github.com/iRon7/Join-Object
 schema: 2.0.0
 ---
 
@@ -34,15 +34,15 @@ that you validate input.
 
 ### EXAMPLE 1
 ```
-$c = New-Inputbox -prompt "Enter the Netbios name of a domain computer." -title "Enter a computername" -default $env:computername
+$c = New-Inputbox -Prompt 'Enter the Netbios name of a domain computer' -Title "Enter a computername" -Default $env:computername
 ```
 
-get-service -computer $c
+Get-Service -ComputerName $c
 
 ## PARAMETERS
 
 ### -Prompt
-Enter a message prompt
+A string that is displayed before the text entry field in dialog box
 
 ```yaml
 Type: String
@@ -57,7 +57,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-{{ Fill Title Description }}
+A string that appears as the title of the dialog box
 
 ```yaml
 Type: String
@@ -72,7 +72,7 @@ Accept wildcard characters: False
 ```
 
 ### -Default
-{{ Fill Default Description }}
+An optional parameter indicating the default value of the text entry field
 
 ```yaml
 Type: String

@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ Resolves a hostname to an IPv4 address.
 ## SYNTAX
 
 ```
-Resolve-HostName [-Hostname] <String> [<CommonParameters>]
+Resolve-HostName [-Hostname] <String[]> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -58,13 +58,24 @@ Resolve-HostName -Hostname $DomainController
 
 # Display the IPv4 address of "server2" using the pipeline.
 
+### EXAMPLE 6
+```
+Resolve-HostName -Hostname server1, DOESNOTEXIST -IncludeInput
+```
+
+Sample return
+Hostname     IPv4
+--------     ----
+server1      10.100.10.20
+doesnotexist False
+
 ## PARAMETERS
 
 ### -Hostname
-The hostname that you want resolved
+The hostname(s) that you want resolved
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: (All)
 Aliases: host
 
@@ -72,6 +83,21 @@ Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -IncludeInput
+Switch that includes the input parameters in the output
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

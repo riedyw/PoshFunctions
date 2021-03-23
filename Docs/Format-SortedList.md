@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -73,7 +73,7 @@ NonpagedSystemMemorySize64 : 16088
    PrivilegedProcessorTime : 00:00:00.3750000
                ProcessName : notepad
          ProcessorAffinity : 255
-                   Product : MicrosoftÂ® WindowsÂ® Operating System
+                   Product : Microsoft(r) Windows(r) Operating System
             ProductVersion : 10.0.19041.1
                 Responding : True
                 SafeHandle : Microsoft.Win32.SafeHandles.SafeProcessHandle
@@ -143,9 +143,7 @@ Modifications:
 * changed logic slightly to handle properties that are currently set to $null
 * added \[cmdletbinding()\] and write-verbose statements
 * changed write-host statements to write-output
-* performed calculations of $logestvalue as a positive number then multiplied by -1 in -f statement
-  so that the property name is right justified
-* sorted properties by name as one object could have multiple property types (property, noteproperty, etc) and 
-  the resulting set of all properties would not be alphabetical
+* performed calculations of $logestvalue as a positive number then multiplied by -1 in -f statement so that the property name is right justified
+* sorted properties by name as one object could have multiple property types (property, noteproperty, etc) and the resulting set of all properties would not be alphabetical
 
 ## RELATED LINKS

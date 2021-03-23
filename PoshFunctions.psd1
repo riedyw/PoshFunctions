@@ -80,9 +80,9 @@
     'Get-ExecutableForFile', 'Get-FileEncoding', 'Get-FileName',
     'Get-FileWithLeadingSpace', 'Get-Folder', 'Get-Font', 'Get-Fortune',
     'Get-GeoCode', 'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-LastDayInMonth',
-    'Get-LastReboot', 'Get-LongName', 'Get-MachineType', 'Get-MacVendor',
-    'Get-Magic8Ball', 'Get-Md5Sum', 'Get-NetworkCredential', 'Get-NTFSPermission',
-    'Get-NtpDate', 'Get-Power', 'Get-PrintableAscii', 'Get-PrivateProfileComment',
+    'Get-LongName', 'Get-MachineType', 'Get-MacVendor', 'Get-Magic8Ball',
+    'Get-Md5Sum', 'Get-NetworkCredential', 'Get-NTFSPermission', 'Get-NtpDate',
+    'Get-Power', 'Get-PrintableAscii', 'Get-PrivateProfileComment',
     'Get-PrivateProfileSection', 'Get-PrivateProfileSectionNames',
     'Get-PrivateProfileString', 'Get-PSWho', 'Get-RandomDate',
     'Get-RandomHexDigit', 'Get-RandomMacAddress', 'Get-RegExpandString',
@@ -110,7 +110,6 @@
     'Test-IsValidIPv4', 'Test-IsValidIPv6', 'Test-Network', 'Test-NtpDateVsNow',
     'Test-Password', 'Test-Port', 'Union-Object', 'Update-ExplorerIcon',
     'Write-StringArray', 'Write-TextMenu' )
-
 
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.

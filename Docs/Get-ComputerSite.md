@@ -1,37 +1,50 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
-online version:
+Module Name: poshfunctions
+online version: http://wonkysoftware.appspot.com
 schema: 2.0.0
 ---
 
 # Get-ComputerSite
 
 ## SYNOPSIS
-Describe purpose of "Get-ComputerSite" in 1-2 sentences.
+Determines the Active Directory site of a specified computername(s).
+Relies on nltest.exe that comes with Windows
 
 ## SYNTAX
 
 ```
-Get-ComputerSite [[-ComputerName] <String[]>] [-IncludeComputerName] [<CommonParameters>]
+Get-ComputerSite [[-ComputerName] <String[]>] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Add a more complete description of what the function does.
+Determines the Active Directory site of a specified computername(s).
+Relies on nltest.exe that comes with Windows
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-ComputerSite -ComputerName Value
+Get-ComputerSite
 ```
 
-Describe what this call does
+Example result
+CORP
+
+### EXAMPLE 2
+```
+Get-ComputerSite -IncludeInput
+```
+
+Example result
+ComputerName Site
+------------ ----
+DEMOLAPTOP   CORP
 
 ## PARAMETERS
 
 ### -ComputerName
-Describe parameter -ComputerName.
+The computername you want to run the command against, defaults to $env:COMPUTERNAME
 
 ```yaml
 Type: String[]
@@ -41,17 +54,18 @@ Aliases:
 Required: False
 Position: 1
 Default value: $env:COMPUTERNAME
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -IncludeComputerName
-{{ Fill IncludeComputerName Description }}
+### -IncludeInput
+Switch that will display input parameter in the output.
+Aliased to 'IncludeComputerName'
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: IncludeComputerName
 
 Required: False
 Position: Named
@@ -65,15 +79,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### List of input types that are accepted by this function.
 ## OUTPUTS
 
-### List of output types produced by this function.
 ## NOTES
-Place additional notes here.
 
 ## RELATED LINKS
-
-[URLs to related sites
-The first link is opened by Get-Help -Online Get-ComputerSite]()
-

@@ -1,7 +1,7 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
-online version:
+Module Name: poshfunctions
+online version: http://wonkysoftware.appspot.com
 schema: 2.0.0
 ---
 
@@ -13,7 +13,7 @@ Gets the fonts currently loaded on the system
 ## SYNTAX
 
 ```
-Get-Font [[-font] <String>] [<CommonParameters>]
+Get-Font [[-Font] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -40,7 +40,7 @@ Get-Font *Lucida*
 
 ## PARAMETERS
 
-### -font
+### -Font
 A wildcard to search for font names
 
 ```yaml

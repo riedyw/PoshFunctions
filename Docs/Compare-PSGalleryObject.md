@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -14,12 +14,12 @@ Compares the installed module(s) or script(s) that have been installed from Powe
 
 ### Module (Default)
 ```
-Compare-PSGalleryObject [-Name <String>] [-Module] [-NeedUpgrade] [<CommonParameters>]
+Compare-PSGalleryObject [-Name <String>] [-Module] [-NeedUpgrade] [-AllowPrerelease] [<CommonParameters>]
 ```
 
 ### Script
 ```
-Compare-PSGalleryObject [-Name <String>] [-Script] [-NeedUpgrade] [<CommonParameters>]
+Compare-PSGalleryObject [-Name <String>] [-Script] [-NeedUpgrade] [-AllowPrerelease] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -108,6 +108,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -AllowPrerelease
+A switch that will search PSGallery for prerelease versions
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
@@ -117,6 +132,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### psobject
 ## NOTES
+Does NOT appear to work properly in pwsh
+
 Inspired by Get-ModuleVersionInformation at: https://tfl09.blogspot.com/2018/07/keeping-powershell-modules-up-to-date.html
 
 Changes:

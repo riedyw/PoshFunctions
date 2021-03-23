@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -18,14 +18,28 @@ Compare-ObjectProperty [-ReferenceObject] <PSObject> [-DifferenceObject] <PSObje
 
 ## DESCRIPTION
 Compares two objects property by property.
-when a simple Compare-Object does not find equivalence, for instance when the order of properties is different between the 2 objects.
+A simple Compare-Object only compares those properties with the same name in the two objects.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Compare-ObjectProperty -ReferenceObject $object1 -DifferenceObject $object2
+$a = New-Object psobject -Prop ([ordered] @{ One = 1; Two = 2})
 ```
+
+$b = New-Object psobject -Prop (\[ordered\] @{ One = 1; Two = 2; Three = 3})
+
+Compare-Object $a $b
+
+# would return $null because it only compares the properties that have common names but
+
+Compare-ObjectProperty $a $b
+
+# would return below because it compares the two objects property by property
+
+PropertyName RefValue DiffValue
+------------ -------- ---------
+Three                         3
 
 ## PARAMETERS
 

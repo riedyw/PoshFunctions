@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://gallery.technet.microsoft.com/scriptcenter/Get-MachineType-VM-or-ff43f3a9
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ To get permission information on a specified Path or folder name
 ## SYNTAX
 
 ```
-Get-NTFSPermission [[-Path] <String>] [<CommonParameters>]
+Get-NTFSPermission [[-Path] <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -54,7 +54,7 @@ A listing of all of the shares minus the automatic Admin shares
 The name of the path
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: (All)
 Aliases:
 

@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -8,12 +8,12 @@ schema: 2.0.0
 # ConvertTo-UncPath
 
 ## SYNOPSIS
-A simple function to convert a local file path and a computer name to a network UNC path.
+{{ Fill in the Synopsis }}
 
 ## SYNTAX
 
 ```
-ConvertTo-UncPath [-Path] <String> [[-ComputerName] <String[]>] [<CommonParameters>]
+ConvertTo-UncPath [-Path] <String> [[-ComputerName] <String[]>] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -21,22 +21,44 @@ ConvertTo-UncPath [-Path] <String> [[-ComputerName] <String[]>] [<CommonParamete
 
 ## EXAMPLES
 
-### EXAMPLE 1
-```
-ConvertTo-UncPath -LocalFilePath 'c:\adminTools\SomeFolder' -ComputerName 'SomeRemoteComputer'
-```
-
-\\\\SomeRemoteComputer\c$\adminTools\SomeFolder
-
-### EXAMPLE 2
-```
-ConvertTo-UncPath -LocalFilePath 'c:\adminTools\SomeFolder' -ComputerName 'SomeRemoteComputer','SomeAnotherComputer'
+### Example 1
+```powershell
+PS C:\> {{ Add example code here }}
 ```
 
-\\\\SomeRemoteComputer\c$\adminTools\SomeFolder
-\\\\SomeAnotherComputer\c$\adminTools\SomeFolder
+{{ Add example description here }}
 
 ## PARAMETERS
+
+### -ComputerName
+{{ Fill ComputerName Description }}
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IncludeInput
+{{ Fill IncludeInput Description }}
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -Path
 Add help message for user
@@ -47,24 +69,9 @@ Parameter Sets: (All)
 Aliases: LocalFilePath
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-```
-
-### -ComputerName
-One or more computers in which the file path exists on
-
-```yaml
-Type: String[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 2
-Default value: $env:COMPUTERNAME
-Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -73,9 +80,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
+### System.String
+
 ## OUTPUTS
 
-### Will create a string for remote computer path
+### String
+
 ## NOTES
 
 ## RELATED LINKS

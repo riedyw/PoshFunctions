@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -14,32 +14,32 @@ Converts a formatted date string back into a datetime datatype.
 
 ### DMTF (Default)
 ```
-ConvertTo-DateTime [-DateString] <String[]> [-DMTF] [-IncludeOriginal] [-UTC] [<CommonParameters>]
+ConvertTo-DateTime [-DateString] <String[]> [-DMTF] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
 ### Excel
 ```
-ConvertTo-DateTime [-DateString] <String[]> [-Excel] [-IncludeOriginal] [-UTC] [<CommonParameters>]
+ConvertTo-DateTime [-DateString] <String[]> [-Excel] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
 ### Format
 ```
-ConvertTo-DateTime [-DateString] <String[]> [-Format <String>] [-IncludeOriginal] [-UTC] [<CommonParameters>]
+ConvertTo-DateTime [-DateString] <String[]> [-Format <String>] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
 ### ICSDateTime
 ```
-ConvertTo-DateTime [-DateString] <String[]> [-ICSDateTime] [-IncludeOriginal] [-UTC] [<CommonParameters>]
+ConvertTo-DateTime [-DateString] <String[]> [-ICSDateTime] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
 ### FileTime
 ```
-ConvertTo-DateTime [-DateString] <String[]> [-FileTime] [-IncludeOriginal] [-UTC] [<CommonParameters>]
+ConvertTo-DateTime [-DateString] <String[]> [-FileTime] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
 ### Unix
 ```
-ConvertTo-DateTime [-DateString] <String[]> [-Unix] [-IncludeOriginal] [-UTC] [<CommonParameters>]
+ConvertTo-DateTime [-DateString] <String[]> [-Unix] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -128,15 +128,15 @@ Default parameter set.
 DmtfDateTime is of the form 'yyyyMMddHHmmss.ffffff+UUU'
 
 Where
-    yyyy    is the 4 digit year
-    MM      is the 2 digit month
-    dd      is the 2 digit day of the month
-    HH      is the 2 digit in 24 hour format (00-23, 1 pm = 13)
-    mm      is the 2 digit minute (00-59)
-    ss      is the 2 digit second (00-59)
-    ffffff  is the 6 digit microsecond
-    +       is a plus or minus to indicate offset from UTC
-    UUU     is the 3 digit number of minutes offset from UTC (000-720)
+yyyy    is the 4 digit year
+MM      is the 2 digit month
+dd      is the 2 digit day of the month
+HH      is the 2 digit in 24 hour format (00-23, 1 pm = 13)
+mm      is the 2 digit minute (00-59)
+ss      is the 2 digit second (00-59)
+ffffff  is the 6 digit microsecond
++       is a plus or minus to indicate offset from UTC
+UUU     is the 3 digit number of minutes offset from UTC (000-720)
 
 ```yaml
 Type: SwitchParameter
@@ -172,7 +172,7 @@ There is a special value that returns a value of 'Never'.
 Filetimes are expressed in Ticks.
 Ticks can range from 0 - 2650467743999999999.
 Translating these into dates you get
-                  0 = Monday, January 01, 1601 12:00:00.00000 AM
+            0 = Monday, January 01, 1601 12:00:00.00000 AM
 2650467743999999999 = Friday, December 31, 9999 11:59:59.99999 PM
 
 ```yaml
@@ -191,14 +191,14 @@ Accept wildcard characters: False
 IcsDateTime is of the form 'yyyyMMddTHHmmssZ'
 
 Where
-    yyyy    is the 4 digit year
-    MM      is the 2 digit month
-    dd      is the 2 digit day of the month
-    HH      is the 2 digit in 24 hour format (00-23, 1 pm = 13)
-    mm      is the 2 digit minute (00-59)
-    ss      is the 2 digit second (00-59)
-    T       is the letter T
-    Z       is an optional suffix indicating UTC or Zulu time
+yyyy    is the 4 digit year
+MM      is the 2 digit month
+dd      is the 2 digit day of the month
+HH      is the 2 digit in 24 hour format (00-23, 1 pm = 13)
+mm      is the 2 digit minute (00-59)
+ss      is the 2 digit second (00-59)
+T       is the letter T
+Z       is an optional suffix indicating UTC or Zulu time
 
 If the final character is NOT a Z then the time is local time.
 
@@ -245,13 +245,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IncludeOriginal
+### -IncludeInput
 Switch to enable the original datetime to appear in the output.
+Aliased to 'IncludeOriginal'
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: Inc
+Aliases: IncludeOriginal
 
 Required: False
 Position: Named

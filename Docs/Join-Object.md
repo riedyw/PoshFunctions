@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://github.com/iRon7/Join-Object
 schema: 2.0.0
 ---
@@ -162,7 +162,7 @@ Id Name    Country Department  Age ReportsTo
  5 Evans   England Marketing    35
  6 Fischer Germany Engineering  29         4
 
-PS C:\\\> $Department
+$Department
 
 Name        Country
 ----        -------
@@ -171,7 +171,7 @@ Marketing   England
 Sales       France
 Purchase    France
 
-PS C:\\\> $Employee | InnerJoin $Department -On Country | Format-Table
+$Employee | InnerJoin $Department -On Country | Format-Table
 
 Id Name                   Country Department  Age ReportsTo
 -- ----                   ------- ----------  --- ---------
@@ -207,7 +207,7 @@ Id Name    Country Department  Age ReportsTo
  6 Fischer France  Engineering  29         4
  7 Geralds Belgium Sales        71         1
 
-PS C:\\\> $Employee | Merge $Changes -On Id | Format-Table
+$Employee | Merge $Changes -On Id | Format-Table
 
 Id Name    Country Department  Age ReportsTo
 -- ----    ------- ----------  --- ---------
@@ -438,7 +438,7 @@ Aliases:
 
 Required: False
 Position: 4
-Default value: {$True}
+Default value: { $True }
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -505,6 +505,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.Object[]
 ## NOTES
+# Source https://www.powershellgallery.com/packages/Join/3.2.1
 
 ## RELATED LINKS
 

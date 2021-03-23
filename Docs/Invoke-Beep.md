@@ -1,7 +1,7 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
-online version:
+Module Name: poshfunctions
+online version: https://www.Google.com
 schema: 2.0.0
 ---
 
@@ -50,7 +50,7 @@ Invoke-Beep [-Birthday] [<CommonParameters>]
 ## DESCRIPTION
 Uses the Beep function of the .Net \[Console\] class.
 Alias as 'Beep'.
-Has the 
+Has the
 ability to play a number of different pre-defined set of tones.
 
 ## EXAMPLES
@@ -91,7 +91,7 @@ Accept wildcard characters: False
 
 ### -Duration
 The duration, in milliseconds, that you wish to play the tone.
-Defaults to 200. 
+Defaults to 200.
 Minimum 61 ms, maximum 3000 ms (3 seconds).
 
 ```yaml

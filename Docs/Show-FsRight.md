@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -26,7 +26,7 @@ To list all potential file system rights
 Show-FsRight
 ```
 
-Would return:
+Would return
 A listing of all of the explicit filesystemrights
 
                     Name Type   Hex                    Dec

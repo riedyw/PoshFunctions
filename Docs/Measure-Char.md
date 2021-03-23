@@ -1,7 +1,7 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
-online version:
+Module Name: poshfunctions
+online version: https://github.com/iRon7/Join-Object
 schema: 2.0.0
 ---
 
@@ -13,19 +13,19 @@ To count the number of times a character appears in a string, or an array of str
 ## SYNTAX
 
 ```
-Measure-Char [-String] <String[]> [-Char] <Char> [-IgnoreCase] [-IncludeOriginal] [<CommonParameters>]
+Measure-Char [-String] <String[]> [-Char] <Char> [-IgnoreCase] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 To count the number of times a character appears in a string, or an array of strings.
 By default the function is case sensitive, but can be controlled with the $IgnoreCase switch.
-Can also optionally include the command line parameters passed to the program with the $IncludeOriginal switch
+Can also optionally include the command line parameters passed to the program with the $IncludeInput switch
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Measure-Char -String 'Password' -Char 'S' -IgnoreCase -IncludeOriginal
+Measure-Char -String 'Password' -Char 'S' -IgnoreCase -IncludeInput
 ```
 
 Would return
@@ -90,13 +90,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IncludeOriginal
+### -IncludeInput
 A switch to display the parameters specified when the function was called and the resulting count.
+Aliased to 'IncludeOriginal'
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: IncludeOriginal
 
 Required: False
 Position: Named

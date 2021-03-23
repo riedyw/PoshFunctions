@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: http://code.msdn.microsoft.com/PSRemoteRegistry
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ Get the values from a specified registry key
 ## SYNTAX
 
 ```
-Get-RegistryValue [-RegistryKey] <String> [-IncludeRegistryKey] [<CommonParameters>]
+Get-RegistryValue [-RegistryKey] <String> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -38,15 +38,15 @@ TMP  ExpandString %USERPROFILE%\AppData\Local\Temp
 
 ### EXAMPLE 2
 ```
-Get-RegistryValue 'HKCU\Control Panel\Cursors' -IncludeRegistryKey | Select-Object -Last 4
+Get-RegistryValue 'HKCU\Control Panel\Cursors' -IncludeInput | Select-Object -Last 4
 ```
 
-RegistryKey                Name      Type         Value
------------                ----      ----         -----
-HKCU\Control Panel\Cursors SizeWE    ExpandString %SystemRoot%\cursors\aero_ew.cur
-HKCU\Control Panel\Cursors UpArrow   ExpandString %SystemRoot%\cursors\aero_up.cur
-HKCU\Control Panel\Cursors Wait      ExpandString %SystemRoot%\cursors\aero_busy.ani
-HKCU\Control Panel\Cursors (Default) String       Windows Default
+RegistryKey                Name      Type   Value
+-----------                ----      ----   -----
+HKCU\Control Panel\Cursors SizeWE    String C:\WINDOWS\cursors\aero_ew.cur
+HKCU\Control Panel\Cursors UpArrow   String C:\WINDOWS\cursors\aero_up.cur
+HKCU\Control Panel\Cursors Wait      String C:\WINDOWS\cursors\aero_busy.ani
+HKCU\Control Panel\Cursors (Default) String Windows Default
 
 ## PARAMETERS
 
@@ -66,13 +66,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IncludeRegistryKey
-{{ Fill IncludeRegistryKey Description }}
+### -IncludeInput
+Changed name from -IncludeRegistryKey to be consistent, aliased to 'IncludeRegistryKey' for backward compatibility
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: IncludeRegistryKey
 
 Required: False
 Position: Named

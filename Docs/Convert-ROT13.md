@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://en.wikipedia.org/wiki/ROT13
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ Shifts letters in string by 13 positions.
 ## SYNTAX
 
 ```
-Convert-ROT13 [-String] <String[]> [<CommonParameters>]
+Convert-ROT13 [-String] <String[]> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -58,6 +58,18 @@ bar
 VERBOSE: Current line is \[two\]
 gjb
 
+### EXAMPLE 5
+```
+'Hello', 'There', 'World!' | Convert-ROT13 -IncludeInput
+```
+
+String ROT13
+------ -----
+Hello  Uryyb
+There  Gurer
+World!
+Jbeyq!
+
 ## PARAMETERS
 
 ### -String
@@ -72,6 +84,21 @@ Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -IncludeInput
+Switch that indicates input parameters should be included in output
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

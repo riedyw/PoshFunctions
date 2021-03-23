@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -245,6 +245,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 Author        : Rhys Edwards
 Email        : powershell@nolimit.to
+# main source: https://gallery.technet.microsoft.com/scriptcenter/New-Shortcut-4d6fb3d8
+
+# run as admin source: https://www.reddit.com/r/PowerShell/comments/7xa4sk/programmatically_create_shortcuts_w_run_as_admin/
 
 ## RELATED LINKS
 

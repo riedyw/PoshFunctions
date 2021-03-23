@@ -2,11 +2,13 @@ function ConvertTo-UncPath {
 <#
 .SYNOPSIS
     A simple function to convert a local file path and a computer name to a network UNC path.
+.DESCRIPTION
+    A simple function to convert a local file path and a computer name to a network UNC path.
 .PARAMETER LocalFilePath
     A file path ie. C:\Windows\somefile.txt
 .PARAMETER ComputerName
     One or more computers in which the file path exists on
-.PARAMETER
+.PARAMETER IncludeInput
     Switch to include input parameters in output
 .EXAMPLE
     ConvertTo-UncPath -Path 'c:\adminTools\SomeFolder' -ComputerName 'SomeRemoteComputer'
@@ -27,8 +29,8 @@ function ConvertTo-UncPath {
 .NOTES
     Inspired by: https://www.powershellgallery.com/packages/PPoShTools/1.0.19
     * added -IncludeInput
-
 #>
+
     [CmdletBinding()]
     [OutputType('String')]
     param (

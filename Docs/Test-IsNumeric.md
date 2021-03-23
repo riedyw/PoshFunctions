@@ -1,7 +1,7 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
-online version: http://www.google.com
+Module Name: poshfunctions
+online version:
 schema: 2.0.0
 ---
 
@@ -37,7 +37,8 @@ Test-IsCapsLock -Verbose
 ## PARAMETERS
 
 ### -NumString
-{{ Fill NumString Description }}
+A string or string array to test to determine if they are numeric.
+Aliased as 'Number'
 
 ```yaml
 Type: String[]
@@ -52,7 +53,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeInput
-{{ Fill IncludeInput Description }}
+Switch to include the input parameters in the output
 
 ```yaml
 Type: SwitchParameter

@@ -1,7 +1,7 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
-online version:
+Module Name: poshfunctions
+online version: http://wonkysoftware.appspot.com
 schema: 2.0.0
 ---
 
@@ -13,7 +13,7 @@ To get the static values of enum datatypes
 ## SYNTAX
 
 ```
-Get-Enum [-TypeName] <Type[]> [-Binary] [-Hex] [-IncludeType] [<CommonParameters>]
+Get-Enum [-TypeName] <Type[]> [-Binary] [-Hex] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -39,7 +39,7 @@ No         7
 
 ### EXAMPLE 2
 ```
-Get-Enum -TypeName 'System.Windows.Forms.MessageBoxButtons' -Hex -IncludeType
+Get-Enum -TypeName 'System.Windows.Forms.MessageBoxButtons' -Hex -IncludeInput
 ```
 
 TypeName                               Name             Value Hex
@@ -113,13 +113,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IncludeType
+### -IncludeInput
 A switch determining if you want the TypeName to appear in the output.
+Aliased to 'IncludeType'
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: IncludeType
 
 Required: False
 Position: Named

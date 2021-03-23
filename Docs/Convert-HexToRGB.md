@@ -1,52 +1,72 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
 
-# Get-LastReboot
+# Convert-HexToRGB
 
 ## SYNOPSIS
-Describe purpose of "Get-LastReboot" in 1-2 sentences.
+Converts Hex to RGB values
 
 ## SYNTAX
 
 ```
-Get-LastReboot [[-ComputerName] <String[]>] [-IncludeComputerName] [<CommonParameters>]
+Convert-HexToRGB [-Hex] <String[]> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Add a more complete description of what the function does.
+Converts Hex to RGB values
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-LastReboot
+Convert-HexToRGB -Hex '#ffffff' -IncludeInput
 ```
 
-Describe what this call does
+Hex     Red Green Blue RgbString
+---     --- ----- ---- ---------
+#ffffff 255   255  255 255,255,255
+
+### EXAMPLE 2
+```
+Convert-HexToRGB -Hex '808080'
+```
+
+128,128,128
+
+### EXAMPLE 3
+```
+Convert-HexToRGB -Hex '808080', 'ffffff', '#abab10' -IncludeInput
+```
+
+Hex     Red Green Blue RgbString
+---     --- ----- ---- ---------
+808080  128   128  128 128,128,128
+ffffff  255   255  255 255,255,255
+#abab10 171   171   16 171,171,16
 
 ## PARAMETERS
 
-### -ComputerName
-{{ Fill ComputerName Description }}
+### -Hex
+An 6 character Hex value with optional # prefix
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: 1
-Default value: $env:COMPUTERNAME
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -IncludeComputerName
-{{ Fill IncludeComputerName Description }}
+### -IncludeInput
+Switch to include the input in the output
 
 ```yaml
 Type: SwitchParameter
@@ -65,15 +85,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### List of input types that are accepted by this function.
 ## OUTPUTS
 
-### List of output types produced by this function.
 ## NOTES
-Place additional notes here.
 
 ## RELATED LINKS
-
-[URLs to related sites
-The first link is opened by Get-Help -Online Get-LastReboot]()
-

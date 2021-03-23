@@ -1,37 +1,61 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
 
-# Show-SpecialFolder
+# ConvertFrom-Binary
 
 ## SYNOPSIS
-Shows special folder names
+Convert an string or string array from binary to an integer
 
 ## SYNTAX
 
 ```
-Show-SpecialFolder [-IncludeLocations] [<CommonParameters>]
+ConvertFrom-Binary [-Binary] <String[]> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Shows special folder names
+Convert an string or string array from binary to an integer
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+ConvertFrom-Binary -Binary 100001
 ```
 
-{{ Add example description here }}
+33
+
+### EXAMPLE 2
+```
+ConvertFrom-Binary -Binary 1001 -include
+```
+
+Binary Number
+------ ------
+1001        9
 
 ## PARAMETERS
 
-### -IncludeLocations
-{{ Fill IncludeLocations Description }}
+### -Binary
+{{ Fill Binary Description }}
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -IncludeInput
+{{ Fill IncludeInput Description }}
 
 ```yaml
 Type: SwitchParameter
@@ -52,6 +76,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### int
 ## NOTES
+General notes
 
 ## RELATED LINKS

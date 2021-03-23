@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ Converts a datetime from UTC to local time
 ## SYNTAX
 
 ```
-ConvertFrom-UTC [-UTCTime] <String> [<CommonParameters>]
+ConvertFrom-UTC [-Date] <DateTime[]> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -62,13 +62,23 @@ Assuming that your local time zone is EST, and your region/culture is EN-US this
 
 Thursday, March 15, 2018 8:00:00 AM
 
+### EXAMPLE 5
+```
+ConvertFrom-UTC -date '2/1/2018 9:27:59 PM' -IncludeInput
+```
+
+Would return the following if your local time zone is EST, and your region/culture is EN-US
+UTC                 LocalTime
+---                 ---------
+2/1/2018 9:27:59 PM 2/1/2018 4:27:59 PM
+
 ## PARAMETERS
 
-### -UTCTime
-{{ Fill UTCTime Description }}
+### -Date
+The date you wish to convert to UTC
 
 ```yaml
-Type: String
+Type: DateTime[]
 Parameter Sets: (All)
 Aliases:
 
@@ -76,6 +86,21 @@ Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -IncludeInput
+Switch to enable displaying input parameters in the output
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -88,6 +113,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### datetime
 ## NOTES
+# inspired by: https://blogs.technet.microsoft.com/heyscriptingguy/2017/02/01/powertip-convert-from-utc-to-my-local-time-zone/
 
 ## RELATED LINKS
 

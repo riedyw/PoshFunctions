@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://www.google.com
 schema: 2.0.0
 ---
@@ -38,6 +38,14 @@ Get-Content t1.txt | Expand-Tab 2 | Out-File t2.txt
 ```
 
 To expand tabs at a width of 2 characters.
+
+### EXAMPLE 3
+```
+Expand-Tab -InputString "Hello`tWorld!"
+```
+
+Would return
+Hello   World!
 
 ## PARAMETERS
 

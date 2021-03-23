@@ -39,14 +39,15 @@ function Format-TitleCase {
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+        $TextInfo = (Get-Culture).TextInfo
     }
 
     process {
         foreach ($curString in $String) {
             if ($ToLowerFirst) {
-                $ReturnVal = $textinfo.ToTitleCase($curString.ToLower())
+                $ReturnVal = $TextInfo.ToTitleCase($curString.ToLower())
             } else {
-                $ReturnVal = $textinfo.ToTitleCase($curString)
+                $ReturnVal = $TextInfo.ToTitleCase($curString)
             }
             if ($IncludeInput) {
                 New-Object -TypeName psobject -Property ([ordered] @{

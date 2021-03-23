@@ -12,6 +12,8 @@ function Compare-PSGalleryObject {
     A switch indicating the function should just return scripts.
 .PARAMETER NeedUpgrade
     A switch indicating the function should only return those objects that need to be upgraded
+.PARAMETER AllowPrerelease
+    A switch that will search PSGallery for prerelease versions
 .EXAMPLE
     Compare-PSGalleryObject -Name *Functions
 
@@ -52,7 +54,11 @@ function Compare-PSGalleryObject {
 
         [Parameter(ParameterSetName = 'Module')]
         [Parameter(ParameterSetName = 'Script')]
-        [switch] $NeedUpgrade
+        [switch] $NeedUpgrade,
+
+        [Parameter(ParameterSetName = 'Module')]
+        [Parameter(ParameterSetName = 'Script')]
+        [switch] $AllowPrerelease
 
     )
     #endregion parameter
@@ -85,7 +91,12 @@ function Compare-PSGalleryObject {
                     $UpdateObject.InstalledVersion = $Object.Version  # And local version
                     try {
                         #  Find module, and add gallery version number to hash table
-                        $GalObj = Find-Module -Name $Object.name -ErrorAction Stop -AllowPrerelease
+                        if ($AllowPrerelease) {
+                            $GalObj = Find-Module -Name $Object.name -ErrorAction Stop -AllowPrerelease
+                        } else {
+                            $GalObj = Find-Module -Name $Object.name -ErrorAction Stop
+                        }
+
                         $UpdateObject.PSGalleryVersion = $GalObj.Version | Sort-Object -Descending | Select-Object -First 1
                     }
                     # here - find module could not find the module in the gallery
@@ -112,7 +123,11 @@ function Compare-PSGalleryObject {
                     $UpdateObject.InstalledVersion = $Object.Version  # And local version
                     try {
                         #  Find module, and add gallery version number to hash table
-                        $GalObj = Find-Script -Name $Object.name -ErrorAction Stop -AllowPrerelease
+                        if ($AllowPrerelease) {
+                            $GalObj = Find-Script -Name $Object.name -ErrorAction Stop -AllowPrerelease
+                        } else {
+                            $GalObj = Find-Script -Name $Object.name -ErrorAction Stop
+                        }
                         $UpdateObject.PSGalleryVersion = $GalObj.Version | Sort-Object -Descending | Select-Object -First 1
                     }
                     # here - find module could not find the module in the gallery

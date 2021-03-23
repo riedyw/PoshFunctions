@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://social.msdn.microsoft.com/Forums/vstudio/en-US/0221d962-26e6-4a7e-be7a-72cd669a0dfc/why-systemmathround0251-2?forum=vbgeneral
 
 Talks about Visual Basic but the same info applies to Powershell.
@@ -15,7 +15,7 @@ Get information about a Shortcut (.lnk file)
 ## SYNTAX
 
 ```
-Get-Shortcut [[-path] <Object>] [<CommonParameters>]
+Get-Shortcut [[-path] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,26 +25,25 @@ Get information about a Shortcut (.lnk file)
 
 ### EXAMPLE 1
 ```
-Get-Shortcut -Path 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Excel.lnk'
+Get-Shortcut -Path 'C:\Portable\Test.lnk'
 ```
 
-Link         : Excel.lnk
-TargetPath   : C:\Program Files (x86)\Microsoft Office\root\Office16\EXCEL.EXE
+Link         : Test.lnk
+TargetPath   : C:\Portable\PortableApps\Notepad++Portable\Notepad++Portable.exe
 WindowStyle  : 1
-IconLocation : C:\Program Files (x86)\Microsoft
-            Office\Root\VFS\Windows\Installer\{90160000-000F-0000-0000-0000000FF1CE}\xlicons.exe,0
+IconLocation : ,0
 Hotkey       :
-Target       : EXCEL.EXE
+Target       : Notepad++Portable.exe
 Arguments    :
-LinkPath     : C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Excel.lnk
+LinkPath     : C:\Portable\Test.lnk
 
 ## PARAMETERS
 
 ### -path
-{{ Fill path Description }}
+File
 
 ```yaml
-Type: Object
+Type: String
 Parameter Sets: (All)
 Aliases:
 

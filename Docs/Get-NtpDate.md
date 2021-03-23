@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://gallery.technet.microsoft.com/scriptcenter/Get-MachineType-VM-or-ff43f3a9
 schema: 2.0.0
 ---
@@ -31,14 +31,6 @@ Get-NtpDate $DC
 
 Assuming $DC holds the name of the domain controller then would return a datetime similar to
 Monday, March 05, 2018 9:52:57 AM
-
-### EXAMPLE 2
-```
-Test-NtpDateVsNow "DoesNotExist"
-```
-
-Assuming "DoesNotExist" doesn't actually exist as a computer name then would return the datetime
-Monday, January 01, 1900 12:00:00 AM
 
 ## PARAMETERS
 

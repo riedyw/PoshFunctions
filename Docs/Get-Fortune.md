@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -42,7 +42,7 @@ Aliases: FileName, Fortune
 
 Required: False
 Position: 1
-Default value: C:\Scripts\wisdom.txt
+Default value: $script:FortuneFile
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -104,5 +104,7 @@ Time is money.
 
 [Get-Content
 Get-Random
-Split-Path]()
+Split-Path
+
+todo put wisdom.txt in module and default path to it]()
 

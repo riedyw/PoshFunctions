@@ -1,7 +1,7 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
-online version: http://www.google.com
+Module Name: poshfunctions
+online version:
 schema: 2.0.0
 ---
 
@@ -43,5 +43,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### bool
 ## NOTES
+Inspiration: # Inspired by https://gallery.technet.microsoft.com/on-off-keyboad-lock-keys-6ba9885c
 
 ## RELATED LINKS

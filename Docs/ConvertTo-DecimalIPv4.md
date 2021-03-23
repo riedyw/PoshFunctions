@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ Converts a Dotted Decimal IP address into a 32-bit unsigned integer.
 ## SYNTAX
 
 ```
-ConvertTo-DecimalIPv4 [-IPAddress] <IPAddress> [<CommonParameters>]
+ConvertTo-DecimalIPv4 [-IPAddress] <IPAddress[]> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -37,13 +37,24 @@ ConvertTo-DecimalIP -IPAddress 192.168.1.1
 Would return
 16885952
 
+### EXAMPLE 3
+```
+ConvertTo-DecimalIP -IPAddress 192.168.1.1, 10.100.10.1 -IncludeInput
+```
+
+Would return
+IPAddress   DecimalIP
+---------   ---------
+192.168.1.1  16885952
+10.100.10.1  17458186
+
 ## PARAMETERS
 
 ### -IPAddress
 An IP Address to convert.
 
 ```yaml
-Type: IPAddress
+Type: IPAddress[]
 Parameter Sets: (All)
 Aliases:
 
@@ -51,6 +62,21 @@ Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -IncludeInput
+{{ Fill IncludeInput Description }}
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

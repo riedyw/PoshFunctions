@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://www.Google.com
 schema: 2.0.0
 ---
@@ -238,5 +238,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+# inspired by https://gallery.technet.microsoft.com/scriptcenter/Get-Type-Get-exported-fee19cf7
+# changed what is output by the function
 
 ## RELATED LINKS

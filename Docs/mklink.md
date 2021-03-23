@@ -1,14 +1,14 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
-online version:
+Module Name: poshfunctions
+online version: https://github.com/iRon7/Join-Object
 schema: 2.0.0
 ---
 
 # mklink
 
 ## SYNOPSIS
-Mklink calls out to the Command Prompt (cmd.exe) and creates a link
+mklink calls out to the Command Prompt (cmd.exe) and creates a link
 
 ## SYNTAX
 
@@ -17,7 +17,7 @@ mklink
 ```
 
 ## DESCRIPTION
-Mklink calls out to the Command Prompt (cmd.exe) and creates a link
+mklink calls out to the Command Prompt (cmd.exe) and creates a link
 
 mklink /?
 Creates a symbolic link.

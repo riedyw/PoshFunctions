@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://www.google.com
 schema: 2.0.0
 ---
@@ -15,17 +15,17 @@ Can handle Powershell string expressions or Environment variable expansion.
 
 ### PsString (Default)
 ```
-Expand-String [-String] <String[]> [-PowershellString] [-IncludeOriginal] [<CommonParameters>]
+Expand-String [-String] <String[]> [-PowershellString] [-IncludeInput] [<CommonParameters>]
 ```
 
 ### StrResource
 ```
-Expand-String [-String] <String[]> [-StringResource] [-IncludeOriginal] [<CommonParameters>]
+Expand-String [-String] <String[]> [-StringResource] [-IncludeInput] [<CommonParameters>]
 ```
 
 ### EnvVar
 ```
-Expand-String [-String] <String[]> [-EnvironmentVariable] [-IncludeOriginal] [<CommonParameters>]
+Expand-String [-String] <String[]> [-EnvironmentVariable] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -49,7 +49,7 @@ en-US
 # Expanding Powershell string including original string in the output
 ```
 
-Expand-String '$psculture' -PsString -IncludeOriginal
+Expand-String '$psculture' -PsString -IncludeInput
 
 #Assuming you have English US as the local installed culture this would return:
 String     Conversion Expanded
@@ -71,7 +71,7 @@ AMD64
 # Expanding environment variable including orginal string
 ```
 
-Expand-String -String '%PROCESSOR_ARCHITECTURE%' -EnvironmentVariable -IncludeOriginal
+Expand-String -String '%PROCESSOR_ARCHITECTURE%' -EnvironmentVariable -IncludeInput
 
 #Assuming you are a 64 bit machine, the function would return:
 String                   Conversion Expanded
@@ -86,13 +86,13 @@ String                   Conversion Expanded
 # @%SystemRoot%\system32\shell32.dll,-21770
 # and they are found in Desktop.ini files and also the registry.
 
-$ResourceString = ((get-content $env:USERPROFILE\Documents\desktop.ini | Select-String -Pattern 'LocalizedResourceName') -split '=')\[1\]
-Expand-String -String $ResourceString -StringResource -IncludeOriginal
+$ResourceString = (Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanWorkstation').DisplayName
+Expand-String -String $ResourceString -StringResource -IncludeInput
 
-# Would return
-String                                    Conversion  Expanded
-------                                    ----------  --------
-@%SystemRoot%\system32\shell32.dll,-21770 StrResource Documents
+# Would return the following if your Windows install culture was en-US
+String                                 Conversion  Expanded
+------                                 ----------  --------
+@%systemroot%\system32\wkssvc.dll,-100 StrResource Workstation
 
 ## PARAMETERS
 
@@ -112,7 +112,7 @@ Accept wildcard characters: False
 ```
 
 ### -PowershellString
-{{ Fill PowershellString Description }}
+A switch to expand the string expression as a Powershell string
 
 ```yaml
 Type: SwitchParameter
@@ -142,7 +142,8 @@ Accept wildcard characters: False
 ```
 
 ### -StringResource
-{{ Fill StringResource Description }}
+A switch to expand the string expression as a StringResource which can be found in desktop.ini and registry entries.
+An example is '@%SystemRoot%\system32\shell32.dll,-21770'
 
 ```yaml
 Type: SwitchParameter
@@ -156,13 +157,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IncludeOriginal
+### -IncludeInput
 A switch to determine if you want the original string expression to appear in the output.
+Aliased to 'IncludeOriginal'
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: IncludeOriginal
 
 Required: False
 Position: Named
@@ -180,5 +182,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### string
 ## NOTES
+The c# source code was found by me on the Internet, but I can't determine where I originally found it.
+The ability to expand
+a StrResource is thanks to that code.
 
 ## RELATED LINKS

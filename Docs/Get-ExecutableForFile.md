@@ -1,7 +1,7 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
-online version:
+Module Name: poshfunctions
+online version: http://wonkysoftware.appspot.com
 schema: 2.0.0
 ---
 
@@ -53,5 +53,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+# source http://community.idera.com/powershell/powertips/b/tips/posts/finding-executable-for-file
+# requires explicit path NOT relative
 
 ## RELATED LINKS

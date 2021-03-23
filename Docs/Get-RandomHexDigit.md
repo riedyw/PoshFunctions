@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ Gets a random hex digit, or a string of hex digits
 ## SYNTAX
 
 ```
-Get-RandomHexDigit [[-Length] <Int16>] [-IncludePrefix] [-UpperCase] [<CommonParameters>]
+Get-RandomHexDigit [[-Length] <Int32>] [-IncludePrefix] [-UpperCase] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -45,10 +45,10 @@ Get-RandomHexDigit -Length 6 -UpperCase
 ## PARAMETERS
 
 ### -Length
-{{ Fill Length Description }}
+Determines number of hexadecimal digits, defaults to 1
 
 ```yaml
-Type: Int16
+Type: Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -60,7 +60,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludePrefix
-{{ Fill IncludePrefix Description }}
+Switch which will prepend the result with '0x'
 
 ```yaml
 Type: SwitchParameter
@@ -75,7 +75,7 @@ Accept wildcard characters: False
 ```
 
 ### -UpperCase
-{{ Fill UpperCase Description }}
+Switch will make hexadecimal digits uppercase, otherwise they return as lowercase
 
 ```yaml
 Type: SwitchParameter

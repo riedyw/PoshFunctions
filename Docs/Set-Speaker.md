@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -67,7 +67,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 The interface to setting the speaker volume really accepts values 0-50, and displays as 0-100.
 Given this oddity, the function will round DOWN to an even number.
 So if you run
-    Set-Speaker -Volume 99
+Set-Speaker -Volume 99
 The icon for the speaker will display 98% if you hover over it.
 
 ## RELATED LINKS

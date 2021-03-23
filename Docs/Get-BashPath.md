@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ To take a normal Windows path and convert it to a bash path for things like git 
 ## SYNTAX
 
 ```
-Get-BashPath [-Path] <String[]> [-IncludeOriginal] [<CommonParameters>]
+Get-BashPath [-Path] <String[]> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,12 +30,29 @@ Get-BashPath -Path 'c:\temp\*.csv'
 
 ### EXAMPLE 2
 ```
-Get-BashPath -Path 'c:\temp\*.csv' -IncludeOriginal
+Get-BashPath -Path 'c:\temp\*.csv' -IncludeInput
 ```
 
 Posh                      bash
 ----                      ----
 C:\temp\Encoding Time.csv /C/temp/Encoding\ Time.csv
+
+### EXAMPLE 3
+```
+$Special = Show-SpecialFolder -IncludeLocations | Where-Object {$_.Location -and $_.Location -match 'Program Files'}
+```
+
+$Special | Add-Member -MemberType NoteProperty -Name BashPath -Value 'x'
+foreach ($s in $special) { $s.BashPath = Get-BashPath -Path $s.Location }
+$Special
+
+Would return
+SpecialFolder         Location                            BashPath
+-------------         --------                            --------
+CommonProgramFiles    C:\Program Files\Common Files       /C/Program\ Files/Common\ Files
+CommonProgramFilesX86 C:\Program Files (x86)\Common Files /C/Program\ Files\ (x86)/Common\ Files
+ProgramFiles          C:\Program Files                    /C/Program\ Files
+ProgramFilesX86       C:\Program Files (x86)              /C/Program\ Files\ (x86)
 
 ## PARAMETERS
 
@@ -57,13 +74,13 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -IncludeOriginal
-Describe parameter -IncludeOriginal.
+### -IncludeInput
+Switch to indicate if input parameters should be included in the output, aliased to 'IncludeOriginal'
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: IncludeOriginal
 
 Required: False
 Position: Named

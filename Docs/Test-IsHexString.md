@@ -1,7 +1,7 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
-online version: http://www.google.com
+Module Name: poshfunctions
+online version:
 schema: 2.0.0
 ---
 
@@ -40,7 +40,7 @@ False
 
 ### EXAMPLE 3
 ```
-test-ishexstring @('0x1','#1abcdef','3c') -IncludeInput  -AllowPrefix
+Test-IsHexString @('0x1','#1abcdef','3c') -IncludeInput  -AllowPrefix
 ```
 
 Input    AllowPrefix Result
@@ -60,7 +60,7 @@ True
 ## PARAMETERS
 
 ### -HexString
-{{ Fill HexString Description }}
+A string or string array that you want tested to determine if is a valid hexadecimal string
 
 ```yaml
 Type: String[]
@@ -75,7 +75,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeInput
-{{ Fill IncludeInput Description }}
+Switch that will include the input parameters in the output
 
 ```yaml
 Type: SwitchParameter
@@ -90,7 +90,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowPrefix
-{{ Fill AllowPrefix Description }}
+Switch that accepts '#' or '0x' as valid characters that can begin the HexString
 
 ```yaml
 Type: SwitchParameter

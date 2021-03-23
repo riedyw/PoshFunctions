@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ Parse a string and convert it to a Boolean
 ## SYNTAX
 
 ```
-ConvertTo-Bool [[-InputVal] <String[]>] [-TrueString <String[]>] [-IncludeOriginal] [<CommonParameters>]
+ConvertTo-Bool [[-InputVal] <String[]>] [-TrueString <String[]>] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -73,7 +73,7 @@ True
 
 ### EXAMPLE 8
 ```
-'0',1,2,'t','enabled','darn','on' | ConvertTo-Bool -IncludeOriginal
+'0',1,2,'t','enabled','darn','on' | ConvertTo-Bool -IncludeInput
 ```
 
 Original  Bool TrueString
@@ -120,13 +120,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IncludeOriginal
-Determines if you wish to see the original in the output
+### -IncludeInput
+Determines if you wish to see the original in the output, aliased to 'IncludeOriginal'
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: IncludeOriginal
 
 Required: False
 Position: Named

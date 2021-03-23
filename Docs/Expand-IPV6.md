@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://www.google.com
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ Takes an abbreviated IPv6 string and expands it fully
 ## SYNTAX
 
 ```
-Expand-IPV6 [-IPv6] <String> [<CommonParameters>]
+Expand-IPV6 [-IPv6] <String[]> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -45,20 +45,46 @@ Expand-IPV6 -IPv6 '::1'
 Would return:
 0000:0000:0000:0000:0000:0000:0000:0001
 
+### EXAMPLE 4
+```
+'::1', 'fe98::726d:daad:2afc:5393' | Expand-IPV6  -IncludeInput
+```
+
+OriginalIPv6              ExpandedIPv6
+------------              ------------
+::1                       0000:0000:0000:0000:0000:0000:0000:0001
+fe98::726d:daad:2afc:5393 FE98:0000:0000:0000:726D:DAAD:2AFC:5393
+
 ## PARAMETERS
 
 ### -IPv6
-A string parameter that represents an IPv6 address
+A string parameter that represents an IPv6 address.
+Aliased to 'Address'
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: (All)
-Aliases:
+Aliases: Address
 
 Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -IncludeInput
+Switch that will display the input parameter along with the result
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -75,8 +101,7 @@ Source: https://badflyer.com/powershell-ipv4-to-ipv6/
 Changes:
 - added comment help
 - minor formatting changes
-TODO rework the function to accept pipeline input
-TODO add -IncludeOriginal switch so that both original string and expanded string are shown in output
-TODO potentially change so that an invalid IPv6 string returns $null as opposed to throwing an error
+- change IPv6 to string array
+- added IncludeInput parameter
 
 ## RELATED LINKS

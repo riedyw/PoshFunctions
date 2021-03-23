@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -44,8 +44,21 @@ Returns 2
 
 ### EXAMPLE 4
 ```
-
+Get-Power -Base 2 -Power 5 -IncludeOriginal
 ```
+
+Base Power Result
+---- ----- ------
+2     5     32
+
+### EXAMPLE 5
+```
+Get-Power -Base 27 -Power (1/3) -IncludeOriginal
+```
+
+Base             Power Result
+----             ----- ------
+27 0.333333333333333      3
 
 ## PARAMETERS
 

@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://social.msdn.microsoft.com/Forums/vstudio/en-US/0221d962-26e6-4a7e-be7a-72cd669a0dfc/why-systemmathround0251-2?forum=vbgeneral
 
 Talks about Visual Basic but the same info applies to Powershell.
@@ -16,12 +16,12 @@ To get the SID of a specified domain user passed as either an (email) or (domain
 
 ### DomainUser (Default)
 ```
-Get-SID [-Domain <String>] [-Username <String>] [-IncludeOriginal] [<CommonParameters>]
+Get-SID [-Domain <String>] [-Username <String>] [-IncludeInput] [<CommonParameters>]
 ```
 
 ### Email
 ```
-Get-SID [-Email <String>] [-IncludeOriginal] [<CommonParameters>]
+Get-SID [-Email <String>] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -40,7 +40,7 @@ S-1-5-21-1482476501-746137067-839522115-29321
 
 ### EXAMPLE 2
 ```
-Get-SID -IncludeOriginal
+Get-SID -IncludeInput
 ```
 
 Domain      UserName      SID
@@ -49,7 +49,7 @@ contosco    administrator S-1-5-21-1482476501-846137067-872522115-500
 
 ### EXAMPLE 3
 ```
-Get-SID -Email Administrator@Contosco.com -IncludeOriginal
+Get-SID -Email Administrator@Contosco.com -IncludeInput
 ```
 
 Email                      SID
@@ -109,14 +109,15 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IncludeOriginal
+### -IncludeInput
 Switch to enable the original input parameters to appear in the output.
+Aliased to 'IncludeOriginal'
 Is present in both ParameterSetName DomainUser and Email
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: IncludeOriginal
 
 Required: False
 Position: Named

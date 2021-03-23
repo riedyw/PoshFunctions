@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -29,7 +29,7 @@ Wraps text at a particular column width (Default=80)
 
 ### EXAMPLE 1
 ```
-Format-WrapText -Text "word1 word2 word3 word4 word5" -Width 10
+Format-WrapText -Text "word1 word2 word3 word4 word5" -Width 12
 ```
 
 Would return

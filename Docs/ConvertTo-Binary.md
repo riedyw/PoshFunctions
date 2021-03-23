@@ -1,61 +1,71 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
 
-# Search-Method
+# ConvertTo-Binary
 
 ## SYNOPSIS
-Search method
+Convert an integer or array of integers to binary
 
 ## SYNTAX
 
 ```
-Search-Method [[-parameterType] <Type>] [[-namespace] <Object>] [<CommonParameters>]
+ConvertTo-Binary [-Number] <Int32[]> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Search method
+Convert an integer or array of integers to binary
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+ConvertTo-Binary -Number 23
 ```
 
-{{ Add example description here }}
+10111
+
+### EXAMPLE 2
+```
+ConvertTo-Binary -Number 32,0xff -IncludeInput
+```
+
+Number Binary
+------ ------
+    32 100000
+   255 11111111
 
 ## PARAMETERS
 
-### -parameterType
-{{ Fill parameterType Description }}
+### -Number
+{{ Fill Number Description }}
 
 ```yaml
-Type: Type
+Type: Int32[]
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -namespace
-{{ Fill namespace Description }}
+### -IncludeInput
+{{ Fill IncludeInput Description }}
 
 ```yaml
-Type: Object
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 2
-Default value: None
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -67,8 +77,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### string
 ## NOTES
-Inspiration: \<https://blogs.msdn.microsoft.com/mediaandmicrocode/2008/10/23/microcode-powershell-scripting-tricks-exploring-net-types-with-a-get-type-function-and-reflection/\>
-Changed: Minor clean ups
+General notes
 
 ## RELATED LINKS

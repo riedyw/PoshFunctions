@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ Converts a URL encoded string back into a normal string
 ## SYNTAX
 
 ```
-ConvertFrom-UrlEncode [[-URL] <String[]>] [-IncludeOriginal] [<CommonParameters>]
+ConvertFrom-UrlEncode [[-URL] <String[]>] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,13 +31,24 @@ https://www.google.com/
 
 ### EXAMPLE 2
 ```
-ConvertFrom-UrlEncode -URL 'https%3a%2f%2fbing.com' -IncludeOriginal
+ConvertFrom-UrlEncode -URL 'https%3a%2f%2fbing.com' -IncludeInput
 ```
 
 Would return
 Encoded                Decoded
 -------                -------
 https%3a%2f%2fbing.com https://bing.com
+
+### EXAMPLE 3
+```
+ConvertFrom-UrlEncode -URL 'https%3a%2f%2fbing.com', 'https%3a%2f%2fwww.google.com%2f' -IncludeInput
+```
+
+Would return
+Encoded                         Decoded
+-------                         -------
+https%3a%2f%2fbing.com          https://bing.com
+https%3a%2f%2fwww.google.com%2f https://www.google.com/
 
 ## PARAMETERS
 
@@ -58,13 +69,14 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -IncludeOriginal
+### -IncludeInput
 A switch to enable showing original text in the output.
+Aliased to 'IncludeOriginal' for backward compatibility of scripts
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: IncludeOriginal
 
 Required: False
 Position: Named
@@ -84,6 +96,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
-
-[about_Properties]()
-

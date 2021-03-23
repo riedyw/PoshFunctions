@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://www.Google.com
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ To truncate a date at a given level
 ## SYNTAX
 
 ```
-Get-TruncatedDate [[-Date] <DateTime[]>] [-WhereToTruncate <String>] [-IncludeOriginal] [<CommonParameters>]
+Get-TruncatedDate [[-Date] <DateTime[]>] [-WhereToTruncate <String>] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -44,7 +44,7 @@ $testdate = get-date @prop
 Example of truncating at Millisecond and including original date in output
 ```
 
-Get-TruncatedDate -Date $testdate -WhereToTruncate Millisecond -IncludeOriginal
+Get-TruncatedDate -Date $testdate -WhereToTruncate Millisecond -IncludeInput
 
 Original                Where       Truncated
 --------                -----       ---------
@@ -129,13 +129,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IncludeOriginal
-A switch determining if you wish to see the original date in the output
+### -IncludeInput
+A switch determining if you wish to see the original date in the output, aliased to 'IncludeOriginal'
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: IncludeOriginal
 
 Required: False
 Position: Named
@@ -152,5 +152,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+# source   # https://www.reddit.com/r/usefulscripts/comments/9ghdzo/powershell_setdatetruncate_is_that_dumb_function/
 
 ## RELATED LINKS

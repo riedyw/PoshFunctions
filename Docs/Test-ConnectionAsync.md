@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -14,7 +14,7 @@ Performs a ping test asynchronously
 
 ```
 Test-ConnectionAsync [[-ComputerName] <String[]>] [-Timeout <Int32>] [-TimeToLive <Int32>] [-Fragment]
- [-BufferSize <Int16>] [-IncludeSource] [<CommonParameters>]
+ [-BufferSize <Int32>] [-IncludeSource] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -105,7 +105,7 @@ How large you want the buffer to be.
 Valid range 32-1500, default of 32.
 
 ```yaml
-Type: Int16
+Type: Int32
 Parameter Sets: (All)
 Aliases:
 

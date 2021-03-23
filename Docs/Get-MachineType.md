@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://gallery.technet.microsoft.com/scriptcenter/Get-MachineType-VM-or-ff43f3a9
 schema: 2.0.0
 ---
@@ -36,6 +36,17 @@ Get-MachineType -ComputerName SERVER01
 Query if SERVER01 is a physical or virtual machine.
 
 ### EXAMPLE 3
+```
+Get-MachineType -ComputerName DEMOLAPTOP, CORPDC1
+```
+
+ComputerName Type     Manufacturer          Model
+------------ ----     ------------          -----
+DEMOLAPTOP   Physical Microsoft Corporation Surface Pro 6
+CORPDC1      VM       VMware, Inc. 
+VMware Virtual Platform
+
+### EXAMPLE 4
 ```
 Get-MachineType -ComputerName (Get-Content c:\temp\computerlist.txt)
 ```

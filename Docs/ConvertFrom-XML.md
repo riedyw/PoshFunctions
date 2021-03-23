@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -21,12 +21,27 @@ Convert XML to an object
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+[xml] $xml = @'
 ```
 
-{{ Add example description here }}
+\<?xml version="1.0" encoding="utf-8"?\>
+\<Objects\>
+\<Object Type="System.Management.Automation.PSCustomObject"\>
+\<Property Name="ComputerName" Type="System.String"\>DemoLaptop\</Property\>
+\<Property Name="Path" Type="System.String"\>c:\Temp\</Property\>
+\<Property Name="UNCPath" Type="System.String"\>\\\\DemoLaptop\c$\Temp\</Property\>
+\</Object\>
+\</Objects\>
+'@
+
+ConvertFrom-XML -XML $xml
+
+Would return
+ComputerName Path    UNCPath
+------------ ----    -------
+DemoLaptop   c:\Temp \\\\DemoLaptop\c$\Temp
 
 ## PARAMETERS
 
@@ -53,5 +68,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+Only tested with single level XML content.
+Not tested with hierarchical XML content.
 
 ## RELATED LINKS

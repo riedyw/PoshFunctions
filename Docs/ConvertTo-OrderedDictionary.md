@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -32,7 +32,7 @@ are integers 0 - n.
 $myHash = @{a=1; b=2; c=3}
 ```
 
-PS C:\\\> .\ConvertTo-OrderedDictionary.ps1 -Hash $myHash
+ConvertTo-OrderedDictionary -Hash $myHash
 
 Name                           Value
 ----                           -----
@@ -45,8 +45,8 @@ c                              3
 $myHash = @{a=1; b=2; c=3}
 ```
 
-PS C:\\\> $myHash = .\ConvertTo-OrderedDictionary.ps1 -Hash $myHash
-PS C:\\\> $myHash
+$myHash = .\ConvertTo-OrderedDictionary.ps1 -Hash $myHash
+$myHash
 
 Name                           Value
 ----                           -----
@@ -54,10 +54,10 @@ a                              1
 b                              2
 c                              3
 
-PS C:\\\> $myHash | Get-Member
+$myHash | Get-Member
 
-   TypeName: System.Collections.Specialized.OrderedDictionary
-   .
+TypeName: System.Collections.Specialized.OrderedDictionary
+.
 . .
 
 ### EXAMPLE 3
@@ -65,8 +65,8 @@ PS C:\\\> $myHash | Get-Member
 $colors = "red", "green", "blue"
 ```
 
-PS C:\\\> $colors = .\ConvertTo-OrderedDictionary.ps1 -Hash $colors
-PS C:\\\> $colors
+$colors = .\ConvertTo-OrderedDictionary.ps1 -Hash $colors
+$colors
 
 Name                           Value
 ----                           -----
@@ -77,7 +77,11 @@ Name                           Value
 ## PARAMETERS
 
 ### -Hash
-Add help message for user
+Specifies a hash table or an array.
+Enter the hash table or array,
+or enter a variable that contains a hash table or array.
+If the input
+is an OrderedDictionary the key order is the same in the copy.
 
 ```yaml
 Type: Object

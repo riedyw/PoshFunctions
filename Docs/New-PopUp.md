@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -55,6 +55,15 @@ $answer = new-popup -Message "Please pick" -Title "form" -buttons "OKCancel" -ic
 If the user clicks "OK" the $answer variable will be equal to 1.
 If the user clicks "Cancel" the
 $answer variable will be equal to 2.
+
+### EXAMPLE 3
+```
+$answer = new-popup -Message "Please pick" -Title "form" -buttons "OKCancel" -icon "information" -AsString
+```
+
+If the user clicks "OK" the $answer variable will be equal to 'OK'.
+If the user clicks "Cancel" the
+$answer variable will be 'Cancel'
 
 ## PARAMETERS
 
@@ -180,7 +189,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
 ## OUTPUTS
 
 ### An integer with the following value depending upon the button pushed.
@@ -193,7 +201,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### Yes     =  6
 ### No      =  7
 ## NOTES
-Last Updated: 6/17/2018
 
 ## RELATED LINKS
 

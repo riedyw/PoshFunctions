@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ To test whether local time and NTP time fall within a particular tolerance
 ## SYNTAX
 
 ```
-Test-NtpDateVsNow [-ComputerName] <String> [-Tolerance <Int32>] [<CommonParameters>]
+Test-NtpDateVsNow [[-ComputerName] <String>] [-Tolerance <Int32>] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -39,19 +39,30 @@ Test-NtpDateVsNow "DoesNotExist"
 Assuming "DoesNotExist" doesn't actually exist as a computer name then would return the boolean
 $False
 
+### EXAMPLE 3
+```
+Test-NtpDateVsNow -ComputerName server01 -IncludeInput
+```
+
+Example result
+LocalDate            NTPDate              Tolerance Difference Result NTPServer
+---------            -------              --------- ---------- ------ ---------
+2/23/2021 2:18:02 PM 2/23/2021 2:18:02 PM       300  0.4763647   True server01
+
 ## PARAMETERS
 
 ### -ComputerName
-The name or IPv4 address of the computer running NTP
+The name or IPv4 address of the computer running NTP.
+If left blank uses the Get-ADDomainController command to find domain controller which runs NTP
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases: NtpServer
 
-Required: True
+Required: False
 Position: 1
-Default value: None
+Default value: (Get-ADDomainController).HostName
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
@@ -70,6 +81,21 @@ Required: False
 Position: Named
 Default value: 300
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -IncludeInput
+Switch indicating whether to include the input parameters in the output
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

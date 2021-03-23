@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://en.wikipedia.org/wiki/ROT13
 schema: 2.0.0
 ---
@@ -58,5 +58,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### string
 ## NOTES
+# inspired by: https://gallery.technet.microsoft.com/Execute-PowerShell-Script-38881dce
 
 ## RELATED LINKS

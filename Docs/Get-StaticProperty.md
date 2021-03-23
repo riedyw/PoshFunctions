@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://social.msdn.microsoft.com/Forums/vstudio/en-US/0221d962-26e6-4a7e-be7a-72cd669a0dfc/why-systemmathround0251-2?forum=vbgeneral
 
 Talks about Visual Basic but the same info applies to Powershell.
@@ -15,7 +15,7 @@ To list the static properties of a .NET class
 ## SYNTAX
 
 ```
-Get-StaticProperty [[-TypeName] <String[]>] [-IncludeTypeName] [<CommonParameters>]
+Get-StaticProperty [[-TypeName] <String[]>] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -41,7 +41,7 @@ Unknown          0
 
 ### EXAMPLE 2
 ```
-Get-StaticProperty -TypeName 'datetime' -IncludeTypeName
+Get-StaticProperty -TypeName 'datetime' -IncludeInput
 ```
 
 SpecifiedType ExpandedType    Name     Value
@@ -54,7 +54,7 @@ datetime      System.DateTime UtcNow   4/9/2020 12:47:49 PM
 
 ### EXAMPLE 3
 ```
-Get-StaticProperty -TypeName 'math' -IncludeTypeName
+Get-StaticProperty -TypeName 'math' -IncludeInput
 ```
 
 SpecifiedType ExpandedType Name            Value
@@ -79,14 +79,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IncludeTypeName
-A switch to determine if the typename and expanded full type name will be
-included in the output
+### -IncludeInput
+A switch to determine if the typename and expanded full type name will be included in the output.
+Aliased to 'IncludeTypeName' for backward compatibility
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: IncludeTypeName
 
 Required: False
 Position: Named

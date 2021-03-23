@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://www.Google.com
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ Gets summary statistics of all the words and how many of each there are
 ## SYNTAX
 
 ```
-Get-WordCount [-Path] <String> [[-Exclude] <String[]>] [<CommonParameters>]
+Get-WordCount [-Path] <String> [[-Exclude] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -75,10 +75,10 @@ Accept wildcard characters: False
 ```
 
 ### -Exclude
-A string or array of strings that should be excluded.
+The path to a file containing strings you want excluded from the count
 
 ```yaml
-Type: String[]
+Type: String
 Parameter Sets: (All)
 Aliases:
 

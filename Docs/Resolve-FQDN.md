@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ Resolves a hostname or IPv4 address to a fully qualified domain name
 ## SYNTAX
 
 ```
-Resolve-FQDN [-ComputerName] <String> [<CommonParameters>]
+Resolve-FQDN [-ComputerName] <String[]> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -72,14 +72,29 @@ Either the hostname or IPv4 address of the computer you want resolved to FQDN.
 Aliased to 'CN', and 'Host'
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: (All)
-Aliases: Host, CN
+Aliases: Host, CN, Server
 
 Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -IncludeInput
+Switch to include the input parameters in the output
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

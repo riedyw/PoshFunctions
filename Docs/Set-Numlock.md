@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -120,8 +120,6 @@ Changes:     Created function to set on or off the NumLock.
 Requires use of helper function Test-IsNumLock
 
 ## RELATED LINKS
-
-[New-Object]()
 
 [Wscript.Shell]()
 

@@ -1,7 +1,7 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
-online version:
+Module Name: poshfunctions
+online version: http://wonkysoftware.appspot.com
 schema: 2.0.0
 ---
 
@@ -13,7 +13,7 @@ To find files that begin with a space character
 ## SYNTAX
 
 ```
-Get-FileWithLeadingSpace [[-path] <String>] [<CommonParameters>]
+Get-FileWithLeadingSpace [[-Path] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,7 +30,7 @@ Describe what this call does
 
 ## PARAMETERS
 
-### -path
+### -Path
 The path where you want to begin looking
 
 ```yaml
@@ -40,7 +40,7 @@ Aliases:
 
 Required: False
 Position: 1
-Default value: C:\a
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

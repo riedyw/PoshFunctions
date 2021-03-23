@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ To encode plaintext using \[Web.HttpUtility\]::UrlEncode()
 ## SYNTAX
 
 ```
-ConvertTo-UrlEncode [[-URL] <String[]>] [-IncludeOriginal] [<CommonParameters>]
+ConvertTo-UrlEncode [[-URL] <String[]>] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,7 +31,7 @@ https%3a%2f%2fwww.google.com%2f
 
 ### EXAMPLE 2
 ```
-ConvertTo-UrlEncode -URL https://www.google.com/ -IncludeOriginal
+ConvertTo-UrlEncode -URL https://www.google.com/ -IncludeInput
 ```
 
 Would return
@@ -58,13 +58,14 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -IncludeOriginal
+### -IncludeInput
 A switch to determine if you want original text in the output.
+Aliased to 'IncludeOriginal' for backward compatibility of scripts
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: IncludeOriginal
 
 Required: False
 Position: Named

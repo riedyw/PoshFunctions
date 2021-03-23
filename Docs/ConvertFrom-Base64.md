@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ Convert from a Base64 string to normal string
 ## SYNTAX
 
 ```
-ConvertFrom-Base64 [-StringFrom] <String> [<CommonParameters>]
+ConvertFrom-Base64 [-Base64] <String[]> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,13 +29,23 @@ ConvertFrom-Base64 "SABlAGwAbABvAA=="
 Would return
 Hello
 
+### EXAMPLE 2
+```
+ConvertFrom-Base64 "SABlAGwAbABvAA==" -IncludeInput
+```
+
+Would return
+Base64           String
+------           ------
+SABlAGwAbABvAA== Hello
+
 ## PARAMETERS
 
-### -StringFrom
+### -Base64
 A base64 encoded string
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: (All)
 Aliases:
 
@@ -46,6 +56,21 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
+### -IncludeInput
+Switch to enable including the input to appear in the output
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
@@ -53,10 +78,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### [string]
+### [string[]]
 ## NOTES
 
 ## RELATED LINKS
-
-[about_Properties]()
-

@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -29,7 +29,7 @@ Set-Display turns the display on or off via energy saver api
 
 ### EXAMPLE 1
 ```
-Set-Display -Off | Start-Sleep -Seconds 5 | Set-Display -On
+Set-Display -Off ; Start-Sleep -Seconds 5 ; Set-Display -On
 ```
 
 ## PARAMETERS
@@ -72,6 +72,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
-Set-Display -On seems to NOT work with Windows 10 Update 1909
+Inspired by
+# Turning off display http://community.idera.com/database-tools/powershell/powertips/b/tips/posts/turning-display-off-immediately
+# Turning on display  https://www.codeproject.com/Articles/11099/Turn-on-off-monitor
 
 ## RELATED LINKS

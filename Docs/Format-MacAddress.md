@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -110,6 +110,13 @@ OriginalMac       FormattedMac
 -----------       ------------
 00:11:22:dD:ee:FF 0011.22dd.eeff
 10005a123456      1000.5a12.3456
+
+### EXAMPLE 12
+```
+Format-MacAddress -MacAddress (Get-RandomMacAddress) -Separator '.'
+```
+
+95.4a.e6.39.05.aa
 
 ## PARAMETERS
 

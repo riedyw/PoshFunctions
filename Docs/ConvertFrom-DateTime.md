@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -14,32 +14,32 @@ Converts a datetime into a datetime represented in a different format.
 
 ### DMTF (Default)
 ```
-ConvertFrom-DateTime [-DateTime] <DateTime[]> [-DMTF] [-IncludeOriginal] [-UTC] [<CommonParameters>]
+ConvertFrom-DateTime [-Date] <DateTime[]> [-DMTF] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
 ### Excel
 ```
-ConvertFrom-DateTime [-DateTime] <DateTime[]> [-Excel] [-IncludeOriginal] [-UTC] [<CommonParameters>]
+ConvertFrom-DateTime [-Date] <DateTime[]> [-Excel] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
 ### Format
 ```
-ConvertFrom-DateTime [-DateTime] <DateTime[]> [-Format <String>] [-IncludeOriginal] [-UTC] [<CommonParameters>]
+ConvertFrom-DateTime [-Date] <DateTime[]> [-Format <String>] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
 ### ICSDateTime
 ```
-ConvertFrom-DateTime [-DateTime] <DateTime[]> [-ICSDateTime] [-IncludeOriginal] [-UTC] [<CommonParameters>]
+ConvertFrom-DateTime [-Date] <DateTime[]> [-ICSDateTime] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
 ### FileTime
 ```
-ConvertFrom-DateTime [-DateTime] <DateTime[]> [-FileTime] [-IncludeOriginal] [-UTC] [<CommonParameters>]
+ConvertFrom-DateTime [-Date] <DateTime[]> [-FileTime] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
 ### Unix
 ```
-ConvertFrom-DateTime [-DateTime] <DateTime[]> [-Unix] [-IncludeOriginal] [-UTC] [<CommonParameters>]
+ConvertFrom-DateTime [-Date] <DateTime[]> [-Unix] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -51,7 +51,7 @@ If you wish the output to be in UTC timezone include the -UTC parameter.
 
 ### EXAMPLE 1
 ```
-ConvertFrom-DateTime -DateTime '1/28/1986 11:39' -FileTime -IncludeOriginal
+ConvertFrom-DateTime -DateTime '1/28/1986 11:39' -FileTime -IncludeInput
 ```
 
 DateTime                        FileTime
@@ -60,7 +60,7 @@ DateTime                        FileTime
 
 ### EXAMPLE 2
 ```
-ConvertFrom-DateTime -DateTime '1/25/2018 8:34:31 AM' -DMTF -IncludeOriginal
+ConvertFrom-DateTime -DateTime '1/25/2018 8:34:31 AM' -DMTF -IncludeInput
 ```
 
 Assuming a timezone of 'Eastern Time' and a culture of 'en-US' this would return the string
@@ -69,7 +69,7 @@ Assuming a timezone of 'Eastern Time' and a culture of 'en-US' this would return
 
 ### EXAMPLE 3
 ```
-ConvertFrom-DateTime -DateTime '1/25/2018 8:34:31 AM' -DMTF -IncludeOriginal
+ConvertFrom-DateTime -DateTime '1/25/2018 8:34:31 AM' -DMTF -IncludeInput
 ```
 
 Assuming your current timezone is EST then the output would be:
@@ -95,14 +95,13 @@ Assuming a timezone of 'Eastern Time' and a culture of 'en-US' this would return
 
 ## PARAMETERS
 
-### -DateTime
-The date that you want to be converted.
-Can be input from the pipeline.
+### -Date
+{{ Fill Date Description }}
 
 ```yaml
 Type: DateTime[]
 Parameter Sets: (All)
-Aliases: Date
+Aliases: DateTime
 
 Required: True
 Position: 1
@@ -118,15 +117,15 @@ Default parameter set.
 DmtfDateTime is of the form 'yyyymmddHHMMSS.ffffff+UUU'
 
 Where
-    yyyy    is the 4 digit year
-    mm      is the 2 digit month
-    dd      is the 2 digit day of the month
-    HH      is the 2 digit in 24 hour format (00-23, 1 pm = 13)
-    MM      is the 2 digit minute (00-59)
-    SS      is the 2 digit second (00-59)
-    ffffff  is the 6 digit microsecond
-    +       is a plus or minus to indicate offset from UTC
-    UUU     is the 3 digit number of minutes offset from UTC (000-720)
+yyyy    is the 4 digit year
+mm      is the 2 digit month
+dd      is the 2 digit day of the month
+HH      is the 2 digit in 24 hour format (00-23, 1 pm = 13)
+MM      is the 2 digit minute (00-59)
+SS      is the 2 digit second (00-59)
+ffffff  is the 6 digit microsecond
++       is a plus or minus to indicate offset from UTC
+UUU     is the 3 digit number of minutes offset from UTC (000-720)
 
 ```yaml
 Type: SwitchParameter
@@ -163,7 +162,7 @@ Returns a \[datetime\] in Universal Time (UTC)
 Filetimes are expressed in Ticks.
 Ticks can range from 0 - 2650467743999999999.
 Translating these into dates you get
-                  0 = Monday, January 01, 1601 12:00:00.00000 AM
+            0 = Monday, January 01, 1601 12:00:00.00000 AM
 2650467743999999999 = Friday, December 31, 9999 11:59:59.99999 PM
 
 ```yaml
@@ -182,14 +181,14 @@ Accept wildcard characters: False
 Switch to convert a datetime to IcsDateTime format is of the form 'yyyymmddTHHMMSSZ'
 
 Where
-    yyyy    is the 4 digit year
-    mm      is the 2 digit month
-    dd      is the 2 digit day of the month
-    HH      is the 2 digit in 24 hour format (00-23, 1 pm = 13)
-    MM      is the 2 digit minute (00-59)
-    SS      is the 2 digit second (00-59)
-    T       is the letter T
-    Z       is an optional suffix indicating UTC or Zulu time
+yyyy    is the 4 digit year
+mm      is the 2 digit month
+dd      is the 2 digit day of the month
+HH      is the 2 digit in 24 hour format (00-23, 1 pm = 13)
+MM      is the 2 digit minute (00-59)
+SS      is the 2 digit second (00-59)
+T       is the letter T
+Z       is an optional suffix indicating UTC or Zulu time
 
 If the final character is NOT a Z then the time is local time.
 
@@ -236,13 +235,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IncludeOriginal
+### -IncludeInput
 Switch to enable the original datetime to appear in the output.
+Aliased to 'IncludeOriginal'
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: Inc
+Aliases: IncludeOriginal
 
 Required: False
 Position: Named

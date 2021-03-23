@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://gallery.technet.microsoft.com/scriptcenter/Get-MachineType-VM-or-ff43f3a9
 schema: 2.0.0
 ---
@@ -35,6 +35,22 @@ Get-DhcpServerv4Lease -ComputerName $ComputerName -ScopeId $ScopeId | Select -Ex
 
 Get-NetAdapter | select -ExpandProperty MacAddress | Foreach-Object {Get-MacVendor -MacAddress $_; sleep 1}
 
+### EXAMPLE 3
+```
+Get-MacVendor -MacAddress 00-09-0F-AA-00-01, B8-31-B5-3D-75-D1, 00-09-0F-FE-00-01, F0-6E-0B-DA-B6-A7, F0-6E-0B-DA-B6-A8
+```
+
+Would return
+Vendor                MacAddress
+------                ----------
+Fortinet Inc. 
+00-09-0F-AA-00-01
+Microsoft Corporation B8-31-B5-3D-75-D1
+Fortinet Inc. 
+00-09-0F-FE-00-01
+Microsoft Corporation F0-6E-0B-DA-B6-A7
+Microsoft Corporation F0-6E-0B-DA-B6-A8
+
 ## PARAMETERS
 
 ### -MacAddress
@@ -60,5 +76,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+Originally published as script Get-MacVendor.ps1 on PSGallery
+* added write-verbose
+* removed a-f in regex as case insensitive by default
+* added example
 
 ## RELATED LINKS

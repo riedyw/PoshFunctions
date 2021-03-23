@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ Converts a Decimal IP address into a binary format.
 ## SYNTAX
 
 ```
-ConvertTo-BinaryIPv4 [-IPAddress] <IPAddress[]> [-IncludeOriginal] [<CommonParameters>]
+ConvertTo-BinaryIPv4 [-IPAddress] <IPAddress[]> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -32,7 +32,7 @@ Would return
 
 ### EXAMPLE 2
 ```
-ConvertTo-BinaryIPv4 -IPAddress 10.1.1.1,192.168.1.1  -verbose -IncludeOriginal
+ConvertTo-BinaryIPv4 -IPAddress 10.1.1.1,192.168.1.1  -verbose -IncludeInput
 ```
 
 Would return
@@ -74,14 +74,15 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -IncludeOriginal
+### -IncludeInput
 A switch indicating if you want to display original IPv4 address.
-If true then it will output a PsObject with the property fields of IPv4 and Binary
+If true then it will output a PsObject with the property fields of IPv4 and Binary.
+Aliased to 'IncludeOriginal'
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: IncludeOriginal
 
 Required: False
 Position: 2

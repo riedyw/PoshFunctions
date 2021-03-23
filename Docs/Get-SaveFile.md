@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://social.msdn.microsoft.com/Forums/vstudio/en-US/0221d962-26e6-4a7e-be7a-72cd669a0dfc/why-systemmathround0251-2?forum=vbgeneral
 
 Talks about Visual Basic but the same info applies to Powershell.
@@ -15,8 +15,8 @@ Gets a filename through the native SaveFileDialog.
 ## SYNTAX
 
 ```
-Get-SaveFile [[-InitialDirectory] <String>] [[-OverwritePrompt] <Boolean>] [[-Filter] <String>]
- [[-Title] <String>] [-AddExtension] [[-DefaultExt] <String>] [<CommonParameters>]
+Get-SaveFile [[-Path] <String>] [[-OverwritePrompt] <Boolean>] [[-Filter] <String>] [[-Title] <String>]
+ [-AddExtension] [[-DefaultExt] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -48,7 +48,7 @@ Assigns selected file(s) to the 'File' variable.
 
 ### EXAMPLE 3
 ```
-$File = Get-SaveFile -InitialDirectory 'C:\Temp'
+$File = Get-SaveFile -Path 'C:\Temp'
 ```
 
 Will present a savefile dialog box where a file can be selected and the savefile
@@ -75,15 +75,16 @@ Assigns selected file(s) to the 'File' variable.
 
 ## PARAMETERS
 
-### -InitialDirectory
+### -Path
 The directory for the SaveFileDialog to start in.
 Defaults to $pwd.
+Aliased to 'InitialDirectory'
 Aliased to 'Path'.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: Path
+Aliases: InitialDirectory
 
 Required: False
 Position: 1
@@ -194,9 +195,11 @@ Forced function
              to always return an array.
 Filter is now a parameter that can be specified
              to control behavior.
-Changed InitialDirectory to default to $pwd and to give
+Changed Path to default to $pwd and to give
              an alias of 'Path' which is commonly used parameter name.
              Also changed syntax to Add-Type -AssemblyName to conform with
              Powershell 2+ and to be more "Powershelly".
+# Source: https://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
+# get-help about_ISE-Color-Theme-Cmdlets for more information
 
 ## RELATED LINKS

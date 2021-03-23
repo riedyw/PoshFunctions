@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: http://code.msdn.microsoft.com/PSRemoteRegistry
 schema: 2.0.0
 ---
@@ -29,10 +29,9 @@ $Key = "SOFTWARE\Microsoft\Windows\CurrentVersion"
 
 Get-RegExpandString -Key $Key -Value ProgramFilesPath
 
-ComputerName Hive Key Value Data Type
------------- ---- --- ----- ---- ----
-COMPUTER1 LocalMachine SOFTWARE\Microsof...
-ProgramFilesPath %ProgramFiles% ExpandString
+ComputerName Hive         Value            Key                                       Data                   Type
+------------ ----         -----            ---                                       ----                   ----
+DemoLaptop   LocalMachine ProgramFilesPath SOFTWARE\Microsoft\Windows\CurrentVersion %ProgramFiles% ExpandString
 
 Description
 -----------
@@ -41,17 +40,13 @@ The returned value contains unexpanded references to environment variables.
 
 ### EXAMPLE 2
 ```
-Get-RegExpandString -Key $Key -Value ProgramFilesPath -ComputerName SERVER1,SERVER2,SERVER3 -ExpandEnvironmentNames -Ping
+Get-RegExpandString -Key $Key -Value ProgramFilesPath -ComputerName server1, server2 -ExpandEnvironmentNames -Ping
 ```
 
-ComputerName Hive Key Value Data Type
------------- ---- --- ----- ---- ----
-SERVER1 LocalMachine SOFTWARE\Microsof...
-ProgramFilesPath C:\Program Files ExpandString
-SERVER2 LocalMachine SOFTWARE\Microsof...
-ProgramFilesPath C:\Program Files ExpandString
-SERVER3 LocalMachine SOFTWARE\Microsof...
-ProgramFilesPath C:\Program Files ExpandString
+ComputerName Hive         Value            Key                                       Data                     Type
+------------ ----         -----            ---                                       ----                     ----
+server1      LocalMachine ProgramFilesPath SOFTWARE\Microsoft\Windows\CurrentVersion C:\Program Files ExpandString
+server2      LocalMachine ProgramFilesPath SOFTWARE\Microsoft\Windows\CurrentVersion C:\Program Files ExpandString
 
 Description
 -----------
@@ -73,7 +68,7 @@ Aliases: CN, __SERVER, IPAddress
 
 Required: False
 Position: 1
-Default value: None
+Default value: $env:COMPUTERNAME
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
@@ -175,6 +170,15 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 Author: Shay Levy
 Blog : http://blogs.microsoft.co.il/blogs/ScriptFanatic/
+
+# source: https://www.powershellgallery.com/packages/RemoteRegistry/1.0.3/Content/Public%5CGet-RegExpandString.ps1
+
+* notes for remote servers you need administrative privileges to that remote computername
+* added write-verbose statements
+* corrected some spelling
+* commented out return for ping that fails
+* modified statement for new-object -typename psobject, changed -Property @{} to -Property (\[ordered\] @{}) so columns come out in order desired
+* updated examples
 
 ## RELATED LINKS
 

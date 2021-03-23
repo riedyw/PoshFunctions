@@ -1,7 +1,7 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
-online version: http://www.google.com
+Module Name: poshfunctions
+online version:
 schema: 2.0.0
 ---
 
@@ -74,5 +74,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.Management.Automation.PSObject[]
 ## NOTES
+# inspired by https://mcpmag.com/articles/2018/07/10/check-for-locked-file-using-powershell.aspx
+# changed logic for testing if file exists
 
 ## RELATED LINKS

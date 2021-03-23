@@ -1,47 +1,71 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
 
-# Convert-HexToARGB
+# ConvertTo-Hex
 
 ## SYNOPSIS
-Converts Hex to ARGB values
+Convert an integer or array of integers to binary
 
 ## SYNTAX
 
 ```
-Convert-HexToARGB [-Hex_Val] <String> [<CommonParameters>]
+ConvertTo-Hex [-Number] <Int32[]> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Converts Hex to ARGB values.
-Hex values are needed to apply ISE colors in script
+Convert an integer or array of integers to binary
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-$ARGB = Convert-HexToARGB $HexValue
+ConvertTo-Hex-Number 23
 ```
 
-Assigns converted hex value to ARGB variable
+17
+
+### EXAMPLE 2
+```
+ConvertTo-Hex -Number 32,32769 -IncludeInput
+```
+
+Number Hex
+------ ---
+    32 20
+ 32769 8001
 
 ## PARAMETERS
 
-### -Hex_Val
-An 8 character Hex value
+### -Number
+{{ Fill Number Description }}
 
 ```yaml
-Type: String
+Type: Int32[]
 Parameter Sets: (All)
 Aliases:
 
 Required: True
 Position: 1
 Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -IncludeInput
+{{ Fill IncludeInput Description }}
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -53,9 +77,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### string
 ## NOTES
-Part of the ISEColorThemeCmdlets.ps1 Script by Jeff Pollock
-http://Lifeinpowerhsell.blogspot.com
-http://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
+General notes
 
 ## RELATED LINKS

@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,8 @@ Gets a random date
 ## SYNTAX
 
 ```
-Get-RandomDate [[-MinDate] <DateTime>] [[-MaxDate] <DateTime>] [-DateLimit <String>] [<CommonParameters>]
+Get-RandomDate [[-MinDate] <DateTime>] [[-MaxDate] <DateTime>] [-DateLimit <String>] [-IncludeInput]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -69,6 +70,24 @@ Get-RandomDate  -MinDate 1/1/19 -MaxDate 2/1/19
 Would return something similar to the following:
 Wednesday, January 30, 2019 1:25:06 AM
 
+### EXAMPLE 5
+```
+# Desire to get random date between a year in the past, and a year in the future
+```
+
+Get-RandomDate  -MinDate (Get-Date).AddMonths(-12) -MaxDate (Get-Date).AddMonths(12)
+
+Saturday, March 27, 2021 3:22:55 AM
+
+### EXAMPLE 6
+```
+Get-RandomDate -DateLimit UnixEpoch -IncludeInput
+```
+
+DateLimit MinDate              MaxDate              RandomDate
+--------- -------              -------              ----------
+UnixEpoch 1/1/1970 12:00:00 AM 1/19/2038 3:14:07 AM 9/19/2003 1:50:32 PM
+
 ## PARAMETERS
 
 ### -MinDate
@@ -82,7 +101,7 @@ Aliases:
 Required: False
 Position: 1
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -118,6 +137,21 @@ Aliases:
 Required: False
 Position: Named
 Default value: DateTime
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IncludeInput
+{{ Fill IncludeInput Description }}
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

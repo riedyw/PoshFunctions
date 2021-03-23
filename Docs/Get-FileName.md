@@ -1,7 +1,7 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
-online version:
+Module Name: poshfunctions
+online version: http://wonkysoftware.appspot.com
 schema: 2.0.0
 ---
 
@@ -187,5 +187,8 @@ Changed InitialDirectory to default
             to $pwd and to give an alias of 'Path' which is commonly used parameter name.
             Also changed syntax to Add-Type -AssemblyName to conform with
             Powershell 2+ and to be more "Powershelly".
+
+# Source: https://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
+# get-help about_ISE-Color-Theme-Cmdlets for more information
 
 ## RELATED LINKS

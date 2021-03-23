@@ -1,47 +1,46 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
 
-# ConvertTo-SecureText
+# Remove-TeamsCache
 
 ## SYNOPSIS
-Converts plain text to secure string.
+Removes the data that is in the Teams cache for the current user
 
 ## SYNTAX
 
 ```
-ConvertTo-SecureText [[-Prompt] <String>] [<CommonParameters>]
+Remove-TeamsCache [-All] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Converts plain text to secure string.
+Removes the data that is in the Teams cache.
+If you are running from an elevated prompt you can remove Teams cache for all users.
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
 ```
-
-{{ Add example description here }}
+Remove-TeamsCache
+```
 
 ## PARAMETERS
 
-### -Prompt
-Text that you want to be displayed when prompting user.
+### -All
+A switch to indicate removing the Teams cache for all users
 
 ```yaml
-Type: String
+Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: Ask
+Aliases:
 
 Required: False
-Position: 1
-Default value: Please enter text
-Accept pipeline input: True (ByPropertyName, ByValue)
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -52,7 +51,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### string
 ## NOTES
+Inspired by https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/deleting-microsoft-teams-cache-data
 
 ## RELATED LINKS
