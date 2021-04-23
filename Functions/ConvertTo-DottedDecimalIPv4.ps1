@@ -3,18 +3,19 @@ function ConvertTo-DottedDecimalIPv4 {
 .SYNOPSIS
      Returns a dotted decimal IP address.
 .DESCRIPTION
-     ConvertTo-DecimalIP takes 32 bit unsigned integer address into a dotted decimal IP address
+     ConvertTo-DecimalIPv4 takes 32 bit unsigned integer address into a dotted decimal IP address.
+     Function aliased to 'ConvertTo-DecimalIP'
 .PARAMETER IPAddress
      An IP Address to convert.
 .PARAMETER IncludeInput
     Switch that will display input parameters in the output
 .EXAMPLE
-    ConvertTo-DottedDecimalIP -IPAddress 16885952
+    ConvertTo-DottedDecimalIPv4 -IPAddress 16885952
 
     Would return
     192.168.1.1
 .EXAMPLE
-    ConvertTo-DottedDecimalIP -IPAddress 16885952 -IncludeInput
+    ConvertTo-DottedDecimalIPv4 -IPAddress 16885952 -IncludeInput
 
     Would return
     IPAddress DottedDecimalIP

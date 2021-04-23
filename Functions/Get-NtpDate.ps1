@@ -7,7 +7,7 @@ Function Get-NtpDate {
 
     Will return a [DateTime] and accepts the -Verbose parameter. If request fails it will return "1/1/1900"
 .PARAMETER ComputerName
-    The name or IPv4 address of the computer running NTP
+    The name or IPv4 address of the computer running NTP. Aliased to 'CN', 'Server', 'NtpServer'
 .PARAMETER Port
     The port number NTP is listening to. Defaults to 123
 .EXAMPLE
@@ -22,7 +22,7 @@ Function Get-NtpDate {
         [parameter(Mandatory, HelpMessage = 'Add help message for user',
             ValueFromPipeline,
             Position = 0)]
-        [Alias('NtpServer')]
+        [Alias('CN', 'Server', 'NtpServer')]
         [string] $ComputerName,
 
         [int] $Port = 123

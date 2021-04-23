@@ -3,7 +3,8 @@ function Get-InvalidFileCharacter {
 .SYNOPSIS
     Gets invalid filename characters
 .DESCRIPTION
-    Gets invalid filename characters
+    Gets invalid filename characters. Function aliased to 'Show-InvalidFileCharacter'
+    for backward compatibility.
 .PARAMETER IncludeValues
     Switch indicating that decimal and hexadecimal representations of characters are to be included in output
 .PARAMETER Printable

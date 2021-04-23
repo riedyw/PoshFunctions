@@ -1,9 +1,17 @@
+### 2.2.2
+* Changed to SemVer versioning, 3 positions Major#.Minor#.Build#
+* added New-InputBoxSecureString
+* renamed Get-FolderName from Get-Folder to not conflict with Vmware module. Aliased to Get-Folder for backward compatibility
+* renamed Get-SaveFileName from Get-SaveFile to be more consistent across file/folder functions. Aliased to Get-SaveFile for backward compatibility
+* added Format-ReverseToken to take a tokenized string like 'monster.google.com' and convert it to 'com.google.monster'
+
 ### 2.2.1.6
 * updated PoshFunctions.psd1 to explicitly enumerate AliasesToExport
 * tested all functions work properly in both PowerShell 5.1 and 7.1.2
 * updated all *.ps* to pass Invoke-ScriptAnalyzer without throwing RuleViolation. The only one I could NOT fix is function Union-Object. If you wish this error to not affect you then I would suggest that when you import the module you include the -DisableNameChecking parameter
 * updated scripts to attempt to explicit and fully name all parameters and all functions and parameters match the case as found in official Microsoft documentation
 * made GitHub repository viewable to the public and updated PoshFunctions.psd1 to reflect the GitHub repository
+* 16 ADDITIONS
 * added Convert-HexToRGB - accepts HEX strings with or without # prefix, has -IncludeInput parameter which will list not only the RGBString but also Red, Green, Blue values, changed to allow for pipeline input and multiple hex strings
 * added Convert-RGBToHex - can either accept RGB strings or explicitly specified -Red -Green -Blue parameters, has -IncludeInput and -Prefix parameters
 * added ConvertFrom-Binary
@@ -20,6 +28,7 @@
 * added Out-PrinterPDF - prints specified PDF files to the current default printer
 * added Test-Network - wrapper for Get-IpRange, Test-ConnectionAsync, and Get-DNSHostEntryAsync to give summary table of ip addresses that either resolve to a host name or respond to a ping
 * added Test-Password - can either check against local computer or domain. can pass either credential or username / password (as securestring)
+* 15 REMOVED
 * removed Convert-ARGBToHex - I didn't use any colors with the A attribute, and the function didn't provide flexibility in output
 * removed Convert-HexToARGB - I didn't use any colors with the A attribute, and the function didn't provide flexibility in output
 * removed ConvertTo-Markdown - does not function as expected and I never use this function
@@ -34,10 +43,12 @@
 * removed Remove-BOMFromFile - can get functionality by using Notepad++
 * removed Remove-InvalidFileNameChar - not needed can code around it with Get-InvalidFileCharacter
 * removed Search-Method - really didn't work
+* 4 RENAMED
 * renamed Get-InvalidFileCharacter from Show-InvalidFileCharacter - added -IncludeValues where decimal and hexadecimal values are included in output, added -Printable where only printable characters (> 32) are in the output, added examples, added alias for function 'Show-InvalidFileCharacter', changed datatype of 'Char' from [char] to [string]
 * renamed Get-SpecialFolder from Show-SpecialFolder - reworked Show-SpecialFolder, added -Name parameter with ValidateSet against it for valid SpecialFolder names and if not specified returns all SpecialFolders, added -IncludeInput to be consistent with other functions, aliased function to 'Show-SpecialFolder' for backward compatibility
 * renamed Get-TypeAccelerator from Show-TypeAccelerator - added -MatchString string parameter to show only those that match, here string entries for some type accelerators that don't show up automatically, added $split delimiter depending on Powershell major version number
 * renamed Get-ComputerUptime from Get-LastReboot - made function more closely mimic Get-Uptime from PowerShell 6 and 7, aliased to Get-LastReboot
+* 55 UPDATED
 * udpated Set-Type - added begin, process, end blocks, updated logic to properly accept input from pipeline and to be handled by both pwsh and Powershell
 * updated Compare-ObjectProperty - updated comment help to give better .EXAMPLE
 * updated Convert-ARGBToHex - changed -IncludeOriginal to -IncludeInput to be consistent

@@ -5,7 +5,7 @@ function Test-Port {
 .DESCRIPTION
     Tests a Port or a range of ports on a specific ComputerName(s). Creates a custom object with the properties: ComputerName, Protocol, Port, Open, Notes.
 .PARAMETER ComputerName
-    A single ComputerName or array of ComputerName to test the port connection on.
+    A single ComputerName or array of ComputerName to test the port connection on. Aliased to 'CN', 'Server'
 .PARAMETER Port
     Port number to test ([int16] 0 - 65535), an array can also be passed
 .PARAMETER TCP
@@ -54,7 +54,9 @@ function Test-Port {
     [OutputType('psobject')]
     Param(
         [Parameter(Mandatory, HelpMessage = 'Enter a ComputerName or IP address', Position = 0, ValueFromPipeline)]
+        [Alias('CN', 'Server')]
         [string[]] $ComputerName,
+
         [Parameter(Position = 1, Mandatory, HelpMessage = 'Enter an integer port number (1-65535)')]
         [uint16[]] $Port,
 

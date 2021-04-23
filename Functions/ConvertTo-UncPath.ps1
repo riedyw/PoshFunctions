@@ -7,7 +7,7 @@ function ConvertTo-UncPath {
 .PARAMETER LocalFilePath
     A file path ie. C:\Windows\somefile.txt
 .PARAMETER ComputerName
-    One or more computers in which the file path exists on
+    One or more computers in which the file path exists on. Aliased to 'CN', 'Server'
 .PARAMETER IncludeInput
     Switch to include input parameters in output
 .EXAMPLE
@@ -38,6 +38,7 @@ function ConvertTo-UncPath {
         [Alias('LocalFilePath')]
         [string] $Path,
 
+        [Alias('CN', 'Server')]
         [string[]] $ComputerName = $env:COMPUTERNAME,
 
         [switch] $IncludeInput

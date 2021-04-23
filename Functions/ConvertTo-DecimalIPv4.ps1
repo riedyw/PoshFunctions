@@ -3,21 +3,22 @@ function ConvertTo-DecimalIPv4 {
 .SYNOPSIS
     Converts a Dotted Decimal IP address into a 32-bit unsigned integer.
 .DESCRIPTION
-    ConvertTo-DecimalIP takes a dotted decimal IP and uses the [ipaddress] accelerator to determine 32 bit decimal value
+    ConvertTo-DecimalIP takes a dotted decimal IP and uses the [ipaddress] accelerator to determine 32 bit decimal value.
+    Function aliased to 'ConvertTo-DecimalIP'
 .PARAMETER IPAddress
     An IP Address to convert.
 .EXAMPLE
-    ConvertTo-DecimalIP -IPAddress 10.20.30.40
+    ConvertTo-DecimalIPv4 -IPAddress 10.20.30.40
 
     Would return
     673059850
 .EXAMPLE
-    ConvertTo-DecimalIP -IPAddress 192.168.1.1
+    ConvertTo-DecimalIPv4 -IPAddress 192.168.1.1
 
     Would return
     16885952
 .EXAMPLE
-    ConvertTo-DecimalIP -IPAddress 192.168.1.1, 10.100.10.1 -IncludeInput
+
 
     Would return
     IPAddress   DecimalIP

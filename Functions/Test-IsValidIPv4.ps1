@@ -3,7 +3,8 @@ function Test-IsValidIPv4 {
 .SYNOPSIS
     Verifies if passed parameter is a valid IP v4 address
 .DESCRIPTION
-    Verifies if passed parameter is a valid IP v4 address. Can take single string or array of strings. Can also accept input from the pipeline.
+    Verifies if passed parameter is a valid IP v4 address. Can take single string or array of strings.
+    Can also accept input from the pipeline. Function aliased to 'Test-IsValidIP'
 .EXAMPLE
     Test-IsValidIPv4 '10.0.0.1'
 .EXAMPLE

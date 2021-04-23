@@ -3,7 +3,8 @@ function Get-TypeAccelerator {
 .SYNOPSIS
     Gets type accelerators
 .DESCRIPTION
-    Gets type accelerators [int32] [datetime] etc.
+    Gets type accelerators [int32] [datetime] etc. Function aliased to 'Show-TypeAccelerator'
+    for backward compatibility.
 .PARAMETER MatchString
     String to limit the display to those type accelerators that match the string specified
 .NOTES

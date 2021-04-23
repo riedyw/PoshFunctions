@@ -41,6 +41,7 @@ function Get-MachineType {
     (
         # ComputerName
         [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, Position = 0)]
+        [Alias('CN', 'Server')]
         [string[]] $ComputerName = $env:COMPUTERNAME
     )
 

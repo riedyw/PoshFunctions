@@ -3,7 +3,8 @@ function Union-Object ([String[]]$Property = @()) {
 .SYNOPSIS
     Returns a 'clean' array of objects that have all property names in each element of the array
 .DESCRIPTION
-    Returns a 'clean' array of objects that have all property names in each element of the array
+    Returns a 'clean' array of objects that have all property names in each element of the array.
+    Function aliased to 'Union'
 .NOTES
     Inspired by Union-Object on https://powersnippets.com/union-object/
 
@@ -90,4 +91,4 @@ function Union-Object ([String[]]$Property = @()) {
     $Objects | Select-Object -Property ([String[]]($Property | Select-Object -Unique))
 }
 
-Set-Alias -Name Union -Value Union-Object
+Set-Alias -Name 'Union' -Value 'Union-Object'

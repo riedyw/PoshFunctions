@@ -3,7 +3,7 @@ function Show-SubnetMaskIPv4 {
 .SYNOPSIS
     Show IPv4 subnet masks
 .DESCRIPTION
-    Show IPv4 subnet masks
+    Show IPv4 subnet masks. Function aliased to 'Show-SubnetMaskIP'
 #>
 
 

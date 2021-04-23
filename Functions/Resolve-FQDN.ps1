@@ -5,7 +5,7 @@ function Resolve-FQDN {
 .DESCRIPTION
     Resolves a hostname or IPv4 address to a fully qualified domain name
 .PARAMETER ComputerName
-    Either the hostname or IPv4 address of the computer you want resolved to FQDN. Aliased to 'CN', and 'Host'
+    Either the hostname or IPv4 address of the computer you want resolved to FQDN. Aliased to 'CN', 'Host', 'Server'
 .PARAMETER IncludeInput
     Switch to include the input parameters in the output
 .EXAMPLE

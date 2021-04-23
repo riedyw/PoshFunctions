@@ -29,6 +29,7 @@ function Get-DNSHostEntryAsync {
     [CmdletBinding(ConfirmImpact='None')]
     Param (
         [parameter(ValueFromPipeline)]
+        [Alias('CN', 'Server')]
         [string[]] $ComputerName
     )
 

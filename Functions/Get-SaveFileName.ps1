@@ -1,4 +1,4 @@
-function Get-SaveFile {
+function Get-SaveFileName {
 <#
 .SYNOPSIS
     Gets a filename through the native SaveFileDialog.
@@ -17,23 +17,23 @@ function Get-SaveFile {
     'Description|FileSpec'. Multiple 'tokens' can be in the string and they too are separated
     by the pipe character. Defaults to 'All files|*.*'.
 .EXAMPLE
-    PS C:\> $File = Get-SaveFile
+    PS C:\> $File = Get-SaveFileName
     Will present a savefile dialog box where only a single file can be selected and the savefile
     dialog box will start in the current directory. Assigns selected file to the 'File' variable.
 .EXAMPLE
-    PS C:\> $File = Get-SaveFile -Filter 'Powershell files|*.ps1|All files|*.*'
+    PS C:\> $File = Get-SaveFileName -Filter 'Powershell files|*.ps1|All files|*.*'
     Will present a savefile dialog box and will start in the current directory. There will be a drop down list box in lower right
     where the user can select 'Powershell files' or 'All files' and the files listed will change.
     Assigns selected file(s) to the 'File' variable.
 .EXAMPLE
-    PS C:\> $File = Get-SaveFile -Path 'C:\Temp'
+    PS C:\> $File = Get-SaveFileName -Path 'C:\Temp'
     Will present a savefile dialog box where a file can be selected and the savefile
     dialog box will start in the C:\Temp directory. Assigns selected file(s) to the 'File' variable.
 .EXAMPLE
-    PS C:\> Get-SaveFile | get-childitem
+    PS C:\> Get-SaveFileName | get-childitem
     Pipes selected filename to the get-childitem cmdlet.
 .EXAMPLE
-    PS C:\> $File = Get-SaveFile -OverwritePrompt:$false
+    PS C:\> $File = Get-SaveFileName -OverwritePrompt:$false
     Will present a savefile dialog box where a file can be selected and the savefile
     dialog box will start in the current directory. If you select an existing file it
     not prompt that the file will be overwritten. Assigns selected file(s) to the 'File' variable.
@@ -104,3 +104,5 @@ function Get-SaveFile {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
+
+Set-Alias -Name 'Get-SaveFile' -Value 'Get-SaveFileName' -Description 'Alias for Get-SaveFileName for backward compatibility'

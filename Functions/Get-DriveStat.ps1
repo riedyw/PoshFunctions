@@ -1,5 +1,5 @@
 function Get-DriveStat {
-    <#
+<#
 .SYNOPSIS
     To get statistics on drives on a particular server or servers.
 .DESCRIPTION
@@ -40,7 +40,7 @@ function Get-DriveStat {
     Param (
         [Parameter(Position = 0)]
         [ValidateNotNullorEmpty()]
-        [Alias('Server', 'ServerName', 'PSComputerName', 'SystemName')]
+        [Alias('CN', 'Server', 'ServerName', 'PSComputerName', 'SystemName')]
         [string[]] $ComputerName = $env:COMPUTERNAME,
 
         [Parameter(Position = 1)]

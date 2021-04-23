@@ -1,11 +1,11 @@
-function Get-Folder {
+function Get-FolderName {
 <#
 .SYNOPSIS
     Gets a filename through the native OpenFileDialog. Can select a single file or multiple files.
 .DESCRIPTION
     Gets a filename through the native OpenFileDialog. Can select a single file
     or multiple files. If user clicks 'OK' an [array] is returned, otherwise returns
-    a $null if the dialog is canceled.
+    a $null if the dialog is canceled. Aliased function to 'Get-Folder' for backward compatibility
 .PARAMETER InitialDirectory
     The directory for the OpenFileDialog to start in. Defaults to $pwd.
     Aliased to 'Path'.
@@ -91,3 +91,5 @@ function Get-Folder {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
+
+Set-Alias -Name 'Get-Folder' -Value 'Get-FolderName' -Description 'Alias for Get-FolderName for backward compatibility'

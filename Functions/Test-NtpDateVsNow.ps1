@@ -6,7 +6,8 @@ function Test-NtpDateVsNow {
     To test whether local time and NTP time fall within a particular tolerance. The NTP protocol allows for an acceptable drift between local and NTP time.
     Will return a [Boolean] and accepts the -Verbose parameter
 .PARAMETER ComputerName
-    The name or IPv4 address of the computer running NTP. If left blank uses the Get-ADDomainController command to find domain controller which runs NTP
+    The name or IPv4 address of the computer running NTP. If left blank uses the Get-ADDomainController command to find domain controller which runs NTP. Aliased
+    to 'CN', 'Server', 'NtpServer'
 .PARAMETER Tolerance
     The acceptable number of seconds difference between local and NTP time. Default = 300. Valid range 1-3600 seconds (1 hour)
 .PARAMETER IncludeInput
@@ -44,7 +45,7 @@ function Test-NtpDateVsNow {
     Param (
         # Specifies the NTP server to communicate with
         [parameter(ValueFromPipeline, Position = 0, HelpMessage = 'Enter a ComputerName or IpAddress of a system acting as a time server [domain controller] or appliance')]
-        [Alias('NtpServer')]
+        [Alias('NtpServer', 'CN', 'Server')]
         [string] $ComputerName = (Get-ADDomainController).HostName,
 
         # Specifies the acceptable number of seconds difference between local and NTP time

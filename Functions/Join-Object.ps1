@@ -1,29 +1,29 @@
 Function Join-Object {
-    <#
+<#
 .SYNOPSIS
-Combines two object lists based on a related property between them.
+    Combines two object lists based on a related property between them.
 .DESCRIPTION
-Combines properties from one or more objects. It creates a set that can
-be saved as a new object or used as it is. An object join is a means for
-combining properties from one (self-join) or more tables by using values
-common to each. The Join-Object cmdlet supports a few proxy commands with
-their own (-JoinType and -Property) defaults:
+    Combines properties from one or more objects. It creates a set that can
+    be saved as a new object or used as it is. An object join is a means for
+    combining properties from one (self-join) or more tables by using values
+    common to each. The Join-Object cmdlet supports a few proxy commands with
+    their own (-JoinType and -Property) defaults:
 
-* InnerJoin-Object (Alias InnerJoin or Join)
-  Returns the joined objects
-* LeftJoin-Object (Alias LeftJoin)
-  Returns the joined objects and the rest of the left objects
-* RightJoin-Object (Alias RightJoin)
-  Returns the joined objects and the rest of the right objects
-* FullJoin-Object (Alias FullJoin)
-  Returns the joined objects and the rest of the left and right objects
-* CrossJoin-Object (Alias CrossJoin)
-  Returns each left object joined to each right object
-* Update-Object (Alias Update)
-  Returns each left object updated with the right object properties
-* Merge-Object (Alias Merge)
-  Returns each left object updated with the right object properties
-  and the rest of the right objects
+    * InnerJoin-Object (Alias InnerJoin or Join)
+      Returns the joined objects
+    * LeftJoin-Object (Alias LeftJoin)
+      Returns the joined objects and the rest of the left objects
+    * RightJoin-Object (Alias RightJoin)
+      Returns the joined objects and the rest of the right objects
+    * FullJoin-Object (Alias FullJoin)
+      Returns the joined objects and the rest of the left and right objects
+    * CrossJoin-Object (Alias CrossJoin)
+      Returns each left object joined to each right object
+    * Update-Object (Alias Update)
+      Returns each left object updated with the right object properties
+    * Merge-Object (Alias Merge)
+      Returns each left object updated with the right object properties
+      and the rest of the right objects
 .PARAMETER LeftObject
     The LeftObject, usually provided through the pipeline, defines the
     left object (or datatable) to be joined.
@@ -620,10 +620,10 @@ their own (-JoinType and -Property) defaults:
 # }
 
 # $JoinCommand = Get-Command Join-Object
-# Copy-Command -Command $JoinCommand -Name InnerJoin-Object -Default @{JoinType = 'Inner'}; Set-Alias InnerJoin InnerJoin-Object
-# Copy-Command -Command $JoinCommand -Name LeftJoin-Object  -Default @{JoinType = 'Left'};  Set-Alias LeftJoin  LeftJoin-Object
-# Copy-Command -Command $JoinCommand -Name RightJoin-Object -Default @{JoinType = 'Right'}; Set-Alias RightJoin RightJoin-Object
-# Copy-Command -Command $JoinCommand -Name FullJoin-Object  -Default @{JoinType = 'Full'};  Set-Alias FullJoin  FullJoin-Object
-# Copy-Command -Command $JoinCommand -Name CrossJoin-Object -Default @{JoinType = 'Cross'}; Set-Alias CrossJoin CrossJoin-Object
-# Copy-Command -Command $JoinCommand -Name Update-Object    -Default @{JoinType = 'Left'; Property = {{If ($Null -ne $RightIndex) {$Right.$_} Else {$Left.$_}}}}; Set-Alias Update Update-Object
+# Copy-Command -Command $JoinCommand -Name 'InnerJoin-Object' -Default @{JoinType = 'Inner'}; Set-Alias InnerJoin InnerJoin-Object
+# Copy-Command -Command $JoinCommand -Name 'LeftJoin-Object'  -Default @{JoinType = 'Left'};  Set-Alias LeftJoin  LeftJoin-Object
+# Copy-Command -Command $JoinCommand -Name 'RightJoin-Object' -Default @{JoinType = 'Right'}; Set-Alias RightJoin RightJoin-Object
+# Copy-Command -Command $JoinCommand -Name 'FullJoin-Object'  -Default @{JoinType = 'Full'};  Set-Alias FullJoin  FullJoin-Object
+# Copy-Command -Command $JoinCommand -Name 'CrossJoin-Object' -Default @{JoinType = 'Cross'}; Set-Alias CrossJoin CrossJoin-Object
+# Copy-Command -Command $JoinCommand -Name 'Update-Object'    -Default @{JoinType = 'Left'; Property = {{If ($Null -ne $RightIndex) {$Right.$_} Else {$Left.$_}}}}; Set-Alias Update Update-Object
 # Copy-Command -Command $JoinCommand -Name Merge-Object     -Default @{JoinType = 'Full'; Property = {{If ($Null -ne $RightIndex) {$Right.$_} Else {$Left.$_}}}}; Set-Alias Merge  Merge-Object

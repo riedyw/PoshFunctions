@@ -3,11 +3,13 @@ function Get-ComputerUptime {
 .SYNOPSIS
     To mimic and extend the Get-ComputerUptime function found in PowerShell 6 or 7
 .DESCRIPTION
-    To mimic and extend the Get-ComputerUptime function found in PowerShell 6 or 7
+    To mimic and extend the Get-ComputerUptime function found in PowerShell 6 or 7.
+    Function aliased to 'Get-LastReboot' for backward compatibility
 .PARAMETER Since
     Switch to show last boot time, not the timespan since last boot
 .PARAMETER ComputerName
-    String array of computers to check uptime against. If not given or is '.' it is replaced with $env:COMPUTERNAME
+    String array of computers to check uptime against. If not given or is '.' it is replaced with $env:COMPUTERNAME.
+    Aliased to 'CN', 'Server'
 .PARAMETER IncludeComputerName
     Switch on whether to include the computer name in the output
 .EXAMPLE
@@ -51,6 +53,7 @@ function Get-ComputerUptime {
     Param(
         [switch] $Since,
 
+        [Alias('CN', 'Server')]
         [string[]] $ComputerName,
 
         [switch] $IncludeComputerName
@@ -95,4 +98,4 @@ function Get-ComputerUptime {
     }
 }
 
-Set-Alias -Name Get-LastReboot -Value Get-ComputerUptime -Description 'Alias for Get-ComputerUptime'
+Set-Alias -Name 'Get-LastReboot' -Value 'Get-ComputerUptime' -Description 'Alias for Get-ComputerUptime'

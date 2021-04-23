@@ -81,7 +81,7 @@ function Get-RegExpandString {
 
     param(
         [Parameter(Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName)]
-        [Alias('CN', '__SERVER', 'IPAddress')]
+        [Alias('CN', 'Server', '__SERVER', 'IPAddress')]
         [string[]] $ComputerName = $env:COMPUTERNAME,
 
         [Parameter(Position = 1, ValueFromPipelineByPropertyName)]

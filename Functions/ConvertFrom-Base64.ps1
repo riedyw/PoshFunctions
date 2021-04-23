@@ -3,7 +3,7 @@ function ConvertFrom-Base64 {
 .SYNOPSIS
     Convert from a Base64 string to normal string
 .DESCRIPTION
-    Convert from a Base64 string to normal string
+    Convert from a Base64 string to normal string. Function aliased to 'Base64Decode'.
 .PARAMETER Base64
     A base64 encoded string
 .PARAMETER IncludeInput

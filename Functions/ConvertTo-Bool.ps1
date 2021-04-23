@@ -3,7 +3,7 @@ function ConvertTo-Bool {
 .SYNOPSIS
     Parse a string and convert it to a Boolean
 .DESCRIPTION
-    Parse a string and convert it to a Boolean
+    Parse a string and convert it to a Boolean. Function aliased to 'Parse-Bool'.
 .PARAMETER InputVal
     The string or array of strings to be evaluated. Accepts from the pipeline
 .PARAMETER TrueString
@@ -114,4 +114,4 @@ function ConvertTo-Bool {
 
 } # endfunction ConvertTo-Bool
 
-Set-Alias -Name Parse-Bool -Value ConvertTo-Bool
+Set-Alias -Name 'Parse-Bool' -Value 'ConvertTo-Bool'

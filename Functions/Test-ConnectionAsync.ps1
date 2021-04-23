@@ -5,7 +5,7 @@ function Test-ConnectionAsync {
 .DESCRIPTION
     Performs a ping test asynchronously
 .PARAMETER ComputerName
-    List of computers to test connection
+    List of computers to test connection. Aliased to 'CN', 'Server'
 .PARAMETER Timeout
     Timeout in milliseconds. Default 2000 ms.
 .PARAMETER TimeToLive

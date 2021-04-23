@@ -3,7 +3,8 @@ function ConvertTo-Base64 {
 .SYNOPSIS
     ConvertTo-Base64 converts a normal string to a base 64 string
 .DESCRIPTION
-    ConvertTo-Base64 converts a normal string to a base 64 string
+    ConvertTo-Base64 converts a normal string to a base 64 string. Function
+    aliased to 'Base64Encode'.
 .PARAMETER String
     The string you want manipulated
 .PARAMETER IncludeInput

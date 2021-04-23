@@ -26,15 +26,15 @@ function New-Inputbox {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions','')]
 
     Param (
-        [Parameter(Position=0,Mandatory,HelpMessage='Enter a message prompt')]
+        [Parameter(Position=0)]
         [ValidateNotNullorEmpty()]
-        [string] $Prompt,
+        [string] $Prompt = 'Please enter a value',
 
         [Parameter(Position=1)]
-        [string] $Title='Input',
+        [string] $Title = 'Input',
 
         [Parameter(Position=2)]
-        [string] $Default=''
+        [string] $Default = ''
 
     )
 

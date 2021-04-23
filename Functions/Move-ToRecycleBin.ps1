@@ -4,6 +4,7 @@ function Move-ToRecycleBin {
     Instead of outright deleting a file, why not move it to the Recycle Bin?
 .DESCRIPTION
     Instead of outright deleting a file, why not move it to the Recycle Bin?
+    Function aliased to 'Recycle'
 .PARAMETER Path
     A string or array of strings representing a file or a folder. Wildcards are
     acceptable and will be resolved to specific file or folder names. Can accept

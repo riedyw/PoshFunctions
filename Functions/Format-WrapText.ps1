@@ -3,7 +3,7 @@ function Format-WrapText {
 .SYNOPSIS
     Wraps text at a particular column width
 .DESCRIPTION
-    Wraps text at a particular column width (Default=80)
+    Wraps text at a particular column width (Default=80). Function aliased to 'WrapText'.
 .PARAMETER Text
     The text to be formatted
 .PARAMETER Width

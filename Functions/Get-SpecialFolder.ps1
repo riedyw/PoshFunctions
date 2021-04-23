@@ -3,7 +3,8 @@ function Get-SpecialFolder {
 .SYNOPSIS
     Gets special folder name location
 .DESCRIPTION
-    Gets special folder name location
+    Gets special folder name location. Function aliased to 'Show-SpecialFolder' for
+    backward compatibility.
 .PARAMETER Name
     The name of the special folder
 .PARAMETER IncludeInput
