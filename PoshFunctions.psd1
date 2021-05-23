@@ -113,6 +113,7 @@
     'Test-Password', 'Test-Port', 'Union-Object', 'Update-ExplorerIcon',
     'Write-StringArray', 'Write-TextMenu')
 
+
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     #CmdletsToExport = '*'
 
@@ -120,7 +121,7 @@
     #VariablesToExport = '*'
 
     # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-    # AliasesToExport = '*'
+    #AliasesToExport = '*'
 
     AliasesToExport = @('Base64Decode', 'Base64Encode', 'Beep',
     'ConvertTo-BinaryIP', 'ConvertTo-DecimalIP', 'ConvertTo-DottedDecimalIP',
@@ -128,7 +129,14 @@
     'Get-SubnetMaskIP', 'Md5Sum', 'Parse-Bool', 'Recycle', 'ReverseString',
     'Show-InvalidFileCharacter', 'Show-SpecialFolder', 'Show-SubnetMaskIP',
     'Show-TypeAccelerator', 'Speak', 'Test-IsValidIP', 'Union', 'UrlDecode',
+    'UrlEncode', 'WrapText', 'Base64Decode', 'Base64Encode', 'Beep',
+    'ConvertTo-BinaryIP', 'ConvertTo-DecimalIP', 'ConvertTo-DottedDecimalIP',
+    'CountdownTimer', 'Fortune', 'Get-Folder', 'Get-LastReboot', 'Get-SaveFile',
+    'Get-SubnetMaskIP', 'Md5Sum', 'Parse-Bool', 'Recycle', 'ReverseString',
+    'Show-InvalidFileCharacter', 'Show-SpecialFolder', 'Show-SubnetMaskIP',
+    'Show-TypeAccelerator', 'Speak', 'Test-IsValidIP', 'Union', 'UrlDecode',
     'UrlEncode', 'WrapText')
+
 
     # DSC resources to export from this module
     # DscResourcesToExport = @()

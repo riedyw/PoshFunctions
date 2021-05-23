@@ -9,6 +9,8 @@ function Get-BashPath {
     files. Can be a single path, an array of paths, or from the pipeline.
 .PARAMETER IncludeInput
     Switch to indicate if input parameters should be included in the output, aliased to 'IncludeOriginal'
+.PARAMETER NoResolvePath
+    Switch to not resolve the provided path to see if it exists
 .EXAMPLE
     Get-BashPath -Path 'c:\temp\*.csv'
 
@@ -44,7 +46,9 @@ function Get-BashPath {
         [string[]] $Path,
 
         [Alias('IncludeOriginal')]
-        [switch] $IncludeInput
+        [switch] $IncludeInput,
+
+        [switch] $NoResolvePath
     )
     #endregion Parameter
 
@@ -54,14 +58,24 @@ function Get-BashPath {
 
     process {
         foreach ($currentPath in $Path) {
-            $resolve = [array] (Resolve-Path -Path $currentPath).Path
-            if (-not $resolve) {
-                # nothing returned
-                return $null
-            }
-            # .replace(' ','\ ')
-            foreach ($r in $resolve) {
-                $bash = ('/' + $r.replace('\','/').replace(':','').replace(' ','\ '))
+            if (-not $NoResolvePath) {
+                $resolve = [array] (Resolve-Path -Path $currentPath).Path
+                if (-not $resolve) {
+                    # nothing returned
+                    return $null
+                }
+                # .replace(' ','\ ')
+                foreach ($r in $resolve) {
+                    $bash = ('/' + $r.replace('\','/').replace(':','').replace(' ','\ '))
+                    if ($IncludeInput) {
+                        New-Object -TypeName psobject -Property ([ordered] @{ Posh = $r; bash = $bash})
+                    }
+                    else {
+                        $bash
+                    }
+                }
+            } else {
+                $bash = ('/' + $currentPath.replace('\','/').replace(':','').replace(' ','\ '))
                 if ($IncludeInput) {
                     New-Object -TypeName psobject -Property ([ordered] @{ Posh = $r; bash = $bash})
                 }
@@ -69,6 +83,7 @@ function Get-BashPath {
                     $bash
                 }
             }
+            
         }
     }
 

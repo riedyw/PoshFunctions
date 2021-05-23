@@ -78,7 +78,6 @@ function Test-Port {
         $oldEA = $ErrorActionPreference
         $ErrorActionPreference = 'SilentlyContinue'
         Write-Verbose -Message "Saving current value of `$ErrorActionPreference [$($oldEa)] and setting it to 'Stop'"
-        $report = @()
     }
 
     process {
@@ -137,7 +136,7 @@ function Test-Port {
                     #Reset failed value
                     $failed = $Null
                     #Merge temp array with report
-                    $report += $temp
+                    Write-Output $temp
                 }
                 if ($udp) {
                     #$temp = '' | Select-Object -Property ComputerName, Protocol, Port, Open, Notes
@@ -170,7 +169,7 @@ function Test-Port {
                     $socket.dispose()
                     Remove-Variable -Name socket
                     #Merge temp array with report
-                    $report += $temp
+                    Write-Output $temp
                 }
             }
         }
@@ -179,7 +178,7 @@ function Test-Port {
 
     end {
         #Generate Report
-        Write-Output -InputObject $report
+        #Write-Output -InputObject $report
         Write-Verbose -Message "Resetting value of `$ErrorActionPreference back to [$($oldEa)]"
         $ErrorActionPreference = $oldEA
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"

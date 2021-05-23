@@ -183,7 +183,7 @@ function ConvertTo-DateTime {
                 }
                 'Unix' {
                     $prop = ([ordered] @{ Unix = $DS } )
-                    $ReturnVal = ConvertFrom-UTC -UTCTime ( $BeginUnixEpoch.AddSeconds($DS) ) -Verbose:$false
+                    $ReturnVal = ConvertFrom-UTC -Date ( $BeginUnixEpoch.AddSeconds($DS) ) -Verbose:$false
                     if ($UTC) {
                         $ReturnVal = ConvertTo-UTC -Date $ReturnVal -Verbose:$false
                     }
