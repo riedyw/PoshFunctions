@@ -182,11 +182,14 @@ For full release notes see ReleaseNotes.txt
 
 ### 2.2.2
 * Changed to SemVer versioning, 3 positions Major#.Minor#.Build#
+* added Format-ReverseToken to take a tokenized string like 'monster.google.com' and convert it to 'com.google.monster'
+* added Invoke-CountdownTimer to implement a count down timer. Accurate to within 1-2 seconds
 * added New-InputBoxSecureString which will prompt for value and return a secure string. Can optionally verify input, and specify labels for input box(es)
 * renamed Get-FolderName from Get-Folder to not conflict with Vmware module. Aliased to Get-Folder for backward compatibility
 * renamed Get-SaveFileName from Get-SaveFile to be more consistent across file/folder functions. Aliased to Get-SaveFile for backward compatibility
-* added Format-ReverseToken to take a tokenized string like 'monster.google.com' and convert it to 'com.google.monster'
-* added Invoke-CountdownTimer to implement a count down timer. Accurate to within 1-2 seconds
+* updated Convert-RGBToHex to better handle color specifications
+* updated ConvertTo-DateTime because of logic error in handling Unix datetime strings
+* updated Test-Port so that the results are given in the Process block and not wait until the End block
 
 ### 2.2.1.6
 * updated PoshFunctions.psd1 to explicitly enumerate AliasesToExport
