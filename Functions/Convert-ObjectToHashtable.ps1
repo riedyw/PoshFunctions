@@ -39,7 +39,7 @@ function Convert-ObjectToHashtable {
                     $hashtable = ([Ordered]@{}) } -process {
                     $hashtable[$_.Name] = $_.Value
                 } -end {
-                    Write-Output $hashtable
+                    Write-Output -InputObject $hashtable
                 }
     }
 }

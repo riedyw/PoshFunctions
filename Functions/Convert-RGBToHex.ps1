@@ -101,23 +101,23 @@ function Convert-RGBToHex {
                 try {
                     [int[]] $ColorArray = $currentRGB -split ','
                 } catch {
-                    Write-Error "[$currentRGB] is not a character string of 3 integers separated by a comma"
+                    Write-Error -Message "[$currentRGB] is not a character string of 3 integers separated by a comma"
                     $currentError = $true
                 }
                 if ($ColorArray.count -ne 3) {
-                    Write-Error "[$currentRGB] should be 3 integers separated by a comma"
+                    Write-Error -Message "[$currentRGB] should be 3 integers separated by a comma"
                     $currentError = $true
                 } else {
                     if ($ColorArray[0] -lt 0 -or $ColorArray[0] -gt 255) {
-                        Write-Error "Red should be between 0 and 255"
+                        Write-Error -Message "Red should be between 0 and 255"
                         $currentError = $true
                     }
                     if ($ColorArray[1] -lt 0 -or $ColorArray[1] -gt 255) {
-                        Write-Error "Green should be between 0 and 255"
+                        Write-Error -Message "Green should be between 0 and 255"
                         $currentError = $true
                     }
                     if ($ColorArray[2] -lt 0 -or $ColorArray[2] -gt 255) {
-                        Write-Error "Blue should be between 0 and 255"
+                        Write-Error -Message "Blue should be between 0 and 255"
                         $currentError = $true
                     }
                     if (-not $currentError) {
@@ -134,7 +134,7 @@ function Convert-RGBToHex {
                                 Hex = $Hex
                             })
                         } else {
-                            Write-Output $Hex
+                            Write-Output -InputObject $Hex
                         }
                     }
                 }
@@ -155,7 +155,7 @@ function Convert-RGBToHex {
                     Hex = $Hex
                 })
             } else {
-                Write-Output $Hex
+                Write-Output -InputObject $Hex
             }
         }
 

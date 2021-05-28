@@ -65,8 +65,8 @@ function ConvertTo-OrderedDictionary {
     [CmdletBinding(ConfirmImpact = 'None')]
     [OutputType('System.Collections.Specialized.OrderedDictionary')]
     Param (
-        [parameter(Mandatory, HelpMessage = 'Add help message for user', ValueFromPipeline)]
-        $Hash
+        [parameter(Mandatory, ValueFromPipeline)]
+        [hashtable] $Hash
     )
 
     begin {

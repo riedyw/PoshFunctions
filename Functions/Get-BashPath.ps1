@@ -69,8 +69,7 @@ function Get-BashPath {
                     $bash = ('/' + $r.replace('\','/').replace(':','').replace(' ','\ '))
                     if ($IncludeInput) {
                         New-Object -TypeName psobject -Property ([ordered] @{ Posh = $r; bash = $bash})
-                    }
-                    else {
+                    } else {
                         $bash
                     }
                 }
@@ -78,12 +77,10 @@ function Get-BashPath {
                 $bash = ('/' + $currentPath.replace('\','/').replace(':','').replace(' ','\ '))
                 if ($IncludeInput) {
                     New-Object -TypeName psobject -Property ([ordered] @{ Posh = $r; bash = $bash})
-                }
-                else {
+                } else {
                     $bash
                 }
             }
-            
         }
     }
 
