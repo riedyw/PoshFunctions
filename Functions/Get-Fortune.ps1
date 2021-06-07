@@ -27,8 +27,6 @@ function Get-Fortune {
     Get-Content
     Get-Random
     Split-Path
-
-    todo put wisdom.txt in module and default path to it
 #>
 
     #region Parameter

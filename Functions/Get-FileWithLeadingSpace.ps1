@@ -12,21 +12,18 @@ function Get-FileWithLeadingSpace {
 
 #>
 
-    # todo add begin, process, end blocks
-    # todo add write-verbose
-
     [CmdletBinding(ConfirmImpact='None')]
-    Param([string] $Path)
+    Param([string] $Path=$PWD)
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
-        Get-ChildItem -Path $Path -Recurse |
+        Get-ChildItem -Path $Path -Recurse -ErrorAction SilentlyContinue |
         foreach-object {
             if ($_.name.length -ne $_.name.trim().length) {
-                "$($_.basename) contains a leading space"
+                Write-Output -InputObject $_.FullName
             }
         }
 

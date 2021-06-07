@@ -1,5 +1,6 @@
 ### 2.2.2
 * Changed to SemVer versioning, 3 positions Major#.Minor#.Build#
+* added Convert-Int32ToUint32 to aid in converting 32 bitmasks which are interpreted as negative int32 numbers, returned from things like (Get-Acl -Path $pwd).Access.FileSystemRights
 * added Format-ReverseToken to take a tokenized string like 'monster.google.com' and convert it to 'com.google.monster'
 * added Invoke-CountdownTimer to implement a count down timer. Accurate to within 1-2 seconds
 * added New-InputBoxSecureString which will prompt for value and return a secure string. Can optionally verify input, and specify labels for input box(es)
@@ -7,7 +8,12 @@
 * renamed Get-SaveFileName from Get-SaveFile to be more consistent across file/folder functions. Aliased to Get-SaveFile for backward compatibility
 * updated Convert-RGBToHex to better handle color specifications
 * updated ConvertTo-DateTime because of logic error in handling Unix datetime strings
+* updated Get-BashPath to include switch so as to not resolve path to existing path on the system
+* updated Get-FileWithLeadingSpace to just produce the fullname of the files
+* updated Get-Fortune and added -Speak switch
+* updated Get-NTFSPermission to use Convert-Int32ToUint32 for certain filesystem rights, like -1610612736 corresponds to GenericExecute,GenericRead and previously the negative number would throw an error as it is really a 32 bitmask and not an int32
 * updated Test-Port so that the results are given in the Process block and not wait until the End block
+
 
 ### 2.2.1.6
 * updated PoshFunctions.psd1 to explicitly enumerate AliasesToExport

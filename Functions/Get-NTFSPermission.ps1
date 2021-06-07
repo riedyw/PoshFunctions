@@ -55,7 +55,7 @@ function Get-NTFSPermission {
                 $tmpObject.IdentityReference = $_.IdentityReference
                 $tmpObject.InheritanceFlags = $_.InheritanceFlags
                 #        $tmpObject.Rights               = ConvertFrom-AccessMask -AccessMask $_.FileSystemRights.value__
-                $tmpObject.Rights = ConvertFrom-FsRight -Rights $_.FileSystemRights.value__
+                $tmpObject.Rights = ConvertFrom-FsRight -Rights (Convert-Int32ToUint32 -Number $_.FileSystemRights.value__)
                 $tmpObject.PropogationFlags = $_.PropogationFlags
                 $returnVariable += $tmpObject
             }

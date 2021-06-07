@@ -55,8 +55,6 @@ function Convert-RGBToHex {
     [string]
 #>
 
-    # todo parameter sets for rgb_string and integer r g b values
-    # todo drop a from the string type
     #region Parameters
     [CmdletBinding(DefaultParameterSetName = 'String',ConfirmImpact = 'None')]
     [OutputType('string')]

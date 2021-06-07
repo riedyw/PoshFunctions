@@ -4,7 +4,7 @@
     RootModule        = 'PoshFunctions.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '2.2.2'
+    ModuleVersion     = '2.2.3'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -63,16 +63,17 @@
     # Functions export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 
     FunctionsToExport = @('Compare-ObjectProperty', 'Compare-PSGalleryObject',
-    'Convert-HexToRGB', 'Convert-ObjectToHashtable', 'Convert-RGBToHex',
-    'Convert-ROT13', 'Convert-SecureStringToString', 'Convert-UserFlag',
-    'ConvertFrom-Base64', 'ConvertFrom-Binary', 'ConvertFrom-DateTime',
-    'ConvertFrom-FsRight', 'ConvertFrom-Hex', 'ConvertFrom-UrlEncode',
-    'ConvertFrom-UTC', 'ConvertFrom-Xml', 'ConvertTo-Base64', 'ConvertTo-Binary',
-    'ConvertTo-BinaryIPv4', 'ConvertTo-Bool', 'ConvertTo-DateTime',
-    'ConvertTo-DecimalIPv4', 'ConvertTo-DottedDecimalIPv4', 'ConvertTo-Hex',
-    'ConvertTo-OrderedDictionary', 'ConvertTo-UncPath', 'ConvertTo-UrlEncode',
-    'ConvertTo-UTC', 'Copy-Object', 'Eexit', 'Expand-IPv6', 'Expand-String',
-    'Expand-Tab', 'Export-CSVSortedColumn', 'FileSizeAbove', 'FileSizeBelow',
+    'Convert-HexToRGB', 'Convert-Int32ToUint32', 'Convert-ObjectToHashtable',
+    'Convert-RGBToHex', 'Convert-ROT13', 'Convert-SecureStringToString',
+    'Convert-UserFlag', 'ConvertFrom-Base64', 'ConvertFrom-Binary',
+    'ConvertFrom-DateTime', 'ConvertFrom-FsRight', 'ConvertFrom-Hex',
+    'ConvertFrom-UrlEncode', 'ConvertFrom-UTC', 'ConvertFrom-Xml',
+    'ConvertTo-Base64', 'ConvertTo-Binary', 'ConvertTo-BinaryIPv4',
+    'ConvertTo-Bool', 'ConvertTo-DateTime', 'ConvertTo-DecimalIPv4',
+    'ConvertTo-DottedDecimalIPv4', 'ConvertTo-Hex', 'ConvertTo-OrderedDictionary',
+    'ConvertTo-UncPath', 'ConvertTo-UrlEncode', 'ConvertTo-UTC', 'Copy-Object',
+    'Eexit', 'Expand-IPv6', 'Expand-String', 'Expand-Tab',
+    'Export-CSVSortedColumn', 'FileSizeAbove', 'FileSizeBelow',
     'Format-MacAddress', 'Format-RandomCase', 'Format-ReverseString',
     'Format-ReverseToken', 'Format-SortedList', 'Format-TitleCase',
     'Format-WrapText', 'Get-Address', 'Get-BashPath', 'Get-BinaryType',
@@ -112,7 +113,6 @@
     'Test-IsValidIPv4', 'Test-IsValidIPv6', 'Test-Network', 'Test-NtpDateVsNow',
     'Test-Password', 'Test-Port', 'Union-Object', 'Update-ExplorerIcon',
     'Write-StringArray', 'Write-TextMenu')
-
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     #CmdletsToExport = '*'
@@ -182,6 +182,7 @@ For full release notes see ReleaseNotes.txt
 
 ### 2.2.2
 * Changed to SemVer versioning, 3 positions Major#.Minor#.Build#
+* added Convert-Int32ToUint32 to aid in converting 32 bitmasks which are interpreted as negative int32 numbers, returned from things like (Get-Acl -Path $pwd).Access.FileSystemRights
 * added Format-ReverseToken to take a tokenized string like 'monster.google.com' and convert it to 'com.google.monster'
 * added Invoke-CountdownTimer to implement a count down timer. Accurate to within 1-2 seconds
 * added New-InputBoxSecureString which will prompt for value and return a secure string. Can optionally verify input, and specify labels for input box(es)
@@ -189,6 +190,10 @@ For full release notes see ReleaseNotes.txt
 * renamed Get-SaveFileName from Get-SaveFile to be more consistent across file/folder functions. Aliased to Get-SaveFile for backward compatibility
 * updated Convert-RGBToHex to better handle color specifications
 * updated ConvertTo-DateTime because of logic error in handling Unix datetime strings
+* updated Get-BashPath to include switch so as to not resolve path to existing path on the system
+* updated Get-FileWithLeadingSpace to just produce the fullname of the files
+* updated Get-Fortune and added -Speak switch
+* updated Get-NTFSPermission to use Convert-Int32ToUint32 for certain filesystem rights, like -1610612736 corresponds to GenericExecute,GenericRead and previously the negative number would throw an error as it is really a 32 bitmask and not an int32
 * updated Test-Port so that the results are given in the Process block and not wait until the End block
 
 ### 2.2.1.6
