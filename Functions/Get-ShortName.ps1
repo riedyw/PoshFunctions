@@ -57,12 +57,12 @@ function Get-ShortName {
 
     process {
         foreach ($curPath in $Path) {
-            if (Test-Path -Path $curPath) {
-                $ResolveFile = Resolve-Path -Path $curPath
+            if (Test-Path -LiteralPath $curPath) {
+                $ResolveFile = Resolve-Path -LiteralPath $curPath
                 if ($ResolveFile.count -gt 1) {
                     Write-Error -Message "ERROR: File specification [$curPath] resolves to more than 1 file."
                 } else {
-                    $Item = Get-Item -Path $ResolveFile
+                    $Item = Get-Item -LiteralPath $ResolveFile
                     if ($Item.PSProvider.ToString() -eq 'Microsoft.PowerShell.Core\FileSystem') {
                         Write-Verbose -Message "Using item [$ResolveFile]"
                         if ($Item.PSIsContainer) {
