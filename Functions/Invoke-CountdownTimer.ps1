@@ -6,9 +6,9 @@ function Invoke-CountdownTimer {
     Invokes a countdown timer where you specify the number of seconds, or the number of minutes. Can specify descriptive text
     that appears in the progress bar. Optionally can also beep when completed. Function aliased to 'CountdownTimer'
 .PARAMETER Seconds
-    An integer representing the number of seconds specified. Valid range 10-900 seconds. Defaults to 10 if not specified
+    An integer representing the number of seconds specified. Valid range 10-1800 seconds. Defaults to 30 if not specified
 .PARAMETER Minutes
-    An integer representing the number of minutes specified. Valid range 1-15 minutes
+    An integer representing the number of minutes specified. Valid range 1-30 minutes
 .PARAMETER Description
     A descriptive caption that appears in the progress bar. Defaults to 'Countdown timer'
 .PARAMETER Notify
@@ -50,11 +50,11 @@ function Invoke-CountdownTimer {
     [CmdletBinding(DefaultParameterSetName = 'Seconds', ConfirmImpact = 'None')]
     param (
         [Parameter(Position = 0, ParameterSetName = 'Seconds')]
-        [ValidateRange(10, 900)]
-        [int] $Seconds = 10,
+        [ValidateRange(10, 1800)]
+        [int] $Seconds = 30,
 
         [Parameter(ParameterSetName = 'Minutes')]
-        [ValidateRange(1, 15)]
+        [ValidateRange(1, 30)]
         [int] $Minutes,
 
         [Parameter(ParameterSetName = 'Seconds')]
