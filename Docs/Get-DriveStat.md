@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version: http://wonkysoftware.appspot.com
 schema: 2.0.0
 ---
@@ -67,7 +67,7 @@ VERBOSE: Ending Get-DriveStat
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: Server, ServerName, PSComputerName, SystemName
+Aliases: CN, Server, ServerName, PSComputerName, SystemName
 
 Required: False
 Position: 1

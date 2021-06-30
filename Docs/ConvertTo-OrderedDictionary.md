@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ Converts a HashTable, Array, or an OrderedDictionary to an OrderedDictionary.
 ## SYNTAX
 
 ```
-ConvertTo-OrderedDictionary [-Hash] <Object> [<CommonParameters>]
+ConvertTo-OrderedDictionary [-Hash] <Hashtable> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -84,7 +84,7 @@ If the input
 is an OrderedDictionary the key order is the same in the copy.
 
 ```yaml
-Type: Object
+Type: Hashtable
 Parameter Sets: (All)
 Aliases:
 

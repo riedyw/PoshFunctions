@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version: https://github.com/iRon7/Join-Object
 schema: 2.0.0
 ---
@@ -18,6 +18,7 @@ Move-ToRecycleBin [-Path] <String[]> [<CommonParameters>]
 
 ## DESCRIPTION
 Instead of outright deleting a file, why not move it to the Recycle Bin?
+Function aliased to 'Recycle'
 
 ## EXAMPLES
 

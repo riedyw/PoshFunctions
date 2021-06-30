@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version: https://github.com/iRon7/Join-Object
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ Display a Visual Basic style inputbox.
 ## SYNTAX
 
 ```
-New-Inputbox [-Prompt] <String> [[-Title] <String>] [[-Default] <String>] [<CommonParameters>]
+New-Inputbox [[-Prompt] <String>] [[-Title] <String>] [[-Default] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -49,9 +49,9 @@ Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: 1
-Default value: None
+Default value: Please enter a value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

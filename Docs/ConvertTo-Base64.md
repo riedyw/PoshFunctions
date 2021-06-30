@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -17,7 +17,9 @@ ConvertTo-Base64 [[-String] <String[]>] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-ConvertTo-Base64 converts a normal string to a base 64 string
+ConvertTo-Base64 converts a normal string to a base 64 string.
+Function
+aliased to 'Base64Encode'.
 
 ## EXAMPLES
 

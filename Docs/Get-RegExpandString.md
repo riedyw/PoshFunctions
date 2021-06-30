@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version: http://code.msdn.microsoft.com/PSRemoteRegistry
 schema: 2.0.0
 ---
@@ -64,7 +64,7 @@ The default is the local computer.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: CN, __SERVER, IPAddress
+Aliases: CN, Server, __SERVER, IPAddress
 
 Required: False
 Position: 1

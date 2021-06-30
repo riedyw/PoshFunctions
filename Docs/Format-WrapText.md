@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -23,7 +23,8 @@ Format-WrapText [-Text] <String[]> [-Screen] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Wraps text at a particular column width (Default=80)
+Wraps text at a particular column width (Default=80).
+Function aliased to 'WrapText'.
 
 ## EXAMPLES
 

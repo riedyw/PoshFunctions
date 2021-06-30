@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -104,7 +104,5 @@ Time is money.
 
 [Get-Content
 Get-Random
-Split-Path
-
-todo put wisdom.txt in module and default path to it]()
+Split-Path]()
 

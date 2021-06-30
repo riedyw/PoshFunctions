@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version: http://wonkysoftware.appspot.com
 schema: 2.0.0
 ---
@@ -40,7 +40,7 @@ Aliases:
 
 Required: False
 Position: 1
-Default value: None
+Default value: $PWD
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

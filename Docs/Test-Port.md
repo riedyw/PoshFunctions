@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -75,11 +75,12 @@ Checks a range of ports from 1-59 on all servers in the hosts.txt file
 
 ### -ComputerName
 A single ComputerName or array of ComputerName to test the port connection on.
+Aliased to 'CN', 'Server'
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases:
+Aliases: CN, Server
 
 Required: True
 Position: 1

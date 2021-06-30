@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,11 +13,12 @@ To reverse a string, or an array of strings
 ## SYNTAX
 
 ```
-Format-ReverseString [-String] <String[]> [-IncludeOriginal] [<CommonParameters>]
+Format-ReverseString [-String] <String[]> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-To reverse a string, or an array of strings
+To reverse a string, or an array of strings.
+Function aliased to 'Reverse'
 
 ## EXAMPLES
 
@@ -30,7 +31,7 @@ olleH
 
 ### EXAMPLE 2
 ```
-Format-ReverseString -String 'Hello' -IncludeOriginal
+Format-ReverseString -String 'Hello' -IncludeInput
 ```
 
 Original Reverse
@@ -39,7 +40,7 @@ Hello    olleH
 
 ### EXAMPLE 3
 ```
-'758', '129' | Format-ReverseString -IncludeOriginal
+'758', '129' | Format-ReverseString -IncludeInput
 ```
 
 Original Reverse
@@ -66,13 +67,15 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -IncludeOriginal
-{{ Fill IncludeOriginal Description }}
+### -IncludeInput
+Switch to include the input along with the output.
+Aliased to 'IncludeOriginal' for
+backward compatibility
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: IncludeOriginal
 
 Required: False
 Position: Named

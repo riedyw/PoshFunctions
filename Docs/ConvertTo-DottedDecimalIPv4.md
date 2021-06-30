@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -17,13 +17,14 @@ ConvertTo-DottedDecimalIPv4 [-IPAddress] <IPAddress[]> [-IncludeInput] [<CommonP
 ```
 
 ## DESCRIPTION
-ConvertTo-DecimalIP takes 32 bit unsigned integer address into a dotted decimal IP address
+ConvertTo-DecimalIPv4 takes 32 bit unsigned integer address into a dotted decimal IP address.
+Function aliased to 'ConvertTo-DecimalIP'
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-ConvertTo-DottedDecimalIP -IPAddress 16885952
+ConvertTo-DottedDecimalIPv4 -IPAddress 16885952
 ```
 
 Would return
@@ -31,7 +32,7 @@ Would return
 
 ### EXAMPLE 2
 ```
-ConvertTo-DottedDecimalIP -IPAddress 16885952 -IncludeInput
+ConvertTo-DottedDecimalIPv4 -IPAddress 16885952 -IncludeInput
 ```
 
 Would return

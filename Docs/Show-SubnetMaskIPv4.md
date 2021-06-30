@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -17,7 +17,8 @@ Show-SubnetMaskIPv4 [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Show IPv4 subnet masks
+Show IPv4 subnet masks.
+Function aliased to 'Show-SubnetMaskIP'
 
 ## EXAMPLES
 

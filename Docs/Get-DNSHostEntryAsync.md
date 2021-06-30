@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version: http://wonkysoftware.appspot.com
 schema: 2.0.0
 ---
@@ -45,7 +45,7 @@ ibm.com      129.42.38.10
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases:
+Aliases: CN, Server
 
 Required: False
 Position: 1

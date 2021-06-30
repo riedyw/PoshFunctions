@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -17,7 +17,9 @@ Get-InvalidFileCharacter [-IncludeValues] [-Printable] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets invalid filename characters
+Gets invalid filename characters.
+Function aliased to 'Show-InvalidFileCharacter'
+for backward compatibility.
 
 ## EXAMPLES
 

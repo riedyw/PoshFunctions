@@ -5,48 +5,47 @@ online version:
 schema: 2.0.0
 ---
 
-# ConvertFrom-Base64
+# Convert-Int32ToUint32
 
 ## SYNOPSIS
-Convert from a Base64 string to normal string
+Converts int32 values to uint32 values
 
 ## SYNTAX
 
 ```
-ConvertFrom-Base64 [-Base64] <String[]> [-IncludeInput] [<CommonParameters>]
+Convert-Int32ToUint32 [-Number] <Int32[]> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Convert from a Base64 string to normal string.
-Function aliased to 'Base64Decode'.
+Converts int32 values to uint32 values.
+Useful for handling 32 bitmasks returned from some functions like Get-Acl
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-ConvertFrom-Base64 "SABlAGwAbABvAA=="
+Convert-Int32ToUint32 -Number -1610612736,-1 -IncludeInput
 ```
 
-Would return
-Hello
+Int32     Uint32
+      -----     ------
+-1610612736 2684354560
+         -1 4294967295
 
 ### EXAMPLE 2
 ```
-ConvertFrom-Base64 "SABlAGwAbABvAA==" -IncludeInput
+Convert-Int32ToUint32 -Number -1610612736
 ```
 
-Would return
-Base64           String
-------           ------
-SABlAGwAbABvAA== Hello
+2684354560
 
 ## PARAMETERS
 
-### -Base64
-A base64 encoded string
+### -Number
+An array of int32 values
 
 ```yaml
-Type: String[]
+Type: Int32[]
 Parameter Sets: (All)
 Aliases:
 
@@ -58,7 +57,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeInput
-Switch to enable including the input to appear in the output
+Switch to include the input in the output
 
 ```yaml
 Type: SwitchParameter
@@ -79,7 +78,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### [string[]]
 ## NOTES
 
 ## RELATED LINKS

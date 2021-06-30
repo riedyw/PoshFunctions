@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version: https://www.Google.com
 schema: 2.0.0
 ---
@@ -18,6 +18,8 @@ Get-TypeAccelerator [[-MatchString] <String>] [<CommonParameters>]
 
 ## DESCRIPTION
 Gets type accelerators \[int32\] \[datetime\] etc.
+Function aliased to 'Show-TypeAccelerator'
+for backward compatibility.
 
 ## EXAMPLES
 

@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -39,7 +39,8 @@ Performs asynchronous ping test against listed systems.
 ## PARAMETERS
 
 ### -ComputerName
-List of computers to test connection
+List of computers to test connection.
+Aliased to 'CN', 'Server'
 
 ```yaml
 Type: String[]

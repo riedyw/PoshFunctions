@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version: http://wonkysoftware.appspot.com
 schema: 2.0.0
 ---
@@ -17,7 +17,8 @@ Get-ComputerUptime [-Since] [[-ComputerName] <String[]>] [-IncludeComputerName] 
 ```
 
 ## DESCRIPTION
-To mimic and extend the Get-ComputerUptime function found in PowerShell 6 or 7
+To mimic and extend the Get-ComputerUptime function found in PowerShell 6 or 7.
+Function aliased to 'Get-LastReboot' for backward compatibility
 
 ## EXAMPLES
 
@@ -83,12 +84,13 @@ Accept wildcard characters: False
 
 ### -ComputerName
 String array of computers to check uptime against.
-If not given or is '.' it is replaced with $env:COMPUTERNAME
+If not given or is '.' it is replaced with $env:COMPUTERNAME.
+Aliased to 'CN', 'Server'
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases:
+Aliases: CN, Server
 
 Required: False
 Position: 1

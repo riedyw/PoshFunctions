@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version: http://wonkysoftware.appspot.com
 schema: 2.0.0
 ---
@@ -44,12 +44,13 @@ DEMOLAPTOP   CORP
 ## PARAMETERS
 
 ### -ComputerName
-The computername you want to run the command against, defaults to $env:COMPUTERNAME
+The computername you want to run the command against, defaults to $env:COMPUTERNAME.
+Aliased to 'CN', 'Server'
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases:
+Aliases: CN, Server
 
 Required: False
 Position: 1

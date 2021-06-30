@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -53,12 +53,14 @@ LocalDate            NTPDate              Tolerance Difference Result NTPServer
 
 ### -ComputerName
 The name or IPv4 address of the computer running NTP.
-If left blank uses the Get-ADDomainController command to find domain controller which runs NTP
+If left blank uses the Get-ADDomainController command to find domain controller which runs NTP.
+Aliased
+to 'CN', 'Server', 'NtpServer'
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: NtpServer
+Aliases: NtpServer, CN, Server
 
 Required: False
 Position: 1

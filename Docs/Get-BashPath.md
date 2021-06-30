@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ To take a normal Windows path and convert it to a bash path for things like git 
 ## SYNTAX
 
 ```
-Get-BashPath [-Path] <String[]> [-IncludeInput] [<CommonParameters>]
+Get-BashPath [-Path] <String[]> [-IncludeInput] [-NoResolvePath] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -81,6 +81,21 @@ Switch to indicate if input parameters should be included in the output, aliased
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: IncludeOriginal
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoResolvePath
+Switch to not resolve the provided path to see if it exists
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
 
 Required: False
 Position: Named

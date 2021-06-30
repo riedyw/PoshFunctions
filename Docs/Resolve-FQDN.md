@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -69,7 +69,7 @@ The computer "NonExistentPC" does not have an entry in DNS so the function will 
 
 ### -ComputerName
 Either the hostname or IPv4 address of the computer you want resolved to FQDN.
-Aliased to 'CN', and 'Host'
+Aliased to 'CN', 'Host', 'Server'
 
 ```yaml
 Type: String[]

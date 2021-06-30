@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -17,7 +17,8 @@ ConvertTo-Bool [[-InputVal] <String[]>] [-TrueString <String[]>] [-IncludeInput]
 ```
 
 ## DESCRIPTION
-Parse a string and convert it to a Boolean
+Parse a string and convert it to a Boolean.
+Function aliased to 'Parse-Bool'.
 
 ## EXAMPLES
 

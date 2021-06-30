@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -17,7 +17,8 @@ Union-Object [[-Property] <String[]>]
 ```
 
 ## DESCRIPTION
-Returns a 'clean' array of objects that have all property names in each element of the array
+Returns a 'clean' array of objects that have all property names in each element of the array.
+Function aliased to 'Union'
 
 ## EXAMPLES
 

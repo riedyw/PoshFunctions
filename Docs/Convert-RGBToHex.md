@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -30,46 +30,46 @@ Input should be in the form 'A,R,G,B'
 
 ### EXAMPLE 1
 ```
-Convert-RGBToHex -RGB '255,128,64,32'
+Convert-RGBToHex -RGB '128,64,32'
 ```
 
 Would return
-FF804020
+804020
 
 ### EXAMPLE 2
 ```
-Convert-RGBToHex -RGB '255,255,0,0' -IncludeHash
+Convert-RGBToHex -RGB '255,0,0' -Prefix
 ```
 
 Would return
-#FFFF0000
+#FF0000
 
 ### EXAMPLE 3
 ```
-convert-RGBtohex '255,64,128,255' -IncludeHash
+convert-RGBtohex '64,128,255' -Prefix
 ```
 
 Would return
-#FF4080FF
+#4080FF
 
 ### EXAMPLE 4
 ```
-'255,128,128,92' | convert-RGBtohex
+'128,128,92' | convert-RGBtohex
 ```
 
 Would return
-FF80805C
+80805C
 
 ### EXAMPLE 5
 ```
-Convert-RGBToHex -RGB @('255,0,0','255,128,80,80') -IncludeHash -IncludeInput
+Convert-RGBToHex -RGB @('255,0,0','128,80,80') -Prefix -IncludeInput
 ```
 
 Would return
-DecimalRGB   HexRGB
------------   -------
-0,255,0,0     #00FF0000
-255,128,80,80 #FF805050
+DecimalRGB  HexRGB
+---------   -------
+255,0,0     #00FF0000
+128,80,80   #FF805050
 
 ## PARAMETERS
 
@@ -134,7 +134,7 @@ Accept wildcard characters: False
 ```
 
 ### -Prefix
-{{ Fill Prefix Description }}
+A switch indicating whether hex string should be preceded by a hash symbol #.
 
 ```yaml
 Type: SwitchParameter
@@ -172,12 +172,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### [string]
 ## NOTES
-Part of the ISEColorThemeCmdlets.ps1 Script by Jeff Pollock
+Inspired by ISEColorThemeCmdlets.ps1 Script by Jeff Pollock
 http://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
 
 Modified:
 a) Changed name of parameter to RGB
-b) Added -IncludeHash parameter to make # optional.
+b) Added -Prefix parameter to make # optional.
 c) Minor tweaking so that it passes Invoke-ScriptAnalyzer
 d) Added parameter validation on RGB.
 e) Added .LINK entries for related items

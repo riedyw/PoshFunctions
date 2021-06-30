@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -17,13 +17,14 @@ ConvertTo-DecimalIPv4 [-IPAddress] <IPAddress[]> [-IncludeInput] [<CommonParamet
 ```
 
 ## DESCRIPTION
-ConvertTo-DecimalIP takes a dotted decimal IP and uses the \[ipaddress\] accelerator to determine 32 bit decimal value
+ConvertTo-DecimalIP takes a dotted decimal IP and uses the \[ipaddress\] accelerator to determine 32 bit decimal value.
+Function aliased to 'ConvertTo-DecimalIP'
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-ConvertTo-DecimalIP -IPAddress 10.20.30.40
+ConvertTo-DecimalIPv4 -IPAddress 10.20.30.40
 ```
 
 Would return
@@ -31,7 +32,7 @@ Would return
 
 ### EXAMPLE 2
 ```
-ConvertTo-DecimalIP -IPAddress 192.168.1.1
+ConvertTo-DecimalIPv4 -IPAddress 192.168.1.1
 ```
 
 Would return
@@ -39,10 +40,9 @@ Would return
 
 ### EXAMPLE 3
 ```
-ConvertTo-DecimalIP -IPAddress 192.168.1.1, 10.100.10.1 -IncludeInput
+Would return
 ```
 
-Would return
 IPAddress   DecimalIP
 ---------   ---------
 192.168.1.1  16885952

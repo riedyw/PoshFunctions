@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version: https://gallery.technet.microsoft.com/scriptcenter/Get-MachineType-VM-or-ff43f3a9
 schema: 2.0.0
 ---
@@ -35,12 +35,13 @@ Monday, March 05, 2018 9:52:57 AM
 ## PARAMETERS
 
 ### -ComputerName
-The name or IPv4 address of the computer running NTP
+The name or IPv4 address of the computer running NTP.
+Aliased to 'CN', 'Server', 'NtpServer'
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: NtpServer
+Aliases: CN, Server, NtpServer
 
 Required: True
 Position: 1

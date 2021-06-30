@@ -1,54 +1,42 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://social.msdn.microsoft.com/Forums/vstudio/en-US/0221d962-26e6-4a7e-be7a-72cd669a0dfc/why-systemmathround0251-2?forum=vbgeneral
 
 Talks about Visual Basic but the same info applies to Powershell.
 schema: 2.0.0
 ---
 
-# Get-SpecialFolder
+# Get-SqlDatabase
 
 ## SYNOPSIS
-Gets special folder name location
+Get list of SQL databases
 
 ## SYNTAX
 
 ```
-Get-SpecialFolder [[-Name] <String>] [-IncludeInput] [<CommonParameters>]
+Get-SqlDatabase [[-ServerInstance] <String>] [[-Database] <String>] [-IncludeSystemDatabase]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets special folder name location.
-Function aliased to 'Show-SpecialFolder' for
-backward compatibility.
+Get list of SQL databases.
+Can optionally look for a particular database and can optionally include system databases which are excluded by default
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-SpecialFolder -Name CommonDocuments -IncludeInput
+Get-SqlDatabase
 ```
 
-Would return
-SpecialFolder   Path
--------------   ----
-CommonDocuments C:\Users\Public\Documents
-
-### EXAMPLE 2
-```
-Get-SpecialFolder -Name MyDocuments -IncludeInput
-```
-
-Would return the following if logged in as 'SampleUser'
-SpecialFolder Path
-------------- ----
-MyDocuments   C:\Users\SampleUser\Documents
+Returns list of databases that match the criteria
 
 ## PARAMETERS
 
-### -Name
-The name of the special folder
+### -ServerInstance
+Database instance that you wish to connect to.
+Defaults to $env:COMPUTERNAME
 
 ```yaml
 Type: String
@@ -57,13 +45,29 @@ Aliases:
 
 Required: False
 Position: 1
-Default value: None
+Default value: $env:COMPUTERNAME
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IncludeInput
-Switch to include the input in the output
+### -Database
+String containing text for database name to be LIKE.
+Wildcards can be used.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: *
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IncludeSystemDatabase
+Switch to include system databases: 'master', 'model', 'msdb', 'tempdb'
 
 ```yaml
 Type: SwitchParameter
@@ -84,6 +88,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### psobject
 ## NOTES
+1 - User running this function must have Windows authentication to the database server
+2 - outputs a psobject containing:
+    Name
 
 ## RELATED LINKS

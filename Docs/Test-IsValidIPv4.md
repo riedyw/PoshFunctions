@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -20,6 +20,7 @@ Test-IsValidIPv4 [[-IPAddress] <String[]>] [-IncludeInput] [<CommonParameters>]
 Verifies if passed parameter is a valid IP v4 address.
 Can take single string or array of strings.
 Can also accept input from the pipeline.
+Function aliased to 'Test-IsValidIP'
 
 ## EXAMPLES
 
