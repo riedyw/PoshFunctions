@@ -4,7 +4,7 @@
     RootModule        = 'PoshFunctions.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '2.2.3'
+    ModuleVersion     = '2.2.4'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -62,57 +62,59 @@
 
     # Functions export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 
-    FunctionsToExport = @('Compare-ObjectProperty', 'Compare-PSGalleryObject',
-    'Convert-HexToRGB', 'Convert-Int32ToUint32', 'Convert-ObjectToHashtable',
-    'Convert-RGBToHex', 'Convert-ROT13', 'Convert-SecureStringToString',
-    'Convert-UserFlag', 'ConvertFrom-Base64', 'ConvertFrom-Binary',
-    'ConvertFrom-DateTime', 'ConvertFrom-FsRight', 'ConvertFrom-Hex',
-    'ConvertFrom-UrlEncode', 'ConvertFrom-UTC', 'ConvertFrom-Xml',
-    'ConvertTo-Base64', 'ConvertTo-Binary', 'ConvertTo-BinaryIPv4',
-    'ConvertTo-Bool', 'ConvertTo-DateTime', 'ConvertTo-DecimalIPv4',
-    'ConvertTo-DottedDecimalIPv4', 'ConvertTo-Hex', 'ConvertTo-OrderedDictionary',
-    'ConvertTo-UncPath', 'ConvertTo-UrlEncode', 'ConvertTo-UTC', 'Copy-Object',
-    'Eexit', 'Expand-IPv6', 'Expand-String', 'Expand-Tab',
-    'Export-CSVSortedColumn', 'FileSizeAbove', 'FileSizeBelow',
-    'Format-MacAddress', 'Format-RandomCase', 'Format-ReverseString',
-    'Format-ReverseToken', 'Format-SortedList', 'Format-TitleCase',
-    'Format-WrapText', 'Get-Address', 'Get-BashPath', 'Get-BinaryType',
-    'Get-ComputerSite', 'Get-ComputerUptime', 'Get-DiceRoll',
-    'Get-DNSHostEntryAsync', 'Get-DriveStat', 'Get-Enum', 'Get-ExecutableForFile',
-    'Get-FileEncoding', 'Get-FileName', 'Get-FileWithLeadingSpace',
-    'Get-FolderName', 'Get-Font', 'Get-Fortune', 'Get-GeoCode',
-    'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-LastDayInMonth',
-    'Get-LongName', 'Get-MachineType', 'Get-MacVendor', 'Get-Magic8Ball',
-    'Get-Md5Sum', 'Get-NetworkCredential', 'Get-NTFSPermission', 'Get-NtpDate',
-    'Get-Power', 'Get-PrintableAscii', 'Get-PrivateProfileComment',
-    'Get-PrivateProfileSection', 'Get-PrivateProfileSectionNames',
-    'Get-PrivateProfileString', 'Get-PSWho', 'Get-RandomDate',
-    'Get-RandomHexDigit', 'Get-RandomMacAddress', 'Get-RegExpandString',
-    'Get-RegistryValue', 'Get-Round', 'Get-SaveFileName', 'Get-Shortcut',
-    'Get-ShortName', 'Get-SID', 'Get-SpecialFolder', 'Get-StaticProperty',
-    'Get-SubnetMaskIPv4', 'Get-TruncatedDate', 'Get-Type', 'Get-TypeAccelerator',
-    'Get-UrlContent', 'Get-WordCount', 'Get-WordList', 'grep', 'Invoke-Beep',
-    'Invoke-CountdownTimer', 'Invoke-Speak', 'Join-Object', 'Lock-Workstation',
-    'Measure-Char', 'mklink', 'Move-ToRecycleBin', 'New-Credential',
-    'New-InputBox', 'New-InputBoxSecureString', 'New-Popup', 'New-QR',
-    'New-RandomPassword', 'New-Screenshot', 'New-Shortcut', 'Out-PDFToPrinter',
-    'Read-HostWithDefault', 'Remove-BlankOrComment', 'Remove-EmptyProperty',
-    'Remove-QuotesFromCsv', 'Remove-TeamsCache', 'Remove-Trailing',
-    'Reset-Desktop', 'Resolve-FQDN', 'Resolve-HostName', 'sed', 'Set-Capslock',
-    'Set-Display', 'Set-Numlock', 'Set-PrivateProfileComment',
-    'Set-PrivateProfileString', 'Set-Scrolllock', 'Set-Speaker', 'Set-Type',
-    'Set-WindowStyle', 'Show-AllColor', 'Show-Calendar', 'Show-Color',
-    'Show-ColorsWithBackground', 'Show-DaysOfWeek', 'Show-FileAttribute',
-    'Show-FsRight', 'Show-Month', 'Show-NamedColor', 'Show-Object',
-    'Show-Progress', 'Show-ShortDaysOfWeek', 'Show-ShortMonth',
-    'Show-SubnetMaskIPv4', 'Show-Timezone', 'Start-ADReplication',
-    'Start-RecordSession', 'Stop-RecordSession', 'Switch-Mute',
-    'Test-ConnectionAsync', 'Test-IsAdmin', 'Test-IsCapsLock', 'Test-IsDate',
-    'Test-IsFileLocked', 'Test-IsHexString', 'Test-IsNull', 'Test-IsNumeric',
-    'Test-IsNumLock', 'Test-IsScrollLock', 'Test-IsValidEmailAddress',
-    'Test-IsValidIPv4', 'Test-IsValidIPv6', 'Test-Network', 'Test-NtpDateVsNow',
-    'Test-Password', 'Test-Port', 'Union-Object', 'Update-ExplorerIcon',
-    'Write-StringArray', 'Write-TextMenu')
+    FunctionsToExport = @('Compare-ObjectProperty', 'Compare-PSGalleryObject', 
+    'Convert-HexToRGB', 'Convert-Int32ToUint32', 'Convert-ObjectToHashtable', 
+    'Convert-RGBToHex', 'Convert-ROT13', 'Convert-SecureStringToString', 
+    'Convert-UserFlag', 'ConvertFrom-Base64', 'ConvertFrom-Binary', 
+    'ConvertFrom-DateTime', 'ConvertFrom-FsRight', 'ConvertFrom-Hex', 
+    'ConvertFrom-UrlEncode', 'ConvertFrom-UTC', 'ConvertFrom-Xml', 
+    'ConvertTo-Base64', 'ConvertTo-Binary', 'ConvertTo-BinaryIPv4', 
+    'ConvertTo-Bool', 'ConvertTo-DateTime', 'ConvertTo-DecimalIPv4', 
+    'ConvertTo-DottedDecimalIPv4', 'ConvertTo-Hex', 'ConvertTo-OrderedDictionary', 
+    'ConvertTo-UncPath', 'ConvertTo-UrlEncode', 'ConvertTo-UTC', 'Copy-Object', 
+    'Eexit', 'Expand-IPv6', 'Expand-String', 'Expand-Tab', 
+    'Export-CSVSortedColumn', 'FileSizeAbove', 'FileSizeBelow', 
+    'Format-MacAddress', 'Format-RandomCase', 'Format-ReverseString', 
+    'Format-ReverseToken', 'Format-SortedList', 'Format-TitleCase', 
+    'Format-WrapText', 'Get-Address', 'Get-BashPath', 'Get-BinaryType', 
+    'Get-ComputerSite', 'Get-ComputerUptime', 'Get-DiceRoll', 
+    'Get-DNSHostEntryAsync', 'Get-DriveStat', 'Get-Enum', 'Get-ExecutableForFile', 
+    'Get-FileEncoding', 'Get-FileName', 'Get-FileWithLeadingSpace', 
+    'Get-FolderName', 'Get-Font', 'Get-Fortune', 'Get-GeoCode', 
+    'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-LastDayInMonth', 
+    'Get-LongName', 'Get-MachineType', 'Get-MacVendor', 'Get-Magic8Ball', 
+    'Get-Md5Sum', 'Get-NetworkCredential', 'Get-NTFSPermission', 'Get-NtpDate', 
+    'Get-Power', 'Get-PrintableAscii', 'Get-PrivateProfileComment', 
+    'Get-PrivateProfileSection', 'Get-PrivateProfileSectionNames', 
+    'Get-PrivateProfileString', 'Get-PSWho', 'Get-RandomDate', 
+    'Get-RandomHexDigit', 'Get-RandomMacAddress', 'Get-RegExpandString', 
+    'Get-RegistryValue', 'Get-Round', 'Get-SaveFileName', 'Get-Shortcut', 
+    'Get-ShortName', 'Get-SID', 'Get-SpecialFolder', 'Get-SqlDatabase', 
+    'Get-SqlIndexFragmentation', 'Get-SqlStoredProcedure', 'Get-StaticProperty', 
+    'Get-SubnetMaskIPv4', 'Get-TruncatedDate', 'Get-Type', 'Get-TypeAccelerator', 
+    'Get-UrlContent', 'Get-WordCount', 'Get-WordList', 'grep', 'Invoke-Beep', 
+    'Invoke-CountdownTimer', 'Invoke-Speak', 'Join-Object', 'Lock-Workstation', 
+    'Measure-Char', 'mklink', 'Move-ToRecycleBin', 'New-Credential', 
+    'New-InputBox', 'New-InputBoxSecureString', 'New-Popup', 'New-QR', 
+    'New-RandomPassword', 'New-Screenshot', 'New-Shortcut', 
+    'Optimize-SqlIndexFragmentation', 'Optimize-SqlStoredProcedure', 
+    'Out-PDFToPrinter', 'Read-HostWithDefault', 'Remove-BlankOrComment', 
+    'Remove-EmptyProperty', 'Remove-QuotesFromCsv', 'Remove-TeamsCache', 
+    'Remove-Trailing', 'Reset-Desktop', 'Resolve-FQDN', 'Resolve-HostName', 'sed', 
+    'Set-Capslock', 'Set-Display', 'Set-Numlock', 'Set-PrivateProfileComment', 
+    'Set-PrivateProfileString', 'Set-Scrolllock', 'Set-Speaker', 'Set-Type', 
+    'Set-WindowStyle', 'Show-AllColor', 'Show-Calendar', 'Show-Color', 
+    'Show-ColorsWithBackground', 'Show-DaysOfWeek', 'Show-FileAttribute', 
+    'Show-FsRight', 'Show-Month', 'Show-NamedColor', 'Show-Object', 
+    'Show-Progress', 'Show-ShortDaysOfWeek', 'Show-ShortMonth', 
+    'Show-SubnetMaskIPv4', 'Show-Timezone', 'Start-ADReplication', 
+    'Start-RecordSession', 'Stop-RecordSession', 'Switch-Mute', 
+    'Test-ConnectionAsync', 'Test-IsAdmin', 'Test-IsCapsLock', 'Test-IsDate', 
+    'Test-IsFileLocked', 'Test-IsHexString', 'Test-IsNull', 'Test-IsNumeric', 
+    'Test-IsNumLock', 'Test-IsScrollLock', 'Test-IsValidEmailAddress', 
+    'Test-IsValidIPv4', 'Test-IsValidIPv6', 'Test-Network', 'Test-NtpDateVsNow', 
+    'Test-Password', 'Test-Port', 'Union-Object', 'Update-ExplorerIcon', 
+    'Write-StringArray', 'Write-TextMenu') 
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     #CmdletsToExport = '*'
@@ -136,7 +138,6 @@
     'Show-InvalidFileCharacter', 'Show-SpecialFolder', 'Show-SubnetMaskIP',
     'Show-TypeAccelerator', 'Speak', 'Test-IsValidIP', 'Union', 'UrlDecode',
     'UrlEncode', 'WrapText')
-
 
     # DSC resources to export from this module
     # DscResourcesToExport = @()
@@ -180,11 +181,20 @@
             ReleaseNotes = @'
 For full release notes see ReleaseNotes.txt
 
+### 2.2.4
+* added Get-SqlDatabase
+* added Get-SqlIndexFragmentation
+* added Get-SqlStoredProcedure
+* added Optimize-SqlIndexFragmentation
+* added Optimize-SqlStoredProcedure
+
+### 2.3.3
+* added Invoke-CountdownTimer to implement a count down timer. Accurate to within several seconds
+
 ### 2.2.2
 * Changed to SemVer versioning, 3 positions Major#.Minor#.Build#
 * added Convert-Int32ToUint32 to aid in converting 32 bitmasks which are interpreted as negative int32 numbers, returned from things like (Get-Acl -Path $pwd).Access.FileSystemRights
 * added Format-ReverseToken to take a tokenized string like 'monster.google.com' and convert it to 'com.google.monster'
-* added Invoke-CountdownTimer to implement a count down timer. Accurate to within 1-2 seconds
 * added New-InputBoxSecureString which will prompt for value and return a secure string. Can optionally verify input, and specify labels for input box(es)
 * renamed Get-FolderName from Get-Folder to not conflict with Vmware module. Aliased to Get-Folder for backward compatibility
 * renamed Get-SaveFileName from Get-SaveFile to be more consistent across file/folder functions. Aliased to Get-SaveFile for backward compatibility
@@ -195,105 +205,7 @@ For full release notes see ReleaseNotes.txt
 * updated Get-Fortune and added -Speak switch
 * updated Get-NTFSPermission to use Convert-Int32ToUint32 for certain filesystem rights, like -1610612736 corresponds to GenericExecute,GenericRead and previously the negative number would throw an error as it is really a 32 bitmask and not an int32
 * updated Test-Port so that the results are given in the Process block and not wait until the End block
-
-### 2.2.1.6
-* updated PoshFunctions.psd1 to explicitly enumerate AliasesToExport
-* tested all functions work properly in both PowerShell 5.1 and 7.1.2
-* updated all *.ps* to pass Invoke-ScriptAnalyzer without throwing RuleViolation. The only one I could NOT fix is function Union-Object. If you wish this error to not affect you then I would suggest that when you import the module you include the -DisableNameChecking parameter
-* updated scripts to attempt to explicit and fully name all parameters and all functions and parameters match the case as found in official Microsoft documentation
-* made GitHub repository viewable to the public and updated PoshFunctions.psd1 to reflect the GitHub repository
-* 16 ADDITIONS
-* added Convert-HexToRGB
-* added Convert-RGBToHex
-* added ConvertFrom-Binary
-* added ConvertFrom-Hex
-* added ConvertTo-Binary
-* added ConvertTo-Hex
-* added Format-TitleCase
-* added Get-Address
-* added Get-GeoCode
-* added Get-LastDayInMonth
-* added Get-LongName
-* added Get-ShortName
-* added New-RandomPassword
-* added Out-PrinterPDF
-* added Test-Network
-* added Test-Password
-* 15 REMOVED
-* removed Convert-ARGBToHex
-* removed Convert-HexToARGB
-* removed ConvertTo-Markdown
-* removed ConvertTo-PlainText
-* removed ConvertTo-SecureText
-* removed Get-OperatingSystemSKU
-* removed Get-PoshFunctionsPrivateData
-* removed Get-Share
-* removed Get-SharePermission
-* removed Get-ShareStat
-* removed Help
-* removed Remove-BOMFromFile
-* removed Remove-InvalidFileNameChar
-* removed Search-Method
-* 4 RENAMED
-* renamed Get-InvalidFileCharacter from Show-InvalidFileCharacter
-* renamed Get-SpecialFolder from Show-SpecialFolder
-* renamed Get-TypeAccelerator from Show-TypeAccelerator
-* renamed Get-ComputerUptime from Get-LastReboot
-* 55 UPDATED
-* udpated Set-Type
-* updated Compare-ObjectProperty
-* updated Convert-ROT13
-* updated Convert-UserFlag
-* updated ConvertFrom-Base64
-* updated ConvertFrom-DateTime
-* updated ConvertFrom-UTC
-* updated ConvertFrom-UrlEncode
-* updated ConvertTo-Base64
-* updated ConvertTo-BinaryIPv4
-* updated ConvertTo-Bool
-* updated ConvertTo-DateTime
-* updated ConvertTo-DecimalIPv4
-* updated ConvertTo-DottedDecimalIPv4
-* updated ConvertTo-UncPath
-* updated ConvertTo-UrlEncode
-* updated Expand-IPv6
-* updated Expand-String
-* updated Format-MacAddress
-* updated Format-RandomCase
-* updated Get-BashPath
-* updated Get-ComputerSite
-* updated Get-Enum
-* updated Get-Filename
-* updated Get-Folder
-* updated Get-Font
-* updated Get-Fortune
-* updated Get-IpRange
-* updated Get-MacVendor
-* updated Get-MachineType
-* updated Get-Md5Sum
-* updated Get-NTFSPermission
-* updated Get-Power
-* updated Get-RandomDate
-* updated Get-RandomHexDigit
-* updated Get-SID
-* updated Get-SaveFile
-* updated Get-SubnetMaskIPv4
-* updated Get-TruncatedDate
-* updated Get-Type
-* updated Get-WordCount
-* updated New-InputBox
-* updated New-Popup
-* updated New-Screenshot
-* updated New-Shortcut
-* updated Resolve-FQDN
-* updated Resolve-HostName
-* updated Set-Display
-* updated Show-FileAttribute
-* updated Test-IsDate
-* updated Test-IsHexString
-* updated Test-IsNumeric
-* updated Test-NTPDateVsNow
-* updated sed
+ that the results are given in the Process block and not wait until the End block
 '@
 
             # Flag to indicate whether the module requires explicit user acceptance for install/update/save
