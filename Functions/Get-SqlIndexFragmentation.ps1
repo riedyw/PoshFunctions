@@ -32,9 +32,10 @@ function Get-SqlIndexFragmentation {
 
         [switch] $IncludeSystemDatabase,
 
-        [ValidateRange(10, 99)]
+        [ValidateRange(1, 99)]
         [int] $MinFragmentation = 10,
 
+        [ValidateScript({($_ -gt 0)})]
         [int] $MinPageCount = 200
     )
 
@@ -46,6 +47,8 @@ function Get-SqlIndexFragmentation {
         Write-Verbose -Message "IncludeSystemDatabase [$IncludeSystemDatabase]"
         Write-Verbose -Message "MinFragmentation [$MinFragmentation]"
         Write-Verbose -Message "MinPageCount [$MinPageCount]"
+        $Table = $Table.Replace('*', '%')
+        $Table = $Table.Replace('?', '_')
         try {
             $DatabaseList = Get-SqlDatabase -ServerInstance $ServerInstance -Database $Database -IncludeSystemDatabase:$IncludeSystemDatabase
             if (-not $DatabaseList) {
@@ -74,6 +77,8 @@ function Get-SqlIndexFragmentation {
                 sys.indexes I ON I.object_id = DDIPS.object_id
                 AND DDIPS.index_id = I.index_id
             WHERE
+                T.name LIKE '$Table'
+            AND
                 DDIPS.database_id = DB_ID()
             AND
                 DDIPS.avg_fragmentation_in_percent >= $MinFragmentation
@@ -87,16 +92,15 @@ function Get-SqlIndexFragmentation {
     }
 
     process {
-        $DatabaseList | ForEach-Object -Begin { $FragResult = @() } -Process {
+        $DatabaseList | ForEach-Object -Begin { } -Process {
             $CurDatabase = $_
-            $FragResult += Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $CurDatabase.Name -Query $FragQuery -QueryTime 900
+            Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $CurDatabase.Name -Query $FragQuery -QueryTime 900 |
+                Select-Object DbName, Schema, Table, Index,
+                    @{Name = 'Avg_Fragmentation_In_Percent'; Expr = { ([float] ('{0:f2}' -f $_.avg_fragmentation_in_percent)) } }, Page_Count
         }
     }
 
     end {
-        $FragResult = $FragResult | Select-Object DbName, Schema, Table, Index, @{Name = 'Avg_Fragmentation_In_Percent'; Expr = { ([float] ('{0:f2}' -f $_.avg_fragmentation_in_percent)) } }, Page_Count
-        $FragResult = $FragResult | Sort-Object DbName, Schema, Table, Index
-        Write-Output -InputObject $FragResult | Where-Object { $_.Table -like $Table }
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }

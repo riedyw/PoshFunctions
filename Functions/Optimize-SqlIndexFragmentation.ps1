@@ -16,6 +16,10 @@ function Optimize-SqlIndexFragmentation {
     Switch whether output should be interactive and provide progress
 .PARAMETER IncludeSystemDatabase
     Switch whether to include system databases
+.PARAMETER MinFragmentation
+    Integer representing the minimum fragmentation percentage level you want to address. Valid range 1-99, defaults to 10
+.PARAMETER MinPageCount
+    Integer representing the minimum number of pages that must be in index before processing. Must be greater than 0. Default 200.
 .EXAMPLE
     Optimize-SqlIndexFragmentation
 
@@ -45,9 +49,10 @@ function Optimize-SqlIndexFragmentation {
 
         [switch] $IncludeSystemDatabase,
 
-        [ValidateRange(10, 99)]
+        [ValidateRange(1, 99)]
         [int] $MinFragmentation = 10,
 
+        [ValidateScript({($_ -gt 0)})]
         [int] $MinPageCount = 200
     )
 
