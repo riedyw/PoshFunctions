@@ -59,17 +59,17 @@ function Get-Address {
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         $url='https://geocode.xyz'
-        $null = Invoke-RestMethod $url -S session
+        $null = Invoke-RestMethod -Uri $url -SessionVariable session
     }
 
     process {
         if ($PsCmdlet.ParameterSetName -eq 'String') {
             foreach ($currentCoordinate in $Coordinate) {
-                Invoke-RestMethod "$url/${currentCoordinate}?geoit=json" -W $session
+                Invoke-RestMethod -Uri "$url/$currentCoordinate?geoit=json" -WebSession $session
             }
         } else {
             $currentCoordinate = "$Latitude,$Longitude"
-            Invoke-RestMethod "$url/${currentCoordinate}?geoit=json" -W $session
+            Invoke-RestMethod -Uri "$url/$currentCoordinate?geoit=json" -WebSession $session
         }
     }
 

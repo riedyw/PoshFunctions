@@ -78,14 +78,14 @@ function Get-ComputerUptime {
                                 LastBoot     = $LastBootUpTime
                             })
                     } else {
-                        Write-Output $LastBootUpTime
+                        Write-Output -InputObject $LastBootUpTime
                     }
                 } else {
                     $TimeSpan = ((Get-Date) - $LastBootUpTime)
                     if ($IncludeComputerName) {
                         $TimeSpan | Add-Member -MemberType NoteProperty -Name ComputerName -Value $curComputerName
                     }
-                    Write-Output ($TimeSpan | Select-Object -Property *)
+                    Write-Output -InputObject ($TimeSpan | Select-Object -Property *)
                 }
             } catch {
                 Write-Error -Message "Either computer [$curComputerName] is not up, or you don't have permission to read from WMI objects."

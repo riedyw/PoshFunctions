@@ -1,5 +1,5 @@
 function Get-GeoCode {
-<#
+    <#
 .SYNOPSIS
     To get the geocode (latitude, longitude) of a particular address
 .DESCRIPTION
@@ -35,7 +35,7 @@ function Get-GeoCode {
     [OutputType('psobject')]
     Param (
 
-        [Parameter(Mandatory, HelpMessage='Please enter an address')]
+        [Parameter(Mandatory, HelpMessage = 'Please enter an address')]
         [string] $Address,
 
         [switch] $AsString
@@ -48,18 +48,18 @@ function Get-GeoCode {
 
     process {
         $AddressEncoded = [System.Net.WebUtility]::UrlEncode($Address)
-        $null = Invoke-RestMethod -SessionVariable session -Uri "https://geocode.xyz"
+        $null = Invoke-RestMethod -SessionVariable session -Uri 'https://geocode.xyz'
         $data = Invoke-RestMethod -WebSession $session -Uri "https://geocode.xyz/${AddressEncoded}?json=1"
         if ($null -ne $data.error) {
-             throw "Address not found. $($data.Error.Description)"
+            throw "Address not found. $($data.Error.Description)"
         }
         if (-not $AsString) {
             [PSCustomObject] ([ordered] @{
-                 Latitude = $data.latt
-                 Longitude = $data.longt
-            })
+                    Latitude  = $data.latt
+                    Longitude = $data.longt
+                })
         } else {
-            Write-Output -InputObject (@($data.latt,$data.longt) -join ',')
+            Write-Output -InputObject (@($data.latt, $data.longt) -join ',')
         }
     }
 

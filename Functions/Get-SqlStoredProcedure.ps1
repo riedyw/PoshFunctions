@@ -38,11 +38,11 @@ function Get-SqlStoredProcedure {
         try {
             $DatabaseList = Get-SqlDatabase -ServerInstance $ServerInstance -Database $Database -IncludeSystemDatabase:$IncludeSystemDatabase
             if (-not $DatabaseList) {
-                Write-Error "No databases that match [$Database]"
+                Write-Error -Message "No databases that match [$Database]"
                 return
             }
         } catch {
-            Write-Error "Could not make SQL connection to [$ServerInstance], either server not up, or no permissions to connect."
+            Write-Error -Message "Could not make SQL connection to [$ServerInstance], either server not up, or no permissions to connect."
             return
         }
         $SpQuery = "
@@ -62,14 +62,15 @@ function Get-SqlStoredProcedure {
     }
 
     process {
-        $DatabaseList | ForEach-Object -Begin { $SpResult = @() } -Process {
+        $SpResult = @()
+        $DatabaseList | ForEach-Object -Process {
             $CurDatabase = $_
             $SpResult += Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $CurDatabase.Name -Query $SpQuery -QueryTime 300
         }
     }
 
     end {
-        $SpResult = $SpResult | Sort-Object DBName, Schema, Procedure
+        $SpResult = $SpResult | Sort-Object -Property DBName, Schema, Procedure
         Write-Output -InputObject $SpResult
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }

@@ -69,7 +69,7 @@ function Get-DiceRoll {
     Param
     (
 
-        [Parameter(Mandatory, Position=0, ValueFromPipeLine)]
+        [Parameter(Mandatory, HelpMessage='Please enter the number and type of dice you wish to roll (ex. 3D6)', Position=0, ValueFromPipeLine)]
         [string[]] $Dice,
 
         [switch] $ShowRoll

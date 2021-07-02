@@ -48,7 +48,7 @@ function Get-MacVendor {
 
     [CmdletBinding()]
     param(
-        [Parameter (Mandatory)]
+        [Parameter (Mandatory, HelpMessage='Please enter a 12 character hexadecimal MAC address optionally delimited with either : or -')]
         [ValidatePattern('^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$')]
         [string[]] $MacAddress
     )

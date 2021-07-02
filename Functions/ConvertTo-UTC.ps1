@@ -41,7 +41,7 @@ function ConvertTo-UTC {
     [OutputType('datetime')]
     Param
     (
-        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
+        [Parameter(Mandatory, HelpMessage='Enter a datetime string', ValueFromPipeline, Position = 0)]
         [Alias('DateTime')]
         [datetime[]] $Date,
 

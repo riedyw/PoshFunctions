@@ -48,7 +48,7 @@ function Out-PDFToPrinter {
 
     [CmdletBinding(ConfirmImpact = 'Low')]
     param(
-        [Parameter(Mandatory, Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName)]
+        [Parameter(Mandatory, HelpMessage='Enter path to PDF file', Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName)]
         [string[]] $Path,
 
         [ValidateRange(10,120)]

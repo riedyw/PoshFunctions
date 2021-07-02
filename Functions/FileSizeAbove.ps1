@@ -1,4 +1,4 @@
-filter FileSizeAbove ($Size) {
+filter FileSizeAbove {
 <#
 .SYNOPSIS
     To use as a filter against Get-ChildItem
@@ -18,8 +18,14 @@ filter FileSizeAbove ($Size) {
     Could NOT make this an advanced function
 #>
 
+
+    param
+    (
+        [int] $Size
+    )
+
     if ($_.Length -ge $Size) {
-        $_
+            $_
     }
 
 }

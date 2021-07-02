@@ -41,28 +41,17 @@ function Optimize-SqlStoredProcedure {
         Write-Verbose -Message "Interactive [$Interactive]"
         Write-Verbose -Message "IncludeSystemDatabase [$IncludeSystemDatabase]"
         try {
-            $SqlDbParam = @{
-                ServerInstance = $ServerInstance
-                Database       = 'master'
-                Query          = "SELECT SERVERPROPERTY('Edition') as 'Edition';"
+            $SpParam = @{
+                ServerInstance        = $ServerInstance
+                Database              = $Database
+                IncludeSystemDatabase = $IncludeSystemDatabase
             }
-            $SqlEdition = Invoke-Sqlcmd @SqlDbParam
-            if ($SqlEdition.Edition -match 'Enterprise') {
-                $Online = ' with (online = on)'
-            } else {
-                $Online = ''
-            }
+            $SpList = Get-SqlStoredProcedure @SpParam
+            $SpList = $SpList | Sort-Object -Property DbName, Schema, Procedure
         } catch {
-            Write-Error "Could not make SQL connection to [$ServerInstance], either server not up, or no permissions to connect."
+            Write-Error -Message "Could not make SQL connection to [$ServerInstance], either server not up, or no permissions to connect."
             return
         }
-        $SpParam = @{
-            ServerInstance        = $ServerInstance
-            Database              = $Database
-            IncludeSystemDatabase = $IncludeSystemDatabase
-        }
-        $SpList = Get-SqlStoredProcedure @SpParam
-        $SpList = $SpList | Sort-Object DbName, Schema, Procedure
     }
 
     process {
@@ -70,14 +59,14 @@ function Optimize-SqlStoredProcedure {
             $SpList | Show-Progress -Activity 'Recompiling all stored procedures' -PassThru -Id 1 | ForEach-Object {
                 $CurSp = $_
                 $SpQuery = "EXECUTE sp_recompile [$($CurSp.Schema).$($CurSp.Procedure)];`r`n"
-                Write-Verbose "DB [$($CurSp.DbName)] SCHEMA [$($CurSp.Schema)] PROCEDURE [$($CurSp.Procedure)]"
+                Write-Verbose -Message "DB [$($CurSp.DbName)] SCHEMA [$($CurSp.Schema)] PROCEDURE [$($CurSp.Procedure)]"
                 Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $CurSp.DbName -Query $SpQuery -QueryTimeout 300 -Verbose:$false | Out-Null
             }
         } else {
             $SpList | ForEach-Object {
                 $CurSp = $_
                 $SpQuery = "EXECUTE sp_recompile [$($CurSp.Schema).$($CurSp.Procedure)];`r`n"
-                Write-Verbose "DB [$($CurSp.DbName)] SCHEMA [$($CurSp.Schema)] PROCEDURE [$($CurSp.Procedure)]"
+                Write-Verbose -Message "DB [$($CurSp.DbName)] SCHEMA [$($CurSp.Schema)] PROCEDURE [$($CurSp.Procedure)]"
                 Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $CurSp.DbName -Query $SpQuery -QueryTimeout 300 -Verbose:$false | Out-Null
             }
         }

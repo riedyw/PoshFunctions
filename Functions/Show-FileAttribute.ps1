@@ -68,7 +68,7 @@ function Show-FileAttribute {
         else {
             [enum]::Getvalues($datatype) |
             ForEach-Object {
-                New-Object -TypeName psobject ([ordered] @{
+                New-Object -TypeName psobject -Property ([ordered] @{
                     Name = $_.toString()
                     Dec = $_.value__
                     Hex = '0x{0:x}' -f ($_.value__)

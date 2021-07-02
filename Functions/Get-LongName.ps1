@@ -44,7 +44,7 @@ function Get-LongName {
 
     [CmdletBinding(ConfirmImpact = 'None')]
     param(
-        [Parameter(Mandatory, Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName)]
+        [Parameter(Mandatory, HelpMessage='Please enter the path to a file or folder', Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName)]
         [string[]] $Path,
 
         [switch] $IncludeInput
@@ -62,7 +62,7 @@ function Get-LongName {
                     Write-Error -Message "ERROR: File specification [$curPath] resolves to more than 1 file."
                 } else {
                     $Item = Get-Item -Path $ResolveFile
-                    Write-Verbose $Item.PSProvider
+                    Write-Verbose -Message $Item.PSProvider
                     if ($Item.PSProvider.ToString() -eq 'Microsoft.PowerShell.Core\FileSystem') {
                         Write-Verbose -Message "Using item [$ResolveFile]"
                         $ReturnVal = $Item.Fullname
@@ -72,7 +72,7 @@ function Get-LongName {
                             $ItemType = 'File'
                         }
                         if ($IncludeInput) {
-                            New-Object -Type psobject -Property ([ordered] @{
+                            New-Object -TypeName psobject -Property ([ordered] @{
                                     ShortName = $ResolveFile
                                     LongName  = $ReturnVal
                                     ItemType  = $ItemType
@@ -81,7 +81,7 @@ function Get-LongName {
                             Write-Output -InputObject $ReturnVal
                         }
                     } else {
-                        Write-Error 'Only works against filesystem objects'
+                        Write-Error -Message 'Only works against filesystem objects'
                     }
                 }
             } else {

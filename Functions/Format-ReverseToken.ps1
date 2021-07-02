@@ -46,7 +46,7 @@ Function Format-ReverseToken {
     [CmdletBinding(ConfirmImpact='None')]
     [outputtype('string')]
     param(
-        [Parameter(Mandatory,Position=0,ValueFromPipeline)]
+        [Parameter(Mandatory, HelpMessage='Enter a string composed of tokens',Position=0,ValueFromPipeline)]
         [string[]] $String,
 
         [string] $Delimiter = '.',
@@ -80,7 +80,7 @@ Function Format-ReverseToken {
                     ReverseToken = $ReturnVal
                 })
             } else {
-                write-output $ReturnVal
+                write-output -InputObject $ReturnVal
             }
         }
     }

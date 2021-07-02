@@ -52,7 +52,7 @@ function Optimize-SqlIndexFragmentation {
         [ValidateRange(1, 99)]
         [int] $MinFragmentation = 10,
 
-        [ValidateScript({($_ -gt 0)})]
+        [ValidateScript( { ($_ -gt 0) })]
         [int] $MinPageCount = 200
     )
 
@@ -79,7 +79,7 @@ function Optimize-SqlIndexFragmentation {
                 $Online = ''
             }
         } catch {
-            Write-Error "Could not make SQL connection to [$ServerInstance], either server not up, or no permissions to connect."
+            Write-Error -Message "Could not make SQL connection to [$ServerInstance], either server not up, or no permissions to connect."
             return
         }
         $FragParam = @{
@@ -91,7 +91,7 @@ function Optimize-SqlIndexFragmentation {
             MinPageCount          = $MinPageCount
         }
         $TableList = Get-SqlIndexFragmentation @FragParam
-        $TableList = $TableList | Sort-Object DbName, Schema, Table, Index
+        $TableList = $TableList | Sort-Object -Property DbName, Schema, Table, Index
     }
 
     process {
@@ -109,7 +109,7 @@ function Optimize-SqlIndexFragmentation {
                         $UpdateQuery += "ALTER INDEX [$($CurTable.Index)] ON $($CurTable.Schema).$($CurTable.table) REORGANIZE;`r`n"
                     }
                 }
-                Write-Verbose "DB [$($CurTable.DbName)] SCHEMA [$($CurTable.Schema)] TABLE [$($CurTable.Table)] INDEX [$($CurTable.Index)]"
+                Write-Verbose -Message "DB [$($CurTable.DbName)] SCHEMA [$($CurTable.Schema)] TABLE [$($CurTable.Table)] INDEX [$($CurTable.Index)]"
                 Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $CurTable.DbName -Query $UpdateQuery -QueryTimeout 900 -Verbose:$false | Out-Null
             }
         } else {
@@ -124,7 +124,7 @@ function Optimize-SqlIndexFragmentation {
                         $UpdateQuery += "ALTER INDEX [$($CurTable.Index)] ON $($CurTable.Schema).$($CurTable.table) REORGANIZE;`r`n"
                     }
                 }
-                Write-Verbose "DB [$($CurTable.DbName)] SCHEMA [$($CurTable.Schema)] TABLE [$($CurTable.Table)] INDEX [$($CurTable.Index)]"
+                Write-Verbose -Message "DB [$($CurTable.DbName)] SCHEMA [$($CurTable.Schema)] TABLE [$($CurTable.Table)] INDEX [$($CurTable.Index)]"
                 Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $CurTable.DbName -Query $UpdateQuery -QueryTimeout 900 -Verbose:$false | Out-Null
             }
         }

@@ -29,7 +29,7 @@ function Move-ToRecycleBin {
 
     [CmdletBinding(ConfirmImpact = 'Medium')]
     param (
-        [Parameter(Mandatory, ValueFromPipeline, ValueFromPipelineByPropertyName)]
+        [Parameter(Mandatory, HelpMessage='Please enter a path to a file or folder. Wildcards accepted.', ValueFromPipeline, ValueFromPipelineByPropertyName)]
         [string[]] $Path
     )
 

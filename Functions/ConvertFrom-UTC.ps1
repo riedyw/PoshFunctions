@@ -52,7 +52,7 @@ function ConvertFrom-UTC {
     [CmdletBinding()]
     [OutputType('datetime')]
     param(
-        [parameter(Mandatory, ValueFromPipeline, Position = 0)]
+        [parameter(Mandatory,HelpMessage='Enter a datetime string', ValueFromPipeline, Position = 0)]
         [datetime[]] $Date,
 
         [switch] $IncludeInput

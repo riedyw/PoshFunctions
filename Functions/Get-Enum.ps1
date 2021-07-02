@@ -55,7 +55,7 @@ function Get-Enum {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingInvokeExpression','')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseProcessBlockForPipelineCommand','')]
     param (
-        [Parameter(Mandatory,Position=0,ValueFromPipeline)]
+        [Parameter(Mandatory, HelpMessage='Please enter a .Net typename',Position=0,ValueFromPipeline)]
         [type[]] $TypeName,
 
         [switch] $Binary,
@@ -81,7 +81,7 @@ function Get-Enum {
 
     process {
         foreach ($currentType in $TypeName) {
-            write-verbose "currentType [$currentType]"
+            Write-Verbose -Message "currentType [$currentType]"
             if ($currentType.BaseType.FullName -ne 'System.Enum')
             {
                 Write-Error -message "Type '$curExpandType' is not an enum"

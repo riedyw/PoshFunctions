@@ -44,7 +44,7 @@ function Expand-IPV6 {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]
     param
     (
-        [Parameter(Mandatory, Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName)]
+        [Parameter(Mandatory, HelpMessage='Enter an IPv6 address', Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName)]
         [Alias('Address')]
         [string[]] $IPv6,
 

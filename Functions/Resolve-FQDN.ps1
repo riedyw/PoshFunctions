@@ -38,7 +38,7 @@ function Resolve-FQDN {
 #>
     [CmdletBinding()]
     Param (
-        [parameter(ValueFromPipeLine, ValueFromPipeLineByPropertyName, Mandatory)]
+        [parameter(ValueFromPipeLine, HelpMessage='The name of the address you want to resolve the FQDN', ValueFromPipeLineByPropertyName, Mandatory)]
         [Alias('Host', 'CN', 'Server')]
         [string[]] $ComputerName,
 

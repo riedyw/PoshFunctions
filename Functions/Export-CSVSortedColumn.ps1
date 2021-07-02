@@ -88,7 +88,7 @@ function Export-CSVSortedColumn {
         } elseif ($Path) {
             $CsvParams.Path = $Path
         } else {
-            Write-Error -Message "ERROR Path or LiteralPath not specified."
+            Write-Error -Message 'ERROR Path or LiteralPath not specified.'
         }
 
         if ($UseCulture) {
@@ -135,7 +135,7 @@ function Export-CSVSortedColumn {
     }
 
     end {
-        $Result | Select-Object $Properties.name | Export-Csv @CsvParams
+        $Result | Select-Object -Property $Properties.name | Export-Csv @CsvParams
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }

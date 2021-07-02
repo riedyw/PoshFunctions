@@ -67,7 +67,7 @@ function Get-LastDayInMonth {
                     Days  = $ReturnVal
                 })
         } else {
-            Write-Output $ReturnVal
+            Write-Output -InputObject $ReturnVal
         }
     }
 

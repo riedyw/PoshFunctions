@@ -31,10 +31,10 @@ function Measure-Char {
 
     [cmdletbinding()]
     param(
-        [parameter(Mandatory, ValueFromPipeline, Position = 0)]
+        [parameter(Mandatory, HelpMessage='Enter the string you wish to search for a particular character', ValueFromPipeline, Position = 0)]
         [string[]] $String,
 
-        [parameter(Mandatory, Position = 1)]
+        [parameter(Mandatory, HelpMessage='The character you want to search for', Position = 1)]
         [char] $Char,
 
         [switch] $IgnoreCase,

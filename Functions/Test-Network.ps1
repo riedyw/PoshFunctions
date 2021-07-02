@@ -21,7 +21,7 @@ function Test-Network {
 
     [cmdletbinding()]
     param(
-        [Parameter(Mandatory, Position = 0, ValueFromPipeline)]
+        [Parameter(Mandatory,HelpMessage='Please enter a network in CIDR format (ex. 192.168.1.0/24)', Position = 0, ValueFromPipeline)]
         [string[]] $Subnet
     )
 

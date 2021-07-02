@@ -14,7 +14,8 @@ function Switch-Mute {
     }
 
     process {
-        $wshShell = New-Object -ComObject wscript.shell;$wshShell.SendKeys([char]173)
+        $wshShell = New-Object -ComObject wscript.shell
+        $wshShell.SendKeys([char]173)
     }
 
     end {

@@ -1,13 +1,13 @@
 function New-RandomPassword {
-<#
+    <#
 .SYNOPSIS
     Creates a new random password
 .DESCRIPTION
     Creates a new random password. Parameters can be passed to determine minimum and maximum password lengths, whether to avoid characters that are similar to one another or to limit it to readable words
 .PARAMETER MinLength
-    Integer representing minimum password length, valid range 8-128 characters
+    Integer representing minimum password length, valid range 8-102 characters
 .PARAMETER MaxLength
-    Integer representing maximum password length, valid range 8-128 characters
+    Integer representing maximum password length, valid range 8-102 characters
 .PARAMETER NonAlphaChars
     Integer representing the number of non alphabetic characters
 .PARAMETER Readable
@@ -38,19 +38,19 @@ function New-RandomPassword {
 
     #region parameter
     [CmdletBinding(DefaultParameterSetName = 'Web', ConfirmImpact = 'None')]
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions','')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
     [OutputType('string')]
     Param (
 
         [Parameter(ParameterSetName = 'Web')]
         [Parameter(ParameterSetName = 'Readable')]
-        [ValidateRange(8, 128)]
+        [ValidateRange(8, 102)]
         [int] $MinLength = 12,
 
         [Parameter(ParameterSetName = 'Web')]
         [Parameter(ParameterSetName = 'Readable')]
-        [ValidateRange(8, 128)]
+        [ValidateRange(8, 102)]
         [int] $MaxLength,
 
         [Parameter(ParameterSetName = 'Web')]
@@ -117,13 +117,13 @@ function New-RandomPassword {
                     if (-not $AvoidSimilar) {
                         $RandomSymbol = $Symbol.Char | Get-Random -Verbose:$false
                         $RandomDigit = 0..9 | Get-Random -Verbose:$false
-                        $curWords = Get-Random -Min $MinWords -Max ($MaxWords + 1) -Verbose:$false
+                        $curWords = Get-Random -Minimum $MinWords -Maximum ($MaxWords + 1) -Verbose:$false
                         Write-Verbose -Message "Symbol [$RandomSymbol] Digit [$RandomDigit]"
                         $ReturnVal = ( @(($Sample | Get-Random -Count $curWords -Verbose:$false), $RandomDigit, $RandomSymbol) | Get-Random -Count ($curWords + 2)) -join ''
                     } else {
                         $RandomSymbol = $Symbol.Char | Where-Object { -not ($_ -cmatch $SimilarRegex) } | Get-Random -Verbose:$false
                         $RandomDigit = 0..9 | Where-Object { -not ($_ -cmatch $SimilarRegex) } | Get-Random -Verbose:$false
-                        $curWords = Get-Random -Min $MinWords -Max ($MaxWords + 1) -Verbose:$false
+                        $curWords = Get-Random -Minimum $MinWords -Maximum ($MaxWords + 1) -Verbose:$false
                         $Sample = $Sample | Where-Object { -not ($_ -cmatch $SimilarRegex) }
                         $ReturnVal = ( @(($Sample | Get-Random -Count $curWords -Verbose:$false), $RandomDigit, $RandomSymbol) | Get-Random -Count ($curWords + 2)) -join ''
                     }

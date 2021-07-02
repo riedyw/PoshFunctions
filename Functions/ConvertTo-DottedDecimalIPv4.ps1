@@ -25,7 +25,7 @@ function ConvertTo-DottedDecimalIPv4 {
 
     [CmdletBinding(ConfirmImpact='None')]
     param(
-        [Parameter(Mandatory, Position = 0, ValueFromPipeline)]
+        [Parameter(Mandatory,HelpMessage='Please enter an IPvr address', Position = 0, ValueFromPipeline)]
         [ipaddress[]] $IPAddress,
 
         [switch] $IncludeInput

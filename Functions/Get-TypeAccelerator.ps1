@@ -41,7 +41,7 @@ function Get-TypeAccelerator {
             $split = "`r`n"
         }
          # The contents of the here string to its closing token MUST, MUST, MUST be at column 0. Autoformatting and indentation will break the here string.
-        $HereString = @"
+        $HereString = @'
 Name,FullName
 arraylist,System.Collections.ArrayList
 bitarray,System.Collections.BitArray
@@ -55,7 +55,7 @@ stack,System.Collections.Stack
 timezoneinfo,System.TimeZoneInfo
 webclient,System.Net.WebClient
 webrequest,System.Net.WebRequest
-"@
+'@
         $ToAddArray = $HereString -split $split | ConvertFrom-Csv
         Write-Verbose -Message "ToAddArray has [$($ToAddArray.count)] entries"
     }

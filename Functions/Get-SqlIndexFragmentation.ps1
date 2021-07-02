@@ -35,7 +35,7 @@ function Get-SqlIndexFragmentation {
         [ValidateRange(1, 99)]
         [int] $MinFragmentation = 10,
 
-        [ValidateScript({($_ -gt 0)})]
+        [ValidateScript( { ($_ -gt 0) })]
         [int] $MinPageCount = 200
     )
 
@@ -52,11 +52,11 @@ function Get-SqlIndexFragmentation {
         try {
             $DatabaseList = Get-SqlDatabase -ServerInstance $ServerInstance -Database $Database -IncludeSystemDatabase:$IncludeSystemDatabase
             if (-not $DatabaseList) {
-                Write-Error "No databases that match [$Database]"
+                Write-Error -Message "No databases that match [$Database]"
                 return
             }
         } catch {
-            Write-Error "Could not make SQL connection to [$ServerInstance], either server not up, or no permissions to connect."
+            Write-Error -Message "Could not make SQL connection to [$ServerInstance], either server not up, or no permissions to connect."
             return
         }
         $FragQuery = "
@@ -95,8 +95,8 @@ function Get-SqlIndexFragmentation {
         $DatabaseList | ForEach-Object -Begin { } -Process {
             $CurDatabase = $_
             Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $CurDatabase.Name -Query $FragQuery -QueryTime 900 |
-                Select-Object DbName, Schema, Table, Index,
-                    @{Name = 'Avg_Fragmentation_In_Percent'; Expr = { ([float] ('{0:f2}' -f $_.avg_fragmentation_in_percent)) } }, Page_Count
+            Select-Object -Property DbName, Schema, Table, Index,
+            @{Name = 'Avg_Fragmentation_In_Percent'; Expr = { ([float] ('{0:f2}' -f $_.avg_fragmentation_in_percent)) } }, Page_Count
         }
     }
 

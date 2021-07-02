@@ -44,7 +44,7 @@ function Test-NtpDateVsNow {
     [OutputType('bool')]
     Param (
         # Specifies the NTP server to communicate with
-        [parameter(ValueFromPipeline, Position = 0, HelpMessage = 'Enter a ComputerName or IpAddress of a system acting as a time server [domain controller] or appliance')]
+        [parameter(ValueFromPipeline, Position = 0)]
         [Alias('NtpServer', 'CN', 'Server')]
         [string] $ComputerName = (Get-ADDomainController).HostName,
 

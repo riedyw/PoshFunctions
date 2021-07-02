@@ -44,7 +44,7 @@ function Get-ShortName {
 
     [CmdletBinding(ConfirmImpact = 'None')]
     param(
-        [Parameter(Mandatory, Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName)]
+        [Parameter(Mandatory, HelpMessage='Please enter the path to a file or folder', Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName)]
         [string[]] $Path,
 
         [switch] $IncludeInput
@@ -73,7 +73,7 @@ function Get-ShortName {
                             $ReturnVal = $FileSystemObject.GetFile($ResolveFile).ShortPath
                         }
                         if ($IncludeInput) {
-                            New-Object -Type psobject -Property ([ordered] @{
+                            New-Object -TypeName psobject -Property ([ordered] @{
                                     LongName  = $ResolveFile
                                     ShortName = $ReturnVal
                                     ItemType  = $ItemType
@@ -82,7 +82,7 @@ function Get-ShortName {
                             Write-Output -InputObject $ReturnVal
                         }
                     } else {
-                        Write-Error 'Only works against filesystem objects'
+                        Write-Error -Message 'Only works against filesystem objects'
                     }
 
                 }

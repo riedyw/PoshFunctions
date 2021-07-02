@@ -24,16 +24,16 @@ function Remove-TeamsCache {
 
     process {
         if (Get-Process -Name teams -ErrorAction SilentlyContinue -Verbose:$false) {
-            Write-Error 'Teams is currently running. Please exit Teams and run again'
+            Write-Error -Message 'Teams is currently running. Please exit Teams and run again'
             return
         }
         if ($All) {
             Write-Verbose -Message '-Admin specified'
             if (-not (Test-IsAdmin -Verbose:$false)) {
-                Write-Error 'In order to run as -All you must be running an elevated Administrator prompt'
+                Write-Error -Message 'In order to run as -All you must be running an elevated Administrator prompt'
                 return
             } else {
-                $parentFolder = "c:\users\*\AppData\Roaming\Microsoft\Teams\*"
+                $parentFolder = 'c:\users\*\AppData\Roaming\Microsoft\Teams\*'
             }
         } else {
             $parentFolder = "$env:userprofile\AppData\Roaming\Microsoft\Teams\*"
@@ -43,14 +43,14 @@ function Remove-TeamsCache {
         $list = 'application cache', 'blob storage', 'databases', 'GPUcache', 'IndexedDB', 'Local Storage', 'tmp'
 
         # delete the folders found in the list
-        Get-ChildItem $parentFolder -Directory | Where-Object name -In $list | Remove-Item -Recurse -Verbose
+        Get-ChildItem -Path $parentFolder -Directory | Where-Object name -In $list | Remove-Item -Recurse -Verbose
     }
 
     end {
         if ($All) {
-            Write-Output 'Finished deleting Teams cache for all users'
+            Write-Output -InputObject 'Finished deleting Teams cache for all users'
         } else {
-            Write-Output 'Finished deleting Teams cache for the current user'
+            Write-Output -InputObject 'Finished deleting Teams cache for the current user'
         }
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }

@@ -131,9 +131,9 @@ function Expand-Tab {
                     break
                 }
                 if ( $TabWidth -gt 0 ) {
-                    $pad = " " * ($TabWidth - ($i % $TabWidth))
+                    $pad = ' ' * ($TabWidth - ($i % $TabWidth))
                 } else {
-                    $pad = ""
+                    $pad = ''
                 }
                 $line = $line -replace "^([^\t]{$i})\t(.*)$", "`$1$pad`$2"
             }

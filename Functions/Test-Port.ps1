@@ -136,7 +136,7 @@ function Test-Port {
                     #Reset failed value
                     $failed = $Null
                     #Merge temp array with report
-                    Write-Output $temp
+                    Write-Output -InputObject $temp
                 }
                 if ($udp) {
                     #$temp = '' | Select-Object -Property ComputerName, Protocol, Port, Open, Notes
@@ -169,7 +169,7 @@ function Test-Port {
                     $socket.dispose()
                     Remove-Variable -Name socket
                     #Merge temp array with report
-                    Write-Output $temp
+                    Write-Output -InputObject $temp
                 }
             }
         }

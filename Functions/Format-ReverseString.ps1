@@ -32,7 +32,7 @@ Function Format-ReverseString {
     [CmdletBinding(ConfirmImpact='None')]
     [outputtype('string')]
     param(
-        [Parameter(Mandatory,Position=0,ValueFromPipeline)]
+        [Parameter(Mandatory, HelpMessage='Enter a string you wish to be reversed',Position=0,ValueFromPipeline)]
         [string[]] $String,
 
         [Alias('IncludeOriginal')]
@@ -52,7 +52,7 @@ Function Format-ReverseString {
                     Reverse  = $ReturnVal
                 })
             } else {
-                write-output $ReturnVal
+                write-output -InputObject $ReturnVal
             }
         }
     }

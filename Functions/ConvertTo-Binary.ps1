@@ -23,7 +23,7 @@ function ConvertTo-Binary {
     [CmdletBinding(ConfirmImpact = 'Low')]
     [OutputType('string')]
     Param(
-        [Parameter(Mandatory, Position = 0, ValueFromPipeline)]
+        [Parameter(Mandatory,HelpMessage='Enter an integer value(s)', Position = 0, ValueFromPipeline)]
         [int[]] $Number,
 
         [switch] $IncludeInput

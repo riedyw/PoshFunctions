@@ -48,7 +48,7 @@ function ConvertTo-BinaryIPv4 {
     [CmdletBinding(ConfirmImpact = 'None')]
     [OutputType('PsObject')]
     param(
-        [Parameter(Mandatory, Position = 0, ValueFromPipeline)]
+        [Parameter(Mandatory,HelpMessage='Enter an IPv4 address', Position = 0, ValueFromPipeline)]
         [IPAddress[]] $IPAddress,
 
         [Parameter(Position = 1)]

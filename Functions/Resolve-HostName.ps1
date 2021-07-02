@@ -36,8 +36,8 @@ function Resolve-HostName {
 #>
     [CmdletBinding()]
     Param (
-        [parameter(ValueFromPipeLine, ValueFromPipeLineByPropertyName, Mandatory)]
-        [Alias('host')]
+        [parameter(ValueFromPipeLine, HelpMessage='Enter the hostname you want to resolve', ValueFromPipeLineByPropertyName, Mandatory)]
+        [Alias('host','ComputerName')]
         [string[]] $Hostname,
 
         [switch] $IncludeInput
