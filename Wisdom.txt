@@ -362,7 +362,7 @@ Happiness is not by chance, but by choice.
 Try and fail, but don't fail to try.
 -  Stephen Kaggwa
 %
-Inspiration and genius--one and the same.
+Inspiration and genius - one and the same.
 - Victor Hugo
 %
 The power of imagination makes us infinite.
@@ -726,7 +726,7 @@ Reputation is for time; character is for eternity.
 - J. B. Gough
 %
 Silence does not always mark wisdom.
-- Samuel Taylor Coleridge.
+- Samuel Taylor Coleridge
 %
 No man is happy who does not think himself so.
 - Publilius Syrus
@@ -797,7 +797,7 @@ The more a man knows, the more he forgives.
 There is more to life than increasing its speed.
 - Mahatma Ghandi
 %
-Money can't buy everything--for example poverty.
+Money can't buy everything - for example poverty.
 - Nelson Algren
 %
 Money talks, but all it ever says is good-bye.
@@ -2036,7 +2036,7 @@ It is easier to go down a hill than up, but the view is best from the top.
 I can no longer obey; I have tasted command, and I cannot give it up.
 - Napoleon Bonaparte
 %
-To reach a port, we must sail-Sail, not tie at anchor-Sail, not drift.
+To reach a port, we must sail - Sail, not tie at anchor - Sail, not drift.
 - Franklin Roosevelt
 %
 Half of the failures in life come from pulling one's horse when he is leaping.
@@ -2513,7 +2513,7 @@ I will prepare and someday my chance will come.
 No man has a good enough memory to be a successful liar.
 - Abraham Lincoln
 %
-My father taught me to work, but not to love it. I never did like to work, and I don't deny it. I'd rather read, tell stories, crack jokes, talk, laugh -- anything but work.
+My father taught me to work, but not to love it. I never did like to work, and I don't deny it. I'd rather read, tell stories, crack jokes, talk, laugh - anything but work.
 - Abraham Lincoln
 %
 The best thing about the future is that it comes one day at a time.
@@ -2576,7 +2576,7 @@ It is difficult to make a man miserable while he feels worthy of himself and cla
 I am a firm believer in the people. If given the truth, they can be depended upon to meet any national crisis. The great point is to bring them the real facts, and beer.
 - Abraham Lincoln
 %
-I am not concerned that you have fallen -- I am concerned that you arise.
+I am not concerned that you have fallen - I am concerned that you arise.
 - Abraham Lincoln
 %
 The better part of one's life consists of his friendships.
@@ -2978,7 +2978,7 @@ I walk slowly, but I never walk backward.
 If we take habitual drunkards as a class, their heads and hearts will bear an advantageous comparison with those of any other class.
 - Abraham Lincoln
 %
-Military glory--that attractive rainbow, that rises in showers of blood--that serpent's eye, that charms to destroy...
+Military glory - that attractive rainbow, that rises in showers of blood - that serpent's eye, that charms to destroy...
 - Abraham Lincoln
 %
 One company can serve some of your needs all of the time, or all of your needs some of the time, but never both.
@@ -2993,7 +2993,7 @@ Resolve to be honest at all events; and if in your own judgment you cannot be an
 The books, and your capacity for understanding them, are just the same in all places... Always bear in mind that your own resolution to succeed, is more important than any other one thing.
 - Abraham Lincoln
 %
-There has never been but one question in all civilization-how to keep a few men from saying to many men: You work and earn bread and we will eat it.
+There has never been but one question in all civilization - how to keep a few men from saying to many men: You work and earn bread and we will eat it.
 - Abraham Lincoln
 %
 The most altruistic man is the most selfish.
@@ -3068,7 +3068,7 @@ I have destroyed my enemies when I make friends with them
 With the catching end the pleasures of the chase.
 - Abraham Lincoln
 %
-I have never had a feeling politically that did not spring from the sentiments embodied in the Declaration of Independence. --February 22, 1861
+I have never had a feeling politically that did not spring from the sentiments embodied in the Declaration of Independence.
 - Abraham Lincoln
 %
 You can have no conflict, without being yourselves the aggressors.
@@ -3149,7 +3149,7 @@ She won't think anything about it.
 Our government rests in public opinion. Whoever can change public opinion can change the government.
 - Abraham Lincoln
 %
-I know of nothing so pleasant to the mind, as the discovery of anything which is at once new and valuable--nothing which so lightens and sweetens toil, as the hopeful pursuit of such discovery.
+I know of nothing so pleasant to the mind, as the discovery of anything which is at once new and valuable - nothing which so lightens and sweetens toil, as the hopeful pursuit of such discovery.
 - Abraham Lincoln
 %
 If any man ceases to attack me, I never remember the past against him.
@@ -3209,9 +3209,6 @@ As I would not be a slave, so I would not be a master. This expresses my idea of
 The larger the island of knowledge the longer the shoreline of wonder. Wonder rather than doubt is the root of knowledge.
 - Abraham Lincoln
 %
-If you ask me to cut down a tree, I'll spend the first four hours sharpening the axe.
-- Abraham Lincoln
-%
 A drop of honey catches more flies than a gallon of gall.
 - Abraham Lincoln
 %
@@ -3227,7 +3224,7 @@ No human counsel hath devised nor hath any mortal hand worked out these great th
 Let the people know the facts, and the country will be safe.
 - Abraham Lincoln
 %
-Advancement-improvement in condition-is the order of things in a society of equals.
+Advancement - improvement in condition - is the order of things in a society of equals.
 - Abraham Lincoln, Speeches and Letters of Abraham Lincoln
 %
 As to your proposals that a poll shall be opened in every precinct, and that the whole shall take place on the same day, I do not personally object.
@@ -3275,7 +3272,7 @@ An ant's life was to it, as sweet as ours to us.
 Be guided by reason. Cold Calculated unimpassioned reason
 - Abraham Lincoln
 %
-The world has never had a good definition of the word liberty... We all declare for liberty; but in using the same word we do not all mean the same thing. --April 18, 1864 Address at Baltimore
+The world has never had a good definition of the word liberty... We all declare for liberty; but in using the same word we do not all mean the same thing.
 - Abraham Lincoln
 %
 Lincoln on Grant: "He makes things get. Wherever he is, he makes things move."
