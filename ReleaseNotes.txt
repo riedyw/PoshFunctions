@@ -1,3 +1,12 @@
+### 2.2.5
+* added Compare-ObjectSetComplement
+* added Compare-ObjectSetDifference
+* added Compare-ObjectSetIntersection
+* added Compare-ObjectSetUnion
+* added Test-Set
+* updated Optimize-SqlIndexFragmentation
+* updated Optimize-SqlStoredProcedure
+
 ### 2.2.4
 * added Get-SqlDatabase
 * added Get-SqlIndexFragmentation

@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version: http://code.google.com/apis/chart/infographics/docs/qr_codes.html
 schema: 2.0.0
 ---
@@ -67,7 +67,7 @@ ViEWpewhead9)chEF
 ## PARAMETERS
 
 ### -MinLength
-Integer representing minimum password length, valid range 8-128 characters
+Integer representing minimum password length, valid range 8-102 characters
 
 ```yaml
 Type: Int32
@@ -82,7 +82,7 @@ Accept wildcard characters: False
 ```
 
 ### -MaxLength
-Integer representing maximum password length, valid range 8-128 characters
+Integer representing maximum password length, valid range 8-102 characters
 
 ```yaml
 Type: Int32

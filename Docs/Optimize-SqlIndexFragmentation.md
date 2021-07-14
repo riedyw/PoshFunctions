@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -130,7 +130,8 @@ Accept wildcard characters: False
 ```
 
 ### -MinFragmentation
-{{ Fill MinFragmentation Description }}
+Integer representing the minimum fragmentation percentage level you want to address.
+Valid range 1-99, defaults to 10
 
 ```yaml
 Type: Int32
@@ -145,7 +146,9 @@ Accept wildcard characters: False
 ```
 
 ### -MinPageCount
-{{ Fill MinPageCount Description }}
+Integer representing the minimum number of pages that must be in index before processing.
+Must be greater than 0.
+Default 200.
 
 ```yaml
 Type: Int32

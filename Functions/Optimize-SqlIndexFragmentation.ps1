@@ -66,6 +66,7 @@ function Optimize-SqlIndexFragmentation {
         Write-Verbose -Message "IncludeSystemDatabase [$IncludeSystemDatabase]"
         Write-Verbose -Message "MinFragmentation [$MinFragmentation]"
         Write-Verbose -Message "MinPageCount [$MinPageCount]"
+
         try {
             $SqlDbParam = @{
                 ServerInstance = $ServerInstance
@@ -90,42 +91,71 @@ function Optimize-SqlIndexFragmentation {
             MinFragmentation      = $MinFragmentation
             MinPageCount          = $MinPageCount
         }
-        $TableList = Get-SqlIndexFragmentation @FragParam
+        Write-Verbose -Message 'Getting SQL Index Fragmentation...'
+        [array] $TableList = Get-SqlIndexFragmentation @FragParam
         $TableList = $TableList | Sort-Object -Property DbName, Schema, Table, Index
     }
 
     process {
-        if ($Interactive) {
-            $TableList | Show-Progress -Activity 'Optimizing database table indexes' -PassThru -Id 1 | ForEach-Object {
-                $CurTable = $_
-                $UpdateQuery = "UPDATE STATISTICS $($CurTable.Schema).$($CurTable.Table);`r`n"
-                switch ($Type) {
-                    'Rebuild' {
-                        #  alter index <idxname> on <schema>.<table> rebuild with online = on
-                        $UpdateQuery += "ALTER INDEX [$($CurTable.Index)] ON $($CurTable.Schema).$($CurTable.table) REBUILD $Online;`r`n"
+        if ($TableList) {
+            Write-Verbose -Message "There are [$($TableList.count)] indexes to optimize"
+            Write-Verbose -Message 'Creating command list...'
+            $CommandsToRun = New-Object -TypeName 'System.Collections.ArrayList'
+            $Type = 'Reorganize'
+            $TableList | ForEach-Object {
+                $Current = $_
+                switch ($Current.Schema) {
+                    'dbo' {
+                        switch ($Type) {
+                            'Rebuild' {
+                                $CommandsToRun.Add((New-Object -TypeName psobject -Property ([ordered] @{
+                                                Database = $Current.Dbname
+                                                Query    = "UPDATE STATISTICS [$($Current.Table)]; " + "ALTER INDEX [$($Current.Index)] ON [$($Current.Table)] REBUILD $Online;"
+                                            }))) | Out-Null
+                            }
+                            'Reorganize' {
+                                $CommandsToRun.Add( (New-Object -TypeName psobject -Property ([ordered] @{
+                                                Database = $Current.Dbname
+                                                Query    = "UPDATE STATISTICS [$($Current.Table)]; " + "ALTER INDEX [$($Current.Index)] ON [$($Current.Table)] REORGANIZE;"
+                                            }))) | Out-Null
+                            }
+                        }
                     }
-                    'Reorganize' {
-                        # alter index <idxname> on <schema>.<table> reorganize
-                        $UpdateQuery += "ALTER INDEX [$($CurTable.Index)] ON $($CurTable.Schema).$($CurTable.table) REORGANIZE;`r`n"
+                    default {
+                        switch ($Type) {
+                            'Rebuild' {
+                                $CommandsToRun.Add( (New-Object -TypeName psobject -Property ([ordered] @{
+                                                Database = $Current.Dbname
+                                                Query    = "UPDATE STATISTICS [$($Current.Schema)].[$($Current.Table)]; " + "ALTER INDEX [$($Current.Index)] ON [$($Current.Schema)].[$($Current.Table)] REBUILD $Online;"
+                                            }))) | Out-Null
+                            }
+                            'Reorganize' {
+                                $CommandsToRun.Add( (New-Object -TypeName psobject -Property ([ordered] @{
+                                                Database = $Current.Dbname
+                                                Query    = "UPDATE STATISTICS [$($Current.Schema)].[$($Current.Table)]; " + "ALTER INDEX [$($Current.Index)] ON [$($Current.Schema)].[$($Current.Table)] REORGANIZE;"
+                                            }))) | Out-Null
+                            }
+                        }
                     }
                 }
-                Write-Verbose -Message "DB [$($CurTable.DbName)] SCHEMA [$($CurTable.Schema)] TABLE [$($CurTable.Table)] INDEX [$($CurTable.Index)]"
-                Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $CurTable.DbName -Query $UpdateQuery -QueryTimeout 900 -Verbose:$false | Out-Null
             }
         } else {
-            $TableList | ForEach-Object {
-                $CurTable = $_
-                $UpdateQuery = "UPDATE STATISTICS $($CurTable.Schema).$($CurTable.Table);`r`n"
-                switch ($Type) {
-                    'Rebuild' {
-                        $UpdateQuery += "ALTER INDEX [$($CurTable.Index)] ON $($CurTable.Schema).$($CurTable.table) REBUILD $Online;`r`n"
-                    }
-                    'Reorganize' {
-                        $UpdateQuery += "ALTER INDEX [$($CurTable.Index)] ON $($CurTable.Schema).$($CurTable.table) REORGANIZE;`r`n"
-                    }
-                }
-                Write-Verbose -Message "DB [$($CurTable.DbName)] SCHEMA [$($CurTable.Schema)] TABLE [$($CurTable.Table)] INDEX [$($CurTable.Index)]"
-                Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $CurTable.DbName -Query $UpdateQuery -QueryTimeout 900 -Verbose:$false | Out-Null
+            Write-Error -Message 'No indexes need to be optimized'
+            return
+        }
+
+#        $CommandsToRun
+#        return
+
+        if ($Interactive) {
+            $CommandsToRun | Show-Progress -Activity 'Optimizing database table indexes' -PassThru -Id 1 | ForEach-Object {
+                Write-Verbose -Message "DB [$($_.Database)] QUERY [$($_.Query)]"
+                Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $_.Database -Query $_.Query -QueryTimeout 900 -Verbose:$false | Out-Null
+            }
+        } else {
+            $CommandsToRun | ForEach-Object {
+                Write-Verbose -Message "DB [$($_.Database)] QUERY [$($_.Query)]"
+                Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $_.Database -Query $_.Query -QueryTimeout 900 -Verbose:$false | Out-Null
             }
         }
     }

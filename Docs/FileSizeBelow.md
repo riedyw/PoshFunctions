@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ To use as a filter against Get-ChildItem
 ## SYNTAX
 
 ```
-FileSizeBelow [[-Size] <Object>]
+FileSizeBelow [[-Size] <Int32>]
 ```
 
 ## DESCRIPTION
@@ -38,13 +38,13 @@ C:\temp\log.log 12/8/2019 9:55:07 PM    186
 The maximum size a file can be
 
 ```yaml
-Type: Object
+Type: Int32
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: 1
-Default value: None
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

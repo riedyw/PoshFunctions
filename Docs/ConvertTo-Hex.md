@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -41,7 +41,7 @@ Number Hex
 ## PARAMETERS
 
 ### -Number
-{{ Fill Number Description }}
+Enter an integer value
 
 ```yaml
 Type: Int32[]

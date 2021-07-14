@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -40,7 +40,7 @@ Binary Number
 ## PARAMETERS
 
 ### -Binary
-{{ Fill Binary Description }}
+Enter a binary string
 
 ```yaml
 Type: String[]

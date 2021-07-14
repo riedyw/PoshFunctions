@@ -4,7 +4,7 @@
     RootModule        = 'PoshFunctions.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '2.2.4'
+    ModuleVersion     = '2.2.5'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -62,18 +62,20 @@
 
     # Functions export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 
-    FunctionsToExport = @('Compare-ObjectProperty', 'Compare-PSGalleryObject',
-    'Convert-HexToRGB', 'Convert-Int32ToUint32', 'Convert-ObjectToHashtable',
-    'Convert-RGBToHex', 'Convert-ROT13', 'Convert-SecureStringToString',
-    'Convert-UserFlag', 'ConvertFrom-Base64', 'ConvertFrom-Binary',
-    'ConvertFrom-DateTime', 'ConvertFrom-FsRight', 'ConvertFrom-Hex',
-    'ConvertFrom-UrlEncode', 'ConvertFrom-UTC', 'ConvertFrom-Xml',
-    'ConvertTo-Base64', 'ConvertTo-Binary', 'ConvertTo-BinaryIPv4',
-    'ConvertTo-Bool', 'ConvertTo-DateTime', 'ConvertTo-DecimalIPv4',
-    'ConvertTo-DottedDecimalIPv4', 'ConvertTo-Hex', 'ConvertTo-OrderedDictionary',
-    'ConvertTo-UncPath', 'ConvertTo-UrlEncode', 'ConvertTo-UTC', 'Copy-Object',
-    'Eexit', 'Expand-IPv6', 'Expand-String', 'Expand-Tab',
-    'Export-CSVSortedColumn', 'FileSizeAbove', 'FileSizeBelow',
+    FunctionsToExport = @('Compare-ObjectProperty',
+    'Compare-ObjectSetComplement', 'Compare-ObjectSetDifference',
+    'Compare-ObjectSetIntersection', 'Compare-ObjectSetUnion',
+    'Compare-PSGalleryObject', 'Convert-HexToRGB', 'Convert-Int32ToUint32',
+    'Convert-ObjectToHashtable', 'Convert-RGBToHex', 'Convert-ROT13',
+    'Convert-SecureStringToString', 'Convert-UserFlag', 'ConvertFrom-Base64',
+    'ConvertFrom-Binary', 'ConvertFrom-DateTime', 'ConvertFrom-FsRight',
+    'ConvertFrom-Hex', 'ConvertFrom-UrlEncode', 'ConvertFrom-UTC',
+    'ConvertFrom-Xml', 'ConvertTo-Base64', 'ConvertTo-Binary',
+    'ConvertTo-BinaryIPv4', 'ConvertTo-Bool', 'ConvertTo-DateTime',
+    'ConvertTo-DecimalIPv4', 'ConvertTo-DottedDecimalIPv4', 'ConvertTo-Hex',
+    'ConvertTo-OrderedDictionary', 'ConvertTo-UncPath', 'ConvertTo-UrlEncode',
+    'ConvertTo-UTC', 'Copy-Object', 'Eexit', 'Expand-IPv6', 'Expand-String',
+    'Expand-Tab', 'Export-CSVSortedColumn', 'FileSizeAbove', 'FileSizeBelow',
     'Format-MacAddress', 'Format-RandomCase', 'Format-ReverseString',
     'Format-ReverseToken', 'Format-SortedList', 'Format-TitleCase',
     'Format-WrapText', 'Get-Address', 'Get-BashPath', 'Get-BinaryType',
@@ -113,8 +115,9 @@
     'Test-IsFileLocked', 'Test-IsHexString', 'Test-IsNull', 'Test-IsNumeric',
     'Test-IsNumLock', 'Test-IsScrollLock', 'Test-IsValidEmailAddress',
     'Test-IsValidIPv4', 'Test-IsValidIPv6', 'Test-Network', 'Test-NtpDateVsNow',
-    'Test-Password', 'Test-Port', 'Union-Object', 'Update-ExplorerIcon',
-    'Write-StringArray', 'Write-TextMenu')
+    'Test-Password', 'Test-Port', 'Test-Set', 'Union-Object',
+    'Update-ExplorerIcon', 'Write-StringArray', 'Write-TextMenu')
+
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     #CmdletsToExport = '*'
@@ -180,6 +183,10 @@
             # ReleaseNotes of this module
             ReleaseNotes = @'
 For full release notes see ReleaseNotes.txt
+### 2.2.5
+* added Test-Set
+* updated Optimize-SqlIndexFragmentation
+* updated Optimize-SqlStoredProcedure
 
 ### 2.2.4
 * added Get-SqlDatabase

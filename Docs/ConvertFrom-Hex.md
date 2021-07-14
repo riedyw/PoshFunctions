@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -42,7 +42,7 @@ Hex  Number
 ## PARAMETERS
 
 ### -Hex
-{{ Fill Hex Description }}
+Enter a hexadecimal string
 
 ```yaml
 Type: String[]

@@ -46,7 +46,7 @@ function Optimize-SqlStoredProcedure {
                 Database              = $Database
                 IncludeSystemDatabase = $IncludeSystemDatabase
             }
-            $SpList = Get-SqlStoredProcedure @SpParam
+            [array] $SpList = Get-SqlStoredProcedure @SpParam
             $SpList = $SpList | Sort-Object -Property DbName, Schema, Procedure
         } catch {
             Write-Error -Message "Could not make SQL connection to [$ServerInstance], either server not up, or no permissions to connect."
@@ -55,19 +55,39 @@ function Optimize-SqlStoredProcedure {
     }
 
     process {
-        if ($Interactive) {
-            $SpList | Show-Progress -Activity 'Recompiling all stored procedures' -PassThru -Id 1 | ForEach-Object {
-                $CurSp = $_
-                $SpQuery = "EXECUTE sp_recompile [$($CurSp.Schema).$($CurSp.Procedure)];`r`n"
-                Write-Verbose -Message "DB [$($CurSp.DbName)] SCHEMA [$($CurSp.Schema)] PROCEDURE [$($CurSp.Procedure)]"
-                Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $CurSp.DbName -Query $SpQuery -QueryTimeout 300 -Verbose:$false | Out-Null
+        if ($SpList) {
+            Write-Verbose -Message "There are [$($SpList.count)] stored procedures to recompile"
+            $CommandsToRun = New-Object -TypeName 'System.Collections.ArrayList'
+            $SpList | ForEach-Object {
+                $Current = $_
+                switch ($Current.Schema) {
+                    'dbo' {
+                        $CommandsToRun.Add((New-Object -TypeName psobject -Property ([ordered] @{
+                            Database = $Current.DbName
+                            Query = "EXECUTE sp_recompile [$($Current.Procedure)];"
+                        }))) | Out-Null
+                    }
+                    default {
+                        $CommandsToRun.Add((New-Object -TypeName psobject -Property ([ordered] @{
+                            Database = $Current.DbName
+                            Query = "EXECUTE sp_recompile [$($Current.Schema).$($Current.Procedure)];"
+                        }))) | Out-Null
+                    }
+                }
             }
         } else {
-            $SpList | ForEach-Object {
-                $CurSp = $_
-                $SpQuery = "EXECUTE sp_recompile [$($CurSp.Schema).$($CurSp.Procedure)];`r`n"
-                Write-Verbose -Message "DB [$($CurSp.DbName)] SCHEMA [$($CurSp.Schema)] PROCEDURE [$($CurSp.Procedure)]"
-                Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $CurSp.DbName -Query $SpQuery -QueryTimeout 300 -Verbose:$false | Out-Null
+            Write-Error -Message 'No stored procedures need to be recompiled'
+            return
+        }
+        if ($Interactive) {
+            $CommandsToRun | Show-Progress -Activity 'Recompiling all stored procedures' -PassThru -Id 1 | ForEach-Object {
+                Write-Verbose -Message "DB [$($_.Database)] QUERY [$($_.Query)]"
+                Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $_.Database -Query $_.Query -QueryTimeout 300 -Verbose:$false | Out-Null
+            }
+        } else {
+            $CommandsToRun | ForEach-Object {
+                Write-Verbose -Message "DB [$($_.Database)] QUERY [$($_.Query)]"
+                Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $_.Database -Query $_.Query -QueryTimeout 300 -Verbose:$false | Out-Null
             }
         }
     }

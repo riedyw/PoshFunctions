@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -77,7 +77,7 @@ The hostname(s) that you want resolved
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: host
+Aliases: host, ComputerName
 
 Required: True
 Position: 1

@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: poshfunctions
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ To use as a filter against Get-ChildItem
 ## SYNTAX
 
 ```
-FileSizeAbove [[-Size] <Object>]
+FileSizeAbove [[-Size] <Int32>]
 ```
 
 ## DESCRIPTION
@@ -38,13 +38,13 @@ C:\temp\install.wim 3/5/2020 11:39:23 AM 4314799742
 The minimum size a file can be
 
 ```yaml
-Type: Object
+Type: Int32
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: 1
-Default value: None
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
