@@ -62,7 +62,7 @@
 
     # Functions export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 
-    FunctionsToExport = @('Compare-ObjectProperty',
+    FunctionsToExport = @( 'Compare-ObjectProperty',
     'Compare-ObjectSetComplement', 'Compare-ObjectSetDifference',
     'Compare-ObjectSetIntersection', 'Compare-ObjectSetUnion',
     'Compare-PSGalleryObject', 'Convert-HexToRGB', 'Convert-Int32ToUint32',
@@ -85,16 +85,17 @@
     'Get-FolderName', 'Get-Font', 'Get-Fortune', 'Get-GeoCode',
     'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-LastDayInMonth',
     'Get-LongName', 'Get-MachineType', 'Get-MacVendor', 'Get-Magic8Ball',
-    'Get-Md5Sum', 'Get-NetworkCredential', 'Get-NTFSPermission', 'Get-NtpDate',
+    'Get-Md5Sum', 'Get-NetworkCredential', 'Get-NTFSPermission', 'Get-NtpDate', 'Get-ProcessUser',
     'Get-Power', 'Get-PrintableAscii', 'Get-PrivateProfileComment',
     'Get-PrivateProfileSection', 'Get-PrivateProfileSectionNames',
     'Get-PrivateProfileString', 'Get-PSWho', 'Get-RandomDate',
     'Get-RandomHexDigit', 'Get-RandomMacAddress', 'Get-RegExpandString',
-    'Get-RegistryValue', 'Get-Round', 'Get-SaveFileName', 'Get-Shortcut',
-    'Get-ShortName', 'Get-SID', 'Get-SpecialFolder', 'Get-SqlDatabase',
-    'Get-SqlIndexFragmentation', 'Get-SqlStoredProcedure', 'Get-StaticProperty',
-    'Get-SubnetMaskIPv4', 'Get-TruncatedDate', 'Get-Type', 'Get-TypeAccelerator',
-    'Get-UrlContent', 'Get-WordCount', 'Get-WordList', 'grep', 'Invoke-Beep',
+    'Get-RegistryValue', 'Get-Round', 'Get-SaveFileName', 'Get-ScheduledTaskUser',
+    'Get-ServiceUser', 'Get-Shortcut', 'Get-ShortName', 'Get-SID',
+    'Get-SpecialFolder', 'Get-SqlDatabase', 'Get-SqlIndexFragmentation',
+    'Get-SqlStoredProcedure', 'Get-StaticProperty', 'Get-SubnetMaskIPv4',
+    'Get-TruncatedDate', 'Get-Type', 'Get-TypeAccelerator', 'Get-UrlContent',
+    'Get-WordCount', 'Get-WordList', 'grep', 'Invoke-Beep',
     'Invoke-CountdownTimer', 'Invoke-Speak', 'Join-Object', 'Lock-Workstation',
     'Measure-Char', 'mklink', 'Move-ToRecycleBin', 'New-Credential',
     'New-InputBox', 'New-InputBoxSecureString', 'New-Popup', 'New-QR',
@@ -116,8 +117,7 @@
     'Test-IsNumLock', 'Test-IsScrollLock', 'Test-IsValidEmailAddress',
     'Test-IsValidIPv4', 'Test-IsValidIPv6', 'Test-Network', 'Test-NtpDateVsNow',
     'Test-Password', 'Test-Port', 'Test-Set', 'Union-Object',
-    'Update-ExplorerIcon', 'Write-StringArray', 'Write-TextMenu')
-
+    'Update-ExplorerIcon', 'Write-StringArray', 'Write-TextMenu' )
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     #CmdletsToExport = '*'
@@ -184,6 +184,13 @@
             ReleaseNotes = @'
 For full release notes see ReleaseNotes.txt
 ### 2.2.5
+* added Compare-ObjectSetComplement
+* added Compare-ObjectSetDifference
+* added Compare-ObjectSetIntersection
+* added Compare-ObjectSetUnion
+* added Get-ProcessUser
+* added Get-ScheduledTaskUser
+* added Get-ServiceUser
 * added Test-Set
 * updated Optimize-SqlIndexFragmentation
 * updated Optimize-SqlStoredProcedure

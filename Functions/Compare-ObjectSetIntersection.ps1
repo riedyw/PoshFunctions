@@ -36,7 +36,7 @@ function Compare-ObjectSetIntersection {
 #>
 
     [CmdletBinding()]
-    [outputtype('string')]
+    [outputtype('psobject')]
     param (
         [Alias('RO', 'Left')]
         [string[]] $ReferenceObject,

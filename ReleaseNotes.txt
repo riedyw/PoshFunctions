@@ -3,6 +3,9 @@
 * added Compare-ObjectSetDifference
 * added Compare-ObjectSetIntersection
 * added Compare-ObjectSetUnion
+* added Get-ProcessUser
+* added Get-ScheduledTaskUser
+* added Get-ServiceUser
 * added Test-Set
 * updated Optimize-SqlIndexFragmentation
 * updated Optimize-SqlStoredProcedure
