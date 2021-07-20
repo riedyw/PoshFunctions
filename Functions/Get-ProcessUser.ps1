@@ -42,7 +42,7 @@ function Get-ProcessUser {
 
     process {
         $Proc = Invoke-Command -ComputerName $ComputerName -ScriptBlock { Get-Process -IncludeUserName } |
-        Where-Object { $_.UserName -like $UserName }
+            Where-Object { $_.UserName -like $UserName }
         if (-not $IncludeSystem) {
             $Proc = $Proc | Where-Object { $_.UserName -notin $System -and $null -ne $_.UserName }
         }

@@ -6,6 +6,8 @@ function Get-ServiceUser {
     Get a list of services and the user context that they run under. By default excluded services running as system
 .PARAMETER ComputerName
     An array of computer names. Defaults to $env:COMPUTERNAME. Aliased to 'CN', 'Server'
+.PARAMETER UserName
+    A -like search string to compare process username context. Defaults to '*'
 .PARAMETER IncludeSystem
     Switch to include the system scheduled tasks. Aliased to 'IS'
 .EXAMPLE
@@ -25,6 +27,8 @@ function Get-ServiceUser {
         [Alias('CN', 'Server')]
         [string[]] $ComputerName = $env:COMPUTERNAME,
 
+        [string] $UserName = '*',
+
         [Alias('IS')]
         [switch] $IncludeSystem
     )
@@ -32,7 +36,7 @@ function Get-ServiceUser {
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         Write-Verbose -Message "ComputerName [$($ComputerName -join ', ')]"
-        Write-Verbose -Message "IncludeSystem [$IncludeSystem]"
+        Write-Verbose -Message "IncludeSystem [$IncludeSystem], UserName [$UserName]"
         $ServiceAcct = @(
             'LocalSystem',
             'NT AUTHORITY\LocalService',
@@ -47,7 +51,8 @@ function Get-ServiceUser {
         if (-not $IncludeSystem) {
             $Service = $Service | Where-Object { $_.StartName -notin $ServiceAcct -and $null -ne $_.StartName }
         }
-        $Service | Select-Object -Property @{Name = 'ComputerName'; Expr = { $_.SystemName } }, Name, DisplayName, StartName
+        $Service | Where-Object { $_.StartName -like $UserName } |
+            Select-Object -Property @{Name = 'ComputerName'; Expr = { $_.SystemName } }, Name, DisplayName, StartName
     }
 
     end {
