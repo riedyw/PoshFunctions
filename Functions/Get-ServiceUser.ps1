@@ -24,8 +24,9 @@ function Get-ServiceUser {
     [CmdletBinding()]
     [outputtype('psobject')]
     param (
-        [Alias('CN', 'Server')]
-        [string[]] $ComputerName = $env:COMPUTERNAME,
+        [parameter(Mandatory, HelpMessage = 'Please enter the name of a computer', ValueFromPipelineByPropertyName)]
+        [Alias('ComputerName', 'CN', 'Server')]
+        [string[]] $Name,
 
         [string] $UserName = '*',
 
@@ -35,7 +36,10 @@ function Get-ServiceUser {
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
-        Write-Verbose -Message "ComputerName [$($ComputerName -join ', ')]"
+        if ($Name -eq '.') {
+            $Name = $env:COMPUTERNAME
+            Write-Verbose -Message "Setting `$Name to [$Name]"
+        }
         Write-Verbose -Message "IncludeSystem [$IncludeSystem], UserName [$UserName]"
         $ServiceAcct = @(
             'LocalSystem',
@@ -44,18 +48,30 @@ function Get-ServiceUser {
             'NT AUTHORITY\Network Service',
             'NT AUTHORITY\SYSTEM'
         )
+        $ReturnVal = @()
     }
 
     process {
-        $Service = Get-CimInstance -ClassName Win32_Service -ComputerName $ComputerName -Verbose:$false
-        if (-not $IncludeSystem) {
-            $Service = $Service | Where-Object { $_.StartName -notin $ServiceAcct -and $null -ne $_.StartName }
+        foreach ($CurComputer in $Name) {
+            Write-Verbose -Message "Processing [$CurComputer]"
+            try {
+                $Service = Get-CimInstance -ClassName Win32_Service -ComputerName $CurComputer -Verbose:$false
+                if (-not $IncludeSystem) {
+                    $Service = $Service | Where-Object { $_.StartName -notin $ServiceAcct -and $null -ne $_.StartName }
+                }
+                $ReturnVal += $Service | Where-Object { $_.StartName -like $UserName } |
+                    Select-Object -Property @{Name = 'ComputerName'; Expr = { $_.SystemName } }, Name, DisplayName, StartName
+            } catch {
+                Write-Error -Message "Either computer [$curComputerName] is not up, or you don't have permission to read from WMI objects."
+            }
+
         }
-        $Service | Where-Object { $_.StartName -like $UserName } |
-            Select-Object -Property @{Name = 'ComputerName'; Expr = { $_.SystemName } }, Name, DisplayName, StartName
     }
 
     end {
+        if ($ReturnVal) {
+            $ReturnVal
+        }
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }

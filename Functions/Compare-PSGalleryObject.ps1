@@ -81,20 +81,21 @@ function Compare-PSGalleryObject {
     process {
         switch ($PsCmdlet.ParameterSetName) {
             'Module' {
-                $Objects = Get-InstalledModule -Name $Name -Verbose:$False
+                Write-Verbose -Message 'Getting modules installed from PSGallery'
+                $Objects = Get-InstalledModule -Name $Name -Verbose:$False | Where-Object { $_.Repository -eq 'PSGallery' }
                 Write-Verbose -Message ('{0} modules locally that match [{1}]' -f $Objects.count, $Name)
                 foreach ($Object in $Objects) {
                     Write-Verbose -Message "Processing $($Object.name)"
-                    $UpdateObject = [ordered] @{}    # create the hash table
+                    $UpdateObject = [ordered] @{}
                     $UpdateObject.ObjectType = 'Module'
-                    $UpdateObject.Name = $Object.Name     # Add name
-                    $UpdateObject.InstalledVersion = $Object.Version  # And local version
+                    $UpdateObject.Name = $Object.Name
+                    $UpdateObject.InstalledVersion = $Object.Version
                     try {
                         #  Find module, and add gallery version number to hash table
                         if ($AllowPrerelease) {
-                            $GalObj = Find-Module -Name $Object.name -ErrorAction Stop -AllowPrerelease
+                            $GalObj = Find-Module -Name $Object.name -Repository PSGallery -ErrorAction Stop -AllowPrerelease
                         } else {
-                            $GalObj = Find-Module -Name $Object.name -ErrorAction Stop
+                            $GalObj = Find-Module -Name $Object.name -Repository PSGallery -ErrorAction Stop
                         }
 
                         $UpdateObject.PSGalleryVersion = $GalObj.Version | Sort-Object -Descending | Select-Object -First 1
@@ -113,20 +114,21 @@ function Compare-PSGalleryObject {
                 }
             }
             'Script' {
-                $Objects = Get-InstalledScript -Name $Name -Verbose:$False
+                Write-Verbose -Message 'Getting scripts installed from PSGallery'
+                $Objects = Get-InstalledScript -Name $Name -Verbose:$False | Where-Object { $_.Repository -eq 'PSGallery' }
                 Write-Verbose -Message ('{0} scripts locally that match [{1}]' -f $Objects.count, $Name)
                 Foreach ($Object in $Objects) {
                     Write-Verbose -Message "Processing $($Object.name)"
-                    $UpdateObject = [ordered] @{}    # create the hash table
+                    $UpdateObject = [ordered] @{}
                     $UpdateObject.ObjectType = 'Script'
-                    $UpdateObject.Name = $Object.Name     # Add name
-                    $UpdateObject.InstalledVersion = $Object.Version  # And local version
+                    $UpdateObject.Name = $Object.Name
+                    $UpdateObject.InstalledVersion = $Object.Version
                     try {
                         #  Find module, and add gallery version number to hash table
                         if ($AllowPrerelease) {
-                            $GalObj = Find-Script -Name $Object.name -ErrorAction Stop -AllowPrerelease
+                            $GalObj = Find-Script -Name $Object.name -Repository PSGallery -ErrorAction Stop -AllowPrerelease
                         } else {
-                            $GalObj = Find-Script -Name $Object.name -ErrorAction Stop
+                            $GalObj = Find-Script -Name $Object.name -Repository PSGallery -ErrorAction Stop
                         }
                         $UpdateObject.PSGalleryVersion = $GalObj.Version | Sort-Object -Descending | Select-Object -First 1
                     }

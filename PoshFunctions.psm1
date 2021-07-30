@@ -12,6 +12,7 @@ $Functions | foreach-object { . $_.FullName }
 
 $Script:WordList = Get-Content -Path $PSScriptRoot\WordList.txt
 $Script:FortuneFile = "$ModulePath\Wisdom.txt"
+$Script:Stopwatch =  [System.Diagnostics.Stopwatch]::New()
 
 # inspired by: http://powershell-scripting.com/index.php?option=com_joomlaboard&Itemid=76&func=view&view=threaded&id=24376&catid=5
 # also sourced at: https://gallery.technet.microsoft.com/Edit-old-fashioned-INI-f8fbc067?redir=0

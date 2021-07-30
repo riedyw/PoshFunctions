@@ -1,14 +1,46 @@
+NOTES:
+These functions are a collection of functions that either interest me, or greatly improve my productivity. I've strived to not use aliases for cmdlets or functions in my code. I've also strived to match case of function names and parameters as they exist in other places (documentation, source code), but I may not have caught all of them. I've tried NOT to rely on positional parameters in calling functions and rather explicitly named the parameters and their values. As a result of these design decisions my code may appear wordy to the reader.
+
+Many of the functions have originated from me, but not all of them. I've tried very hard to credit code that I have reused from online. If the source material is taken 'as-is' then I will label in NOTES section of function help the Source. If I modified heavily I state in same section that they were InspiredBy.
+
+All code is automatically formatted in VSCode. Here are some of the pertinent settings in VSCode that I use:
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": false,
+    "editor.formatOnType": true,
+    "editor.tabSize": 4,
+    "editor.trimAutoWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "powershell.codeFormatting.autoCorrectAliases": true,
+    "powershell.codeFormatting.ignoreOneLineBlock": true,
+    "powershell.codeFormatting.newLineAfterCloseBrace": false,
+    "powershell.codeFormatting.newLineAfterOpenBrace": true,
+    "powershell.codeFormatting.useCorrectCasing": true,
+
+All code has also been loaded into ISE with ISESteroids. Most, if not all, SUGGESTIONS from ISESteroids have been applied, most often 'Missing parameter' suggestions.
+
+Code has had Invoke-ScriptAnalyzer run against them so that errors are not thrown. Invoke-ScriptAnalyzer is not perfect however and sometimes returns false positives. For those that returned false positives I added declaration statement(s) after the [Cmdlet()] block to not throw the false positive error. An example declaration is as follows:
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]
+
+The only Invoke-ScriptAnalyzer error I could NOT fix is for function Union-Object. If you wish this to not appear then I would suggest that when you import the module you include the -DisableNameChecking parameter.
+
 ### 2.2.5
 * added Compare-ObjectSetComplement
 * added Compare-ObjectSetDifference
 * added Compare-ObjectSetIntersection
 * added Compare-ObjectSetUnion
+* added Get-MyLocalLogonTime
 * added Get-ProcessUser
+* added Get-RelativePath
 * added Get-ScheduledTaskUser
 * added Get-ServiceUser
 * added Test-Set
+* added Use-StopWatch
+* updated Get-Shortcut
+* updated New-Shortcut
 * updated Optimize-SqlIndexFragmentation
 * updated Optimize-SqlStoredProcedure
+* updated Start-ADReplication
 
 ### 2.2.4
 * added Get-SqlDatabase

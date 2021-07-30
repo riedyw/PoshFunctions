@@ -20,8 +20,9 @@ function Get-ProcessUser {
     [CmdletBinding()]
     [outputtype('psobject')]
     param (
-        [Alias('CN', 'Server')]
-        [string[]] $ComputerName = $env:COMPUTERNAME,
+        [parameter(Mandatory, HelpMessage = 'Please enter the name of a computer', ValueFromPipelineByPropertyName)]
+        [Alias('ComputerName', 'CN', 'Server')]
+        [string[]] $Name,
 
         [string] $UserName = '*',
 
@@ -31,8 +32,11 @@ function Get-ProcessUser {
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
-        Write-Verbose -Message "ComputerName [$($ComputerName -join ', ')]"
         Write-Verbose -Message "IncludeSystem [$IncludeSystem], UserName [$UserName]"
+        if ($Name -eq '.') {
+            $Name = $env:COMPUTERNAME
+            Write-Verbose -Message "Setting `$Name to [$Name]"
+        }
         $System = @(
             'NT AUTHORITY\SYSTEM',
             'NT AUTHORITY\LOCAL SERVICE',
@@ -41,12 +45,15 @@ function Get-ProcessUser {
     }
 
     process {
-        $Proc = Invoke-Command -ComputerName $ComputerName -ScriptBlock { Get-Process -IncludeUserName } |
-            Where-Object { $_.UserName -like $UserName }
-        if (-not $IncludeSystem) {
-            $Proc = $Proc | Where-Object { $_.UserName -notin $System -and $null -ne $_.UserName }
+        foreach ($CurName in $Name) {
+            Write-Verbose -Message "Processing [$CurName]"
+            $Proc = Invoke-Command -ComputerName $CurName -ScriptBlock { Get-Process -IncludeUserName } |
+                Where-Object { $_.UserName -like $UserName }
+            if (-not $IncludeSystem) {
+                $Proc = $Proc | Where-Object { $_.UserName -notin $System -and $null -ne $_.UserName }
+            }
+            $Proc |  Select-Object -Property @{Name = 'ComputerName'; expr = { $_.PsComputerName } }, UserName, Name, Id
         }
-        $Proc |  Select-Object -Property @{Name = 'ComputerName'; expr = { $_.PsComputerName } }, UserName, Name, Id
     }
 
     end {

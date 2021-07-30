@@ -53,8 +53,9 @@ function Get-ComputerUptime {
     Param(
         [switch] $Since,
 
-        [Alias('CN', 'Server')]
-        [string[]] $ComputerName,
+        [parameter(Mandatory, HelpMessage = 'Please enter the name of a computer', ValueFromPipelineByPropertyName)]
+        [Alias('ComputerName', 'CN', 'Server')]
+        [string[]] $Name,
 
         [switch] $IncludeComputerName
     )
@@ -62,19 +63,21 @@ function Get-ComputerUptime {
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
-        if ($ComputerName -eq '.' -or $ComputerName -eq '' -or $null -eq $ComputerName) {
-            $ComputerName = $env:COMPUTERNAME
+        if ($Name -eq '.') {
+            $Name = $env:COMPUTERNAME
+            Write-Verbose -Message "Setting `$Name to [$Name]"
         }
     }
 
     process {
-        foreach ($curComputerName in $ComputerName) {
+        foreach ($CurName in $Name) {
+            Write-Verbose -Message "Processing [$CurName]"
             try {
-                $LastBootUpTime = (Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName $curComputerName -ErrorAction Stop).LastBootUpTime
+                $LastBootUpTime = (Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName $CurName -ErrorAction Stop -Verbose:$false).LastBootUpTime
                 if ($Since) {
                     if ($IncludeComputerName) {
                         New-Object -TypeName psobject -Property ([ordered] @{
-                                ComputerName = $curComputerName
+                                ComputerName = $CurName
                                 LastBoot     = $LastBootUpTime
                             })
                     } else {
@@ -83,12 +86,12 @@ function Get-ComputerUptime {
                 } else {
                     $TimeSpan = ((Get-Date) - $LastBootUpTime)
                     if ($IncludeComputerName) {
-                        $TimeSpan | Add-Member -MemberType NoteProperty -Name ComputerName -Value $curComputerName
+                        $TimeSpan | Add-Member -MemberType NoteProperty -Name ComputerName -Value $CurName
                     }
                     Write-Output -InputObject ($TimeSpan | Select-Object -Property *)
                 }
             } catch {
-                Write-Error -Message "Either computer [$curComputerName] is not up, or you don't have permission to read from WMI objects."
+                Write-Error -Message "Either computer [$CurName] is not up, or you don't have permission to read from WMI objects."
             }
         }
     }

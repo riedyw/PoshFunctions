@@ -5,52 +5,72 @@ function Get-Shortcut {
 .DESCRIPTION
     Get information about a Shortcut (.lnk file)
 .PARAMETER Path
-    File
+    Path to .lnk file
 .EXAMPLE
-    Get-Shortcut -Path 'C:\Portable\Test.lnk'
+    Get-Shortcut -path C:\portable\test2.lnk
 
-    Link         : Test.lnk
-    TargetPath   : C:\Portable\PortableApps\Notepad++Portable\Notepad++Portable.exe
-    WindowStyle  : 1
-    IconLocation : ,0
-    Hotkey       :
-    Target       : Notepad++Portable.exe
+    LinkPath     : C:\portable\test2.lnk
+    Link         : test2.lnk
+    TargetPath   : C:\Windows\System32\ncpa.cpl
+    Target       : ncpa.cpl
     Arguments    :
-    LinkPath     : C:\Portable\Test.lnk
+    Hotkey       :
+    WindowStyle  : Normal
+    IconLocation : %SystemRoot%\system32\ncpa.cpl,0
+    RunAsAdmin   : False
+.NOTES
+    Updates:
+    * added code to determine RunAsAdmin status
+    * added code to display WindowStyle as text as opposed to an integer
+
+    Main function inspired by:
+    https://stackoverflow.com/questions/484560/editing-shortcut-lnk-properties-with-powershell
+
+    Checking for RunAsAdmin inspired by:
+    https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/managing-shortcut-files-part-3
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
     param(
-        [string] $path
+        [string] $Path
     )
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
-        $obj = New-Object -ComObject WScript.Shell
+        $Obj = New-Object -ComObject WScript.Shell
     }
 
     process {
         if (Test-Path -Path $Path) {
-            $ResolveFile = Resolve-Path -Path $Path
+            [array] $ResolveFile = Resolve-Path -Path $Path
             if ($ResolveFile.count -gt 1) {
                 Write-Error -Message "ERROR: File specification [$File] resolves to more than 1 file."
             } else {
                 Write-Verbose -Message "Using file [$ResolveFile] in section [$Section], getting comments"
                 $ResolveFile = Get-Item -Path $ResolveFile
                 if ($ResolveFile.Extension -eq '.lnk') {
-                    $link = $obj.CreateShortcut($ResolveFile.FullName)
+                    $Link = $Obj.CreateShortcut($ResolveFile.FullName)
 
-                    $info = @{}
-                    $info.Hotkey = $link.Hotkey
-                    $info.TargetPath = $link.TargetPath
-                    $info.LinkPath = $link.FullName
-                    $info.Arguments = $link.Arguments
-                    $info.Target = try {Split-Path -Path $info.TargetPath -Leaf } catch { 'n/a'}
-                    $info.Link = try { Split-Path -Path $info.LinkPath -Leaf } catch { 'n/a'}
-                    $info.WindowStyle = $link.WindowStyle
-                    $info.IconLocation = $link.IconLocation
+                    $Info = ([ordered] @{})
+                    $Info.LinkPath = $Link.FullName
+                    $Info.Link = try { Split-Path -Path $Info.LinkPath -Leaf } catch { 'n/a'}
 
-                    New-Object -TypeName PSObject -Property $info
+                    $Info.TargetPath = $Link.TargetPath
+                    $Info.Target = try {Split-Path -Path $Info.TargetPath -Leaf } catch { 'n/a'}
+                    $Info.Arguments = $Link.Arguments
+                    $Info.Hotkey = $Link.Hotkey
+                    $Info.WindowStyle = $( switch($Link.WindowStyle) {
+                        1 { 'Normal' }
+                        3 { 'Maximized' }
+                        7 { 'Minimized' }
+                    })
+                    $Info.IconLocation = $Link.IconLocation
+                    $Info.RunAsAdmin = $(
+                        $Bytes = [System.IO.File]::ReadAllBytes($ResolveFile)
+                        if ($Bytes[0x15] -band 0x20) { $true } else { $false }
+                    )
+                    $Info.Description = $Link.Description
+                    New-Object -TypeName PSObject -Property $Info
                 } else {
                     Write-Error -Message 'Extension is not .lnk'
                 }

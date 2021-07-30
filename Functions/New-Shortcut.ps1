@@ -18,31 +18,48 @@ function New-Shortcut {
     Working directory of the application.  An invalid directory can be specified, but invoking the application from the shortcut could fail.
 .PARAMETER WindowStyle
     Windows style of the application, Normal (1), Maximized (3), or Minimized (7).  Invalid entries will result in Normal behavior.
-.PARAMETER Icon
+.PARAMETER IconLocation
     Full path of the icon file.  Executables, DLLs, etc with multiple icons need the number of the icon to be specified, otherwise the first icon will be used, i.e.:  c:\windows\system32\shell32.dll,99
-.PARAMETER Admin
+.PARAMETER RunAsAdmin
     Used to create a shortcut that prompts for admin credentials when invoked, equivalent to specifying runas.
+.PARAMETER Interactive
+    Switch that will display the shortcut just created.
 .NOTES
-    Author        : Rhys Edwards
-    Email        : powershell@nolimit.to
-    # main source: https://gallery.technet.microsoft.com/scriptcenter/New-Shortcut-4d6fb3d8
+    * Added -Interactive switch to display created shortcut
+    * Updated -WindowStyle to accept readable content of 'Normal', 'Maximized', 'Minimized' and write correct integer values to shortcut
+    * Updated -IconLocation renamed from -Icon to match the output of Get-Shortcut
+    * Updated -RunAsAdmin renamed from -Admin and altered code to make more consistent
 
-    # run as admin source: https://www.reddit.com/r/PowerShell/comments/7xa4sk/programmatically_create_shortcuts_w_run_as_admin/
+    Main logic inspired by:
+    https://gallery.technet.microsoft.com/scriptcenter/New-Shortcut-4d6fb3d8
+
+    Run as admin inspired by:
+    https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/managing-shortcut-files-part-3
 .INPUTS
     Strings and Integer
 .OUTPUTS
-    True or False, and a shortcut
-.LINK
-    Script posted over:  N/A
+    [psobject]
 .EXAMPLE
-    New-Shortcut -Path c:\temp\notepad.lnk -TargetPath c:\windows\notepad.exe
-    Creates a simple shortcut to Notepad at c:\temp\notepad.lnk
+    New-Shortcut -Path c:\temp\notepad.lnk -TargetPath c:\windows\notepad.exe -Interactive
+
+    Creates a simple shortcut to Notepad at c:\temp\notepad.lnk Function would return:
+
+    LinkPath     : C:\temp\notepad.lnk
+    Link         : notepad.lnk
+    TargetPath   : C:\Windows\notepad.exe
+    Target       : notepad.exe
+    Arguments    :
+    Hotkey       :
+    WindowStyle  : Normal
+    IconLocation : ,0
+    RunAsAdmin   : False
+    Description  :
 .EXAMPLE
-    New-Shortcut "$($env:Public)\Desktop\Notepad" c:\windows\notepad.exe -WindowStyle 3 -admin
+    New-Shortcut "$($env:Public)\Desktop\Notepad" c:\windows\notepad.exe -WindowStyle 3 -RunAsAdmin
 
     Creates a shortcut named Notepad.lnk on the Public desktop to notepad.exe that launches maximized after prompting for admin credentials.
 .EXAMPLE
-    New-Shortcut "$($env:USERPROFILE)\Desktop\Notepad.lnk" c:\windows\notepad.exe -icon "c:\windows\system32\shell32.dll,99"
+    New-Shortcut "$($env:USERPROFILE)\Desktop\Notepad.lnk" c:\windows\notepad.exe -IconLocation "c:\windows\system32\shell32.dll,99"
 
     Creates a shortcut named Notepad.lnk on the user's desktop to notepad.exe that has a pointy finger icon (on Windows 7).
 .EXAMPLE
@@ -53,26 +70,35 @@ function New-Shortcut {
     New-Shortcut "$($env:USERPROFILE)\Desktop\ADUC" %SystemRoot%\system32\dsa.msc -Admin
 
     Creates a shortcut named ADUC.lnk on the user's desktop to Active Directory Users and Computers that launches after prompting for admin credentials
+.EXAMPLE
+    New-Shortcut -Path F:\DNE\notepad.lnk -TargetPath c:\windows\notepad.exe -Interactive
+
+    If run on a system that does NOT have an F: drive it will return the following:
+
+    New-Shortcut : Unable to create [f:\DNE], shortcut cannot be created
+    At line:1 char:1
+    + New-Shortcut -Path f:\DNE\notepad.lnk -TargetPath c:\windows\notepad. ...
+    + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+        + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,New-Shortcut
 #>
 
     #region Parameters
     [CmdletBinding(SupportsShouldProcess)]
-    [OutputType($null)]
+    [OutputType('psobject')]
     param(
-        [Parameter(Mandatory,HelpMessage='Add help message for user',  ValueFromPipelineByPropertyName,Position=0)]
+        [Parameter(Mandatory,HelpMessage='Enter the path to the shortcut you want to create/update',  ValueFromPipelineByPropertyName,Position=0)]
         [Alias('File','Shortcut')]
         [string] $Path,
 
-        [Parameter(Mandatory,HelpMessage='Add help message for user',  ValueFromPipelineByPropertyName,Position=1)]
-        [Alias('Target')]
+        [Parameter(Mandatory,HelpMessage='Enter the path to the program or file you want to run',  ValueFromPipelineByPropertyName,Position=1)]
         [string] $TargetPath,
 
         [Parameter(ValueFromPipelineByPropertyName,Position=2)]
-        [Alias('Args','Argument')]
+        [Alias('Args')]
         [string] $Arguments,
 
         [Parameter(ValueFromPipelineByPropertyName,Position=3)]
-        [Alias('Desc')]
         [string] $Description,
 
         [Parameter(ValueFromPipelineByPropertyName,Position=4)]
@@ -83,14 +109,16 @@ function New-Shortcut {
         [string] $WorkDir,
 
         [Parameter(ValueFromPipelineByPropertyName,Position=6)]
-        [ValidateSet(1,3,7)]
-        [int] $WindowStyle,
+        [ValidateSet('1', 'Normal', 3, 'Maximized', 7, 'Minimized')]
+        [string] $WindowStyle = 'Normal',
 
         [Parameter(ValueFromPipelineByPropertyName,Position=7)]
-        [string] $Icon,
+        [string] $IconLocation,
 
         [Parameter(ValueFromPipelineByPropertyName)]
-        [switch] $Admin
+        [switch] $RunAsAdmin,
+
+        [switch] $Interactive
     )
     #endregion Parameters
 
@@ -103,17 +131,16 @@ function New-Shortcut {
             $Path = "$Path`.lnk"
         }
         [System.IO.FileInfo] $Path = $Path
-        $ShouldMessage = "WHATIF: Would create SHORTCUT [$($path.fullname)] ARGUMENTS [$($Arguments)] DESCRIPTION [$($Description)] HOTKEY [$($HotKey)] WORKDIR [$($WorkDir)] WINDOWSTYLE [$($WindowStyle)] ICON [$($Icon)]"
-        If ($PSCmdlet.ShouldProcess($ShouldMessage))
+        $ShouldMessage = "WHATIF: Would create SHORTCUT [$($path.fullname)] ARGUMENTS [$($Arguments)] DESCRIPTION [$($Description)] HOTKEY [$($HotKey)]`nWORKDIR [$($WorkDir)] WINDOWSTYLE [$($WindowStyle)] ICON [$($IconLocation)]"
+        if ($PSCmdlet.ShouldProcess($ShouldMessage))
         {
-            Try {
+            try {
                 If (!(Test-Path -Path $Path.DirectoryName)) {
                     mkdir -Path $Path.DirectoryName -ErrorAction Stop | Out-Null
                 }
-            } Catch {
-                Write-Verbose -Message "Unable to create $($Path.DirectoryName), shortcut cannot be created"
-                write-output -InputObject $false
-                Break
+            } catch {
+                Write-Error -Message "Unable to create [$($Path.DirectoryName)], shortcut cannot be created"
+                break
             }
             # Define Shortcut Properties
             $WshShell = New-Object -ComObject WScript.Shell
@@ -123,35 +150,30 @@ function New-Shortcut {
             $Shortcut.Description = $Description
             $Shortcut.HotKey = $HotKey
             $Shortcut.WorkingDirectory = $WorkDir
-            $Shortcut.WindowStyle = $WindowStyle
-            if ($Icon){
-                $Shortcut.IconLocation = $Icon
+            switch ($WindowStyle) {
+                'Normal' { $WindowStyle = 1 }
+                'Maximized' { $WindowStyle = 3 }
+                'Minimized' { $WindowStyle = 7 }
             }
-
+            $Shortcut.WindowStyle = $WindowStyle
+            if ($IconLocation){
+                $Shortcut.IconLocation = $IconLocation
+            }
             try {
-                # Create Shortcut
                 $Shortcut.Save()
-                # Set Shortcut to Run Elevated
-                if ($admin) {
-                    $TempFileName = [IO.Path]::GetRandomFileName()
-                    $TempFile = [IO.FileInfo][IO.Path]::Combine($Path.Directory, $TempFileName)
-                    $Writer = New-Object -TypeName System.IO.FileStream -ArgumentList $TempFile, ([System.IO.FileMode]::Create)
-                    $Reader = $Path.OpenRead()
-                    while ($Reader.Position -lt $Reader.Length) {
-                        $Byte = $Reader.ReadByte()
-                        if ($Reader.Position -eq 22) {$Byte = 34}
-                        $Writer.WriteByte($Byte)
-                    }
-                    $Reader.Close()
-                    $Writer.Close()
-                    $Path.Delete()
-                    Rename-Item -Path $TempFile -NewName $Path.Name | Out-Null
+                $Bytes = [System.IO.File]::ReadAllBytes($Path.FullName)
+                if ($RunAsAdmin) {
+                    $bytes[0x15] = $bytes[0x15] -bor 0x20
+                } else {
+                    $bytes[0x15] = $bytes[0x15] -band -not 0x20 
                 }
-                Write-Output -InputObject $True
+                [System.IO.File]::WriteAllBytes($path.FullName, $bytes)
+                if ($Interactive) {
+                    Get-Shortcut -Path $Path.FullName
+                }
             } catch {
-                Write-Verbose -Message "Unable to create $($Path.FullName)"
-                Write-Verbose -Message ($Error[0].Exception.Message)
-                Write-Output -InputObject $False
+                Write-Error -Message "Unable to create shortcut [$($Path.FullName)]"
+                break
             }
         }
     }
