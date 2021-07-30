@@ -50,10 +50,10 @@ function Start-ADReplication {
         if ($Name) {
             Write-Verbose -Message "`$Name is [$($Name -join ', ')]"
         }
+        "`"DestinationDSA`",`"SourceDSA`",`"NamingContext`",`"Message`""
     }
 
     process {
-        "`"DestinationDSA`",`"SourceDSA`",`"NamingContext`",`"Message`""
         foreach ($CurName in $Name) {
             Write-Verbose -Message "Processing [$CurName]"
             Invoke-Command -ComputerName $CurName -ScriptBlock {

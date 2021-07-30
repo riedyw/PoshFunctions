@@ -24,23 +24,25 @@ Code has had Invoke-ScriptAnalyzer run against them so that errors are not throw
 
 The only Invoke-ScriptAnalyzer error I could NOT fix is for function Union-Object. If you wish this to not appear then I would suggest that when you import the module you include the -DisableNameChecking parameter.
 
+### 2.2.6
+* added Get-MyLocalLogonTime
+* added Get-RelativePath
+* added Use-Stopwatch
+* updated Get-Shortcut
+* updated New-Shortcut
+* updated Start-ADReplication
+
 ### 2.2.5
 * added Compare-ObjectSetComplement
 * added Compare-ObjectSetDifference
 * added Compare-ObjectSetIntersection
 * added Compare-ObjectSetUnion
-* added Get-MyLocalLogonTime
 * added Get-ProcessUser
-* added Get-RelativePath
 * added Get-ScheduledTaskUser
 * added Get-ServiceUser
 * added Test-Set
-* added Use-StopWatch
-* updated Get-Shortcut
-* updated New-Shortcut
 * updated Optimize-SqlIndexFragmentation
 * updated Optimize-SqlStoredProcedure
-* updated Start-ADReplication
 
 ### 2.2.4
 * added Get-SqlDatabase
