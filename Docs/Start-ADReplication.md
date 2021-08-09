@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,12 +13,12 @@ Forces replication to occur between domain controllers in domain.
 ## SYNTAX
 
 ```
-Start-ADReplication [[-DC] <String>] [<CommonParameters>]
+Start-ADReplication [-Name] <String[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Forces replication to occur between domain controllers in domain.
-Invoke-command to a DC.
+Invoke-Command to a DC.
 Requires to be running in elevated Powershell prompt.
 
 ## EXAMPLES
@@ -28,35 +28,54 @@ Requires to be running in elevated Powershell prompt.
 Start-ADReplication
 ```
 
-Would return
-Running command \[repadmin.exe /syncall /AdeP\] on \[dcname\]
+Will issue a call to Get-ADDomainController and run the replication against that one DC
 
 ### EXAMPLE 2
 ```
-Start-ADReplication -Verbose
+Get-ADDomainController -Filter * | Start-ADReplication
 ```
 
-Would return
+Will return a list of all DCs and run the replication against that list
+
+### EXAMPLE 3
+```
+Get-ADDomainController -Filter "Name -like '*CORP*'" | Start-ADReplication
+```
+
+Will return a list of all DCs that have 'CORP' in their name and run the replication against that list
+
+### EXAMPLE 4
+```
+Start-ADReplication -Name DC1 -Verbose
+```
+
+Assuming there are two DCs (DC1, DC2) in the contosco.com domain here is a sample return
 VERBOSE: Starting \[Start-ADReplication\]
-VERBOSE: $DC is \[dcname\]
-Running command \[repadmin.exe /syncall /AdeP\] on \[dcname\]
-VERBOSE: Ending Start-ADReplication
+VERBOSE: $Name is \[DC1\]
+VERBOSE: Processing \[DC1\]
+DC1 DC2 "DC=contosco,DC=com" - Sync from DC2 to DC1 completed successfully.
+DC1 DC2 "CN=Configuration,DC=contosco,DC=com" - Sync from DC2 to DC1 completed successfully.
+DC1 DC2 "CN=Schema,CN=Configuration,DC=contosco,DC=com" - Sync from DC2 to DC1 completed successfully.
+DC1 DC2 "DC=DomainDnsZones,DC=contosco,DC=com" - Sync from DC2 to DC1 completed successfully.
+DC1 DC2 "DC=ForestDnsZones,DC=contosco,DC=com" - Sync from DC2 to DC1 completed successfully.
+VERBOSE: Ending \[Start-ADReplication\]
 
 ## PARAMETERS
 
-### -DC
-The name, fqdn or ipaddress of a domain controller.
+### -Name
+A string array containing the name, fqdn or ipaddress of a domain controller.
 If not specified will query AD for a domain controller.
+Aliased to 'DomainController', 'DC', 'CN', 'ComputerName'
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: (All)
-Aliases: DomainController
+Aliases: DomainController, DC, CN, ComputerName
 
-Required: False
+Required: True
 Position: 1
-Default value: (Get-ADDomainController).HostName
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -69,5 +88,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### string
 ## NOTES
+* Reworked logic so it just replicates the links that are defined. Previously it ran repadmin.exe with /ApeD switch and it was horribly slow.
+* Changed parameter $DC to $Name so that it would take input from Get-ADDomainController and to accept an array and added aliases to it
+* Changed output so that it would remove blank or commented lines from the output and to display what is being replicated in the output
+* Changed output so that it creates CSV output
+* Added '-ThrottleLimit 8' to the Invoke-Command so as to not saturate the local computer
 
 ## RELATED LINKS

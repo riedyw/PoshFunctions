@@ -1,11 +1,11 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
-online version:
+Module Name: poshfunctions
+online version: https://github.com/iRon7/Join-Object
 schema: 2.0.0
 ---
 
-# Union-Object
+# Merge-Object
 
 ## SYNOPSIS
 Returns a 'clean' array of objects that have all property names in each element of the array
@@ -13,7 +13,7 @@ Returns a 'clean' array of objects that have all property names in each element 
 ## SYNTAX
 
 ```
-Union-Object [[-Property] <String[]>]
+Merge-Object [[-Property] <String[]>]
 ```
 
 ## DESCRIPTION

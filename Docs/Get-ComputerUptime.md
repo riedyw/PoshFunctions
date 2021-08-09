@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: http://wonkysoftware.appspot.com
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ To mimic and extend the Get-ComputerUptime function found in PowerShell 6 or 7
 ## SYNTAX
 
 ```
-Get-ComputerUptime [-Since] [[-ComputerName] <String[]>] [-IncludeComputerName] [<CommonParameters>]
+Get-ComputerUptime [-Since] [-Name] <String[]> [-IncludeComputerName] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -82,20 +82,18 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ComputerName
-String array of computers to check uptime against.
-If not given or is '.' it is replaced with $env:COMPUTERNAME.
-Aliased to 'CN', 'Server'
+### -Name
+Please enter the name of a computer
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: CN, Server
+Aliases: ComputerName, CN, Server
 
-Required: False
+Required: True
 Position: 1
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 

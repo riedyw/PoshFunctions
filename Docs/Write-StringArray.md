@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -13,7 +13,7 @@ Takes \[string\] or \[string\[\]\] input and writes the code that would create a
 ## SYNTAX
 
 ```
-Write-StringArray [-Text] <String[]> [-VariableName <String>] [<CommonParameters>]
+Write-StringArray [-Text] <String[]> [-VariableName <String>] [-ExcludeDollarSign] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -41,6 +41,18 @@ $StringArray = @(
 
 Would return
 $MyVariable = @(
+    '1',
+    '2',
+    '99'
+)
+
+### EXAMPLE 3
+```
+1,2,99 | Write-StringArray -VariableName MyVariable -ExcludeDollarSign
+```
+
+Would return
+MyVariable = @(
     '1',
     '2',
     '99'
@@ -74,6 +86,22 @@ Aliases:
 Required: False
 Position: Named
 Default value: StringArray
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ExcludeDollarSign
+Switch to exclude the dollar sign in front of the variable name.
+Useful when trying to create string array for *.psd1 files
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

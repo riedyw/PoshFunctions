@@ -1,7 +1,7 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
-online version:
+Module Name: poshfunctions
+online version: http://code.google.com/apis/chart/infographics/docs/qr_codes.html
 schema: 2.0.0
 ---
 

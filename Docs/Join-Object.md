@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://github.com/iRon7/Join-Object
 schema: 2.0.0
 ---
@@ -14,110 +14,24 @@ Combines two object lists based on a related property between them.
 
 ### Default (Default)
 ```
-Join-Object -LeftObject <Object> [-RightObject] <Object> [[-Where] <ScriptBlock>] [-JoinType <Object>]
- [<CommonParameters>]
-```
-
-### ExpressionDiscern
-```
-Join-Object -LeftObject <Object> [-RightObject] <Object> [-OnExpression] <ScriptBlock> [-Discern] <String[]>
- [[-Where] <ScriptBlock>] [-JoinType <Object>] [<CommonParameters>]
-```
-
-### ExpressionProperty
-```
-Join-Object -LeftObject <Object> [-RightObject] <Object> [-OnExpression] <ScriptBlock> -Property <Object>
- [[-Where] <ScriptBlock>] [-JoinType <Object>] [<CommonParameters>]
-```
-
-### OnDiscern
-```
-Join-Object -LeftObject <Object> [-RightObject] <Object> [-On] <String[]> [-Equals <String[]>]
- [-Discern] <String[]> [[-Where] <ScriptBlock>] [-JoinType <Object>] [-Strict] [-MatchCase]
- [<CommonParameters>]
-```
-
-### OnProperty
-```
-Join-Object -LeftObject <Object> [-RightObject] <Object> [-On] <String[]> [-Equals <String[]>]
- -Property <Object> [[-Where] <ScriptBlock>] [-JoinType <Object>] [-Strict] [-MatchCase] [<CommonParameters>]
-```
-
-### Discern
-```
-Join-Object -LeftObject <Object> [-RightObject] <Object> [-Discern] <String[]> [[-Where] <ScriptBlock>]
- [-JoinType <Object>] [<CommonParameters>]
-```
-
-### Property
-```
-Join-Object -LeftObject <Object> [-RightObject] <Object> -Property <Object> [[-Where] <ScriptBlock>]
- [-JoinType <Object>] [<CommonParameters>]
+Join-Object [-LeftObject <Object>] [[-RightObject] <Object>] [[-Discern] <String[]>] [-Property <Object>]
+ [[-Where] <ScriptBlock>] [-JoinType <String>] [-ValueName <String>] [<CommonParameters>]
 ```
 
 ### Expression
 ```
-Join-Object -LeftObject <Object> [-RightObject] <Object> [-OnExpression] <ScriptBlock> [[-Where] <ScriptBlock>]
- [-JoinType <Object>] [<CommonParameters>]
+Join-Object [-LeftObject <Object>] [[-RightObject] <Object>] [[-OnExpression] <ScriptBlock>]
+ [[-Discern] <String[]>] [-Property <Object>] [[-Where] <ScriptBlock>] [-JoinType <String>]
+ [-ValueName <String>] [<CommonParameters>]
 ```
 
 ### On
 ```
-Join-Object -LeftObject <Object> [-RightObject] <Object> [-On] <String[]> [-Equals <String[]>]
- [[-Where] <ScriptBlock>] [-JoinType <Object>] [-Strict] [-MatchCase] [<CommonParameters>]
-```
-
-### SelfExpressionDiscern
-```
-Join-Object [-RightObject] <Object> [-OnExpression] <ScriptBlock> [-Discern] <String[]>
- [[-Where] <ScriptBlock>] [-JoinType <Object>] [<CommonParameters>]
-```
-
-### SelfExpressionProperty
-```
-Join-Object [-RightObject] <Object> [-OnExpression] <ScriptBlock> -Property <Object> [[-Where] <ScriptBlock>]
- [-JoinType <Object>] [<CommonParameters>]
-```
-
-### SelfOnDiscern
-```
-Join-Object [-RightObject] <Object> [-On] <String[]> [-Equals <String[]>] [-Discern] <String[]>
- [[-Where] <ScriptBlock>] [-JoinType <Object>] [-Strict] [-MatchCase] [<CommonParameters>]
-```
-
-### SelfOnProperty
-```
-Join-Object [-RightObject] <Object> [-On] <String[]> [-Equals <String[]>] -Property <Object>
- [[-Where] <ScriptBlock>] [-JoinType <Object>] [-Strict] [-MatchCase] [<CommonParameters>]
-```
-
-### SelfDiscern
-```
-Join-Object [-RightObject] <Object> [-Discern] <String[]> [[-Where] <ScriptBlock>] [-JoinType <Object>]
+Join-Object [-LeftObject <Object>] [[-RightObject] <Object>]
+ [[-On] <System.Collections.Generic.List`1[System.String]>]
+ [-Equals <System.Collections.Generic.List`1[System.String]>] [[-Discern] <String[]>] [-Property <Object>]
+ [[-Where] <ScriptBlock>] [-JoinType <String>] [-ValueName <String>] [-Strict] [-MatchCase]
  [<CommonParameters>]
-```
-
-### SelfProperty
-```
-Join-Object [-RightObject] <Object> -Property <Object> [[-Where] <ScriptBlock>] [-JoinType <Object>]
- [<CommonParameters>]
-```
-
-### SelfExpression
-```
-Join-Object [-RightObject] <Object> [-OnExpression] <ScriptBlock> [[-Where] <ScriptBlock>] [-JoinType <Object>]
- [<CommonParameters>]
-```
-
-### SelfOn
-```
-Join-Object [-RightObject] <Object> [-On] <String[]> [-Equals <String[]>] [[-Where] <ScriptBlock>]
- [-JoinType <Object>] [-Strict] [-MatchCase] [<CommonParameters>]
-```
-
-### Self
-```
-Join-Object [-RightObject] <Object> [[-Where] <ScriptBlock>] [-JoinType <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -241,10 +155,10 @@ left object (or datatable) to be joined.
 
 ```yaml
 Type: Object
-Parameter Sets: Default, ExpressionDiscern, ExpressionProperty, OnDiscern, OnProperty, Discern, Property, Expression, On
+Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByValue)
@@ -260,7 +174,7 @@ Type: Object
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: 1
 Default value: None
 Accept pipeline input: False
@@ -284,13 +198,13 @@ Note 3: If the -On and the -OnExpression parameter are omitted, a
 join by row index is returned.
 
 ```yaml
-Type: String[]
-Parameter Sets: OnDiscern, OnProperty, On, SelfOnDiscern, SelfOnProperty, SelfOn
+Type: System.Collections.Generic.List`1[System.String]
+Parameter Sets: On
 Aliases: Using
 
-Required: True
+Required: False
 Position: 2
-Default value: None
+Default value: [Collections.Generic.List[string]]::new()
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -308,10 +222,10 @@ parameter.
 
 ```yaml
 Type: ScriptBlock
-Parameter Sets: ExpressionDiscern, ExpressionProperty, Expression, SelfExpressionDiscern, SelfExpressionProperty, SelfExpression
+Parameter Sets: Expression
 Aliases: UsingExpression
 
-Required: True
+Required: False
 Position: 2
 Default value: None
 Accept pipeline input: False
@@ -331,13 +245,13 @@ and vice versa.
 Note 2: The -Equals parameter can only be used with the -On parameter.
 
 ```yaml
-Type: String[]
-Parameter Sets: OnDiscern, OnProperty, On, SelfOnDiscern, SelfOnProperty, SelfOn
+Type: System.Collections.Generic.List`1[System.String]
+Parameter Sets: On
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: [Collections.Generic.List[string]]::new()
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -360,10 +274,10 @@ Note: The -Discern parameter cannot be used with the -Property parameter.
 
 ```yaml
 Type: String[]
-Parameter Sets: ExpressionDiscern, OnDiscern, Discern, SelfExpressionDiscern, SelfOnDiscern, SelfDiscern
-Aliases:
+Parameter Sets: (All)
+Aliases: NameItems
 
-Required: True
+Required: False
 Position: 3
 Default value: None
 Accept pipeline input: False
@@ -415,10 +329,10 @@ Note: The -Property parameter cannot be used with the -Discern parameter.
 
 ```yaml
 Type: Object
-Parameter Sets: ExpressionProperty, OnProperty, Property, SelfExpressionProperty, SelfOnProperty, SelfProperty
+Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -451,13 +365,28 @@ The default is 'Inner'.
 Note: It is recommended to use the related proxy commands instead.
 
 ```yaml
-Type: Object
+Type: String
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
 Default value: Inner
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ValueName
+{{ Fill ValueName Description }}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: Value
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -469,7 +398,7 @@ based on a strict equality (both type and value need to be equal).
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: OnDiscern, OnProperty, On, SelfOnDiscern, SelfOnProperty, SelfOn
+Parameter Sets: On
 Aliases:
 
 Required: False
@@ -486,7 +415,7 @@ between the related properties defined by the -On Parameter (and the
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: OnDiscern, OnProperty, On, SelfOnDiscern, SelfOnProperty, SelfOn
+Parameter Sets: On
 Aliases: CaseSensitive
 
 Required: False
@@ -505,7 +434,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.Object[]
 ## NOTES
-# Source https://www.powershellgallery.com/packages/Join/3.2.1
+# Source https://www.powershellgallery.com/packages/Join/3.5.3
 
 ## RELATED LINKS
 

@@ -74,7 +74,7 @@
     'ConvertTo-DecimalIPv4', 'ConvertTo-DottedDecimalIPv4', 'ConvertTo-Hex',
     'ConvertTo-OrderedDictionary', 'ConvertTo-UncPath', 'ConvertTo-UrlEncode',
     'ConvertTo-UTC', 'Copy-Object', 'Eexit', 'Expand-IPv6', 'Expand-String',
-    'Expand-Tab', 'Export-CSVSortedColumn', 'FileSizeAbove', 'FileSizeBelow',
+    'Expand-Tab', 'Export-CSVSortedColumn', 'Export-FontSample', 'FileSizeAbove', 'FileSizeBelow',
     'Format-MacAddress', 'Format-RandomCase', 'Format-ReverseString',
     'Format-ReverseToken', 'Format-SortedList', 'Format-TitleCase',
     'Format-WrapText', 'Get-Address', 'Get-BashPath', 'Get-BinaryType',

@@ -1,7 +1,7 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
-online version: https://en.wikipedia.org/wiki/ROT13
+Module Name: poshfunctions
+online version:
 schema: 2.0.0
 ---
 

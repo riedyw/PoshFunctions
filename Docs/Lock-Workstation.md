@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://github.com/iRon7/Join-Object
 schema: 2.0.0
 ---

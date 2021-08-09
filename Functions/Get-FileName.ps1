@@ -6,16 +6,18 @@ function Get-FileName {
     Gets a filename through the native OpenFileDialog. Can select a single file
     or multiple files. If user clicks 'OK' an [array] is returned, otherwise returns
     a $null if the dialog is canceled.
-.PARAMETER InitialDirectory
-    The directory for the OpenFileDialog to start in. Defaults to $pwd.
-    Aliased to 'Path'.
+.PARAMETER Path
+    The directory for the OpenFileDialog to start in. Defaults to $pwd. Aliased to 'InitialDirectory'.
 .PARAMETER MultiSelect
-    Determines if you can select one or multiple files. Defaults to $false.
-    Aliased to 'Multi'.
+    Determines if you can select one or multiple files. Defaults to $false. Aliased to 'Multi'.
 .PARAMETER Filter
     A character string delimited with pipe '|' character. Each 'token' in the string follows the form
     'Description|FileSpec'. Multiple 'tokens' can be in the string and they too are separated
     by the pipe character. Defaults to 'All files|*.*'.
+.PARAMETER Title
+    String indicating the Title of the dialog box. Defaults to 'Select a file'
+.PARAMETER AddExtension
+    Switch forcing the adding of an extension
 .EXAMPLE
     PS C:\> $File = Get-FileName
     Will present a fileopen dialog box where only a single file can be selected and the fileopen
@@ -40,14 +42,13 @@ function Get-FileName {
                 and each element in the array will be the file(s) selected
     $null       If the user clicks 'Cancel'.
 .NOTES
-    Author:      Bill Riedy
     Inspiration: Part of the ISEColorThemeCmdlets.ps1 Script by Jeff Pollock
-                http://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
+                 http://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
     Changes:     Added parameter for MultiSelect of files. Forced function to always return an array. Filter is
-                now a parameter that can be specified to control behavior. Changed InitialDirectory to default
-                to $pwd and to give an alias of 'Path' which is commonly used parameter name.
-                Also changed syntax to Add-Type -AssemblyName to conform with
-                Powershell 2+ and to be more "Powershelly".
+                 now a parameter that can be specified to control behavior. Changed InitialDirectory to default
+                 to $pwd and to give an alias of 'Path' which is commonly used parameter name.
+                 Also changed syntax to Add-Type -AssemblyName to conform with
+                 Powershell 2+ and to be more "Powershelly".
 
     # Source: https://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
     # get-help about_ISE-Color-Theme-Cmdlets for more information
@@ -57,21 +58,19 @@ function Get-FileName {
     [CmdletBinding(ConfirmImpact = 'None')]
     [OutputType([string[]])]
     Param(
-        [parameter(Mandatory = $false)]
-        [alias('Path')]
-        [string] $InitialDirectory = "$pwd", #default
+        [Alias('InitialDirectory')]
+        [string] $Path = $pwd, #default
 
-        [alias('Multi')]
+        [Alias('Multi')]
         [switch] $MultiSelect, #default
 
         [string] $Filter = 'All files (*.*)|*.*', #default
 
-        [string] $Title,
+        [string] $Title = 'Select a file',
 
         [switch] $AddExtension,
 
         [string] $DefaultExt
-
     )
 
     begin {
@@ -82,7 +81,7 @@ function Get-FileName {
         Add-Type -AssemblyName System.Windows.Forms
 
         $OpenFileDialog = New-Object -TypeName System.Windows.Forms.OpenFileDialog
-        $OpenFileDialog.InitialDirectory = $InitialDirectory
+        $OpenFileDialog.InitialDirectory = $Path
         $OpenFileDialog.Filter = $Filter
         $OpenFileDialog.MultiSelect = $MultiSelect
         if ($AddExtension) { $OpenFileDialog.AddExtension = $true }

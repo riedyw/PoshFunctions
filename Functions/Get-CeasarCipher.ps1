@@ -1,7 +1,6 @@
 function Get-CeasarCipher {
     <#
 .SYNOPSIS
-Describe purpose of "Get-CaesarCipher" in 1-2 sentences.
     Shifts letters in string by a certain number of positions. Default shift is 13 characters or the classic ROT13.
 .DESCRIPTION
     Shifts letters in string by a certain number of positions. Default shift is 13 characters or the classic ROT13.

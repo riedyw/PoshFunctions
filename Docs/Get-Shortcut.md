@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: https://social.msdn.microsoft.com/Forums/vstudio/en-US/0221d962-26e6-4a7e-be7a-72cd669a0dfc/why-systemmathround0251-2?forum=vbgeneral
 
 Talks about Visual Basic but the same info applies to Powershell.
@@ -15,7 +15,7 @@ Get information about a Shortcut (.lnk file)
 ## SYNTAX
 
 ```
-Get-Shortcut [[-path] <String>] [<CommonParameters>]
+Get-Shortcut [[-Path] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,22 +25,23 @@ Get information about a Shortcut (.lnk file)
 
 ### EXAMPLE 1
 ```
-Get-Shortcut -Path 'C:\Portable\Test.lnk'
+Get-Shortcut -path C:\portable\test2.lnk
 ```
 
-Link         : Test.lnk
-TargetPath   : C:\Portable\PortableApps\Notepad++Portable\Notepad++Portable.exe
-WindowStyle  : 1
-IconLocation : ,0
-Hotkey       :
-Target       : Notepad++Portable.exe
+LinkPath     : C:\portable\test2.lnk
+Link         : test2.lnk
+TargetPath   : C:\Windows\System32\ncpa.cpl
+Target       : ncpa.cpl
 Arguments    :
-LinkPath     : C:\Portable\Test.lnk
+Hotkey       :
+WindowStyle  : Normal
+IconLocation : %SystemRoot%\system32\ncpa.cpl,0
+RunAsAdmin   : False
 
 ## PARAMETERS
 
-### -path
-File
+### -Path
+Path to .lnk file
 
 ```yaml
 Type: String
@@ -62,5 +63,14 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+Updates:
+* added code to determine RunAsAdmin status
+* added code to display WindowStyle as text as opposed to an integer
+
+Main function inspired by:
+https://stackoverflow.com/questions/484560/editing-shortcut-lnk-properties-with-powershell
+
+Checking for RunAsAdmin inspired by:
+https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/managing-shortcut-files-part-3
 
 ## RELATED LINKS

@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version: http://code.msdn.microsoft.com/PSRemoteRegistry
 schema: 2.0.0
 ---

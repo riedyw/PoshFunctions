@@ -1,6 +1,6 @@
 ---
 external help file: PoshFunctions-help.xml
-Module Name: PoshFunctions
+Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
@@ -8,16 +8,17 @@ schema: 2.0.0
 # ConvertTo-Hex
 
 ## SYNOPSIS
-Convert an integer or array of integers to binary
+Convert an integer or array of integers to hexadecimal
 
 ## SYNTAX
 
 ```
-ConvertTo-Hex [-Number] <Int32[]> [-IncludeInput] [<CommonParameters>]
+ConvertTo-Hex [-Number] <UInt64[]> [-MinimumWidth <Int32>] [-Prefix <String>] [-IncludeInput]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Convert an integer or array of integers to binary
+Convert an integer or array of integers to hexadecimal
 
 ## EXAMPLES
 
@@ -38,13 +39,30 @@ Number Hex
     32 20
  32769 8001
 
+### EXAMPLE 3
+```
+ConvertTo-Hex -Number 32, 32769 -IncludeInput -MinimumWidth 4 -Prefix '0x'
+```
+
+Number Hex
+------ ---
+    32 0x0020
+ 32769 0x8001
+
+### EXAMPLE 4
+```
+ConvertTo-Hex -Number 128 -Prefix '#' -MinimumWidth 6
+```
+
+#000080
+
 ## PARAMETERS
 
 ### -Number
-Enter an integer value
+An array of integers that you want converted to binary
 
 ```yaml
-Type: Int32[]
+Type: UInt64[]
 Parameter Sets: (All)
 Aliases:
 
@@ -55,8 +73,41 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
+### -MinimumWidth
+Minimum number of characters that the binary representation will be.
+The binary number could be longer than the minimum width.
+Aliased to 'Width'.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases: Width
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Prefix
+A string indicating the prefix you want included with the hex number.
+ValidateSet '0x', or '#'
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -IncludeInput
-{{ Fill IncludeInput Description }}
+Switch indicating that you want the input to be included in the output
 
 ```yaml
 Type: SwitchParameter

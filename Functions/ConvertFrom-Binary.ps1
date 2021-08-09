@@ -35,7 +35,7 @@ function ConvertFrom-Binary {
 
     process {
         foreach ($curBinary in $Binary) {
-            $ReturnVal = [convert]::ToInt32($curBinary, 2)
+            $ReturnVal = [convert]::ToInt64($curBinary, 2)
             if ($IncludeInput) {
                 New-Object -TypeName psobject -Property ([ordered] @{
                         Binary = $curBinary

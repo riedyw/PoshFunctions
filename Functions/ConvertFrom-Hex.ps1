@@ -37,7 +37,7 @@ function ConvertFrom-Hex {
 
     process {
         foreach ($curHex in $Hex) {
-            $ReturnVal = [convert]::ToInt32($curHex, 16)
+            $ReturnVal = [convert]::ToInt64($curHex, 16)
             if ($IncludeInput) {
                 New-Object -TypeName psobject -Property ([ordered] @{
                         Hex  = $curHex
