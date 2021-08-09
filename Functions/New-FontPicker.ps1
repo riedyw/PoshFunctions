@@ -69,6 +69,7 @@ function New-FontPicker {
         $ItalicsCheck.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (104, 24)
         $ItalicsCheck.TabIndex = 10
         $ItalicsCheck.Text = 'Italic'
+        $ItalicsCheck.Enabled = $false
         $ItalicsCheck.UseVisualStyleBackColor = $true
         #~~< BoldCheck >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         $BoldCheck = New-Object -TypeName System.Windows.Forms.CheckBox
@@ -76,6 +77,7 @@ function New-FontPicker {
         $BoldCheck.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (104, 24)
         $BoldCheck.TabIndex = 9
         $BoldCheck.Text = 'Bold'
+        $BoldCheck.Enabled = $false
         $BoldCheck.UseVisualStyleBackColor = $true
         #~~< StyleText >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         $StyleText = New-Object -TypeName System.Windows.Forms.TextBox
