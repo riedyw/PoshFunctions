@@ -22,7 +22,17 @@ All code has also been loaded into ISE with ISESteroids. Most, if not all, SUGGE
 Code has had Invoke-ScriptAnalyzer run against them so that errors are not thrown. Invoke-ScriptAnalyzer is not perfect however and sometimes returns false positives. For those that returned false positives I added declaration statement(s) after the [Cmdlet()] block to not throw the false positive error. An example declaration is as follows:
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]
 
-The only Invoke-ScriptAnalyzer error I could NOT fix is for function Union-Object. If you wish this to not appear then I would suggest that when you import the module you include the -DisableNameChecking parameter.
+### 2.2.7
+* added Get-CeaserCipher - a more robust version of Convert-ROT13 where you can specify the key or number of positions to shift. Aliased to Convert-ROT13 for backward compatibility.
+* added Get-List
+* added Get-String
+* added New-DatePicker
+* removed Convert-ROT13 - see more robust Get-CeaserCipher
+* renamed Union-Object to Merge-Object to get around Invoke-ScriptAnalyzer error
+* updated ConvertTo-Binary - changed -Number to [uint64[]] to be able to convert larger numbers. added -MinimumWidth parameter
+* updated ConvertTo-Hex - changed -Number to [uint64[]] to be able to convert larger numbers. added -MinimumWidth parameter, and -Prefix parameter
+* updated Merge-Object - aliased to 'Union-Object' for backward compatibility
+* updated Write-StringArray - added -ExcludeDollarSign to make it easier to create input for *.psd1 files
 
 ### 2.2.6
 * added Get-MyLocalLogonTime

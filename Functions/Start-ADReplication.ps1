@@ -3,7 +3,7 @@ function Start-ADReplication {
 .SYNOPSIS
     Forces replication to occur between domain controllers in domain.
 .DESCRIPTION
-    Forces replication to occur between domain controllers in domain. Invoke-command to a DC. Requires to be running in elevated Powershell prompt.
+    Forces replication to occur between domain controllers in domain. Invoke-Command to a DC. Requires to be running in elevated Powershell prompt.
 .PARAMETER Name
     A string array containing the name, fqdn or ipaddress of a domain controller. If not specified will query AD for a domain controller. Aliased to 'DomainController', 'DC', 'CN', 'ComputerName'
 .EXAMPLE
@@ -14,6 +14,10 @@ function Start-ADReplication {
     Get-ADDomainController -Filter * | Start-ADReplication
 
     Will return a list of all DCs and run the replication against that list
+.EXAMPLE
+    Get-ADDomainController -Filter "Name -like '*CORP*'" | Start-ADReplication
+
+    Will return a list of all DCs that have 'CORP' in their name and run the replication against that list
 .EXAMPLE
     Start-ADReplication -Name DC1 -Verbose
 
@@ -31,12 +35,15 @@ function Start-ADReplication {
     * Reworked logic so it just replicates the links that are defined. Previously it ran repadmin.exe with /ApeD switch and it was horribly slow.
     * Changed parameter $DC to $Name so that it would take input from Get-ADDomainController and to accept an array and added aliases to it
     * Changed output so that it would remove blank or commented lines from the output and to display what is being replicated in the output
+    * Changed output so that it creates CSV output
+    * Added '-ThrottleLimit 8' to the Invoke-Command so as to not saturate the local computer
 #>
 
     #region parameter
     [CmdletBinding(ConfirmImpact = 'Medium')]
     [OutputType('string')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseOutputTypeCorrectly', '')]
     Param
     (
         [parameter(Mandatory, HelpMessage = 'Please enter the name of a domain controller', ValueFromPipelineByPropertyName)]
@@ -56,7 +63,7 @@ function Start-ADReplication {
     process {
         foreach ($CurName in $Name) {
             Write-Verbose -Message "Processing [$CurName]"
-            Invoke-Command -ComputerName $CurName -ScriptBlock {
+            Invoke-Command -ComputerName $CurName -ThrottleLimit 8 -ScriptBlock {
                 $repl = repadmin.exe /showrepl /all /csv | ConvertFrom-Csv | Select-Object -Property 'Destination DSA', 'Source DSA', 'Naming Context'
                 $repl | ForEach-Object {
                     $msg = "`"$($_.'Destination DSA')`",`"$($_.'Source DSA')`",`"$($_.'Naming Context')`""

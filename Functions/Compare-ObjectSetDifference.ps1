@@ -33,7 +33,7 @@ function Compare-ObjectSetDifference {
 
     [CmdletBinding()]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
-    [outputtype('psobject')]
+    [OutputType('psobject')]
     param (
         [Alias('RO', 'Left')]
         [string[]] $ReferenceObject,

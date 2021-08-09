@@ -40,7 +40,7 @@ function Compare-ObjectSetUnion {
 #>
 
     [CmdletBinding()]
-    [outputtype('psobject')]
+    [OutputType('psobject')]
     param (
         [Alias('RO', 'Left')]
         [string[]] $ReferenceObject,

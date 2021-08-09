@@ -44,7 +44,7 @@ Function Format-ReverseToken {
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
-    [outputtype('string')]
+    [OutputType('string')]
     param(
         [Parameter(Mandatory, HelpMessage='Enter a string composed of tokens',Position=0,ValueFromPipeline)]
         [string[]] $String,

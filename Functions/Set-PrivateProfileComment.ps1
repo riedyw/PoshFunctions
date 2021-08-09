@@ -48,7 +48,7 @@ function Set-PrivateProfileComment {
 #>
     #region parameter
     [CmdletBinding(ConfirmImpact='Low')]
-    [outputtype('null')]
+    [OutputType('null')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions','')]

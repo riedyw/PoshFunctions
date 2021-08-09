@@ -18,7 +18,7 @@ function Get-ProcessUser {
 #>
 
     [CmdletBinding()]
-    [outputtype('psobject')]
+    [OutputType('psobject')]
     param (
         [parameter(Mandatory, HelpMessage = 'Please enter the name of a computer', ValueFromPipelineByPropertyName)]
         [Alias('ComputerName', 'CN', 'Server')]
@@ -47,13 +47,17 @@ function Get-ProcessUser {
     process {
         foreach ($CurName in $Name) {
             Write-Verbose -Message "Processing [$CurName]"
-            $Proc = Invoke-Command -ComputerName $CurName -ScriptBlock { Get-Process -IncludeUserName } |
-                Where-Object { $_.UserName -like $UserName }
-            if (-not $IncludeSystem) {
-                $Proc = $Proc | Where-Object { $_.UserName -notin $System -and $null -ne $_.UserName }
+            try {
+                $Proc = Invoke-Command -ComputerName $CurName -ScriptBlock { Get-Process -IncludeUserName } |
+                    Where-Object { $_.UserName -like $UserName }
+                if (-not $IncludeSystem) {
+                    $Proc = $Proc | Where-Object { $_.UserName -notin $System -and $null -ne $_.UserName }
+                }
+                $Proc |  Select-Object -Property @{Name = 'ComputerName'; expr = { $_.PsComputerName } }, UserName, Name, Id
+            } catch {
+                Write-Error -Message "Either computer [$curComputerName] is not up, or you don't have permission to run Invoke-Command against [$curComputerName]"
             }
-            $Proc |  Select-Object -Property @{Name = 'ComputerName'; expr = { $_.PsComputerName } }, UserName, Name, Id
-        }
+         }
     }
 
     end {

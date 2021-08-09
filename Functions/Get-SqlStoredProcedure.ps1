@@ -21,7 +21,7 @@ function Get-SqlStoredProcedure {
 #>
 
     [CmdletBinding()]
-    [outputtype('psobject')]
+    [OutputType('psobject')]
     param (
         [string] $ServerInstance = $env:COMPUTERNAME,
 

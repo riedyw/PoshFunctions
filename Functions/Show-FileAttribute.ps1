@@ -51,7 +51,7 @@ function Show-FileAttribute {
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
-    [outputtype([string[]])]
+    [OutputType([string[]])]
     Param (
     [switch] $IncludeValue
     )

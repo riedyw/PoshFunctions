@@ -40,7 +40,7 @@ function Get-InvalidFileCharacter {
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
-    [outputtype([char[]])]
+    [OutputType([char[]])]
     Param (
         [switch] $IncludeValues,
 

@@ -34,7 +34,7 @@ function Get-RelativePath {
 #>
 
     [CmdletBinding()]
-    [outputtype('psobject')]
+    [OutputType('psobject')]
     param (
         [parameter(Mandatory, HelpMessage = 'Please enter the path to a filesystem object', ValueFromPipeline, ValueFromPipelineByPropertyName)]
         [Alias('Path')]

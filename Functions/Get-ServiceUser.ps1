@@ -22,7 +22,7 @@ function Get-ServiceUser {
 #>
 
     [CmdletBinding()]
-    [outputtype('psobject')]
+    [OutputType('psobject')]
     param (
         [parameter(Mandatory, HelpMessage = 'Please enter the name of a computer', ValueFromPipelineByPropertyName)]
         [Alias('ComputerName', 'CN', 'Server')]

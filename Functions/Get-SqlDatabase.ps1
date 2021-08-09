@@ -21,7 +21,7 @@ function Get-SqlDatabase {
 #>
 
     [CmdletBinding()]
-    [outputtype('psobject')]
+    [OutputType('psobject')]
     param (
         [string] $ServerInstance = $env:COMPUTERNAME,
 

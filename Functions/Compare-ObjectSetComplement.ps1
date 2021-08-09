@@ -30,7 +30,7 @@ function Compare-ObjectSetComplement {
 #>
 
     [CmdletBinding()]
-    [outputtype('psobject')]
+    [OutputType('psobject')]
     param (
         [Alias('RO', 'Left')]
         [string[]] $ReferenceObject,

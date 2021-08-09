@@ -34,7 +34,7 @@ function Get-PrivateProfileSectionNames {
 #>
 
     [CmdletBinding()]
-    [outputtype([string[]])]
+    [OutputType([string[]])]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns','')]
     param(
         [string] $File

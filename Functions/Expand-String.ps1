@@ -62,7 +62,7 @@ function Expand-String {
 
     #region parameter
     [CmdletBinding(DefaultParameterSetName = 'PsString',ConfirmImpact='None')]
-    [outputtype('string')]
+    [OutputType('string')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
     param(
         [Parameter(Mandatory,HelpMessage='Enter a string to expand',Position=0,ValueFromPipeline,ParameterSetName='PsString')]

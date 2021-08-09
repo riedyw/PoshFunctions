@@ -31,7 +31,7 @@ function Compare-ObjectProperty {
 
     #region Parameters
     [CmdletBinding(ConfirmImpact = 'None')]
-    [outputtype('psobject')]
+    [OutputType('psobject')]
     Param(
         [Parameter(Mandatory, HelpMessage = 'First object to compare', Position = 0)]
         [PSObject] $ReferenceObject,

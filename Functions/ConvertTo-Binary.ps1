@@ -4,6 +4,12 @@ function ConvertTo-Binary {
     Convert an integer or array of integers to binary
 .DESCRIPTION
     Convert an integer or array of integers to binary
+.PARAMETER Number
+    An array of integers that you want converted to binary
+.PARAMETER MinimumWidth
+    Minimum number of characters that the binary representation will be. The binary number could be longer than the minimum width. Aliased to 'Width'.
+.PARAMETER IncludeInput
+    Switch indicating that you want the input to be included in the output
 .EXAMPLE
     ConvertTo-Binary -Number 23
 
@@ -15,6 +21,13 @@ function ConvertTo-Binary {
     ------ ------
         32 100000
        255 11111111
+.EXAMPLE
+    ConvertTo-binary -Number 32,0xff -IncludeInput -MinimumWidth 16
+
+    Number Binary
+    ------ ------
+        32 0000000000100000
+       255 0000000011111111
 .NOTES
     General notes
 #>
@@ -24,7 +37,11 @@ function ConvertTo-Binary {
     [OutputType('string')]
     Param(
         [Parameter(Mandatory,HelpMessage='Enter an integer value(s)', Position = 0, ValueFromPipeline)]
-        [int[]] $Number,
+        [uint64[]] $Number,
+
+        [ValidateRange(1,255)]
+        [Alias('Width')]
+        [int] $MinimumWidth,
 
         [switch] $IncludeInput
     )
@@ -37,6 +54,9 @@ function ConvertTo-Binary {
     process {
         foreach ($curNumber in $Number) {
             $ReturnVal = [convert]::ToString($curNumber, 2)
+            if ($MinimumWidth) {
+                $ReturnVal = $ReturnVal.PadLeft($MinimumWidth, '0')
+            }
             if ($IncludeInput) {
                 New-Object -TypeName psobject -Property ([ordered] @{
                         Number = $curNumber

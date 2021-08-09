@@ -4,11 +4,11 @@
 Add-Type -AssemblyName Microsoft.VisualBasic
 Add-Type -AssemblyName System.Web
 
-$ModulePath = split-path -Parent -Path $MyInvocation.MyCommand.Path
+$Script:ModulePath = Split-Path -Parent -Path $MyInvocation.MyCommand.Path
 
-$FunctionsPath = join-path -Path $ModulePath -ChildPath 'Functions'
-$Functions = get-childitem -Path $FunctionsPath -Filter *.ps1
-$Functions | foreach-object { . $_.FullName }
+$Script:FunctionsPath = Join-Path -Path $Script:ModulePath -ChildPath 'Functions'
+$Functions = Get-ChildItem -Path $Script:FunctionsPath -Filter *.ps1
+$Functions | ForEach-Object { . $_.FullName }
 
 $Script:WordList = Get-Content -Path $PSScriptRoot\WordList.txt
 $Script:FortuneFile = "$ModulePath\Wisdom.txt"
@@ -120,6 +120,6 @@ public class ProfileAPI{
 }
 '@
 
-Add-Type $IniCode
+Add-Type -TypeDefinition $IniCode
 
 # EOF: PoshFunctions.psm1

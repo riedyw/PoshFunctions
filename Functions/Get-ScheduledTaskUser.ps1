@@ -27,7 +27,7 @@ function Get-ScheduledTaskUser {
 #>
 
     [CmdletBinding()]
-    [outputtype('psobject')]
+    [OutputType('psobject')]
     param (
         [Alias('CN', 'Server')]
         [string[]] $ComputerName = $env:COMPUTERNAME,
@@ -58,14 +58,22 @@ function Get-ScheduledTaskUser {
             'SYSTEM',
             'Users'
         )
+        $Task = @()
     }
 
     process {
-        $Task = @()
         foreach ($curComputer in $ComputerName) {
             Write-Verbose -Message "Processing [$curComputer]"
-            $Task += schtasks.exe /query /s $curComputer /V /FO CSV | ConvertFrom-Csv
+            $TmpResult = (schtasks.exe /query /s $curComputer /V /FO CSV) 2>$null
+            if ($LastExitCode -eq 0) {
+                $Task += $TmpResult | ConvertFrom-Csv
+            } else {
+                Write-Error -Message "Either computer [$curComputer] is not up, or you don't have permission to run schtasks.exe against it."
+            }
         }
+    }
+
+    end {
         $Task = $Task | Where-Object { $_.'Run As User' -like $UserName }
         if (-not $IncludeSystem) {
             Write-Verbose -Message 'Excluding system tasks'
@@ -76,9 +84,7 @@ function Get-ScheduledTaskUser {
         }
         $Task | Where-Object { $_.Hostname -ne 'Hostname' } | Select-Object -Property @{Name = 'ComputerName'; Expr = { $_.HostName } },
             TaskName, Status, @{Name = 'RunAsUser'; Expr = { $_.'Run As User' } }, @{Name='LogonMode'; Expr = { $_.'Logon Mode'}}
-    }
 
-    end {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }

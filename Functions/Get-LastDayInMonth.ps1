@@ -39,7 +39,7 @@ function Get-LastDayInMonth {
 #>
 
     [cmdletbinding()]
-    [outputtype('int')]
+    [OutputType('int')]
     param(
         [parameter(Mandatory, HelpMessage = 'Please enter a year in the range 1-9999', ValueFromPipelineByPropertyName)]
         [ValidateRange(1, 9999)]

@@ -34,7 +34,7 @@ function Optimize-SqlIndexFragmentation {
 #>
 
     [CmdletBinding()]
-    [outputtype('psobject')]
+    [OutputType('psobject')]
     param (
         [string] $ServerInstance = $env:COMPUTERNAME,
 

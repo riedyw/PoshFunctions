@@ -9,7 +9,7 @@ function Show-DaysOfWeek {
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
-    [outputtype([string[]])]
+    [OutputType([string[]])]
     Param ()
 
     begin {

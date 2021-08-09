@@ -27,7 +27,7 @@ function Format-TitleCase {
 #>
 
     [cmdletbinding()]
-    [outputtype('string')]
+    [OutputType('string')]
     param(
         [parameter(Mandatory, HelpMessage = 'Please enter a string that you want to put in Title Case', ValueFromPipeline, ValueFromPipelineByPropertyName)]
         [string[]] $String,

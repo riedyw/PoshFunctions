@@ -165,7 +165,7 @@ function New-Shortcut {
                 if ($RunAsAdmin) {
                     $bytes[0x15] = $bytes[0x15] -bor 0x20
                 } else {
-                    $bytes[0x15] = $bytes[0x15] -band -not 0x20 
+                    $bytes[0x15] = $bytes[0x15] -band -not 0x20
                 }
                 [System.IO.File]::WriteAllBytes($path.FullName, $bytes)
                 if ($Interactive) {

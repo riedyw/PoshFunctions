@@ -8,6 +8,8 @@ function Write-StringArray {
     The text to be included in the string array
 .PARAMETER VariableName
     The name of the string array variable
+.PARAMETER ExcludeDollarSign
+    Switch to exclude the dollar sign in front of the variable name. Useful when trying to create string array for *.psd1 files
 .EXAMPLE
     Write-StringArray -Text Hello,World,"it's me"
 
@@ -26,6 +28,15 @@ function Write-StringArray {
         '2',
         '99'
     )
+.EXAMPLE
+    1,2,99 | Write-StringArray -VariableName MyVariable -ExcludeDollarSign
+
+    Would return
+    MyVariable = @(
+        '1',
+        '2',
+        '99'
+    )
 .OUTPUTS
     [string[]]
 #>
@@ -37,14 +48,19 @@ function Write-StringArray {
         [Parameter(Mandatory,HelpMessage = 'Enter a series of values',Position = 0,ValueFromPipeline)]
         [string[]] $Text,
 
-        [string] $VariableName = 'StringArray'
+        [string] $VariableName = 'StringArray',
 
-        )
+        [switch] $ExcludeDollarSign
+    )
     #endregion Parameter
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
-        $ReturnVal = "`$$VariableName = @(`n"
+        if ($ExcludeDollarSign) {
+            $ReturnVal = "$VariableName = @(`n"
+        } else {
+            $ReturnVal = "`$$VariableName = @(`n"
+        }
     }
 
     process {

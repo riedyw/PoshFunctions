@@ -25,7 +25,7 @@ function Test-Set {
 #>
 
     [CmdletBinding()]
-    [outputtype('string')]
+    [OutputType('string')]
     param (
         [Alias('RO', 'Left')]
         [string[]] $ReferenceObject,

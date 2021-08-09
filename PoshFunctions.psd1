@@ -4,7 +4,7 @@
     RootModule        = 'PoshFunctions.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '2.2.6'
+    ModuleVersion     = '2.2.7'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -62,11 +62,10 @@
 
     # Functions export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 
-    FunctionsToExport = @( 'Compare-ObjectProperty',
-    'Compare-ObjectSetComplement', 'Compare-ObjectSetDifference',
-    'Compare-ObjectSetIntersection', 'Compare-ObjectSetUnion',
-    'Compare-PSGalleryObject', 'Convert-HexToRGB', 'Convert-Int32ToUint32',
-    'Convert-ObjectToHashtable', 'Convert-RGBToHex', 'Convert-ROT13',
+    FunctionsToExport = @( 'Compare-ObjectProperty', 'Compare-ObjectSetComplement',
+    'Compare-ObjectSetDifference', 'Compare-ObjectSetIntersection',
+    'Compare-ObjectSetUnion', 'Compare-PSGalleryObject', 'Convert-HexToRGB',
+    'Convert-Int32ToUint32', 'Convert-ObjectToHashtable', 'Convert-RGBToHex',
     'Convert-SecureStringToString', 'Convert-UserFlag', 'ConvertFrom-Base64',
     'ConvertFrom-Binary', 'ConvertFrom-DateTime', 'ConvertFrom-FsRight',
     'ConvertFrom-Hex', 'ConvertFrom-UrlEncode', 'ConvertFrom-UTC',
@@ -79,11 +78,11 @@
     'Format-MacAddress', 'Format-RandomCase', 'Format-ReverseString',
     'Format-ReverseToken', 'Format-SortedList', 'Format-TitleCase',
     'Format-WrapText', 'Get-Address', 'Get-BashPath', 'Get-BinaryType',
-    'Get-ComputerSite', 'Get-ComputerUptime', 'Get-DiceRoll',
+    'Get-CeasarCipher', 'Get-ComputerSite', 'Get-ComputerUptime', 'Get-DiceRoll',
     'Get-DNSHostEntryAsync', 'Get-DriveStat', 'Get-Enum', 'Get-ExecutableForFile',
     'Get-FileEncoding', 'Get-FileName', 'Get-FileWithLeadingSpace',
     'Get-FolderName', 'Get-Font', 'Get-Fortune', 'Get-GeoCode',
-    'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-LastDayInMonth',
+    'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-LastDayInMonth', 'Get-List',
     'Get-LongName', 'Get-MachineType', 'Get-MacVendor', 'Get-Magic8Ball',
     'Get-Md5Sum', 'Get-MyLocalLogonTime', 'Get-NetworkCredential',
     'Get-NTFSPermission', 'Get-NtpDate', 'Get-Power', 'Get-PrintableAscii',
@@ -94,11 +93,12 @@
     'Get-RelativePath', 'Get-Round', 'Get-SaveFileName', 'Get-ScheduledTaskUser',
     'Get-ServiceUser', 'Get-Shortcut', 'Get-ShortName', 'Get-SID',
     'Get-SpecialFolder', 'Get-SqlDatabase', 'Get-SqlIndexFragmentation',
-    'Get-SqlStoredProcedure', 'Get-StaticProperty', 'Get-SubnetMaskIPv4',
-    'Get-TruncatedDate', 'Get-Type', 'Get-TypeAccelerator', 'Get-UrlContent',
-    'Get-WordCount', 'Get-WordList', 'grep', 'Invoke-Beep',
+    'Get-SqlStoredProcedure', 'Get-StaticProperty', 'Get-String',
+    'Get-SubnetMaskIPv4', 'Get-TruncatedDate', 'Get-Type', 'Get-TypeAccelerator',
+    'Get-UrlContent', 'Get-WordCount', 'Get-WordList', 'grep', 'Invoke-Beep',
     'Invoke-CountdownTimer', 'Invoke-Speak', 'Join-Object', 'Lock-Workstation',
-    'Measure-Char', 'mklink', 'Move-ToRecycleBin', 'New-Credential',
+    'Measure-Char', 'Merge-Object', 'mklink', 'Move-ToRecycleBin',
+    'New-ColorPicker', 'New-Credential', 'New-DatePicker', 'New-FontPicker',
     'New-InputBox', 'New-InputBoxSecureString', 'New-Popup', 'New-QR',
     'New-RandomPassword', 'New-Screenshot', 'New-Shortcut',
     'Optimize-SqlIndexFragmentation', 'Optimize-SqlStoredProcedure',
@@ -117,8 +117,8 @@
     'Test-IsFileLocked', 'Test-IsHexString', 'Test-IsNull', 'Test-IsNumeric',
     'Test-IsNumLock', 'Test-IsScrollLock', 'Test-IsValidEmailAddress',
     'Test-IsValidIPv4', 'Test-IsValidIPv6', 'Test-Network', 'Test-NtpDateVsNow',
-    'Test-Password', 'Test-Port', 'Test-Set', 'Union-Object',
-    'Update-ExplorerIcon', 'Use-Stopwatch', 'Write-StringArray', 'Write-TextMenu' )
+    'Test-Password', 'Test-Port', 'Test-Set', 'Update-ExplorerIcon',
+    'Use-Stopwatch', 'Write-StringArray', 'Write-TextMenu' )
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     #CmdletsToExport = '*'
@@ -127,21 +127,15 @@
     #VariablesToExport = '*'
 
     # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-    #AliasesToExport = '*'
+    # AliasesToExport = '*'
 
-    AliasesToExport = @('Base64Decode', 'Base64Encode', 'Beep',
+    AliasesToExport = @( 'Base64Decode', 'Base64Encode', 'Beep', 'Convert-ROT13',
     'ConvertTo-BinaryIP', 'ConvertTo-DecimalIP', 'ConvertTo-DottedDecimalIP',
     'CountdownTimer', 'Fortune', 'Get-Folder', 'Get-LastReboot', 'Get-SaveFile',
     'Get-SubnetMaskIP', 'Md5Sum', 'Parse-Bool', 'Recycle', 'ReverseString',
     'Show-InvalidFileCharacter', 'Show-SpecialFolder', 'Show-SubnetMaskIP',
-    'Show-TypeAccelerator', 'Speak', 'Test-IsValidIP', 'Union', 'UrlDecode',
-    'UrlEncode', 'WrapText', 'Base64Decode', 'Base64Encode', 'Beep',
-    'ConvertTo-BinaryIP', 'ConvertTo-DecimalIP', 'ConvertTo-DottedDecimalIP',
-    'CountdownTimer', 'Fortune', 'Get-Folder', 'Get-LastReboot', 'Get-SaveFile',
-    'Get-SubnetMaskIP', 'Md5Sum', 'Parse-Bool', 'Recycle', 'ReverseString',
-    'Show-InvalidFileCharacter', 'Show-SpecialFolder', 'Show-SubnetMaskIP',
-    'Show-TypeAccelerator', 'Speak', 'Test-IsValidIP', 'Union', 'UrlDecode',
-    'UrlEncode', 'WrapText')
+    'Show-TypeAccelerator', 'Speak', 'Test-IsValidIP', 'Union-Object', 'UrlDecode',
+    'UrlEncode', 'WrapText' )
 
     # DSC resources to export from this module
     # DscResourcesToExport = @()
@@ -184,6 +178,18 @@
             # ReleaseNotes of this module
             ReleaseNotes = @'
 For full release notes see ReleaseNotes.txt
+### 2.2.7
+* added Get-CeaserCipher - a more robust version of Convert-ROT13 where you can specify the key or number of positions to shift. Aliased to Convert-ROT13 for backward compatibility.
+* added Get-List
+* added Get-String
+* added New-DatePicker
+* removed Convert-ROT13 - see more robust Get-CeaserCipher
+* renamed Union-Object to Merge-Object to get around Invoke-ScriptAnalyzer error
+* updated ConvertTo-Binary - changed -Number to [uint64[]] to be able to convert larger numbers. added -MinimumWidth parameter
+* updated ConvertTo-Hex - changed -Number to [uint64[]] to be able to convert larger numbers. added -MinimumWidth parameter, and -Prefix parameter
+* updated Merge-Object - aliased to 'Union-Object' for backward compatibility
+* updated Write-StringArray - added -ExcludeDollarSign to make it easier to create input for *.psd1 files
+
 ### 2.2.6
 * added Get-MyLocalLogonTime
 * added Get-RelativePath

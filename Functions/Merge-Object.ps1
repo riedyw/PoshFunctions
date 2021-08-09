@@ -1,4 +1,4 @@
-function Union-Object ([String[]]$Property = @()) {
+function Merge-Object ([String[]]$Property = @()) {
 <#
 .SYNOPSIS
     Returns a 'clean' array of objects that have all property names in each element of the array
@@ -91,4 +91,4 @@ function Union-Object ([String[]]$Property = @()) {
     $Objects | Select-Object -Property ([String[]]($Property | Select-Object -Unique))
 }
 
-Set-Alias -Name 'Union' -Value 'Union-Object'
+Set-Alias -Name 'Union-Object' -Value 'Merge-Object' -Description 'Alias for Merge-Object'

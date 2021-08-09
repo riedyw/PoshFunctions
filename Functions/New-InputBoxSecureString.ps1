@@ -78,7 +78,9 @@ function New-InputBoxSecureString {
         $ValidateEntry.ClientSize = New-Object -TypeName System.Drawing.Size -ArgumentList (300, 220)
         $ValidateEntry.Font = New-Object -TypeName System.Drawing.Font -ArgumentList ($Font, 12.0, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, ([byte](0)))
         $ValidateEntry.Text = $Title
-
+        $ValidateEntry.AutoSize = $true
+        $ValidateEntry.AutoSizeMode = 'GrowOnly'
+        $ValidateEntry.Icon = (Join-Path -Path $Script:ModulePath -ChildPath 'PoshFunctions.ico')
         #~~< OKButton >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         $OKButton = New-Object -TypeName System.Windows.Forms.Button
         $OKButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
@@ -89,7 +91,6 @@ function New-InputBoxSecureString {
         $OKButton.Text = 'OK'
         $OKButton.UseVisualStyleBackColor = $true
         $ValidateEntry.AcceptButton = $OKButton
-
         #~~< CancelButton >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         $CancelButton = New-Object -TypeName System.Windows.Forms.Button
         $CancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
@@ -100,14 +101,12 @@ function New-InputBoxSecureString {
         $CancelButton.Text = 'Cancel'
         $CancelButton.UseVisualStyleBackColor = $true
         $ValidateEntry.CancelButton = $CancelButton
-
         #~~< EntryLabel >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         $EntryLabel = New-Object -TypeName System.Windows.Forms.Label
         $EntryLabel.Font = New-Object -TypeName System.Drawing.Font -ArgumentList ($Font, 9.0, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, ([byte](0)))
         $EntryLabel.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (12, 96)
         $EntryLabel.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (250, 39)
         $EntryLabel.Text = $EntryBoxLabel
-
         #~~< EntryBox >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         $EntryBox = New-Object -TypeName System.Windows.Forms.TextBox
         $EntryBox.Font = New-Object -TypeName System.Drawing.Font -ArgumentList ($Font, 9.0, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, ([byte](0)))
@@ -118,7 +117,6 @@ function New-InputBoxSecureString {
             $EntryBox.PasswordChar = '*'
         }
         $EntryBox.Text = ''
-
         if (-not $DisableValidation) {
             $ValidateEntry.ClientSize = New-Object -TypeName System.Drawing.Size -ArgumentList (300, 260)
             #~~< ValidateLabel >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -139,7 +137,6 @@ function New-InputBoxSecureString {
             }
             $ValidateBox.Text = ''
         }
-
         #~~< DescriptionLabel >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         $DescriptionLabel = New-Object -TypeName System.Windows.Forms.Label
         $DescriptionLabel.Font = New-Object -TypeName System.Drawing.Font -ArgumentList ($Font, 9.0, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, ([byte](0)))
@@ -147,12 +144,10 @@ function New-InputBoxSecureString {
         $DescriptionLabel.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (180, 200)
         #$DescriptionLabel.TabIndex = 6
         $DescriptionLabel.Text = $Description
-
         if (-not $DisableValidation) {
             $ValidateEntry.Controls.Add($ValidateBox)
             $ValidateEntry.Controls.Add($ValidateLabel)
         }
-
         $ValidateEntry.Controls.Add($EntryBox)
         $ValidateEntry.Controls.Add($EntryLabel)
         $ValidateEntry.Controls.Add($DescriptionLabel)

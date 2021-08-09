@@ -22,7 +22,7 @@ function Test-IsAdmin {
 
     #region Parameter
     [CmdletBinding(ConfirmImpact = 'None')]
-    [outputtype('bool')]
+    [OutputType('bool')]
     Param()
     #endregion Parameter
 
