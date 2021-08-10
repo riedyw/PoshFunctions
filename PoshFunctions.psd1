@@ -187,6 +187,8 @@ For full release notes see ReleaseNotes.txt
 * renamed Union-Object to Merge-Object to get around Invoke-ScriptAnalyzer error
 * updated ConvertTo-Binary - changed -Number to [uint64[]] to be able to convert larger numbers. added -MinimumWidth parameter
 * updated ConvertTo-Hex - changed -Number to [uint64[]] to be able to convert larger numbers. added -MinimumWidth parameter, and -Prefix parameter
+* updated ConvertFrom-Binary - changed result to [uint64[]] to be able to convert larger numbers.
+* updated ConvertTo-Hex - changed result to [uint64[]] to be able to convert larger numbers.
 * updated Merge-Object - aliased to 'Union-Object' for backward compatibility
 * updated Write-StringArray - added -ExcludeDollarSign to make it easier to create input for *.psd1 files
 

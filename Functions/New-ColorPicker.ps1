@@ -10,6 +10,8 @@ function New-ColorPicker {
     The Green color value. Defaults to '0'. Valid range 0-255. Can be passed from the pipeline by property name.
 .PARAMETER B
     The Blue color value. Defaults to '0'. Valid range 0-255. Can be passed from the pipeline by property name.
+.PARAMETER AsHashTable
+    Switch that will present the results of 'R,G,B' as a hashtable as opposed to a psobject
 .EXAMPLE
     New-ColorPicker -R 20 -G 45 -B 255
 
@@ -54,7 +56,9 @@ function New-ColorPicker {
         [Parameter(Position = 2, ValueFromPipelineByPropertyName)]
         [ValidateRange(0, 255)]
         [Alias('Blue')]
-        [int] $B = 0
+        [int] $B = 0,
+
+        [switch] $AsHashTable
     )
 
     begin {
@@ -220,11 +224,20 @@ function New-ColorPicker {
             if ($HexRb.Checked) {
                 Write-Output -InputObject ('{0:X2}{1:X2}{2:X2}' -f $R, $G, $B)
             } elseif ($RgbRb.Checked) {
-                New-Object -TypeName psobject -Property ([ordered] @{
+                if ($AsHashTable) {
+                    ([ordered] @{
                         R = $R
                         G = $G
                         B = $B
                     })
+                } else {
+                    New-Object -TypeName psobject -Property ([ordered] @{
+                        R = $R
+                        G = $G
+                        B = $B
+                    })
+                }
+
             } else {
                 Write-Output -InputObject ('{0},{1},{2}' -f $R, $G, $B)
             }

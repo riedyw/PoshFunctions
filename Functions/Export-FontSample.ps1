@@ -7,9 +7,9 @@ function Export-FontSample {
 .PARAMETER Path
     The path to the file that you want the font sample exported to. If the file does not end in either '.htm', or '.html' then an extension of '.htm' will be added to the file.
 .PARAMETER Text
-    Sample text that you want to displayed in the HTML file. Defaults to the string array: 
+    Sample text that you want to displayed in the HTML file. Defaults to the string array:
     @( 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-       'abcdefghijklmnopqrstuvwxyz', 
+       'abcdefghijklmnopqrstuvwxyz',
        '1234567890',
         '!@#$%^&*()&#91;&#93;&#123;&#125;-_=+ &cent;&pound;',
         '&gamma;&delta;&theta;&lambda;&xi;&pi;&sigma;&upsilon;&psi;&omega;'
@@ -23,20 +23,22 @@ function Export-FontSample {
 #>
 
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
     param(
         [Alias('FileName')]
         [string] $Path = '.\FontSample.htm',
 
-        [string[]] $Text =     @( 
+        [string[]] $Text =     @(
                'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-               'abcdefghijklmnopqrstuvwxyz', 
+               'abcdefghijklmnopqrstuvwxyz',
                '1234567890',
                 '!@#$%^&*()&#91;&#93;&#123;&#125;-_=+ &cent;&pound;',
                 '&gamma;&delta;&theta;&lambda;&xi;&pi;&sigma;&upsilon;&psi;&omega;'
             ),
 
         [switch] $Quiet,
-        
+
         [switch] $Show
     )
 
