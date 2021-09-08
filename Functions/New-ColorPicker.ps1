@@ -42,6 +42,7 @@ function New-ColorPicker {
 
     [CmdletBinding()]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseOutputTypeCorrectly', '')]
     param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName)]
         [ValidateRange(0, 255)]

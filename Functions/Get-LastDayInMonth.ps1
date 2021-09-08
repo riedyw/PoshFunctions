@@ -1,5 +1,5 @@
 function Get-LastDayInMonth {
-<#
+    <#
 .SYNOPSIS
     Get the last day of the month given the year as an integer, and the month as an integer
 .DESCRIPTION
@@ -31,12 +31,6 @@ function Get-LastDayInMonth {
 
     29
 .EXAMPLE
-    new-object psobject -property @{Y=2019;M=2} | Get-LastDayInMonth -IncludeInput
-
-    Year Month Days
-    ---- ----- ----
-    2019     2   28
-.EXAMPLE
     Get-Date 'Feb 1, 2019' | Get-LastDayInMonth -IncludeInput
 
     Year Month Days
@@ -59,7 +53,7 @@ function Get-LastDayInMonth {
     - added $Date parameter and parameter set names to function
 #>
 
-    [CmdletBinding(DefaultParameterSetName='Date')]
+    [CmdletBinding(DefaultParameterSetName = 'Date')]
     [OutputType('int')]
     param(
         [Parameter(Mandatory, HelpMessage = 'Please enter a year in the range 1-9999', ValueFromPipelineByPropertyName, ParameterSetName = 'YearMonth')]
