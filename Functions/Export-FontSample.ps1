@@ -33,8 +33,7 @@ function Export-FontSample {
                'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
                'abcdefghijklmnopqrstuvwxyz',
                '1234567890',
-                '!@#$%^&*()&#91;&#93;&#123;&#125;-_=+ &cent;&pound;',
-                '&gamma;&delta;&theta;&lambda;&xi;&pi;&sigma;&upsilon;&psi;&omega;'
+                '!@#$%^&*()[]{}-_=+ ¢£'
             ),
 
         [switch] $Quiet,
@@ -48,10 +47,12 @@ function Export-FontSample {
             Write-Verbose -Message "[$Path] does not end with extension .htm or .html"
             $Path = $Path + '.htm'
         }
+        for ($i = 0; $i -lt $Text.Count; $i++) { $Text[$i] = ConvertTo-HtmlEncode -Text $Text[$i] -Verbose:$false }
+        write-verbose $($Text -join ' ')
     }
 
     process {
-        $FontsInstalled = Get-Font
+        $FontsInstalled = Get-Font -Verbose:$false
         Write-Verbose -Message "There are [$($FontsInstalled.Count)] fonts installed."
         $HtmlStart = @"
 <html>
@@ -81,13 +82,16 @@ of commonly used symbols, and several Greek letters.</p>
 
         # create HTML
         $Result = $FontsInstalled |
-            ForEach-Object -begin {$strHTML=''} -process {
-            $strHTML += "<p><font style='font-family: Helvetica,Arial,sans-serif;' size='4'>[{0}] / </font>" -f ($_)
-            $strHTML += "<font size='4' face='{0}'>[{0}]</font><br/>" -f ($_)
-            $strHTML += "<font size='3' face='{0}'>$($Text -join ' ')</font></p>" -f ($_)
+            ForEach-Object -begin {[string[]] $strHTML=''} -process {
+                $tmpString = "<p><font style=`"font-family: Helvetica,Arial,sans-serif;`" size=`"4`">[{0}] / </font><font size=`"4`" face=`"{0}`">[{0}]</font><br/>" -f ($_)
+                $strHTML += $tmpString
+                #$tmpString = "<font size=`"4`" face=`"{0}`">[{0}]</font><br/>" -f ($_)
+                #$strHTML += $tmpString
+                $tmpString = "<font size=`"3`" face=`"{0}`"> {1}</font></p>" -f ($_), ($Text -join ' ')
+                $strHTML += $tmpString
             } -end {$strHTML}
 
-        $HtmlFile = $HtmlStart + $result + $HtmlEnd
+        $HtmlFile = $HtmlStart + ($Result | Out-String -Width 1024) + $HtmlEnd
 
         # write HTML
         Set-Content -Path $Path -Value $HtmlFile

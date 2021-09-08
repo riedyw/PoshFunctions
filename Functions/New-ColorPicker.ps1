@@ -64,113 +64,144 @@ function New-ColorPicker {
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         #region Form Creation
-        #~~< ColorForm >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        $ColorForm = New-Object -TypeName System.Windows.Forms.Form
-        $ColorForm.ClientSize = New-Object -TypeName System.Drawing.Size -ArgumentList (358, 336)
-        $ColorForm.Text = 'Select color'
-        $ColorForm.Font = New-Object -TypeName System.Drawing.Font -ArgumentList ('Segoe UI', 10.0, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, ([byte](0)))
-        $ColorForm.AutoSize = $true
-        $ColorForm.AutoSizeMode = 'GrowOnly'
-        $ColorForm.Icon = (Join-Path -Path $Script:ModulePath -ChildPath 'PoshFunctions.ico')
+        #Warning: It is recommended that changes inside this region be handled using the ScriptForm Designer.
+        #When working with the ScriptForm designer this region and any changes within may be overwritten.
+        #~~< ColorPicker >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        $ColorPicker = New-Object System.Windows.Forms.Form
+        $ColorPicker.ClientSize = New-Object System.Drawing.Size(420, 400)
+        $ColorPicker.Text = "Select color"
         #~~< OKButton >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        $OKButton = New-Object -TypeName System.Windows.Forms.Button
+        $OKButton = New-Object System.Windows.Forms.Button
         $OKButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
-        $OKButton.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (232, 80)
-        $OKButton.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (100, 23)
-        $OKButton.TabIndex = 4
-        $OKButton.Text = 'Return result'
+        $OKButton.Location = New-Object System.Drawing.Point(300, 73)
+        $OKButton.Size = New-Object System.Drawing.Size(100, 23)
+        $OKButton.TabIndex = 5
+        $OKButton.Text = "OK"
         $OKButton.UseVisualStyleBackColor = $true
-        $ColorForm.AcceptButton = $OKButton
+        $ColorPicker.AcceptButton = $OKButton
         #~~< CancelButton >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        $CancelButton = New-Object -TypeName System.Windows.Forms.Button
+        $CancelButton = New-Object System.Windows.Forms.Button
         $CancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
-        $CancelButton.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (232, 138)
-        $CancelButton.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (100, 23)
-        $CancelButton.TabIndex = 5
-        $CancelButton.Text = 'Cancel'
+        $CancelButton.Location = New-Object System.Drawing.Point(300, 131)
+        $CancelButton.Size = New-Object System.Drawing.Size(100, 23)
+        $CancelButton.TabIndex = 6
+        $CancelButton.Text = "Cancel"
         $CancelButton.UseVisualStyleBackColor = $true
-        $ColorForm.CancelButton = $CancelButton
+        $ColorPicker.CancelButton = $CancelButton
+        #~~< AsHashCheck >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        $AsHashCheck = New-Object System.Windows.Forms.CheckBox
+        $AsHashCheck.Enabled = $false
+        $AsHashCheck.Location = New-Object System.Drawing.Point(180, 100)
+        $AsHashCheck.Size = New-Object System.Drawing.Size(104, 24)
+        $AsHashCheck.TabIndex = 11
+        $AsHashCheck.Text = "As hashtable"
+        $AsHashCheck.UseVisualStyleBackColor = $true
+        #~~< PictureBox >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        $PictureBox = New-Object System.Windows.Forms.PictureBox
+        $PictureBox.BorderStyle = [System.Windows.Forms.BorderStyle]::FixedSingle
+        $PictureBox.Location = New-Object System.Drawing.Point(232, 289)
+        $PictureBox.Size = New-Object System.Drawing.Size(75, 75)
+        $PictureBox.TabIndex = 10
+        $PictureBox.TabStop = $false
+        $PictureBox.Text = ""
+        $PictureBox.BackColor = [System.Drawing.Color]::FromArgb(([System.Int32](([System.Byte](224)))), ([System.Int32](([System.Byte](224)))), ([System.Int32](([System.Byte](224)))))
         #~~< ResultLabel >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        $ResultLabel = New-Object -TypeName System.Windows.Forms.Label
-        $ResultLabel.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (12, 226)
-        $ResultLabel.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (197, 23)
-        $ResultLabel.Text = 'Resulting color expression'
+        $ResultLabel = New-Object System.Windows.Forms.Label
+        $ResultLabel.Location = New-Object System.Drawing.Point(12, 294)
+        $ResultLabel.Size = New-Object System.Drawing.Size(197, 23)
+        $ResultLabel.TabIndex = 9
+        $ResultLabel.Text = "Resulting color expression"
         #~~< ColorTextBox >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        $ColorTextBox = New-Object -TypeName System.Windows.Forms.TextBox
+        $ColorTextBox = New-Object System.Windows.Forms.TextBox
         $ColorTextBox.Enabled = $false
-        $ColorTextBox.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (13, 252)
-        $ColorTextBox.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (199, 20)
-        $ColorTextBox.Text = ''
-        #~~< FormDescription >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        $FormDescription = New-Object -TypeName System.Windows.Forms.Label
-        $FormDescription.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (12, 13)
-        $FormDescription.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (200, 23)
-        $FormDescription.Text = 'Please select the color result type'
-        #~~< RgbStringRB >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        $RgbStringRB = New-Object -TypeName System.Windows.Forms.RadioButton
-        $RgbStringRB.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (27, 168)
-        $RgbStringRB.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (104, 24)
-        $RgbStringRB.Text = 'RGB String'
-        $RgbStringRB.TabIndex = 2
-        $RgbStringRB.UseVisualStyleBackColor = $true
-        $RgbStringRb.add_Click( { Show-Result -object ($RgbStringRb) })
-        #~~< RgbRb >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        $RgbRb = New-Object -TypeName System.Windows.Forms.RadioButton
-        $RgbRb.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (27, 120)
-        $RgbRb.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (104, 24)
-        $RgbRb.Text = 'R,G,B'
-        $RgbRb.TabIndex = 1
-        $RgbRb.UseVisualStyleBackColor = $true
-        $RgbRb.add_Click( { Show-Result -object ($RgbRb) })
-        #~~< HexRb >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        $HexRb = New-Object -TypeName System.Windows.Forms.RadioButton
-        $HexRb.Checked = $true
-        $HexRb.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (27, 80)
-        $HexRb.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (104, 24)
-        $HexRb.Text = 'Hex'
-        $HexRb.TabIndex = 0
-        $HexRb.TabStop = $true
-        $HexRb.UseVisualStyleBackColor = $true
-        $HexRb.add_Click( { Show-Result -object ($HexRb) })
-        #~~< ColorResult >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        $ColorResult = New-Object -TypeName System.Windows.Forms.GroupBox
-        $ColorResult.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (12, 56)
-        $ColorResult.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (200, 141)
-        $ColorResult.Text = 'Select Color Result'
-        $ColorResult.Controls.Add($HexRb)
-        $ColorResult.Controls.Add($RgbRb)
-        $ColorResult.Controls.Add($RgbStringRB)
+        $ColorTextBox.Location = New-Object System.Drawing.Point(13, 320)
+        $ColorTextBox.Size = New-Object System.Drawing.Size(199, 20)
+        $ColorTextBox.TabIndex = 8
+        $ColorTextBox.Text = ""
+        #~~< DescriptionLabel >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        $DescriptionLabel = New-Object System.Windows.Forms.Label
+        $DescriptionLabel.Location = New-Object System.Drawing.Point(12, 13)
+        $DescriptionLabel.Size = New-Object System.Drawing.Size(200, 23)
+        $DescriptionLabel.TabIndex = 5
+        $DescriptionLabel.Text = "Please select the color result type"
         #~~< ColorButton >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        $ColorButton = New-Object -TypeName System.Windows.Forms.Button
-        $ColorButton.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (232, 26)
-        $ColorButton.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (100, 23)
-        $ColorButton.TabIndex = 3
-        $ColorButton.Text = 'Color Dialog'
+        $ColorButton = New-Object System.Windows.Forms.Button
+        $ColorButton.Location = New-Object System.Drawing.Point(300, 19)
+        $ColorButton.Size = New-Object System.Drawing.Size(100, 23)
+        $ColorButton.TabIndex = 0
+        $ColorButton.Text = "Color Dialog"
         $ColorButton.UseVisualStyleBackColor = $true
-        $ColorButton.add_Click( { Select-ColorButton -R ([ref] $R) -G ([ref] $G) -B ([ref] $B) })
-        #~~< PictureBox1 >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        $PictureBox1 = New-Object -TypeName System.Windows.Forms.PictureBox
-        $PictureBox1.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (232, 221)
-        $PictureBox1.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (100, 50)
-        $PictureBox1.BorderStyle = [System.Windows.Forms.BorderStyle]::FixedSingle
-        $PictureBox1.TabStop = $false
-        $PictureBox1.Text = ''
-        #~~< Add controls >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        $ColorForm.Controls.Add($ResultLabel)
-        $ColorForm.Controls.Add($ColorTextBox)
-        $ColorForm.Controls.Add($CancelButton)
-        $ColorForm.Controls.Add($OKButton)
-        $ColorForm.Controls.Add($FormDescription)
-        $ColorForm.Controls.Add($RgbStringRB)
-        $ColorForm.Controls.Add($RgbRb)
-        $ColorForm.Controls.Add($HexRb)
-        $ColorForm.Controls.Add($ColorButton)
-        $ColorForm.Controls.Add($ColorResult)
-        $ColorForm.Controls.Add($PictureBox1)
-        $ColorForm.add_Load( { $ColorTextBox.Text = '{0:X2}{1:X2}{2:X2}' -f $R, $G, $B })
+        #~~< ColorResult >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        $ColorResult = New-Object System.Windows.Forms.GroupBox
+        $ColorResult.Location = New-Object System.Drawing.Point(13, 39)
+        $ColorResult.Size = New-Object System.Drawing.Size(149, 203)
+        $ColorResult.TabIndex = 4
+        $ColorResult.TabStop = $false
+        $ColorResult.Text = "Select Color Result"
+        #~~< HexRb >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        $HexRb = New-Object System.Windows.Forms.RadioButton
+        $HexRb.Checked = $true
+        $HexRb.Location = New-Object System.Drawing.Point(15, 30)
+        $HexRb.Size = New-Object System.Drawing.Size(104, 24)
+        $HexRb.TabIndex = 1
+        $HexRb.TabStop = $true
+        $HexRb.Text = "Hex"
+        $HexRb.UseVisualStyleBackColor = $true
+        #~~< RgbStringRB >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        $RgbStringRB = New-Object System.Windows.Forms.RadioButton
+        $RgbStringRB.Location = New-Object System.Drawing.Point(15, 110)
+        $RgbStringRB.Size = New-Object System.Drawing.Size(104, 24)
+        $RgbStringRB.TabIndex = 3
+        $RgbStringRB.Text = "RGB String"
+        $RgbStringRB.UseVisualStyleBackColor = $true
+        #~~< ColorObjectRb >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        $ColorObjectRb = New-Object System.Windows.Forms.RadioButton
+        $ColorObjectRb.Location = New-Object System.Drawing.Point(15, 150)
+        $ColorObjectRb.Size = New-Object System.Drawing.Size(104, 24)
+        $ColorObjectRb.TabIndex = 5
+        $ColorObjectRb.TabStop = $true
+        $ColorObjectRb.Text = "Color object"
+        $ColorObjectRb.UseVisualStyleBackColor = $true
+        #~~< RgbRb >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        $RgbRb = New-Object System.Windows.Forms.RadioButton
+        $RgbRb.Location = New-Object System.Drawing.Point(15, 70)
+        $RgbRb.Size = New-Object System.Drawing.Size(104, 24)
+        $RgbRb.TabIndex = 2
+        $RgbRb.Text = "R,G,B"
+        $RgbRb.UseVisualStyleBackColor = $true
+        $ColorResult.Controls.Add($HexRb)
+        $ColorResult.Controls.Add($RgbStringRB)
+        $ColorResult.Controls.Add($ColorObjectRb)
+        $ColorResult.Controls.Add($RgbRb)
+        $ColorPicker.Controls.Add($AsHashCheck)
+        $ColorPicker.Controls.Add($PictureBox)
+        $ColorPicker.Controls.Add($ResultLabel)
+        $ColorPicker.Controls.Add($ColorTextBox)
+        $ColorPicker.Controls.Add($CancelButton)
+        $ColorPicker.Controls.Add($OKButton)
+        $ColorPicker.Controls.Add($DescriptionLabel)
+        $ColorPicker.Controls.Add($ColorButton)
+        $ColorPicker.Controls.Add($ColorResult)
         #~~< ColorDialog >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        $ColorDialog = New-Object -TypeName System.Windows.Forms.ColorDialog
-        $ColorDialog.ShowHelp = $false
+        $ColorDialog = New-Object System.Windows.Forms.ColorDialog
+        $ColorDialog.ShowHelp = $true
+
+        #endregion
+
+        #region myCustomFormCode
+        $ColorPicker.AutoSize = $true
+        $ColorPicker.AutoSizeMode = 'GrowOnly'
+        $ColorPicker.Font = [System.Drawing.SystemFonts]::get_MessageBoxFont()
+        if ($Script:ModulePath) {
+            $ColorPicker.Icon = (Join-Path -Path $Script:ModulePath -ChildPath 'PoshFunctions.ico')
+        }
+        $ColorPicker.add_Load( { $ColorTextBox.Text = '{0:X2}{1:X2}{2:X2}' -f $R, $G, $B })
+        $ColorButton.add_Click( { Select-ColorButton -R ([ref] $R) -G ([ref] $G) -B ([ref] $B) })
+        $RgbStringRb.add_Click( { Show-Result -object ($RgbStringRb) })
+        $ColorObjectRb.add_Click( { Show-Result -object ($ColorObjectRb) })
+        $RgbRb.add_Click( { Show-Result -object ($RgbRb) })
+        $HexRb.add_Click( { Show-Result -object ($HexRb) })
+        $AsHashCheck.Checked = $AsHashTable
         #endregion
 
         function Show-Result {
@@ -180,11 +211,17 @@ function New-ColorPicker {
                 $object
             )
             if ($HexRb.Checked) {
+                $AsHashCheck.Enabled = $false
                 $ColorTextBox.Text = '{0:X2}{1:X2}{2:X2}' -f $R, $G, $B
             } elseif ($RgbRb.Checked) {
+                $AsHashCheck.Enabled = $true
                 $ColorTextBox.Text = 'R={0}, G={1}, B={2}' -f $R, $G, $B
-            } else {
+            } elseif ($RgbStringRB.Checked) {
+                $AsHashCheck.Enabled = $false
                 $ColorTextBox.Text = '{0},{1},{2}' -f $R, $G, $B
+            } else {
+                $AsHashCheck.Enabled = $false
+                $ColorTextBox.Text = 'Color object'
             }
         }
 
@@ -203,43 +240,46 @@ function New-ColorPicker {
                 $R.Value = $ColorDialog.Color.R
                 $G.Value = $ColorDialog.Color.G
                 $B.Value = $ColorDialog.Color.B
-                $PictureBox1.BackColor = [System.Drawing.Color]::FromArgb($R.Value, $G.Value, $B.Value)
+                $PictureBox.BackColor = [System.Drawing.Color]::FromArgb($R.Value, $G.Value, $B.Value)
                 if ($HexRb.Checked) {
                     $ColorTextBox.Text = '{0:X2}{1:X2}{2:X2}' -f $R.Value, $G.Value, $B.Value
                 } elseif ($RgbRb.Checked) {
                     $ColorTextBox.Text = 'R={0}, G={1}, B={2}' -f $R.Value, $G.Value, $B.Value
-                } else {
+                } elseif ($RgbStringRB.Checked) {
                     $ColorTextBox.Text = '{0},{1},{2}' -f $R.Value, $G.Value, $B.Value
+                } else {
+                    $ColorTextBox.Text = 'Color Object'
                 }
             }
         }
     }
 
     process {
-        Write-Verbose -Message "R [$R] G [$G] B [$B]"
+        Write-Verbose -Message "R [$R] G [$G] B [$B] AsHashTable [$AsHashTable]"
         [System.Windows.Forms.Application]::EnableVisualStyles()
-        $PictureBox1.BackColor = [System.Drawing.Color]::FromArgb($R, $G, $B)
-        $Result = $ColorForm.ShowDialog()
+        $PictureBox.BackColor = [System.Drawing.Color]::FromArgb($R, $G, $B)
+        $Result = $ColorPicker.ShowDialog()
         if ($Result -eq 'OK') {
             if ($HexRb.Checked) {
                 Write-Output -InputObject ('{0:X2}{1:X2}{2:X2}' -f $R, $G, $B)
             } elseif ($RgbRb.Checked) {
-                if ($AsHashTable) {
+                if ($AsHashCheck.Checked) {
                     ([ordered] @{
-                        R = $R
-                        G = $G
-                        B = $B
-                    })
+                            R = $R
+                            G = $G
+                            B = $B
+                        })
                 } else {
                     New-Object -TypeName psobject -Property ([ordered] @{
-                        R = $R
-                        G = $G
-                        B = $B
-                    })
+                            R = $R
+                            G = $G
+                            B = $B
+                        })
                 }
-
-            } else {
+            } elseif ($RgbStringRB.Checked) {
                 Write-Output -InputObject ('{0},{1},{2}' -f $R, $G, $B)
+            } else {
+                Write-Output -InputObject $ColorDialog.Color
             }
         }
     }

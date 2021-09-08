@@ -70,21 +70,19 @@ function New-InputBoxSecureString {
         Write-Verbose -Message "DisableValidation [$DisableValidation], DisableInputMask [$DisableInputMask]"
         Add-Type -AssemblyName 'System.Windows.Forms'
         Add-Type -AssemblyName 'System.Drawing'
-        $Font = 'Microsoft Sans Serif'
 
         #~~< ValidateEntry >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         $ValidateEntry = New-Object -TypeName System.Windows.Forms.Form
         $ValidateEntry.AutoSize = $true
         $ValidateEntry.ClientSize = New-Object -TypeName System.Drawing.Size -ArgumentList (300, 220)
-        $ValidateEntry.Font = New-Object -TypeName System.Drawing.Font -ArgumentList ($Font, 12.0, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, ([byte](0)))
+        $ValidateEntry.Font = [System.Drawing.SystemFonts]::get_MessageBoxFont()
         $ValidateEntry.Text = $Title
         $ValidateEntry.AutoSize = $true
         $ValidateEntry.AutoSizeMode = 'GrowOnly'
-        $ValidateEntry.Icon = (Join-Path -Path $Script:ModulePath -ChildPath 'PoshFunctions.ico')
         #~~< OKButton >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         $OKButton = New-Object -TypeName System.Windows.Forms.Button
         $OKButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
-        $OKButton.Font = New-Object -TypeName System.Drawing.Font -ArgumentList ($Font, 9.0, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, ([byte](0)))
+        $OKButton.Font = [System.Drawing.SystemFonts]::get_MessageBoxFont()
         $OKButton.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (197, 12)
         $OKButton.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (75, 23)
         $OKButton.TabIndex = 2
@@ -94,7 +92,7 @@ function New-InputBoxSecureString {
         #~~< CancelButton >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         $CancelButton = New-Object -TypeName System.Windows.Forms.Button
         $CancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
-        $CancelButton.Font = New-Object -TypeName System.Drawing.Font -ArgumentList ($Font, 9.0, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, ([byte](0)))
+        $CancelButton.Font = [System.Drawing.SystemFonts]::get_MessageBoxFont()
         $CancelButton.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (197, 60)
         $CancelButton.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (75, 23)
         $CancelButton.TabIndex = 3
@@ -103,13 +101,13 @@ function New-InputBoxSecureString {
         $ValidateEntry.CancelButton = $CancelButton
         #~~< EntryLabel >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         $EntryLabel = New-Object -TypeName System.Windows.Forms.Label
-        $EntryLabel.Font = New-Object -TypeName System.Drawing.Font -ArgumentList ($Font, 9.0, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, ([byte](0)))
+        $EntryLabel.Font = [System.Drawing.SystemFonts]::get_MessageBoxFont()
         $EntryLabel.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (12, 96)
         $EntryLabel.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (250, 39)
         $EntryLabel.Text = $EntryBoxLabel
         #~~< EntryBox >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         $EntryBox = New-Object -TypeName System.Windows.Forms.TextBox
-        $EntryBox.Font = New-Object -TypeName System.Drawing.Font -ArgumentList ($Font, 9.0, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, ([byte](0)))
+        $EntryBox.Font = [System.Drawing.SystemFonts]::get_MessageBoxFont()
         $EntryBox.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (12, 138)
         $EntryBox.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (260, 24)
         $EntryBox.TabIndex = 0
@@ -121,14 +119,14 @@ function New-InputBoxSecureString {
             $ValidateEntry.ClientSize = New-Object -TypeName System.Drawing.Size -ArgumentList (300, 260)
             #~~< ValidateLabel >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             $ValidateLabel = New-Object -TypeName System.Windows.Forms.Label
-            $ValidateLabel.Font = New-Object -TypeName System.Drawing.Font -ArgumentList ($Font, 9.0, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, ([byte](0)))
+            $ValidateLabel.Font = [System.Drawing.SystemFonts]::get_MessageBoxFont()
             $ValidateLabel.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (12, 175)
             $ValidateLabel.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (250, 53)
             #$ValidateLabel.TabIndex = 4
             $ValidateLabel.Text = $ValidateBoxLabel
             #~~< ValidateBox >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             $ValidateBox = New-Object -TypeName System.Windows.Forms.TextBox
-            $ValidateBox.Font = New-Object -TypeName System.Drawing.Font -ArgumentList ($Font, 9.0, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, ([byte](0)))
+            $ValidateBox.Font = [System.Drawing.SystemFonts]::get_MessageBoxFont()
             $ValidateBox.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (12, 221)
             $ValidateBox.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (260, 24)
             $ValidateBox.TabIndex = 1
@@ -139,7 +137,7 @@ function New-InputBoxSecureString {
         }
         #~~< DescriptionLabel >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         $DescriptionLabel = New-Object -TypeName System.Windows.Forms.Label
-        $DescriptionLabel.Font = New-Object -TypeName System.Drawing.Font -ArgumentList ($Font, 9.0, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Point, ([byte](0)))
+        $DescriptionLabel.Font = [System.Drawing.SystemFonts]::get_MessageBoxFont()
         $DescriptionLabel.Location = New-Object -TypeName System.Drawing.Point -ArgumentList (12, 12)
         $DescriptionLabel.Size = New-Object -TypeName System.Drawing.Size -ArgumentList (180, 200)
         #$DescriptionLabel.TabIndex = 6
@@ -153,6 +151,15 @@ function New-InputBoxSecureString {
         $ValidateEntry.Controls.Add($DescriptionLabel)
         $ValidateEntry.Controls.Add($CancelButton)
         $ValidateEntry.Controls.Add($OKButton)
+
+        #region myCustomFormCode
+        $ValidateEntry.AutoSize = $true
+        $ValidateEntry.AutoSizeMode = 'GrowOnly'
+        $ValidateEntry.Font = [System.Drawing.SystemFonts]::get_MessageBoxFont()
+        if ($Script:ModulePath) {
+            $ValidateEntry.Icon = (Join-Path -Path $Script:ModulePath -ChildPath 'PoshFunctions.ico')
+        }
+        #endregion
     }
 
     process {
