@@ -79,14 +79,15 @@
     'Format-ReverseString', 'Format-ReverseToken', 'Format-SortedList',
     'Format-TitleCase', 'Format-WrapText', 'Get-Address', 'Get-BashPath',
     'Get-BinaryType', 'Get-CeasarCipher', 'Get-ComputerSite', 'Get-ComputerUptime',
-    'Get-DiceRoll', 'Get-DNSHostEntryAsync', 'Get-DriveStat', 'Get-Enum',
-    'Get-ExecutableForFile', 'Get-FileEncoding', 'Get-FileName',
-    'Get-FileWithLeadingSpace', 'Get-FolderName', 'Get-Font', 'Get-Fortune',
-    'Get-GeoCode', 'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-LastDayInMonth',
-    'Get-List', 'Get-LongName', 'Get-MachineType', 'Get-MacVendor',
-    'Get-Magic8Ball', 'Get-Md5Sum', 'Get-MyLocalLogonTime',
-    'Get-NetworkCredential', 'Get-NTFSPermission', 'Get-NtpDate', 'Get-Power',
-    'Get-PrintableAscii', 'Get-PrivateProfileComment', 'Get-PrivateProfileSection',
+    'Get-DiceRoll', 'Get-DNSHostEntryAsync', 'Get-DriveStat',
+    'Get-DuplicateFileName', 'Get-Enum', 'Get-ExecutableForFile',
+    'Get-FileEncoding', 'Get-FileName', 'Get-FileWithLeadingSpace',
+    'Get-FolderName', 'Get-Font', 'Get-Fortune', 'Get-GeoCode',
+    'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-LastDayInMonth', 'Get-List',
+    'Get-LongName', 'Get-MachineType', 'Get-MacVendor', 'Get-Magic8Ball',
+    'Get-Md5Sum', 'Get-MyLocalLogonTime', 'Get-NetworkCredential',
+    'Get-NTFSPermission', 'Get-NtpDate', 'Get-Power', 'Get-PrintableAscii',
+    'Get-PrivateProfileComment', 'Get-PrivateProfileSection',
     'Get-PrivateProfileSectionNames', 'Get-PrivateProfileString',
     'Get-ProcessUser', 'Get-PSWho', 'Get-RandomDate', 'Get-RandomHexDigit',
     'Get-RandomMacAddress', 'Get-RegExpandString', 'Get-RegistryValue',
@@ -120,6 +121,7 @@
     'Test-Password', 'Test-PasswordComplexity', 'Test-Port', 'Test-Set',
     'Update-ExplorerIcon', 'Use-Stopwatch', 'Write-StringArray', 'Write-TextMenu' )
 
+
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     #CmdletsToExport = '*'
 
@@ -131,11 +133,12 @@
 
     AliasesToExport = @( 'Base64Decode', 'Base64Encode', 'Beep', 'Convert-ROT13',
     'ConvertTo-BinaryIP', 'ConvertTo-DecimalIP', 'ConvertTo-DottedDecimalIP',
-    'CountdownTimer', 'Fortune', 'Get-Folder', 'Get-LastReboot', 'Get-SaveFile',
-    'Get-SubnetMaskIP', 'Md5Sum', 'Parse-Bool', 'Recycle', 'ReverseString',
-    'Show-InvalidFileCharacter', 'Show-SpecialFolder', 'Show-SubnetMaskIP',
-    'Show-TypeAccelerator', 'Speak', 'Test-IsValidIP', 'Union-Object', 'UrlDecode',
-    'UrlEncode', 'WrapText' )
+    'CountdownTimer', 'Fortune', 'Get-DupeFileName', 'Get-Folder',
+    'Get-LastReboot', 'Get-SaveFile', 'Get-SubnetMaskIP', 'Md5Sum', 'Parse-Bool',
+    'Recycle', 'ReverseString', 'Show-InvalidFileCharacter', 'Show-SpecialFolder',
+    'Show-SubnetMaskIP', 'Show-TypeAccelerator', 'Speak', 'Test-IsValidIP',
+    'Union-Object', 'UrlDecode', 'UrlEncode', 'WrapText' )
+
 
     # DSC resources to export from this module
     # DscResourcesToExport = @()
@@ -184,6 +187,7 @@ For full release notes see ReleaseNotes.txt
 * added ConvertTo-HtmlEncode - helps with encoding strings that contain HTML special characters. For instance, 'this & that' becomes 'this &amp; that'
 * added Export-FontSample - creates HTML output of sample text formatted with all of the installed fonts on the system
 * added Get-CeasarCipher - a more robust version of Convert-ROT13 where you can specify the key or number of positions to shift. Aliased to 'Convert-ROT13' for backward compatibility.
+* added Get-DuplicateFileName - creates a quick list of duplicate file names within a given folder
 * added Get-List - function to return an array given an indeterminate number of command line parameters
 * added Get-String - function to return a string given an indeterminate number of command line parameters
 * added New-ColorPicker - presents dialog box where user can select a color.

@@ -28,6 +28,7 @@ Code has had Invoke-ScriptAnalyzer run against them so that errors are not throw
 * added ConvertTo-HtmlEncode - helps with encoding strings that contain HTML special characters. For instance, 'this & that' becomes 'this &amp; that'
 * added Export-FontSample - creates HTML output of sample text formatted with all of the installed fonts on the system
 * added Get-CeasarCipher - a more robust version of Convert-ROT13 where you can specify the key or number of positions to shift. Aliased to 'Convert-ROT13' for backward compatibility.
+* added Get-DuplicateFileName - creates a quick list of duplicate file names within a given folder
 * added Get-List - function to return an array given an indeterminate number of command line parameters
 * added Get-String - function to return a string given an indeterminate number of command line parameters
 * added New-ColorPicker - presents dialog box where user can select a color.
