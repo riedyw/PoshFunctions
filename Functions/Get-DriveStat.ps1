@@ -71,7 +71,7 @@ function Get-DriveStat {
                     $CimSession.Close()
                     $CimSession.Dispose()
                 } catch {
-                    Write-Error "Could not connect to [$CurName]"
+                    Write-Error -Message "Could not connect to [$CurName]"
                 }
             }
             switch ($Capacity) {

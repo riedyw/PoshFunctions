@@ -152,7 +152,7 @@ function Test-ConnectionAsync {
             if ($IncludeSource) {
                 $Layout.Insert(0,'Source',$Source)
             }
-            $Object = New-Object psobject -Property $Layout
+            $Object = New-Object -TypeName psobject -Property $Layout
             $Object.pstypenames.insert(0, 'Net.AsyncPingResult')
             if ($Full) {
                 $Object

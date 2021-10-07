@@ -49,7 +49,7 @@ function Export-FontSample {
             $Path = $Path + '.htm'
         }
         for ($i = 0; $i -lt $Text.Count; $i++) { $Text[$i] = ConvertTo-HtmlEncode -Text $Text[$i] -Verbose:$false }
-        write-verbose $($Text -join ' ')
+        write-verbose -Message $($Text -join ' ')
     }
 
     process {

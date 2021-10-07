@@ -82,8 +82,8 @@ function Get-LastDayInMonth {
             'YearMonth' {
             }
             'Date' {
-                [int] $Year = Get-Date $Date -Format 'yyyy'
-                [int] $Month = Get-Date $Date -Format 'MM'
+                [int] $Year = Get-Date -Date $Date -Format 'yyyy'
+                [int] $Month = Get-Date -Date $Date -Format 'MM'
             }
         }
         $ReturnVal = [datetime]::DaysInMonth($Year, $Month)

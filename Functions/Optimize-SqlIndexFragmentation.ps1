@@ -170,7 +170,7 @@ function Optimize-SqlIndexFragmentation {
                 try {
                     write-verbose -Message 'Running Query'
                     if ($Current.Table -ne $TableProcessing) {
-                        Write-Verbose -Message "Updating statistics"
+                        Write-Verbose -Message 'Updating statistics'
                         Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $Current.Database -Query $Current.Stats -QueryTimeout 900 -Verbose:$false -EA Stop | Out-Null
                         $TableProcessing = $Current.Table
                     }
@@ -192,7 +192,7 @@ function Optimize-SqlIndexFragmentation {
                 try {
                     write-verbose -Message 'Running Query'
                     if ($Current.Table -ne $TableProcessing) {
-                        Write-Verbose -Message "Updating statistics"
+                        Write-Verbose -Message 'Updating statistics'
                         Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $Current.Database -Query $Current.Stats -QueryTimeout 900 -Verbose:$false -EA Stop | Out-Null
                         $TableProcessing = $Current.Table
                     }

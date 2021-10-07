@@ -98,8 +98,6 @@ function Get-FileName {
                 [array] $ReturnArray = $OpenFileDialog.FileName
                 return (, $ReturnArray)
             }
-        } else {
-            # nothing to return
         }
     }
 

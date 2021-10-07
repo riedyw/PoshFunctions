@@ -213,8 +213,7 @@ For full release notes see ReleaseNotes.txt
 * updated New-InputBoxSecureString - added module custom icon
 * updated Optimize-SqlIndexFragmentation - to handle error condition of index not having page level locking on. If that error is encountered it enables lock, optimizes index, then disables lock
 * updated Start-ADReplication - added -ThrottleLimit so as to not over saturate the local computer
-* updated Test-ConnectionAsync - added -Full switch and made default output brief
-* updated Test-ConnectionAsync - slight formatting change in output
+* updated Test-ConnectionAsync - added -Full switch and made default output brief, slight formatting change in output
 * updated Write-StringArray - added -ExcludeDollarSign to make it easier to create input for *.psd1 files
 
 ### 2.2.6

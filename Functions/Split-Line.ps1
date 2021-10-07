@@ -39,13 +39,13 @@ Server3
 
     process {
         if ($String -notmatch "`n") {
-            Write-Output (,([array] $String))
+            Write-Output -InputObject (,([array] $String))
         } else {
             $ReturnValue = $String -split "`r`n"
             if ($ReturnValue.Count -eq 1) {
                 $ReturnValue = $String -split "`n"
             }
-            Write-Output $ReturnValue
+            Write-Output -InputObject $ReturnValue
         }
     }
 

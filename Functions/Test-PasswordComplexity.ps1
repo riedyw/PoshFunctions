@@ -67,7 +67,7 @@ function Test-PasswordComplexity {
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
-        $Special = Get-PrintableAscii | Where-Object { $_.class -eq 's' } | Select-Object Char, EscapeChar
+        $Special = Get-PrintableAscii | Where-Object { $_.class -eq 's' } | Select-Object -Property Char, EscapeChar
 
         foreach ($s in $special) {
             if ($s.char -eq '(Space)') {
