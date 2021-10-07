@@ -17,7 +17,7 @@ function ConvertFrom-Hex {
     0xff    255
     20       32
 .NOTES
-    General notes
+    Changed to use unsigned 64 bit values so that larger numbers can be processed
 #>
 
     #region Parameter

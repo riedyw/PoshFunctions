@@ -1,4 +1,4 @@
----
+﻿---
 external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
 online version:
@@ -46,9 +46,9 @@ Accept wildcard characters: False
 
 ### -Text
 Sample text that you want to displayed in the HTML file.
-Defaults to the string array: 
+Defaults to the string array:
 @( 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-   'abcdefghijklmnopqrstuvwxyz', 
+   'abcdefghijklmnopqrstuvwxyz',
    '1234567890',
     '!@#$%^&*()&#91;&#93;&#123;&#125;-_=+ &cent;&pound;',
     '&gamma;&delta;&theta;&lambda;&xi;&pi;&sigma;&upsilon;&psi;&omega;'
@@ -61,12 +61,11 @@ Aliases:
 
 Required: False
 Position: 2
-Default value: @( 
+Default value: @(
                'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-               'abcdefghijklmnopqrstuvwxyz', 
+               'abcdefghijklmnopqrstuvwxyz',
                '1234567890',
-                '!@#$%^&*()&#91;&#93;&#123;&#125;-_=+ &cent;&pound;',
-                '&gamma;&delta;&theta;&lambda;&xi;&pi;&sigma;&upsilon;&psi;&omega;'
+                '!@#$%^&*()[]{}-_=+ ¢£'
             )
 Accept pipeline input: False
 Accept wildcard characters: False

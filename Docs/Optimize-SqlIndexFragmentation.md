@@ -1,4 +1,4 @@
----
+﻿---
 external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
 online version: http://code.google.com/apis/chart/infographics/docs/qr_codes.html
@@ -177,5 +177,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
     DatabaseName, Schema, Table, Index, Avg_Fragmentation_In_Percent, Page_Count
 4 - If edition of SQL is 'Enterprise' it can rebuild index in online mode
 5 - Requires Get-SqlIndexFragmentation function
+6 - Put in error checking to get around lack of INDEX PAGE LEVEL LOCKING
 
 ## RELATED LINKS

@@ -1,4 +1,4 @@
----
+﻿---
 external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
 online version: https://gallery.technet.microsoft.com/scriptcenter/Get-MachineType-VM-or-ff43f3a9
@@ -79,16 +79,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### PSCustomObject
 ## NOTES
-inspired by https://gallery.technet.microsoft.com/scriptcenter/Get-MachineType-VM-or-ff43f3a9/view/Discussions
-Created by: Jason Wasser
-Modified: 4/20/2017 03:28:53 PM
-
-Changelog:
-* Code cleanup thanks to suggestions from @juneb_get_help
-* Added Xen AWS Xen for HVM domU
-
-To Do:
-* Find the Model information for other hypervisor VM's (i.e KVM).
+Put in error checking around Get-CimInstance to handle Kerberos errors.
 
 ## RELATED LINKS
 

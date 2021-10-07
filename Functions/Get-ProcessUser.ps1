@@ -15,6 +15,8 @@ function Get-ProcessUser {
         'NT Authority\System',
         'NT Authority\Local Service',
         'NT Authority\Network Service'
+
+    Put in error checking around Invoke-Command to handle Kerberos errors.
 #>
 
     [CmdletBinding()]
@@ -42,21 +44,26 @@ function Get-ProcessUser {
             'NT AUTHORITY\LOCAL SERVICE',
             'NT AUTHORITY\NETWORK SERVICE'
         )
+        $PssOption = New-PSSessionOption -IncludePortInSPN
     }
 
     process {
         foreach ($CurName in $Name) {
             Write-Verbose -Message "Processing [$CurName]"
             try {
-                $Proc = Invoke-Command -ComputerName $CurName -ScriptBlock { Get-Process -IncludeUserName } |
-                    Where-Object { $_.UserName -like $UserName }
-                if (-not $IncludeSystem) {
-                    $Proc = $Proc | Where-Object { $_.UserName -notin $System -and $null -ne $_.UserName }
-                }
-                $Proc |  Select-Object -Property @{Name = 'ComputerName'; expr = { $_.PsComputerName } }, UserName, Name, Id
+                $Proc = Invoke-Command -ComputerName $CurName -ScriptBlock { Get-Process -IncludeUserName } | Where-Object { $_.UserName -like $UserName }
             } catch {
-                Write-Error -Message "Either computer [$curComputerName] is not up, or you don't have permission to run Invoke-Command against [$curComputerName]"
+                try {
+                    $PsSession = New-PSSession -ComputerName $CurName -SessionOption $PssOption
+                    Invoke-Command -Session $PsSession -ScriptBlock { Get-Process -IncludeUserName } | Where-Object { $_.UserName -like $UserName }
+                } catch {
+                    Write-Error -Message "Either computer [$curComputerName] is not up, or you don't have permission to run Invoke-Command against [$curComputerName]"
+                }
             }
+            if (-not $IncludeSystem) {
+                $Proc = $Proc | Where-Object { $_.UserName -notin $System -and $null -ne $_.UserName }
+            }
+            $Proc |  Select-Object -Property @{Name = 'ComputerName'; expr = { $_.PsComputerName } }, UserName, Name, Id
          }
     }
 

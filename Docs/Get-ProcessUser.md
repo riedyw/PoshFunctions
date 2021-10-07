@@ -1,4 +1,4 @@
----
+﻿---
 external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
 online version:
@@ -92,5 +92,7 @@ Unless the -IncludeSystem switch is specified the following will be excluded fro
     'NT Authority\System',
     'NT Authority\Local Service',
     'NT Authority\Network Service'
+
+Put in error checking around Invoke-Command to handle Kerberos errors.
 
 ## RELATED LINKS

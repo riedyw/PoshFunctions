@@ -32,6 +32,8 @@ function Get-DriveStat {
     FreePct      : 8.25
 
     VERBOSE: Ending Get-DriveStat
+.NOTES
+    Put in error checking around Get-CimInstance to handle Kerberos errors.
 #>
 
     #region Parameters
@@ -54,51 +56,63 @@ function Get-DriveStat {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         Write-Verbose -Message "Capacity will be expressed in [$Capacity]"
         $Query = "Select * from Win32_LogicalDisk where DriveType='3' and FileSystem='NTFS'"
+        $CimOption = New-CimSessionOption -EncodePortInServicePrincipalName
     }
 
     process {
-        foreach ($C in $ComputerName) {
-            Write-Verbose -Message "Processing $c"
-            $DriveStat = Get-CimInstance -Query $Query -ComputerName $C
+        foreach ($CurName in $ComputerName) {
+            Write-Verbose -Message "Processing $CurName"
+            try {
+                $DriveStat = Get-CimInstance -Query $Query -ComputerName $CurName
+            } catch {
+                try {
+                    $CimSession = New-CimSession -ComputerName $CurName -SessionOption $CimOption
+                    $DriveStat = Get-CimInstance -Query $Query -CimSession -CimSession
+                    $CimSession.Close()
+                    $CimSession.Dispose()
+                } catch {
+                    Write-Error "Could not connect to [$CurName]"
+                }
+            }
             switch ($Capacity) {
                 'Bytes' {
                     $DriveStat |
                     Select-Object -Property @{name = 'ComputerName'; expression = { $_.SystemName } },
-                    DeviceID,
-                    VolumeName,
-                    Size,
-                    FreeSpace,
-                    @{name = 'FreePct'; expression = { [double] ('{0:f2}' -f ($_.FreeSpace / $_.Size * 100)) } }
+                        DeviceID,
+                        VolumeName,
+                        Size,
+                        FreeSpace,
+                        @{name = 'FreePct'; expression = { [double] ('{0:f2}' -f ($_.FreeSpace / $_.Size * 100)) } }
                 }
 
                 'KB' {
                     $DriveStat |
                     Select-Object -Property @{name = 'ComputerName'; expression = { $_.SystemName } },
-                    DeviceID,
-                    VolumeName,
-                    @{name = 'SizeKB'     ; expression = { [double] ('{0:f2}' -f ($_.Size / 1KB)) } },
-                    @{name = 'FreeSpaceKB'; expression = { [double] ('{0:f2}' -f ($_.FreeSpace / 1KB)) } },
-                    @{name = 'FreePct'    ; expression = { [double] ('{0:f2}' -f ($_.FreeSpace / $_.Size * 100)) } }
+                        DeviceID,
+                        VolumeName,
+                        @{name = 'SizeKB'     ; expression = { [double] ('{0:f2}' -f ($_.Size / 1KB)) } },
+                        @{name = 'FreeSpaceKB'; expression = { [double] ('{0:f2}' -f ($_.FreeSpace / 1KB)) } },
+                        @{name = 'FreePct'    ; expression = { [double] ('{0:f2}' -f ($_.FreeSpace / $_.Size * 100)) } }
                 }
 
                 'MB' {
                     $DriveStat |
                     Select-Object -Property @{name = 'ComputerName'; expression = { $_.SystemName } },
-                    DeviceID,
-                    VolumeName,
-                    @{name = 'SizeMB'     ; expression = { [double] ('{0:f2}' -f ($_.Size / 1MB)) } },
-                    @{name = 'FreeSpaceMB'; expression = { [double] ('{0:f2}' -f ($_.FreeSpace / 1MB)) } },
-                    @{name = 'FreePct'    ; expression = { [double] ('{0:f2}' -f ($_.FreeSpace / $_.Size * 100)) } }
+                        DeviceID,
+                        VolumeName,
+                        @{name = 'SizeMB'     ; expression = { [double] ('{0:f2}' -f ($_.Size / 1MB)) } },
+                        @{name = 'FreeSpaceMB'; expression = { [double] ('{0:f2}' -f ($_.FreeSpace / 1MB)) } },
+                        @{name = 'FreePct'    ; expression = { [double] ('{0:f2}' -f ($_.FreeSpace / $_.Size * 100)) } }
                 }
 
                 'GB' {
                     $DriveStat |
                     Select-Object -Property @{name = 'ComputerName'; expression = { $_.SystemName } },
-                    DeviceID,
-                    VolumeName,
-                    @{name = 'SizeGB'     ; expression = { [double] ('{0:f2}' -f ($_.Size / 1GB)) } },
-                    @{name = 'FreeSpaceGB'; expression = { [double] ('{0:f2}' -f ($_.FreeSpace / 1GB)) } },
-                    @{name = 'FreePct'    ; expression = { [double] ('{0:f2}' -f ($_.FreeSpace / $_.Size * 100)) } }
+                        DeviceID,
+                        VolumeName,
+                        @{name = 'SizeGB'     ; expression = { [double] ('{0:f2}' -f ($_.Size / 1GB)) } },
+                        @{name = 'FreeSpaceGB'; expression = { [double] ('{0:f2}' -f ($_.FreeSpace / 1GB)) } },
+                        @{name = 'FreePct'    ; expression = { [double] ('{0:f2}' -f ($_.FreeSpace / $_.Size * 100)) } }
                 }
             }
         }

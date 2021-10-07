@@ -1,4 +1,4 @@
----
+﻿---
 external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
 online version:
@@ -12,8 +12,14 @@ Get the last day of the month given the year as an integer, and the month as an 
 
 ## SYNTAX
 
+### Date (Default)
 ```
-Get-LastDayInMonth [-Year] <Int32> [-Month] <Int32> [-IncludeInput] [<CommonParameters>]
+Get-LastDayInMonth [-Date <DateTime>] [-IncludeInput] [<CommonParameters>]
+```
+
+### YearMonth
+```
+Get-LastDayInMonth -Year <Int32> -Month <Int32> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -53,41 +59,70 @@ new-object psobject -property @{Year=2000;Month=2} | Get-LastDayInMonth
 
 ### EXAMPLE 5
 ```
-new-object psobject -property @{Y=2019;M=2} | Get-LastDayInMonth -IncludeInput
+Get-Date 'Feb 1, 2019' | Get-LastDayInMonth -IncludeInput
 ```
 
 Year Month Days
 ---- ----- ----
 2019     2   28
 
+### EXAMPLE 6
+```
+Get-LastDayInMonth -IncludeInput -Verbose
+```
+
+Assuming the current day was in September 2021 the result would be:
+VERBOSE: Starting \[Get-LastDayInMonth\]
+VERBOSE: ParameterSetName \[Date\]
+
+VERBOSE: Ending \[Get-LastDayInMonth\]
+Year Month Days
+---- ----- ----
+2021     9   30
+
 ## PARAMETERS
 
 ### -Year
-Integer in the range 1-9999, mandatory, accept value from pipeline by propertyname, aliased to 'Y'
+Integer in the range 1-9999, mandatory, accept value from pipeline by propertyname, parameter set name 'YearMonth'
 
 ```yaml
 Type: Int32
-Parameter Sets: (All)
-Aliases: Y
+Parameter Sets: YearMonth
+Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: 0
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
 ### -Month
-Integer in the range 1-12, mandatory, accept value from pipeline by propertyname, aliased to 'M'
+Integer in the range 1-12, mandatory, accept value from pipeline by propertyname, parameter set name 'YearMonth'
 
 ```yaml
 Type: Int32
-Parameter Sets: (All)
-Aliases: M
+Parameter Sets: YearMonth
+Aliases:
 
 Required: True
-Position: 2
+Position: Named
 Default value: 0
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Date
+Datetime value, accept value from pipeline by propertyname, default parameter set name 'Date'
+
+```yaml
+Type: DateTime
+Parameter Sets: Date
+Aliases:
+
+Required: False
+Position: Named
+Default value: (Get-Date)
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
@@ -117,5 +152,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### int
 ## NOTES
 Inspired by: https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/calculating-first-and-last-day-of-month
+
+- added $Date parameter and parameter set names to function
 
 ## RELATED LINKS

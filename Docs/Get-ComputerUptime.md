@@ -1,4 +1,4 @@
----
+﻿---
 external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
 online version: http://wonkysoftware.appspot.com
@@ -122,5 +122,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### psobject
 ## NOTES
 To mimic and extend the functionality of the Get-Uptime function found in PowerShell 6 or 7
+
+Put in error checking around Get-CimInstance to handle Kerberos errors.
 
 ## RELATED LINKS

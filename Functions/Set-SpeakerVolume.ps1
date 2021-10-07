@@ -1,4 +1,4 @@
-function Set-Speaker {
+function Set-SpeakerVolume {
 <#
 .SYNOPSIS
     Sets the speaker volume.
@@ -7,11 +7,11 @@ function Set-Speaker {
 .PARAMETER Volume
     An integer value from 0 to 100 that will set the volume level of the speaker.
 .EXAMPLE
-    Set-Speaker -Volume 80
+    Set-SpeakerVolume -Volume 80
 
     Will display nothing and set the speaker to 80%
 .EXAMPLE
-    Set-Speaker -Volume 97 -Verbose
+    Set-SpeakerVolume -Volume 97 -Verbose
 
     Will diplay the following while setting the speaker to 96%
     VERBOSE: You specified the speaker volume should be 97%
@@ -19,9 +19,12 @@ function Set-Speaker {
     VERBOSE: Turning volume down to 0%
     VERBOSE: Turning volume up to 96%
 .NOTES
+    Renamed function from Set-Speaker to Set-SpeakerVolume to be clearer as to the purpose. Set an alias for the
+    function to 'Set-Speaker' for backward compatibility.
+
     The interface to setting the speaker volume really accepts values 0-50, and displays as 0-100.
     Given this oddity, the function will round DOWN to an even number. So if you run
-    Set-Speaker -Volume 99
+    Set-SpeakerVolume -Volume 99
     The icon for the speaker will display 98% if you hover over it.
 #>
 
@@ -56,5 +59,6 @@ function Set-Speaker {
     end {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-
 }
+
+Set-Alias -Name 'Set-Speaker' -Value 'Set-SpeakerVolume' -Description 'Alias for Set-SpeakerVolume'

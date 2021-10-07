@@ -33,6 +33,8 @@ function Get-MachineType {
     Query if a list of computers are physical or virtual machines.
 .LINK
     https://gallery.technet.microsoft.com/scriptcenter/Get-MachineType-VM-or-ff43f3a9
+.NOTES
+    Put in error checking around Get-CimInstance to handle Kerberos errors.
 #>
 
     [CmdletBinding()]
@@ -47,46 +49,55 @@ function Get-MachineType {
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+        $CimOption = New-CimSessionOption -EncodePortInServicePrincipalName
     }
 
     process {
         foreach ($Computer in $ComputerName) {
             Write-Verbose -Message "Checking $Computer"
             try {
-                $ComputerSystemInfo = Get-CimInstance -Class Win32_ComputerSystem -ComputerName $Computer -ErrorAction Stop
-                switch -regex ($ComputerSystemInfo.Model) {
-                    # Check for Hyper-V Machine Type
-                    'Virtual Machine' {
-                        $MachineType = 'VM'
-                    }
-                    # Check for VMware Machine Type
-                    'VMware' {
-                        $MachineType = 'VM'
-                    }
-                    # Check for Oracle VM Machine Type
-                    'VirtualBox' {
-                        $MachineType = 'VM'
-                    }
-                    # Check for Xen
-                    'HVM domU' {
-                        $MachineType = 'VM'
-                    }
-                    # Otherwise it is a physical Box
-                    default {
-                        $MachineType = 'Physical'
-                    }
-                }
-                # Building MachineTypeInfo Object
-                $MachineTypeInfo = New-Object -TypeName PSObject -Property ([ordered]@{
-                        ComputerName = $ComputerSystemInfo.PSComputername
-                        Type         = $MachineType
-                        Manufacturer = $ComputerSystemInfo.Manufacturer
-                        Model        = $ComputerSystemInfo.Model
-                    })
-                Write-Output -InputObject $MachineTypeInfo
+                $ComputerSystemInfo = Get-CimInstance -Class Win32_ComputerSystem -ComputerName $Computer -ErrorAction Stop -Verbose:$false
             } catch {
-                Write-Error -Message "$Computer`: $($_.Exception.Message)"
+                try {
+                    $CimSession = New-CimSession -ComputerName $Computer -SessionOption $CimOption
+                    $ComputerSystemInfo = Get-CimInstance -Class Win32_ComputerSystem  -CimSession $CimSession -ErrorAction Stop -Verbose:$false
+                    $CimSession.Close()
+                    $CimSession.Dispose()
+                } catch {
+                    Write-Error -Message "$Computer`: $($_.Exception.Message)"
+                }
             }
+            switch -regex ($ComputerSystemInfo.Model) {
+                # Check for Hyper-V Machine Type
+                'Virtual Machine' {
+                    $MachineType = 'VM'
+                }
+                # Check for VMware Machine Type
+                'VMware' {
+                    $MachineType = 'VM'
+                }
+                # Check for Oracle VM Machine Type
+                'VirtualBox' {
+                    $MachineType = 'VM'
+                }
+                # Check for Xen
+                'HVM domU' {
+                    $MachineType = 'VM'
+                }
+                # Otherwise it is a physical Box
+                default {
+                    $MachineType = 'Physical'
+                }
+            }
+            # Building MachineTypeInfo Object
+            $MachineTypeInfo = New-Object -TypeName PSObject -Property ([ordered]@{
+                    ComputerName = $ComputerSystemInfo.PSComputername.ToUpper()
+                    Type         = $MachineType
+                    Manufacturer = $ComputerSystemInfo.Manufacturer
+                    Model        = $ComputerSystemInfo.Model
+                })
+            Write-Output -InputObject $MachineTypeInfo
+
         }
     }
 

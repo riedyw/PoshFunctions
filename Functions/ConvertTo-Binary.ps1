@@ -29,7 +29,7 @@ function ConvertTo-Binary {
         32 0000000000100000
        255 0000000011111111
 .NOTES
-    General notes
+    Changed to use unsigned 64 bit values so that larger numbers can be processed
 #>
 
     #region Parameter

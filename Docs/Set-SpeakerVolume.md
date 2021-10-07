@@ -1,11 +1,11 @@
----
+﻿---
 external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0
 ---
 
-# Set-Speaker
+# Set-SpeakerVolume
 
 ## SYNOPSIS
 Sets the speaker volume.
@@ -13,7 +13,7 @@ Sets the speaker volume.
 ## SYNTAX
 
 ```
-Set-Speaker [-Volume] <Int32> [<CommonParameters>]
+Set-SpeakerVolume [-Volume] <Int32> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,14 +23,14 @@ Sets the speaker volume.
 
 ### EXAMPLE 1
 ```
-Set-Speaker -Volume 80
+Set-SpeakerVolume -Volume 80
 ```
 
 Will display nothing and set the speaker to 80%
 
 ### EXAMPLE 2
 ```
-Set-Speaker -Volume 97 -Verbose
+Set-SpeakerVolume -Volume 97 -Verbose
 ```
 
 Will diplay the following while setting the speaker to 96%
@@ -64,10 +64,14 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+Renamed function from Set-Speaker to Set-SpeakerVolume to be clearer as to the purpose.
+Set an alias for the
+function to 'Set-Speaker' for backward compatibility.
+
 The interface to setting the speaker volume really accepts values 0-50, and displays as 0-100.
 Given this oddity, the function will round DOWN to an even number.
 So if you run
-Set-Speaker -Volume 99
+Set-SpeakerVolume -Volume 99
 The icon for the speaker will display 98% if you hover over it.
 
 ## RELATED LINKS

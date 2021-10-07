@@ -1,4 +1,4 @@
----
+﻿---
 external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
 online version: https://github.com/iRon7/Join-Object
@@ -14,7 +14,7 @@ User can choose how the color will be returned.
 ## SYNTAX
 
 ```
-New-ColorPicker [[-R] <Int32>] [[-G] <Int32>] [[-B] <Int32>] [<CommonParameters>]
+New-ColorPicker [[-R] <Int32>] [[-G] <Int32>] [[-B] <Int32>] [-AsHashTable] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -98,6 +98,21 @@ Required: False
 Position: 3
 Default value: 0
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -AsHashTable
+Switch that will present the results of 'R,G,B' as a hashtable as opposed to a psobject
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

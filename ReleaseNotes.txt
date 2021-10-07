@@ -34,17 +34,28 @@ Code has had Invoke-ScriptAnalyzer run against them so that errors are not throw
 * added New-ColorPicker - presents dialog box where user can select a color.
 * added New-DatePicker - presents dialog box where user can select a date, can optionally include the time
 * added New-FontPicker - dialog that allows user to select a font from a dialog box
+* added Split-Line - more reliably split a string into its constituent lines. Returns an array.
+* added Test-MultipleBool - to do logical AND/OR across an array of boolean values
 * added Test-PasswordComplexity - to verify if a string is of proper length and matches all character types
 * removed Convert-ROT13 - see more robust Get-CeasarCipher
+* renamed Set-Speaker to Set-SpeakerVolume to be better named. Set an alias to Set-Speaker for backward compatibility
 * renamed Union-Object to Merge-Object to get around Invoke-ScriptAnalyzer error
 * updated ConvertFrom-Binary - changed result to [uint64[]] to be able to convert larger numbers.
 * updated ConvertFrom-Hex - changed result to [uint64[]] to be able to convert larger numbers.
 * updated ConvertTo-Binary - changed -Number to [uint64[]] to be able to convert larger numbers. added -MinimumWidth parameter
 * updated ConvertTo-Hex - changed -Number to [uint64[]] to be able to convert larger numbers. added -MinimumWidth parameter, and -Prefix parameter
+* updated Get-ComputerUptime - to better handle Kerberos errors sometimes encountered when connecting to systems
+* updated Get-DriveStat - to better handle Kerberos errors sometimes encountered when connecting to systems
 * updated Get-LastDayInMonth - added -Date parameter and parameter set names
+* updated Get-MachineType - to better handle Kerberos errors sometimes encountered when connecting to systems
+* updated Get-ProcessUser - to better handle Kerberos errors sometimes encountered when connecting to systems
+* updated Get-ServiceUser - to better handle Kerberos errors sometimes encountered when connecting to systems
 * updated Merge-Object - aliased to 'Union-Object' for backward compatibility
 * updated New-InputBoxSecureString - added module custom icon
+* updated Optimize-SqlIndexFragmentation - to handle error condition of index not having page level locking on. If that error is encountered it enables lock, optimizes index, then disables lock
 * updated Start-ADReplication - added -ThrottleLimit so as to not over saturate the local computer
+* updated Test-ConnectionAsync - added -Full switch and made default output brief
+* updated Test-ConnectionAsync - slight formatting change in output
 * updated Write-StringArray - added -ExcludeDollarSign to make it easier to create input for *.psd1 files
 
 ### 2.2.6

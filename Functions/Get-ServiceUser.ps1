@@ -49,6 +49,7 @@ function Get-ServiceUser {
             'NT AUTHORITY\SYSTEM'
         )
         $ReturnVal = @()
+        $CimOption = New-CimSessionOption -EncodePortInServicePrincipalName
     }
 
     process {
@@ -62,7 +63,17 @@ function Get-ServiceUser {
                 $ReturnVal += $Service | Where-Object { $_.StartName -like $UserName } |
                     Select-Object -Property @{Name = 'ComputerName'; Expr = { $_.SystemName } }, Name, DisplayName, StartName
             } catch {
-                Write-Error -Message "Either computer [$curComputerName] is not up, or you don't have permission to read from WMI objects."
+                try {
+                    $CimSession = New-CimSession -ComputerName $curComputer -SessionOption $CimOption
+                    $Service = Get-CimInstance -ClassName Win32_Service -CimSession $CimSession -Verbose:$false
+                    if (-not $IncludeSystem) {
+                        $Service = $Service | Where-Object { $_.StartName -notin $ServiceAcct -and $null -ne $_.StartName }
+                    }
+                    $ReturnVal += $Service | Where-Object { $_.StartName -like $UserName } |
+                        Select-Object -Property @{Name = 'ComputerName'; Expr = { $_.SystemName } }, Name, DisplayName, StartName
+                } catch {
+                    Write-Error -Message "Either computer [$curComputerName] is not up, or you don't have permission to read from WMI objects."
+                }
             }
 
         }

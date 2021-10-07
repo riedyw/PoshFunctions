@@ -1,4 +1,4 @@
----
+﻿---
 external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
 online version: http://wonkysoftware.appspot.com
@@ -100,5 +100,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### psobject
 ## NOTES
+Put in error checking around Get-CimInstance to handle Kerberos errors.
 
 ## RELATED LINKS

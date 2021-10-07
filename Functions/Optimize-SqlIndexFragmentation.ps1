@@ -31,6 +31,7 @@ function Optimize-SqlIndexFragmentation {
         DatabaseName, Schema, Table, Index, Avg_Fragmentation_In_Percent, Page_Count
     4 - If edition of SQL is 'Enterprise' it can rebuild index in online mode
     5 - Requires Get-SqlIndexFragmentation function
+    6 - Put in error checking to get around lack of INDEX PAGE LEVEL LOCKING
 #>
 
     [CmdletBinding()]
@@ -101,7 +102,8 @@ function Optimize-SqlIndexFragmentation {
             Write-Verbose -Message "There are [$($TableList.count)] indexes to optimize"
             Write-Verbose -Message 'Creating command list...'
             $CommandsToRun = New-Object -TypeName 'System.Collections.ArrayList'
-            $Type = 'Reorganize'
+            #$Type = 'Reorganize'
+            $TableProcessing = ''
             $TableList | ForEach-Object {
                 $Current = $_
                 switch ($Current.Schema) {
@@ -109,15 +111,23 @@ function Optimize-SqlIndexFragmentation {
                         switch ($Type) {
                             'Rebuild' {
                                 $CommandsToRun.Add((New-Object -TypeName psobject -Property ([ordered] @{
-                                                Database = $Current.Dbname
-                                                Query    = "UPDATE STATISTICS [$($Current.Table)]; " + "ALTER INDEX [$($Current.Index)] ON [$($Current.Table)] REBUILD $Online;"
-                                            }))) | Out-Null
+                                    Database     = $Current.Dbname
+                                    Table        = $Current.Table
+                                    Stats        = "UPDATE STATISTICS [$($Current.Table)];"
+                                    Optimize     = "ALTER INDEX [$($Current.Index)] ON [$($Current.Table)] REBUILD $Online;"
+                                    TableLockOn  = "ALTER INDEX [$($Current.Index)] ON [$($Current.Schema)].[$($Current.Table)] SET (ALLOW_PAGE_LOCKS = ON);"
+                                    TableLockOff = "ALTER INDEX [$($Current.Index)] ON [$($Current.Schema)].[$($Current.Table)] SET (ALLOW_PAGE_LOCKS = OFF);"
+                                }))) | Out-Null
                             }
                             'Reorganize' {
                                 $CommandsToRun.Add( (New-Object -TypeName psobject -Property ([ordered] @{
-                                                Database = $Current.Dbname
-                                                Query    = "UPDATE STATISTICS [$($Current.Table)]; " + "ALTER INDEX [$($Current.Index)] ON [$($Current.Table)] REORGANIZE;"
-                                            }))) | Out-Null
+                                    Database     = $Current.Dbname
+                                    Table        = $Current.Table
+                                    Stats        = "UPDATE STATISTICS [$($Current.Table)];"
+                                    Optimize     = "ALTER INDEX [$($Current.Index)] ON [$($Current.Table)] REORGANIZE;"
+                                    TableLockOn  = "ALTER INDEX [$($Current.Index)] ON [$($Current.Schema)].[$($Current.Table)] SET (ALLOW_PAGE_LOCKS = ON);"
+                                    TableLockOff = "ALTER INDEX [$($Current.Index)] ON [$($Current.Schema)].[$($Current.Table)] SET (ALLOW_PAGE_LOCKS = OFF);"
+                                }))) | Out-Null
                             }
                         }
                     }
@@ -125,15 +135,23 @@ function Optimize-SqlIndexFragmentation {
                         switch ($Type) {
                             'Rebuild' {
                                 $CommandsToRun.Add( (New-Object -TypeName psobject -Property ([ordered] @{
-                                                Database = $Current.Dbname
-                                                Query    = "UPDATE STATISTICS [$($Current.Schema)].[$($Current.Table)]; " + "ALTER INDEX [$($Current.Index)] ON [$($Current.Schema)].[$($Current.Table)] REBUILD $Online;"
-                                            }))) | Out-Null
+                                    Database     = $Current.Dbname
+                                    Table        = $Current.Table
+                                    Stats        = "UPDATE STATISTICS [$($Current.Schema)].[$($Current.Table)];"
+                                    Optimize     = "ALTER INDEX [$($Current.Index)] ON [$($Current.Schema)].[$($Current.Table)] REBUILD $Online;"
+                                    TableLockOn  = "ALTER INDEX [$($Current.Index)] ON [$($Current.Schema)].[$($Current.Table)] SET (ALLOW_PAGE_LOCKS = ON);"
+                                    TableLockOff = "ALTER INDEX [$($Current.Index)] ON [$($Current.Schema)].[$($Current.Table)] SET (ALLOW_PAGE_LOCKS = OFF);"
+                                }))) | Out-Null
                             }
                             'Reorganize' {
                                 $CommandsToRun.Add( (New-Object -TypeName psobject -Property ([ordered] @{
-                                                Database = $Current.Dbname
-                                                Query    = "UPDATE STATISTICS [$($Current.Schema)].[$($Current.Table)]; " + "ALTER INDEX [$($Current.Index)] ON [$($Current.Schema)].[$($Current.Table)] REORGANIZE;"
-                                            }))) | Out-Null
+                                    Database     = $Current.Dbname
+                                    Table        = $Current.Table
+                                    Stats        = "UPDATE STATISTICS [$($Current.Schema)].[$($Current.Table)];"
+                                    Optimize     = "ALTER INDEX [$($Current.Index)] ON [$($Current.Schema)].[$($Current.Table)] REORGANIZE;"
+                                    TableLockOn  = "ALTER INDEX [$($Current.Index)] ON [$($Current.Schema)].[$($Current.Table)] SET (ALLOW_PAGE_LOCKS = ON);"
+                                    TableLockOff = "ALTER INDEX [$($Current.Index)] ON [$($Current.Schema)].[$($Current.Table)] SET (ALLOW_PAGE_LOCKS = OFF);"
+                                }))) | Out-Null
                             }
                         }
                     }
@@ -144,18 +162,52 @@ function Optimize-SqlIndexFragmentation {
             return
         }
 
-#        $CommandsToRun
-#        return
-
         if ($Interactive) {
             $CommandsToRun | Show-Progress -Activity 'Optimizing database table indexes' -PassThru -Id 1 | ForEach-Object {
-                Write-Verbose -Message "DB [$($_.Database)] QUERY [$($_.Query)]"
-                Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $_.Database -Query $_.Query -QueryTimeout 900 -Verbose:$false | Out-Null
+                $Current = $_
+
+                Write-Verbose -Message "DB [$($_.Database)] QUERY [$($_.Optimize)]"
+                try {
+                    write-verbose -Message 'Running Query'
+                    if ($Current.Table -ne $TableProcessing) {
+                        Write-Verbose -Message "Updating statistics"
+                        Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $Current.Database -Query $Current.Stats -QueryTimeout 900 -Verbose:$false -EA Stop | Out-Null
+                        $TableProcessing = $Current.Table
+                    }
+                    Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $Current.Database -Query $Current.Optimize -QueryTimeout 900 -Verbose:$false -EA Stop | Out-Null
+                } catch {
+                    #if ($error[0].Exception -match 'page level locking is disabled') {
+                        write-verbose -Message "Running [$($Current.TableLockOn)]"
+                        Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $Current.Database -Query $Current.TableLockOn   -QueryTimeout 900 -Verbose:$false | Out-Null
+                        write-verbose -Message "Running [$($Current.Optimize)]"
+                        Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $Current.Database -Query $Current.Optimize         -QueryTimeout 900 -Verbose:$false | Out-Null
+                        write-verbose -Message "Running [$($Current.TableLockOff)]"
+                        Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $Current.Database -Query $Current.TableLockOff  -QueryTimeout 900 -Verbose:$false | Out-Null
+                    #}
+                }
             }
         } else {
             $CommandsToRun | ForEach-Object {
-                Write-Verbose -Message "DB [$($_.Database)] QUERY [$($_.Query)]"
-                Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $_.Database -Query $_.Query -QueryTimeout 900 -Verbose:$false | Out-Null
+                Write-Verbose -Message "DB [$($_.Database)] QUERY [$($_.Optimize)]"
+                try {
+                    write-verbose -Message 'Running Query'
+                    if ($Current.Table -ne $TableProcessing) {
+                        Write-Verbose -Message "Updating statistics"
+                        Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $Current.Database -Query $Current.Stats -QueryTimeout 900 -Verbose:$false -EA Stop | Out-Null
+                        $TableProcessing = $Current.Table
+                    }
+                    Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $Current.Database -Query $Current.Optimize -QueryTimeout 900 -Verbose:$false -EA Stop | Out-Null
+                } catch {
+                    #if ($error[0].Exception -match 'page level locking is disabled') {
+                        write-verbose -Message "Running [$($Current.TableLockOn)]"
+                        Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $Current.Database -Query $Current.TableLockOn   -QueryTimeout 900 -Verbose:$false | Out-Null
+                        write-verbose -Message "Running [$($Current.Optimize)]"
+                        Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $Current.Database -Query $Current.Optimize         -QueryTimeout 900 -Verbose:$false | Out-Null
+                        write-verbose -Message "Running [$($Current.TableLockOff)]"
+                        Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $Current.Database -Query $Current.TableLockOff  -QueryTimeout 900 -Verbose:$false | Out-Null
+                    #}
+                }
+
             }
         }
     }

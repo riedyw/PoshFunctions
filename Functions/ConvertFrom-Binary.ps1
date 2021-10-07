@@ -15,7 +15,7 @@ function ConvertFrom-Binary {
     ------ ------
     1001        9
 .NOTES
-    General notes
+    Changed to use unsigned 64 bit values so that larger numbers can be processed
 #>
 
     #region Parameter

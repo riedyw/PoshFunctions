@@ -78,7 +78,7 @@ function Get-PSWho {
     process {
         if ($PSVersionTable.PSEdition -eq 'desktop' -OR $PSVersionTable.OS -match 'Windows') {
             #get some basic information about the operating system
-            $cimos = Get-CimInstance -classname win32_operatingsystem -Property Caption, Version,OSArchitecture
+            $cimos = Get-CimInstance -classname win32_operatingsystem -Property Caption, Version, OSArchitecture
             $os = "$($cimos.Caption) [$($cimos.OSArchitecture)]"
             $osver = $cimos.Version
             #determine the current user so we can test if the user is running in an elevated session

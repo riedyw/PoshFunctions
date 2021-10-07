@@ -1,4 +1,4 @@
----
+﻿---
 external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
 online version:
@@ -130,6 +130,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### string
 ## NOTES
-General notes
+Changed to use unsigned 64 bit values so that larger numbers can be processed
 
 ## RELATED LINKS

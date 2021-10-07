@@ -1,4 +1,4 @@
----
+﻿---
 external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
 online version: https://github.com/iRon7/Join-Object
@@ -15,7 +15,7 @@ If click Cancel or press \[Esc\] $null is returned.
 ## SYNTAX
 
 ```
-New-DatePicker [[-Title] <String>] [-IncludeTime] [<CommonParameters>]
+New-DatePicker [[-Title] <String>] [-IncludeTime] [-Date <DateTime>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -85,6 +85,21 @@ Aliases:
 Required: False
 Position: Named
 Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Date
+Default datetime value for the dialog box
+
+```yaml
+Type: DateTime
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

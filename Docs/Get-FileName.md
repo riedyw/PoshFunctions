@@ -1,4 +1,4 @@
----
+﻿---
 external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
 online version: http://wonkysoftware.appspot.com
@@ -14,8 +14,8 @@ Can select a single file or multiple files.
 ## SYNTAX
 
 ```
-Get-FileName [[-InitialDirectory] <String>] [-MultiSelect] [[-Filter] <String>] [[-Title] <String>]
- [-AddExtension] [[-DefaultExt] <String>] [<CommonParameters>]
+Get-FileName [[-Path] <String>] [-MultiSelect] [[-Filter] <String>] [[-Title] <String>] [-AddExtension]
+ [[-DefaultExt] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -65,19 +65,19 @@ Pipes selected filename to the get-childitem cmdlet.
 
 ## PARAMETERS
 
-### -InitialDirectory
+### -Path
 The directory for the OpenFileDialog to start in.
 Defaults to $pwd.
-Aliased to 'Path'.
+Aliased to 'InitialDirectory'.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: Path
+Aliases: InitialDirectory
 
 Required: False
 Position: 1
-Default value: "$pwd"
+Default value: $pwd
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -120,7 +120,8 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-default
+String indicating the Title of the dialog box.
+Defaults to 'Select a file'
 
 ```yaml
 Type: String
@@ -129,13 +130,13 @@ Aliases:
 
 Required: False
 Position: 3
-Default value: None
+Default value: Select a file
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -AddExtension
-{{ Fill AddExtension Description }}
+Switch forcing the adding of an extension
 
 ```yaml
 Type: SwitchParameter
@@ -176,17 +177,16 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ###             and each element in the array will be the file(s) selected
 ### $null       If the user clicks 'Cancel'.
 ## NOTES
-Author:      Bill Riedy
 Inspiration: Part of the ISEColorThemeCmdlets.ps1 Script by Jeff Pollock
-            http://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
+             http://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
 Changes:     Added parameter for MultiSelect of files.
 Forced function to always return an array.
 Filter is
-            now a parameter that can be specified to control behavior.
+             now a parameter that can be specified to control behavior.
 Changed InitialDirectory to default
-            to $pwd and to give an alias of 'Path' which is commonly used parameter name.
-            Also changed syntax to Add-Type -AssemblyName to conform with
-            Powershell 2+ and to be more "Powershelly".
+             to $pwd and to give an alias of 'Path' which is commonly used parameter name.
+             Also changed syntax to Add-Type -AssemblyName to conform with
+             Powershell 2+ and to be more "Powershelly".
 
 # Source: https://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
 # get-help about_ISE-Color-Theme-Cmdlets for more information

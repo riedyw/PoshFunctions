@@ -1,4 +1,4 @@
----
+﻿---
 external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
 online version: http://wonkysoftware.appspot.com
@@ -8,8 +8,7 @@ schema: 2.0.0
 # Get-CeasarCipher
 
 ## SYNOPSIS
-Describe purpose of "Get-CaesarCipher" in 1-2 sentences.
-    Shifts letters in string by a certain number of positions.
+Shifts letters in string by a certain number of positions.
 Default shift is 13 characters or the classic ROT13.
 
 ## SYNTAX

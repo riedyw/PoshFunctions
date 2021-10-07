@@ -45,6 +45,8 @@ function Get-ComputerUptime {
     server2      3/17/2021 1:50:49 PM
 .NOTES
     To mimic and extend the functionality of the Get-Uptime function found in PowerShell 6 or 7
+
+    Put in error checking around Get-CimInstance to handle Kerberos errors.
 #>
 
     #region Parameter
@@ -67,6 +69,7 @@ function Get-ComputerUptime {
             $Name = $env:COMPUTERNAME
             Write-Verbose -Message "Setting `$Name to [$Name]"
         }
+        $CimOption = New-CimSessionOption -EncodePortInServicePrincipalName
     }
 
     process {
@@ -74,24 +77,31 @@ function Get-ComputerUptime {
             Write-Verbose -Message "Processing [$CurName]"
             try {
                 $LastBootUpTime = (Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName $CurName -ErrorAction Stop -Verbose:$false).LastBootUpTime
-                if ($Since) {
-                    if ($IncludeComputerName) {
-                        New-Object -TypeName psobject -Property ([ordered] @{
-                                ComputerName = $CurName
-                                LastBoot     = $LastBootUpTime
-                            })
-                    } else {
-                        Write-Output -InputObject $LastBootUpTime
-                    }
-                } else {
-                    $TimeSpan = ((Get-Date) - $LastBootUpTime)
-                    if ($IncludeComputerName) {
-                        $TimeSpan | Add-Member -MemberType NoteProperty -Name ComputerName -Value $CurName
-                    }
-                    Write-Output -InputObject ($TimeSpan | Select-Object -Property *)
-                }
             } catch {
-                Write-Error -Message "Either computer [$CurName] is not up, or you don't have permission to read from WMI objects."
+                try {
+                   $CimSession = New-CimSession -ComputerName $CurName -SessionOption $CimOption
+                    $LastBootUpTime = (Get-CimInstance -ClassName Win32_OperatingSystem -CimSession $CimSession -ErrorAction Stop -Verbose:$false).LastBootUpTime
+                    $CimSession.Close()
+                    $CimSession.Dispose()
+                } catch {
+                    Write-Error -Message "Either computer [$CurName] is not up, or you don't have permission to read from WMI objects."
+                }
+            }
+            if ($Since) {
+                if ($IncludeComputerName) {
+                    New-Object -TypeName psobject -Property ([ordered] @{
+                            ComputerName = $CurName
+                            LastBoot     = $LastBootUpTime
+                        })
+                } else {
+                    Write-Output -InputObject $LastBootUpTime
+                }
+            } else {
+                $TimeSpan = ((Get-Date) - $LastBootUpTime)
+                if ($IncludeComputerName) {
+                    $TimeSpan | Add-Member -MemberType NoteProperty -Name ComputerName -Value $CurName
+                }
+                Write-Output -InputObject ($TimeSpan | Select-Object -Property *)
             }
         }
     }
