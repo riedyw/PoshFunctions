@@ -40,6 +40,7 @@ function Get-InvalidFileCharacter {
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
+    [alias('Show-InvalidFileCharacter')]
     [OutputType([char[]])]
     Param (
         [switch] $IncludeValues,
@@ -52,7 +53,7 @@ function Get-InvalidFileCharacter {
     }
 
     process {
-        $Invalid = [System.IO.Path]::GetInvalidFileNameChars() | Select-Object @{Name='Char';Expr={$_.ToString()}},
+        $Invalid = [System.IO.Path]::GetInvalidFileNameChars() | Select-Object -Property @{Name='Char';Expr={$_.ToString()}},
             @{Name='Dec';Expr={[int][char] $_}},
             @{Name='Hex';Expr={'{0:x}' -f ([int][char] $_)}}
         if ($Printable) {
@@ -69,6 +70,3 @@ function Get-InvalidFileCharacter {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
-
-# for backward compatibility
-Set-Alias -Name 'Show-InvalidFileCharacter' -Value 'Get-InvalidFileCharacter' -Description 'Alias for Get-InvalidFileCharacter for backward compatibility'

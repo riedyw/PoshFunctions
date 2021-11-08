@@ -28,6 +28,7 @@ function Move-ToRecycleBin {
 #>
 
     [CmdletBinding(ConfirmImpact = 'Medium')]
+    [alias('Recycle')]
     param (
         [Parameter(Mandatory, HelpMessage='Please enter a path to a file or folder. Wildcards accepted.', ValueFromPipeline, ValueFromPipelineByPropertyName)]
         [string[]] $Path
@@ -61,5 +62,3 @@ function Move-ToRecycleBin {
         Write-Verbose -Message "Ending [$($MyInvocation.MyCommand)]"
     }
 }
-
-Set-Alias -Name 'Recycle' -Value 'Move-ToRecycleBin'

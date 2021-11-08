@@ -28,6 +28,7 @@ function Get-Md5Sum {
 #>
 
     [CmdletBinding()]
+    [alias('Md5Sum')]
     [OutputType('string')]
     Param (
         [parameter(ValueFromPipeLine, ValueFromPipeLineByPropertyName)]
@@ -76,5 +77,3 @@ function Get-Md5Sum {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
-
-Set-Alias -Name 'Md5Sum' -Value 'Get-Md5Sum'

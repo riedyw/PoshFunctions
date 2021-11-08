@@ -28,6 +28,7 @@ function ConvertTo-DecimalIPv4 {
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
+    [alias('ConvertTo-DecimalIP')]
     [OutputType('string')]
     param(
         [Parameter(Mandatory,HelpMessage='Please enter an IPv4 address', Position = 0, ValueFromPipeline)]
@@ -58,5 +59,3 @@ function ConvertTo-DecimalIPv4 {
     }
 
 } #EndFunction ConvertTo-DecimalIPv4
-
-Set-Alias -Name 'ConvertTo-DecimalIP' -Value 'ConvertTo-DecimalIPv4' -Description 'Alias for ConvertTo-DecimalIPv4'

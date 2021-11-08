@@ -3,7 +3,7 @@ filter Remove-BlankOrComment {
 .SYNOPSIS
     A simple text filter to remove blank lines or lines that begin with a comment character.
 .DESCRIPTION
-    A simple text filter to remove blank lines or lines that begin with a comment character. By default the begin comment toke is '#'.
+    A simple text filter to remove blank lines or lines that begin with a comment character. By default the begin comment token is '#'. The comment character could be preceded by zero or more whitespace characters (space, tab)
 .PARAMETER String
     The input string array
 .PARAMETER BeginComment
@@ -30,6 +30,8 @@ filter Remove-BlankOrComment {
     To create a psobject of your VsCode settings.json file
 .OUTPUTS
     [string[]]
+.NOTES
+    Changed logic to regex escape on the begin comment token.
 .LINK
     about_Functions
 #>
@@ -51,6 +53,7 @@ filter Remove-BlankOrComment {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         $Line = 0
         $Count = 0
+        $BeginComment = [Regex]::Escape($BeginComment)
     }
 
     process {

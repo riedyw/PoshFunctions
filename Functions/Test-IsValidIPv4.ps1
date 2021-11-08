@@ -24,6 +24,7 @@ function Test-IsValidIPv4 {
     #region Param
     [CmdletBinding(ConfirmImpact='None')]
     [Outputtype('bool')]
+    [alias('Test-IsValidIP')]
     Param (
         [parameter(ValueFromPipeLine, ValueFromPipeLineByPropertyName)]
         [Alias('IP')]
@@ -70,5 +71,3 @@ function Test-IsValidIPv4 {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
-
-Set-Alias -Name 'Test-IsValidIP' -Value 'Test-IsValidIPv4' -Description 'Alias for Test-IsValidIPv4'

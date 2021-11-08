@@ -26,6 +26,7 @@ function Format-WrapText {
 
     #region Parameter
     [CmdletBinding(ConfirmImpact = 'Low', DefaultParameterSetName = 'Width')]
+    [alias('WrapText')]
     [OutputType('string')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
     Param(
@@ -82,5 +83,3 @@ function Format-WrapText {
         Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
     }
 }
-
-Set-Alias -Name 'WrapText' -Value 'Format-WrapText'

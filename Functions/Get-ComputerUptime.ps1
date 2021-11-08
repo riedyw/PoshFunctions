@@ -51,13 +51,14 @@ function Get-ComputerUptime {
 
     #region Parameter
     [CmdletBinding(ConfirmImpact = 'Low')]
+    [alias('Get-LastReboot')]
     [OutputType('psobject')]
     Param(
         [switch] $Since,
 
         [parameter(Mandatory, HelpMessage = 'Please enter the name of a computer', ValueFromPipelineByPropertyName)]
         [Alias('ComputerName', 'CN', 'Server')]
-        [string[]] $Name,
+        [string[]] $Name = $env:COMPUTERNAME,
 
         [switch] $IncludeComputerName
     )
@@ -110,5 +111,3 @@ function Get-ComputerUptime {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
-
-Set-Alias -Name 'Get-LastReboot' -Value 'Get-ComputerUptime' -Description 'Alias for Get-ComputerUptime'

@@ -26,6 +26,7 @@ function Get-SpecialFolder {
 #>
 
     [CmdletBinding(ConfirmImpact = 'None')]
+    [alias('Show-SpecialFolder')]
     Param (
         [ValidateSet( 'AdminTools', 'ApplicationData', 'CDBurning',
             'CommonAdminTools', 'CommonApplicationData', 'CommonDesktopDirectory',
@@ -69,5 +70,3 @@ function Get-SpecialFolder {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
-
-Set-Alias -Name 'Show-SpecialFolder' -Value 'Get-SpecialFolder' -Description 'Alias for Get-SpecialFolder for backward compatibility'

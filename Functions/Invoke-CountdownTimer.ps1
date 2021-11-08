@@ -48,6 +48,7 @@ function Invoke-CountdownTimer {
 #>
 
     [CmdletBinding(DefaultParameterSetName = 'Seconds', ConfirmImpact = 'None')]
+    [alias('CountdownTimer')]
     param (
         [Parameter(Position = 0, ParameterSetName = 'Seconds')]
         [ValidateRange(10, 1800)]
@@ -88,5 +89,3 @@ function Invoke-CountdownTimer {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
-
-Set-Alias -Name 'CountdownTimer' -Value 'Invoke-CountdownTimer' -Description 'Alias for Invoke-CountdownTimer'

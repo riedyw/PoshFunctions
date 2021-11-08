@@ -38,6 +38,7 @@ function Get-CeasarCipher {
 
 
     [CmdletBinding()]
+    [alias('Convert-ROT13')]
 
     Param
     (
@@ -100,5 +101,3 @@ function Get-CeasarCipher {
         Write-Verbose -Message "Ending [$($MyInvocation.MyCommand)]"
     }
 }
-
-Set-Alias -Name 'Convert-ROT13' -Value 'Get-CeasarCipher' -Description 'Alias for Get-CeasarCipher'

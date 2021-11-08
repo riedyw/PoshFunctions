@@ -59,6 +59,7 @@ function Get-SaveFileName {
 
     #region parameter
     [CmdletBinding(ConfirmImpact = 'None')]
+    [alias('Get-SaveFile')]
     Param(
         [Alias('InitialDirectory')]
         [string] $Path = "$pwd", #default
@@ -104,5 +105,3 @@ function Get-SaveFileName {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
-
-Set-Alias -Name 'Get-SaveFile' -Value 'Get-SaveFileName' -Description 'Alias for Get-SaveFileName for backward compatibility'

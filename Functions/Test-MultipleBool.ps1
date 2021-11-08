@@ -44,6 +44,7 @@ True,False,True AND       False
 
     [CmdletBinding(DefaultParameterSetName = 'And')]
     [OutputType('bool')]
+    [alias('Test-MultiBool')]
     param(
         [Parameter(Mandatory, ValueFromPipeline, ParameterSetName = 'And')]
         [Parameter(Mandatory, ValueFromPipeline, ParameterSetName = 'Or')]
@@ -107,5 +108,3 @@ True,False,True AND       False
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
-
-Set-Alias -Name 'Test-MultiBool' -Value 'Test-MultipleBool' -Description 'Alias for Test-MultipleBool'

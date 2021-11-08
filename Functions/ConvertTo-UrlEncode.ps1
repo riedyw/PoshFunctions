@@ -23,6 +23,7 @@ function ConvertTo-UrlEncode {
 #>
 
     [CmdletBinding()]
+    [alias('UrlEncode')]
     param(
         [Parameter(ValueFromPipeline)]
         [string[]] $URL,
@@ -53,5 +54,3 @@ function ConvertTo-UrlEncode {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
-
-Set-Alias -Name 'UrlEncode' -Value 'ConvertTo-UrlEncode'

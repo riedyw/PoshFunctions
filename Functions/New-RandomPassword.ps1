@@ -3,66 +3,93 @@ function New-RandomPassword {
 .SYNOPSIS
     Creates a new random password
 .DESCRIPTION
-    Creates a new random password. Parameters can be passed to determine minimum and maximum password lengths, whether to avoid characters that are similar to one another or to limit it to readable words
+    Creates a new random password. Parameters can be passed to determine minimum and maximum password lengths, whether to avoid characters that are similar to one another or to limit it to readable words. Please read .NOTES section.
 .PARAMETER MinLength
-    Integer representing minimum password length, valid range 8-102 characters
+    Integer representing minimum password length, valid range 8-102 characters. ParameterSetName: ReadableTitleCase, ReadableRandomCase, Web
 .PARAMETER MaxLength
-    Integer representing maximum password length, valid range 8-102 characters
+    Integer representing maximum password length, valid range 8-102 characters. ParameterSetName: ReadableTitleCase, ReadableRandomCase, Web
 .PARAMETER NonAlphaChars
-    Integer representing the number of non alphabetic characters
+    Integer representing the number of non alphabetic characters. ParameterSetName: Web
 .PARAMETER Readable
-    Switch indicating to use combinations of short English words. Default behavior is to output a truly random string of characters
+    Switch indicating to use combinations of English words. Default behavior is to output a words that are title cased. ParameterSetName: ReadableTitleCase, ReadableRandomCase
 .PARAMETER AvoidSimilar
-    Switch to prevent characters that are similar to one another to be included. For instance 1, l, I
+    Switch to prevent characters that are similar to one another to be included. For instance 1, l, I. ParameterSetName: ReadableTitleCase, ReadableRandomCase, Web
+.PARAMETER TitleCase
+    Switch to capitalize each word. ParameterSetName: ReadableTitleCase
+.PARAMETER RandomCase
+    Switch to randomly capitalize letters in each word. ParameterSetName: ReadableRandomCase
+.PARAMETER Web
+    Switch to use web algorithm. ParameterSetName: Web
 .EXAMPLE
-    New-RandomPassword
+    New-RandomPassword -Web
 
-    e8P!VKyO
+    wtV%R:K-uIn]
 .EXAMPLE
     New-RandomPassword -MinLength 16 -AvoidSimilar
 
-    RK##L@qFT5(3BArM
+    4,UnsureParFeuds
 .EXAMPLE
-    New-RandomPassword -Readable -MinLength 8
+    New-RandomPassword -Readable -MinLength 8 -RandomCase
 
-    eLFcUB7;
+    .7dArTer
 .EXAMPLE
-    New-RandomPassword -MinLength 16 -AvoidSimilar -Readable
+    New-RandomPassword -MinLength 16 -AvoidSimilar -Web
 
-    and%6CRaBbuLLwan
+    U6V:3a5^kEGHU:!7
 .EXAMPLE
     New-RandomPassword -MinLength 16 -MaxLength 20 -Readable -AvoidSimilar
 
-    ViEWpewhead9)chEF
+    Nicer6Jeer)Linger
+.NOTES
+    Changes:
+
+    Added -TitleCase switch so that each word is capitalized
+    Added -RandomCase switch so that each letter is randomly capitalized
+    Added -Web switch so that web algorithm is used
+    Changed parameter set names to more accurately reflect what they do
+    Updated help comments
+    DefaultParameterSetName is 'ReadableTitleCase'
 #>
 
     #region parameter
-    [CmdletBinding(DefaultParameterSetName = 'Web', ConfirmImpact = 'None')]
+    [CmdletBinding(DefaultParameterSetName = 'ReadableTitleCase', ConfirmImpact = 'None')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
     [OutputType('string')]
     Param (
 
         [Parameter(ParameterSetName = 'Web')]
-        [Parameter(ParameterSetName = 'Readable')]
+        [Parameter(ParameterSetName = 'ReadableRandomCase')]
+        [Parameter(ParameterSetName = 'ReadableTitleCase')]
         [ValidateRange(8, 102)]
         [int] $MinLength = 12,
 
         [Parameter(ParameterSetName = 'Web')]
-        [Parameter(ParameterSetName = 'Readable')]
+        [Parameter(ParameterSetName = 'ReadableTitleCase')]
+        [Parameter(ParameterSetName = 'ReadableRandomCase')]
         [ValidateRange(8, 102)]
         [int] $MaxLength,
 
         [Parameter(ParameterSetName = 'Web')]
         [int] $NonAlphaChars,
 
-        [Parameter(ParameterSetName = 'Readable')]
+        [Parameter(ParameterSetName = 'ReadableTitleCase')]
+        [Parameter(ParameterSetName = 'ReadableRandomCase')]
         [switch] $Readable,
 
         [Parameter(ParameterSetName = 'Web')]
-        [Parameter(ParameterSetName = 'Readable')]
-        [switch] $AvoidSimilar
+        [Parameter(ParameterSetName = 'ReadableTitleCase')]
+        [Parameter(ParameterSetName = 'ReadableRandomCase')]
+        [switch] $AvoidSimilar,
 
+        [Parameter(ParameterSetName = 'ReadableTitleCase')]
+        [switch] $TitleCase,
+
+        [Parameter(ParameterSetName = 'ReadableRandomCase')]
+        [switch] $RandomCase,
+
+        [Parameter(ParameterSetName = 'Web')]
+        [switch] $Web
     )
     #endregion parameter
 
@@ -77,12 +104,19 @@ function New-RandomPassword {
         switch ($PsCmdlet.ParameterSetName) {
             'Web' {
             }
-            'Readable' {
+            'ReadableTitleCase' {
                 $Symbol = Get-PrintableAscii -Verbose:$false | Where-Object { $_.Class -eq 's' }
                 $MaxWords = [int] ($MaxLength / 3)
-                $MinWords = [int] ($MinLength / 4)
-                $TwoOrThree = Get-WordList -Verbose:$false | Where-Object { $_.Length -eq 3 -or $_.Length -eq 4 }
-                $Sample = $TwoOrThree | Get-Random -Count ($MinWords * 30) -Verbose:$false | Format-RandomCase -Verbose:$false
+                $MinWords = [int] ($MinLength / 6)
+                $Words = Get-WordList -Verbose:$false | Where-Object { $_.Length -ge 3 -and $_.Length -le 6 }
+                $Sample = $Words | Get-Random -Count ($MinWords * 30) -Verbose:$false | Format-TitleCase -Verbose:$false
+            }
+            'ReadableRandomCase' {
+                $Symbol = Get-PrintableAscii -Verbose:$false | Where-Object { $_.Class -eq 's' }
+                $MaxWords = [int] ($MaxLength / 3)
+                $MinWords = [int] ($MinLength / 6)
+                $Words = Get-WordList -Verbose:$false | Where-Object { $_.Length -ge 3 -and $_.Length -le 6 }
+                $Sample = $Words | Get-Random -Count ($MinWords * 30) -Verbose:$false | Format-RandomCase -Verbose:$false
             }
         }
     }
@@ -112,7 +146,25 @@ function New-RandomPassword {
                 } until (($ReturnVal.Length -ge $MinLength) -and ($ReturnVal.Length -le $MaxLength))
                 $ReturnVal
             }
-            'Readable' {
+            'ReadableTitleCase' {
+                do {
+                    if (-not $AvoidSimilar) {
+                        $RandomSymbol = $Symbol.Char | Get-Random -Verbose:$false
+                        $RandomDigit = 0..9 | Get-Random -Verbose:$false
+                        $curWords = Get-Random -Minimum $MinWords -Maximum ($MaxWords + 1) -Verbose:$false
+                        Write-Verbose -Message "Symbol [$RandomSymbol] Digit [$RandomDigit]"
+                        $ReturnVal = ( @(($Sample | Get-Random -Count $curWords -Verbose:$false), $RandomDigit, $RandomSymbol) | Get-Random -Count ($curWords + 2)) -join ''
+                    } else {
+                        $RandomSymbol = $Symbol.Char | Where-Object { -not ($_ -cmatch $SimilarRegex) } | Get-Random -Verbose:$false
+                        $RandomDigit = 0..9 | Where-Object { -not ($_ -cmatch $SimilarRegex) } | Get-Random -Verbose:$false
+                        $curWords = Get-Random -Minimum $MinWords -Maximum ($MaxWords + 1) -Verbose:$false
+                        $Sample = $Sample | Where-Object { -not ($_ -cmatch $SimilarRegex) }
+                        $ReturnVal = ( @(($Sample | Get-Random -Count $curWords -Verbose:$false), $RandomDigit, $RandomSymbol) | Get-Random -Count ($curWords + 2)) -join ''
+                    }
+                } until (($ReturnVal.Length -ge $MinLength) -and ($ReturnVal.Length -le $MaxLength))
+                $ReturnVal
+            }
+            'ReadableRandomCase' {
                 do {
                     if (-not $AvoidSimilar) {
                         $RandomSymbol = $Symbol.Char | Get-Random -Verbose:$false

@@ -8,7 +8,8 @@ schema: 2.0.0
 # Set-Display
 
 ## SYNOPSIS
-Set-Display turns the display on or off via energy saver api
+Set-Display turns the display on or off via energy saver api.
+Can also set display brightness
 
 ## SYNTAX
 
@@ -22,8 +23,14 @@ Set-Display [-On] [<CommonParameters>]
 Set-Display [-Off] [<CommonParameters>]
 ```
 
+### Brightness
+```
+Set-Display [-Brightness <Int32>] [<CommonParameters>]
+```
+
 ## DESCRIPTION
-Set-Display turns the display on or off via energy saver api
+Set-Display turns the display on or off via energy saver api.
+Can also set display brightness
 
 ## EXAMPLES
 
@@ -32,10 +39,15 @@ Set-Display turns the display on or off via energy saver api
 Set-Display -Off ; Start-Sleep -Seconds 5 ; Set-Display -On
 ```
 
+### EXAMPLE 2
+```
+Set-Display -Brightness 75
+```
+
 ## PARAMETERS
 
 ### -On
-{{ Fill On Description }}
+Switch to turn the display on
 
 ```yaml
 Type: SwitchParameter
@@ -50,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -Off
-{{ Fill Off Description }}
+Switch to turn the display off
 
 ```yaml
 Type: SwitchParameter
@@ -60,6 +72,22 @@ Aliases:
 Required: False
 Position: Named
 Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Brightness
+\[int\] representing the brightness.
+Valid range 1-100
+
+```yaml
+Type: Int32
+Parameter Sets: Brightness
+Aliases:
+
+Required: False
+Position: Named
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -75,5 +103,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 Inspired by
 # Turning off display http://community.idera.com/database-tools/powershell/powertips/b/tips/posts/turning-display-off-immediately
 # Turning on display  https://www.codeproject.com/Articles/11099/Turn-on-off-monitor
+# Brightness https://winaero.com/change-screen-brightness-windows-10/
 
 ## RELATED LINKS

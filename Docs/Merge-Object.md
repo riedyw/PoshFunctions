@@ -18,7 +18,7 @@ Merge-Object [[-Property] <String[]>]
 
 ## DESCRIPTION
 Returns a 'clean' array of objects that have all property names in each element of the array.
-Function aliased to 'Union'
+Function aliased to 'Union-Object'
 
 ## EXAMPLES
 
@@ -115,7 +115,7 @@ $List = @(
     New-Object -TypeName PSObject -Property @{Id = 3; Name = "Test"}
 )
 
-$NewList = $List | Union-Object
+$NewList = $List | Merge-Object
 
 $NewList
 
@@ -125,6 +125,7 @@ Id Name
  1
  3 Test
 
+Needs to use inline parameters as it doesn't function properly with a param() block
 Made following changes
 * added help
 * formatting changes

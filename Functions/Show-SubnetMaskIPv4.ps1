@@ -9,6 +9,7 @@ function Show-SubnetMaskIPv4 {
 
 
     [CmdletBinding(ConfirmImpact='None')]
+    [alias('Show-SubnetMaskIP')]
     Param ()
 
     begin {
@@ -23,5 +24,3 @@ function Show-SubnetMaskIPv4 {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
-
-Set-Alias -Name 'Show-SubnetMaskIP' -Value 'Show-SubnetMaskIPv4' -Description 'Alias for Show-SubnetMaskIPv4'

@@ -24,6 +24,7 @@ function ConvertTo-DottedDecimalIPv4 {
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
+    [alias('ConvertTo-DottedDecimalIP')]
     param(
         [Parameter(Mandatory,HelpMessage='Please enter an IPvr address', Position = 0, ValueFromPipeline)]
         [ipaddress[]] $IPAddress,
@@ -53,5 +54,3 @@ function ConvertTo-DottedDecimalIPv4 {
     }
 
 }
-
-Set-Alias -Name 'ConvertTo-DottedDecimalIP' -Value 'ConvertTo-DottedDecimalIPv4' -Description 'Alias for ConvertTo-DottedDecimalIPv4'

@@ -236,18 +236,22 @@ Function Join-Object {
         $RightObject,
 
         [Parameter(Position = 1, ParameterSetName = 'On')]
-        [Alias('Using')][Collections.Generic.List[string]]$On = [Collections.Generic.List[string]]::new(),
+        [Alias('Using')]
+        [Collections.Generic.List[string]] $On = [Collections.Generic.List[string]]::new(),
 
         [Parameter(Position = 1, ParameterSetName = 'Expression')]
-        [Alias('UsingExpression')][scriptblock]$OnExpression,
+        [Alias('UsingExpression')]
+        [scriptblock] $OnExpression,
 
         [Parameter(ParameterSetName = 'On')]
-        [Collections.Generic.List[string]]$Equals = [Collections.Generic.List[string]]::new(),
+        [Collections.Generic.List[string]] $Equals = [Collections.Generic.List[string]]::new(),
 
         [Parameter(Position = 2, ParameterSetName = 'Default')]
         [Parameter(Position = 2, ParameterSetName = 'On')]
         [Parameter(Position = 2, ParameterSetName = 'Expression')]
-        [Alias('NameItems')][AllowEmptyString()][String[]]$Discern,
+        [Alias('NameItems')]
+        [AllowEmptyString()]
+        [String[]] $Discern,
 
         [Parameter(ParameterSetName = 'Default')]
         [Parameter(ParameterSetName = 'On')]
@@ -257,23 +261,25 @@ Function Join-Object {
         [Parameter(Position = 3, ParameterSetName = 'Default')]
         [Parameter(Position = 3, ParameterSetName = 'On')]
         [Parameter(Position = 3, ParameterSetName = 'Expression')]
-        [scriptblock]$Where = { $True },
+        [scriptblock] $Where = { $True },
 
         [Parameter(ParameterSetName = 'Default')]
         [Parameter(ParameterSetName = 'On')]
         [Parameter(ParameterSetName = 'Expression')]
-        [ValidateSet('Inner', 'Left', 'Right', 'Full', 'Cross')][String]$JoinType = 'Inner',
+        [ValidateSet('Inner', 'Left', 'Right', 'Full', 'Cross')]
+        [String] $JoinType = 'Inner',
 
         [Parameter(ParameterSetName = 'Default')]
         [Parameter(ParameterSetName = 'On')]
         [Parameter(ParameterSetName = 'Expression')]
-        [string]$ValueName = 'Value',
+        [string] $ValueName = 'Value',
 
         [Parameter(ParameterSetName = 'On')]
-        [switch]$Strict,
+        [switch] $Strict,
 
         [Parameter(ParameterSetName = 'On')]
-        [Alias('CaseSensitive')][switch]$MatchCase
+        [Alias('CaseSensitive')]
+        [switch] $MatchCase
     )
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
@@ -512,21 +518,3 @@ Function Join-Object {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 } # EndFunction Join-Object
-
-# Function Copy-Command([System.Management.Automation.CommandInfo]$Command, [String]$Name, [HashTable]$DefaultParameters) {
-# Try {
-# $MetaData = [System.Management.Automation.CommandMetadata]$Command
-# $Value = [System.Management.Automation.ProxyCommand]::Create($MetaData)
-# $Null = New-Item -Path Function:\ -Name "Script:$Name" -Value $Value -Force
-# ForEach ($Key in $DefaultParameters.Keys) {$PSDefaultParameterValues["$Name`:$Key"] = $DefaultParameters.$Key}
-# } Catch {$PSCmdlet.WriteError($_)}
-# }
-
-# $JoinCommand = Get-Command Join-Object
-# Copy-Command -Command $JoinCommand -Name 'InnerJoin-Object' -Default @{JoinType = 'Inner'}; Set-Alias InnerJoin InnerJoin-Object
-# Copy-Command -Command $JoinCommand -Name 'LeftJoin-Object'  -Default @{JoinType = 'Left'};  Set-Alias LeftJoin  LeftJoin-Object
-# Copy-Command -Command $JoinCommand -Name 'RightJoin-Object' -Default @{JoinType = 'Right'}; Set-Alias RightJoin RightJoin-Object
-# Copy-Command -Command $JoinCommand -Name 'FullJoin-Object'  -Default @{JoinType = 'Full'};  Set-Alias FullJoin  FullJoin-Object
-# Copy-Command -Command $JoinCommand -Name 'CrossJoin-Object' -Default @{JoinType = 'Cross'}; Set-Alias CrossJoin CrossJoin-Object
-# Copy-Command -Command $JoinCommand -Name 'Update-Object'    -Default @{JoinType = 'Left'; Property = {{If ($Null -ne $RightIndex) {$Right.$_} Else {$Left.$_}}}}; Set-Alias Update Update-Object
-# Copy-Command -Command $JoinCommand -Name Merge-Object     -Default @{JoinType = 'Full'; Property = {{If ($Null -ne $RightIndex) {$Right.$_} Else {$Left.$_}}}}; Set-Alias Merge  Merge-Object

@@ -28,6 +28,7 @@ function Get-TypeAccelerator {
 #>
 
     [CmdletBinding(ConfirmImpact = 'None')]
+    [alias('Show-TypeAccelerator')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
     Param (
         [string] $MatchString = ''
@@ -74,5 +75,3 @@ webrequest,System.Net.WebRequest
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
-
-Set-Alias -Name 'Show-TypeAccelerator' -Value 'Get-TypeAccelerator' -Description 'Alias for Get-TypeAccelerator for backward compatibility'

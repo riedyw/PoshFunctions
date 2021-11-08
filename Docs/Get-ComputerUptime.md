@@ -92,7 +92,7 @@ Aliases: ComputerName, CN, Server
 
 Required: True
 Position: 1
-Default value: None
+Default value: $env:COMPUTERNAME
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```

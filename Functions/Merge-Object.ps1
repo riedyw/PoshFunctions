@@ -4,7 +4,7 @@ function Merge-Object ([String[]]$Property = @()) {
     Returns a 'clean' array of objects that have all property names in each element of the array
 .DESCRIPTION
     Returns a 'clean' array of objects that have all property names in each element of the array.
-    Function aliased to 'Union'
+    Function aliased to 'Union-Object'
 .NOTES
     Inspired by Union-Object on https://powersnippets.com/union-object/
 
@@ -65,7 +65,7 @@ function Merge-Object ([String[]]$Property = @()) {
         New-Object -TypeName PSObject -Property @{Id = 3; Name = "Test"}
     )
 
-    $NewList = $List | Union-Object
+    $NewList = $List | Merge-Object
 
     $NewList
 
@@ -75,12 +75,14 @@ function Merge-Object ([String[]]$Property = @()) {
      1
      3 Test
 
+    Needs to use inline parameters as it doesn't function properly with a param() block
     Made following changes
     * added help
     * formatting changes
 #>
 
     [cmdletbinding()]
+    [alias('Union-Object')]
 
     $Objects = $Input | ForEach-Object {$_}
     if (-not $Property) {
@@ -90,5 +92,3 @@ function Merge-Object ([String[]]$Property = @()) {
     }
     $Objects | Select-Object -Property ([String[]]($Property | Select-Object -Unique))
 }
-
-Set-Alias -Name 'Union-Object' -Value 'Merge-Object' -Description 'Alias for Merge-Object'

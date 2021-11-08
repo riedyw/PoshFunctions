@@ -8,81 +8,59 @@ schema: 2.0.0
 # New-RandomPassword
 
 ## SYNOPSIS
-Creates a new random password
+{{ Fill in the Synopsis }}
 
 ## SYNTAX
 
-### Web (Default)
+### ReadableTitleCase (Default)
 ```
-New-RandomPassword [-MinLength <Int32>] [-MaxLength <Int32>] [-NonAlphaChars <Int32>] [-AvoidSimilar]
+New-RandomPassword [-MinLength <Int32>] [-MaxLength <Int32>] [-Readable] [-AvoidSimilar] [-TitleCase]
  [<CommonParameters>]
 ```
 
-### Readable
+### ReadableRandomCase
 ```
-New-RandomPassword [-MinLength <Int32>] [-MaxLength <Int32>] [-Readable] [-AvoidSimilar] [<CommonParameters>]
+New-RandomPassword [-MinLength <Int32>] [-MaxLength <Int32>] [-Readable] [-AvoidSimilar] [-RandomCase]
+ [<CommonParameters>]
+```
+
+### Web
+```
+New-RandomPassword [-MinLength <Int32>] [-MaxLength <Int32>] [-NonAlphaChars <Int32>] [-AvoidSimilar] [-Web]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Creates a new random password.
-Parameters can be passed to determine minimum and maximum password lengths, whether to avoid characters that are similar to one another or to limit it to readable words
+{{ Fill in the Description }}
 
 ## EXAMPLES
 
-### EXAMPLE 1
-```
-New-RandomPassword
-```
-
-e8P!VKyO
-
-### EXAMPLE 2
-```
-New-RandomPassword -MinLength 16 -AvoidSimilar
+### Example 1
+```powershell
+PS C:\> {{ Add example code here }}
 ```
 
-RK##L@qFT5(3BArM
-
-### EXAMPLE 3
-```
-New-RandomPassword -Readable -MinLength 8
-```
-
-eLFcUB7;
-
-### EXAMPLE 4
-```
-New-RandomPassword -MinLength 16 -AvoidSimilar -Readable
-```
-
-and%6CRaBbuLLwan
-
-### EXAMPLE 5
-```
-New-RandomPassword -MinLength 16 -MaxLength 20 -Readable -AvoidSimilar
-```
-
-ViEWpewhead9)chEF
+{{ Add example description here }}
 
 ## PARAMETERS
 
-### -MinLength
-Integer representing minimum password length, valid range 8-102 characters
+### -AvoidSimilar
+{{ Fill AvoidSimilar Description }}
 
 ```yaml
-Type: Int32
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: 12
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -MaxLength
-Integer representing maximum password length, valid range 8-102 characters
+{{ Fill MaxLength Description }}
 
 ```yaml
 Type: Int32
@@ -91,13 +69,28 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MinLength
+{{ Fill MinLength Description }}
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -NonAlphaChars
-Integer representing the number of non alphabetic characters
+{{ Fill NonAlphaChars Description }}
 
 ```yaml
 Type: Int32
@@ -106,39 +99,67 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RandomCase
+{{ Fill RandomCase Description }}
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ReadableRandomCase
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -Readable
-Switch indicating to use combinations of short English words.
-Default behavior is to output a truly random string of characters
+{{ Fill Readable Description }}
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Readable
+Parameter Sets: ReadableTitleCase, ReadableRandomCase
 Aliases:
 
 Required: False
 Position: Named
-Default value: False
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -AvoidSimilar
-Switch to prevent characters that are similar to one another to be included.
-For instance 1, l, I
+### -TitleCase
+{{ Fill TitleCase Description }}
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: ReadableTitleCase
 Aliases:
 
 Required: False
 Position: Named
-Default value: False
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Web
+{{ Fill Web Description }}
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Web
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -148,9 +169,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
+### None
+
 ## OUTPUTS
 
 ### string
+
 ## NOTES
 
 ## RELATED LINKS

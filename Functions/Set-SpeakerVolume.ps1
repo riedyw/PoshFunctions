@@ -30,6 +30,7 @@ function Set-SpeakerVolume {
 
     [CmdletBinding(ConfirmImpact = 'Low')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
+    [alias('Set-Speaker')]
     Param(
         [Parameter(Mandatory, ValueFromPipeline, HelpMessage = 'Enter the speaker volume from 0-100')]
         [ValidateRange(0, 100)]
@@ -60,5 +61,3 @@ function Set-SpeakerVolume {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
-
-Set-Alias -Name 'Set-Speaker' -Value 'Set-SpeakerVolume' -Description 'Alias for Set-SpeakerVolume'

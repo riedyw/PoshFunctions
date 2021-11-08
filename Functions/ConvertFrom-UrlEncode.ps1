@@ -33,6 +33,7 @@ function ConvertFrom-UrlEncode {
 #>
 
     [CmdletBinding(ConfirmImpact = 'None')]
+    [alias('UrlDecode')]
     [OutputType('string')]
     Param(
         [Parameter(ValueFromPipeline)]
@@ -65,5 +66,3 @@ function ConvertFrom-UrlEncode {
     }
 
 }
-
-Set-Alias -Name 'UrlDecode' -Value 'ConvertFrom-UrlEncode' -Description 'Alias for ConvertFrom-UrlEncode'

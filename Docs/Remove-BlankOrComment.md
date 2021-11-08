@@ -18,7 +18,8 @@ Remove-BlankOrComment [[-String] <String[]>] [-BeginComment <String>] [<CommonPa
 
 ## DESCRIPTION
 A simple text filter to remove blank lines or lines that begin with a comment character.
-By default the begin comment toke is '#'.
+By default the begin comment token is '#'.
+The comment character could be preceded by zero or more whitespace characters (space, tab)
 
 ## EXAMPLES
 
@@ -98,6 +99,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### [string[]]
 ## NOTES
+Changed logic to regex escape on the begin comment token.
 
 ## RELATED LINKS
 

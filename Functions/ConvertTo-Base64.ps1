@@ -28,6 +28,7 @@ function ConvertTo-Base64 {
 #>
 
     [CmdletBinding(ConfirmImpact = 'None')]
+    [alias('Base64Encode')]
     param
     (
         [Parameter(ValueFromPipeline)]
@@ -60,5 +61,3 @@ function ConvertTo-Base64 {
     }
 
 }
-
-Set-Alias -Name 'Base64Encode' -Value 'ConvertTo-Base64' -Description 'Alias for ConvertTo-Base64'

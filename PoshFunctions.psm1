@@ -10,7 +10,7 @@ $Script:FunctionsPath = Join-Path -Path $Script:ModulePath -ChildPath 'Functions
 $Functions = Get-ChildItem -Path $Script:FunctionsPath -Filter *.ps1
 $Functions | ForEach-Object { . $_.FullName }
 
-$Script:WordList = Get-Content -Path $PSScriptRoot\WordList.txt
+$Script:WordList = Get-Content -Path $PSScriptRoot\WordList.txt -ReadCount 0
 $Script:FortuneFile = "$ModulePath\Wisdom.txt"
 $Script:Stopwatch =  [System.Diagnostics.Stopwatch]::New()
 

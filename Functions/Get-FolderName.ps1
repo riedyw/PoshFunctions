@@ -25,6 +25,7 @@ function Get-FolderName {
 #>
 
     [CmdletBinding(ConfirmImpact = 'None')]
+    [alias('Get-Folder')]
     [OutputType([string[]])]
     Param(
         [Alias('InitialDirectory', 'RootFolder')]
@@ -63,5 +64,3 @@ function Get-FolderName {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
-
-Set-Alias -Name 'Get-Folder' -Value 'Get-FolderName' -Description 'Alias for Get-FolderName for backward compatibility'

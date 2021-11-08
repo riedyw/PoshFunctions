@@ -30,6 +30,7 @@ Function Format-ReverseString {
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
+    [alias('ReverseString')]
     [OutputType('string')]
     param(
         [Parameter(Mandatory, HelpMessage='Enter a string you wish to be reversed',Position=0,ValueFromPipeline)]
@@ -62,5 +63,3 @@ Function Format-ReverseString {
     }
 
 }
-
-Set-Alias -Name 'ReverseString' -Value 'Format-ReverseString'

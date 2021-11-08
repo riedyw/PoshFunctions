@@ -1,15 +1,24 @@
 function Set-Display {
 <#
 .SYNOPSIS
-    Set-Display turns the display on or off via energy saver api
+    Set-Display turns the display on or off via energy saver api. Can also set display brightness
 .DESCRIPTION
-    Set-Display turns the display on or off via energy saver api
+    Set-Display turns the display on or off via energy saver api. Can also set display brightness
+.PARAMETER On
+    Switch to turn the display on
+.PARAMETER Off
+    Switch to turn the display off
+.PARAMETER Brightness
+    [int] representing the brightness. Valid range 1-100
 .EXAMPLE
     Set-Display -Off ; Start-Sleep -Seconds 5 ; Set-Display -On
+.EXAMPLE
+    Set-Display -Brightness 75
 .NOTES
     Inspired by
     # Turning off display http://community.idera.com/database-tools/powershell/powertips/b/tips/posts/turning-display-off-immediately
     # Turning on display  https://www.codeproject.com/Articles/11099/Turn-on-off-monitor
+    # Brightness https://winaero.com/change-screen-brightness-windows-10/
 #>
 
     #region Parameter
@@ -17,13 +26,18 @@ function Set-Display {
     [OutputType($null)]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWMICmdlet', '')]
 
     param (
         [parameter(ParameterSetName = 'On')]
         [switch] $On,
 
         [parameter(ParameterSetName = 'Off')]
-        [switch] $Off
+        [switch] $Off,
+
+        [parameter(ParameterSetName = 'Brightness')]
+        [validaterange(1,100)]
+        [int] $Brightness
     )
     #endregion Parameter
 
@@ -31,11 +45,8 @@ function Set-Display {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         Write-Verbose -Message "ParameterSetName [$($PsCmdlet.ParameterSetName)]"
         If ($Verbose) {
-            Start-Sleep -Seconds 3
+            Start-Sleep -Seconds 2
         }
-    }
-
-    process {
         $code = @'
 using System;
 using System.Runtime.InteropServices;
@@ -46,26 +57,34 @@ public class API
   int SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
 }
 '@
+    }
 
+    process {
         $version = Get-CimInstance -ClassName win32_operatingsystem -Verbose:$false
-        if ($PsCmdlet.ParameterSetName -eq 'Off') {
-            if ($version.version -match '^10') {
-                Start-Process -FilePath (Join-Path -Path $env:windir -ChildPath 'System32\scrnsave.scr') -ArgumentList '/s'
-            } else {
-                $t = Add-Type -TypeDefinition $code -PassThru
-                Start-Sleep -Seconds 1
-                $null = $t::SendMessage(0xffff, 0x0112, 0xf170, 2)
-            }
-        } else {
-            if ($version.version -match '^10') {
-                if (Get-Process -Name scrnsave.scr -ErrorAction SilentlyContinue) {
-                    $pidToStop = [array] (Get-Process -Name scrnsave.scr -ErrorAction SilentlyContinue).id
-                    Stop-Process -Id $pidToStop[0] -Force
+        switch ($PsCmdlet.ParameterSetName) {
+            'Off' {
+                if ($version.version -match '^10') {
+                    Start-Process -FilePath (Join-Path -Path $env:windir -ChildPath 'System32\scrnsave.scr') -ArgumentList '/s'
+                } else {
+                    $t = Add-Type -TypeDefinition $code -PassThru
+                    Start-Sleep -Seconds 1
+                    $null = $t::SendMessage(0xffff, 0x0112, 0xf170, 2)
                 }
-            } else {
-                $t = Add-Type -TypeDefinition $code -PassThru
-                Start-Sleep -Seconds 1
-                $null = $t::SendMessage(0xffff, 0x0112, 0xf170, -1)
+            }
+            'On' {
+                if ($version.version -match '^10') {
+                    if (Get-Process -Name scrnsave.scr -ErrorAction SilentlyContinue) {
+                        $pidToStop = [array] (Get-Process -Name scrnsave.scr -ErrorAction SilentlyContinue).id
+                        Stop-Process -Id $pidToStop[0] -Force
+                    }
+                } else {
+                    $t = Add-Type -TypeDefinition $code -PassThru
+                    Start-Sleep -Seconds 1
+                    $null = $t::SendMessage(0xffff, 0x0112, 0xf170, -1)
+                }
+            }
+            'Brightness' {
+                (Get-WmiObject -Namespace root/WMI -Class WmiMonitorBrightnessMethods).WmiSetBrightness(1,$Brightness)
             }
         }
     }

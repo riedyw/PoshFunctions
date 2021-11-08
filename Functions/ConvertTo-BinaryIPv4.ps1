@@ -46,6 +46,7 @@ function ConvertTo-BinaryIPv4 {
     #region Parameter
 
     [CmdletBinding(ConfirmImpact = 'None')]
+    [alias('ConvertTo-BinaryIP')]
     [OutputType('PsObject')]
     param(
         [Parameter(Mandatory,HelpMessage='Enter an IPv4 address', Position = 0, ValueFromPipeline)]
@@ -86,5 +87,3 @@ function ConvertTo-BinaryIPv4 {
     }
 
 } #EndFunction ConvertTo-BinaryIPv4
-
-Set-Alias -Name 'ConvertTo-BinaryIP' -Value 'ConvertTo-BinaryIPv4' -Description 'Alias for ConvertTo-BinaryIPv4'

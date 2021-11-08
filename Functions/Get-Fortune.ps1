@@ -31,6 +31,7 @@ function Get-Fortune {
 
     #region Parameter
     [CmdletBinding(ConfirmImpact='None')]
+    [alias('Fortune')]
     [OutputType('string')]
     Param(
         [Alias('FileName', 'Fortune')]
@@ -49,9 +50,9 @@ function Get-Fortune {
 
     process {
         if (Test-Path -Path $Path) {
-            Write-Verbose -Message "Using [$path] for fortune file"
+            Write-Verbose -Message "Using [$Path] for fortune file"
             Write-Verbose -Message "Delimiter [$Delimiter]"
-            $Fortune = (Get-Content -Raw -Path $path) -replace "`r`n", "`n" -split $Delimiter | Get-Random
+            $Fortune = (Get-Content -Raw -Path $Path -ReadCount 0) -replace "`r`n", "`n" -split $Delimiter | Get-Random
             if ($Speak) {
                 $Fortune
                 $Fortune | Invoke-Speak
@@ -68,5 +69,3 @@ function Get-Fortune {
     }
 
 }
-
-Set-Alias -Name 'Fortune' -Value 'Get-Fortune'

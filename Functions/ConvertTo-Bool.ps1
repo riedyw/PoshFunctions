@@ -56,6 +56,7 @@ function ConvertTo-Bool {
 #>
 
     [CmdletBinding()]
+    [alias('Parse-Bool')]
     [OutputType('bool')]
     param(
         [Parameter(Position = 0,ValueFromPipeline)]
@@ -113,5 +114,3 @@ function ConvertTo-Bool {
     }
 
 } # endfunction ConvertTo-Bool
-
-Set-Alias -Name 'Parse-Bool' -Value 'ConvertTo-Bool'

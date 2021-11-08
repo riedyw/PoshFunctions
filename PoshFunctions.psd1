@@ -79,8 +79,8 @@
     'Format-ReverseString', 'Format-ReverseToken', 'Format-SortedList',
     'Format-TitleCase', 'Format-WrapText', 'Get-Address', 'Get-BashPath',
     'Get-BinaryType', 'Get-CeasarCipher', 'Get-ComputerSite', 'Get-ComputerUptime',
-    'Get-DiceRoll', 'Get-DNSHostEntryAsync', 'Get-DriveStat',
-    'Get-DuplicateFileName', 'Get-Enum', 'Get-ExecutableForFile',
+    'Get-DiceRoll', 'Get-DisplayBrightness', 'Get-DNSHostEntryAsync',
+    'Get-DriveStat', 'Get-DuplicateFileName', 'Get-Enum', 'Get-ExecutableForFile',
     'Get-FileEncoding', 'Get-FileName', 'Get-FileWithLeadingSpace',
     'Get-FolderName', 'Get-Font', 'Get-Fortune', 'Get-GeoCode',
     'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-LastDayInMonth', 'Get-List',
@@ -100,14 +100,14 @@
     'Invoke-CountdownTimer', 'Invoke-Speak', 'Join-Object', 'Lock-Workstation',
     'Measure-Char', 'Merge-Object', 'mklink', 'Move-ToRecycleBin',
     'New-ColorPicker', 'New-Credential', 'New-DatePicker', 'New-FontPicker',
-    'New-InputBox', 'New-InputBoxSecureString', 'New-Popup', 'New-QR',
+    'New-InputBox', 'New-InputBoxSecureString', 'New-MessageBox', 'New-QR',
     'New-RandomPassword', 'New-Screenshot', 'New-Shortcut',
     'Optimize-SqlIndexFragmentation', 'Optimize-SqlStoredProcedure',
     'Out-PDFToPrinter', 'Read-HostWithDefault', 'Remove-BlankOrComment',
     'Remove-EmptyProperty', 'Remove-QuotesFromCsv', 'Remove-TeamsCache',
     'Remove-Trailing', 'Reset-Desktop', 'Resolve-FQDN', 'Resolve-HostName', 'sed',
     'Set-Capslock', 'Set-Display', 'Set-Numlock', 'Set-PrivateProfileComment',
-    'Set-PrivateProfileString', 'Set-Scrolllock', 'Set-Type', 'Set-SpeakerVolume',
+    'Set-PrivateProfileString', 'Set-Scrolllock', 'Set-SpeakerVolume', 'Set-Type',
     'Set-WindowStyle', 'Show-AllColor', 'Show-Calendar', 'Show-Color',
     'Show-ColorsWithBackground', 'Show-DaysOfWeek', 'Show-FileAttribute',
     'Show-FsRight', 'Show-Month', 'Show-NamedColor', 'Show-Object',
@@ -120,7 +120,7 @@
     'Test-IsValidIPv4', 'Test-IsValidIPv6', 'Test-MultipleBool', 'Test-Network',
     'Test-NtpDateVsNow', 'Test-Password', 'Test-PasswordComplexity', 'Test-Port',
     'Test-Set', 'Update-ExplorerIcon', 'Use-Stopwatch', 'Write-StringArray',
-    'Write-TextMenu' )
+    'Write-StringHash', 'Write-TextMenu' )
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     #CmdletsToExport = '*'
@@ -137,8 +137,7 @@
     'Get-LastReboot', 'Get-SaveFile', 'Get-SubnetMaskIP', 'Md5Sum', 'Parse-Bool',
     'Recycle', 'ReverseString', 'Set-Speaker', 'Show-InvalidFileCharacter',
     'Show-SpecialFolder', 'Show-SubnetMaskIP', 'Show-TypeAccelerator', 'Speak',
-    'Test-IsValidIP', 'Test-MultiBool', 'Union-Object', 'UrlDecode', 'UrlEncode',
-    'WrapText' )
+    'Test-IsValidIP', 'Test-MultiBool', 'UrlDecode', 'UrlEncode', 'WrapText' )
 
     # DSC resources to export from this module
     # DscResourcesToExport = @()
@@ -183,10 +182,12 @@
 For full release notes see ReleaseNotes.txt
 ### 2.2.7
 * added module icon file .\PoshFunctions.ico for custom WinForms forms created
+* moved function aliases to within the function definition so all the code is together
 * added ConvertFrom-HtmlEncode - helps with decoding strings that contain HTML special characters. For instance, 'this &amp; that' becomes 'this & that'
 * added ConvertTo-HtmlEncode - helps with encoding strings that contain HTML special characters. For instance, 'this & that' becomes 'this &amp; that'
 * added Export-FontSample - creates HTML output of sample text formatted with all of the installed fonts on the system
 * added Get-CeasarCipher - a more robust version of Convert-ROT13 where you can specify the key or number of positions to shift. Aliased to 'Convert-ROT13' for backward compatibility.
+* added Get-DisplayBrightness - to determine current display brightness
 * added Get-DuplicateFileName - creates a quick list of duplicate file names within a given folder
 * added Get-List - function to return an array given an indeterminate number of command line parameters
 * added Get-String - function to return a string given an indeterminate number of command line parameters
@@ -196,6 +197,7 @@ For full release notes see ReleaseNotes.txt
 * added Split-Line - more reliably split a string into its constituent lines. Returns an array.
 * added Test-MultipleBool - to do logical AND/OR across an array of boolean values
 * added Test-PasswordComplexity - to verify if a string is of proper length and matches all character types
+* added Write-StringHash - to take a given hashtable and write the code to create it
 * removed Convert-ROT13 - see more robust Get-CeasarCipher
 * renamed Set-Speaker to Set-SpeakerVolume to be better named. Set an alias to Set-Speaker for backward compatibility
 * renamed Union-Object to Merge-Object to get around Invoke-ScriptAnalyzer error
@@ -211,7 +213,10 @@ For full release notes see ReleaseNotes.txt
 * updated Get-ServiceUser - to better handle Kerberos errors sometimes encountered when connecting to systems
 * updated Merge-Object - aliased to 'Union-Object' for backward compatibility
 * updated New-InputBoxSecureString - added module custom icon
+* updated New-MessageBox - renamed from New-Popup (aliased for backward compatibility). added functionality for default button
+* updated New-RandomPassword - added -TitleCase, -RandomCase, -Web. Changed default parameter set name to ReadableTitleCase
 * updated Optimize-SqlIndexFragmentation - to handle error condition of index not having page level locking on. If that error is encountered it enables lock, optimizes index, then disables lock
+* updated Set-Display - added -Brightness to set the brightness of the display
 * updated Start-ADReplication - added -ThrottleLimit so as to not over saturate the local computer
 * updated Test-ConnectionAsync - added -Full switch and made default output brief, slight formatting change in output
 * updated Write-StringArray - added -ExcludeDollarSign to make it easier to create input for *.psd1 files
