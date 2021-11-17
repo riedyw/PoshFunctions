@@ -166,7 +166,7 @@ function Optimize-SqlIndexFragmentation {
             $CommandsToRun | Show-Progress -Activity 'Optimizing database table indexes' -PassThru -Id 1 | ForEach-Object {
                 $Current = $_
 
-                Write-Verbose -Message "DB [$($_.Database)] QUERY [$($_.Optimize)]"
+                Write-Verbose -Message "DB [$($Current.Database)] QUERY [$($Current.Optimize)]"
                 try {
                     write-verbose -Message 'Running Query'
                     if ($Current.Table -ne $TableProcessing) {
@@ -188,7 +188,8 @@ function Optimize-SqlIndexFragmentation {
             }
         } else {
             $CommandsToRun | ForEach-Object {
-                Write-Verbose -Message "DB [$($_.Database)] QUERY [$($_.Optimize)]"
+                $Current = $_
+                Write-Verbose -Message "DB [$($Current.Database)] QUERY [$($Current.Optimize)]"
                 try {
                     write-verbose -Message 'Running Query'
                     if ($Current.Table -ne $TableProcessing) {
@@ -207,7 +208,6 @@ function Optimize-SqlIndexFragmentation {
                         Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $Current.Database -Query $Current.TableLockOff  -QueryTimeout 900 -Verbose:$false | Out-Null
                     #}
                 }
-
             }
         }
     }
