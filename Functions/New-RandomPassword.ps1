@@ -20,6 +20,8 @@ function New-RandomPassword {
     Switch to randomly capitalize letters in each word. ParameterSetName: ReadableRandomCase
 .PARAMETER Web
     Switch to use web algorithm. ParameterSetName: Web
+.PARAMETER FullWordList
+    Switch to use full word list of 370,103 words vs. 38,000 words
 .EXAMPLE
     New-RandomPassword -Web
 
@@ -89,7 +91,11 @@ function New-RandomPassword {
         [switch] $RandomCase,
 
         [Parameter(ParameterSetName = 'Web')]
-        [switch] $Web
+        [switch] $Web,
+
+        [Parameter(ParameterSetName = 'ReadableTitleCase')]
+        [Parameter(ParameterSetName = 'ReadableRandomCase')]
+        [switch] $FullWordList
     )
     #endregion parameter
 
@@ -108,14 +114,14 @@ function New-RandomPassword {
                 $Symbol = Get-PrintableAscii -Verbose:$false | Where-Object { $_.Class -eq 's' }
                 $MaxWords = [int] ($MaxLength / 3)
                 $MinWords = [int] ($MinLength / 6)
-                $Words = Get-WordList -Verbose:$false | Where-Object { $_.Length -ge 3 -and $_.Length -le 6 }
+                $Words = Get-WordList -Full:$FullWordList -Verbose:$false | Where-Object { $_.Length -ge 3 -and $_.Length -le 6 }
                 $Sample = $Words | Get-Random -Count ($MinWords * 30) -Verbose:$false | Format-TitleCase -Verbose:$false
             }
             'ReadableRandomCase' {
                 $Symbol = Get-PrintableAscii -Verbose:$false | Where-Object { $_.Class -eq 's' }
                 $MaxWords = [int] ($MaxLength / 3)
                 $MinWords = [int] ($MinLength / 6)
-                $Words = Get-WordList -Verbose:$false | Where-Object { $_.Length -ge 3 -and $_.Length -le 6 }
+                $Words = Get-WordList -Full:$FullWordList -Verbose:$false | Where-Object { $_.Length -ge 3 -and $_.Length -le 6 }
                 $Sample = $Words | Get-Random -Count ($MinWords * 30) -Verbose:$false | Format-RandomCase -Verbose:$false
             }
         }

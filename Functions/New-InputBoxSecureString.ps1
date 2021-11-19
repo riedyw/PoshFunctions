@@ -157,7 +157,7 @@ function New-InputBoxSecureString {
         $ValidateEntry.AutoSizeMode = 'GrowOnly'
         $ValidateEntry.Font = [System.Drawing.SystemFonts]::get_MessageBoxFont()
         if ($Script:ModulePath) {
-            $ValidateEntry.Icon = (Join-Path -Path $Script:ModulePath -ChildPath 'PoshFunctions.ico')
+            $ValidateEntry.Icon = (Join-Path -Path $Script:ModulePath -ChildPath 'Resources\PoshFunctions.ico')
         }
         #endregion
     }

@@ -10,8 +10,9 @@ $Script:FunctionsPath = Join-Path -Path $Script:ModulePath -ChildPath 'Functions
 $Functions = Get-ChildItem -Path $Script:FunctionsPath -Filter *.ps1
 $Functions | ForEach-Object { . $_.FullName }
 
-$Script:WordList = Get-Content -Path $PSScriptRoot\WordList.txt -ReadCount 0
-$Script:FortuneFile = "$ModulePath\Wisdom.txt"
+$Script:WordList = Get-Content -Path $PSScriptRoot\Resources\WordList.txt -ReadCount 0
+$Script:WordListFull = Get-Content -Path $PSScriptRoot\Resources\words_alpha.txt -ReadCount 0
+$Script:FortuneFile = "$ModulePath\Resources\Wisdom.txt"
 $Script:Stopwatch =  [System.Diagnostics.Stopwatch]::New()
 
 # inspired by: http://powershell-scripting.com/index.php?option=com_joomlaboard&Itemid=76&func=view&view=threaded&id=24376&catid=5

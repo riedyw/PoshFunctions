@@ -4,6 +4,8 @@ function Get-WordList {
     Returns a list of over 38,000 words.
 .DESCRIPTION
     Returns a list of over 38,000 words.
+.PARAMETER Full
+    Switch to return longer list of 370,103 words from file words_alpha.txt from Git repository https://github.com/dwyl/english-words.git
 .NOTES
     Originally taken from a Linux distribution and original file name was linuxwords
     Over 38,000 words appear in the file WordList.txt found in the installation folder of this module.
@@ -53,6 +55,11 @@ function Get-WordList {
             21     1
             22     1
             28     1
+.EXAMPLE
+    # Get the longest word in the full list whose length is 31 characters
+
+    Get-WordList -Full | Where-Object { $_.Length -eq 31 }
+    dichlorodiphenyltrichloroethane
 .OUTPUTS
     [string[]]
 #>
@@ -60,7 +67,9 @@ function Get-WordList {
     #region Parameter
     [CmdletBinding(ConfirmImpact='None')]
     [OutputType([string[]])]
-    Param()
+    Param(
+        [switch] $Full
+    )
     #endregion Parameter
 
     begin {
@@ -68,7 +77,11 @@ function Get-WordList {
     }
 
     process {
-        $Script:WordList
+        if ($Full) {
+            $Script:WordListFull
+        } else {
+            $Script:WordList
+        }
     }
 
     end {

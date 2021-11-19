@@ -4,7 +4,7 @@
     RootModule        = 'PoshFunctions.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '2.2.7'
+    ModuleVersion     = '2.2.8'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -180,6 +180,8 @@
             # ReleaseNotes of this module
             ReleaseNotes = @'
 For full release notes see ReleaseNotes.txt
+### 2.2.8
+
 ### 2.2.7
 * added module icon file .\PoshFunctions.ico for custom WinForms forms created
 * moved function aliases to within the function definition so all the code is together

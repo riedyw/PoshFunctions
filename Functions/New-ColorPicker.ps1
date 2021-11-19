@@ -194,7 +194,7 @@ function New-ColorPicker {
         $ColorPicker.AutoSizeMode = 'GrowOnly'
         $ColorPicker.Font = [System.Drawing.SystemFonts]::get_MessageBoxFont()
         if ($Script:ModulePath) {
-            $ColorPicker.Icon = (Join-Path -Path $Script:ModulePath -ChildPath 'PoshFunctions.ico')
+            $ColorPicker.Icon = (Join-Path -Path $Script:ModulePath -ChildPath 'Resources\PoshFunctions.ico')
         }
         $ColorPicker.add_Load( { $ColorTextBox.Text = '{0:X2}{1:X2}{2:X2}' -f $R, $G, $B })
         $ColorButton.add_Click( { Select-ColorButton -R ([ref] $R) -G ([ref] $G) -B ([ref] $B) })

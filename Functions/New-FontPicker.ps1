@@ -44,7 +44,7 @@ function New-FontPicker {
         $FontPicker.Text = 'Font Picker'
         $FontPicker.AutoSize = $true
         $FontPicker.AutoSizeMode = 'GrowOnly'
-        $FontPicker.Icon = (Join-Path -Path $Script:ModulePath -ChildPath 'PoshFunctions.ico')
+        $FontPicker.Icon = (Join-Path -Path $Script:ModulePath -ChildPath 'Resources\PoshFunctions.ico')
         #~~< OKButton >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         $OKButton = New-Object -TypeName System.Windows.Forms.Button
         $OKButton.DialogResult = [System.Windows.Forms.DialogResult]::OK

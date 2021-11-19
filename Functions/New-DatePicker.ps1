@@ -91,7 +91,7 @@ function New-DatePicker {
         $OKButton.Font = [System.Drawing.SystemFonts]::get_MessageBoxFont()
         $CancelButton.Font = [System.Drawing.SystemFonts]::get_MessageBoxFont()
         if ($Script:ModulePath) {
-            $DatePicker.Icon = (Join-Path -Path $Script:ModulePath -ChildPath 'PoshFunctions.ico')
+            $DatePicker.Icon = (Join-Path -Path $Script:ModulePath -ChildPath 'Resources\PoshFunctions.ico')
         }
 
         if ($IncludeTime) {
