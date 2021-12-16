@@ -63,7 +63,7 @@ function Convert-HexToRGB {
                 }
             } else {
                 Write-Error -Message "$curHex is not a valid Hex color string"
-                return
+                break
             }
         }
     }

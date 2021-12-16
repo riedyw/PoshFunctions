@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version: http://code.msdn.microsoft.com/PSRemoteRegistry
+schema: 2.0.0</h2>
+<h1>Get-RegExpandString</h1>
+<h2>SYNOPSIS</h2>
+<p>Retrieves a null-terminated string that contains unexpanded references to environment variables (REG_EXPAND_SZ) from local or remote computers.</p>
+<h2>SYNTAX</h2>
+<pre><code>Get-RegExpandString [[-ComputerName] &lt;String[]&gt;] [[-Hive] &lt;String&gt;] [-Key] &lt;String&gt; [-Value] &lt;String&gt;
+ [-ExpandEnvironmentNames] [-Ping] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Use Get-RegExpandString to retrieve a null-terminated string that contains unexpanded references to environment variables (REG_EXPAND_SZ) from local or remote computers.</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>$Key = &quot;SOFTWARE\Microsoft\Windows\CurrentVersion&quot;
+</code></pre>
+<p>Get-RegExpandString -Key $Key -Value ProgramFilesPath</p>
+<p>ComputerName Hive         Value            Key                                       Data                   Type</p>
+<hr />
+<p>DemoLaptop   LocalMachine ProgramFilesPath SOFTWARE\Microsoft\Windows\CurrentVersion %ProgramFiles% ExpandString</p>
+<h2>Description</h2>
+<p>The command gets the registry ProgramFilesPath ExpandString value from the local computer.
+The returned value contains unexpanded references to environment variables.</p>
+<h3>EXAMPLE 2</h3>
+<pre><code>Get-RegExpandString -Key $Key -Value ProgramFilesPath -ComputerName server1, server2 -ExpandEnvironmentNames -Ping
+</code></pre>
+<p>ComputerName Hive         Value            Key                                       Data                     Type</p>
+<hr />
+<p>server1      LocalMachine ProgramFilesPath SOFTWARE\Microsoft\Windows\CurrentVersion C:\Program Files ExpandString
+server2      LocalMachine ProgramFilesPath SOFTWARE\Microsoft\Windows\CurrentVersion C:\Program Files ExpandString</p>
+<h2>Description</h2>
+<p>The command gets the registry ProgramFilesPath ExpandString value from three remote computers.
+When the ExpandEnvironmentNames Switch parameter is used, the data of the value is expnaded based on the environment variables data from the local environment.
+When the Switch parameter Ping is specified the command issues a ping test to each computer.
+If the computer is not responding to the ping request a warning message is written to the console and the computer is not processed.</p>
+<h2>PARAMETERS</h2>
+<h3>-ComputerName</h3>
+<p>An array of computer names.
+The default is the local computer.</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: (All)
+Aliases: CN, Server, __SERVER, IPAddress
+
+Required: False
+Position: 1
+Default value: $env:COMPUTERNAME
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+</code></pre>
+<h3>-Hive</h3>
+<p>The HKEY to open, from the RegistryHive enumeration.
+The default is 'LocalMachine'.
+Possible values:</p>
+<ul>
+<li>ClassesRoot</li>
+<li>CurrentUser</li>
+<li>LocalMachine</li>
+<li>Users</li>
+<li>PerformanceData</li>
+<li>CurrentConfig</li>
+<li>DynData</li>
+</ul>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: LocalMachine
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+</code></pre>
+<h3>-Key</h3>
+<p>The path of the registry key to open.</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 3
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+</code></pre>
+<h3>-Value</h3>
+<p>The name of the registry value.</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 4
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+</code></pre>
+<h3>-ExpandEnvironmentNames</h3>
+<p>Expands values containing references to environment variables using data from the local environment.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Ping</h3>
+<p>Use ping to test if the machine is available before connecting to it.
+If the machine is not responding to the test a warning message is output.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
+<h3>PSFanatic.Registry.RegistryValue (PSCustomObject)</h3>
+<h2>NOTES</h2>
+<p>Author: Shay Levy
+Blog : http://blogs.microsoft.co.il/blogs/ScriptFanatic/</p>
+<h1>source: https://www.powershellgallery.com/packages/RemoteRegistry/1.0.3/Content/Public%5CGet-RegExpandString.ps1</h1>
+<ul>
+<li>notes for remote servers you need administrative privileges to that remote computername</li>
+<li>added write-verbose statements</li>
+<li>corrected some spelling</li>
+<li>commented out return for ping that fails</li>
+<li>modified statement for new-object -typename psobject, changed -Property @{} to -Property ([ordered] @{}) so columns come out in order desired</li>
+<li>updated examples</li>
+</ul>
+<h2>RELATED LINKS</h2>
+<p><a href="http://code.msdn.microsoft.com/PSRemoteRegistry">http://code.msdn.microsoft.com/PSRemoteRegistry</a></p>
+<p><a href="">Set-RegExpandString
+Get-RegValue
+Remove-RegValue
+Test-RegValue</a></p>
+
+</body>
+</html>

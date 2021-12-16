@@ -82,7 +82,7 @@ function Optimize-SqlIndexFragmentation {
             }
         } catch {
             Write-Error -Message "Could not make SQL connection to [$ServerInstance], either server not up, or no permissions to connect."
-            return
+            break
         }
         $FragParam = @{
             ServerInstance        = $ServerInstance
@@ -159,7 +159,7 @@ function Optimize-SqlIndexFragmentation {
             }
         } else {
             Write-Error -Message 'No indexes need to be optimized'
-            return
+            break
         }
 
         if ($Interactive) {

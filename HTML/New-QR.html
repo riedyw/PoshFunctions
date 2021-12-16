@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version: http://code.google.com/apis/chart/infographics/docs/qr_codes.html
+schema: 2.0.0</h2>
+<h1>New-QR</h1>
+<h2>SYNOPSIS</h2>
+<p>Create New Quick Response Code</p>
+<h2>SYNTAX</h2>
+<pre><code>New-QR [-Message] &lt;String&gt; [[-Path] &lt;String&gt;] [-CHS &lt;String&gt;] [-ECL &lt;String&gt;] [-Enc &lt;String&gt;] [-Margin &lt;Int32&gt;]
+ [-Size &lt;String&gt;] [-WhatIf] [-Confirm] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Create New Quick Response Code</p>
+<p>Function uses Google API so script requires internet access.
+Script will compose QR request and then download generated image.</p>
+<p>New-QR returns the properties of the new QR code created.</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>New-QR http://painterinfo.com
+</code></pre>
+<h2>Description</h2>
+<p>Creates a new QR code (URL)
+Path to QR code image is returned by script</p>
+<h3>EXAMPLE 2</h3>
+<pre><code>New-QR -Message &quot;This is a test&quot; -Size C -CHS 200x200
+</code></pre>
+<h2>Description</h2>
+<p>Creates a new QR code (TEXT)
+Custom image size 200x200 is created.
+Path to QR code is returned by script</p>
+<h3>EXAMPLE 3</h3>
+<pre><code>ii (New-QR -message TEL:0754419999 -Size L -ECL H).fullname
+</code></pre>
+<h2>Description</h2>
+<p>Creates a new QR code (Phone Number) and is opened with default image viewer.
+-Size L (image size is 300x300 pixels)
+-ECL H (30% of image is redundant)</p>
+<h3>EXAMPLE 4</h3>
+<pre><code>Import-Csv &quot;C:\QR\users.csv&quot; | New-QR -S L
+</code></pre>
+<h2>Description</h2>
+<p>Using the following CSV, multiple 300x300 QR Codes are generated.</p>
+<p>&quot;Message&quot;,&quot;FileName&quot;
+&quot;TEL:0416123456&quot;,&quot;C:\QR\Matt.png&quot;
+&quot;TEL:0417123456&quot;,&quot;C:\QR\John.png&quot;
+&quot;TEL:0418123456&quot;,&quot;C:\QR\Ruth.png&quot;
+&quot;TEL:0419123456&quot;,&quot;C:\QR\Fred.png&quot;</p>
+<h2>PARAMETERS</h2>
+<h3>-Message</h3>
+<p>Message to be encoded in QR code.
+Script will check the message length to ensure it does not exceed the max allowed size
+Purely numeric content allows for a larger storage capacity in code.</p>
+<p>Message Examples
+&quot;TEL:0416123456&quot; (Will call my cell phone)
+&quot;SMSTO:0416123456:Hi Matt,`nI am at your desk.&quot; (An SMS to me.
+Note the new line character)
+&quot;http://painterinfo.com&quot; (Open this website)
+&quot;This is the Pishkin Building&quot; (A plain text message encoded in the QR Code)</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+</code></pre>
+<h3>-Path</h3>
+<p>File name of QR code to be created.
+Aliased to 'FileName' for backward compatibility.
+Can specify fullpath, please use .PNG file extension.
+If specifying fullpath ensure directory structure exists.</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases: FileName
+
+Required: False
+Position: 2
+Default value: &quot;$env:temp\QR.png&quot;
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+</code></pre>
+<h3>-CHS</h3>
+<p>This is the custom size of the image in pixels e.g.
+150x150
+This parameter is only read when -Size C parameter is specified.
+(Otherwise ignored)
+Min = 50x50 [approximate] Large QR codes may need to be physically larger to fit the data.
+Max = 547x547</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: 150x150
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-ECL</h3>
+<p>Error Correction Level</p>
+<p>L - [Default] Allows recovery of up to 7% data loss
+M - Allows recovery of up to 15% data loss
+Q - Allows recovery of up to 25% data loss
+H - Allows recovery of up to 30% data loss</p>
+<p>Use L for maximum storage capacity in QR code
+Use H if you think the QR code might get damaged or if you want to embed plain text or logo after.</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: L
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Enc</h3>
+<p>Allowed encoding types are:
+UTF-8, Shift_JIS, ISO-8859-1
+UTF-8 is default and recommended type</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: UTF-8
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Margin</h3>
+<p>Defaults to 4 and it is recommended to leave it at that.
+A white space margin of 4 is required for reliable QR code reading.
+Valid Values are 1..4</p>
+<pre><code class="language-yaml">Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: 4
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Size</h3>
+<p>The QR code's physical size in pixels, not to be confused with the data storage size.
+Function caters for several pre-set sizes and a custom size option
+S - 75x75
+M - 150x150 [default]
+L - 300x300
+X - 547x547 - This appears to be the maximum size that the API can produce.
+C - Custom size to be used - Warning too small will result QR code generation failure.
+If too large a value is specified then the 150x150 default will be generated instead.
+Use -CHS parameter in conjunction with -Size C or Custom size will default to 150x150</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: M
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-WhatIf</h3>
+<p>Shows what would happen if the cmdlet runs.
+The cmdlet is not run.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Confirm</h3>
+<p>Prompts you for confirmation before running the cmdlet.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h3>psObject</h3>
+<h3>(FileName,Message)</h3>
+<h2>OUTPUTS</h2>
+<h3>psObject</h3>
+<h3>(FullName,ErrorCorrrection,Margin,Dimensions,DataSize)</h3>
+<h2>NOTES</h2>
+<p>NAME:      New-QR
+PURPOSE:   Generate QR codes with PowerShell
+VERSION:   1.0
+AUTHOR:    Matthew Painter
+LASTEDIT:  06/August/2011</p>
+<h1>Source https://gallery.technet.microsoft.com/scriptcenter/f615d7e8-ed15-498d-b7cc-078377f523bf</h1>
+<p>Changes</p>
+<ul>
+<li>renamed FileName to Path to be more in line with other Powershell commands.
+Aliased to 'FileName' for backward compatibility</li>
+<li>reordered parameters by position, also reordered .PARAMETER entries in comment help to match order in parameter section</li>
+</ul>
+<h2>RELATED LINKS</h2>
+<p><a href="http://code.google.com/apis/chart/infographics/docs/qr_codes.html">http://code.google.com/apis/chart/infographics/docs/qr_codes.html</a></p>
+
+</body>
+</html>

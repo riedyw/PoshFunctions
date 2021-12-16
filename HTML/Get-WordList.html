@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version: https://www.Google.com
+schema: 2.0.0</h2>
+<h1>Get-WordList</h1>
+<h2>SYNOPSIS</h2>
+<p>Returns a list of over 38,000 words.</p>
+<h2>SYNTAX</h2>
+<pre><code>Get-WordList [-Full] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Returns a list of over 38,000 words.</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code># Desire to get a list the First 2 palindromes
+</code></pre>
+<p>Get-WordList | Where-Object { $_ -eq (format-reversestring $_)} | Select-Object -First 2 | Tee-Object -Variable Palindrome</p>
+<p>Would return
+bib
+bob</p>
+<h3>EXAMPLE 2</h3>
+<pre><code># Desire to get the longest word in the wordlist
+</code></pre>
+<p>Get-WordList | Select-Object @{Name='Word';Expr={$<em>}}, @{Name='WordLength';Expr={$</em>.Length}} | Sort WordLength -Descending | Select-Object -First 1</p>
+<p>Word                         WordLength</p>
+<hr />
+<p>antidisestablishmentarianism         28</p>
+<h3>EXAMPLE 3</h3>
+<pre><code># Desire to get a count of words by length
+</code></pre>
+<p>Get-WordList | Select-Object @{Name='Word';Expr={$<em>}}, @{Name='Len';Expr={$</em>.Length}} | Group-Object Len |
+Select-Object Name, Count | Select-Object @{Name='WordLength';Expr={([int] $_.Name)}}, Count | Sort-Object WordLength</p>
+<p>WordLength Count</p>
+<hr />
+<pre><code>     2    39
+     3   437
+     4  1785
+     5  3264
+     6  4962
+     7  6126
+     8  6020
+     9  5287
+    10  4115
+    11  2826
+    12  1759
+    13  1070
+    14   507
+    15   251
+    16    88
+    17    53
+    18    21
+    19     3
+    20     2
+    21     1
+    22     1
+    28     1
+</code></pre>
+<h3>EXAMPLE 4</h3>
+<pre><code># Get the longest word in the full list whose length is 31 characters
+</code></pre>
+<p>Get-WordList -Full | Where-Object { $_.Length -eq 31 }
+dichlorodiphenyltrichloroethane</p>
+<h2>PARAMETERS</h2>
+<h3>-Full</h3>
+<p>Switch to return longer list of 370,103 words from file words_alpha.txt from Git repository https://github.com/dwyl/english-words.git</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
+<h3>[string[]]</h3>
+<h2>NOTES</h2>
+<p>Originally taken from a Linux distribution and original file name was linuxwords
+Over 38,000 words appear in the file WordList.txt found in the installation folder of this module.</p>
+<h2>RELATED LINKS</h2>
+
+</body>
+</html>

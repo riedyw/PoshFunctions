@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version: https://github.com/iRon7/Join-Object
+schema: 2.0.0</h2>
+<h1>Merge-Object</h1>
+<h2>SYNOPSIS</h2>
+<p>Returns a 'clean' array of objects that have all property names in each element of the array</p>
+<h2>SYNTAX</h2>
+<pre><code>Merge-Object [[-Property] &lt;String[]&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Returns a 'clean' array of objects that have all property names in each element of the array.
+Function aliased to 'Union-Object'</p>
+<h2>EXAMPLES</h2>
+<h3>Example 1</h3>
+<pre><code class="language-powershell">PS C:\&gt; {{ Add example code here }}
+</code></pre>
+<p>{{ Add example description here }}</p>
+<h2>PARAMETERS</h2>
+<h3>-Property</h3>
+<p>{{ Fill Property Description }}</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: @()
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
+<h2>NOTES</h2>
+<p>Inspired by Union-Object on https://powersnippets.com/union-object/</p>
+<p>Notes from the web page:
+Union-Object
+Most native PowerShell cmdlets that handle an array of objects (like e.g.
+Export-CSV) only look to the first object
+to define the concerned properties.
+This behavior can lead to unexpected results.
+Consider the following object:</p>
+<p>$List = @(
+New-Object -TypeName PSObject -Property @{Id = 2}
+New-Object -TypeName PSObject -Property @{Id = 1}
+New-Object -TypeName PSObject -Property @{Id = 3; Name = &quot;Test&quot;}
+)</p>
+<p>If you simply display this object array, only the Id property will be listed:</p>
+<p>PS C:\&gt; $List</p>
+<h2>Id</h2>
+<p>2
+1
+3
+You might quickly fix this by aligning the properties of the first object with the rest of the objects (Name = $Null):</p>
+<p>$List = @(
+New-Object -TypeName PSObject -Property @{Id = 2; Name = $Null}
+New-Object -TypeName PSObject -Property @{Id = 1}
+New-Object -TypeName PSObject -Property @{Id = 3; Name = &quot;Test&quot;}
+)
+This will work for most of the cases:</p>
+<p>PS C:\&gt; $List</p>
+<p>Id Name</p>
+<hr />
+<p>2
+1
+3 Test
+But not in every case:</p>
+<p>PS C:\&gt; $List | Sort Id</p>
+<h2>Id</h2>
+<p>1
+2
+3
+In other words, it is required to align every object in the array to prevent that you lose any properties.
+The
+quickest way is to use the Select-Object cmdlet: Select-Object Id, Name, knowing that just selecting all objects:
+Select-Object *, doesn't resolve the issue.
+This mean that it is still required to iterate through all the objects
+to define all the properties.</p>
+<p>Fixed array example:
+$List = @(
+New-Object -TypeName PSObject -Property @{Id = 2}
+New-Object -TypeName PSObject -Property @{Id = 1}
+New-Object -TypeName PSObject -Property @{Id = 3; Name = &quot;Test&quot;}
+)</p>
+<p>$NewList = $List | Merge-Object</p>
+<p>$NewList</p>
+<p>Id Name</p>
+<hr />
+<p>2
+1
+3 Test</p>
+<p>Needs to use inline parameters as it doesn't function properly with a param() block
+Made following changes</p>
+<ul>
+<li>added help</li>
+<li>formatting changes</li>
+</ul>
+<h2>RELATED LINKS</h2>
+
+</body>
+</html>

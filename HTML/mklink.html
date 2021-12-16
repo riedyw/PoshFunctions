@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version: https://github.com/iRon7/Join-Object
+schema: 2.0.0</h2>
+<h1>mklink</h1>
+<h2>SYNOPSIS</h2>
+<p>mklink calls out to the Command Prompt (cmd.exe) and creates a link</p>
+<h2>SYNTAX</h2>
+<pre><code>mklink
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>mklink calls out to the Command Prompt (cmd.exe) and creates a link</p>
+<p>mklink /?
+Creates a symbolic link.</p>
+<p>MKLINK [[/D] | [/H] | [/J]] Link Target</p>
+<pre><code>    /D      Creates a directory symbolic link. 
+</code></pre>
+<p>Default is a file
+symbolic link.
+/H      Creates a hard link instead of a symbolic link.
+/J      Creates a Directory Junction.
+Link    Specifies the new symbolic link name.
+Target  Specifies the path (relative or absolute) that the new link
+refers to.</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>mklink LINK REALFILE
+</code></pre>
+<p>would return
+symbolic link created for link &lt;&lt;===&gt;&gt; realfile</p>
+<h2>PARAMETERS</h2>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
+<h2>NOTES</h2>
+<p>Passes all command line arguments to cmd.exe embedded command mklink</p>
+<h2>RELATED LINKS</h2>
+
+</body>
+</html>

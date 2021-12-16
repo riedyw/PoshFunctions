@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version:
+schema: 2.0.0</h2>
+<h1>Test-ConnectionAsync</h1>
+<h2>SYNOPSIS</h2>
+<p>Performs a ping test asynchronously</p>
+<h2>SYNTAX</h2>
+<pre><code>Test-ConnectionAsync [[-ComputerName] &lt;String[]&gt;] [-Timeout &lt;Int32&gt;] [-TimeToLive &lt;Int32&gt;]
+ [-BufferSize &lt;Int32&gt;] [-IncludeSource] [-Full] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Performs a ping test asynchronously</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>Test-ConnectionAsync -ComputerName server1,server2
+</code></pre>
+<p>ComputerName IPAddress     Result</p>
+<hr />
+<p>server1      192.168.1.31 Success
+server2      192.168.1.41 Success</p>
+<h2>Description</h2>
+<p>Performs asynchronous ping test against listed systems and lists brief output.</p>
+<h3>EXAMPLE 2</h3>
+<pre><code>Test-ConnectionAsync -ComputerName server1,server2 -Full
+</code></pre>
+<p>ComputerName IPAddress    BufferSize  Result ResponseTime</p>
+<hr />
+<p>server1      192.168.1.31         32 Success           86
+server2      192.168.1.41         32 Success           79</p>
+<h2>Description</h2>
+<p>Performs asynchronous ping test against listed systems and lists full output.</p>
+<h3>EXAMPLE 3</h3>
+<pre><code>Test-ConnectionAsync -ComputerName server1,server2 -Full -BufferSize 1500
+</code></pre>
+<p>ComputerName IPAddress    BufferSize  Result ResponseTime</p>
+<hr />
+<p>server1      192.168.1.31       1500 Success          140
+server2      192.168.1.41       1500 Success          137</p>
+<h2>Description</h2>
+<p>Performs asynchronous ping test against listed systems and lists full output with a buffersize of 1500 bytes.</p>
+<h2>PARAMETERS</h2>
+<h3>-ComputerName</h3>
+<p>List of computers to test connection.
+Aliased to 'CN', 'Server'</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+</code></pre>
+<h3>-Timeout</h3>
+<p>Timeout in milliseconds.
+Default 2000 ms.</p>
+<pre><code class="language-yaml">Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: 2000
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-TimeToLive</h3>
+<p>Sets a time to live on ping request.
+Default 128.</p>
+<pre><code class="language-yaml">Type: Int32
+Parameter Sets: (All)
+Aliases: Ttl
+
+Required: False
+Position: Named
+Default value: 128
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-BufferSize</h3>
+<p>How large you want the buffer to be.
+Valid range 32-65500, default of 32.
+If the buffer is 1501 bytes or greater then the ping can fragment.</p>
+<pre><code class="language-yaml">Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: 32
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-IncludeSource</h3>
+<p>A switch determining if you want the source computer name to appear in the output</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Full</h3>
+<p>A switch determining if full output appears</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
+<h3>[pscustomobject] with output from Net.AsyncPingResult and optionally the source address</h3>
+<h2>NOTES</h2>
+<p>Inspired by Test-ConnectionAsync by 'Boe Prox'
+https://gallery.technet.microsoft.com/scriptcenter/Asynchronous-Network-Ping-abdf01aa</p>
+<ul>
+<li>fixed logic around processing pipeline</li>
+<li>removed $Buffer parameter</li>
+<li>added $BufferSize parameter and dynamically create $Buffer from $BufferSize</li>
+<li>added $IncludeSource so that source computer would be included in output</li>
+<li>added $Full so that default output is brief</li>
+<li>changed datatype of .IPAddress to [version] so that it can be sorted properly</li>
+</ul>
+<h2>RELATED LINKS</h2>
+
+</body>
+</html>

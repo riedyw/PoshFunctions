@@ -82,7 +82,7 @@ function Get-BinaryType {
 '@
 
             # Create a new type that lets us access the Windows API function
-            Add-Type -MemberDefinition $Signature -Name BinaryType -Namespace Win32Utils
+            Add-Type -MemberDefinition $Signature -Name BinaryType -Namespace PFWin32Utils
         } catch {
             Write-Verbose -Message 'Info'
         } #type already been loaded, do nothing
@@ -93,7 +93,7 @@ function Get-BinaryType {
         {
             $ReturnedType = -1
             Write-Verbose -Message "Attempting to get type for file: $($Item.FullName)"
-            $Result = [Win32Utils.BinaryType]::GetBinaryType($Item, [ref] $ReturnedType)
+            $Result = [PFWin32Utils.BinaryType]::GetBinaryType($Item, [ref] $ReturnedType)
 
             #if the function returned $false, indicating an error, or the binary type wasn't returned
             if (!$Result -or ($ReturnedType -eq -1))

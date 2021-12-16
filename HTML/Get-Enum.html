@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version: http://wonkysoftware.appspot.com
+schema: 2.0.0</h2>
+<h1>Get-Enum</h1>
+<h2>SYNOPSIS</h2>
+<p>To get the static values of enum datatypes</p>
+<h2>SYNTAX</h2>
+<pre><code>Get-Enum [-TypeName] &lt;Type[]&gt; [-Binary] [-Hex] [-IncludeInput] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>To get the static values of enum datatypes</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>Get-Enum -TypeName 'System.Windows.Forms.DialogResult'
+</code></pre>
+<p>Name   Value</p>
+<hr />
+<p>None       0
+OK         1
+Cancel     2
+Abort      3
+Retry      4
+Ignore     5
+Yes        6
+No         7</p>
+<h3>EXAMPLE 2</h3>
+<pre><code>Get-Enum -TypeName 'System.Windows.Forms.MessageBoxButtons' -Hex -IncludeInput
+</code></pre>
+<p>TypeName                               Name             Value Hex</p>
+<hr />
+<p>System.Windows.Forms.MessageBoxButtons OK                   0 0x0
+System.Windows.Forms.MessageBoxButtons OKCancel             1 0x1
+System.Windows.Forms.MessageBoxButtons AbortRetryIgnore     2 0x2
+System.Windows.Forms.MessageBoxButtons YesNoCancel          3 0x3
+System.Windows.Forms.MessageBoxButtons YesNo                4 0x4
+System.Windows.Forms.MessageBoxButtons RetryCancel          5 0x5</p>
+<h3>EXAMPLE 3</h3>
+<pre><code>Get-Enum -TypeName 'System.Windows.Forms.MessageBoxButtons' -Binary
+</code></pre>
+<p>Name             Value Binary</p>
+<hr />
+<p>OK                   0 0
+OKCancel             1 1
+AbortRetryIgnore     2 10
+YesNoCancel          3 11
+YesNo                4 100
+RetryCancel          5 101</p>
+<h2>PARAMETERS</h2>
+<h3>-TypeName</h3>
+<p>A typename or array of typenames that you wish to enumerate the enum values.
+Can accept input from the pipeline.</p>
+<pre><code class="language-yaml">Type: Type[]
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+</code></pre>
+<h3>-Binary</h3>
+<p>A switch that will also display the value in binary form.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Hex</h3>
+<p>A switch that will also display the value in hexadecimal form.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-IncludeInput</h3>
+<p>A switch determining if you want the TypeName to appear in the output.
+Aliased to 'IncludeType'</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: IncludeType
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
+<h3>psobject</h3>
+<h2>NOTES</h2>
+<h2>RELATED LINKS</h2>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version:
+schema: 2.0.0</h2>
+<h1>Test-Port</h1>
+<h2>SYNOPSIS</h2>
+<p>Tests a Port or a range of ports on a specific ComputerName(s).</p>
+<h2>SYNTAX</h2>
+<pre><code>Test-Port [-ComputerName] &lt;String[]&gt; [-Port] &lt;UInt16[]&gt; [-Timeout &lt;Int32&gt;] [-TCP] [-UDP] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Tests a Port or a range of ports on a specific ComputerName(s).
+Creates a custom object with the properties: ComputerName, Protocol, Port, Open, Notes.</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>Test-Port -ComputerName 'server' -port 80
+</code></pre>
+<p>Checks port 80 on server 'server' to see if it is listening</p>
+<h3>EXAMPLE 2</h3>
+<pre><code>'server' | Test-Port -Port 80
+</code></pre>
+<p>Checks port 80 on server 'server' to see if it is listening</p>
+<h3>EXAMPLE 3</h3>
+<pre><code>Test-Port -ComputerName @(&quot;server1&quot;,&quot;server2&quot;) -Port 80
+</code></pre>
+<p>Checks port 80 on server1 and server2 to see if it is listening</p>
+<h3>EXAMPLE 4</h3>
+<pre><code>@(&quot;server1&quot;,&quot;server2&quot;) | Test-Port -Port 80
+</code></pre>
+<p>Checks port 80 on server1 and server2 to see if it is listening</p>
+<h3>EXAMPLE 5</h3>
+<pre><code>(Get-Content hosts.txt) | Test-Port -Port 80
+</code></pre>
+<p>Checks port 80 on servers in host file to see if it is listening</p>
+<h3>EXAMPLE 6</h3>
+<pre><code>Test-Port -ComputerName (Get-Content hosts.txt) -Port 80
+</code></pre>
+<p>Checks port 80 on servers in host file to see if it is listening</p>
+<h3>EXAMPLE 7</h3>
+<pre><code>Test-Port -ComputerName (Get-Content hosts.txt) -Port @(1..59)
+</code></pre>
+<p>Checks a range of ports from 1-59 on all servers in the hosts.txt file</p>
+<h2>PARAMETERS</h2>
+<h3>-ComputerName</h3>
+<p>A single ComputerName or array of ComputerName to test the port connection on.
+Aliased to 'CN', 'Server'</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: (All)
+Aliases: CN, Server
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+</code></pre>
+<h3>-Port</h3>
+<p>Port number to test ([int16] 0 - 65535), an array can also be passed</p>
+<pre><code class="language-yaml">Type: UInt16[]
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Timeout</h3>
+<p>Sets a timeout for TCP or UDP port query.
+(In milliseconds, Default is 1000)</p>
+<pre><code class="language-yaml">Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: 1000
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-TCP</h3>
+<p>Use TCP as the transport protocol</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-UDP</h3>
+<p>Use UDP as the transport protocol</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
+<h3>[psobject]</h3>
+<h3>An array of objects containing the fields:</h3>
+<h3>ComputerName    A string containing the computer name or ip address that was passed to the function</h3>
+<h3>Protocol        A string being either 'TCP' or 'UDP'</h3>
+<h3>Port            An integer in the range 1 - 65535</h3>
+<h3>Open            A boolean</h3>
+<h3>Notes           Any notes when attempting to make a connection</h3>
+<h2>NOTES</h2>
+<h1>inspired by https://gallery.technet.microsoft.com/scriptcenter/97119ed6-6fb2-446d-98d8-32d823867131</h1>
+<h2>RELATED LINKS</h2>
+<p><a href="">about_Properties</a></p>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version:
+schema: 2.0.0</h2>
+<h1>Format-SortedList</h1>
+<h2>SYNOPSIS</h2>
+<p>Creates a formatted list with properties sorted alphabetically</p>
+<h2>SYNTAX</h2>
+<pre><code>Format-SortedList [[-InputObject] &lt;Object&gt;] [-Descending] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Creates a formatted list with properties sorted alphabetically</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code># Assuming I have one instance of notepad.exe running
+</code></pre>
+<p>Get-Process notepad | Format-SortedList</p>
+<pre><code>            __NounName : Process
+          BasePriority : 8
+               Company : Microsoft Corporation
+             Container :
+                   CPU : 0.484375
+           Description : Notepad
+   EnableRaisingEvents : False
+              ExitCode :
+              ExitTime :
+           FileVersion : 10.0.19041.1 (WinBuild.160101.0800)
+                Handle : 73004
+           HandleCount : 288
+               Handles : 288
+             HasExited : False
+                    Id : 43400
+           MachineName : .
+            MainModule : System.Diagnostics.ProcessModule (notepad.exe)
+      MainWindowHandle : 855828
+       MainWindowTitle : Untitled - Notepad
+         MaxWorkingSet : 1413120
+         MinWorkingSet : 204800
+               Modules : System.Diagnostics.ProcessModuleCollection
+                  Name : notepad
+</code></pre>
+<p>NonpagedSystemMemorySize : 16088
+NonpagedSystemMemorySize64 : 16088
+NPM : 16088
+PagedMemorySize : 5496832
+PagedMemorySize64 : 5496832
+PagedSystemMemorySize : 519096
+PagedSystemMemorySize64 : 519096
+Path : C:\WINDOWS\system32\notepad.exe
+PeakPagedMemorySize : 5804032
+PeakPagedMemorySize64 : 5804032
+PeakVirtualMemorySize : 185970688
+PeakVirtualMemorySize64 : 2203504193536
+PeakWorkingSet : 17125376
+PeakWorkingSet64 : 17125376
+PM : 5496832
+PriorityBoostEnabled : True
+PriorityClass : Normal
+PrivateMemorySize : 5496832
+PrivateMemorySize64 : 5496832
+PrivilegedProcessorTime : 00:00:00.3750000
+ProcessName : notepad
+ProcessorAffinity : 255
+Product : Microsoft(r) Windows(r) Operating System
+ProductVersion : 10.0.19041.1
+Responding : True
+SafeHandle : Microsoft.Win32.SafeHandles.SafeProcessHandle
+SessionId : 2
+SI : 2
+Site :
+StandardError :
+StandardInput :
+StandardOutput :
+StartInfo : System.Diagnostics.ProcessStartInfo
+StartTime : 10/9/2020 8:42:37 PM
+SynchronizingObject :
+Threads : System.Diagnostics.ProcessThreadCollection
+TotalProcessorTime : 00:00:00.4843750
+UserProcessorTime : 00:00:00.1093750
+VirtualMemorySize : 168009728
+VirtualMemorySize64 : 2203486232576
+VM : 2203486232576
+WorkingSet : 17121280
+WorkingSet64 : 17121280
+WS : 17121280</p>
+<h2>PARAMETERS</h2>
+<h3>-InputObject</h3>
+<p>The object that needs to be output.
+Can be specified as a parameter, or accepted via the pipeline</p>
+<pre><code class="language-yaml">Type: Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+</code></pre>
+<h3>-Descending</h3>
+<p>Switch to sort the properties in reverse alphabetical order</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
+<h2>NOTES</h2>
+<p>Inspired by: https://stackoverflow.com/questions/3281999/format-list-sort-properties-by-name</p>
+<p>Modifications:</p>
+<ul>
+<li>changed logic slightly to handle properties that are currently set to $null</li>
+<li>added [cmdletbinding()] and write-verbose statements</li>
+<li>changed write-host statements to write-output</li>
+<li>performed calculations of $logestvalue as a positive number then multiplied by -1 in -f statement so that the property name is right justified</li>
+<li>sorted properties by name as one object could have multiple property types (property, noteproperty, etc) and the resulting set of all properties would not be alphabetical</li>
+</ul>
+<h2>RELATED LINKS</h2>
+
+</body>
+</html>

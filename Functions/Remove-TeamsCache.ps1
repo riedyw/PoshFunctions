@@ -25,13 +25,13 @@ function Remove-TeamsCache {
     process {
         if (Get-Process -Name teams -ErrorAction SilentlyContinue -Verbose:$false) {
             Write-Error -Message 'Teams is currently running. Please exit Teams and run again'
-            return
+            break
         }
         if ($All) {
             Write-Verbose -Message '-Admin specified'
             if (-not (Test-IsAdmin -Verbose:$false)) {
                 Write-Error -Message 'In order to run as -All you must be running an elevated Administrator prompt'
-                return
+                break
             } else {
                 $parentFolder = 'c:\users\*\AppData\Roaming\Microsoft\Teams\*'
             }

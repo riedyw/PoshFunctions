@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version: https://www.Google.com
+schema: 2.0.0</h2>
+<h1>Get-SubnetMaskIPv4</h1>
+<h2>SYNOPSIS</h2>
+<p>Gets a dotted decimal subnet mask given the number of bits in the mask</p>
+<h2>SYNTAX</h2>
+<pre><code>Get-SubnetMaskIPv4 [-Length] &lt;Int32[]&gt; [-IncludeInput] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Gets a dotted decimal subnet mask given the number of bits in the mask.
+Can optionally include the number of bits.</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>Get-SubnetMaskIPv4 -Length 22 -IncludeInput
+</code></pre>
+<p>Length SubnetMask</p>
+<hr />
+<pre><code>22 255.255.252.0
+</code></pre>
+<h3>EXAMPLE 2</h3>
+<pre><code>22..25 | Get-SubnetMaskIPv4 -IncludeInput
+</code></pre>
+<p>Length SubnetMask</p>
+<hr />
+<pre><code>22 255.255.252.0
+23 255.255.254.0
+24 255.255.255.0
+25 255.255.255.128
+</code></pre>
+<h3>EXAMPLE 3</h3>
+<pre><code>Get-SubnetMaskIPv4 23
+</code></pre>
+<p>Would return:
+255.255.254.0</p>
+<h2>PARAMETERS</h2>
+<h3>-Length</h3>
+<p>A mandatory [int] or array of [int] for which you want the subnet mask.
+Can be fed from the pipeline.
+Aliased to both 'NetworkLength' and 'CIDR'</p>
+<pre><code class="language-yaml">Type: Int32[]
+Parameter Sets: (All)
+Aliases: NetworkLength, CIDR
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+</code></pre>
+<h3>-IncludeInput</h3>
+<p>A switch controlling whether you want to see the CIDR length.
+Aliased to 'IncludeCIDR' for backward compatibility</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: IncludeCIDR
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
+<h3>[psobject]  if -IncludeInput switch specified</h3>
+<h3>[string]    default</h3>
+<h2>NOTES</h2>
+<h2>RELATED LINKS</h2>
+<p><a href="https://www.Google.com">https://www.Google.com</a></p>
+
+</body>
+</html>

@@ -53,11 +53,11 @@ function Get-SqlIndexFragmentation {
             $DatabaseList = Get-SqlDatabase -ServerInstance $ServerInstance -Database $Database -IncludeSystemDatabase:$IncludeSystemDatabase
             if (-not $DatabaseList) {
                 Write-Error -Message "No databases that match [$Database]"
-                return
+                break
             }
         } catch {
             Write-Error -Message "Could not make SQL connection to [$ServerInstance], either server not up, or no permissions to connect."
-            return
+            break
         }
         $FragQuery = "
             SELECT

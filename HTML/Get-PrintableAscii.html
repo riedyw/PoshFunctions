@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version:
+schema: 2.0.0</h2>
+<h1>Get-PrintableAscii</h1>
+<h2>SYNOPSIS</h2>
+<p>Gets an array of objects that show printable Ascii characters.</p>
+<h2>SYNTAX</h2>
+<h3>Default (Default)</h3>
+<pre><code>Get-PrintableAscii [-Class &lt;Char&gt;] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>NotSimilar</h3>
+<pre><code>Get-PrintableAscii [-Class &lt;Char&gt;] [-NotSimilar] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>Similar</h3>
+<pre><code>Get-PrintableAscii [-Class &lt;Char&gt;] [-Similar] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Gets an array of objects that show printable Ascii characters.
+It shows the character code in decimal,
+in hex, the character itself, and the 'class' of character.</p>
+<p>U - Uppercase letters
+L - Lowercase letters
+N - Numbers
+S - Symbols (not U, L, or N)</p>
+<p>Will also mark characters that are similar to one another at first glance which you may want to avoid when generating a password.</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>Get-PrintableAscii | Select-Object -First 10
+</code></pre>
+<p>Would return:
+Ascii Hex Char    Class Similar</p>
+<hr />
+<p>32 20  (Space) S       False
+33 21  ! 
+S       False
+34 22  &quot;       S       False
+35 23  #       S       False
+36 24  $       S       False
+37 25  %       S       False
+38 26  &amp;       S       False
+39 27  '       S        True
+40 28  (       S       False
+41 29  )       S       False</p>
+<h3>EXAMPLE 2</h3>
+<pre><code>Get-PrintableAscii -Class N
+</code></pre>
+<p>Ascii Hex Char Class Similar</p>
+<hr />
+<p>48 30     0 N        True
+49 31     1 N        True
+50 32     2 N       False
+51 33     3 N       False
+52 34     4 N       False
+53 35     5 N       False
+54 36     6 N       False
+55 37     7 N       False
+56 38     8 N       False
+57 39     9 N       False</p>
+<h2>PARAMETERS</h2>
+<h3>-Class</h3>
+<p>Single character U, L, N, S indicating you only want that class to be displayed.
+Optional.</p>
+<pre><code class="language-yaml">Type: Char
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Similar</h3>
+<p>Switch that will only display characters that are similar.
+Default is to print all.
+ParameterSetName = 'Similar'</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: Similar
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-NotSimilar</h3>
+<p>Switch that will only display characters that are not similar.
+Default is to print all.
+ParameterSetName = 'NotSimilar'</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: NotSimilar
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
+<h2>NOTES</h2>
+<h2>RELATED LINKS</h2>
+
+</body>
+</html>

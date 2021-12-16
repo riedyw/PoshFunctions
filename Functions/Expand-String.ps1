@@ -98,7 +98,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
-public class ExtractData
+public class PFExtractData
 {
 [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Ansi)]
 private static extern IntPtr LoadLibrary([MarshalAs(UnmanagedType.LPStr)]string lpFileName);
@@ -121,7 +121,7 @@ public string ExtractStringFromDLL(string file, int number) {
 '@
 
         Add-Type -TypeDefinition $source
-        $ed = New-Object -TypeName ExtractData
+        $ExtractData = New-Object -TypeName PFExtractData
     }
 
     process {
@@ -140,7 +140,7 @@ public string ExtractStringFromDLL(string file, int number) {
                 'StrResource' {
                     $prop.Conversion = 'StrResource'
                     $Resource = $currentString -split ','
-                    $ReturnVal = $ed.ExtractStringFromDLL([Environment]::ExpandEnvironmentVariables($Resource[0]).substring(1), $Resource[1].substring(1))
+                    $ReturnVal = $ExtractData.ExtractStringFromDLL([Environment]::ExpandEnvironmentVariables($Resource[0]).substring(1), $Resource[1].substring(1))
                     #                    $ReturnVal = 'Placeholder'
                 }
             }

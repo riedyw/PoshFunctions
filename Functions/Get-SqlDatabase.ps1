@@ -55,13 +55,13 @@ function Get-SqlDatabase {
             $DatabaseList = Invoke-Sqlcmd @SqlDbParam
             if (-not $DatabaseList) {
                 Write-Error -Message "No databases that match [$Database]"
-                return
+                break
             } else {
                 Write-Output -InputObject $DatabaseList
             }
         } catch {
             Write-Error -Message "Could not make SQL connection to [$ServerInstance], either server not up, or SQL not running, or no permissions to connect."
-            return
+            break
         }
     }
 

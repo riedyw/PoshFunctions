@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version:
+schema: 2.0.0</h2>
+<h1>Resolve-HostName</h1>
+<h2>SYNOPSIS</h2>
+<p>Resolves a hostname to an IPv4 address.</p>
+<h2>SYNTAX</h2>
+<pre><code>Resolve-HostName [-Hostname] &lt;String[]&gt; [-IncludeInput] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Specify a hostname as a parameter or pipelined in and it will resolve to an IPv4 address.</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>Resolve-HostName -Hostname $env:computername
+</code></pre>
+<h1>Display the IPv4 address of this computer</h1>
+<h3>EXAMPLE 2</h3>
+<pre><code>Resolve-HostName -Hostname .
+</code></pre>
+<h1>Display the IPv4 address of this computer using '.' shorthand.</h1>
+<h3>EXAMPLE 3</h3>
+<pre><code>Resolve-HostName -Hostname &quot;server1&quot;
+</code></pre>
+<h1>Display the IPv4 address of &quot;server1&quot;</h1>
+<h3>EXAMPLE 4</h3>
+<pre><code>$DomainController = (($env:logonserver).Substring(2))
+</code></pre>
+<p>Resolve-HostName -Hostname $DomainController</p>
+<h1>Display the IPv4 address of the Active Directory Domain Controller that</h1>
+<h1>you authenticated against when you logged onto Windows.</h1>
+<h3>EXAMPLE 5</h3>
+<pre><code>&quot;server2&quot; | Resolve-HostName
+</code></pre>
+<h1>Display the IPv4 address of &quot;server2&quot; using the pipeline.</h1>
+<h3>EXAMPLE 6</h3>
+<pre><code>Resolve-HostName -Hostname server1, DOESNOTEXIST -IncludeInput
+</code></pre>
+<p>Sample return
+Hostname     IPv4</p>
+<hr />
+<p>server1      10.100.10.20
+doesnotexist False</p>
+<h2>PARAMETERS</h2>
+<h3>-Hostname</h3>
+<p>The hostname(s) that you want resolved</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: (All)
+Aliases: host, ComputerName
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+</code></pre>
+<h3>-IncludeInput</h3>
+<p>Switch that includes the input parameters in the output</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
+<h2>NOTES</h2>
+<h2>RELATED LINKS</h2>
+
+</body>
+</html>

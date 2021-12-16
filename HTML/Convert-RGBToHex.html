@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version:
+schema: 2.0.0</h2>
+<h1>Convert-RGBToHex</h1>
+<h2>SYNOPSIS</h2>
+<p>Converts an RGB color string to hex equivalent</p>
+<h2>SYNTAX</h2>
+<h3>String (Default)</h3>
+<pre><code>Convert-RGBToHex [-RGB] &lt;String[]&gt; [-Prefix] [-IncludeInput] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>Colors</h3>
+<pre><code>Convert-RGBToHex [-Red &lt;Int32&gt;] [-Green &lt;Int32&gt;] [-Blue &lt;Int32&gt;] [-Prefix] [-IncludeInput] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Converts an RGB color string to hex equivalent.
+Input should be in the form 'A,R,G,B'</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>Convert-RGBToHex -RGB '128,64,32'
+</code></pre>
+<p>Would return
+804020</p>
+<h3>EXAMPLE 2</h3>
+<pre><code>Convert-RGBToHex -RGB '255,0,0' -Prefix
+</code></pre>
+<p>Would return
+#FF0000</p>
+<h3>EXAMPLE 3</h3>
+<pre><code>convert-RGBtohex '64,128,255' -Prefix
+</code></pre>
+<p>Would return
+#4080FF</p>
+<h3>EXAMPLE 4</h3>
+<pre><code>'128,128,92' | convert-RGBtohex
+</code></pre>
+<p>Would return
+80805C</p>
+<h3>EXAMPLE 5</h3>
+<pre><code>Convert-RGBToHex -RGB @('255,0,0','128,80,80') -Prefix -IncludeInput
+</code></pre>
+<p>Would return
+DecimalRGB  HexRGB</p>
+<hr />
+<p>255,0,0     #00FF0000
+128,80,80   #FF805050</p>
+<h2>PARAMETERS</h2>
+<h3>-RGB</h3>
+<p>An RGB color string in the form '#,#,#,#' where each number is between 0 and 255.</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: String
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+</code></pre>
+<h3>-Red</h3>
+<p>{{ Fill Red Description }}</p>
+<pre><code class="language-yaml">Type: Int32
+Parameter Sets: Colors
+Aliases: R
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+</code></pre>
+<h3>-Green</h3>
+<p>{{ Fill Green Description }}</p>
+<pre><code class="language-yaml">Type: Int32
+Parameter Sets: Colors
+Aliases: G
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+</code></pre>
+<h3>-Blue</h3>
+<p>{{ Fill Blue Description }}</p>
+<pre><code class="language-yaml">Type: Int32
+Parameter Sets: Colors
+Aliases: B
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+</code></pre>
+<h3>-Prefix</h3>
+<p>A switch indicating whether hex string should be preceded by a hash symbol #.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-IncludeInput</h3>
+<p>A switch indicating whether to include the original decimal RGB input in the output, aliased to 'IncludeOriginal'</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
+<h3>[string]</h3>
+<h2>NOTES</h2>
+<p>Inspired by ISEColorThemeCmdlets.ps1 Script by Jeff Pollock
+http://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e</p>
+<p>Modified:
+a) Changed name of parameter to RGB
+b) Added -Prefix parameter to make # optional.
+c) Minor tweaking so that it passes Invoke-ScriptAnalyzer
+d) Added parameter validation on RGB.
+e) Added .LINK entries for related items</p>
+<h2>RELATED LINKS</h2>
+<p><a href="">about_ISE-Color-Theme-Cmdlets</a></p>
+<p><a href="">Convert-HexToRGB</a></p>
+
+</body>
+</html>

@@ -39,7 +39,7 @@ function Get-NTFSPermission {
             Write-Verbose -Message "Path specified was [$($curPath)]"
             if (-not (Test-Path -Path $curPath)) {
                 Write-Error -Message "Path [$($curPath)] does not exist"
-                return
+                break
             } else {
                 Write-Verbose -Message "The path [$($curPath)] exists"
             }

@@ -134,7 +134,7 @@ function Get-RandomDate {
         }
         if ($MinDate -gt $MaxDate) {
             Write-Error -Message "`$MinDate can not be greater than `$MaxDate"
-            return
+            break
         }
     }
 

@@ -32,11 +32,15 @@ function Start-ADReplication {
     DC1 DC2 "DC=ForestDnsZones,DC=contosco,DC=com" - Sync from DC2 to DC1 completed successfully.
     VERBOSE: Ending [Start-ADReplication]
 .NOTES
-    * Reworked logic so it just replicates the links that are defined. Previously it ran repadmin.exe with /ApeD switch and it was horribly slow.
-    * Changed parameter $DC to $Name so that it would take input from Get-ADDomainController and to accept an array and added aliases to it
-    * Changed output so that it would remove blank or commented lines from the output and to display what is being replicated in the output
+    * Reworked logic so it just replicates the links that are defined. Previously it ran repadmin.exe with /ApeD switch
+      and it was horribly slow.
+    * Changed parameter $DC to $Name so that it would take input from Get-ADDomainController and to accept an array and
+      added aliases to it
+    * Changed output so that it would remove blank or commented lines from the output and to display what is being
+      replicated in the output
     * Changed output so that it creates CSV output
-    * Added '-ThrottleLimit 8' to the Invoke-Command so as to not saturate the local computer
+    * Added '-ThrottleLimit' to the Invoke-Command so as to not saturate the local computer. Changed value to
+      [environment]::ProcessorCount which is the number of processors on the computer.
 #>
 
     #region parameter
@@ -57,13 +61,14 @@ function Start-ADReplication {
         if ($Name) {
             Write-Verbose -Message "`$Name is [$($Name -join ', ')]"
         }
+        [int] $ThrottleLimit = [environment]::ProcessorCount
         "`"DestinationDSA`",`"SourceDSA`",`"NamingContext`",`"Message`""
     }
 
     process {
         foreach ($CurName in $Name) {
             Write-Verbose -Message "Processing [$CurName]"
-            Invoke-Command -ComputerName $CurName -ThrottleLimit 8 -ScriptBlock {
+            Invoke-Command -ComputerName $CurName -ThrottleLimit $ThrottleLimit -ScriptBlock {
                 $repl = repadmin.exe /showrepl /all /csv | ConvertFrom-Csv | Select-Object -Property 'Destination DSA', 'Source DSA', 'Naming Context'
                 $repl | ForEach-Object {
                     $msg = "`"$($_.'Destination DSA')`",`"$($_.'Source DSA')`",`"$($_.'Naming Context')`""

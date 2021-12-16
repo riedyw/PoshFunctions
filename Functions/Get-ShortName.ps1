@@ -38,6 +38,8 @@ function Get-ShortName {
     * use get-item to determine if folder or file
     * use Scripting.FileSystemObject comobject to get the shortname of the item
     * if switch -IncludeInput output an object with the LongName, ShortName and ItemType (File or Folder)
+
+    * updated function so Test-Path, Resolve-Path, Get-Item use -LiteralPath vs -Path
 .OUTPUTS
     [string[]]
 #>
@@ -58,11 +60,11 @@ function Get-ShortName {
     process {
         foreach ($curPath in $Path) {
             if (Test-Path -Path $curPath) {
-                $ResolveFile = Resolve-Path -Path $curPath
+                $ResolveFile = Resolve-Path -LiteralPath $curPath
                 if ($ResolveFile.count -gt 1) {
                     Write-Error -Message "ERROR: File specification [$curPath] resolves to more than 1 file."
                 } else {
-                    $Item = Get-Item -Path $ResolveFile
+                    $Item = Get-Item -LiteralPath $ResolveFile
                     if ($Item.PSProvider.ToString() -eq 'Microsoft.PowerShell.Core\FileSystem') {
                         Write-Verbose -Message "Using item [$ResolveFile]"
                         if ($Item.PSIsContainer) {

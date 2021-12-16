@@ -52,7 +52,7 @@ function New-ScreenShot {
     process {
         if ($host.Runspace.ApartmentState -ne 'STA') {
             Write-Warning -Message 'You must run this in a PowerShell session with an apartment state of STA'
-            Return
+            break
         }
 
         #load the necessary assemblies

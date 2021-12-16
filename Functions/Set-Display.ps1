@@ -50,7 +50,7 @@ function Set-Display {
         $code = @'
 using System;
 using System.Runtime.InteropServices;
-public class API
+public class PFAPI
 {
   [DllImport("user32.dll")]
   public static extern
@@ -66,9 +66,9 @@ public class API
                 if ($version.version -match '^10') {
                     Start-Process -FilePath (Join-Path -Path $env:windir -ChildPath 'System32\scrnsave.scr') -ArgumentList '/s'
                 } else {
-                    $t = Add-Type -TypeDefinition $code -PassThru
+                    $Display = Add-Type -TypeDefinition $code -PassThru
                     Start-Sleep -Seconds 1
-                    $null = $t::SendMessage(0xffff, 0x0112, 0xf170, 2)
+                    $null = $Display::SendMessage(0xffff, 0x0112, 0xf170, 2)
                 }
             }
             'On' {
@@ -78,9 +78,9 @@ public class API
                         Stop-Process -Id $pidToStop[0] -Force
                     }
                 } else {
-                    $t = Add-Type -TypeDefinition $code -PassThru
+                    $Display = Add-Type -TypeDefinition $code -PassThru
                     Start-Sleep -Seconds 1
-                    $null = $t::SendMessage(0xffff, 0x0112, 0xf170, -1)
+                    $null = $Display::SendMessage(0xffff, 0x0112, 0xf170, -1)
                 }
             }
             'Brightness' {

@@ -50,7 +50,7 @@ function Optimize-SqlStoredProcedure {
             $SpList = $SpList | Sort-Object -Property DbName, Schema, Procedure
         } catch {
             Write-Error -Message "Could not make SQL connection to [$ServerInstance], either server not up, or no permissions to connect."
-            return
+            break
         }
     }
 
@@ -77,7 +77,7 @@ function Optimize-SqlStoredProcedure {
             }
         } else {
             Write-Error -Message 'No stored procedures need to be recompiled'
-            return
+            break
         }
         if ($Interactive) {
             $CommandsToRun | Show-Progress -Activity 'Recompiling all stored procedures' -PassThru -Id 1 | ForEach-Object {

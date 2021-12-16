@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version: http://wonkysoftware.appspot.com
+schema: 2.0.0</h2>
+<h1>Get-DriveStat</h1>
+<h2>SYNOPSIS</h2>
+<p>To get statistics on drives on a particular server or servers.</p>
+<h2>SYNTAX</h2>
+<pre><code>Get-DriveStat [[-ComputerName] &lt;String[]&gt;] [[-Capacity] &lt;String&gt;] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>To get statistics on drives on a server including Size, FreeSpace, and FreePct.
+Command line
+parameter allows for capacity statistics in Bytes, KB, MB, and GB</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>Get-DriveStat
+</code></pre>
+<p>ComputerName DeviceID VolumeName SizeGB FreeSpaceGB FreePct</p>
+<hr />
+<p>localhost    C:       Windows    237.14       19.56    8.25</p>
+<h3>EXAMPLE 2</h3>
+<pre><code>Get-DriveStat -Capacity MB
+</code></pre>
+<p>ComputerName DeviceID VolumeName    SizeMB FreeSpaceMB FreePct</p>
+<hr />
+<p>localhost    C:       Windows    242831.45    20026.65    8.25</p>
+<h3>EXAMPLE 3</h3>
+<pre><code>Get-DriveStat -Verbose
+</code></pre>
+<p>VERBOSE: Starting Get-DriveStat
+VERBOSE: Capacity will be expressed in [GB]
+VERBOSE: Processing MDA-102192</p>
+<p>ComputerName : localhost
+DeviceID     : C:
+VolumeName   : Windows
+SizeGB       : 237.14
+FreeSpaceGB  : 19.56
+FreePct      : 8.25</p>
+<p>VERBOSE: Ending Get-DriveStat</p>
+<h2>PARAMETERS</h2>
+<h3>-ComputerName</h3>
+<p>{{ Fill ComputerName Description }}</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: (All)
+Aliases: CN, Server, ServerName, PSComputerName, SystemName
+
+Required: False
+Position: 1
+Default value: $env:COMPUTERNAME
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Capacity</h3>
+<p>{{ Fill Capacity Description }}</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: GB
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
+<h3>psobject</h3>
+<h2>NOTES</h2>
+<p>Put in error checking around Get-CimInstance to handle Kerberos errors.</p>
+<h2>RELATED LINKS</h2>
+
+</body>
+</html>

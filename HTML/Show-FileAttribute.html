@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version:
+schema: 2.0.0</h2>
+<h1>Show-FileAttribute</h1>
+<h2>SYNOPSIS</h2>
+<p>Shows the available file attributes</p>
+<h2>SYNTAX</h2>
+<pre><code>Show-FileAttribute [-IncludeValue] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Shows the available file attributes</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>Show-FileAttribute
+</code></pre>
+<p>Would return
+ReadOnly
+Hidden
+System
+Directory
+Archive
+Device
+Normal
+Temporary
+SparseFile
+ReparsePoint
+Compressed
+Offline
+NotContentIndexed
+Encrypted
+IntegrityStream
+NoScrubData</p>
+<h3>EXAMPLE 2</h3>
+<pre><code>Show-FileAttribute
+</code></pre>
+<p>Would return
+Name                 Dec Hex</p>
+<hr />
+<p>ReadOnly               1 0x1
+Hidden                 2 0x2
+System                 4 0x4
+Directory             16 0x10
+Archive               32 0x20
+Device                64 0x40
+Normal               128 0x80
+Temporary            256 0x100
+SparseFile           512 0x200
+ReparsePoint        1024 0x400
+Compressed          2048 0x800
+Offline             4096 0x1000
+NotContentIndexed   8192 0x2000
+Encrypted          16384 0x4000
+IntegrityStream    32768 0x8000
+NoScrubData       131072 0x20000</p>
+<h2>PARAMETERS</h2>
+<h3>-IncludeValue</h3>
+<p>{{ Fill IncludeValue Description }}</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
+<h3>[string[]]</h3>
+<h2>NOTES</h2>
+<h2>RELATED LINKS</h2>
+
+</body>
+</html>

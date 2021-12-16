@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version: http://wonkysoftware.appspot.com
+schema: 2.0.0</h2>
+<h1>Get-FileName</h1>
+<h2>SYNOPSIS</h2>
+<p>Gets a filename through the native OpenFileDialog.
+Can select a single file or multiple files.</p>
+<h2>SYNTAX</h2>
+<pre><code>Get-FileName [[-Path] &lt;String&gt;] [-MultiSelect] [[-Filter] &lt;String&gt;] [[-Title] &lt;String&gt;] [-AddExtension]
+ [[-DefaultExt] &lt;String&gt;] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Gets a filename through the native OpenFileDialog.
+Can select a single file
+or multiple files.
+If user clicks 'OK' an [array] is returned, otherwise returns
+a $null if the dialog is canceled.</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>$File = Get-FileName
+</code></pre>
+<p>Will present a fileopen dialog box where only a single file can be selected and the fileopen
+dialog box will start in the current directory.
+Assigns selected file to the 'File' variable.</p>
+<h3>EXAMPLE 2</h3>
+<pre><code>$File = Get-FileName -MultiSelect -Filter 'Powershell files|*.ps1|All files|*.*'
+</code></pre>
+<p>Will present a fileopen dialog box where multiple files can be selected and the fileopen
+dialog box will start in the current directory.
+There will be a drop down list box in lower right
+where the user can select 'Powershell files' or 'All files' and the files listed will change.
+Assigns selected file(s) to the 'File' variable.</p>
+<h3>EXAMPLE 3</h3>
+<pre><code>$File = Get-FileName -MultiSelect -InitialDirectory 'C:\Temp'
+</code></pre>
+<p>Will present a fileopen dialog box where multiple files can be selected and the fileopen
+dialog box will start in the C:\Temp directory.
+Assigns selected file(s) to the 'File' variable.</p>
+<h3>EXAMPLE 4</h3>
+<pre><code>Get-FileName | get-childitem
+</code></pre>
+<p>Pipes selected filename to the get-childitem cmdlet.</p>
+<h2>PARAMETERS</h2>
+<h3>-Path</h3>
+<p>The directory for the OpenFileDialog to start in.
+Defaults to $pwd.
+Aliased to 'InitialDirectory'.</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases: InitialDirectory
+
+Required: False
+Position: 1
+Default value: $pwd
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-MultiSelect</h3>
+<p>Determines if you can select one or multiple files.
+Defaults to $false.
+Aliased to 'Multi'.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: Multi
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Filter</h3>
+<p>A character string delimited with pipe '|' character.
+Each 'token' in the string follows the form
+'Description|FileSpec'.
+Multiple 'tokens' can be in the string and they too are separated
+by the pipe character.
+Defaults to 'All files|<em>.</em>'.</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: All files (*.*)|*.*
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Title</h3>
+<p>String indicating the Title of the dialog box.
+Defaults to 'Select a file'</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: Select a file
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-AddExtension</h3>
+<p>Switch forcing the adding of an extension</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-DefaultExt</h3>
+<p>{{ Fill DefaultExt Description }}</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h3>None are required, but you can use parameters to control behavior.</h3>
+<h2>OUTPUTS</h2>
+<h3>[array]     If user selects file(s) and clicks 'OK'. Will return an array with a .Count</h3>
+<h3>and each element in the array will be the file(s) selected</h3>
+<h3>$null       If the user clicks 'Cancel'.</h3>
+<h2>NOTES</h2>
+<p>Inspiration: Part of the ISEColorThemeCmdlets.ps1 Script by Jeff Pollock
+http://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
+Changes:     Added parameter for MultiSelect of files.
+Forced function to always return an array.
+Filter is
+now a parameter that can be specified to control behavior.
+Changed InitialDirectory to default
+to $pwd and to give an alias of 'Path' which is commonly used parameter name.
+Also changed syntax to Add-Type -AssemblyName to conform with
+Powershell 2+ and to be more &quot;Powershelly&quot;.</p>
+<h1>Source: https://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e</h1>
+<h1>get-help about_ISE-Color-Theme-Cmdlets for more information</h1>
+<h2>RELATED LINKS</h2>
+
+</body>
+</html>

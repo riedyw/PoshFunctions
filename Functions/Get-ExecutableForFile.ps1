@@ -31,7 +31,7 @@ function Get-ExecutableForFile {
 using System;
 using System.Text;
 using System.Runtime.InteropServices;
-public class Win32API
+public class PFWin32API
     {
         [DllImport("shell32.dll", EntryPoint="FindExecutable")]
 
@@ -57,7 +57,7 @@ public class Win32API
             Write-Error -Message "File specified [$Path] does not exist."
         } else {
             Add-Type -TypeDefinition $Source -ErrorAction SilentlyContinue
-            [Win32API]::FindExecutable($Path)
+            [PFWin32API]::FindExecutable($Path)
         }
     }
 

@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version:
+schema: 2.0.0</h2>
+<h1>ConvertTo-DateTime</h1>
+<h2>SYNOPSIS</h2>
+<p>Converts a formatted date string back into a datetime datatype.</p>
+<h2>SYNTAX</h2>
+<h3>DMTF (Default)</h3>
+<pre><code>ConvertTo-DateTime [-DateString] &lt;String[]&gt; [-DMTF] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>Excel</h3>
+<pre><code>ConvertTo-DateTime [-DateString] &lt;String[]&gt; [-Excel] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>Format</h3>
+<pre><code>ConvertTo-DateTime [-DateString] &lt;String[]&gt; [-Format &lt;String&gt;] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>ICSDateTime</h3>
+<pre><code>ConvertTo-DateTime [-DateString] &lt;String[]&gt; [-ICSDateTime] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>FileTime</h3>
+<pre><code>ConvertTo-DateTime [-DateString] &lt;String[]&gt; [-FileTime] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>Unix</h3>
+<pre><code>ConvertTo-DateTime [-DateString] &lt;String[]&gt; [-Unix] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Converts a formatted date string back into a datetime datatype.</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>ConvertTo-DateTime '20161124225058.082190+060'
+</code></pre>
+<p>If you were in the EST timezone this would return the datetime</p>
+<p>Thursday, November 24, 2016 4:50:58 PM</p>
+<h3>EXAMPLE 2</h3>
+<pre><code>ConvertTo-DateTime -DateString 946684799 -Unix -UTC
+</code></pre>
+<p>Would return
+Friday, December 31, 1999 11:59:59 PM</p>
+<h3>EXAMPLE 3</h3>
+<pre><code>ConvertTo-DateTime '20161124T225058Z' -ICSDateTime
+</code></pre>
+<p>If in the EST timezone this would return
+Thursday, November 24, 2016 5:50:58 PM</p>
+<h3>EXAMPLE 4</h3>
+<pre><code>ConvertTo-DateTime 131619940792563529 -FileTime -UTC
+</code></pre>
+<p>Would return
+Thursday, February 1, 2018 9:27:59 PM</p>
+<h3>EXAMPLE 5</h3>
+<pre><code>ConvertTo-DateTime '20-04-01' -Format 'yy-MM-dd'
+</code></pre>
+<p>Would return
+Wednesday, April 1, 2020 12:00:00 AM</p>
+<h3>EXAMPLE 6</h3>
+<pre><code>ConvertTo-DateTime -DateString 946684799 -Unix -Verbose
+</code></pre>
+<p>Would return
+VERBOSE: Starting [ConvertTo-DateTime]
+VERBOSE: ParameterSetName [Unix]
+VERBOSE: Your local timezone is '(UTC-05:00) Eastern Time (US &amp; Canada)'
+VERBOSE: The date '12/31/1999 18:59:59' is 946684799 seconds in the future of '01/01/1970 00:00:00' UTC</p>
+<p>Friday, December 31, 1999 6:59:59 PM
+VERBOSE: Ending ConvertTo-DateTime</p>
+<h2>PARAMETERS</h2>
+<h3>-DateString</h3>
+<p>The date string that you wish to convert back to a datetime.
+Alias 'Date'. 
+Can be input from the pipeline.</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: (All)
+Aliases: Date
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+</code></pre>
+<h3>-DMTF</h3>
+<p>A switch parameter to display in DMTF format.
+Default parameter set.</p>
+<p>DmtfDateTime is of the form 'yyyyMMddHHmmss.ffffff+UUU'</p>
+<p>Where
+yyyy    is the 4 digit year
+MM      is the 2 digit month
+dd      is the 2 digit day of the month
+HH      is the 2 digit in 24 hour format (00-23, 1 pm = 13)
+mm      is the 2 digit minute (00-59)
+ss      is the 2 digit second (00-59)
+ffffff  is the 6 digit microsecond</p>
+<ul>
+<li>
+<pre><code>  is a plus or minus to indicate offset from UTC
+</code></pre>
+</li>
+</ul>
+<p>UUU     is the 3 digit number of minutes offset from UTC (000-720)</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: DMTF
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Unix</h3>
+<p>A switch parameter to convert from a UnixEpoch which is the number of seconds since '1/1/1970 12:00:00 AM UTC'.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: Unix
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-FileTime</h3>
+<p>Converts a large integer filetime [int64] into a datetime string.
+There is a special value that returns a value of 'Never'.</p>
+<p>Filetimes are expressed in Ticks.
+Ticks can range from 0 - 2650467743999999999.
+Translating these into dates you get
+0 = Monday, January 01, 1601 12:00:00.00000 AM
+2650467743999999999 = Friday, December 31, 9999 11:59:59.99999 PM</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: FileTime
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-ICSDateTime</h3>
+<p>IcsDateTime is of the form 'yyyyMMddTHHmmssZ'</p>
+<p>Where
+yyyy    is the 4 digit year
+MM      is the 2 digit month
+dd      is the 2 digit day of the month
+HH      is the 2 digit in 24 hour format (00-23, 1 pm = 13)
+mm      is the 2 digit minute (00-59)
+ss      is the 2 digit second (00-59)
+T       is the letter T
+Z       is an optional suffix indicating UTC or Zulu time</p>
+<p>If the final character is NOT a Z then the time is local time.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: ICSDateTime
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Format</h3>
+<p>See help for Get-Date and the -Format parameter.
+This will parse the datestring using the Format as a template.</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: Format
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Excel</h3>
+<p>Switch to indicate that the datestring is in Excel format which represents dates as the number of days since (get-date 1/1/1900)</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: Excel
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-IncludeInput</h3>
+<p>Switch to enable the original datetime to appear in the output.
+Aliased to 'IncludeOriginal'</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: IncludeOriginal
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-UTC</h3>
+<p>Switch to force the output to be in the UTC timezone.
+Alias of this parameter is 'Zulu'</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: Zulu
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
+<h3>datetime</h3>
+<h2>NOTES</h2>
+<p>Info:       For further information on DMTF time formats see https://docs.microsoft.com/en-us/windows/desktop/wmisdk/cim-datetime</p>
+<p>Added Excel functionality</p>
+<h2>RELATED LINKS</h2>
+
+</body>
+</html>

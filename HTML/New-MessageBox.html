@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version:
+schema: 2.0.0</h2>
+<h1>New-MessageBox</h1>
+<h2>SYNOPSIS</h2>
+<p>New-Popup will display a message box.
+If a timeout is requested it uses Wscript.Shell PopUp method.
+If a default button is requested it uses the ::Show method from 'Windows.Forms.MessageBox'</p>
+<h2>SYNTAX</h2>
+<h3>Timeout (Default)</h3>
+<pre><code>New-MessageBox -Message &lt;String&gt; -Title &lt;String&gt; [-Time &lt;Int32&gt;] [-Buttons &lt;String&gt;] [-Icon &lt;String&gt;]
+ [-ShowOnTop] [-AsString] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>DefaultButton</h3>
+<pre><code>New-MessageBox -Message &lt;String&gt; -Title &lt;String&gt; [-Buttons &lt;String&gt;] [-Icon &lt;String&gt;] [-DefaultButton &lt;String&gt;]
+ [-AsString] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>The New-Popup command uses the Wscript.Shell PopUp method to display a graphical message
+box.
+You can customize its appearance of icons and buttons.
+By default the user
+must click a button to dismiss but you can set a timeout value in seconds to
+automatically dismiss the popup.</p>
+<p>The command will write the return value of the clicked button to the pipeline:
+Timeout = -1
+OK      =  1
+Cancel  =  2
+Abort   =  3
+Retry   =  4
+Ignore  =  5
+Yes     =  6
+No      =  7</p>
+<p>If no button is clicked, the return value is -1.</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>new-popup -message &quot;The update script has completed&quot; -title &quot;Finished&quot; -time 5
+</code></pre>
+<p>This will display a popup message using the default OK button and default
+Information icon.
+The popup will automatically dismiss after 5 seconds.</p>
+<h3>EXAMPLE 2</h3>
+<pre><code>$answer = new-popup -Message &quot;Please pick&quot; -Title &quot;form&quot; -buttons &quot;OKCancel&quot; -icon &quot;information&quot;
+</code></pre>
+<p>If the user clicks &quot;OK&quot; the $answer variable will be equal to 1.
+If the user clicks &quot;Cancel&quot; the
+$answer variable will be equal to 2.</p>
+<h3>EXAMPLE 3</h3>
+<pre><code>$answer = new-popup -Message &quot;Please pick&quot; -Title &quot;form&quot; -buttons &quot;OKCancel&quot; -icon &quot;information&quot; -AsString
+</code></pre>
+<p>If the user clicks &quot;OK&quot; the $answer variable will be equal to 'OK'.
+If the user clicks &quot;Cancel&quot; the
+$answer variable will be 'Cancel'</p>
+<h2>PARAMETERS</h2>
+<h3>-Message</h3>
+<p>The message you want displayed</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Title</h3>
+<p>The text to appear in title bar of dialog box</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Time</h3>
+<p>The time to display the message.
+Defaults to 0 (zero) which will keep dialog open until a button is clicked</p>
+<pre><code class="language-yaml">Type: Int32
+Parameter Sets: Timeout
+Aliases:
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Buttons</h3>
+<p>Valid values for -Buttons include:
+&quot;OK&quot;
+&quot;OKCancel&quot;
+&quot;AbortRetryIgnore&quot;
+&quot;YesNo&quot;
+&quot;YesNoCancel&quot;
+&quot;RetryCancel&quot;</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: OK
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Icon</h3>
+<p>Valid values for -Icon include:
+&quot;Stop&quot;
+&quot;Question&quot;
+&quot;Exclamation&quot;
+&quot;Information&quot;
+&quot;None&quot;</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-ShowOnTop</h3>
+<p>Switch which will force the popup window to appear on top of all other windows.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: Timeout
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-DefaultButton</h3>
+<p>{{ Fill DefaultButton Description }}</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: DefaultButton
+Aliases:
+
+Required: False
+Position: Named
+Default value: Button1
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-AsString</h3>
+<p>Will return a human readable representation of which button was pressed as opposed to an integer value.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
+<h3>An integer with the following value depending upon the button pushed.</h3>
+<h3>Timeout = -1    # Value when timer finishes countdown.</h3>
+<h3>OK      =  1</h3>
+<h3>Cancel  =  2</h3>
+<h3>Abort   =  3</h3>
+<h3>Retry   =  4</h3>
+<h3>Ignore  =  5</h3>
+<h3>Yes     =  6</h3>
+<h3>No      =  7</h3>
+<h2>NOTES</h2>
+<h2>RELATED LINKS</h2>
+<p><a href="">Wscript.Shell</a></p>
+
+</body>
+</html>

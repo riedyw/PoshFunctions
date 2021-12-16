@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version:
+schema: 2.0.0</h2>
+<h1>Use-Stopwatch</h1>
+<h2>SYNOPSIS</h2>
+<p>Uses a stopwatch datatype found in module.
+Can get stopwatch status, start, stop, reset, or restart.</p>
+<h2>SYNTAX</h2>
+<h3>Status (Default)</h3>
+<pre><code>Use-Stopwatch [-Status] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>Reset</h3>
+<pre><code>Use-Stopwatch [-Reset] [-IncludeStatus] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>Restart</h3>
+<pre><code>Use-Stopwatch [-Restart] [-IncludeStatus] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>Start</h3>
+<pre><code>Use-Stopwatch [-Start] [-IncludeStatus] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>Stop</h3>
+<pre><code>Use-Stopwatch [-Stop] [-IncludeStatus] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Uses a stopwatch datatype found in module.
+Can get stopwatch status, start, stop, reset, or restart.</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>Use-Stopwatch -Verbose
+</code></pre>
+<p>When you first run this command the stopwatch will exist but has not been started.
+The function would return:
+VERBOSE: Starting [Use-Stopwatch]
+VERBOSE: ParameterSetName [Status]
+VERBOSE: IncludeStatus [False]</p>
+<p>VERBOSE: Ending [Use-Stopwatch]
+IsRunning Elapsed  ElapsedMilliseconds ElapsedTicks</p>
+<hr />
+<pre><code>False 00:00:00                   0            0
+</code></pre>
+<h3>EXAMPLE 2</h3>
+<pre><code>Use-Stopwatch -Start -IncludeStatus
+</code></pre>
+<p>Would start the stopwatch and display the stopwatch and would return something similar to the following:
+IsRunning Elapsed          ElapsedMilliseconds ElapsedTicks</p>
+<hr />
+<pre><code> True 00:00:00.0011733                   1        11933
+</code></pre>
+<h3>EXAMPLE 3</h3>
+<pre><code>Use-Stopwatch -Stop -IncludeStatus
+</code></pre>
+<p>Would stop the stopwatch and display the stopwatch and return something similar to the following:
+IsRunning Elapsed          ElapsedMilliseconds ElapsedTicks</p>
+<hr />
+<pre><code>False 00:01:21.2577089               81257    812577089
+</code></pre>
+<h3>EXAMPLE 4</h3>
+<pre><code>Use-Stopwatch -Reset -IncludeStatus
+</code></pre>
+<p>IsRunning Elapsed  ElapsedMilliseconds ElapsedTicks</p>
+<hr />
+<pre><code>False 00:00:00                   0            0
+</code></pre>
+<h2>PARAMETERS</h2>
+<h3>-Status</h3>
+<p>Switch to just display the current status of the stopwatch.
+Default.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: Status
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Reset</h3>
+<p>Switch to stop the stopwatch and reset the counter to 0.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: Reset
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Restart</h3>
+<p>Switch to reset the counter to 0 and restart the stopwatch.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: Restart
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Start</h3>
+<p>Switch to start the stopwatch.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: Start
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Stop</h3>
+<p>Switch to stop the stopwatch.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: Stop
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-IncludeStatus</h3>
+<p>Switch to include the status when you specify -Start, -Stop, -Reset, -Restart</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: Reset, Restart, Start, Stop
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
+<h3>System.Diagnostics.Stopwatch</h3>
+<h2>NOTES</h2>
+<p>Inspired by: https://mcpmag.com/articles/2017/10/19/using-a-stopwatch-in-powershell.aspx</p>
+<p>The module manifest contains the following line that this function relies on:</p>
+<p>$Script:Stopwatch =  [System.Diagnostics.Stopwatch]::New()</p>
+<h2>RELATED LINKS</h2>
+
+</body>
+</html>

@@ -170,16 +170,16 @@ function New-InputBoxSecureString {
                 if ($ValidateBox.Text -eq $EntryBox.Text) {
                     if ($EntryBox.Text.Length -eq 0) {
                         Write-Error -Message 'Must enter a string'
-                        return
+                        break
                     }
                 } else {
                     Write-Error -Message 'Values do NOT match'
-                    return
+                    break
                 }
             } else {
                    if ($EntryBox.Text.Length -eq 0) {
                         Write-Error -Message 'Must enter a string'
-                        return
+                        break
                     }
             }
             $ReturnVal = ConvertTo-SecureString -String $EntryBox.Text -AsPlainText -Force

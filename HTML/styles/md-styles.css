@@ -1,0 +1,33 @@
+﻿h1 {
+    font-size: 14pt;
+    color: darkblue;
+}
+
+h2 {
+    font-size: 12pt;
+    color: firebrick;
+}
+
+cite {
+    font-size: 9pt;
+    color: gray;
+}
+
+td, th {
+    border: 1px solid;
+    border-color: lightgray
+}
+
+th {
+    background-color: lightblue
+}
+
+pre {
+    border: 1px solid;
+    border-color: lightgray;
+}
+
+blockquote {
+    border: none;
+    text-indent: each-line;
+}

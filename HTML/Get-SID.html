@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<p>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version: https://social.msdn.microsoft.com/Forums/vstudio/en-US/0221d962-26e6-4a7e-be7a-72cd669a0dfc/why-systemmathround0251-2?forum=vbgeneral</p>
+<h2>Talks about Visual Basic but the same info applies to Powershell.
+schema: 2.0.0</h2>
+<h1>Get-SID</h1>
+<h2>SYNOPSIS</h2>
+<p>To get the SID of a specified domain user passed as either an (email) or (domain,username)</p>
+<h2>SYNTAX</h2>
+<h3>DomainUser (Default)</h3>
+<pre><code>Get-SID [-Domain &lt;String&gt;] [-Username &lt;String&gt;] [-IncludeInput] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>Email</h3>
+<pre><code>Get-SID [-Email &lt;String&gt;] [-IncludeInput] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>To get the SID of a specified domain user passed as either an (email) or (domain,username)
+If no parameters are specified it gets the SID of the user running the cmdlet
+Default ParameterSetName DomainUser</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>Get-SID
+</code></pre>
+<p>S-1-5-21-1482476501-746137067-839522115-29321</p>
+<h3>EXAMPLE 2</h3>
+<pre><code>Get-SID -IncludeInput
+</code></pre>
+<p>Domain      UserName      SID</p>
+<hr />
+<p>contosco    administrator S-1-5-21-1482476501-846137067-872522115-500</p>
+<h3>EXAMPLE 3</h3>
+<pre><code>Get-SID -Email Administrator@Contosco.com -IncludeInput
+</code></pre>
+<p>Email                      SID</p>
+<hr />
+<p>administrator@contosco.com S-1-5-21-1482476501-846137067-872522115-500</p>
+<h2>PARAMETERS</h2>
+<h3>-Domain</h3>
+<p>The domain that you wish to query.
+Not mandatory and will default to $env:USERDOMAIN
+Part of ParameterSetName DomainUser</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: DomainUser
+Aliases:
+
+Required: False
+Position: Named
+Default value: $env:USERDOMAIN
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Username</h3>
+<p>The user that you wish to query.
+Not mandatory and will default to $env:USERNAME
+Part of ParameterSetName DomainUser</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: DomainUser
+Aliases:
+
+Required: False
+Position: Named
+Default value: $env:USERNAME
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Email</h3>
+<p>The email that you wish to query.
+Not mandatory
+Part of ParameterSetName Email</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: Email
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-IncludeInput</h3>
+<p>Switch to enable the original input parameters to appear in the output.
+Aliased to 'IncludeOriginal'
+Is present in both ParameterSetName DomainUser and Email</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: IncludeOriginal
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
+<h3>string</h3>
+<h2>NOTES</h2>
+<p>Helpful if you don't have the ActiveDirectory module installed on your system.</p>
+<h2>RELATED LINKS</h2>
+
+</body>
+</html>

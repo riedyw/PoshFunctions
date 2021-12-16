@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
+    <script src="js/highlight.pack.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: PoshFunctions-help.xml
+Module Name: poshfunctions
+online version:
+schema: 2.0.0</h2>
+<h1>Get-PSWho</h1>
+<h2>SYNOPSIS</h2>
+<p>Get PowerShell user summary information</p>
+<h2>SYNTAX</h2>
+<pre><code>Get-PSWho [-AsString] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>This command will provide a summary of relevant information for the current user in a PowerShell session.
+You might use this to troubleshoot an end-user
+problem running a script or command.
+The default behavior is to write an object to the pipeline, but you can use the -AsString parameter to force the
+command to write a string.
+This makes it easier to use in your scripts with Write-Verbose.</p>
+<h2>EXAMPLES</h2>
+<h3>EXAMPLE 1</h3>
+<pre><code>Get-PSWho
+</code></pre>
+<p>User            : BOVINE320\Jeff
+Elevated        : True
+Computername    : BOVINE320
+OperatingSystem : Microsoft Windows 10 Pro [64-bit]
+OSVersion       : 10.0.16299
+PSVersion       : 5.1.16299.64
+Edition         : Desktop
+PSHost          : ConsoleHost
+WSMan           : 3.0
+ExecutionPolicy : RemoteSigned
+Culture         : en-US</p>
+<h3>EXAMPLE 2</h3>
+<pre><code>get-pswho
+</code></pre>
+<p>User            : jhicks
+Elevated        : NA
+Computername    : Bovine320
+OperatingSystem : Linux 4.4.0-43-Microsoft #1-Microsoft Wed Dec 31 14:42:53 PST 2014
+OSVersion       : Ubuntu 16.04.3 LTS
+PSVersion       : 6.0.0-rc
+Edition         : Core
+PSHost          : ConsoleHost
+WSMan           : 3.0
+ExecutionPolicy : Unrestricted
+Culture         : en-US</p>
+<h3>EXAMPLE 3</h3>
+<pre><code>get-pswho
+</code></pre>
+<p>User            : BOVINE320\Jeff
+Elevated        : True
+Computername    : BOVINE320
+OperatingSystem : Microsoft Windows 10 Pro [64-bit]
+OSVersion       : 10.0.16299
+PSVersion       : 6.0.0-rc
+Edition         : Core
+PSHost          : ConsoleHost
+WSMan           : 3.0
+ExecutionPolicy : RemoteSigned
+Culture         : en-US</p>
+<h3>EXAMPLE 4</h3>
+<pre><code>Get-PSWho -asString | Set-Content c:\test\who.txt
+</code></pre>
+<h2>PARAMETERS</h2>
+<h3>-AsString</h3>
+<p>Write the summary object as a string.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h3>none</h3>
+<h2>OUTPUTS</h2>
+<h3>[pscustomboject]</h3>
+<h3>[string]</h3>
+<h2>NOTES</h2>
+<p>Learn more about PowerShell: http://jdhitsolutions.com/blog/essential-powershell-resources/</p>
+<h2>RELATED LINKS</h2>
+<p><a href="">Get-CimInstance</a></p>
+<p><a href="">Get-ExecutionPolicy</a></p>
+<p><a href="">$PSVersionTable</a></p>
+<p><a href="">$Host</a></p>
+
+</body>
+</html>

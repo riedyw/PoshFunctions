@@ -71,7 +71,7 @@ function Get-UrlContent {
             Write-Output -InputObject $htmlContent
         } else {
             Write-Verbose -Message 'Unsuccessful download of HTML content'
-            return
+            break
         }
     }
 

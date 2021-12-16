@@ -22,6 +22,36 @@ All code has also been loaded into ISE with ISESteroids. Most, if not all, SUGGE
 Code has had Invoke-ScriptAnalyzer run against them so that errors are not thrown. Invoke-ScriptAnalyzer is not perfect however and sometimes returns false positives. For those that returned false positives I added declaration statement(s) after the [Cmdlet()] block to not throw the false positive error. An example declaration is as follows:
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]
 
+### 2.2.8
+* created .\Resources folder and moved files from the root of the modules excluding: PoshFunctions.psd1, PoshFunctions.psm1, ReadMe.md
+* added additional word list file that contains over 370,000 entries for more English words
+* added Convert-Int64ToText - Take an integer value and convert to English text. Valid range +/- 999,999,999,999.
+* added Get-ArpTable - takes output from 'arp.exe -a' and parses output into objects
+* added Get-VssAdminListVolumes - takes output from 'vssadmin.exe list volumes' and parses output into objects
+* added Get-VssAdminListWriters - takes output from 'vssadmin.exe list writers' and parses output into objects
+* updated Convert-HexToRGB - changed 'return' to 'break' in error condition
+* updated Expand-String - changed class name from 'ExtractData' to 'PFExtractData' to prevent conflict
+* updated Get-BinaryType - changed namespace from 'Win32Utils' to 'PFWin32Utils' to prevent conflict
+* updated Get-ExecutableForFile - changed class name from 'API' to 'PF32API' to prevent conflict, changed name of internal variable
+* updated Get-ExecutableForFile - changed class name from 'Win32API' to 'PFWin32API' to prevent conflict
+* updated Get-LongName - updated function so Test-Path, Resolve-Path, Get-Item use -LiteralPath vs -Path
+* updated Get-NTFSPermission - changed 'return' to 'break' in error condition
+* updated Get-RandomDate - changed 'return' to 'break' in error condition
+* updated Get-SQLDatabase - changed 'return' to 'break' in error condition
+* updated Get-SQLIndexFragmentation - changed 'return' to 'break' in error condition
+* updated Get-SQLStoredProcedure - changed 'return' to 'break' in error condition
+* updated Get-ShortName - updated function so Test-Path, Resolve-Path, Get-Item use -LiteralPath vs -Path
+* updated Get-Wordlist - added -Full to use longer > 370,000 word list resource, moved word list file to .\Resources
+* updated New-ColorPicker - to reflect its icon file moving to .\Resources
+* updated New-DatePicker - to reflect its icon file moving to .\Resources
+* updated New-FontPicker - to reflect its icon file moving to .\Resources
+* updated New-InputBoxSecureString - to reflect its icon file moving to .\Resources, changed 'return' to 'break' in error condition
+* updated New-RandomPassword - added -FullWordlist to use longer wordlist file
+* updated New-Screenshot - changed 'return' to 'break' in error condition
+* updated Optimize-SQLStoredProcedure - changed 'return' to 'break' in error condition
+* updated Remove-TeamsCache - changed 'return' to 'break' in error condition
+* updated Start-AdReplication - changed hard coded -ThrottleLimit from 8 to [environment]::ProcessorCount so that it determines number of processors on the fly
+
 ### 2.2.7
 * added module icon file .\PoshFunctions.ico for custom WinForms forms created
 * moved function aliases to within the function definition so all the code is together
