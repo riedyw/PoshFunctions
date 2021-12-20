@@ -123,4 +123,44 @@ public class ProfileAPI{
 
 Add-Type -TypeDefinition $IniCode
 
+<#
+A note on the properties of PFDateFormat:
+    DMTF is a [string] representing [datetime] in the form 'yyyymmddHHMMSS.ffffff+UUU'
+    Unix is Unix epoch format [double] which is the number of seconds since '1/1/1970 12:00:00 AM UTC'
+    FileTime is an [int64] which represents a [datetime] expressed in Ticks. A Tick represents 1/100,000 of a second. Ticks can range from 0 - 2650467743999999999. Translating these into dates you get
+                          0 = Monday, January 01, 1601 12:00:00.00000 AM
+        2650467743999999999 = Friday, December 31, 9999 11:59:59.99999 PM
+    ICSDateTime is a [datetime] formatted is of the form 'yyyymmddTHHMMSSZ'
+    Excel is a [double] which represents dates as the number of days since (Get-Date 1/1/1900)
+#>
+
+class PFDateFormat {
+    [datetime] $Date = $(Get-Date)
+    [string] $DMTF
+    [double] $Unix
+    [int64] $FileTime
+    [string] $ICSDateTime
+    [double] $Excel
+
+    # add parameterless default constructor
+    PFDateFormat() {
+        $this.Date = $(Get-Date)
+        $this.DMTF = $(ConvertFrom-Datetime -Date $this.Date -DMTF -Verbose:$false)
+        $this.Unix = $(ConvertFrom-Datetime -Date $this.Date -Unix -Verbose:$false)
+        $this.FileTime = $(ConvertFrom-Datetime -Date $this.Date -FileTime -Verbose:$false)
+        $this.ICSDateTime = $(ConvertFrom-Datetime -Date $this.Date -ICSDateTime -Verbose:$false)
+        $this.Excel = $(ConvertFrom-Datetime -Date $this.Date -Excel -Verbose:$false)
+    }
+
+    # add custom constructor that takes parameters
+    PFDateFormat([datetime] $Date) {
+        $this.Date = $Date
+        $this.DMTF = $(ConvertFrom-Datetime -Date $Date -DMTF -Verbose:$false)
+        $this.Unix = $(ConvertFrom-Datetime -Date $Date -Unix -Verbose:$false)
+        $this.FileTime = $(ConvertFrom-Datetime -Date $Date -FileTime -Verbose:$false)
+        $this.ICSDateTime = $(ConvertFrom-Datetime -Date $Date -ICSDateTime -Verbose:$false)
+        $this.Excel = $(ConvertFrom-Datetime -Date $Date -Excel -Verbose:$false)
+    }
+}
+
 # EOF: PoshFunctions.psm1

@@ -105,4 +105,6 @@ Changes
 * use Scripting.FileSystemObject comobject to get the shortname of the item
 * if switch -IncludeInput output an object with the LongName, ShortName and ItemType (File or Folder)
 
+* updated function so Test-Path, Resolve-Path, Get-Item use -LiteralPath vs -Path
+
 ## RELATED LINKS

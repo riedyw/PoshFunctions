@@ -50,63 +50,60 @@
 </head>
 <body>
     <hr />
-<p>external help file: PoshFunctions-help.xml
+<h2>external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
-online version: https://social.msdn.microsoft.com/Forums/vstudio/en-US/0221d962-26e6-4a7e-be7a-72cd669a0dfc/why-systemmathround0251-2?forum=vbgeneral</p>
-<h2>Talks about Visual Basic but the same info applies to Powershell.
+online version:
 schema: 2.0.0</h2>
-<h1>Get-ShortName</h1>
+<h1>New-PFDateFormat</h1>
 <h2>SYNOPSIS</h2>
-<p>To get the shortname 8.3 of a file or folder</p>
+<p>Returns a [psobject] with a [datetime] in multiple other formats</p>
 <h2>SYNTAX</h2>
-<pre><code>Get-ShortName [-Path] &lt;String[]&gt; [-IncludeInput] [&lt;CommonParameters&gt;]
+<pre><code>New-PFDateFormat [[-Date] &lt;DateTime&gt;] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
-<p>To get the shortname 8.3 of a file or folder.
-If the path resolves to 2 or more objects the function will generate an error</p>
+<p>Returns a [psobject] with a [datetime] in multiple other formats</p>
 <h2>EXAMPLES</h2>
 <h3>EXAMPLE 1</h3>
-<pre><code>Get-ShortName -Path 'C:\temp\This is a really long filename.txt'
+<pre><code>New-PFDateFormat -Date '9/11/2001 08:15'
 </code></pre>
-<p>C:\temp\THISIS~1.TXT</p>
+<p>Date        : 9/11/2001 8:15:00 AM
+DMTF        : 20010911081500.000000-240
+Unix        : 1000196100
+FileTime    : 126446877000000000
+ICSDateTime : 20010911T081500
+Excel       : 37143.34375</p>
 <h3>EXAMPLE 2</h3>
-<pre><code>Get-ShortName -Path c:\temp\th* -IncludeInput
+<pre><code>New-PFDateFormat
 </code></pre>
-<p>LongName                                   ShortName            ItemType</p>
-<hr />
-<p>C:\temp\This is a really long filename.txt C:\temp\THISIS~1.TXT File</p>
+<p>Date        : 12/16/2021 10:39:32 AM
+DMTF        : 20211216103932.967575-300
+Unix        : 1639651172.96758
+FileTime    : 132841427729675751
+ICSDateTime : 20211216T103932
+Excel       : 44544.4441315692</p>
 <h3>EXAMPLE 3</h3>
-<pre><code>Get-ShortName -Path c:\temp\Really-long-folder-name\
+<pre><code>New-PFDateFormat -Verbose
 </code></pre>
-<p>C:\temp\REALLY~1</p>
-<h3>EXAMPLE 4</h3>
-<pre><code>Get-ShortName -Path c:\temp\Really-long-folder-name\ -IncludeInput
-</code></pre>
-<p>LongName                         ShortName        ItemType</p>
-<hr />
-<p>C:\temp\Really-long-folder-name\ C:\temp\REALLY~1 Folder</p>
+<p>VERBOSE: Starting [New-PFDateFormat]</p>
+<p>Date        : 12/16/2021 10:46:13 AM
+DMTF        : 20211216104613.910469-300
+Unix        : 1639651573.91047
+FileTime    : 132841431739104697
+ICSDateTime : 20211216T104613
+Excel       : 44544.4487721119</p>
+<p>VERBOSE: Ending [New-PFDateFormat]</p>
 <h2>PARAMETERS</h2>
-<h3>-Path</h3>
-<p>A string or string array of files and folders</p>
-<pre><code class="language-yaml">Type: String[]
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
-Accept wildcard characters: False
-</code></pre>
-<h3>-IncludeInput</h3>
-<p>Switch to include the input parameters in the output</p>
-<pre><code class="language-yaml">Type: SwitchParameter
+<h3>-Date</h3>
+<p>Optional [datetime] parameter for the date you want converted into other formats.
+If omitted it will call the class::New method with no parameter
+which will determine the current [datetime] and format it several different ways</p>
+<pre><code class="language-yaml">Type: DateTime
 Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: Named
-Default value: False
+Position: 1
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 </code></pre>
@@ -114,26 +111,18 @@ Accept wildcard characters: False
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
 <h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
-<h3>[string[]]</h3>
 <h2>NOTES</h2>
-<p>Inspired by https://devblogs.microsoft.com/scripting/use-powershell-to-display-short-file-and-folder-names/</p>
-<p>Changes</p>
-<ul>
-<li><p>allow for accepting the -Path from the pipeline</p>
-</li>
-<li><p>test for existence of path, if does not exist throw an error</p>
-</li>
-<li><p>resolve to list of paths and if it resolves to more than one throw an error</p>
-</li>
-<li><p>use get-item to determine if folder or file</p>
-</li>
-<li><p>use Scripting.FileSystemObject comobject to get the shortname of the item</p>
-</li>
-<li><p>if switch -IncludeInput output an object with the LongName, ShortName and ItemType (File or Folder)</p>
-</li>
-<li><p>updated function so Test-Path, Resolve-Path, Get-Item use -LiteralPath vs -Path</p>
-</li>
-</ul>
+<p>Relies on PFDateFormat class defined in .\PoshFunctions.psm1</p>
+<p>DMTF is of the form 'yyyymmddHHMMSS.ffffff+UUU'
+Unix is Unix epoch format which is the number of seconds since '1/1/1970 12:00:00 AM UTC'
+FileTime is an [int64] which represents a [datetime] expressed in Ticks.
+A Tick represents 1/100,000 of a second.
+Ticks can range from 0 - 2650467743999999999.
+Translating these into dates you get
+0 = Monday, January 01, 1601 12:00:00.00000 AM
+2650467743999999999 = Friday, December 31, 9999 11:59:59.99999 PM
+ICSDateTime is a [datetime] formatted is of the form 'yyyymmddTHHMMSSZ'
+Excel is a [double] that represents dates as the number of days since (Get-Date 1/1/1900)</p>
 <h2>RELATED LINKS</h2>
 
 </body>

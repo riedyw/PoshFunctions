@@ -102,7 +102,7 @@
     'Invoke-CountdownTimer', 'Invoke-Speak', 'Join-Object', 'Lock-Workstation',
     'Measure-Char', 'Merge-Object', 'mklink', 'Move-ToRecycleBin',
     'New-ColorPicker', 'New-Credential', 'New-DatePicker', 'New-FontPicker',
-    'New-InputBox', 'New-InputBoxSecureString', 'New-MessageBox', 'New-QR',
+    'New-InputBox', 'New-InputBoxSecureString', 'New-MessageBox', 'New-PFDateFormat', 'New-QR',
     'New-RandomPassword', 'New-Screenshot', 'New-Shortcut',
     'Optimize-SqlIndexFragmentation', 'Optimize-SqlStoredProcedure',
     'Out-PDFToPrinter', 'Read-HostWithDefault', 'Remove-BlankOrComment',
@@ -190,11 +190,11 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * added Get-ArpTable - takes output from 'arp.exe -a' and parses output into objects
 * added Get-VssAdminListVolumes - takes output from 'vssadmin.exe list volumes' and parses output into objects
 * added Get-VssAdminListWriters - takes output from 'vssadmin.exe list writers' and parses output into objects
+* added New-PFDateFormat - which represents a [datetime] in multiple formats
 * updated Convert-HexToRGB - changed 'return' to 'break' in error condition
 * updated Expand-String - changed class name from 'ExtractData' to 'PFExtractData' to prevent conflict
 * updated Get-BinaryType - changed namespace from 'Win32Utils' to 'PFWin32Utils' to prevent conflict
-* updated Get-ExecutableForFile - changed class name from 'API' to 'PF32API' to prevent conflict, changed name of internal variable
-* updated Get-ExecutableForFile - changed class name from 'Win32API' to 'PFWin32API' to prevent conflict
+* updated Get-ExecutableForFile - changed class name from 'Win32API' to 'PFWin32API' to prevent conflict, changed name of internal variable
 * updated Get-LongName - updated function so Test-Path, Resolve-Path, Get-Item use -LiteralPath vs -Path
 * updated Get-NTFSPermission - changed 'return' to 'break' in error condition
 * updated Get-RandomDate - changed 'return' to 'break' in error condition
@@ -202,6 +202,7 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * updated Get-SQLIndexFragmentation - changed 'return' to 'break' in error condition
 * updated Get-SQLStoredProcedure - changed 'return' to 'break' in error condition
 * updated Get-ShortName - updated function so Test-Path, Resolve-Path, Get-Item use -LiteralPath vs -Path
+* updated Get-UrlContent - changed 'return' to 'break' in error condition
 * updated Get-Wordlist - added -Full to use longer > 370,000 word list resource, moved word list file to .\Resources
 * updated New-ColorPicker - to reflect its icon file moving to .\Resources
 * updated New-DatePicker - to reflect its icon file moving to .\Resources
@@ -209,8 +210,10 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * updated New-InputBoxSecureString - to reflect its icon file moving to .\Resources, changed 'return' to 'break' in error condition
 * updated New-RandomPassword - added -FullWordlist to use longer wordlist file
 * updated New-Screenshot - changed 'return' to 'break' in error condition
+* updated Optimize-SQLIndexFragmentation - changed 'return' to 'break' in error condition
 * updated Optimize-SQLStoredProcedure - changed 'return' to 'break' in error condition
 * updated Remove-TeamsCache - changed 'return' to 'break' in error condition
+* updated Set-Display - changed class name from 'API' to 'PFAPI' to prevent conflict, changed name of internal variable
 * updated Start-AdReplication - changed hard coded -ThrottleLimit from 8 to [environment]::ProcessorCount so that it determines number of processors on the fly
 
 ### 2.2.7

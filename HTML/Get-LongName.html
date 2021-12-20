@@ -118,12 +118,20 @@ Accept wildcard characters: False
 <p>Inspired by https://devblogs.microsoft.com/scripting/use-powershell-to-display-short-file-and-folder-names/</p>
 <p>Changes</p>
 <ul>
-<li>allow for accepting the -Path from the pipeline</li>
-<li>test for existence of path, if does not exist throw an error</li>
-<li>resolve to list of paths and if it resolves to more than one throw an error</li>
-<li>use get-item to determine if folder or file</li>
-<li>use Scripting.FileSystemObject comobject to get the shortname of the item</li>
-<li>if switch -IncludeInput output an object with the LongName, ShortName and ItemType (File or Folder)</li>
+<li><p>allow for accepting the -Path from the pipeline</p>
+</li>
+<li><p>test for existence of path, if does not exist throw an error</p>
+</li>
+<li><p>resolve to list of paths and if it resolves to more than one throw an error</p>
+</li>
+<li><p>use get-item to determine if folder or file</p>
+</li>
+<li><p>use Scripting.FileSystemObject comobject to get the shortname of the item</p>
+</li>
+<li><p>if switch -IncludeInput output an object with the LongName, ShortName and ItemType (File or Folder)</p>
+</li>
+<li><p>updated function so Test-Path, Resolve-Path, Get-Item use -LiteralPath vs -Path</p>
+</li>
 </ul>
 <h2>RELATED LINKS</h2>
 

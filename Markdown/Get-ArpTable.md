@@ -28,11 +28,10 @@ Get-ArpTable
 
 IPAddress     MACAddress
 ---------     ----------
-192.168.3.1   a0-40-a0-5f-bf-9c
-192.168.3.100 94-57-a5-7a-43-6d
-192.168.3.101 00-90-a9-3f-98-ef
-192.168.3.2   14-59-c0-45-ca-6a
-192.168.3.6   c0-b5-d7-21-33-f1
+192.168.3.1   A0-40-A0-5F-BF-9C
+192.168.3.2   14-59-C0-45-CA-6A
+192.168.3.100 94-57-A5-7A-43-6D
+192.168.3.101 00-90-A9-3F-98-EF
 
 ## PARAMETERS
 
@@ -48,7 +47,7 @@ Displaying the arp table via 'arp.exe -a' produces very wordy output that is dif
 On a computer with multiple adapters and VPNs that may or may not be active can produce a lot of output.
 On my computer 'arp.exe -a' produces 74 lines of output.
 In the example run from the same computer it produces
-an array of 5 IPAddress/MACAddress pairs.
+an array of 4 IPAddress/MACAddress pairs.
 This is useful information that can be acted against.
 
 ## RELATED LINKS
