@@ -9,7 +9,7 @@ function ConvertFrom-Binary {
 
     33
 .EXAMPLE
-    ConvertFrom-Binary -Binary 1001 -include
+    ConvertFrom-Binary -Binary 1001 -IncludeInput
 
     Binary Number
     ------ ------

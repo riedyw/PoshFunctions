@@ -11,21 +11,7 @@ function Get-NTFSPermission {
 
     Would return:
 
-    A listing of all of the shares
-.EXAMPLE
-    Get-Share -ShareName "My"
-
-    Would return:
-
-    A listing of all of the shares that contain the string "My"
-.EXAMPLE
-    Get-Share -ShareName -IgnoreAdmin
-
-    Would return:
-
-    A listing of all of the shares minus the automatic Admin shares
-.OUTPUTS
-    An array of objects containing the fields ComputerName, ShareName, Type, Status
+    A listing of all of the permissions
 #>
     [CmdletBinding()]
     param([string[]] $Path)

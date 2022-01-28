@@ -9,25 +9,11 @@ function ConvertFrom-HtmlEncode {
 .PARAMETER IncludeInput
     A switch to enable showing original text in the output. Aliased to 'IncludeOriginal' for backward compatibility of scripts
 .EXAMPLE
-    ConvertFrom-HTMLEncode -HTML 'https%3a%2f%2fwww.google.com%2f'
+    ConvertFrom-HTMLEncode -HTML '&amp;' -IncludeInput
 
-    Would return
-    https://www.google.com/
-.EXAMPLE
-    ConvertFrom-HTMLEncode -HTML 'https%3a%2f%2fbing.com' -IncludeInput
-
-    Would return
-    Encoded                Decoded
-    -------                -------
-    https%3a%2f%2fbing.com https://bing.com
-.EXAMPLE
-    ConvertFrom-HTMLEncode -HTML 'https%3a%2f%2fbing.com', 'https%3a%2f%2fwww.google.com%2f' -IncludeInput
-
-    Would return
-    Encoded                         Decoded
-    -------                         -------
-    https%3a%2f%2fbing.com          https://bing.com
-    https%3a%2f%2fwww.google.com%2f https://www.google.com/
+    HtmlEncoded PlainText
+    ----------- ---------
+    &amp;       &
 .OUTPUTS
     [string]
 .NOTES

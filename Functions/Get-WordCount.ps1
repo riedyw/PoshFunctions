@@ -34,6 +34,9 @@ function Get-WordCount {
     cat                            3
     dog                            2
     fish                           1
+.NOTES
+    Updated logic around keys to the working hash. If any of the words in the file match PowerShell keywords you'll
+    get a bunch of error messages. Workaround stores hash in slightly different manner.
 #>
 
     [CmdletBinding()]
@@ -55,7 +58,10 @@ function Get-WordCount {
         $textString = $textString -replace '[^a-z| ]'
         $textWords = $textString -split '\s+'
 
-        $statistic = $textWords | ForEach-Object -Begin { $hash = @{} } -Process { $hash.$_ ++ } -End { $hash }
+        $statistic = $textWords | ForEach-Object -Begin { $hash = @{} } -Process {
+            $tmp = $_
+            $hash."'$tmp'" ++
+        } -End { $hash }
 
         if ( $exclude ) {
             Write-Verbose -Message "EXCLUDE = $Exclude"
@@ -70,7 +76,8 @@ function Get-WordCount {
             }
         }
         Write-Verbose -Message 'Word frequency in descending order'
-        $statistic.GetEnumerator() | Sort-Object -Property Value -Descending
+        $statistic.GetEnumerator() | Sort-Object -Property Value -Descending |
+            Select-Object -Property @{Name='Name';Expr={$_.Name -replace "'"}}, Value
     }
 
     end {

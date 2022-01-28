@@ -63,66 +63,65 @@
     # Functions export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 
     FunctionsToExport = @( 'Compare-ObjectProperty', 'Compare-ObjectSetComplement',
-    'Compare-ObjectSetDifference', 'Compare-ObjectSetIntersection',
-    'Compare-ObjectSetUnion', 'Compare-PSGalleryObject', 'Convert-HexToRGB',
-    'Convert-Int32ToUint32', 'Convert-Int64ToText', 'Convert-ObjectToHashtable',
-    'Convert-RGBToHex', 'Convert-SecureStringToString', 'Convert-UserFlag',
-    'ConvertFrom-Base64', 'ConvertFrom-Binary', 'ConvertFrom-DateTime',
-    'ConvertFrom-FsRight', 'ConvertFrom-Hex', 'ConvertFrom-HtmlEncode',
-    'ConvertFrom-UrlEncode', 'ConvertFrom-UTC', 'ConvertFrom-Xml',
-    'ConvertTo-Base64', 'ConvertTo-Binary', 'ConvertTo-BinaryIPv4',
-    'ConvertTo-Bool', 'ConvertTo-DateTime', 'ConvertTo-DecimalIPv4',
-    'ConvertTo-DottedDecimalIPv4', 'ConvertTo-Hex', 'ConvertTo-HtmlEncode',
-    'ConvertTo-OrderedDictionary', 'ConvertTo-UncPath', 'ConvertTo-UrlEncode',
-    'ConvertTo-UTC', 'Copy-Object', 'Eexit', 'Expand-IPv6', 'Expand-String',
-    'Expand-Tab', 'Export-CSVSortedColumn', 'Export-FontSample', 'FileSizeAbove',
-    'FileSizeBelow', 'Format-MacAddress', 'Format-RandomCase',
-    'Format-ReverseString', 'Format-ReverseToken', 'Format-SortedList',
-    'Format-TitleCase', 'Format-WrapText', 'Get-Address', 'Get-ArpTable',
-    'Get-BashPath', 'Get-BinaryType', 'Get-CeasarCipher', 'Get-ComputerSite',
-    'Get-ComputerUptime', 'Get-DiceRoll', 'Get-DisplayBrightness',
-    'Get-DNSHostEntryAsync', 'Get-DriveStat', 'Get-DuplicateFileName', 'Get-Enum',
-    'Get-ExecutableForFile', 'Get-FileEncoding', 'Get-FileName',
-    'Get-FileWithLeadingSpace', 'Get-FolderName', 'Get-Font', 'Get-Fortune',
-    'Get-GeoCode', 'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-LastDayInMonth',
-    'Get-List', 'Get-LongName', 'Get-MachineType', 'Get-MacVendor',
-    'Get-Magic8Ball', 'Get-Md5Sum', 'Get-MyLocalLogonTime',
-    'Get-NetworkCredential', 'Get-NTFSPermission', 'Get-NtpDate', 'Get-Power',
-    'Get-PrintableAscii', 'Get-PrivateProfileComment', 'Get-PrivateProfileSection',
-    'Get-PrivateProfileSectionNames', 'Get-PrivateProfileString',
-    'Get-ProcessUser', 'Get-PSWho', 'Get-RandomDate', 'Get-RandomHexDigit',
-    'Get-RandomMacAddress', 'Get-RegExpandString', 'Get-RegistryValue',
-    'Get-RelativePath', 'Get-Round', 'Get-SaveFileName', 'Get-ScheduledTaskUser',
-    'Get-ServiceUser', 'Get-Shortcut', 'Get-ShortName', 'Get-SID',
-    'Get-SpecialFolder', 'Get-SqlDatabase', 'Get-SqlIndexFragmentation',
-    'Get-SqlStoredProcedure', 'Get-StaticProperty', 'Get-String',
-    'Get-SubnetMaskIPv4', 'Get-TruncatedDate', 'Get-Type', 'Get-TypeAccelerator',
-    'Get-UrlContent', 'Get-VssAdminListVolumes', 'Get-VssAdminListWriters',
-    'Get-WordCount', 'Get-WordList', 'grep', 'Invoke-Beep',
-    'Invoke-CountdownTimer', 'Invoke-Speak', 'Join-Object', 'Lock-Workstation',
-    'Measure-Char', 'Merge-Object', 'mklink', 'Move-ToRecycleBin',
-    'New-ColorPicker', 'New-Credential', 'New-DatePicker', 'New-FontPicker',
-    'New-InputBox', 'New-InputBoxSecureString', 'New-MessageBox', 'New-PFDateFormat', 'New-QR',
-    'New-RandomPassword', 'New-Screenshot', 'New-Shortcut',
-    'Optimize-SqlIndexFragmentation', 'Optimize-SqlStoredProcedure',
-    'Out-PDFToPrinter', 'Read-HostWithDefault', 'Remove-BlankOrComment',
-    'Remove-EmptyProperty', 'Remove-QuotesFromCsv', 'Remove-TeamsCache',
-    'Remove-Trailing', 'Reset-Desktop', 'Resolve-FQDN', 'Resolve-HostName', 'sed',
-    'Set-Capslock', 'Set-Display', 'Set-Numlock', 'Set-PrivateProfileComment',
-    'Set-PrivateProfileString', 'Set-Scrolllock', 'Set-SpeakerVolume', 'Set-Type',
-    'Set-WindowStyle', 'Show-AllColor', 'Show-Calendar', 'Show-Color',
-    'Show-ColorsWithBackground', 'Show-DaysOfWeek', 'Show-FileAttribute',
-    'Show-FsRight', 'Show-Month', 'Show-NamedColor', 'Show-Object',
-    'Show-Progress', 'Show-ShortDaysOfWeek', 'Show-ShortMonth',
-    'Show-SubnetMaskIPv4', 'Show-Timezone', 'Split-Line', 'Start-ADReplication',
-    'Start-RecordSession', 'Stop-RecordSession', 'Switch-Mute',
-    'Test-ConnectionAsync', 'Test-IsAdmin', 'Test-IsCapsLock', 'Test-IsDate',
-    'Test-IsFileLocked', 'Test-IsHexString', 'Test-IsNull', 'Test-IsNumeric',
-    'Test-IsNumLock', 'Test-IsScrollLock', 'Test-IsValidEmailAddress',
-    'Test-IsValidIPv4', 'Test-IsValidIPv6', 'Test-MultipleBool', 'Test-Network',
-    'Test-NtpDateVsNow', 'Test-Password', 'Test-PasswordComplexity', 'Test-Port',
-    'Test-Set', 'Update-ExplorerIcon', 'Use-Stopwatch', 'Write-StringArray',
-    'Write-StringHash', 'Write-TextMenu' )
+        'Compare-ObjectSetDifference', 'Compare-ObjectSetIntersection',
+        'Compare-ObjectSetUnion', 'Compare-PSGalleryObject', 'Convert-HexToRGB',
+        'Convert-Int32ToUint32', 'Convert-Int64ToText', 'Convert-ObjectToHashtable',
+        'Convert-RGBToHex', 'Convert-SecureStringToString', 'Convert-UserFlag',
+        'ConvertFrom-Base64', 'ConvertFrom-Binary', 'ConvertFrom-DateTime',
+        'ConvertFrom-FsRight', 'ConvertFrom-Hex', 'ConvertFrom-HtmlEncode',
+        'ConvertFrom-UrlEncode', 'ConvertFrom-UTC', 'ConvertFrom-Xml',
+        'ConvertTo-Base64', 'ConvertTo-Binary', 'ConvertTo-BinaryIPv4',
+        'ConvertTo-Bool', 'ConvertTo-DateTime', 'ConvertTo-DecimalIPv4',
+        'ConvertTo-DottedDecimalIPv4', 'ConvertTo-Hex', 'ConvertTo-HtmlEncode',
+        'ConvertTo-OrderedDictionary', 'ConvertTo-UncPath', 'ConvertTo-UrlEncode',
+        'ConvertTo-UTC', 'Copy-Object', 'Eexit', 'Expand-IPv6', 'Expand-String',
+        'Expand-Tab', 'Export-CSVSortedColumn', 'Export-FontSample', 'FileSizeAbove',
+        'FileSizeBelow', 'Format-MacAddress', 'Format-RandomCase',
+        'Format-ReverseString', 'Format-ReverseToken', 'Format-SortedList',
+        'Format-TitleCase', 'Format-WrapText', 'Get-ArpTable', 'Get-BashPath',
+        'Get-BinaryType', 'Get-CeasarCipher', 'Get-ComputerSite', 'Get-ComputerUptime',
+        'Get-DiceRoll', 'Get-DisplayBrightness', 'Get-DNSHostEntryAsync',
+        'Get-DriveStat', 'Get-DuplicateFileName', 'Get-Enum', 'Get-ExecutableForFile',
+        'Get-FileEncoding', 'Get-FileName', 'Get-FileWithLeadingSpace',
+        'Get-FolderName', 'Get-Font', 'Get-Fortune', 'Get-InvalidFileCharacter',
+        'Get-IpRange', 'Get-LastDayInMonth', 'Get-List', 'Get-LongName',
+        'Get-MachineType', 'Get-MacVendor', 'Get-Magic8Ball', 'Get-Md5Sum',
+        'Get-MyLocalLogonTime', 'Get-NetworkCredential', 'Get-NTFSPermission',
+        'Get-NtpDate', 'Get-Power', 'Get-PrintableAscii', 'Get-PrivateProfileComment',
+        'Get-PrivateProfileSection', 'Get-PrivateProfileSectionNames',
+        'Get-PrivateProfileString', 'Get-ProcessUser', 'Get-PSWho', 'Get-RandomDate',
+        'Get-RandomHexDigit', 'Get-RandomMacAddress', 'Get-RegExpandString',
+        'Get-RegistryValue', 'Get-RelativePath', 'Get-Round', 'Get-SaveFileName',
+        'Get-ScheduledTaskUser', 'Get-ServiceUser', 'Get-Shortcut', 'Get-ShortName',
+        'Get-SID', 'Get-SpecialFolder', 'Get-SqlDatabase', 'Get-SqlIndexFragmentation',
+        'Get-SqlStoredProcedure', 'Get-StaticProperty', 'Get-String',
+        'Get-SubnetMaskIPv4', 'Get-TruncatedDate', 'Get-Type', 'Get-TypeAccelerator',
+        'Get-UrlContent', 'Get-VssAdminListVolumes', 'Get-VssAdminListWriters',
+        'Get-WordCount', 'Get-WordList', 'grep', 'Invoke-Beep',
+        'Invoke-CountdownTimer', 'Invoke-Speak', 'Join-Object', 'Lock-Workstation',
+        'Measure-Char', 'Merge-Object', 'mklink', 'Move-ToRecycleBin',
+        'New-ColorPicker', 'New-Credential', 'New-DatePicker', 'New-FontPicker',
+        'New-InputBox', 'New-InputBoxSecureString', 'New-MessageBox',
+        'New-PFDateFormat', 'New-QR', 'New-RandomPassword', 'New-Screenshot',
+        'New-Shortcut', 'Optimize-SqlIndexFragmentation',
+        'Optimize-SqlStoredProcedure', 'Out-PDFToPrinter', 'Read-HostWithDefault',
+        'Remove-BlankOrComment', 'Remove-EmptyProperty', 'Remove-QuotesFromCsv',
+        'Remove-TeamsCache', 'Remove-Trailing', 'Reset-Desktop', 'Resolve-FQDN',
+        'Resolve-HostName', 'sed', 'Set-Capslock', 'Set-Display', 'Set-Numlock',
+        'Set-PrivateProfileComment', 'Set-PrivateProfileString', 'Set-Scrolllock',
+        'Set-SpeakerVolume', 'Set-Type', 'Set-WindowStyle', 'Show-AllColor',
+        'Show-Color', 'Show-ColorsWithBackground', 'Show-DaysOfWeek',
+        'Show-FileAttribute', 'Show-FsRight', 'Show-Month', 'Show-NamedColor',
+        'Show-Object', 'Show-Progress', 'Show-ShortDaysOfWeek', 'Show-ShortMonth',
+        'Show-SubnetMaskIPv4', 'Show-Timezone', 'Split-Line', 'Start-ADReplication',
+        'Start-RecordSession', 'Stop-RecordSession', 'Switch-Mute',
+        'Test-ConnectionAsync', 'Test-IsAdmin', 'Test-IsCapsLock', 'Test-IsDate',
+        'Test-IsFileLocked', 'Test-IsHexString', 'Test-IsNull', 'Test-IsNumeric',
+        'Test-IsNumLock', 'Test-IsScrollLock', 'Test-IsValidEmailAddress',
+        'Test-IsValidIPv4', 'Test-IsValidIPv6', 'Test-MultipleBool', 'Test-Network',
+        'Test-NtpDateVsNow', 'Test-Password', 'Test-PasswordComplexity', 'Test-Port',
+        'Test-Set', 'Update-ExplorerIcon', 'Use-Stopwatch', 'Write-StringArray',
+        'Write-StringHash', 'Write-TextMenu' )
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     #CmdletsToExport = '*'
@@ -133,14 +132,14 @@
     # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
     # AliasesToExport = '*'
 
-    AliasesToExport = @( 'Base64Decode', 'Base64Encode', 'Beep',
-    'Convert-IntToText', 'Convert-ROT13', 'ConvertTo-BinaryIP',
-    'ConvertTo-DecimalIP', 'ConvertTo-DottedDecimalIP', 'CountdownTimer',
-    'Fortune', 'Get-DupeFileName', 'Get-Folder', 'Get-LastReboot', 'Get-SaveFile',
-    'Get-SubnetMaskIP', 'Md5Sum', 'Parse-Bool', 'Recycle', 'ReverseString',
-    'Set-Speaker', 'Show-InvalidFileCharacter', 'Show-SpecialFolder',
-    'Show-SubnetMaskIP', 'Show-TypeAccelerator', 'Speak', 'Test-IsValidIP',
-    'Test-MultiBool', 'UrlDecode', 'UrlEncode', 'WrapText' )
+    AliasesToExport   = @( 'Base64Decode', 'Base64Encode', 'Beep',
+        'Convert-IntToText', 'Convert-ROT13', 'ConvertTo-BinaryIP',
+        'ConvertTo-DecimalIP', 'ConvertTo-DottedDecimalIP', 'CountdownTimer',
+        'Fortune', 'Get-DupeFileName', 'Get-Folder', 'Get-LastReboot', 'Get-SaveFile',
+        'Get-SubnetMaskIP', 'Md5Sum', 'Parse-Bool', 'Recycle', 'ReverseString',
+        'Set-Speaker', 'Show-InvalidFileCharacter', 'Show-SpecialFolder',
+        'Show-SubnetMaskIP', 'Show-TypeAccelerator', 'Speak', 'Test-IsValidIP',
+        'Test-MultiBool', 'UrlDecode', 'UrlEncode', 'WrapText' )
 
     # DSC resources to export from this module
     # DscResourcesToExport = @()
@@ -157,28 +156,28 @@
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags = @( 'base64', 'beep', 'binaryip', 'calendar', 'capslock', 'color-hex',
-            'color-rgb', 'color-show', 'computersite', 'computer-site', 'credential',
-            'date-random', 'datetime', 'date-truncate', 'days-week', 'decimalip',
-            'display', 'dns-async', 'dotteddecimalip', 'email-address', 'expand-string',
-            'expand-tab', 'exponentiation', 'file', 'file-encoding', 'file-invalidchar',
-            'folder', 'format', 'functions', 'gui', 'ini', 'inputbox', 'ip', 'iprange',
-            'isadmin', 'isdate', 'ishexstring', 'isnumeric', 'isvalidemail', 'isvalidip',
-            'library', 'macaddress', 'magic8ball', 'markdown', 'md5sum', 'msgbox',
-            'numlock', 'ping-async', 'popup', 'progress', 'random-date', 'registry',
-            'reverse-string', 'rot13', 'round', 'savefile', 'scrolllock', 'set-type',
-            'share-permission', 'share-stat', 'shortcut', 'sid', 'speak', 'subnetmask',
-            'system', 'timezone', 'urlencode', 'utc', 'wrap-text', 'xml' )
+            Tags         = @( 'base64', 'beep', 'binaryip', 'calendar', 'capslock', 'color-hex',
+                'color-rgb', 'color-show', 'computersite', 'computer-site', 'credential',
+                'date-random', 'datetime', 'date-truncate', 'days-week', 'decimalip',
+                'display', 'dns-async', 'dotteddecimalip', 'email-address', 'expand-string',
+                'expand-tab', 'exponentiation', 'file', 'file-encoding', 'file-invalidchar',
+                'folder', 'format', 'functions', 'gui', 'ini', 'inputbox', 'ip', 'iprange',
+                'isadmin', 'isdate', 'ishexstring', 'isnumeric', 'isvalidemail', 'isvalidip',
+                'library', 'macaddress', 'magic8ball', 'markdown', 'md5sum', 'msgbox',
+                'numlock', 'ping-async', 'popup', 'progress', 'random-date', 'registry',
+                'reverse-string', 'rot13', 'round', 'savefile', 'scrolllock', 'set-type',
+                'share-permission', 'share-stat', 'shortcut', 'sid', 'speak', 'subnetmask',
+                'system', 'timezone', 'urlencode', 'utc', 'wrap-text', 'xml' )
 
 
             # A URL to the license for this module.
-            LicenseUri = 'https://github.com/riedyw/PoshFunctions/blob/master/License.txt'
+            LicenseUri   = 'https://github.com/riedyw/PoshFunctions/blob/master/License.txt'
 
             # A URL to the main website for this project.
-            ProjectUri = 'https://github.com/riedyw/PoshFunctions'
+            ProjectUri   = 'https://github.com/riedyw/PoshFunctions'
 
             # A URL to an icon representing this module.
-            IconUri = 'https://github.com/riedyw/PoshFunctions/blob/master/PoshFunctions.png'
+            IconUri      = 'https://github.com/riedyw/PoshFunctions/blob/master/PoshFunctions.png'
 
             # ReleaseNotes of this module
             ReleaseNotes = @'
@@ -191,11 +190,15 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * added Get-VssAdminListVolumes - takes output from 'vssadmin.exe list volumes' and parses output into objects
 * added Get-VssAdminListWriters - takes output from 'vssadmin.exe list writers' and parses output into objects
 * added New-PFDateFormat - which represents a [datetime] in multiple formats
+* deleted Get-Address - REST API at website no longer works
+* deleted Get-GeoCode - REST API at website no longer works
+* deleted Show-Calendar - function is flat out broken and all prior versions have the same error
 * updated Convert-HexToRGB - changed 'return' to 'break' in error condition
 * updated Expand-String - changed class name from 'ExtractData' to 'PFExtractData' to prevent conflict
 * updated Get-BinaryType - changed namespace from 'Win32Utils' to 'PFWin32Utils' to prevent conflict
 * updated Get-ExecutableForFile - changed class name from 'Win32API' to 'PFWin32API' to prevent conflict, changed name of internal variable
 * updated Get-LongName - updated function so Test-Path, Resolve-Path, Get-Item use -LiteralPath vs -Path
+* updated Get-MacVendor - changed [ValidatePattern] to logic within function to clean up improperly formatted mac addresses, display MacAddress then Vendor
 * updated Get-NTFSPermission - changed 'return' to 'break' in error condition
 * updated Get-RandomDate - changed 'return' to 'break' in error condition
 * updated Get-SQLDatabase - changed 'return' to 'break' in error condition
@@ -203,6 +206,7 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * updated Get-SQLStoredProcedure - changed 'return' to 'break' in error condition
 * updated Get-ShortName - updated function so Test-Path, Resolve-Path, Get-Item use -LiteralPath vs -Path
 * updated Get-UrlContent - changed 'return' to 'break' in error condition
+* updated Get-WordCount - function would throw errors if it encountered PowerShell keywords, implemented work around
 * updated Get-Wordlist - added -Full to use longer > 370,000 word list resource, moved word list file to .\Resources
 * updated New-ColorPicker - to reflect its icon file moving to .\Resources
 * updated New-DatePicker - to reflect its icon file moving to .\Resources
@@ -214,7 +218,9 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * updated Optimize-SQLStoredProcedure - changed 'return' to 'break' in error condition
 * updated Remove-TeamsCache - changed 'return' to 'break' in error condition
 * updated Set-Display - changed class name from 'API' to 'PFAPI' to prevent conflict, changed name of internal variable
+* updated Set-SpeakerVolume - added -Adjust parameter so you can adjust volume up or down
 * updated Start-AdReplication - changed hard coded -ThrottleLimit from 8 to [environment]::ProcessorCount so that it determines number of processors on the fly
+* updated Test-PasswordComplexity - removed dependency on Get-PrintableAscii
 
 ### 2.2.7
 * added module icon file .\PoshFunctions.ico for custom WinForms forms created

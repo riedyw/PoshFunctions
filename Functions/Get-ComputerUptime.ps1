@@ -49,6 +49,8 @@ function Get-ComputerUptime {
     Put in error checking around Get-CimInstance to handle Kerberos errors.
 #>
 
+# todo - track down warning message on encoding, update help
+
     #region Parameter
     [CmdletBinding(ConfirmImpact = 'Low')]
     [alias('Get-LastReboot')]
@@ -56,7 +58,7 @@ function Get-ComputerUptime {
     Param(
         [switch] $Since,
 
-        [parameter(Mandatory, HelpMessage = 'Please enter the name of a computer', ValueFromPipelineByPropertyName)]
+        [parameter(ValueFromPipelineByPropertyName)]
         [Alias('ComputerName', 'CN', 'Server')]
         [string[]] $Name = $env:COMPUTERNAME,
 
@@ -70,7 +72,7 @@ function Get-ComputerUptime {
             $Name = $env:COMPUTERNAME
             Write-Verbose -Message "Setting `$Name to [$Name]"
         }
-        $CimOption = New-CimSessionOption -EncodePortInServicePrincipalName
+        $CimOption = New-CimSessionOption -EncodePortInServicePrincipalName -Encoding Default
     }
 
     process {

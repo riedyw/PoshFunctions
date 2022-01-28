@@ -14,6 +14,7 @@ function Get-Font {
 .EXAMPLE
     # Get All Lucida Fonts
     Get-Font *Lucida*
+
 #>
 
     [CmdletBinding(ConfirmImpact = 'None')]
@@ -33,7 +34,7 @@ function Get-Font {
         $null = Add-Type -AssemblyName System.Drawing
         $FontList = (New-Object -TypeName System.Drawing.Text.InstalledFontCollection).Families.Name
         $FontList = $FontList | Sort-Object | Select-Object -Unique
-        $FontList | Where-Object { $_ -match $Font }
+        $FontList | Where-Object { $_ -like $Font }
     }
 
     end {

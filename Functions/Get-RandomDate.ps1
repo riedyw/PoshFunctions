@@ -20,12 +20,12 @@ function Get-RandomDate {
 .NOTES
     If you specify -MinDate or -MaxDate, -MinDate must be less than or equal to -MaxDate.
 .EXAMPLE
-    Get-Randomdate  -MinDate 1/1/1969 -Max-Date 1/1/2040 -DateLimit UnixEpoch -verbose
+    Get-Randomdate  -MinDate 1/1/1969 -MaxDate 1/1/2040 -DateLimit UnixEpoch -verbose
     Would return something similar to the following:
     VERBOSE: $MinDate specified as [01/01/1969 00:00:00]
     VERBOSE: $MaxDate specified as [01/01/2040 00:00:00]
-    VERBOSE: $MinDate ouside valid UnixEpoch setting to [01/01/1970 00:00:00]
-    VERBOSE: $MaxDate ouside valid UnixEpoch setting to [01/19/2038 03:14:07]
+    VERBOSE: $MinDate outside valid UnixEpoch setting to [01/01/1970 00:00:00]
+    VERBOSE: $MaxDate outside valid UnixEpoch setting to [01/19/2038 03:14:07]
     VERBOSE: The random date calculated is [12/26/1997 18:41:51]
     VERBOSE: The return value is [System.DateTime] datatype
     Friday, December 26, 1997 6:41:51 PM
@@ -34,11 +34,11 @@ function Get-RandomDate {
     Would return something similar to the following:
     Friday, August 12, 2005 2:57:51 AM
 .EXAMPLE
-    Get-RandomDate  -MinDate 1/1/1576 -Max-Date 7/4/1776 -DateLimit FileTime -Verbose
+    Get-RandomDate  -MinDate 1/1/1576 -MaxDate 7/4/1776 -DateLimit FileTime -Verbose
     Would return something similar to the following:
     VERBOSE: $MinDate specified as [01/01/1576 00:00:00]
     VERBOSE: $MaxDate specified as [07/04/1776 00:00:00]
-    VERBOSE: $MinDate ouside valid FileTime setting to [01/01/1601 00:00:00]
+    VERBOSE: $MinDate outside valid FileTime setting to [01/01/1601 00:00:00]
     VERBOSE: The random date calculated is [06/27/1615 16:45:27]
     VERBOSE: The return value is [System.DateTime] datatype
     Saturday, June 27, 1615 4:45:27 PM
@@ -104,27 +104,27 @@ function Get-RandomDate {
         switch ($DateLimit) {
             'FileTime' {
                 if ($MinDate -lt $FileTimeMinDate) {
-                    Write-Verbose -Message "`$MinDate ouside valid FileTime setting to [$($FileTimeMinDate)]"
+                    Write-Verbose -Message "`$MinDate outside valid FileTime setting to [$($FileTimeMinDate)]"
                     $MinDate = $FileTimeMinDate
                 }
                 if ($MaxDate -gt $FileTimeMaxDate) {
-                    Write-Verbose -Message "`$MaxDate ouside valid FileTime setting to [$($FileTimeMinDate)]"
+                    Write-Verbose -Message "`$MaxDate outside valid FileTime setting to [$($FileTimeMinDate)]"
                     $MaxDate = $FileTimeMaxDate
                 }
             }
             'UnixEpoch' {
                 if ($MinDate -lt $UnixMinDate) {
-                    Write-Verbose -Message "`$MinDate ouside valid UnixEpoch setting to [$($UnixMinDate)]"
+                    Write-Verbose -Message "`$MinDate outside valid UnixEpoch setting to [$($UnixMinDate)]"
                     $MinDate = $UnixMinDate
                 } elseif ($MinDate -gt $UnixMaxDate) {
-                    Write-Verbose -Message "`$MinDate ouside valid UnixEpoch setting to [$($UnixMaxDate)]"
+                    Write-Verbose -Message "`$MinDate outside valid UnixEpoch setting to [$($UnixMaxDate)]"
                     $MinDate = $UnixMaxDate
                 }
                 if ($MaxDate -gt $unixMaxDate) {
-                    Write-Verbose -Message "`$MaxDate ouside valid UnixEpoch setting to [$($UnixMaxDate)]"
+                    Write-Verbose -Message "`$MaxDate outside valid UnixEpoch setting to [$($UnixMaxDate)]"
                     $MaxDate = $UnixMaxDate
                 } elseif ($MaxDate -lt $UnixMinDate) {
-                    Write-Verbose -Message "`$MaxDate ouside valid UnixEpoch setting to [$($UnixMinDate)]"
+                    Write-Verbose -Message "`$MaxDate outside valid UnixEpoch setting to [$($UnixMinDate)]"
                     $MaxDate = $UnixMinDate
                 }
             }

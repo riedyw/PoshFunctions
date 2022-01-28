@@ -44,6 +44,8 @@ function Get-ShortName {
     [string[]]
 #>
 
+# todo - fix logic for LiteralPath and Path
+
     [CmdletBinding(ConfirmImpact = 'None')]
     param(
         [Parameter(Mandatory, HelpMessage='Please enter the path to a file or folder', Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName)]
@@ -60,11 +62,11 @@ function Get-ShortName {
     process {
         foreach ($curPath in $Path) {
             if (Test-Path -Path $curPath) {
-                $ResolveFile = Resolve-Path -LiteralPath $curPath
+                $ResolveFile = Resolve-Path -Path $curPath
                 if ($ResolveFile.count -gt 1) {
                     Write-Error -Message "ERROR: File specification [$curPath] resolves to more than 1 file."
                 } else {
-                    $Item = Get-Item -LiteralPath $ResolveFile
+                    $Item = Get-Item -Path $ResolveFile
                     if ($Item.PSProvider.ToString() -eq 'Microsoft.PowerShell.Core\FileSystem') {
                         Write-Verbose -Message "Using item [$ResolveFile]"
                         if ($Item.PSIsContainer) {

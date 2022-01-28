@@ -26,7 +26,6 @@ function Get-FileWithLeadingSpace {
                 Write-Output -InputObject $_.FullName
             }
         }
-
     }
 
     end {

@@ -41,6 +41,8 @@ function Get-PrivateProfileString {
     * Ability to take relative path to file
 #>
 
+# todo - change IncludeOriginal to IncludeInput
+
     [CmdletBinding()]
     param(
         [string] $File,

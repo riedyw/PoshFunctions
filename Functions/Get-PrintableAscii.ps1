@@ -51,6 +51,8 @@ function Get-PrintableAscii {
        57 39     9 N       False
 #>
 
+# todo - add logic to replace ' ' with '(Space)'
+
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
         [Parameter(ParameterSetName = 'Default')]

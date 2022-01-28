@@ -34,6 +34,8 @@ function Test-PasswordComplexity {
     Password MinLength Length MatchComplexity
     -------- --------- ------ ---------------
     ****             8      4           False
+.NOTES
+    Changed logic on getting $*Regex values so there would not be a dependency on Get-PrintableAscii
 #>
 
     #region Parameter
@@ -67,18 +69,11 @@ function Test-PasswordComplexity {
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
-        $Special = Get-PrintableAscii | Where-Object { $_.class -eq 's' } | Select-Object -Property Char, EscapeChar
-
-        foreach ($s in $special) {
-            if ($s.char -eq '(Space)') {
-                $s.char = ' '
-            }
-            $s.EscapeChar = [regex]::Escape($s.char)
-        }
-        $SpecialRegex = '[' + ($special.EscapeChar -join '|') + ']'
+        $Printable = (33..126 | ForEach-Object { ([regex]::Escape([char] $_ )) })
         $LowerRegex = '[a-z]'
         $UpperRegex = '[A-Z]'
         $NumberRegex = '[0-9]'
+        $SpecialRegex = '[' + (($Printable | Where-Object { $_ -notmatch $LowerRegex -and $_ -notmatch $NumberRegex } ) -join '|') + ']'
     }
 
     process {

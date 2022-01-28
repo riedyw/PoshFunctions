@@ -28,33 +28,54 @@ function Set-SpeakerVolume {
     The icon for the speaker will display 98% if you hover over it.
 #>
 
-    [CmdletBinding(ConfirmImpact = 'Low')]
+    [CmdletBinding(DefaultParameterSetName = 'Volume', ConfirmImpact = 'Low')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
     [alias('Set-Speaker')]
     Param(
-        [Parameter(Mandatory, ValueFromPipeline, HelpMessage = 'Enter the speaker volume from 0-100')]
+        [Parameter(ParameterSetName = 'Volume', ValueFromPipeline, HelpMessage = 'Enter the speaker volume from 0-100')]
         [ValidateRange(0, 100)]
-        [int] $Volume
+        [int] $Volume = 50,
+
+        [Parameter(ParameterSetName = 'Adjust')]
+        [ValidateRange(-100, 100)]
+        [int] $Adjust
     )
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+        Write-Verbose -Message "ParameterSetName [$($PsCmdlet.ParameterSetName)]"
     }
 
     process {
-        Write-Verbose -Message "You specified the speaker volume should be $Volume%"
-        if (($Volume % 2) -ne 0) {
-            $Volume = $Volume - 1
-            Write-Verbose -Message "Rounding down to $Volume%"
+        switch ($PsCmdlet.ParameterSetName) {
+            'Volume' {
+                Write-Verbose -Message "You specified the speaker volume should be $Volume%"
+                if (($Volume % 2) -ne 0) {
+                    $Volume = $Volume - 1
+                    Write-Verbose -Message "Rounding down to $Volume%"
+                }
+                [int] $workingVolume = [math]::floor($Volume / 2)
+                $wshShell = New-Object -ComObject wscript.shell
+                Write-Verbose -Message 'Turning volume down to 0%'
+                1..50 | ForEach-Object -Process { $wshShell.SendKeys([char]174) }
+                if ($workingVolume -gt 0) {
+                    Write-Verbose -Message "Turning volume up to $Volume%"
+                    1..$workingVolume | ForEach-Object -Process { $wshShell.SendKeys([char]175) }
+                }
+            }
+            'Adjust' {
+                Write-Verbose -Message "You specified the speaker volume should be adjusted $Adjust%"
+                [int] $workingVolume = [math]::floor($Adjust / 2)
+                $wshShell = New-Object -ComObject wscript.shell
+                if ($workingVolume -lt 0) {
+                    $workingVolume = $workingVolume * -1
+                    1..$workingVolume | ForEach-Object -Process { $wshShell.SendKeys([char]174) }
+                } elseif ($workingVolume -gt 0) {
+                    1..$workingVolume | ForEach-Object -Process { $wshShell.SendKeys([char]175) }
+                }
+            }
         }
-        [int] $workingVolume = [math]::floor($Volume / 2)
-        $wshShell = New-Object -ComObject wscript.shell
-        Write-Verbose -Message 'Turning volume down to 0%'
-        1..50 | ForEach-Object -Process { $wshShell.SendKeys([char]174) }
-        if ($workingVolume -gt 0) {
-            Write-Verbose -Message "Turning volume up to $Volume%"
-            1..$workingVolume | ForEach-Object -Process { $wshShell.SendKeys([char]175) }
-        }
+
     }
 
     end {

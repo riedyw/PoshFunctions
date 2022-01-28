@@ -25,9 +25,9 @@ function Get-CeasarCipher {
     Zoo        13 Mbb
     human      13 uhzna
 .EXAMPLE
-     Get-CeasarCipher -Text Zoo -Key 10
+    Get-CeasarCipher -Text Zoo -Key 10
 
-     Jyy
+    Jyy
 .EXAMPLE
     Get-CeasarCipher -Text Jyy -Key 10 -Decode
 

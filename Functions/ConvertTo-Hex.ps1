@@ -14,7 +14,7 @@ function ConvertTo-Hex {
     Switch indicating that you want the input to be included in the output
 
 .EXAMPLE
-    ConvertTo-Hex-Number 23
+    ConvertTo-Hex -Number 23
 
     17
 .EXAMPLE

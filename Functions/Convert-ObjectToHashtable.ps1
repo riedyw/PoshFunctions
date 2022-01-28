@@ -12,6 +12,8 @@ function Convert-ObjectToHashtable {
     Convert-ObjectToHashtable -object Value -ExcludeEmpty
 .NOTES
     Source: https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/turning-objects-into-hash-tables-2
+
+# todo - need better example
 #>
 
     #region parameter
