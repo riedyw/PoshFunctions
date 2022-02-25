@@ -272,52 +272,6 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * updated Start-ADReplication - added -ThrottleLimit so as to not over saturate the local computer
 * updated Test-ConnectionAsync - added -Full switch and made default output brief, slight formatting change in output
 * updated Write-StringArray - added -ExcludeDollarSign to make it easier to create input for *.psd1 files
-
-### 2.2.6
-* added Get-MyLocalLogonTime
-* added Get-RelativePath
-* added Use-Stopwatch
-* updated Get-Shortcut
-* updated New-Shortcut
-* updated Start-ADReplication
-
-### 2.2.5
-* added Compare-ObjectSetComplement
-* added Compare-ObjectSetDifference
-* added Compare-ObjectSetIntersection
-* added Compare-ObjectSetUnion
-* added Get-ProcessUser
-* added Get-ScheduledTaskUser
-* added Get-ServiceUser
-* added Test-Set
-* updated Optimize-SqlIndexFragmentation
-* updated Optimize-SqlStoredProcedure
-
-### 2.2.4
-* added Get-SqlDatabase
-* added Get-SqlIndexFragmentation
-* added Get-SqlStoredProcedure
-* added Optimize-SqlIndexFragmentation
-* added Optimize-SqlStoredProcedure
-
-### 2.3.3
-* added Invoke-CountdownTimer to implement a count down timer. Accurate to within several seconds
-
-### 2.2.2
-* Changed to SemVer versioning, 3 positions Major#.Minor#.Build#
-* added Convert-Int32ToUint32 to aid in converting 32 bitmasks which are interpreted as negative int32 numbers, returned from things like (Get-Acl -Path $pwd).Access.FileSystemRights
-* added Format-ReverseToken to take a tokenized string like 'monster.google.com' and convert it to 'com.google.monster'
-* added New-InputBoxSecureString which will prompt for value and return a secure string. Can optionally verify input, and specify labels for input box(es)
-* renamed Get-FolderName from Get-Folder to not conflict with Vmware module. Aliased to Get-Folder for backward compatibility
-* renamed Get-SaveFileName from Get-SaveFile to be more consistent across file/folder functions. Aliased to Get-SaveFile for backward compatibility
-* updated Convert-RGBToHex to better handle color specifications
-* updated ConvertTo-DateTime because of logic error in handling Unix datetime strings
-* updated Get-BashPath to include switch so as to not resolve path to existing path on the system
-* updated Get-FileWithLeadingSpace to just produce the fullname of the files
-* updated Get-Fortune and added -Speak switch
-* updated Get-NTFSPermission to use Convert-Int32ToUint32 for certain filesystem rights, like -1610612736 corresponds to GenericExecute,GenericRead and previously the negative number would throw an error as it is really a 32 bitmask and not an int32
-* updated Test-Port so that the results are given in the Process block and not wait until the End block
- that the results are given in the Process block and not wait until the End block
 '@
 
             # Flag to indicate whether the module requires explicit user acceptance for install/update/save
