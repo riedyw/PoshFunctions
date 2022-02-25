@@ -107,15 +107,15 @@ function Convert-RGBToHex {
                     $currentError = $true
                 } else {
                     if ($ColorArray[0] -lt 0 -or $ColorArray[0] -gt 255) {
-                        Write-Error -Message "Red should be between 0 and 255"
+                        Write-Error -Message 'Red should be between 0 and 255'
                         $currentError = $true
                     }
                     if ($ColorArray[1] -lt 0 -or $ColorArray[1] -gt 255) {
-                        Write-Error -Message "Green should be between 0 and 255"
+                        Write-Error -Message 'Green should be between 0 and 255'
                         $currentError = $true
                     }
                     if ($ColorArray[2] -lt 0 -or $ColorArray[2] -gt 255) {
-                        Write-Error -Message "Blue should be between 0 and 255"
+                        Write-Error -Message 'Blue should be between 0 and 255'
                         $currentError = $true
                     }
                     if (-not $currentError) {

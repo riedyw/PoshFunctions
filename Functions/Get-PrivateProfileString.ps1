@@ -16,8 +16,8 @@ function Get-PrivateProfileString {
     are enveloped in square brackets. []
 .PARAMETER Key
     The key within the section that you want to pull data from.
-.PARAMETER IncluddeOriginal
-    A switch that will display all the original input.
+.PARAMETER IncluddeInput
+    A switch that will display all the original input. Aliased to 'IncluddeOriginal' for backward compatibility
 .EXAMPLE
     Get-PrivateProfileString -File .\Test.ini -Section 'Section1' -Key 'Key1'
 
@@ -27,7 +27,7 @@ function Get-PrivateProfileString {
 
     Get-PrivateProfileString : ERROR: File [.\NonexistentFile.ini] does not exist
 .EXAMPLE
-    Get-PrivateProfileString -File c:\Temp\Test.ini -Section 'Section1' -Key 'Key1' -IncludeOriginal
+    Get-PrivateProfileString -File c:\Temp\Test.ini -Section 'Section1' -Key 'Key1' -IncludeInput
 
     FileName         Section  Key  Value
     --------         -------  ---  -----
@@ -41,14 +41,16 @@ function Get-PrivateProfileString {
     * Ability to take relative path to file
 #>
 
-# todo - change IncludeOriginal to IncludeInput
-
     [CmdletBinding()]
     param(
         [string] $File,
+
         [string] $Section,
+
         [string] $Key,
-        [switch] $IncludeOriginal
+
+        [alias('IncludeOriginal')]
+        [switch] $IncludeInput
     )
 
     begin {
@@ -71,7 +73,7 @@ function Get-PrivateProfileString {
                 $sb = New-Object -TypeName System.Text.StringBuilder -ArgumentList (256)
                 [ProfileApi]::GetPrivateProfileString($Section, $Key, $null, $sb, $sb.Capacity, $ResolveFile) | Out-Null
 
-                if ($IncludeOriginal) {
+                if ($IncludeInput) {
                     New-Object -TypeName 'psobject' -Property ([ordered] @{
                         FileName = $ResolveFile
                         Section  = $Section

@@ -44,6 +44,8 @@ function ConvertFrom-DateTime {
     Z       is an optional suffix indicating UTC or Zulu time
 
     If the final character is NOT a Z then the time is local time.
+.PARAMETER ISO8601
+    Switch to convert a datetime to ISO-8601 format: 'yyyy.MM.ddTHH:mm:ss'
 .PARAMETER Excel
     Switch to indicate that the datestring is in Excel format which represents dates as the number of days since (get-date 1/1/1900)
 .PARAMETER Format
@@ -93,14 +95,15 @@ function ConvertFrom-DateTime {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
     Param
     (
-        [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'DMTF')]
-        [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'Unix')]
-        [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'FileTime')]
-        [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'ICSDateTime')]
-        [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'Format')]
-        [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'Excel')]
+        [Parameter(ValueFromPipeline, Position = 0, ParameterSetName = 'DMTF')]
+        [Parameter(ValueFromPipeline, Position = 0, ParameterSetName = 'Unix')]
+        [Parameter(ValueFromPipeline, Position = 0, ParameterSetName = 'FileTime')]
+        [Parameter(ValueFromPipeline, Position = 0, ParameterSetName = 'ICSDateTime')]
+        [Parameter(ValueFromPipeline, Position = 0, ParameterSetName = 'ISO8601')]
+        [Parameter(ValueFromPipeline, Position = 0, ParameterSetName = 'Format')]
+        [Parameter(ValueFromPipeline, Position = 0, ParameterSetName = 'Excel')]
         [Alias('DateTime')]
-        [datetime[]] $Date,
+        [datetime[]] $Date = (Get-Date),
 
         [Parameter(ParameterSetName = 'DMTF')]
         [switch] $DMTF,
@@ -114,6 +117,9 @@ function ConvertFrom-DateTime {
         [Parameter(ParameterSetName = 'ICSDateTime')]
         [switch] $ICSDateTime,
 
+        [Parameter(ParameterSetName = 'ISO8601')]
+        [switch] $ISO8601,
+
         [Parameter(ParameterSetName = 'Excel')]
         [switch] $Excel,
 
@@ -124,6 +130,7 @@ function ConvertFrom-DateTime {
         [Parameter(ParameterSetName = 'Unix')]
         [Parameter(ParameterSetName = 'FileTime')]
         [Parameter(ParameterSetName = 'ICSDateTime')]
+        [Parameter(ParameterSetName = 'ISO8601')]
         [Parameter(ParameterSetName = 'Format')]
         [Parameter(ParameterSetName = 'Excel')]
         [Alias('IncludeOriginal')]
@@ -133,6 +140,7 @@ function ConvertFrom-DateTime {
         [Parameter(ParameterSetName = 'Unix')]
         [Parameter(ParameterSetName = 'FileTime')]
         [Parameter(ParameterSetName = 'ICSDateTime')]
+        [Parameter(ParameterSetName = 'ISO8601')]
         [Parameter(ParameterSetName = 'Format')]
         [Parameter(ParameterSetName = 'Excel')]
         [Alias('Zulu')]
@@ -172,6 +180,13 @@ function ConvertFrom-DateTime {
                         $ReturnVal = Get-Date -Date $D -Format 'yyyyMMddTHHmmss'
                     }
                 }
+                'ISO8601' {
+                    if ($UTC) {
+                        $ReturnVal = Get-Date -Date $D -Format 'yyyy.MM.ddTHH:mm:ssZ'
+                    } else {
+                        $ReturnVal = Get-Date -Date $D -Format 'yyyy.MM.ddTHH:mm:ss'
+                    }
+                }
                 'Excel' {
                     if ($UTC) {
                         $ReturnVal = ( (ConvertTo-UTC -Date (Get-Date -Date $D)) - (Get-Date -Date 1/1/1900) ).TotalDays
@@ -191,6 +206,7 @@ function ConvertFrom-DateTime {
                     'Unix' { $prop.Unix = $ReturnVal }
                     'FileTime' { $prop.FileTime = $ReturnVal }
                     'ICSDateTime' { $prop.ICSDateTime = $ReturnVal }
+                    'ISO8601' { $prop.ISO8601 = $ReturnVal }
                     'Format' { $prop.Format = $ReturnVal }
                     'Excel' { $prop.Excel = $ReturnVal }
                 }

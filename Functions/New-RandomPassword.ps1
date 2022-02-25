@@ -24,24 +24,14 @@ function New-RandomPassword {
     Switch to use full word list of 370,103 words vs. 38,000 words
 .EXAMPLE
     New-RandomPassword -Web
-
-    wtV%R:K-uIn]
 .EXAMPLE
     New-RandomPassword -MinLength 16 -AvoidSimilar
-
-    4,UnsureParFeuds
 .EXAMPLE
     New-RandomPassword -Readable -MinLength 8 -RandomCase
-
-    .7dArTer
 .EXAMPLE
     New-RandomPassword -MinLength 16 -AvoidSimilar -Web
-
-    U6V:3a5^kEGHU:!7
 .EXAMPLE
     New-RandomPassword -MinLength 16 -MaxLength 20 -Readable -AvoidSimilar
-
-    Nicer6Jeer)Linger
 .NOTES
     Changes:
 
@@ -51,6 +41,7 @@ function New-RandomPassword {
     Changed parameter set names to more accurately reflect what they do
     Updated help comments
     DefaultParameterSetName is 'ReadableTitleCase'
+    Added 'Q' to similar regex given closeness to 'O'
 #>
 
     #region parameter
@@ -102,7 +93,7 @@ function New-RandomPassword {
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         Write-Verbose -Message "ParameterSetName [$($PsCmdlet.ParameterSetName)]"
-        $SimilarRegex = '\+|''|\-|0|1|I|O|_|`|l|o|t|\|'
+        $SimilarRegex = '\+|''|\-|0|1|I|O|Q|_|`|l|o|t|\|'
         Write-Verbose -Message "SimilarRegex = [$SimilarRegex]"
         if (-not $MaxLength) {
             $MaxLength = $MinLength

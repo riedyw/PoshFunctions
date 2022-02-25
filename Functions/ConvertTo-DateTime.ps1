@@ -43,6 +43,8 @@ function ConvertTo-DateTime {
     Z       is an optional suffix indicating UTC or Zulu time
 
     If the final character is NOT a Z then the time is local time.
+.PARAMETER ISO8601
+    Switch to convert a datetime to ISO-8601 format: 'yyyy.MM.ddTHH:mm:ss'
 .PARAMETER Excel
     Switch to indicate that the datestring is in Excel format which represents dates as the number of days since (get-date 1/1/1900)
 .PARAMETER Format
@@ -88,6 +90,12 @@ function ConvertTo-DateTime {
 
     Friday, December 31, 1999 6:59:59 PM
     VERBOSE: Ending ConvertTo-DateTime
+.EXAMPLE
+    ConvertTo-DateTime -ISO8601 2022.02.01T05:00:00z -IncludeInput
+
+    ISO8601              DateTime
+    -------              --------
+    2022.02.01T05:00:00z 2/1/2022 12:00:00 AM
 .NOTES
     Info:       For further information on DMTF time formats see https://docs.microsoft.com/en-us/windows/desktop/wmisdk/cim-datetime
 
@@ -105,6 +113,7 @@ function ConvertTo-DateTime {
         [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'Unix')]
         [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'FileTime')]
         [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'ICSDateTime')]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'ISO8601')]
         [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'Format')]
         [Parameter(Mandatory, ValueFromPipeline, Position = 0, ParameterSetName = 'Excel')]
         [Alias('Date')]
@@ -122,6 +131,9 @@ function ConvertTo-DateTime {
         [Parameter(ParameterSetName = 'ICSDateTime')]
         [switch] $ICSDateTime,
 
+        [Parameter(ParameterSetName = 'ISO8601')]
+        [switch] $ISO8601,
+
         [Parameter(ParameterSetName = 'Format')]
         [string] $Format,
 
@@ -132,6 +144,7 @@ function ConvertTo-DateTime {
         [Parameter(ParameterSetName = 'Unix')]
         [Parameter(ParameterSetName = 'FileTime')]
         [Parameter(ParameterSetName = 'ICSDateTime')]
+        [Parameter(ParameterSetName = 'ISO8601')]
         [Parameter(ParameterSetName = 'Format')]
         [Parameter(ParameterSetName = 'Excel')]
         [Alias('IncludeOriginal')]
@@ -141,6 +154,7 @@ function ConvertTo-DateTime {
         [Parameter(ParameterSetName = 'Unix')]
         [Parameter(ParameterSetName = 'FileTime')]
         [Parameter(ParameterSetName = 'ICSDateTime')]
+        [Parameter(ParameterSetName = 'ISO8601')]
         [Parameter(ParameterSetName = 'Format')]
         [Parameter(ParameterSetName = 'Excel')]
         [Alias('Zulu')]
@@ -152,11 +166,12 @@ function ConvertTo-DateTime {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         Write-Verbose -Message "ParameterSetName [$($PsCmdlet.ParameterSetName)]"
         $BeginUnixEpoch = New-Object -TypeName DateTime -ArgumentList 1970, 1, 1, 0, 0, 0, ([DateTimeKind]::Utc)
-        $DmtfRegex = '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]\.[0-9][0-9][0-9][0-9][0-9][0-9][+-][0-9][0-9][0-9]'
+        #$DmtfRegex = '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]\.[0-9][0-9][0-9][0-9][0-9][0-9][+-][0-9][0-9][0-9]'
         $DmtfRegex = '^(\d{14})\.(\d{6})[+-](\d{3})$'
         $MaxTicks = 2650467743999999999
         $Never = 9223372036854775807
         $ICSDateTimeregexp = '^(\d{8})(T)(\d{6})(Z)?$'
+        $ISOregex = '^(\d{4}\.\d{2}\.\d{2})(T)(\d{2}:\d{2}:\d{2})(Z)?$'
         $strCurrentTimeZone = (Get-CimInstance -ClassName win32_timezone -Verbose:$false).Description
         Write-Verbose -Message "Your local timezone is '$strCurrentTimeZone'"
     }
@@ -224,6 +239,24 @@ function ConvertTo-DateTime {
                             $ReturnVal = [datetime]::parseexact($DS, 'yyyyMMddTHHmmssZ', $null)
                         } else {
                             $ReturnVal = [datetime]::parseexact($DS, 'yyyyMMddTHHmmss', $null)
+                        }
+                    }
+                    if ($ReturnVal -ne 'Invalid' -and $UTC) {
+                        $ReturnVal = ConvertTo-UTC -Date $ReturnVal -Verbose:$false
+                    }
+                    $prop.DateTime = $ReturnVal
+                }
+                'ISO8601' {
+                    $prop = ([ordered] @{ ISO8601 = $DS } )
+                    if ( -not ($DS -match $ISOregex)) {
+                        Write-Verbose -message "The ISO date time should be of the form 'yyyy.MM.ddTHHmmssZ'"
+                        $ReturnVal = 'Invalid'
+                    } else {
+                        if ( $matches[4]) {
+                            # the ICS datetime ends with 'Z'
+                            $ReturnVal = [datetime]::parseexact($DS, 'yyyy.MM.ddTHH:mm:ssZ', $null)
+                        } else {
+                            $ReturnVal = [datetime]::parseexact($DS, 'yyyy.MM.ddTHH:mm:ss', $null)
                         }
                     }
                     if ($ReturnVal -ne 'Invalid' -and $UTC) {

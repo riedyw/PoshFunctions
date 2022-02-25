@@ -83,7 +83,7 @@ function ConvertTo-BinaryIPv4 {
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
 } #EndFunction ConvertTo-BinaryIPv4

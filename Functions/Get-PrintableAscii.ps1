@@ -87,7 +87,7 @@ function Get-PrintableAscii {
                 '[0-9]' { $char.Class = 'N' }
                 '[A-Z]' { $char.Class = 'U' }
                 '[a-z]' { $char.Class = 'L' }
-                '[0|O|o|1|l|I|\|+|t|\-|_|`|'']' { $char.Similar = $true }
+                '[0|O|o|Q|1|l|I|\|+|t|\-|_|`|'']' { $char.Similar = $true }
                 ' ' { $char.Char = '(Space)' }
             }
         }

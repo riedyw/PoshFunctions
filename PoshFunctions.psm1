@@ -140,6 +140,7 @@ class PFDateFormat {
     [double] $Unix
     [int64] $FileTime
     [string] $ICSDateTime
+    [string] $ISO8601
     [double] $Excel
 
     # add parameterless default constructor
@@ -149,6 +150,7 @@ class PFDateFormat {
         $this.Unix = $(ConvertFrom-Datetime -Date $this.Date -Unix -Verbose:$false)
         $this.FileTime = $(ConvertFrom-Datetime -Date $this.Date -FileTime -Verbose:$false)
         $this.ICSDateTime = $(ConvertFrom-Datetime -Date $this.Date -ICSDateTime -Verbose:$false)
+        $this.ISO8601 = $(ConvertFrom-Datetime -Date $this.Date -ISO8601 -Verbose:$false)
         $this.Excel = $(ConvertFrom-Datetime -Date $this.Date -Excel -Verbose:$false)
     }
 
@@ -159,6 +161,7 @@ class PFDateFormat {
         $this.Unix = $(ConvertFrom-Datetime -Date $Date -Unix -Verbose:$false)
         $this.FileTime = $(ConvertFrom-Datetime -Date $Date -FileTime -Verbose:$false)
         $this.ICSDateTime = $(ConvertFrom-Datetime -Date $Date -ICSDateTime -Verbose:$false)
+        $this.ISO8601 = $(ConvertFrom-Datetime -Date $Date -ISO8601 -Verbose:$false)
         $this.Excel = $(ConvertFrom-Datetime -Date $Date -Excel -Verbose:$false)
     }
 }

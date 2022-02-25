@@ -32,7 +32,7 @@ function Convert-Int32ToUint32 {
     #endregion Parameter
 
     begin {
-        Write-Verbose -Message "Starting $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
     process {
@@ -56,6 +56,6 @@ function Convert-Int32ToUint32 {
     }
 
     end {
-        Write-Verbose -Message "Ending $($MyInvocation.Mycommand)"
+        Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }

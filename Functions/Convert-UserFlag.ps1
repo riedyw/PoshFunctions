@@ -77,7 +77,7 @@ function Convert-UserFlag {
             $split = "`r`n"
         }
         # The contents of the here string to its closing token MUST, MUST, MUST be at column 0. Autoformatting and indentation will break the here string.
-        $HereString = @"
+        $HereString = @'
 UserFlagHex,UserFlagDec,Text
 0x0001,1,SCRIPT
 0x0002,2,ACCOUNTDISABLE
@@ -107,7 +107,7 @@ UserFlagHex,UserFlagDec,Text
 0x20000001,536870913,SAM_NON_SECURITY_ALIAS_OBJECT
 0x30000000,805306368,SAM_NORMAL_USER_ACCOUNT
 0x30000001,805306369,SAM_MACHINE_ACCOUNT
-"@
+'@
 
         $ListAvailableArray = $HereString -split $split | ConvertFrom-Csv | Set-Type -TypeHash @{'UserFlagDec' = 'int'}
         # foreach ($item in $ListAvailableArray) {

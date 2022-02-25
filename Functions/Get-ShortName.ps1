@@ -1,5 +1,5 @@
 function Get-ShortName {
-<#
+    <#
 .SYNOPSIS
     To get the shortname 8.3 of a file or folder
 .DESCRIPTION
@@ -44,54 +44,96 @@ function Get-ShortName {
     [string[]]
 #>
 
-# todo - fix logic for LiteralPath and Path
-
     [CmdletBinding(ConfirmImpact = 'None')]
     param(
-        [Parameter(Mandatory, HelpMessage='Please enter the path to a file or folder', Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName)]
+        [Parameter(ParameterSetName = 'Path', Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName)]
         [string[]] $Path,
 
+        [Parameter(ParameterSetName = 'LiteralPath')]
+        [ValidateScript({
+                if ($_ -notmatch '[\?\*]') {
+                    $true
+                } else {
+                    throw 'Wildcard characters *, ? are not acceptable with -LiteralPath'
+                }
+            })]
+        [string[]] $LiteralPath,
+
+        [Parameter(ParameterSetName = 'Path')]
+        [Parameter(ParameterSetName = 'LiteralPath')]
         [switch] $IncludeInput
     )
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+        Write-Verbose -Message "ParameterSetName [$($PsCmdlet.ParameterSetName)]"
         $FileSystemObject = New-Object -ComObject Scripting.FileSystemObject
     }
 
     process {
-        foreach ($curPath in $Path) {
-            if (Test-Path -Path $curPath) {
-                $ResolveFile = Resolve-Path -Path $curPath
-                if ($ResolveFile.count -gt 1) {
-                    Write-Error -Message "ERROR: File specification [$curPath] resolves to more than 1 file."
-                } else {
-                    $Item = Get-Item -Path $ResolveFile
-                    if ($Item.PSProvider.ToString() -eq 'Microsoft.PowerShell.Core\FileSystem') {
-                        Write-Verbose -Message "Using item [$ResolveFile]"
-                        if ($Item.PSIsContainer) {
-                            $ItemType = 'Folder'
-                            $ReturnVal = $FileSystemObject.GetFolder($ResolveFile).ShortPath
+        switch ($PsCmdlet.ParameterSetName) {
+            'LiteralPath' {
+                foreach ($curPath in $LiteralPath) {
+                    if (Test-Path -LiteralPath $curPath) {
+                        $Item = Get-Item -LiteralPath $curPath
+                        Write-Verbose -Message $Item.PSProvider
+                        if ($Item.PSProvider.ToString() -eq 'Microsoft.PowerShell.Core\FileSystem') {
+                            if ($Item.PSIsContainer) {
+                                $ItemType = 'Folder'
+                                $ReturnVal = $FileSystemObject.GetFolder($curPath).ShortPath
+                            } else {
+                                $ItemType = 'File'
+                                $ReturnVal = $FileSystemObject.GetFile($curPath).ShortPath
+                            }
+                            if ($IncludeInput) {
+                                New-Object -TypeName psobject -Property ([ordered] @{
+                                        LongName  = $curPath
+                                        ShortName = $ReturnVal
+                                        ItemType  = $ItemType
+                                    })
+                            } else {
+                                Write-Output -InputObject $ReturnVal
+                            }
                         } else {
-                            $ItemType = 'File'
-                            $ReturnVal = $FileSystemObject.GetFile($ResolveFile).ShortPath
-                        }
-                        if ($IncludeInput) {
-                            New-Object -TypeName psobject -Property ([ordered] @{
-                                    LongName  = $ResolveFile
-                                    ShortName = $ReturnVal
-                                    ItemType  = $ItemType
-                                })
-                        } else {
-                            Write-Output -InputObject $ReturnVal
+                            Write-Error -Message 'Only works against filesystem objects'
                         }
                     } else {
-                        Write-Error -Message 'Only works against filesystem objects'
+                        Write-Error -Message "ERROR: File [$curPath] does not exist"
                     }
-
                 }
-            } else {
-                Write-Error -Message "ERROR: File [$curPath] does not exist"
+            }
+            'Path' {
+                foreach ($curPath in $Path) {
+                    if (Test-Path -Path $curPath) {
+                        $ResolveFile = Resolve-Path -Path $curPath
+                        foreach ($curResolve in $ResolveFile) {
+                            $Item = Get-Item -LiteralPath $curResolve.Path
+                            if ($Item.PSProvider.ToString() -eq 'Microsoft.PowerShell.Core\FileSystem') {
+                                Write-Verbose -Message "Using item [$curResolve]"
+                                if ($Item.PSIsContainer) {
+                                    $ItemType = 'Folder'
+                                    $ReturnVal = $FileSystemObject.GetFolder($curResolve).ShortPath
+                                } else {
+                                    $ItemType = 'File'
+                                    $ReturnVal = $FileSystemObject.GetFile($curResolve).ShortPath
+                                }
+                                if ($IncludeInput) {
+                                    New-Object -TypeName psobject -Property ([ordered] @{
+                                            LongName  = $curResolve
+                                            ShortName = $ReturnVal
+                                            ItemType  = $ItemType
+                                        })
+                                } else {
+                                    Write-Output -InputObject $ReturnVal
+                                }
+                            } else {
+                                Write-Error -Message 'Only works against filesystem objects'
+                            }
+                        }
+                    } else {
+                        Write-Error -Message "ERROR: File [$curPath] does not exist"
+                    }
+                }
             }
         }
     }

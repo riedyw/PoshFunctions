@@ -24,7 +24,7 @@ function Convert-ObjectToHashtable {
     param
     (
         [Parameter(Mandatory,ValueFromPipeline)]
-        $object,
+        [psobject] $object,
 
         [Switch]
         $ExcludeEmpty

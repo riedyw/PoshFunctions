@@ -1,21 +1,50 @@
 function Convert-Int64ToText {
-# todo - need cmdlet help
+    <#
+.SYNOPSIS
+    Convert integer to English text
+.DESCRIPTION
+    Convert integer to English text
+.PARAMETER Number
+    An [int64] value or an array of [int64]
+.PARAMETER IncludeInput
+    Switch to enable the original datetime to appear in the output. Aliased to 'IncludeOriginal'
+.EXAMPLE
+    Convert-Int64ToText -Number 13987
+
+    Thirteen Thousand Nine Hundred Eighty Seven
+.EXAMPLE
+    Convert-Int64ToText -Number 1999, 2001, 2022 -IncludeInput
+
+    Number Result
+    ------ ------
+      1999 One Thousand Nine Hundred Ninety Nine
+      2001 Two Thousand One
+      2022 Two Thousand Twenty Two
+.EXAMPLE
+    723, 4560 | Convert-Int64ToText -IncludeInput
+
+    Number Result
+    ------ ------
+       723 Seven Hundred Twenty Three
+      4560 Four Thousand Five Hundred Sixty
+#>
     [cmdletbinding()]
     [alias('Convert-IntToText')]
     param (
-        [int64] $Number,
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
+        [int64[]] $Number,
 
         [switch] $IncludeInput
     )
 
     begin {
-            Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
-    Write-Verbose -Message "Number [$Number] IncludeInput [$IncludeInput]"
+        Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+        Write-Verbose -Message "Number [$Number] IncludeInput [$IncludeInput]"
         if (($Number -lt -999999999999) -or ($Number -gt 999999999999)) {
-            write-error -Message '-Number too large or too small. The absolute value of the number must be less than or equal to 999,999,999,999'
+            Write-Error -Message '-Number too large or too small. The absolute value of the number must be less than or equal to 999,999,999,999'
             break
         }
-$class = @'
+        $class = @'
 public class PFNum2Word
     {
     public static string NumberToText( long n)
@@ -53,27 +82,24 @@ public class PFNum2Word
 }
 '@
 
-Add-Type -TypeDefinition $class
+        Add-Type -TypeDefinition $class
     }
 
     process {
-        $Result = ([PFNum2Word]::NumberToText($Number))
-        if ($IncludeInput) {
-            New-Object -TypeName pscustomobject -Property ([ordered] @{
-                Number = $Number
-                Result = $Result
-            })
-        } else {
-            Write-Output -InputObject $Result
+        foreach ($curNumber in $Number) {
+            $Result = ([PFNum2Word]::NumberToText($curNumber))
+            if ($IncludeInput) {
+                New-Object -TypeName pscustomobject -Property ([ordered] @{
+                        Number = $curNumber
+                        Result = $Result
+                    })
+            } else {
+                Write-Output -InputObject $Result
+            }
         }
-
     }
 
     end {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
-
-
-
-

@@ -49,8 +49,6 @@ function Get-ComputerUptime {
     Put in error checking around Get-CimInstance to handle Kerberos errors.
 #>
 
-# todo - track down warning message on encoding, update help
-
     #region Parameter
     [CmdletBinding(ConfirmImpact = 'Low')]
     [alias('Get-LastReboot')]
