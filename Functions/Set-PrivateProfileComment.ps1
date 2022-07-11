@@ -46,6 +46,9 @@ function Set-PrivateProfileComment {
 
     Error trapping on specific conditions.
 #>
+
+    # todo Change += to System.Collections.Arraylist
+
     #region parameter
     [CmdletBinding(ConfirmImpact='Low')]
     [OutputType('null')]

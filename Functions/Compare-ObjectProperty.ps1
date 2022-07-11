@@ -43,13 +43,14 @@ function Compare-ObjectProperty {
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+        $objprops = New-Object -TypeName System.Collections.ArrayList
     }
 
     process {
-        $objprops = $ReferenceObject | Get-Member -MemberType Property, NoteProperty | ForEach-Object Name
-        $objprops += $DifferenceObject | Get-Member -MemberType Property, NoteProperty | ForEach-Object Name
+        $null = $objprops.AddRange(($ReferenceObject | Get-Member -MemberType Property, NoteProperty).Name)
+        $null = $objprops.AddRange(($DifferenceObject | Get-Member -MemberType Property, NoteProperty).Name)
         $objprops = $objprops | Sort-Object | Select-Object -Unique
-        $diffs = @()
+        $diffs = New-Object -TypeName System.Collections.ArrayList
         foreach ($objprop in $objprops) {
             $diff = Compare-Object -ReferenceObject $ReferenceObject -DifferenceObject $DifferenceObject -Property $objprop
             if ($diff) {
@@ -58,10 +59,12 @@ function Compare-ObjectProperty {
                     RefValue     = ($diff | Where-Object { $_.SideIndicator -eq '<=' } | ForEach-Object $($objprop))
                     DiffValue    = ($diff | Where-Object { $_.SideIndicator -eq '=>' } | ForEach-Object $($objprop))
                 }
-                $diffs += New-Object -TypeName PSObject -Property $diffprops
+                $null = $diffs.Add((New-Object -TypeName PSObject -Property $diffprops))
             }
         }
-        if ($diffs) { return ($diffs | Select-Object -Property PropertyName, RefValue, DiffValue) }
+        if ($diffs) {
+            $diffs | Select-Object -Property PropertyName, RefValue, DiffValue
+        }
     }
 
     end {

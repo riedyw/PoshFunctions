@@ -50,6 +50,8 @@ function Get-Enum {
     RetryCancel          5 101
 #>
 
+    # todo Change += to System.Collections.Arraylist
+
     [CmdletBinding(ConfirmImpact='None')]
     [OutputType('psobject')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingInvokeExpression','')]

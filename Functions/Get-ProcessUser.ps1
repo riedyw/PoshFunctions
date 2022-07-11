@@ -19,6 +19,8 @@ function Get-ProcessUser {
     Put in error checking around Invoke-Command to handle Kerberos errors.
 #>
 
+    # todo - add Credential to invoke-command
+
     [CmdletBinding()]
     [OutputType('psobject')]
     param (

@@ -81,6 +81,8 @@ function Merge-Object ([String[]]$Property = @()) {
     * formatting changes
 #>
 
+    # todo Change += to System.Collections.Arraylist
+
     [cmdletbinding()]
     [alias('Union-Object')]
 

@@ -27,6 +27,8 @@ function Get-TypeAccelerator {
     uint32 System.UInt32
 #>
 
+    # todo Change += to System.Collections.Arraylist
+
     [CmdletBinding(ConfirmImpact = 'None')]
     [alias('Show-TypeAccelerator')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]

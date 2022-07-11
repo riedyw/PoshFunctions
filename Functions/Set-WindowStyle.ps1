@@ -45,7 +45,7 @@ function Set-WindowStyle {
 public static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow);
 '@ -name 'Win32ShowWindowAsync' -namespace Win32Functions -passThru
 
-        $Win32ShowWindowAsync::ShowWindowAsync($MainWindowHandle, $WindowStates[$Style]) | Out-Null
+        $null = $Win32ShowWindowAsync::ShowWindowAsync($MainWindowHandle, $WindowStates[$Style])
     }
 
     end {

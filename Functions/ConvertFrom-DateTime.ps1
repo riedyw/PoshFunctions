@@ -189,9 +189,9 @@ function ConvertFrom-DateTime {
                 }
                 'Excel' {
                     if ($UTC) {
-                        $ReturnVal = ( (ConvertTo-UTC -Date (Get-Date -Date $D)) - (Get-Date -Date 1/1/1900) ).TotalDays
+                        $ReturnVal = ([double] ( (ConvertTo-UTC -Date (Get-Date -Date $D)) - (Get-Date -Date 1/1/1900) ).TotalDays)
                     } else {
-                        $ReturnVal = ((Get-Date -Date $D) - (Get-Date -Date 1/1/1900)).TotalDays
+                        $ReturnVal = ([double] ((Get-Date -Date $D) - (Get-Date -Date 1/1/1900)).TotalDays)
                     }
                 }
                 'Format' {

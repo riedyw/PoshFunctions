@@ -4,7 +4,7 @@
     RootModule        = 'PoshFunctions.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '2.2.8'
+    ModuleVersion     = '2.2.9'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -22,10 +22,10 @@
     Copyright         = '(c) 2022 Bill Riedy. All rights reserved.'
 
     # Description of the functionality provided by this module
-    Description       = 'A curated collection of over 210 PowerShell functions. Many functions written by me. Others are attributed wherever possible.'
+    Description       = 'A curated collection of over 215 PowerShell functions. Many functions written by me. Others are attributed wherever possible.'
 
     # Minimum version of the Windows PowerShell engine required by this module
-    PowerShellVersion = '3.0'
+    PowerShellVersion = '5.0'
 
     # Name of the Windows PowerShell host required by this module
     # PowerShellHostName = ''
@@ -68,12 +68,12 @@
         'Convert-Int32ToUint32', 'Convert-Int64ToText', 'Convert-ObjectToHashtable',
         'Convert-RGBToHex', 'Convert-SecureStringToString', 'Convert-UserFlag',
         'ConvertFrom-Base64', 'ConvertFrom-Binary', 'ConvertFrom-DateTime',
-        'ConvertFrom-FsRight', 'ConvertFrom-Hex', 'ConvertFrom-HtmlEncode',
-        'ConvertFrom-RomanNumeral', 'ConvertFrom-UrlEncode', 'ConvertFrom-UTC',
-        'ConvertFrom-Xml', 'ConvertTo-Base64', 'ConvertTo-Binary',
+        'ConvertFrom-FsRight', 'ConvertFrom-Hex', 'ConvertFrom-HexString',
+        'ConvertFrom-HtmlEncode', 'ConvertFrom-RomanNumeral', 'ConvertFrom-UrlEncode',
+        'ConvertFrom-UTC', 'ConvertFrom-Xml', 'ConvertTo-Base64', 'ConvertTo-Binary',
         'ConvertTo-BinaryIPv4', 'ConvertTo-Bool', 'ConvertTo-DateTime',
         'ConvertTo-DecimalIPv4', 'ConvertTo-DottedDecimalIPv4', 'ConvertTo-Hex',
-        'ConvertTo-HtmlEncode', 'ConvertTo-OrderedDictionary',
+        'ConvertTo-HexString', 'ConvertTo-HtmlEncode', 'ConvertTo-OrderedDictionary',
         'ConvertTo-RomanNumeral', 'ConvertTo-UncPath', 'ConvertTo-UrlEncode',
         'ConvertTo-UTC', 'Copy-Object', 'Eexit', 'Expand-IPv6', 'Expand-String',
         'Expand-Tab', 'Export-CSVSortedColumn', 'Export-FontSample', 'FileSizeAbove',
@@ -83,11 +83,11 @@
         'Get-BashPath', 'Get-BinaryType', 'Get-CeasarCipher', 'Get-ComputerSite',
         'Get-ComputerUptime', 'Get-DiceRoll', 'Get-DisplayBrightness',
         'Get-DNSHostEntryAsync', 'Get-DriveStat', 'Get-DuplicateFileName', 'Get-Enum',
-        'Get-ExecutableForFile', 'Get-FileEncoding', 'Get-FileName',
-        'Get-FileWithLeadingSpace', 'Get-FolderName', 'Get-Font', 'Get-Fortune',
-        'Get-Ftype', 'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-LastDayInMonth',
-        'Get-List', 'Get-LongName', 'Get-MachineType', 'Get-MacVendor',
-        'Get-Magic8Ball', 'Get-Md5Sum', 'Get-MyLocalLogonTime',
+        'Get-ErrorInfo', 'Get-ExecutableForFile', 'Get-Factorial', 'Get-FileEncoding',
+        'Get-FileName', 'Get-FileWithLeadingSpace', 'Get-FolderName', 'Get-Font',
+        'Get-Fortune', 'Get-Ftype', 'Get-InvalidFileCharacter', 'Get-IpRange',
+        'Get-LastDayInMonth', 'Get-List', 'Get-LongName', 'Get-MachineType',
+        'Get-MacVendor', 'Get-Magic8Ball', 'Get-Md5Sum', 'Get-MyLocalLogonTime',
         'Get-NetworkCredential', 'Get-NTFSPermission', 'Get-NtpDate', 'Get-Power',
         'Get-PrintableAscii', 'Get-PrivateProfileComment', 'Get-PrivateProfileSection',
         'Get-PrivateProfileSectionNames', 'Get-PrivateProfileString',
@@ -115,7 +115,8 @@
         'Show-Calendar', 'Show-Color', 'Show-ColorsWithBackground', 'Show-DaysOfWeek',
         'Show-FileAttribute', 'Show-FsRight', 'Show-Month', 'Show-NamedColor',
         'Show-Object', 'Show-Progress', 'Show-ShortDaysOfWeek', 'Show-ShortMonth',
-        'Show-SubnetMaskIPv4', 'Show-Timezone', 'Split-Line', 'Start-ADReplication',
+        'Show-SubnetMaskIPv4', 'Show-Timezone', 'Split-CanonicalName',
+        'Split-DistinguishedName', 'Split-Line', 'Start-ADReplication',
         'Start-RecordSession', 'Stop-RecordSession', 'Switch-Mute',
         'Test-ConnectionAsync', 'Test-IsAdmin', 'Test-IsCapsLock', 'Test-IsDate',
         'Test-IsFileLocked', 'Test-IsHexString', 'Test-IsLocalIPv4', 'Test-IsNull',
@@ -184,6 +185,68 @@
             # ReleaseNotes of this module
             ReleaseNotes = @'
 For full release notes see .\Resources\ReleaseNotes.txt
+### 2.2.9
+* added Pester tests for the majority of functions
+* added ConvertFrom-HexString - converting a hex string back to plain text: '41' -> 'A'
+* added ConvertTo-HexString = converting plain text to a hex string: 'A' -> '41'
+* added Get-ErrorInfo - explain please
+* added Get-Factorial - calculates the factorial of a number 1-20. Higher than 20 results in overflow of [int64] datatype
+* added Split-CanonicalName - splits an AD canonical name into either -Parent or -Leaf
+* added Split-DistinguishedName - splits an AD distinguished name into either -Parent or -Leaf
+* updated Compare-ObjectProperty - replaced += with [System.Collections.Arraylist]
+* updated Convert-Int32ToUint32 - replaced += with [System.Collections.Arraylist]
+* updated Convert-Int64ToText - fixed trailing space with .Trim()
+* updated ConvertFrom-FsRight - removed $MatchFound | Out-Null, replaced += with [System.Collections.Arraylist], fixed logic error with Combo rights and IncludeInput
+* updated Copy-Object - replaced += with [System.Collections.Arraylist]
+* updated Expand-IPv6 - replaced += with [System.Collections.Arraylist]
+* updated Export-FontSample - replaced += with [System.Collections.Arraylist]
+* updated Format-RandomCase - replaced += with [System.Collections.Arraylist]
+* updated Format-WrapText - replaced += with [System.Collections.Arraylist]
+* updated Get-CeasarCipher - replaced += with [System.Collections.Arraylist]
+* updated Get-ComputerUptime - added Credential
+* updated Get-DisplayBrightness - added Credential, fixed error if not running on laptop monitor
+* updated Get-Enum - replaced += with [System.Collections.Arraylist]
+* updated Get-Font - minor logic fix in Where-Object statement that previously returned no results
+* updated Get-IpRange - replaced += with [System.Collections.Arraylist]
+* updated Get-MachineType - added Credential
+* updated Get-MacVendor - replaced Invoke-RestMethod with curl.exe as it was no longer returning correct results
+* updated Get-NTFSPermission - replaced += with [System.Collections.Arraylist]
+* updated Get-NtpDate - replace piping to Out-Null to $null =
+* updated Get-PSWho - added Credential
+* updated Get-PrintableAscii - updated logic to replace ' ' with '(Space)'
+* updated Get-PrivateProfileString - replace piping to Out-Null to $null =
+* updated Get-ProcessUser - added Credential
+* updated Get-ScheduledTaskUser - replaced += with [System.Collections.Arraylist], added Credential
+* updated Get-ServiceUser - replaced += with [System.Collections.Arraylist], added Credential
+* updated Get-SqlDatabase - replaced += with [System.Collections.Arraylist]
+* updated Get-SqlStoredProcedure - replaced += with [System.Collections.Arraylist]
+* updated Get-Type - replaced += with [System.Collections.Arraylist]
+* updated Get-TypeAccelerator - replaced += with [System.Collections.Arraylist]
+* updated Invoke-Speak - replaced += with [System.Collections.Arraylist]
+* updated Measure-Char - replaced += with [System.Collections.Arraylist]
+* updated Merge-Object - replaced += with [System.Collections.Arraylist]
+* updated New-Shortcut - replace piping to Out-Null to $null =
+* updated Optimize-SQLIndexFragmentation - replace piping to Out-Null to $null =
+* updated Optimize-SQLStoredProcedure - replace piping to Out-Null to $null =
+* updated Set-Display - added Credential
+* updated Set-PrivateProfileComment - replaced += with [System.Collections.Arraylist]
+* updated Set-WindowStyle - replace piping to Out-Null to $null =
+* updated Show-Calendar - replaced += with [System.Collections.Arraylist]
+* updated Show-FsRight - replaced += with [System.Collections.Arraylist]
+* updated Show-NamedColor - replaced += with [System.Collections.Arraylist]
+* updated Show-Object - replaced += with [System.Collections.Arraylist]
+* updated Show-Progress - replaced += with [System.Collections.Arraylist]
+* updated Start-ADReplication - added Credential
+* updated Start-RecordSession - replace piping to Out-Null to $null =
+* updated Test-IsDate - removed [DateTime] $d | Out-Null
+* updated Test-IsNumeric - replaced piping to Out-Null with saving to a variable
+* updated Test-MultipleBool - replaced += with [System.Collections.Arraylist]
+* updated Test-Password - added Credential
+* updated Write-StringArray - replaced += with [System.Collections.Arraylist]
+* updated Write-StringHash - changed type of -Hash and error check for hashtable or arraylist
+* updated Write-StringHash - replaced += with [System.Collections.Arraylist]
+* updated Write-TextMenu - replaced += with [System.Collections.Arraylist]
+
 ### 2.2.8
 * created .\Resources folder and moved files from the root of the modules excluding: PoshFunctions.psd1, PoshFunctions.psm1, ReadMe.md
 * added additional word list file that contains over 370,000 entries for more English words
@@ -231,47 +294,6 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * updated Set-SpeakerVolume - added -Adjust parameter so you can adjust volume up or down
 * updated Start-AdReplication - changed hard coded -ThrottleLimit from 8 to [environment]::ProcessorCount so that it determines number of processors on the fly
 * updated Test-PasswordComplexity - removed dependency on Get-PrintableAscii
-
-### 2.2.7
-* added module icon file .\PoshFunctions.ico for custom WinForms forms created
-* moved function aliases to within the function definition so all the code is together
-* added ConvertFrom-HtmlEncode - helps with decoding strings that contain HTML special characters. For instance, 'this &amp; that' becomes 'this & that'
-* added ConvertTo-HtmlEncode - helps with encoding strings that contain HTML special characters. For instance, 'this & that' becomes 'this &amp; that'
-* added Export-FontSample - creates HTML output of sample text formatted with all of the installed fonts on the system
-* added Get-CeasarCipher - a more robust version of Convert-ROT13 where you can specify the key or number of positions to shift. Aliased to 'Convert-ROT13' for backward compatibility.
-* added Get-DisplayBrightness - to determine current display brightness
-* added Get-DuplicateFileName - creates a quick list of duplicate file names within a given folder
-* added Get-List - function to return an array given an indeterminate number of command line parameters
-* added Get-String - function to return a string given an indeterminate number of command line parameters
-* added New-ColorPicker - presents dialog box where user can select a color.
-* added New-DatePicker - presents dialog box where user can select a date, can optionally include the time
-* added New-FontPicker - dialog that allows user to select a font from a dialog box
-* added Split-Line - more reliably split a string into its constituent lines. Returns an array.
-* added Test-MultipleBool - to do logical AND/OR across an array of boolean values
-* added Test-PasswordComplexity - to verify if a string is of proper length and matches all character types
-* added Write-StringHash - to take a given hashtable and write the code to create it
-* removed Convert-ROT13 - see more robust Get-CeasarCipher
-* renamed Set-Speaker to Set-SpeakerVolume to be better named. Set an alias to Set-Speaker for backward compatibility
-* renamed Union-Object to Merge-Object to get around Invoke-ScriptAnalyzer error
-* updated ConvertFrom-Binary - changed result to [uint64[]] to be able to convert larger numbers.
-* updated ConvertFrom-Hex - changed result to [uint64[]] to be able to convert larger numbers.
-* updated ConvertTo-Binary - changed -Number to [uint64[]] to be able to convert larger numbers. added -MinimumWidth parameter
-* updated ConvertTo-Hex - changed -Number to [uint64[]] to be able to convert larger numbers. added -MinimumWidth parameter, and -Prefix parameter
-* updated Get-ComputerUptime - to better handle Kerberos errors sometimes encountered when connecting to systems
-* updated Get-DriveStat - to better handle Kerberos errors sometimes encountered when connecting to systems
-* updated Get-LastDayInMonth - added -Date parameter and parameter set names
-* updated Get-MachineType - to better handle Kerberos errors sometimes encountered when connecting to systems
-* updated Get-ProcessUser - to better handle Kerberos errors sometimes encountered when connecting to systems
-* updated Get-ServiceUser - to better handle Kerberos errors sometimes encountered when connecting to systems
-* updated Merge-Object - aliased to 'Union-Object' for backward compatibility
-* updated New-InputBoxSecureString - added module custom icon
-* updated New-MessageBox - renamed from New-Popup (aliased for backward compatibility). added functionality for default button
-* updated New-RandomPassword - added -TitleCase, -RandomCase, -Web. Changed default parameter set name to ReadableTitleCase
-* updated Optimize-SqlIndexFragmentation - to handle error condition of index not having page level locking on. If that error is encountered it enables lock, optimizes index, then disables lock
-* updated Set-Display - added -Brightness to set the brightness of the display
-* updated Start-ADReplication - added -ThrottleLimit so as to not over saturate the local computer
-* updated Test-ConnectionAsync - added -Full switch and made default output brief, slight formatting change in output
-* updated Write-StringArray - added -ExcludeDollarSign to make it easier to create input for *.psd1 files
 '@
 
             # Flag to indicate whether the module requires explicit user acceptance for install/update/save

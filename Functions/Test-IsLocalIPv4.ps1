@@ -72,8 +72,7 @@ function Test-IsLocalIPv4 {
             Write-Verbose -Message "Target = [$($curTarget.IPAddressToString)] SubnetMask = [$($SubnetMask.IPAddressToString)] TargetNetwork = [$(([ipaddress] $TargetResult).IPAddressToString)]"
             if ($SourceResult -eq $TargetResult) {
                 $Local = $true
-            }
-            else {
+            } else {
                 $Local = $false
             }
             if ($IncludeInput) {
@@ -83,9 +82,8 @@ function Test-IsLocalIPv4 {
                         SubnetMask = $SubnetMask.IPAddressToString
                         Local      = $Local
                     })
-            }
-            else {
-                Write-Output -Inputobject $Local
+            } else {
+                Write-Output -InputObject $Local
             }
         }
 

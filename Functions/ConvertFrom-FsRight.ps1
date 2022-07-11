@@ -27,12 +27,15 @@ function ConvertFrom-FsRight {
     A [string] of all the applicable rights in readable form
 #>
 
+    # todo Change += to System.Collections.Arraylist
+
     #region Parameters
     [CmdletBinding()]
     [OutputType('string')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '')]
     param(
+        [Parameter(ValueFromPipeline)]
         [uint64[]] $Rights,
 
         [switch] $IncludeInput
@@ -42,50 +45,40 @@ function ConvertFrom-FsRight {
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         $fsPermission = Show-FsRight -Verbose:$false
+        $fsPermissionCombo  = $fsPermission | Where-Object { $_.Type -eq 'Combo' }
+        $fsPermissionSingle = $fsPermission | Where-Object { $_.Type -ne 'Combo' }
     }
 
     process {
         foreach ($curRights in $Rights) {
-            $temp = @()
-            $MatchFound = $false
-            $fsPermission | Where-Object { $_.Type -eq 'Combo' } | ForEach-Object {
-                #write-verbose "Name = [$($_.name)], Value = [$($_.Dec)]"
-                if ($curRights -eq $_.Dec) {
-                    $temp += $_.Name
-                    $MatchFound = $true
-                    Write-Verbose -Message "Temp now equal to [$($temp -join ',')]"
-                    Write-Output -InputObject ( $_.Name )
-                    #break
+            $temp = New-Object -TypeName System.Collections.Arraylist
+            if ($curRights -in $fsPermissionCombo.Dec) {
+                $null = $temp.Add(($fsPermissionCombo | Where-Object {$_.Dec -eq $curRights}).Name)
+                if ($IncludeInput) {
+                    New-Object -TypeName psobject -Property ([ordered] @{
+                            Right       = $curRights
+                            RightHex    = ('0x{0:x6}' -f $curRights)
+                            RightString = ( $temp -join ',' )
+                        })
+                } else {
+                    Write-Output -InputObject ( $temp -join ',' )
                 }
-            }
-            if (-not $MatchFound ) {
-                # Simple permissions hit a match, output the variable and return
-                #    if ($temp) {
-                #        write-output -inputobject ( $temp -join ',' )
-                #    }
-                $fsPermission | Where-Object { $_.Type -eq 'Single' } | ForEach-Object {
-                    #write-verbose "Name = [$($_.name)], Value = [$($_.Dec)]"
+            } else {
+                $fsPermissionSingle | ForEach-Object {
                     if ($curRights -band $_.Dec) {
-                        $temp += $_.Name
+                        $null = $temp.Add($_.Name)
                         $MatchFound = $true
                         Write-Verbose -Message "Temp now equal to [$($temp -join ',')]"
                     }
                 }
-                $MatchFound | Out-Null
-                # Simple permissions hit a match, output the variable and return
-                if ( $MatchFound ) {
-                    if ($IncludeInput) {
-                        New-Object -TypeName psobject -Property ([ordered] @{
-                                Right       = $curRights
-                                RightHex    = ('0x{0:x6}' -f $curRights)
-                                RightString = ( $temp -join ',' )
-                            })
-                    } else {
-                        Write-Output -InputObject ( $temp -join ',' )
-                    }
-
+                if ($IncludeInput) {
+                    New-Object -TypeName psobject -Property ([ordered] @{
+                            Right       = $curRights
+                            RightHex    = ('0x{0:x6}' -f $curRights)
+                            RightString = ( $temp -join ',' )
+                        })
                 } else {
-                    Write-Output -InputObject $null
+                    Write-Output -InputObject ( $temp -join ',' )
                 }
             }
         }

@@ -71,11 +71,7 @@ function Convert-UserFlag {
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
-        if ($psversiontable.psversion.major -ge 6) {
-            $split = "`n"
-        } else {
-            $split = "`r`n"
-        }
+        $Split = '\r?\n'
         # The contents of the here string to its closing token MUST, MUST, MUST be at column 0. Autoformatting and indentation will break the here string.
         $HereString = @'
 UserFlagHex,UserFlagDec,Text
@@ -147,7 +143,7 @@ UserFlagHex,UserFlagDec,Text
                 [void] $List.Remove('SAM_NON_SECURITY_GROUP_OBJECT')
                 [void] $List.Remove('SAM_NORMAL_USER_ACCOUNT')
             }
-            $ReturnVal = $List -join ', '
+            $ReturnVal = $List -join ','
             if ($IncludeInput) {
                 New-Object -TypeName psobject -Property ([ordered] @{
                     UserFlagHex = ('0x{0:x}' -f $curFlag)

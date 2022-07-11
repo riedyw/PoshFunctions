@@ -20,6 +20,8 @@ function Get-SqlDatabase {
         Name
 #>
 
+    # todo Change += to System.Collections.Arraylist
+
     [CmdletBinding()]
     [OutputType('psobject')]
     param (

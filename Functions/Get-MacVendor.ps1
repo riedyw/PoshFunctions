@@ -68,7 +68,8 @@ function Get-MacVendor {
             Write-Progress -Activity "Resoving MacAddress : $Mac" -Status "$CurrentMac of $($MacAddress.Count)" -PercentComplete (($CurrentMac / $MacAddress.Count) * 100)
             try {
                 Write-Verbose -Message 'Sending Request to https://api.macvendors.com/'
-                Invoke-RestMethod -Method Get -Uri https://api.macvendors.com/$Mac -ErrorAction SilentlyContinue | ForEach-Object {
+                # originally Invoke-RestMethod -Method Get -Uri https://api.macvendors.com/$Mac -ErrorAction SilentlyContinue 
+                curl.exe -s https://api.macvendors.com/$Mac | ForEach-Object {
                     New-Object -Type pscustomobject -prop ([ordered] @{
                         MacAddress = $Mac
                         Vendor     = $_

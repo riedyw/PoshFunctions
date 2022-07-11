@@ -78,11 +78,11 @@ function Expand-IPV6 {
                 $cleaned = $curIPv6.Substring(0, $loc) + (':' * (7 - $count)) + $curIPv6.Substring($loc)
             }
             # Parse current values in fill in new IP with hex numbers padded to 4 digits
-            $result = @()
+            $result = New-Object -TypeName System.Collections.Arraylist
             foreach ($splt in $cleaned -split ':') {
                 $val = 0
                 $r = [int]::TryParse($splt, [System.Globalization.NumberStyles]::HexNumber, [System.Globalization.CultureInfo]::InvariantCulture, [ref]$val)
-                $result += ('{0:X4}' -f $val)
+                $null = $result.Add(('{0:X4}' -f $val))
             }
             $result = $result -join ':'
             if ($IncludeInput) {

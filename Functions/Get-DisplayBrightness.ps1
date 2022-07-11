@@ -25,6 +25,10 @@ function Get-DisplayBrightness {
     Inspired by: https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/check-monitor-brightness
 #>
 
+    # todo - add Credential
+
+    # bug fix error if not laptop monitor
+
     #region parameter
     [CmdletBinding()]
     [OutputType('int')]

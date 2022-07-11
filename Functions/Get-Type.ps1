@@ -118,6 +118,8 @@
     # changed what is output by the function
 #>
 
+    # todo Change += to System.Collections.Arraylist
+
     [CmdletBinding(ConfirmImpact = 'None')]
     param(
         [string] $Module = '*',

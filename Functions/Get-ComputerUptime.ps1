@@ -49,6 +49,8 @@ function Get-ComputerUptime {
     Put in error checking around Get-CimInstance to handle Kerberos errors.
 #>
 
+    # todo - add Credential to New-CimSession
+
     #region Parameter
     [CmdletBinding(ConfirmImpact = 'Low')]
     [alias('Get-LastReboot')]
@@ -60,7 +62,9 @@ function Get-ComputerUptime {
         [Alias('ComputerName', 'CN', 'Server')]
         [string[]] $Name = $env:COMPUTERNAME,
 
-        [switch] $IncludeComputerName
+        [switch] $IncludeComputerName,
+
+        [System.Management.Automation.PSCredential] $Credential
     )
     #endregion Parameter
 
@@ -77,10 +81,15 @@ function Get-ComputerUptime {
         foreach ($CurName in $Name) {
             Write-Verbose -Message "Processing [$CurName]"
             try {
-                $LastBootUpTime = (Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName $CurName -ErrorAction Stop -Verbose:$false).LastBootUpTime
+                if ($Credential) {
+                    $CimSession = New-CimSession -ComputerName $CurName -Credential $Credential
+                    $LastBootUpTime = (Get-CimInstance -ClassName Win32_OperatingSystem -CimSession $CimSession -ErrorAction Stop -Verbose:$false).LastBootUpTime
+                } else {
+                    $LastBootUpTime = (Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName $CurName -ErrorAction Stop -Verbose:$false).LastBootUpTime
+                }
             } catch {
                 try {
-                   $CimSession = New-CimSession -ComputerName $CurName -SessionOption $CimOption
+                    $CimSession = New-CimSession -ComputerName $CurName -SessionOption $CimOption
                     $LastBootUpTime = (Get-CimInstance -ClassName Win32_OperatingSystem -CimSession $CimSession -ErrorAction Stop -Verbose:$false).LastBootUpTime
                     $CimSession.Close()
                     $CimSession.Dispose()

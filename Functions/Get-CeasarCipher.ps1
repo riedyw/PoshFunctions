@@ -36,7 +36,6 @@ function Get-CeasarCipher {
     Inspired by: https://titanwolf.org/Network/Articles/Article?AID=99197fe0-0b0e-4a9c-883e-49f4273a59ad#gsc.tab=0
 #>
 
-
     [CmdletBinding()]
     [alias('Convert-ROT13')]
 

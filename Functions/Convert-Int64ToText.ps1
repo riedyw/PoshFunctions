@@ -88,6 +88,7 @@ public class PFNum2Word
     process {
         foreach ($curNumber in $Number) {
             $Result = ([PFNum2Word]::NumberToText($curNumber))
+            $Result = $Result.Trim()
             if ($IncludeInput) {
                 New-Object -TypeName pscustomobject -Property ([ordered] @{
                         Number = $curNumber

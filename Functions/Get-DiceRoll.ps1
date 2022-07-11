@@ -63,6 +63,8 @@ function Get-DiceRoll {
     'psobject'
 #>
 
+    # todo Change += to System.Collections.Arraylist
+
     #region Parameter
     [CmdletBinding(ConfirmImpact = 'Low')]
     [OutputType('int')]

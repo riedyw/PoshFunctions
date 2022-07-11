@@ -66,6 +66,8 @@ function Get-PSWho {
     $Host
 #>
 
+    # todo - add Credential
+
     [CmdletBinding()]
     Param(
       [switch] $AsString

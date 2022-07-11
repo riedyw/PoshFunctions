@@ -28,6 +28,7 @@ function Format-RandomCase {
 [string[]]
 #>
 
+    # todo Change += to System.Collections.Arraylist
 
     [CmdletBinding()]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]

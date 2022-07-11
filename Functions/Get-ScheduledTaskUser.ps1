@@ -26,6 +26,9 @@ function Get-ScheduledTaskUser {
         'Users'
 #>
 
+    # todo Change += to System.Collections.Arraylist
+    # todo add credential
+
     [CmdletBinding()]
     [OutputType('psobject')]
     param (

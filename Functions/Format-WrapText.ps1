@@ -24,6 +24,8 @@ function Format-WrapText {
     Format-List
 #>
 
+    # todo Change += to System.Collections.Arraylist
+
     #region Parameter
     [CmdletBinding(ConfirmImpact = 'Low', DefaultParameterSetName = 'Width')]
     [alias('WrapText')]

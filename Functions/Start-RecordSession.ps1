@@ -36,9 +36,9 @@ function Start-RecordSession {
         $env:PSLOG = "$Logfile"
         # $global:Transcript = "$Logfile"
         if (-not (Test-Path -Path $Logfile)) {
-            New-Item -Path $Logfile -ItemType File | Out-Null
+            $null = New-Item -Path $Logfile -ItemType File
         }
-        Start-Transcript -Path "$Logfile" -Append -Force | Out-Null
+        $null = Start-Transcript -Path "$Logfile" -Append -Force
     }
 
     end {

@@ -136,7 +136,7 @@ function New-Shortcut {
         {
             try {
                 If (!(Test-Path -Path $Path.DirectoryName)) {
-                    mkdir -Path $Path.DirectoryName -ErrorAction Stop | Out-Null
+                    $null = mkdir -Path $Path.DirectoryName -ErrorAction Stop
                 }
             } catch {
                 Write-Error -Message "Unable to create [$($Path.DirectoryName)], shortcut cannot be created"

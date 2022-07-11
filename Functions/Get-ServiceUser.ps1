@@ -21,6 +21,9 @@ function Get-ServiceUser {
         'NT AUTHORITY\SYSTEM'
 #>
 
+    # todo - add Credential
+    # todo Change += to System.Collections.Arraylist
+
     [CmdletBinding()]
     [OutputType('psobject')]
     param (

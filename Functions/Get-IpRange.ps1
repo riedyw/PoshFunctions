@@ -27,6 +27,8 @@ function Get-IpRange {
     * Added comment help
 #>
 
+    # todo Change += to System.Collections.Arraylist
+
     [CmdletBinding(ConfirmImpact = 'None')]
     Param(
         [Parameter(Mandatory, HelpMessage = 'Please enter a subnet in the form a.b.c.d/#', ValueFromPipeline, Position = 0)]

@@ -5,7 +5,7 @@ function Write-StringHash {
 .DESCRIPTION
     Takes [hashtable] input and writes the code that would create a hashtable with that information.
 .PARAMETER Hash
-    The hash to be defined
+    The hash to be defined. Can either by [System.Collections.Hashtable] or [System.Collections.Specialized.OrderedDictionary]
 .PARAMETER VariableName
     The name of the hash table variable
 .PARAMETER Ordered
@@ -48,12 +48,14 @@ function Write-StringHash {
     [string[]]
 #>
 
+    # todo Change += to System.Collections.Arraylist
+
     #region Parameter
     [CmdletBinding(ConfirmImpact = 'None')]
     [OutputType('string')]
     Param(
         [Parameter(Mandatory, ValueFromPipeline)]
-        [hashtable] $Hash,
+        [psobject] $Hash,
 
         [string] $VariableName = 'StringHash',
 
@@ -66,27 +68,34 @@ function Write-StringHash {
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         $ReturnVal = @()
+        $ReturnVal = [System.Collections.ArrayList]::new()
+        if (-not (($Hash -is [System.Collections.Hashtable]) -or
+            ($Hash -is [System.Collections.Specialized.OrderedDictionary])))
+        {
+            Write-Error '$Hash needs to be either [System.Collections.Hashtable] or [System.Collections.Specialized.OrderedDictionary]'
+            break
+        }
     }
 
     process {
         if ($Ordered) {
-            $ReturnVal += "`$$VariableName = ([ordered] @{"
-            $WorkingHash = $Hash.GetEnumerator() | Select-Object -Property Name, Value | Sort-Object -Property Value, Name
+            $null = $ReturnVal.Add("`$$VariableName = ([ordered] @{")
+            $WorkingHash = $Hash.GetEnumerator() | Select-Object -Property Name, Value
         } else {
-            $ReturnVal += "`$$VariableName = @{"
+            $null = $ReturnVal.Add("`$$VariableName = @{")
             $WorkingHash = $Hash.GetEnumerator() | Select-Object -Property Name, Value
         }
         foreach ($CurEntry in $WorkingHash) {
             if ($QuoteField) {
-                $ReturnVal += $CurEntry | ForEach-Object { "    '{0}' = '{1}'" -f $_.Name, $_.value }
+                $null = $ReturnVal.Add(($CurEntry | ForEach-Object { "    '{0}' = '{1}'" -f $_.Name, $_.value }))
             } else {
-                $ReturnVal += $CurEntry | ForEach-Object { '    {0} = {1}' -f $_.Name, $_.value }
+                $null = $ReturnVal.Add(($CurEntry | ForEach-Object { "    {0} = '{1}'" -f $_.Name, $_.value }))
             }
         }
         if ($Ordered) {
-            $ReturnVal += '})'
+            $null = $ReturnVal.Add('})')
         } else {
-            $ReturnVal += '}'
+            $null = $ReturnVal.Add('}')
         }
         Write-Output -InputObject $ReturnVal
     }

@@ -45,6 +45,8 @@ function Test-Password {
 
 #>
 
+    # todo - add Credential
+
     #region parameter
     [CmdletBinding(DefaultParameterSetName='Credential', ConfirmImpact = 'Medium')]
     [OutputType('bool')]

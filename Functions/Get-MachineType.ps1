@@ -37,6 +37,8 @@ function Get-MachineType {
     Put in error checking around Get-CimInstance to handle Kerberos errors.
 #>
 
+    # todo - add Credential
+
     [CmdletBinding()]
     [OutputType('PSCustomObject')]
     Param

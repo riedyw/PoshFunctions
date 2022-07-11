@@ -20,6 +20,8 @@ function Get-SqlStoredProcedure {
         DatabaseName, Schema, Procedure
 #>
 
+    # todo Change += to System.Collections.Arraylist
+
     [CmdletBinding()]
     [OutputType('psobject')]
     param (

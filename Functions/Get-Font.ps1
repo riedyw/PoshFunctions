@@ -14,7 +14,8 @@ function Get-Font {
 .EXAMPLE
     # Get All Lucida Fonts
     Get-Font *Lucida*
-
+.NOTES
+    Slight code fix in Where-Object logic. Previously it would return zero results
 #>
 
     [CmdletBinding(ConfirmImpact = 'None')]
@@ -34,7 +35,7 @@ function Get-Font {
         $null = Add-Type -AssemblyName System.Drawing
         $FontList = (New-Object -TypeName System.Drawing.Text.InstalledFontCollection).Families.Name
         $FontList = $FontList | Sort-Object | Select-Object -Unique
-        $FontList | Where-Object { $_ -like $Font }
+        $FontList | Where-Object { $_ -like "*$Font*" }
     }
 
     end {

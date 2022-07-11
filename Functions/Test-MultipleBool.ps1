@@ -65,7 +65,7 @@ True,False,True AND       False
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         Write-Verbose -Message "ParameterSetName [$($PsCmdlet.ParameterSetName)]"
         Write-Verbose -Message "TestOr [$TestOr] TestAnd [$TestAnd] IncludeInput [$IncludeInput]"
-        $BoolArg = @()
+        $BoolArg = [System.Collections.ArrayList]::new()
         switch ($PsCmdlet.ParameterSetName) {
             'And' {
                 $Answer = $true
@@ -82,13 +82,13 @@ True,False,True AND       False
         switch ($PsCmdlet.ParameterSetName) {
             'And' {
                 foreach ($CurBool in $Bool) {
-                    $BoolArg += $CurBool
+                    $null = $BoolArg.Add($CurBool)
                     $CurBool | ForEach-Object { $Answer = $Answer -and $_ }
                 }
             }
             'Or' {
                 foreach ($CurBool in $Bool) {
-                    $BoolArg += $CurBool
+                    $null = $BoolArg.Add($CurBool)
                     $CurBool | ForEach-Object { $Answer = $Answer -or $_ }
                 }
             }

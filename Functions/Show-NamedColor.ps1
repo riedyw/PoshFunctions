@@ -10,6 +10,8 @@ function Show-NamedColor {
     Will exclude the Empty and Transparent colors
 #>
 
+    # todo Change += to System.Collections.Arraylist
+
     #region Parameter
     [CmdletBinding(ConfirmImpact='None')]
     [OutputType('psobject')]

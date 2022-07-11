@@ -13,6 +13,9 @@ function Get-NTFSPermission {
 
     A listing of all of the permissions
 #>
+
+    # todo Change += to System.Collections.Arraylist
+
     [CmdletBinding()]
     param([string[]] $Path)
 

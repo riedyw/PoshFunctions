@@ -29,6 +29,8 @@ function Measure-Char {
     as the function by default is case sensitive.
 #>
 
+    # todo Change += to System.Collections.Arraylist
+
     [cmdletbinding()]
     param(
         [parameter(Mandatory, HelpMessage='Enter the string you wish to search for a particular character', ValueFromPipeline, Position = 0)]

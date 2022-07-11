@@ -26,6 +26,9 @@ Function Show-Calendar {
     # Highlight a range of days.
     Show-Calendar -HighlightDay (1..10 + 22) -HighlightDate "December 25, 2008"
 #>
+
+    # todo Change += to System.Collections.Arraylist
+
     param(
         [DateTime] $start = [DateTime]::Today,
         [DateTime] $end = $start,

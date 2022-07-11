@@ -43,8 +43,8 @@ Function Get-NtpDate {
             $Socket.Connect( $ComputerName, $Port )
             $NTPData = New-Object -TypeName byte[] -ArgumentList 48
             $NTPData[0] = 27 # Request header: 00 = No Leap Warning; 011 = Version 3; 011 = Client Mode; 00011011 = 27
-            $Socket.Send(    $NTPData ) | Out-Null
-            $Socket.Receive( $NTPData ) | Out-Null
+            $null = $Socket.Send(    $NTPData )
+            $null = $Socket.Receive( $NTPData )
             $Seconds = [BitConverter]::ToUInt32( $NTPData[43..40], 0 )
             (Get-Date -Date '1/1/1900' ).AddSeconds( $Seconds ).ToLocalTime()
             Write-Verbose -Message "Successfully received time from NTP $ComputerName"

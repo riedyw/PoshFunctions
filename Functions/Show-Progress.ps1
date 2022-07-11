@@ -44,6 +44,8 @@ function Show-Progress {
     # Added [int] parameter $Id to enable multiple progress bars
 #>
 
+    # todo Change += to System.Collections.Arraylist
+
     [CmdletBinding(ConfirmImpact='None')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseProcessBlockForPipelineCommand','')]

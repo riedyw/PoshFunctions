@@ -71,7 +71,7 @@ function Get-PrivateProfileString {
                 Write-Verbose -Message "Getting value from key [$Key]"
 
                 $sb = New-Object -TypeName System.Text.StringBuilder -ArgumentList (256)
-                [ProfileApi]::GetPrivateProfileString($Section, $Key, $null, $sb, $sb.Capacity, $ResolveFile) | Out-Null
+                $null = [ProfileApi]::GetPrivateProfileString($Section, $Key, $null, $sb, $sb.Capacity, $ResolveFile)
 
                 if ($IncludeInput) {
                     New-Object -TypeName 'psobject' -Property ([ordered] @{

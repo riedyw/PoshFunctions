@@ -62,16 +62,16 @@ function Optimize-SqlStoredProcedure {
                 $Current = $_
                 switch ($Current.Schema) {
                     'dbo' {
-                        $CommandsToRun.Add((New-Object -TypeName psobject -Property ([ordered] @{
+                        $null = $CommandsToRun.Add((New-Object -TypeName psobject -Property ([ordered] @{
                             Database = $Current.DbName
                             Query = "EXECUTE sp_recompile [$($Current.Procedure)];"
-                        }))) | Out-Null
+                        })))
                     }
                     default {
-                        $CommandsToRun.Add((New-Object -TypeName psobject -Property ([ordered] @{
+                        $null = $CommandsToRun.Add((New-Object -TypeName psobject -Property ([ordered] @{
                             Database = $Current.DbName
                             Query = "EXECUTE sp_recompile [$($Current.Schema).$($Current.Procedure)];"
-                        }))) | Out-Null
+                        })))
                     }
                 }
             }
@@ -82,12 +82,12 @@ function Optimize-SqlStoredProcedure {
         if ($Interactive) {
             $CommandsToRun | Show-Progress -Activity 'Recompiling all stored procedures' -PassThru -Id 1 | ForEach-Object {
                 Write-Verbose -Message "DB [$($_.Database)] QUERY [$($_.Query)]"
-                Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $_.Database -Query $_.Query -QueryTimeout 300 -Verbose:$false | Out-Null
+                $null = Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $_.Database -Query $_.Query -QueryTimeout 300 -Verbose:$false
             }
         } else {
             $CommandsToRun | ForEach-Object {
                 Write-Verbose -Message "DB [$($_.Database)] QUERY [$($_.Query)]"
-                Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $_.Database -Query $_.Query -QueryTimeout 300 -Verbose:$false | Out-Null
+                $null = Invoke-Sqlcmd -ServerInstance $ServerInstance -Database $_.Database -Query $_.Query -QueryTimeout 300 -Verbose:$false
             }
         }
     }

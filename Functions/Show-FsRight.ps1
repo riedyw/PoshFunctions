@@ -47,6 +47,8 @@ DeleteSubdirectoriesAndFiles Single 0x00000040              64
     An array of objects containing the fields Name, Type, Dec, Hex
 #>
 
+    # todo Change += to System.Collections.Arraylist
+
     #region Parameter
     [CmdletBinding(ConfirmImpact = 'None')]
     [OutputType('psobject')]

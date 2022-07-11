@@ -32,6 +32,8 @@ function Copy-Object {
     server    12
 #>
 
+    # todo Change += to System.Collections.Arraylist
+
     #region Parameter
     [CmdletBinding(ConfirmImpact='None')]
     [OutputType('psobject')]
