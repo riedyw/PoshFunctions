@@ -67,7 +67,7 @@ function Get-BinaryType {
             Add-Type -TypeDefinition $enumString
         }
         catch {
-            write-verbose -message 'Info'
+            Write-Verbose -message 'Info'
         } #type already been loaded, do nothing
 
         try

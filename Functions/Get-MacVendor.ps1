@@ -70,7 +70,7 @@ function Get-MacVendor {
                 Write-Verbose -Message 'Sending Request to https://api.macvendors.com/'
                 # originally Invoke-RestMethod -Method Get -Uri https://api.macvendors.com/$Mac -ErrorAction SilentlyContinue 
                 curl.exe -s https://api.macvendors.com/$Mac | ForEach-Object {
-                    New-Object -Type pscustomobject -prop ([ordered] @{
+                    New-Object -TypeName pscustomobject -Property ([ordered] @{
                         MacAddress = $Mac
                         Vendor     = $_
                     })
@@ -78,7 +78,7 @@ function Get-MacVendor {
                 Start-Sleep -Milliseconds 1000
             }
             catch {
-                New-Object -Type pscustomobject -prop ([ordered] @{
+                New-Object -TypeName pscustomobject -Property ([ordered] @{
                     MacAddress = $Mac
                     Vendor     = 'UNKNOWN'
                 })

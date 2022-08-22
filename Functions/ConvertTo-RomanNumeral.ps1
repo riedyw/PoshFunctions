@@ -34,8 +34,8 @@ function ConvertTo-RomanNumeral {
     Param
     (
         [Parameter(Mandatory,
-            HelpMessage = "Enter an integer in the range 1 to 3,999",
-            ValueFromPipeline = $true,
+            HelpMessage = 'Enter an integer in the range 1 to 3,999',
+            ValueFromPipeline,
             Position = 0)]
         [ValidateRange(1, 3999)]
         [int[]] $Number,
@@ -46,10 +46,10 @@ function ConvertTo-RomanNumeral {
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         $DecimalToRoman = @{
-            Thousands = "", "M", "MM", "MMM"
-            Hundreds  = "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"
-            Tens      = "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"
-            Ones      = "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"
+            Thousands = '', 'M', 'MM', 'MMM'
+            Hundreds  = '', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM'
+            Tens      = '', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'
+            Ones      = '', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'
         }
 
         $column = @{
@@ -62,9 +62,9 @@ function ConvertTo-RomanNumeral {
 
     process {
         foreach ($curNumber in $Number) {
-            [int[]] $digits = $curNumber.ToString().PadLeft(4, "0").ToCharArray() |
+            [int[]] $digits = $curNumber.ToString().PadLeft(4, '0').ToCharArray() |
             ForEach-Object { [Char]::GetNumericValue($_) }
-            $RomanNumeral = ""
+            $RomanNumeral = ''
             $RomanNumeral += $DecimalToRoman.Thousands[$digits[$column.Thousands]]
             $RomanNumeral += $DecimalToRoman.Hundreds[$digits[$column.Hundreds]]
             $RomanNumeral += $DecimalToRoman.Tens[$digits[$column.Tens]]
