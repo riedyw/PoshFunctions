@@ -7,16 +7,16 @@
 
     <!-- Code syntax highlighting configuration -->
     <!-- Comment this to deactivate syntax highlighting. -->
-    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
     <!-- Alternative highlighting styles -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
-    <script src="js/highlight.pack.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
     <script>
         hljs.configure({ languages: [] });
-        hljs.initHighlightingOnLoad();
+        hljs.highlightAll();
     </script>
     <!-- -->
     <!-- mermaid diagram generator configuration -->
@@ -121,12 +121,12 @@ Accept wildcard characters: False
 <li>added write-verbose statements</li>
 </ul>
 <p>From the blog post:</p>
-<p>The tab character has a long history in computing. 
+<p>The tab character has a long history in computing.
 Tabs were introduced in
 typewriters, where typists could specify one or more tab stops on the page.
-Pressing the Tab key would advance the carriage to the next tab stop. 
+Pressing the Tab key would advance the carriage to the next tab stop.
 In ASCII
-code on computers, character 9 is designated as the tab. 
+code on computers, character 9 is designated as the tab.
 When displaying a tab
 character in a teletype-like display (e.g., UNIX terminal, Windows console
 program), the computer will advance the cursor to the next column that's a
@@ -135,51 +135,51 @@ For example, if the
 cursor is in any column from column 0 through column 7, a tab will advance the
 cursor to column 8 (which is really the ninth column because the computer is
 counting from column 0).</p>
-<p>Tab characters are also used in other ways in computers. 
+<p>Tab characters are also used in other ways in computers.
 For example, various
 database and spreadsheet tools let you output data in tab-separated values (TSV)
-format, where tab characters separate the data items in each row. 
+format, where tab characters separate the data items in each row.
 In addition,
 scripters and programmers have long debated amongst themselves about whether
-they should indent code using tabs or spaces. 
+they should indent code using tabs or spaces.
 Both techniques have their
 advantages, but one thing is for sure:  You can't tell whether a file contains
 spaces or tab characters using the Cmd.exe Type command, the Windows PowerShell
 Get-Content cmdlet, or Notepad because the tabs will appear as spaces.</p>
 <p>To prevent confusion, it's often helpful to &quot;de-tab&quot; the contents of a file-that
-is, expand the tabs to the correct number of spaces. 
+is, expand the tabs to the correct number of spaces.
 I like to do this for text
 files in which the tab characters are used for indenting, such as scripts, XML
-files, and HTML files. 
+files, and HTML files.
 Although the More.com program in Windows can expand tabs
 to spaces, I created a native PowerShell function named Expand-Tab to perform
 this task so that I could take better advantage of PowerShell's pipeline.</p>
 <p>For each line of input it receives, the function uses a regular expression to
 output the line with the tab characters replaced by the appropriate number of
-spaces. 
+spaces.
 You can even specify the number of spaces you want to use for each
 indent (8 by default) or 0 if you want to remove the tab characters altogether.
 Let's take a look at how this works.</p>
 <p>The Expand-Tab function uses a process script block to do something to each line
-of input it receives. 
+of input it receives.
 First, the function assigns the variable $line to each
-input line (i.e., $_). 
+input line (i.e., $_).
 Then, it uses a while loop that repeats until the input
-line doesn't contain any tab characters. 
+line doesn't contain any tab characters.
 The $i variable contains the position
-in the string where the tab character occurs. 
+in the string where the tab character occurs.
 If $i is -1 (i.e., no tab
 character), the function uses the break statement to exit from the while loop.</p>
 <p>Next, the function checks whether $TabWidth is greater than 0.
 If it is, the
 function creates a string, $pad, that contains the needed number of spaces using
-PowerShell's * operator. 
+PowerShell's * operator.
 In PowerShell, string * n means &quot;output string
 concatenated n times,&quot; so $pad will contain $TabWidth - ($i % $TabWidth) spaces.
 If $TabWidth is 0, $pad is set to &quot;&quot; (i.e., an empty string).</p>
 <p>Finally, the function uses the -replace operator, which uses a regular
 expression to output a copy of $line with the tab characters replaced by $pad
-(i.e., the calculated number of spaces). 
+(i.e., the calculated number of spaces).
 Table 1 explains the components of the
 regular expression.</p>
 <p>Pattern        Meaning</p>

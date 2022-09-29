@@ -7,16 +7,16 @@
 
     <!-- Code syntax highlighting configuration -->
     <!-- Comment this to deactivate syntax highlighting. -->
-    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
     <!-- Alternative highlighting styles -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
-    <script src="js/highlight.pack.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
     <script>
         hljs.configure({ languages: [] });
-        hljs.initHighlightingOnLoad();
+        hljs.highlightAll();
     </script>
     <!-- -->
     <!-- mermaid diagram generator configuration -->
@@ -58,7 +58,7 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>Takes [hashtable] input and writes the code that would create a hashtable with that information.</p>
 <h2>SYNTAX</h2>
-<pre><code>Write-StringHash [-Hash] &lt;Hashtable&gt; [[-VariableName] &lt;String&gt;] [-Ordered] [-QuoteField] [&lt;CommonParameters&gt;]
+<pre><code>Write-StringHash [-Hash] &lt;PSObject&gt; [[-VariableName] &lt;String&gt;] [-Ordered] [-QuoteField] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Takes [hashtable] input and writes the code that would create a hashtable with that information.</p>
@@ -97,8 +97,9 @@ C = 3
 })</p>
 <h2>PARAMETERS</h2>
 <h3>-Hash</h3>
-<p>The hash to be defined</p>
-<pre><code class="language-yaml">Type: Hashtable
+<p>The hash to be defined.
+Can either by [System.Collections.Hashtable] or [System.Collections.Specialized.OrderedDictionary]</p>
+<pre><code class="language-yaml">Type: PSObject
 Parameter Sets: (All)
 Aliases:
 

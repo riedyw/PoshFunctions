@@ -13,7 +13,7 @@ To get data out of an .ini file
 ## SYNTAX
 
 ```
-Get-PrivateProfileString [[-File] <String>] [[-Section] <String>] [[-Key] <String>] [-IncludeOriginal]
+Get-PrivateProfileString [[-File] <String>] [[-Section] <String>] [[-Key] <String>] [-IncludeInput]
  [<CommonParameters>]
 ```
 
@@ -46,7 +46,7 @@ Get-PrivateProfileString : ERROR: File \[.\NonexistentFile.ini\] does not exist
 
 ### EXAMPLE 3
 ```
-Get-PrivateProfileString -File c:\Temp\Test.ini -Section 'Section1' -Key 'Key1' -IncludeOriginal
+Get-PrivateProfileString -File c:\Temp\Test.ini -Section 'Section1' -Key 'Key1' -IncludeInput
 ```
 
 FileName         Section  Key  Value
@@ -104,13 +104,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IncludeOriginal
-{{ Fill IncludeOriginal Description }}
+### -IncludeInput
+{{ Fill IncludeInput Description }}
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: IncludeOriginal
 
 Required: False
 Position: Named

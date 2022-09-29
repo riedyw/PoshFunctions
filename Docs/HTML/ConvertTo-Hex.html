@@ -7,16 +7,16 @@
 
     <!-- Code syntax highlighting configuration -->
     <!-- Comment this to deactivate syntax highlighting. -->
-    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
     <!-- Alternative highlighting styles -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
-    <script src="js/highlight.pack.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
     <script>
         hljs.configure({ languages: [] });
-        hljs.initHighlightingOnLoad();
+        hljs.highlightAll();
     </script>
     <!-- -->
     <!-- mermaid diagram generator configuration -->
@@ -65,7 +65,7 @@ schema: 2.0.0</h2>
 <p>Convert an integer or array of integers to hexadecimal</p>
 <h2>EXAMPLES</h2>
 <h3>EXAMPLE 1</h3>
-<pre><code>ConvertTo-Hex-Number 23
+<pre><code>ConvertTo-Hex -Number 23
 </code></pre>
 <p>17</p>
 <h3>EXAMPLE 2</h3>

@@ -7,16 +7,16 @@
 
     <!-- Code syntax highlighting configuration -->
     <!-- Comment this to deactivate syntax highlighting. -->
-    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
     <!-- Alternative highlighting styles -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
-    <script src="js/highlight.pack.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
     <script>
         hljs.configure({ languages: [] });
-        hljs.initHighlightingOnLoad();
+        hljs.highlightAll();
     </script>
     <!-- -->
     <!-- mermaid diagram generator configuration -->
@@ -62,7 +62,7 @@ schema: 2.0.0</h2>
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Uses the type System.Windows.Media.Fonts static property SystemFontFamilies,
-to retrieve all of the fonts loaded by the system. 
+to retrieve all of the fonts loaded by the system.
 If the Fonts type is not found,
 the PresentationCore assembly will be automatically loaded</p>
 <h2>EXAMPLES</h2>
@@ -92,6 +92,8 @@ Accept wildcard characters: False
 <h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h2>NOTES</h2>
+<p>Slight code fix in Where-Object logic.
+Previously it would return zero results</p>
 <h2>RELATED LINKS</h2>
 
 </body>

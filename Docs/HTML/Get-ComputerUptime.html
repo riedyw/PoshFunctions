@@ -7,16 +7,16 @@
 
     <!-- Code syntax highlighting configuration -->
     <!-- Comment this to deactivate syntax highlighting. -->
-    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
     <!-- Alternative highlighting styles -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
-    <script src="js/highlight.pack.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
     <script>
         hljs.configure({ languages: [] });
-        hljs.initHighlightingOnLoad();
+        hljs.highlightAll();
     </script>
     <!-- -->
     <!-- mermaid diagram generator configuration -->
@@ -58,7 +58,8 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>To mimic and extend the Get-ComputerUptime function found in PowerShell 6 or 7</p>
 <h2>SYNTAX</h2>
-<pre><code>Get-ComputerUptime [-Since] [-Name] &lt;String[]&gt; [-IncludeComputerName] [&lt;CommonParameters&gt;]
+<pre><code>Get-ComputerUptime [-Since] [[-Name] &lt;String[]&gt;] [-IncludeComputerName] [[-Credential] &lt;PSCredential&gt;]
+ [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>To mimic and extend the Get-ComputerUptime function found in PowerShell 6 or 7.
@@ -109,12 +110,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 </code></pre>
 <h3>-Name</h3>
-<p>Please enter the name of a computer</p>
+<p>{{ Fill Name Description }}</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
 Aliases: ComputerName, CN, Server
 
-Required: True
+Required: False
 Position: 1
 Default value: $env:COMPUTERNAME
 Accept pipeline input: True (ByPropertyName)
@@ -129,6 +130,18 @@ Aliases:
 Required: False
 Position: Named
 Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Credential</h3>
+<p>{{ Fill Credential Description }}</p>
+<pre><code class="language-yaml">Type: PSCredential
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 </code></pre>

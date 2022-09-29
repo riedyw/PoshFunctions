@@ -7,16 +7,16 @@
 
     <!-- Code syntax highlighting configuration -->
     <!-- Comment this to deactivate syntax highlighting. -->
-    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
     <!-- Alternative highlighting styles -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
-    <script src="js/highlight.pack.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
     <script>
         hljs.configure({ languages: [] });
-        hljs.initHighlightingOnLoad();
+        hljs.highlightAll();
     </script>
     <!-- -->
     <!-- mermaid diagram generator configuration -->
@@ -59,7 +59,11 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>To get the shortname 8.3 of a file or folder</p>
 <h2>SYNTAX</h2>
-<pre><code>Get-ShortName [-Path] &lt;String[]&gt; [-IncludeInput] [&lt;CommonParameters&gt;]
+<h3>Path</h3>
+<pre><code>Get-ShortName [[-Path] &lt;String[]&gt;] [-IncludeInput] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>LiteralPath</h3>
+<pre><code>Get-ShortName [-LiteralPath &lt;String[]&gt;] [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>To get the shortname 8.3 of a file or folder.
@@ -89,13 +93,25 @@ If the path resolves to 2 or more objects the function will generate an error</p
 <h3>-Path</h3>
 <p>A string or string array of files and folders</p>
 <pre><code class="language-yaml">Type: String[]
-Parameter Sets: (All)
+Parameter Sets: Path
 Aliases:
 
-Required: True
+Required: False
 Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+</code></pre>
+<h3>-LiteralPath</h3>
+<p>{{ Fill LiteralPath Description }}</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: LiteralPath
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 </code></pre>
 <h3>-IncludeInput</h3>

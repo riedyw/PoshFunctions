@@ -7,16 +7,16 @@
 
     <!-- Code syntax highlighting configuration -->
     <!-- Comment this to deactivate syntax highlighting. -->
-    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
     <!-- Alternative highlighting styles -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
-    <script src="js/highlight.pack.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
     <script>
         hljs.configure({ languages: [] });
-        hljs.initHighlightingOnLoad();
+        hljs.highlightAll();
     </script>
     <!-- -->
     <!-- mermaid diagram generator configuration -->
@@ -58,7 +58,11 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>Sets the speaker volume.</p>
 <h2>SYNTAX</h2>
-<pre><code>Set-SpeakerVolume [-Volume] &lt;Int32&gt; [&lt;CommonParameters&gt;]
+<h3>Volume (Default)</h3>
+<pre><code>Set-SpeakerVolume [-Volume &lt;Int32&gt;] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>Adjust</h3>
+<pre><code>Set-SpeakerVolume [-Adjust &lt;Int32&gt;] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Sets the speaker volume.</p>
@@ -79,13 +83,25 @@ VERBOSE: Turning volume up to 96%</p>
 <h3>-Volume</h3>
 <p>An integer value from 0 to 100 that will set the volume level of the speaker.</p>
 <pre><code class="language-yaml">Type: Int32
-Parameter Sets: (All)
+Parameter Sets: Volume
 Aliases:
 
-Required: True
-Position: 1
-Default value: 0
+Required: False
+Position: Named
+Default value: 50
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+</code></pre>
+<h3>-Adjust</h3>
+<p>{{ Fill Adjust Description }}</p>
+<pre><code class="language-yaml">Type: Int32
+Parameter Sets: Adjust
+Aliases:
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: False
 Accept wildcard characters: False
 </code></pre>
 <h3>CommonParameters</h3>

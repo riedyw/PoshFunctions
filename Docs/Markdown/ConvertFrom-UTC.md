@@ -23,7 +23,7 @@ Converts a datetime from Universal Coordinated Time to local time
 
 ### EXAMPLE 1
 ```
-ConvertFrom-UTC -DateTime "1/25/2018 1:34:31 PM"
+ConvertFrom-UTC -Date "1/25/2018 1:34:31 PM"
 ```
 
 Assuming that your local time zone is EST, and your region/culture is EN-US this would return the datetime
@@ -32,12 +32,14 @@ Thursday, January 25, 2018 8:34:31 AM
 
 ### EXAMPLE 2
 ```
-ConvertFrom-UTC '2/1/2018 9:27:59 PM'
+ConvertFrom-UTC -Date "1/25/2018 1:34:31 PM" -IncludeInput
 ```
 
 Assuming that your local time zone is EST, and your region/culture is EN-US this would return the datetime
 
-Thursday, February 01, 2018 4:27:59 PM
+UTC                  LocalTime
+---                  ---------
+1/25/2018 1:34:31 PM 1/25/2018 8:34:31 AM
 
 ### EXAMPLE 3
 ```

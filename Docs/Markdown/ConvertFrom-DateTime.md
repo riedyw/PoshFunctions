@@ -14,32 +14,37 @@ Converts a datetime into a datetime represented in a different format.
 
 ### DMTF (Default)
 ```
-ConvertFrom-DateTime [-Date] <DateTime[]> [-DMTF] [-IncludeInput] [-UTC] [<CommonParameters>]
+ConvertFrom-DateTime [[-Date] <DateTime[]>] [-DMTF] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
 ### Excel
 ```
-ConvertFrom-DateTime [-Date] <DateTime[]> [-Excel] [-IncludeInput] [-UTC] [<CommonParameters>]
+ConvertFrom-DateTime [[-Date] <DateTime[]>] [-Excel] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
 ### Format
 ```
-ConvertFrom-DateTime [-Date] <DateTime[]> [-Format <String>] [-IncludeInput] [-UTC] [<CommonParameters>]
+ConvertFrom-DateTime [[-Date] <DateTime[]>] [-Format <String>] [-IncludeInput] [-UTC] [<CommonParameters>]
+```
+
+### ISO8601
+```
+ConvertFrom-DateTime [[-Date] <DateTime[]>] [-ISO8601] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
 ### ICSDateTime
 ```
-ConvertFrom-DateTime [-Date] <DateTime[]> [-ICSDateTime] [-IncludeInput] [-UTC] [<CommonParameters>]
+ConvertFrom-DateTime [[-Date] <DateTime[]>] [-ICSDateTime] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
 ### FileTime
 ```
-ConvertFrom-DateTime [-Date] <DateTime[]> [-FileTime] [-IncludeInput] [-UTC] [<CommonParameters>]
+ConvertFrom-DateTime [[-Date] <DateTime[]>] [-FileTime] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
 ### Unix
 ```
-ConvertFrom-DateTime [-Date] <DateTime[]> [-Unix] [-IncludeInput] [-UTC] [<CommonParameters>]
+ConvertFrom-DateTime [[-Date] <DateTime[]>] [-Unix] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -103,9 +108,9 @@ Type: DateTime[]
 Parameter Sets: (All)
 Aliases: DateTime
 
-Required: True
+Required: False
 Position: 1
-Default value: None
+Default value: (Get-Date)
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
@@ -195,6 +200,21 @@ If the final character is NOT a Z then the time is local time.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ICSDateTime
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ISO8601
+Switch to convert a datetime to ISO-8601 format: 'yyyy.MM.ddTHH:mm:ss'
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ISO8601
 Aliases:
 
 Required: False

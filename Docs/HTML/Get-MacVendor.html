@@ -7,16 +7,16 @@
 
     <!-- Code syntax highlighting configuration -->
     <!-- Comment this to deactivate syntax highlighting. -->
-    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
     <!-- Alternative highlighting styles -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
-    <script src="js/highlight.pack.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
     <script>
         hljs.configure({ languages: [] });
-        hljs.initHighlightingOnLoad();
+        hljs.highlightAll();
     </script>
     <!-- -->
     <!-- mermaid diagram generator configuration -->
@@ -75,15 +75,13 @@ schema: 2.0.0</h2>
 <pre><code>Get-MacVendor -MacAddress 00-09-0F-AA-00-01, B8-31-B5-3D-75-D1, 00-09-0F-FE-00-01, F0-6E-0B-DA-B6-A7, F0-6E-0B-DA-B6-A8
 </code></pre>
 <p>Would return
-Vendor                MacAddress</p>
+MacAddress        Vendor</p>
 <hr />
-<p>Fortinet Inc. 
-00-09-0F-AA-00-01
-Microsoft Corporation B8-31-B5-3D-75-D1
-Fortinet Inc. 
-00-09-0F-FE-00-01
-Microsoft Corporation F0-6E-0B-DA-B6-A7
-Microsoft Corporation F0-6E-0B-DA-B6-A8</p>
+<p>00-09-0F-AA-00-01 Fortinet Inc.
+B8-31-B5-3D-75-D1 Microsoft Corporation
+00-09-0F-FE-00-01 Fortinet Inc.
+F0-6E-0B-DA-B6-A7 Microsoft Corporation
+F0-6E-0B-DA-B6-A8 Microsoft Corporation</p>
 <h2>PARAMETERS</h2>
 <h3>-MacAddress</h3>
 <p>MacAddress To Be Resolved</p>
@@ -107,6 +105,8 @@ Accept wildcard characters: False
 <li>added write-verbose</li>
 <li>removed a-f in regex as case insensitive by default</li>
 <li>added example</li>
+<li>moved validate regex further into script and used Format-MacAddress to clean up addresses that don't match pattern like those seen on switches (ex.
+34fcb9-c08bce)</li>
 </ul>
 <h2>RELATED LINKS</h2>
 

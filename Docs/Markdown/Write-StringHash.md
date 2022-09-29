@@ -13,7 +13,7 @@ Takes \[hashtable\] input and writes the code that would create a hashtable with
 ## SYNTAX
 
 ```
-Write-StringHash [-Hash] <Hashtable> [[-VariableName] <String>] [-Ordered] [-QuoteField] [<CommonParameters>]
+Write-StringHash [-Hash] <PSObject> [[-VariableName] <String>] [-Ordered] [-QuoteField] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -68,10 +68,11 @@ $MyHashTable = (\[ordered\] @{
 ## PARAMETERS
 
 ### -Hash
-The hash to be defined
+The hash to be defined.
+Can either by \[System.Collections.Hashtable\] or \[System.Collections.Specialized.OrderedDictionary\]
 
 ```yaml
-Type: Hashtable
+Type: PSObject
 Parameter Sets: (All)
 Aliases:
 

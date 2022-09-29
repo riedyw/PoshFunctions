@@ -13,7 +13,8 @@ To mimic and extend the Get-ComputerUptime function found in PowerShell 6 or 7
 ## SYNTAX
 
 ```
-Get-ComputerUptime [-Since] [-Name] <String[]> [-IncludeComputerName] [<CommonParameters>]
+Get-ComputerUptime [-Since] [[-Name] <String[]>] [-IncludeComputerName] [[-Credential] <PSCredential>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -83,14 +84,14 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-Please enter the name of a computer
+{{ Fill Name Description }}
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
 Aliases: ComputerName, CN, Server
 
-Required: True
+Required: False
 Position: 1
 Default value: $env:COMPUTERNAME
 Accept pipeline input: True (ByPropertyName)
@@ -108,6 +109,21 @@ Aliases:
 Required: False
 Position: Named
 Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Credential
+{{ Fill Credential Description }}
+
+```yaml
+Type: PSCredential
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

@@ -13,7 +13,7 @@ Takes a single object and converts its properties and values into a hashtable.
 ## SYNTAX
 
 ```
-Convert-ObjectToHashtable [-object] <Object> [-ExcludeEmpty] [<CommonParameters>]
+Convert-ObjectToHashtable [-object] <PSObject> [-ExcludeEmpty] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -32,7 +32,7 @@ Convert-ObjectToHashtable -object Value -ExcludeEmpty
 The Object to turn into a hashtable
 
 ```yaml
-Type: Object
+Type: PSObject
 Parameter Sets: (All)
 Aliases:
 
@@ -68,5 +68,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.Collections.Hashtable[]
 ## NOTES
 Source: https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/turning-objects-into-hash-tables-2
+
+# todo - need better example
 
 ## RELATED LINKS

@@ -28,25 +28,7 @@ Get-NTFSPermission -Path "C:\Temp"
 
 Would return:
 
-A listing of all of the shares
-
-### EXAMPLE 2
-```
-Get-Share -ShareName "My"
-```
-
-Would return:
-
-A listing of all of the shares that contain the string "My"
-
-### EXAMPLE 3
-```
-Get-Share -ShareName -IgnoreAdmin
-```
-
-Would return:
-
-A listing of all of the shares minus the automatic Admin shares
+A listing of all of the permissions
 
 ## PARAMETERS
 
@@ -72,7 +54,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### An array of objects containing the fields ComputerName, ShareName, Type, Status
 ## NOTES
 
 ## RELATED LINKS

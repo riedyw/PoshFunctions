@@ -7,16 +7,16 @@
 
     <!-- Code syntax highlighting configuration -->
     <!-- Comment this to deactivate syntax highlighting. -->
-    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
     <!-- Alternative highlighting styles -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
-    <script src="js/highlight.pack.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
     <script>
         hljs.configure({ languages: [] });
-        hljs.initHighlightingOnLoad();
+        hljs.highlightAll();
     </script>
     <!-- -->
     <!-- mermaid diagram generator configuration -->
@@ -113,8 +113,8 @@ At line:1 char:1</p>
 </ul>
 <h2>PARAMETERS</h2>
 <h3>-Path</h3>
-<p>The path to the shortcut file. 
-.lnk will be appended if not specified. 
+<p>The path to the shortcut file.
+.lnk will be appended if not specified.
 If the folder name doesn't exist, it will be created.</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
@@ -163,8 +163,8 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 </code></pre>
 <h3>-HotKey</h3>
-<p>Hotkey combination for the shortcut. 
-Valid values are SHIFT+F7, ALT+CTRL+9, etc. 
+<p>Hotkey combination for the shortcut.
+Valid values are SHIFT+F7, ALT+CTRL+9, etc.
 An invalid entry will cause the function to fail.</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
@@ -177,7 +177,7 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 </code></pre>
 <h3>-WorkDir</h3>
-<p>Working directory of the application. 
+<p>Working directory of the application.
 An invalid directory can be specified, but invoking the application from the shortcut could fail.</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
@@ -190,7 +190,7 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 </code></pre>
 <h3>-WindowStyle</h3>
-<p>Windows style of the application, Normal (1), Maximized (3), or Minimized (7). 
+<p>Windows style of the application, Normal (1), Maximized (3), or Minimized (7).
 Invalid entries will result in Normal behavior.</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
@@ -203,7 +203,7 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 </code></pre>
 <h3>-IconLocation</h3>
-<p>Full path of the icon file. 
+<p>Full path of the icon file.
 Executables, DLLs, etc with multiple icons need the number of the icon to be specified, otherwise the first icon will be used, i.e.:  c:\windows\system32\shell32.dll,99</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)

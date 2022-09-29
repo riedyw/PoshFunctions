@@ -7,16 +7,16 @@
 
     <!-- Code syntax highlighting configuration -->
     <!-- Comment this to deactivate syntax highlighting. -->
-    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
     <!-- Alternative highlighting styles -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
-    <script src="js/highlight.pack.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
     <script>
         hljs.configure({ languages: [] });
-        hljs.initHighlightingOnLoad();
+        hljs.highlightAll();
     </script>
     <!-- -->
     <!-- mermaid diagram generator configuration -->
@@ -58,7 +58,7 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>Takes a single object and converts its properties and values into a hashtable.</p>
 <h2>SYNTAX</h2>
-<pre><code>Convert-ObjectToHashtable [-object] &lt;Object&gt; [-ExcludeEmpty] [&lt;CommonParameters&gt;]
+<pre><code>Convert-ObjectToHashtable [-object] &lt;PSObject&gt; [-ExcludeEmpty] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Takes a single object and converts its properties and values into a hashtable.</p>
@@ -69,7 +69,7 @@ schema: 2.0.0</h2>
 <h2>PARAMETERS</h2>
 <h3>-object</h3>
 <p>The Object to turn into a hashtable</p>
-<pre><code class="language-yaml">Type: Object
+<pre><code class="language-yaml">Type: PSObject
 Parameter Sets: (All)
 Aliases:
 
@@ -98,6 +98,7 @@ Accept wildcard characters: False
 <h3>System.Collections.Hashtable[]</h3>
 <h2>NOTES</h2>
 <p>Source: https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/turning-objects-into-hash-tables-2</p>
+<h1>todo - need better example</h1>
 <h2>RELATED LINKS</h2>
 
 </body>

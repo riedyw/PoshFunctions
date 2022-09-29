@@ -47,6 +47,7 @@ Function Split-DistinguishedName {
     DC=com
 #>
 
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
     [CmdletBinding(ConfirmImpact = 'None', DefaultParameterSetName = 'Parent')]
     [OutputType('string[]')]
     param(

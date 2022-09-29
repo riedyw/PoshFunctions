@@ -7,16 +7,16 @@
 
     <!-- Code syntax highlighting configuration -->
     <!-- Comment this to deactivate syntax highlighting. -->
-    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
     <!-- Alternative highlighting styles -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
-    <script src="js/highlight.pack.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
     <script>
         hljs.configure({ languages: [] });
-        hljs.initHighlightingOnLoad();
+        hljs.highlightAll();
     </script>
     <!-- -->
     <!-- mermaid diagram generator configuration -->
@@ -58,7 +58,7 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>To get data out of an .ini file</p>
 <h2>SYNTAX</h2>
-<pre><code>Get-PrivateProfileString [[-File] &lt;String&gt;] [[-Section] &lt;String&gt;] [[-Key] &lt;String&gt;] [-IncludeOriginal]
+<pre><code>Get-PrivateProfileString [[-File] &lt;String&gt;] [[-Section] &lt;String&gt;] [[-Key] &lt;String&gt;] [-IncludeInput]
  [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
@@ -80,7 +80,7 @@ Key1=Data1</p>
 </code></pre>
 <p>Get-PrivateProfileString : ERROR: File [.\NonexistentFile.ini] does not exist</p>
 <h3>EXAMPLE 3</h3>
-<pre><code>Get-PrivateProfileString -File c:\Temp\Test.ini -Section 'Section1' -Key 'Key1' -IncludeOriginal
+<pre><code>Get-PrivateProfileString -File c:\Temp\Test.ini -Section 'Section1' -Key 'Key1' -IncludeInput
 </code></pre>
 <p>FileName         Section  Key  Value</p>
 <hr />
@@ -126,11 +126,11 @@ Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 </code></pre>
-<h3>-IncludeOriginal</h3>
-<p>{{ Fill IncludeOriginal Description }}</p>
+<h3>-IncludeInput</h3>
+<p>{{ Fill IncludeInput Description }}</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: IncludeOriginal
 
 Required: False
 Position: Named

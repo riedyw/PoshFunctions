@@ -63,5 +63,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+Slight code fix in Where-Object logic.
+Previously it would return zero results
 
 ## RELATED LINKS

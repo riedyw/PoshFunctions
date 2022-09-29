@@ -24,7 +24,7 @@ Convert an integer or array of integers to hexadecimal
 
 ### EXAMPLE 1
 ```
-ConvertTo-Hex-Number 23
+ConvertTo-Hex -Number 23
 ```
 
 17

@@ -16,6 +16,7 @@ Function Test-IsNumeric {
     Test-IsCapsLock -Verbose
 #>
 
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]
     [CmdletBinding(ConfirmImpact='None')]
     [OutputType('bool')]
     Param (

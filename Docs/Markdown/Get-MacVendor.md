@@ -41,15 +41,13 @@ Get-MacVendor -MacAddress 00-09-0F-AA-00-01, B8-31-B5-3D-75-D1, 00-09-0F-FE-00-0
 ```
 
 Would return
-Vendor                MacAddress
-------                ----------
-Fortinet Inc. 
-00-09-0F-AA-00-01
-Microsoft Corporation B8-31-B5-3D-75-D1
-Fortinet Inc. 
-00-09-0F-FE-00-01
-Microsoft Corporation F0-6E-0B-DA-B6-A7
-Microsoft Corporation F0-6E-0B-DA-B6-A8
+MacAddress        Vendor
+----------        ------
+00-09-0F-AA-00-01 Fortinet Inc.
+B8-31-B5-3D-75-D1 Microsoft Corporation
+00-09-0F-FE-00-01 Fortinet Inc.
+F0-6E-0B-DA-B6-A7 Microsoft Corporation
+F0-6E-0B-DA-B6-A8 Microsoft Corporation
 
 ## PARAMETERS
 
@@ -80,5 +78,7 @@ Originally published as script Get-MacVendor.ps1 on PSGallery
 * added write-verbose
 * removed a-f in regex as case insensitive by default
 * added example
+* moved validate regex further into script and used Format-MacAddress to clean up addresses that don't match pattern like those seen on switches (ex.
+34fcb9-c08bce)
 
 ## RELATED LINKS

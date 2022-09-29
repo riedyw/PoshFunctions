@@ -13,7 +13,7 @@ Forces replication to occur between domain controllers in domain.
 ## SYNTAX
 
 ```
-Start-ADReplication [-Name] <String[]> [<CommonParameters>]
+Start-ADReplication [-Name] <String[]> [-Quiet] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -76,6 +76,21 @@ Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Quiet
+Switch will create no output
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

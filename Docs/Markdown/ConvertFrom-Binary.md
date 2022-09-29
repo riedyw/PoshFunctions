@@ -30,7 +30,7 @@ ConvertFrom-Binary -Binary 100001
 
 ### EXAMPLE 2
 ```
-ConvertFrom-Binary -Binary 1001 -include
+ConvertFrom-Binary -Binary 1001 -IncludeInput
 ```
 
 Binary Number

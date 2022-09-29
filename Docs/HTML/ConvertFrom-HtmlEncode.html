@@ -7,16 +7,16 @@
 
     <!-- Code syntax highlighting configuration -->
     <!-- Comment this to deactivate syntax highlighting. -->
-    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
     <!-- Alternative highlighting styles -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
-    <script src="js/highlight.pack.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
     <script>
         hljs.configure({ languages: [] });
-        hljs.initHighlightingOnLoad();
+        hljs.highlightAll();
     </script>
     <!-- -->
     <!-- mermaid diagram generator configuration -->
@@ -64,25 +64,11 @@ schema: 2.0.0</h2>
 <p>Converts a HTML encoded string back into a normal string</p>
 <h2>EXAMPLES</h2>
 <h3>EXAMPLE 1</h3>
-<pre><code>ConvertFrom-HTMLEncode -HTML 'https%3a%2f%2fwww.google.com%2f'
+<pre><code>ConvertFrom-HTMLEncode -HTML '&amp;amp;' -IncludeInput
 </code></pre>
-<p>Would return
-https://www.google.com/</p>
-<h3>EXAMPLE 2</h3>
-<pre><code>ConvertFrom-HTMLEncode -HTML 'https%3a%2f%2fbing.com' -IncludeInput
-</code></pre>
-<p>Would return
-Encoded                Decoded</p>
+<p>HtmlEncoded PlainText</p>
 <hr />
-<p>https%3a%2f%2fbing.com https://bing.com</p>
-<h3>EXAMPLE 3</h3>
-<pre><code>ConvertFrom-HTMLEncode -HTML 'https%3a%2f%2fbing.com', 'https%3a%2f%2fwww.google.com%2f' -IncludeInput
-</code></pre>
-<p>Would return
-Encoded                         Decoded</p>
-<hr />
-<p>https%3a%2f%2fbing.com          https://bing.com
-https%3a%2f%2fwww.google.com%2f https://www.google.com/</p>
+<p>&amp;       &amp;</p>
 <h2>PARAMETERS</h2>
 <h3>-HTML</h3>
 <p>The encoded HTML string.

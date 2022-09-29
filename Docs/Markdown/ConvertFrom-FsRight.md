@@ -13,7 +13,7 @@ To convert a \[uint32\] FileSystemRight value into a human readable form
 ## SYNTAX
 
 ```
-ConvertFrom-FsRight [[-Rights] <UInt64>] [<CommonParameters>]
+ConvertFrom-FsRight [[-Rights] <UInt64[]>] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -53,13 +53,28 @@ Alternatively a \[uint32\] value could be passed from the command line.
 Hex values need to be enclosed in quotes.
 
 ```yaml
-Type: UInt64
+Type: UInt64[]
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: 1
-Default value: 0
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -IncludeInput
+Switch to include input values in the output
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

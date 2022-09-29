@@ -100,10 +100,10 @@
         'Get-SubnetMaskIPv4', 'Get-TruncatedDate', 'Get-Type', 'Get-TypeAccelerator',
         'Get-UrlContent', 'Get-VssAdminListVolumes', 'Get-VssAdminListWriters',
         'Get-WordCount', 'Get-WordList', 'grep', 'Invoke-Beep',
-        'Invoke-CountdownTimer', 'Invoke-Speak', 'Join-Object', 'Lock-Workstation',
-        'Measure-Char', 'Merge-Object', 'mklink', 'Move-ToRecycleBin',
-        'New-ColorPicker', 'New-Credential', 'New-DatePicker', 'New-FontPicker',
-        'New-InputBox', 'New-InputBoxSecureString', 'New-MessageBox',
+        'Invoke-CountdownTimer', 'Invoke-SoundPlayer', 'Invoke-Speak', 'Join-Object',
+        'Lock-Workstation', 'Measure-Char', 'Merge-Object', 'mklink',
+        'Move-ToRecycleBin', 'New-ColorPicker', 'New-Credential', 'New-DatePicker',
+        'New-FontPicker', 'New-InputBox', 'New-InputBoxSecureString', 'New-MessageBox',
         'New-PFDateFormat', 'New-QR', 'New-RandomPassword', 'New-Screenshot',
         'New-Shortcut', 'Optimize-SqlIndexFragmentation',
         'Optimize-SqlStoredProcedure', 'Out-PDFToPrinter', 'Read-HostWithDefault',
@@ -124,7 +124,8 @@
         'Test-IsValidEmailAddress', 'Test-IsValidIPv4', 'Test-IsValidIPv6',
         'Test-MultipleBool', 'Test-Network', 'Test-NtpDateVsNow', 'Test-Password',
         'Test-PasswordComplexity', 'Test-Port', 'Test-Set', 'Update-ExplorerIcon',
-        'Use-Stopwatch', 'Write-StringArray', 'Write-StringHash', 'Write-TextMenu' )
+        'Use-Stopwatch', 'Write-SelectStatement', 'Write-StringArray',
+        'Write-StringHash', 'Write-TextMenu' )
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     #CmdletsToExport = '*'
@@ -186,13 +187,14 @@
             ReleaseNotes = @'
 For full release notes see .\Resources\ReleaseNotes.txt
 ### 2.2.9
-* added Pester tests for the majority of functions
 * added ConvertFrom-HexString - converting a hex string back to plain text: '41' -> 'A'
 * added ConvertTo-HexString = converting plain text to a hex string: 'A' -> '41'
 * added Get-ErrorInfo - explain please
 * added Get-Factorial - calculates the factorial of a number 1-20. Higher than 20 results in overflow of [int64] datatype
+* added Invoke-SoundPlayer - will play a .wav file
 * added Split-CanonicalName - splits an AD canonical name into either -Parent or -Leaf
 * added Split-DistinguishedName - splits an AD distinguished name into either -Parent or -Leaf
+* added Write-SelectStatement - helper function to write a select statement for properties and converts properties that are arrays to a delimited string. Helpful when exporting complex object to CSV
 * updated Compare-ObjectProperty - replaced += with [System.Collections.Arraylist]
 * updated Convert-Int32ToUint32 - replaced += with [System.Collections.Arraylist]
 * updated Convert-Int64ToText - fixed trailing space with .Trim()

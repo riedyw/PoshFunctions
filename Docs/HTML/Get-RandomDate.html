@@ -7,16 +7,16 @@
 
     <!-- Code syntax highlighting configuration -->
     <!-- Comment this to deactivate syntax highlighting. -->
-    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
     <!-- Alternative highlighting styles -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
-    <script src="js/highlight.pack.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
     <script>
         hljs.configure({ languages: [] });
-        hljs.initHighlightingOnLoad();
+        hljs.highlightAll();
     </script>
     <!-- -->
     <!-- mermaid diagram generator configuration -->
@@ -70,13 +70,13 @@ Can also use formatting switches -Format
 or -UFormat which function the same as Get-Date parameters of the same name.</p>
 <h2>EXAMPLES</h2>
 <h3>EXAMPLE 1</h3>
-<pre><code>Get-Randomdate  -MinDate 1/1/1969 -Max-Date 1/1/2040 -DateLimit UnixEpoch -verbose
+<pre><code>Get-Randomdate  -MinDate 1/1/1969 -MaxDate 1/1/2040 -DateLimit UnixEpoch -verbose
 </code></pre>
 <p>Would return something similar to the following:
 VERBOSE: $MinDate specified as [01/01/1969 00:00:00]
 VERBOSE: $MaxDate specified as [01/01/2040 00:00:00]
-VERBOSE: $MinDate ouside valid UnixEpoch setting to [01/01/1970 00:00:00]
-VERBOSE: $MaxDate ouside valid UnixEpoch setting to [01/19/2038 03:14:07]
+VERBOSE: $MinDate outside valid UnixEpoch setting to [01/01/1970 00:00:00]
+VERBOSE: $MaxDate outside valid UnixEpoch setting to [01/19/2038 03:14:07]
 VERBOSE: The random date calculated is [12/26/1997 18:41:51]
 VERBOSE: The return value is [System.DateTime] datatype
 Friday, December 26, 1997 6:41:51 PM</p>
@@ -86,12 +86,12 @@ Friday, December 26, 1997 6:41:51 PM</p>
 <p>Would return something similar to the following:
 Friday, August 12, 2005 2:57:51 AM</p>
 <h3>EXAMPLE 3</h3>
-<pre><code>Get-RandomDate  -MinDate 1/1/1576 -Max-Date 7/4/1776 -DateLimit FileTime -Verbose
+<pre><code>Get-RandomDate  -MinDate 1/1/1576 -MaxDate 7/4/1776 -DateLimit FileTime -Verbose
 </code></pre>
 <p>Would return something similar to the following:
 VERBOSE: $MinDate specified as [01/01/1576 00:00:00]
 VERBOSE: $MaxDate specified as [07/04/1776 00:00:00]
-VERBOSE: $MinDate ouside valid FileTime setting to [01/01/1601 00:00:00]
+VERBOSE: $MinDate outside valid FileTime setting to [01/01/1601 00:00:00]
 VERBOSE: The random date calculated is [06/27/1615 16:45:27]
 VERBOSE: The return value is [System.DateTime] datatype
 Saturday, June 27, 1615 4:45:27 PM</p>

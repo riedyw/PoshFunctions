@@ -46,6 +46,7 @@ Function Split-CanonicalName {
     Duck, Daffy
 #>
 
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
     [CmdletBinding(ConfirmImpact = 'None', DefaultParameterSetName = 'Parent')]
     [OutputType('string[]')]
     param(

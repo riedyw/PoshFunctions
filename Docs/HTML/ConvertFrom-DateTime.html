@@ -7,16 +7,16 @@
 
     <!-- Code syntax highlighting configuration -->
     <!-- Comment this to deactivate syntax highlighting. -->
-    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
     <!-- Alternative highlighting styles -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
-    <script src="js/highlight.pack.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
     <script>
         hljs.configure({ languages: [] });
-        hljs.initHighlightingOnLoad();
+        hljs.highlightAll();
     </script>
     <!-- -->
     <!-- mermaid diagram generator configuration -->
@@ -59,22 +59,25 @@ schema: 2.0.0</h2>
 <p>Converts a datetime into a datetime represented in a different format.</p>
 <h2>SYNTAX</h2>
 <h3>DMTF (Default)</h3>
-<pre><code>ConvertFrom-DateTime [-Date] &lt;DateTime[]&gt; [-DMTF] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+<pre><code>ConvertFrom-DateTime [[-Date] &lt;DateTime[]&gt;] [-DMTF] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
 </code></pre>
 <h3>Excel</h3>
-<pre><code>ConvertFrom-DateTime [-Date] &lt;DateTime[]&gt; [-Excel] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+<pre><code>ConvertFrom-DateTime [[-Date] &lt;DateTime[]&gt;] [-Excel] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
 </code></pre>
 <h3>Format</h3>
-<pre><code>ConvertFrom-DateTime [-Date] &lt;DateTime[]&gt; [-Format &lt;String&gt;] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+<pre><code>ConvertFrom-DateTime [[-Date] &lt;DateTime[]&gt;] [-Format &lt;String&gt;] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>ISO8601</h3>
+<pre><code>ConvertFrom-DateTime [[-Date] &lt;DateTime[]&gt;] [-ISO8601] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
 </code></pre>
 <h3>ICSDateTime</h3>
-<pre><code>ConvertFrom-DateTime [-Date] &lt;DateTime[]&gt; [-ICSDateTime] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+<pre><code>ConvertFrom-DateTime [[-Date] &lt;DateTime[]&gt;] [-ICSDateTime] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
 </code></pre>
 <h3>FileTime</h3>
-<pre><code>ConvertFrom-DateTime [-Date] &lt;DateTime[]&gt; [-FileTime] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+<pre><code>ConvertFrom-DateTime [[-Date] &lt;DateTime[]&gt;] [-FileTime] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
 </code></pre>
 <h3>Unix</h3>
-<pre><code>ConvertFrom-DateTime [-Date] &lt;DateTime[]&gt; [-Unix] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+<pre><code>ConvertFrom-DateTime [[-Date] &lt;DateTime[]&gt;] [-Unix] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Converts a datetime into a datetime represented in a different format.
@@ -116,9 +119,9 @@ DateTime             DMTF</p>
 Parameter Sets: (All)
 Aliases: DateTime
 
-Required: True
+Required: False
 Position: 1
-Default value: None
+Default value: (Get-Date)
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 </code></pre>
@@ -196,6 +199,18 @@ Z       is an optional suffix indicating UTC or Zulu time</p>
 <p>If the final character is NOT a Z then the time is local time.</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: ICSDateTime
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-ISO8601</h3>
+<p>Switch to convert a datetime to ISO-8601 format: 'yyyy.MM.ddTHH:mm:ss'</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: ISO8601
 Aliases:
 
 Required: False

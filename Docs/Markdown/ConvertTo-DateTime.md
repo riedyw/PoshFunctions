@@ -27,6 +27,11 @@ ConvertTo-DateTime [-DateString] <String[]> [-Excel] [-IncludeInput] [-UTC] [<Co
 ConvertTo-DateTime [-DateString] <String[]> [-Format <String>] [-IncludeInput] [-UTC] [<CommonParameters>]
 ```
 
+### ISO8601
+```
+ConvertTo-DateTime [-DateString] <String[]> [-ISO8601] [-IncludeInput] [-UTC] [<CommonParameters>]
+```
+
 ### ICSDateTime
 ```
 ConvertTo-DateTime [-DateString] <String[]> [-ICSDateTime] [-IncludeInput] [-UTC] [<CommonParameters>]
@@ -101,6 +106,15 @@ VERBOSE: The date '12/31/1999 18:59:59' is 946684799 seconds in the future of '0
 
 Friday, December 31, 1999 6:59:59 PM
 VERBOSE: Ending ConvertTo-DateTime
+
+### EXAMPLE 7
+```
+ConvertTo-DateTime -ISO8601 2022.02.01T05:00:00z -IncludeInput
+```
+
+ISO8601              DateTime
+-------              --------
+2022.02.01T05:00:00z 2/1/2022 12:00:00 AM
 
 ## PARAMETERS
 
@@ -205,6 +219,21 @@ If the final character is NOT a Z then the time is local time.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ICSDateTime
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ISO8601
+Switch to convert a datetime to ISO-8601 format: 'yyyy.MM.ddTHH:mm:ss'
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ISO8601
 Aliases:
 
 Required: False

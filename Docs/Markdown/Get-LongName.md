@@ -12,8 +12,14 @@ To get the longname of a provided shortname (8.3) of a file or folder
 
 ## SYNTAX
 
+### Path (Default)
 ```
-Get-LongName [-Path] <String[]> [-IncludeInput] [<CommonParameters>]
+Get-LongName [-Path <String[]>] [-IncludeInput] [<CommonParameters>]
+```
+
+### LiteralPath
+```
+Get-LongName [-LiteralPath <String[]>] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -61,13 +67,28 @@ A string or string array of files and folders
 
 ```yaml
 Type: String[]
-Parameter Sets: (All)
+Parameter Sets: Path
 Aliases:
 
-Required: True
-Position: 1
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -LiteralPath
+{{ Fill LiteralPath Description }}
+
+```yaml
+Type: String[]
+Parameter Sets: LiteralPath
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

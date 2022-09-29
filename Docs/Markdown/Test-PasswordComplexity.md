@@ -158,5 +158,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### bool
 ## NOTES
+Changed logic on getting $*Regex values so there would not be a dependency on Get-PrintableAscii
 
 ## RELATED LINKS

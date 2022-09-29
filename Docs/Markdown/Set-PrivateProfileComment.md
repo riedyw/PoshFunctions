@@ -163,7 +163,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### [bool] indicating success or failure of writing the comment.
 ### Error trapping on specific conditions.
-### region parameter
 ## NOTES
 I wanted to have an ability to write comments into an .ini file.
 

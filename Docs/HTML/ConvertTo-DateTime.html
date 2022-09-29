@@ -7,16 +7,16 @@
 
     <!-- Code syntax highlighting configuration -->
     <!-- Comment this to deactivate syntax highlighting. -->
-    <link rel="stylesheet" type="text/css" href="styles/vs.css" />
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
     <!-- Alternative highlighting styles -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/far.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="vs2015.css" /> -->
-    <script src="js/highlight.pack.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
     <script>
         hljs.configure({ languages: [] });
-        hljs.initHighlightingOnLoad();
+        hljs.highlightAll();
     </script>
     <!-- -->
     <!-- mermaid diagram generator configuration -->
@@ -67,6 +67,9 @@ schema: 2.0.0</h2>
 <h3>Format</h3>
 <pre><code>ConvertTo-DateTime [-DateString] &lt;String[]&gt; [-Format &lt;String&gt;] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
 </code></pre>
+<h3>ISO8601</h3>
+<pre><code>ConvertTo-DateTime [-DateString] &lt;String[]&gt; [-ISO8601] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+</code></pre>
 <h3>ICSDateTime</h3>
 <pre><code>ConvertTo-DateTime [-DateString] &lt;String[]&gt; [-ICSDateTime] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
 </code></pre>
@@ -114,10 +117,16 @@ VERBOSE: Your local timezone is '(UTC-05:00) Eastern Time (US &amp; Canada)'
 VERBOSE: The date '12/31/1999 18:59:59' is 946684799 seconds in the future of '01/01/1970 00:00:00' UTC</p>
 <p>Friday, December 31, 1999 6:59:59 PM
 VERBOSE: Ending ConvertTo-DateTime</p>
+<h3>EXAMPLE 7</h3>
+<pre><code>ConvertTo-DateTime -ISO8601 2022.02.01T05:00:00z -IncludeInput
+</code></pre>
+<p>ISO8601              DateTime</p>
+<hr />
+<p>2022.02.01T05:00:00z 2/1/2022 12:00:00 AM</p>
 <h2>PARAMETERS</h2>
 <h3>-DateString</h3>
 <p>The date string that you wish to convert back to a datetime.
-Alias 'Date'. 
+Alias 'Date'.
 Can be input from the pipeline.</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
@@ -202,6 +211,18 @@ Z       is an optional suffix indicating UTC or Zulu time</p>
 <p>If the final character is NOT a Z then the time is local time.</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: ICSDateTime
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-ISO8601</h3>
+<p>Switch to convert a datetime to ISO-8601 format: 'yyyy.MM.ddTHH:mm:ss'</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: ISO8601
 Aliases:
 
 Required: False

@@ -97,5 +97,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+Updated logic around keys to the working hash.
+If any of the words in the file match PowerShell keywords you'll
+get a bunch of error messages.
+Workaround stores hash in slightly different manner.
 
 ## RELATED LINKS

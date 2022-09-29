@@ -22,6 +22,69 @@ All code has also been loaded into ISE with ISESteroids. Most, if not all, SUGGE
 Code has had Invoke-ScriptAnalyzer run against them so that errors are not thrown. Invoke-ScriptAnalyzer is not perfect however and sometimes returns false positives. For those that returned false positives I added declaration statement(s) after the [Cmdlet()] block to not throw the false positive error. An example declaration is as follows:
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]
 
+### 2.2.9
+* added ConvertFrom-HexString - converting a hex string back to plain text: '41' -> 'A'
+* added ConvertTo-HexString = converting plain text to a hex string: 'A' -> '41'
+* added Get-ErrorInfo - explain please
+* added Get-Factorial - calculates the factorial of a number 1-20. Higher than 20 results in overflow of [int64] datatype
+* added Invoke-SoundPlayer - will play a .wav file
+* added Split-CanonicalName - splits an AD canonical name into either -Parent or -Leaf
+* added Split-DistinguishedName - splits an AD distinguished name into either -Parent or -Leaf
+* added Write-SelectStatement - helper function to write a select statement for properties and converts properties that are arrays to a delimited string. Helpful when exporting complex object to CSV
+* updated Compare-ObjectProperty - replaced += with [System.Collections.Arraylist]
+* updated Convert-Int32ToUint32 - replaced += with [System.Collections.Arraylist]
+* updated Convert-Int64ToText - fixed trailing space with .Trim()
+* updated ConvertFrom-FsRight - removed $MatchFound | Out-Null, replaced += with [System.Collections.Arraylist], fixed logic error with Combo rights and IncludeInput
+* updated Copy-Object - replaced += with [System.Collections.Arraylist]
+* updated Expand-IPv6 - replaced += with [System.Collections.Arraylist]
+* updated Export-FontSample - replaced += with [System.Collections.Arraylist]
+* updated Format-RandomCase - replaced += with [System.Collections.Arraylist]
+* updated Format-WrapText - replaced += with [System.Collections.Arraylist]
+* updated Get-CeasarCipher - replaced += with [System.Collections.Arraylist]
+* updated Get-ComputerUptime - added Credential
+* updated Get-DisplayBrightness - added Credential, fixed error if not running on laptop monitor
+* updated Get-Enum - replaced += with [System.Collections.Arraylist]
+* updated Get-Font - minor logic fix in Where-Object statement that previously returned no results
+* updated Get-IpRange - replaced += with [System.Collections.Arraylist]
+* updated Get-MachineType - added Credential
+* updated Get-MacVendor - replaced Invoke-RestMethod with curl.exe as it was no longer returning correct results
+* updated Get-NTFSPermission - replaced += with [System.Collections.Arraylist]
+* updated Get-NtpDate - replace piping to Out-Null to $null =
+* updated Get-PSWho - added Credential
+* updated Get-PrintableAscii - updated logic to replace ' ' with '(Space)'
+* updated Get-PrivateProfileString - replace piping to Out-Null to $null =
+* updated Get-ProcessUser - added Credential
+* updated Get-ScheduledTaskUser - replaced += with [System.Collections.Arraylist], added Credential
+* updated Get-ServiceUser - replaced += with [System.Collections.Arraylist], added Credential
+* updated Get-SqlDatabase - replaced += with [System.Collections.Arraylist]
+* updated Get-SqlStoredProcedure - replaced += with [System.Collections.Arraylist]
+* updated Get-Type - replaced += with [System.Collections.Arraylist]
+* updated Get-TypeAccelerator - replaced += with [System.Collections.Arraylist]
+* updated Invoke-Speak - replaced += with [System.Collections.Arraylist]
+* updated Measure-Char - replaced += with [System.Collections.Arraylist]
+* updated Merge-Object - replaced += with [System.Collections.Arraylist]
+* updated New-Shortcut - replace piping to Out-Null to $null =
+* updated Optimize-SQLIndexFragmentation - replace piping to Out-Null to $null =
+* updated Optimize-SQLStoredProcedure - replace piping to Out-Null to $null =
+* updated Set-Display - added Credential
+* updated Set-PrivateProfileComment - replaced += with [System.Collections.Arraylist]
+* updated Set-WindowStyle - replace piping to Out-Null to $null =
+* updated Show-Calendar - replaced += with [System.Collections.Arraylist]
+* updated Show-FsRight - replaced += with [System.Collections.Arraylist]
+* updated Show-NamedColor - replaced += with [System.Collections.Arraylist]
+* updated Show-Object - replaced += with [System.Collections.Arraylist]
+* updated Show-Progress - replaced += with [System.Collections.Arraylist]
+* updated Start-ADReplication - added Credential
+* updated Start-RecordSession - replace piping to Out-Null to $null =
+* updated Test-IsDate - removed [DateTime] $d | Out-Null
+* updated Test-IsNumeric - replaced piping to Out-Null with saving to a variable
+* updated Test-MultipleBool - replaced += with [System.Collections.Arraylist]
+* updated Test-Password - added Credential
+* updated Write-StringArray - replaced += with [System.Collections.Arraylist]
+* updated Write-StringHash - changed type of -Hash and error check for hashtable or arraylist
+* updated Write-StringHash - replaced += with [System.Collections.Arraylist]
+* updated Write-TextMenu - replaced += with [System.Collections.Arraylist]
+
 ### 2.2.8
 * created .\Resources folder and moved files from the root of the modules excluding: PoshFunctions.psd1, PoshFunctions.psm1, ReadMe.md
 * added additional word list file that contains over 370,000 entries for more English words

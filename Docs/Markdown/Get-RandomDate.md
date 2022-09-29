@@ -29,14 +29,14 @@ or -UFormat which function the same as Get-Date parameters of the same name.
 
 ### EXAMPLE 1
 ```
-Get-Randomdate  -MinDate 1/1/1969 -Max-Date 1/1/2040 -DateLimit UnixEpoch -verbose
+Get-Randomdate  -MinDate 1/1/1969 -MaxDate 1/1/2040 -DateLimit UnixEpoch -verbose
 ```
 
 Would return something similar to the following:
 VERBOSE: $MinDate specified as \[01/01/1969 00:00:00\]
 VERBOSE: $MaxDate specified as \[01/01/2040 00:00:00\]
-VERBOSE: $MinDate ouside valid UnixEpoch setting to \[01/01/1970 00:00:00\]
-VERBOSE: $MaxDate ouside valid UnixEpoch setting to \[01/19/2038 03:14:07\]
+VERBOSE: $MinDate outside valid UnixEpoch setting to \[01/01/1970 00:00:00\]
+VERBOSE: $MaxDate outside valid UnixEpoch setting to \[01/19/2038 03:14:07\]
 VERBOSE: The random date calculated is \[12/26/1997 18:41:51\]
 VERBOSE: The return value is \[System.DateTime\] datatype
 Friday, December 26, 1997 6:41:51 PM
@@ -51,13 +51,13 @@ Friday, August 12, 2005 2:57:51 AM
 
 ### EXAMPLE 3
 ```
-Get-RandomDate  -MinDate 1/1/1576 -Max-Date 7/4/1776 -DateLimit FileTime -Verbose
+Get-RandomDate  -MinDate 1/1/1576 -MaxDate 7/4/1776 -DateLimit FileTime -Verbose
 ```
 
 Would return something similar to the following:
 VERBOSE: $MinDate specified as \[01/01/1576 00:00:00\]
 VERBOSE: $MaxDate specified as \[07/04/1776 00:00:00\]
-VERBOSE: $MinDate ouside valid FileTime setting to \[01/01/1601 00:00:00\]
+VERBOSE: $MinDate outside valid FileTime setting to \[01/01/1601 00:00:00\]
 VERBOSE: The random date calculated is \[06/27/1615 16:45:27\]
 VERBOSE: The return value is \[System.DateTime\] datatype
 Saturday, June 27, 1615 4:45:27 PM

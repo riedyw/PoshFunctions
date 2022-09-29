@@ -1,18 +1,3 @@
-<#PSScriptInfo
-.VERSION
-    1.0.54
-.GUID
-    61cb130e-2c70-488b-968f-82eb57a198e5
-.AUTHOR
-    PM091
-.DESCRIPTION
-    Get-MacVendor
-.COMPANYNAME
-    pez863
-.TAGS
-    PSScript
-#>
-
 function Get-MacVendor {
 <#
 .SYNOPSIS
@@ -68,7 +53,7 @@ function Get-MacVendor {
             Write-Progress -Activity "Resoving MacAddress : $Mac" -Status "$CurrentMac of $($MacAddress.Count)" -PercentComplete (($CurrentMac / $MacAddress.Count) * 100)
             try {
                 Write-Verbose -Message 'Sending Request to https://api.macvendors.com/'
-                # originally Invoke-RestMethod -Method Get -Uri https://api.macvendors.com/$Mac -ErrorAction SilentlyContinue 
+                # originally Invoke-RestMethod -Method Get -Uri https://api.macvendors.com/$Mac -ErrorAction SilentlyContinue
                 curl.exe -s https://api.macvendors.com/$Mac | ForEach-Object {
                     New-Object -TypeName pscustomobject -Property ([ordered] @{
                         MacAddress = $Mac

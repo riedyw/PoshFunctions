@@ -31,6 +31,7 @@ DMTF        : 20010911081500.000000-240
 Unix        : 1000196100
 FileTime    : 126446877000000000
 ICSDateTime : 20010911T081500
+ISO8601     : 2001.09.11T08:15:00
 Excel       : 37143.34375
 
 ### EXAMPLE 2
@@ -38,12 +39,13 @@ Excel       : 37143.34375
 New-PFDateFormat
 ```
 
-Date        : 12/16/2021 10:39:32 AM
-DMTF        : 20211216103932.967575-300
-Unix        : 1639651172.96758
-FileTime    : 132841427729675751
-ICSDateTime : 20211216T103932
-Excel       : 44544.4441315692
+Date        : 2/9/2022 3:14:37 PM
+DMTF        : 20220209151437.616838-300
+Unix        : 1644419677.61684
+FileTime    : 132889112776168387
+ICSDateTime : 20220209T151437
+ISO8601     : 2022.02.09T15:14:37
+Excel       : 44599.6351576023
 
 ### EXAMPLE 3
 ```
@@ -52,12 +54,13 @@ New-PFDateFormat -Verbose
 
 VERBOSE: Starting \[New-PFDateFormat\]
 
-Date        : 12/16/2021 10:46:13 AM
-DMTF        : 20211216104613.910469-300
-Unix        : 1639651573.91047
-FileTime    : 132841431739104697
-ICSDateTime : 20211216T104613
-Excel       : 44544.4487721119
+Date        : 2/9/2022 3:15:37 PM
+DMTF        : 20220209151537.066346-300
+Unix        : 1644419737.06635
+FileTime    : 132889113370663466
+ICSDateTime : 20220209T151537
+ISO8601     : 2022.02.09T15:15:37
+Excel       : 44599.6358456753
 
 VERBOSE: Ending \[New-PFDateFormat\]
 
@@ -98,7 +101,8 @@ Ticks can range from 0 - 2650467743999999999.
 Translating these into dates you get
                       0 = Monday, January 01, 1601 12:00:00.00000 AM
     2650467743999999999 = Friday, December 31, 9999 11:59:59.99999 PM
-ICSDateTime is a \[datetime\] formatted is of the form 'yyyymmddTHHMMSSZ'
+ICSDateTime is a \[datetime\] formatted is of the form 'yyyyMMddTHHmmss'
+ISO8601 is a \[datetime\] formatted is of the form 'yyyy.MMddTHH:mm:ss'
 Excel is a \[double\] that represents dates as the number of days since (Get-Date 1/1/1900)
 
 ## RELATED LINKS

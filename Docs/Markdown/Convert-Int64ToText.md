@@ -8,30 +8,67 @@ schema: 2.0.0
 # Convert-Int64ToText
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Convert integer to English text
 
 ## SYNTAX
 
 ```
-Convert-Int64ToText [[-Number] <Int64>] [-IncludeInput] [<CommonParameters>]
+Convert-Int64ToText [-Number] <Int64[]> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Convert integer to English text
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Convert-Int64ToText -Number 13987
 ```
 
-{{ Add example description here }}
+Thirteen Thousand Nine Hundred Eighty Seven
+
+### EXAMPLE 2
+```
+Convert-Int64ToText -Number 1999, 2001, 2022 -IncludeInput
+```
+
+Number Result
+------ ------
+  1999 One Thousand Nine Hundred Ninety Nine
+  2001 Two Thousand One
+  2022 Two Thousand Twenty Two
+
+### EXAMPLE 3
+```
+723, 4560 | Convert-Int64ToText -IncludeInput
+```
+
+Number Result
+------ ------
+   723 Seven Hundred Twenty Three
+  4560 Four Thousand Five Hundred Sixty
 
 ## PARAMETERS
 
+### -Number
+An \[int64\] value or an array of \[int64\]
+
+```yaml
+Type: Int64[]
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
 ### -IncludeInput
-{{ Fill IncludeInput Description }}
+Switch to enable the original datetime to appear in the output.
+Aliased to 'IncludeOriginal'
 
 ```yaml
 Type: SwitchParameter
@@ -40,22 +77,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Number
-{{ Fill Number Description }}
-
-```yaml
-Type: Int64
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 0
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -65,11 +87,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
-
 ## OUTPUTS
 
-### System.Object
 ## NOTES
 
 ## RELATED LINKS
