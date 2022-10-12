@@ -4,7 +4,7 @@
     RootModule        = 'PoshFunctions.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '2.2.9'
+    ModuleVersion     = '2.2.10'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -186,6 +186,9 @@
             # ReleaseNotes of this module
             ReleaseNotes = @'
 For full release notes see .\Resources\ReleaseNotes.txt
+### 2.2.10
+* updated Get-PrivateProfileSection - fixed error when ini value contains a backslash '\'
+
 ### 2.2.9
 * added ConvertFrom-HexString - converting a hex string back to plain text: '41' -> 'A'
 * added ConvertTo-HexString = converting plain text to a hex string: 'A' -> '41'
