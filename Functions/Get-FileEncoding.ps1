@@ -68,12 +68,16 @@ function Get-FileEncoding {
             } elseif ($byte[0] -eq 0x84 -and $byte[1] -eq 0x31 -and $byte[2] -eq 0x95 -and $byte[3] -eq 0x33) {
                 # 84 31 95 33 (GB-18030)
                 Write-Output -InputObject 'GB-18030'
-            } else {
+            } elseif ($byte[0] -eq 0x23 -and $byte[1] -eq 0x72 -and $byte[2] -eq 0x65 -and $byte[3] -eq 0x71) {
+                Write-Output -InputObject 'UTF8BOM'
+            } 
+            else {
                 Write-Output -InputObject 'ASCII'
             }
         } else {
             Write-Error -Message "The file [$Path] does not exist."
         }
+        Write-Verbose "$byte"
     }
 
     end {
