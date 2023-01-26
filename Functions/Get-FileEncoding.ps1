@@ -30,7 +30,13 @@ function Get-FileEncoding {
 
     process {
         if (Test-Path -Path $Path) {
-            [byte[]] $byte = Get-Content -Encoding byte -ReadCount 4 -TotalCount 4 -Path $Path
+            Try { [byte[]] $byte = Get-Content -Encoding byte -ReadCount 4 -TotalCount 4 -Path $Path }
+            Catch 
+            { 
+                Write-Warning "Get-Content is not working. Be aware PowerShell 7.2 does not support byte encoding anymore" 
+                Write-Output -InputObject 'Unkown'
+                break
+            }
             #Write-Host Bytes: $byte[0] $byte[1] $byte[2] $byte[3]
 
             if ( $byte[0] -eq 0xef -and $byte[1] -eq 0xbb -and $byte[2] -eq 0xbf ) {
