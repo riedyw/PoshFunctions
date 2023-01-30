@@ -30,12 +30,18 @@ function Get-FileEncoding {
 
     process {
         if (Test-Path -Path $Path) {
-            [byte[]] $byte = Get-Content -Encoding byte -ReadCount 4 -TotalCount 4 -Path $Path
+            Try { [byte[]] $byte = Get-Content -Encoding byte -ReadCount 4 -TotalCount 4 -Path $Path }
+            Catch 
+            { 
+                Write-Warning "Get-Content is not working. Be aware PowerShell 7.2 does not support byte encoding anymore" 
+                Write-Output -InputObject 'Unkown'
+                break
+            }
             #Write-Host Bytes: $byte[0] $byte[1] $byte[2] $byte[3]
 
             if ( $byte[0] -eq 0xef -and $byte[1] -eq 0xbb -and $byte[2] -eq 0xbf ) {
                 # EF BB BF (UTF8)
-                Write-Output -InputObject 'UTF8'
+                Write-Output -InputObject 'UTF8BOM'
             } elseif ($byte[0] -eq 0xfe -and $byte[1] -eq 0xff) {
                 # FE FF  (UTF-16 Big-Endian)
                 Write-Output -InputObject 'Unicode UTF-16 Big-Endian'
@@ -68,12 +74,16 @@ function Get-FileEncoding {
             } elseif ($byte[0] -eq 0x84 -and $byte[1] -eq 0x31 -and $byte[2] -eq 0x95 -and $byte[3] -eq 0x33) {
                 # 84 31 95 33 (GB-18030)
                 Write-Output -InputObject 'GB-18030'
-            } else {
+            } elseif ($byte[0] -eq 0x23 -and $byte[1] -eq 0x72 -and $byte[2] -eq 0x65 -and $byte[3] -eq 0x71) {
+                Write-Output -InputObject 'UTF8'
+            } 
+            else {
                 Write-Output -InputObject 'ASCII'
             }
         } else {
             Write-Error -Message "The file [$Path] does not exist."
         }
+        Write-Verbose "$byte $Path"
     }
 
     end {
