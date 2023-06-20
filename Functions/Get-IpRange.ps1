@@ -69,10 +69,10 @@ function Get-IpRange {
                 $HostIDInBinary = $HostIDInBinary -replace '1', '0'
                 #Work out all the host IDs in that subnet by cycling through $i from 1 up to max $HostIDInBinary (i.e. 1s stringed up to $HostBits)
                 #Work out max $HostIDInBinary
-                $imax = [convert]::ToInt32(('1' * $HostBits), 2) - 1
+                $imax = [convert]::ToInt32(('1' * $HostBits), 2)
                 $IPs = @()
                 #Next ID is first network ID converted to decimal plus $i then converted to binary
-                For ($i = 1 ; $i -le $imax ; $i++) {
+                For ($i = 0 ; $i -le $imax ; $i++) {
                     #Convert to decimal and add $i
                     $NextHostIDInDecimal = ([convert]::ToInt32($HostIDInBinary, 2) + $i)
                     #Convert back to binary
@@ -111,3 +111,6 @@ function Get-IpRange {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 }
+
+
+'13.69.67.192/28' | Get-IpRange
