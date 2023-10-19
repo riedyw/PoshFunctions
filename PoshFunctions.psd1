@@ -1,5 +1,5 @@
 @{
-
+# new comment
     # Script module or binary module file associated with this manifest.
     RootModule        = 'PoshFunctions.psm1'
 
