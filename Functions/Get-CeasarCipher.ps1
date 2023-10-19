@@ -45,7 +45,7 @@ function Get-CeasarCipher {
         [Alias('String')]
         [string[]] $Text,
 
-        [ValidateRange(1, 25)]
+        [ValidateRange(-25, 25)]
         [int] $Key = 13,
 
         [switch] $Decode,

@@ -2,7 +2,10 @@
 # Author: Bill Riedy
 
 Add-Type -AssemblyName Microsoft.VisualBasic
+Add-Type -AssemblyName System.Drawing
+Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Web
+
 
 $Script:ModulePath = Split-Path -Parent -Path $MyInvocation.MyCommand.Path
 

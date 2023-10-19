@@ -61,6 +61,8 @@
     # NestedModules = @()
 
     # Functions export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
+    # Recreated by running the following from PS prompt in PoshFunctions folder
+    # dir .\Functions\*.ps1 | select -expand basename | Write-StringArray -VariableName FunctionsToExport -ExcludeDollarSign | Format-WrapText -Width 80 | set-clipboard
 
     FunctionsToExport = @( 'Compare-ObjectProperty', 'Compare-ObjectSetComplement',
         'Compare-ObjectSetDifference', 'Compare-ObjectSetIntersection',
@@ -81,11 +83,12 @@
         'Format-ReverseString', 'Format-ReverseToken', 'Format-SortedList',
         'Format-TitleCase', 'Format-WrapText', 'Get-ArpTable', 'Get-Assoc',
         'Get-BashPath', 'Get-BinaryType', 'Get-CeasarCipher', 'Get-ComputerSite',
-        'Get-ComputerUptime', 'Get-DiceRoll', 'Get-DisplayBrightness',
+        'Get-ComputerUptime', 'Get-DiceRoll', 'Get-DiskType', 'Get-DisplayBrightness',
         'Get-DNSHostEntryAsync', 'Get-DriveStat', 'Get-DuplicateFileName', 'Get-Enum',
         'Get-ErrorInfo', 'Get-ExecutableForFile', 'Get-Factorial', 'Get-FileEncoding',
-        'Get-FileName', 'Get-FileWithLeadingSpace', 'Get-FolderName', 'Get-Font',
-        'Get-Fortune', 'Get-Ftype', 'Get-InvalidFileCharacter', 'Get-IpRange',
+        'Get-FileName', 'Get-FileSizeOnDisk', 'Get-FileWithLeadingSpace',
+        'Get-FolderName', 'Get-Font', 'Get-Fortune', 'Get-Ftype',
+        'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-IpV4Network',
         'Get-LastDayInMonth', 'Get-List', 'Get-LongName', 'Get-MachineType',
         'Get-MacVendor', 'Get-Magic8Ball', 'Get-Md5Sum', 'Get-MyLocalLogonTime',
         'Get-NetworkCredential', 'Get-NTFSPermission', 'Get-NtpDate', 'Get-Power',
@@ -111,21 +114,21 @@
         'Remove-TeamsCache', 'Remove-Trailing', 'Reset-Desktop', 'Resolve-FQDN',
         'Resolve-HostName', 'sed', 'Set-Capslock', 'Set-Display', 'Set-Numlock',
         'Set-PrivateProfileComment', 'Set-PrivateProfileString', 'Set-Scrolllock',
-        'Set-SpeakerVolume', 'Set-Type', 'Set-WindowStyle', 'Show-AllColor',
-        'Show-Calendar', 'Show-Color', 'Show-ColorsWithBackground', 'Show-DaysOfWeek',
-        'Show-FileAttribute', 'Show-FsRight', 'Show-Month', 'Show-NamedColor',
-        'Show-Object', 'Show-Progress', 'Show-ShortDaysOfWeek', 'Show-ShortMonth',
-        'Show-SubnetMaskIPv4', 'Show-Timezone', 'Split-CanonicalName',
-        'Split-DistinguishedName', 'Split-Line', 'Start-ADReplication',
-        'Start-RecordSession', 'Stop-RecordSession', 'Switch-Mute',
-        'Test-ConnectionAsync', 'Test-IsAdmin', 'Test-IsCapsLock', 'Test-IsDate',
-        'Test-IsFileLocked', 'Test-IsHexString', 'Test-IsLocalIPv4', 'Test-IsNull',
-        'Test-IsNumeric', 'Test-IsNumLock', 'Test-IsScrollLock',
-        'Test-IsValidEmailAddress', 'Test-IsValidIPv4', 'Test-IsValidIPv6',
-        'Test-MultipleBool', 'Test-Network', 'Test-NtpDateVsNow', 'Test-Password',
-        'Test-PasswordComplexity', 'Test-Port', 'Test-Set', 'Update-ExplorerIcon',
-        'Use-Stopwatch', 'Write-SelectStatement', 'Write-StringArray',
-        'Write-StringHash', 'Write-TextMenu' )
+        'Set-SpeakerVolume', 'Set-Type', 'Set-WindowState', 'Set-WindowStyle',
+        'Show-AllColor', 'Show-Calendar', 'Show-Color', 'Show-ColorsWithBackground',
+        'Show-DaysOfWeek', 'Show-FileAttribute', 'Show-FsRight', 'Show-Month',
+        'Show-NamedColor', 'Show-Object', 'Show-Progress', 'Show-ShortDaysOfWeek',
+        'Show-ShortMonth', 'Show-SubnetMaskIPv4', 'Show-Timezone',
+        'Split-CanonicalName', 'Split-DistinguishedName', 'Split-Line',
+        'Start-ADReplication', 'Start-RecordSession', 'Stop-RecordSession',
+        'Switch-Mute', 'Test-ConnectionAsync', 'Test-CSVFormat', 'Test-IsAdmin',
+        'Test-IsCapsLock', 'Test-IsDate', 'Test-IsFileLocked', 'Test-IsHexString',
+        'Test-IsLocalIPv4', 'Test-IsNull', 'Test-IsNumeric', 'Test-IsNumLock',
+        'Test-IsScrollLock', 'Test-IsValidEmailAddress', 'Test-IsValidIPv4',
+        'Test-IsValidIPv6', 'Test-MultipleBool', 'Test-Network', 'Test-NtpDateVsNow',
+        'Test-Password', 'Test-PasswordComplexity', 'Test-Port', 'Test-Set',
+        'Update-ExplorerIcon', 'Use-Stopwatch', 'Write-SelectStatement',
+        'Write-StringArray', 'Write-StringHash', 'Write-TextMenu' )
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     #CmdletsToExport = '*'
@@ -187,6 +190,14 @@
             ReleaseNotes = @'
 For full release notes see .\Resources\ReleaseNotes.txt
 ### 2.2.10
+* added Get-DiskType - returns the type of disk and type of bus for a given computer(s) local disk(s)
+* added Get-FileSizeOnDisk - returns actual disk usage when NTFS compression is enabled for file(s)
+* added Get-IpV4Network - to determine network given IP address and subnet mask
+* added Set-WindowState - to minimize/maximize a window
+* added Test-CSVFormat - determine if number of fields match header row
+* updated Get-CaesarCipher - to allow negative rotation
+* updated Get-SqlIndexFragmentation - fixed ???
+* updated Invoke-Beep - fixed ???
 * updated Get-PrivateProfileSection - fixed error when ini value contains a backslash '\'
 
 ### 2.2.9

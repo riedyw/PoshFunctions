@@ -60,35 +60,35 @@ function Get-SqlIndexFragmentation {
             break
         }
         $FragQuery = "
-            SELECT
-                db_name() AS 'DBName',
-                S.name AS 'Schema',
-                T.name AS 'Table',
-                I.name AS 'Index',
-                DDIPS.avg_fragmentation_in_percent,
-                DDIPS.page_count
-            FROM
-                sys.dm_db_index_physical_stats (DB_ID(), NULL, NULL, NULL, NULL) AS DDIPS
-            INNER JOIN
-                sys.tables T on T.object_id = DDIPS.object_id
-            INNER JOIN
-                sys.schemas S on T.schema_id = S.schema_id
-            INNER JOIN
-                sys.indexes I ON I.object_id = DDIPS.object_id
-                AND DDIPS.index_id = I.index_id
-            WHERE
-                T.name LIKE '$Table'
-            AND
-                DDIPS.database_id = DB_ID()
-            AND
-                DDIPS.avg_fragmentation_in_percent >= $MinFragmentation
-            AND
-                DDIPS.page_count >= $MinPageCount
-            AND
-                I.name IS NOT NULL
-            ORDER BY
-                'DBName', 'Schema', 'Table', 'Index'
-        "
+SELECT
+    db_name() AS 'DBName',
+    S.name AS 'Schema',
+    T.name AS 'Table',
+    I.name AS 'Index',
+    DDIPS.avg_fragmentation_in_percent,
+    DDIPS.page_count
+FROM
+    sys.dm_db_index_physical_stats (DB_ID(), NULL, NULL, NULL, NULL) AS DDIPS
+INNER JOIN
+    sys.tables T on T.object_id = DDIPS.object_id
+INNER JOIN
+    sys.schemas S on T.schema_id = S.schema_id
+INNER JOIN
+    sys.indexes I ON I.object_id = DDIPS.object_id
+    AND DDIPS.index_id = I.index_id
+WHERE
+    T.name LIKE '$Table'
+AND
+    DDIPS.database_id = DB_ID()
+AND
+    DDIPS.avg_fragmentation_in_percent >= $MinFragmentation
+AND
+    DDIPS.page_count >= $MinPageCount
+AND
+    I.name IS NOT NULL
+ORDER BY
+    'DBName', 'Schema', 'Table', 'Index'
+"
     }
 
     process {

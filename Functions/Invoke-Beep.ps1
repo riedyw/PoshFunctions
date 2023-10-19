@@ -77,23 +77,41 @@ function Invoke-Beep {
             }
             'StarWars' {
                 [system.console]::Beep(440, 500)
+                Start-Sleep -Milliseconds 250
                 [system.console]::Beep(440, 500)
+                Start-Sleep -Milliseconds 250
                 [system.console]::Beep(440, 500)
+                Start-Sleep -Milliseconds 250
                 [system.console]::Beep(349, 350)
+                Start-Sleep -Milliseconds 175
                 [system.console]::Beep(523, 150)
+                Start-Sleep -Milliseconds 75
                 [system.console]::Beep(440, 500)
+                Start-Sleep -Milliseconds 250
                 [system.console]::Beep(349, 350)
+                Start-Sleep -Milliseconds 175
                 [system.console]::Beep(523, 150)
+                Start-Sleep -Milliseconds 75
                 [system.console]::Beep(440, 1000)
+                Start-Sleep -Milliseconds 500
                 [system.console]::Beep(659, 500)
+                Start-Sleep -Milliseconds 250
                 [system.console]::Beep(659, 500)
+                Start-Sleep -Milliseconds 250
                 [system.console]::Beep(659, 500)
+                Start-Sleep -Milliseconds 250
                 [system.console]::Beep(698, 350)
+                Start-Sleep -Milliseconds 175
                 [system.console]::Beep(523, 150)
+                Start-Sleep -Milliseconds 75
                 [system.console]::Beep(415, 500)
+                Start-Sleep -Milliseconds 250
                 [system.console]::Beep(349, 350)
+                Start-Sleep -Milliseconds 175
                 [system.console]::Beep(523, 150)
+                Start-Sleep -Milliseconds 75
                 [system.console]::Beep(440, 1000)
+                Start-Sleep -Milliseconds 500
             }
             'Impossible' {
                 [system.console]::Beep(784, 150)
