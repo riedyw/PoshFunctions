@@ -31,6 +31,9 @@ function ConvertFrom-Base64 {
         [Parameter(Position = 0, Mandatory, ValueFromPipeLine)]
         [string[]] $Base64,
 
+        [ValidateSet('ASCII', 'BigEndianUnicode', 'Unicode', 'UTF32', 'UTF7', 'UTF8')]
+        [string] $EncodingType = 'Unicode',
+
         [switch] $IncludeInput
     )
     #endregion Parameter
@@ -42,10 +45,31 @@ function ConvertFrom-Base64 {
     process {
         foreach ($curBase64 in $Base64) {
             $bytesfrom = [Convert]::FromBase64String($curBase64)
+            switch ($EncodingType) {
+                'ASCII' {
+                    $decodedfrom = [System.Text.Encoding]::Ascii.GetString($bytesfrom)
+                }
+                'BigEndianUnicode' {
+                    $decodedfrom = [System.Text.Encoding]::BigEndianUnicode.GetString($bytesfrom)
+                }
+                'Unicode' {
+                    $decodedfrom = [System.Text.Encoding]::Unicode.GetString($bytesfrom)
+                }
+                'UTF32' {
+                    $decodedfrom = [System.Text.Encoding]::UTF32.GetString($bytesfrom)
+                }
+                'UTF7' {
+                    $decodedfrom = [System.Text.Encoding]::UTF7.GetString($bytesfrom)
+                }
+                'UTF8' {
+                    $decodedfrom = [System.Text.Encoding]::UTF8.GetString($bytesfrom)
+                }
+            }
             $decodedfrom = [Text.Encoding]::Unicode.GetString($bytesfrom)
             if ($IncludeInput) {
                 New-Object -TypeName psobject -Property ([ordered] @{
                     Base64 = $curBase64
+                    Encoding = $EncodingType
                     String = $decodedfrom
                 })
             } else {

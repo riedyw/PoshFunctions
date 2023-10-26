@@ -55,7 +55,7 @@
     # TypesToProcess = @()
 
     # Format files (.ps1xml) to be loaded when importing this module
-    # FormatsToProcess = @()
+    FormatsToProcess  = @('PoshFunctions.ps1xml')
 
     # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
     # NestedModules = @()
@@ -83,12 +83,12 @@
         'Format-ReverseString', 'Format-ReverseToken', 'Format-SortedList',
         'Format-TitleCase', 'Format-WrapText', 'Get-ArpTable', 'Get-Assoc',
         'Get-BashPath', 'Get-BinaryType', 'Get-CeasarCipher', 'Get-ComputerSite',
-        'Get-ComputerUptime', 'Get-DiceRoll', 'Get-DiskType', 'Get-DisplayBrightness',
-        'Get-DNSHostEntryAsync', 'Get-DriveStat', 'Get-DuplicateFileName', 'Get-Enum',
-        'Get-ErrorInfo', 'Get-ExecutableForFile', 'Get-Factorial', 'Get-FileEncoding',
-        'Get-FileName', 'Get-FileSizeOnDisk', 'Get-FileWithLeadingSpace',
-        'Get-FolderName', 'Get-Font', 'Get-Fortune', 'Get-Ftype',
-        'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-IpV4Network',
+        'Get-ComputerUptime', 'Get-ConsoleWindowSize', 'Get-DiceRoll', 'Get-DiskType',
+        'Get-DisplayBrightness', 'Get-DNSHostEntryAsync', 'Get-DriveStat',
+        'Get-DuplicateFileName', 'Get-Enum', 'Get-ErrorInfo', 'Get-ExecutableForFile',
+        'Get-Factorial', 'Get-FileEncoding', 'Get-FileName', 'Get-FileSizeOnDisk',
+        'Get-FileWithLeadingSpace', 'Get-FolderName', 'Get-Font', 'Get-Fortune',
+        'Get-Ftype', 'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-IpV4Network',
         'Get-LastDayInMonth', 'Get-List', 'Get-LongName', 'Get-MachineType',
         'Get-MacVendor', 'Get-Magic8Ball', 'Get-Md5Sum', 'Get-MyLocalLogonTime',
         'Get-NetworkCredential', 'Get-NTFSPermission', 'Get-NtpDate', 'Get-Power',
@@ -99,7 +99,7 @@
         'Get-RelativePath', 'Get-Round', 'Get-SaveFileName', 'Get-ScheduledTaskUser',
         'Get-ServiceUser', 'Get-Shortcut', 'Get-ShortName', 'Get-SID',
         'Get-SpecialFolder', 'Get-SqlDatabase', 'Get-SqlIndexFragmentation',
-        'Get-SqlStoredProcedure', 'Get-StaticProperty', 'Get-String',
+        'Get-SqlStoredProcedure', 'Get-StaticProperty', 'Get-String', 'Get-StringHash',
         'Get-SubnetMaskIPv4', 'Get-TruncatedDate', 'Get-Type', 'Get-TypeAccelerator',
         'Get-UrlContent', 'Get-VssAdminListVolumes', 'Get-VssAdminListWriters',
         'Get-WordCount', 'Get-WordList', 'grep', 'Invoke-Beep',
@@ -190,15 +190,18 @@
             ReleaseNotes = @'
 For full release notes see .\Resources\ReleaseNotes.txt
 ### 2.2.10
+* added Get-ConsoleWindowSize - returns both the window size and buffer size of current console window
 * added Get-DiskType - returns the type of disk and type of bus for a given computer(s) local disk(s)
 * added Get-FileSizeOnDisk - returns actual disk usage when NTFS compression is enabled for file(s)
 * added Get-IpV4Network - to determine network given IP address and subnet mask
 * added Set-WindowState - to minimize/maximize a window
 * added Test-CSVFormat - determine if number of fields match header row
+* updated ConvertFrom-Base64 - added $EncodingType to provide support for Ascii, UTF32, etc. encoding
+* updated ConvertTo-Base64 - added $EncodingType to provide support for Ascii, UTF32, etc. encoding
 * updated Get-CaesarCipher - to allow negative rotation
+* updated Get-PrivateProfileSection - fixed error when ini value contains a backslash '\'
 * updated Get-SqlIndexFragmentation - fixed ???
 * updated Invoke-Beep - fixed ???
-* updated Get-PrivateProfileSection - fixed error when ini value contains a backslash '\'
 
 ### 2.2.9
 * added ConvertFrom-HexString - converting a hex string back to plain text: '41' -> 'A'

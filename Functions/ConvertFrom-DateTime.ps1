@@ -168,7 +168,7 @@ function ConvertFrom-DateTime {
                     $ReturnVal = [Management.ManagementDateTimeConverter]::ToDmtfDateTime(($D))
                 }
                 'Unix' {
-                    $ReturnVal = ([timespan] ($D - $BeginUnixEpoch)).TotalSeconds
+                    $ReturnVal = [math]::Round(([timespan] ($D - $BeginUnixEpoch)).TotalSeconds,4)
                 }
                 'FileTime' {
                     $ReturnVal = $D.ToFileTime()

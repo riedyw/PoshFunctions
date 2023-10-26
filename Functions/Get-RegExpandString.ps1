@@ -109,7 +109,7 @@ function Get-RegExpandString {
             try {
                 if ($c -eq '') {
                     $c = $env:COMPUTERNAME
-                    Write-Verbose -Message "Parameter [ComputerName] is not presnet, setting its value to local computer name: [$c]."
+                    Write-Verbose -Message "Parameter [ComputerName] is not present, setting its value to local computer name: [$c]."
                 }
                 if ($Ping) {
                     Write-Verbose -Message 'Parameter [Ping] is present, initiating Ping test'
@@ -128,11 +128,11 @@ function Get-RegExpandString {
                     Throw "Key '$Key' doesn't exist."
                 }
                 if ($ExpandEnvironmentNames) {
-                    Write-Verbose -Message 'Parameter [ExpandEnvironmentNames] is presnet, expanding value of environamnt strings.'
+                    Write-Verbose -Message 'Parameter [ExpandEnvironmentNames] is present, expanding value of environment strings.'
                     Write-Verbose -Message "Get value name : [$Value]"
                     $rv = $subKey.GetValue($Value, -1)
                 } else {
-                    Write-Verbose -Message 'Parameter [ExpandEnvironmentNames] is not presnet, environamnt strings are not expanded.'
+                    Write-Verbose -Message 'Parameter [ExpandEnvironmentNames] is not present, environment strings are not expanded.'
                     Write-Verbose -Message "Get value name : [$Value]"
                     $rv = $subKey.GetValue($Value, -1, [Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames)
                 }

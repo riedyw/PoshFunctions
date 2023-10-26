@@ -1,5 +1,5 @@
 function ConvertTo-Base64 {
-<#
+    <#
 .SYNOPSIS
     ConvertTo-Base64 converts a normal string to a base 64 string
 .DESCRIPTION
@@ -34,6 +34,9 @@ function ConvertTo-Base64 {
         [Parameter(ValueFromPipeline)]
         [string[]] $String,
 
+        [ValidateSet('ASCII', 'BigEndianUnicode', 'Unicode', 'UTF32', 'UTF7', 'UTF8')]
+        [string] $EncodingType = 'Unicode',
+
         [switch] $IncludeInput
     )
 
@@ -43,11 +46,31 @@ function ConvertTo-Base64 {
 
     process {
         foreach ($curString in $String) {
-            $bytesto = [System.Text.Encoding]::Unicode.GetBytes($curString)
+            switch ($EncodingType) {
+                'ASCII' {
+                    $bytesto = [System.Text.Encoding]::Ascii.GetBytes($curString)
+                }
+                'BigEndianUnicode' {
+                    $bytesto = [System.Text.Encoding]::BigEndianUnicode.GetBytes($curString)
+                }
+                'Unicode' {
+                    $bytesto = [System.Text.Encoding]::Unicode.GetBytes($curString)
+                }
+                'UTF32' {
+                    $bytesto = [System.Text.Encoding]::UTF32.GetBytes($curString)
+                }
+                'UTF7' {
+                    $bytesto = [System.Text.Encoding]::UTF7.GetBytes($curString)
+                }
+                'UTF8' {
+                    $bytesto = [System.Text.Encoding]::UTF8.GetBytes($curString)
+                }
+            }
             $encodedto = [System.Convert]::ToBase64String($bytesto)
             if ($IncludeInput) {
                 New-Object -TypeName psobject -Property ([ordered] @{
                         String = $curString
+                        Encoding = $EncodingType
                         Base64 = $encodedto
                     })
             } else {
