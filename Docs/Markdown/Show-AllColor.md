@@ -1,7 +1,7 @@
-﻿---
+---
 external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
-online version:
+online version: https://gist.github.com/Nora-Ballard/11240204
 schema: 2.0.0
 ---
 

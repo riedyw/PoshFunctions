@@ -137,6 +137,7 @@ A note on the properties of PFDateFormat:
     Excel is a [double] which represents dates as the number of days since (Get-Date 1/1/1900)
 #>
 
+# console output formatted according to PFDateFormat entry in .\PoshFunctions.ps1xml
 class PFDateFormat {
     [datetime] $Date = $(Get-Date)
     [string] $DMTF

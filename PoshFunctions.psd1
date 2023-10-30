@@ -19,10 +19,10 @@
     CompanyName       = ''
 
     # Copyright statement for this module
-    Copyright         = '(c) 2022 Bill Riedy. All rights reserved.'
+    Copyright         = '(c) 2023 Bill Riedy. All rights reserved.'
 
     # Description of the functionality provided by this module
-    Description       = 'A curated collection of over 215 PowerShell functions. Many functions written by me. Others are attributed wherever possible.'
+    Description       = 'A curated collection of over 225 PowerShell functions. Many functions written by me. Others are attributed wherever possible.'
 
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '5.0'
@@ -81,16 +81,17 @@
         'Expand-Tab', 'Export-CSVSortedColumn', 'Export-FontSample', 'FileSizeAbove',
         'FileSizeBelow', 'Format-MacAddress', 'Format-RandomCase',
         'Format-ReverseString', 'Format-ReverseToken', 'Format-SortedList',
-        'Format-TitleCase', 'Format-WrapText', 'Get-ArpTable', 'Get-Assoc',
-        'Get-BashPath', 'Get-BinaryType', 'Get-CeasarCipher', 'Get-ComputerSite',
-        'Get-ComputerUptime', 'Get-ConsoleWindowSize', 'Get-DiceRoll', 'Get-DiskType',
-        'Get-DisplayBrightness', 'Get-DNSHostEntryAsync', 'Get-DriveStat',
-        'Get-DuplicateFileName', 'Get-Enum', 'Get-ErrorInfo', 'Get-ExecutableForFile',
-        'Get-Factorial', 'Get-FileEncoding', 'Get-FileName', 'Get-FileSizeOnDisk',
-        'Get-FileWithLeadingSpace', 'Get-FolderName', 'Get-Font', 'Get-Fortune',
-        'Get-Ftype', 'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-IpV4Network',
+        'Format-TitleCase', 'Format-WrapText', 'Get-AppEventSound', 'Get-ArpTable',
+        'Get-Assoc', 'Get-BashPath', 'Get-BinaryType', 'Get-CeasarCipher',
+        'Get-ComputerSite', 'Get-ComputerUptime', 'Get-ConsoleWindowSize',
+        'Get-DiceRoll', 'Get-DiskType', 'Get-DisplayBrightness',
+        'Get-DNSHostEntryAsync', 'Get-DriveStat', 'Get-DuplicateFileName', 'Get-Enum',
+        'Get-ErrorInfo', 'Get-ExecutableForFile', 'Get-Factorial', 'Get-FileEncoding',
+        'Get-FileName', 'Get-FileSizeOnDisk', 'Get-FileWithLeadingSpace',
+        'Get-FolderName', 'Get-Font', 'Get-Fortune', 'Get-Ftype',
+        'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-IpV4Network',
         'Get-LastDayInMonth', 'Get-List', 'Get-LongName', 'Get-MachineType',
-        'Get-MacVendor', 'Get-Magic8Ball', 'Get-Md5Sum', 'Get-MyLocalLogonTime',
+        'Get-MacVendor', 'Get-Magic8Ball', 'Get-MyLocalLogonTime',
         'Get-NetworkCredential', 'Get-NTFSPermission', 'Get-NtpDate', 'Get-Power',
         'Get-PrintableAscii', 'Get-PrivateProfileComment', 'Get-PrivateProfileSection',
         'Get-PrivateProfileSectionNames', 'Get-PrivateProfileString',
@@ -130,6 +131,7 @@
         'Update-ExplorerIcon', 'Use-Stopwatch', 'Write-SelectStatement',
         'Write-StringArray', 'Write-StringHash', 'Write-TextMenu' )
 
+
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     #CmdletsToExport = '*'
 
@@ -143,7 +145,7 @@
         'Convert-IntToText', 'Convert-ROT13', 'ConvertTo-BinaryIP',
         'ConvertTo-DecimalIP', 'ConvertTo-DottedDecimalIP', 'CountdownTimer',
         'Fortune', 'Get-DupeFileName', 'Get-Folder', 'Get-LastReboot', 'Get-SaveFile',
-        'Get-SubnetMaskIP', 'Md5Sum', 'Parse-Bool', 'Recycle', 'ReverseString',
+        'Get-SubnetMaskIP', 'Parse-Bool', 'Recycle', 'ReverseString',
         'Set-Speaker', 'Show-InvalidFileCharacter', 'Show-SpecialFolder',
         'Show-SubnetMaskIP', 'Show-TypeAccelerator', 'Speak', 'Test-IsLocalIP',
         'Test-IsValidIP', 'Test-MultiBool', 'UrlDecode', 'UrlEncode', 'WrapText' )
@@ -170,7 +172,7 @@
                 'expand-tab', 'exponentiation', 'file', 'file-encoding', 'file-invalidchar',
                 'folder', 'format', 'functions', 'gui', 'ini', 'inputbox', 'ip', 'iprange',
                 'isadmin', 'isdate', 'ishexstring', 'isnumeric', 'isvalidemail', 'isvalidip',
-                'library', 'macaddress', 'magic8ball', 'markdown', 'md5sum', 'msgbox',
+                'library', 'macaddress', 'magic8ball', 'markdown', 'msgbox',
                 'numlock', 'ping-async', 'popup', 'progress', 'random-date', 'registry',
                 'reverse-string', 'rot13', 'round', 'savefile', 'scrolllock', 'set-type',
                 'share-permission', 'share-stat', 'shortcut', 'sid', 'speak', 'subnetmask',
@@ -190,18 +192,26 @@
             ReleaseNotes = @'
 For full release notes see .\Resources\ReleaseNotes.txt
 ### 2.2.10
+* added Get-AppEventsSound - determines sounds configured for Windows events
 * added Get-ConsoleWindowSize - returns both the window size and buffer size of current console window
 * added Get-DiskType - returns the type of disk and type of bus for a given computer(s) local disk(s)
 * added Get-FileSizeOnDisk - returns actual disk usage when NTFS compression is enabled for file(s)
 * added Get-IpV4Network - to determine network given IP address and subnet mask
+* added Get-StringHash - to send a string, or array of strings through a hashing function
+* added Set-EOLTerminator - to convert a text file to either Unix, Mac, or Windows EOL characters
+* added Set-FileEncoding - to set the file encoding on a text file
 * added Set-WindowState - to minimize/maximize a window
 * added Test-CSVFormat - determine if number of fields match header row
+* removed Get-MD5Sum - functionality already present in Get-FileHash available in Microsoft.PowerShell.Utility module
 * updated ConvertFrom-Base64 - added $EncodingType to provide support for Ascii, UTF32, etc. encoding
 * updated ConvertTo-Base64 - added $EncodingType to provide support for Ascii, UTF32, etc. encoding
 * updated Get-CaesarCipher - to allow negative rotation
+* updated Get-FileEncoding - allow processing of multiple files, output now shows both encoding and fullname of file
 * updated Get-PrivateProfileSection - fixed error when ini value contains a backslash '\'
 * updated Get-SqlIndexFragmentation - fixed ???
 * updated Invoke-Beep - fixed ???
+* updated Invoke-SoundPlayer - performed a .Dispose() as part of cleanup
+* updated New-InputBoxSecureString - correct equality test to be case sensitive
 
 ### 2.2.9
 * added ConvertFrom-HexString - converting a hex string back to plain text: '41' -> 'A'

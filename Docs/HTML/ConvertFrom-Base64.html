@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -58,7 +58,7 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>Convert from a Base64 string to normal string</p>
 <h2>SYNTAX</h2>
-<pre><code>ConvertFrom-Base64 [-Base64] &lt;String[]&gt; [-IncludeInput] [&lt;CommonParameters&gt;]
+<pre><code>ConvertFrom-Base64 [-Base64] &lt;String[]&gt; [-EncodingType &lt;String&gt;] [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Convert from a Base64 string to normal string.
@@ -87,6 +87,18 @@ Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+</code></pre>
+<h3>-EncodingType</h3>
+<p>{{ Fill EncodingType Description }}</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: Unicode
+Accept pipeline input: False
 Accept wildcard characters: False
 </code></pre>
 <h3>-IncludeInput</h3>

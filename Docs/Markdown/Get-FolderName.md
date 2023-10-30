@@ -1,7 +1,7 @@
-﻿---
+---
 external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
-online version: http://wonkysoftware.appspot.com
+online version:
 schema: 2.0.0
 ---
 

@@ -1,4 +1,4 @@
-﻿---
+---
 external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
 online version:
@@ -13,7 +13,7 @@ Convert from a Base64 string to normal string
 ## SYNTAX
 
 ```
-ConvertFrom-Base64 [-Base64] <String[]> [-IncludeInput] [<CommonParameters>]
+ConvertFrom-Base64 [-Base64] <String[]> [-EncodingType <String>] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -54,6 +54,21 @@ Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -EncodingType
+{{ Fill EncodingType Description }}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: Unicode
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

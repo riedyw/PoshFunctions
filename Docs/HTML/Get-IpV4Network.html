@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -52,56 +52,61 @@
     <hr />
 <h2>external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
-online version: https://gallery.technet.microsoft.com/scriptcenter/Get-MachineType-VM-or-ff43f3a9
+online version:
 schema: 2.0.0</h2>
-<h1>Get-Md5Sum</h1>
+<h1>Get-IpV4Network</h1>
 <h2>SYNOPSIS</h2>
-<p>To calculate an Md5Sum for a file</p>
+<p>Given a subnet in CIDR format, get all of the valid IP addresses in that range.</p>
 <h2>SYNTAX</h2>
-<pre><code>Get-Md5Sum [[-Path] &lt;String[]&gt;] [-IncludeInput] [&lt;CommonParameters&gt;]
+<pre><code>Get-IpV4Network [-IpAddress] &lt;IPAddress[]&gt; [-SubnetMask &lt;IPAddress&gt;] [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
-<p>To calculate an Md5Sum for a file</p>
+<p>Given a subnet in CIDR format, get all of the valid IP addresses in that range.</p>
 <h2>EXAMPLES</h2>
 <h3>EXAMPLE 1</h3>
-<pre><code>Assume you have a file that has 4 lines of text in it as follows
+<pre><code>Get-IpRange -Subnets '192.168.1.24/30'
 </code></pre>
-<p>unicorn unicorn unicorn unicorn
-cat cat cat
-dog dog
-fish</p>
+<p>192.168.1.25
+192.168.1.26</p>
 <h3>EXAMPLE 2</h3>
-<pre><code>Get-Md5Sum -Path .\sample.txt
+<pre><code>(Get-IpRange -Subnets '10.100.10.0/24').count
 </code></pre>
-<p>351a0b1fd339ec74e3ddd2ddde694d82</p>
+<p>254</p>
 <h3>EXAMPLE 3</h3>
-<pre><code>Get-Md5Sum -Path .\sample.txt -IncludeInput
+<pre><code>'192.168.1.128/30' | Get-IpRange
 </code></pre>
-<p>File         Md5Sum</p>
-<hr />
-<p>.\sample.txt 351a0b1fd339ec74e3ddd2ddde694d82</p>
+<p>192.168.1.129
+192.168.1.130</p>
 <h2>PARAMETERS</h2>
-<h3>-Path</h3>
-<p>The path to the file you wish to calculate the Md5Sum.
-Can be a single string or an array of strings.
-Can also accept pipeline input.
-Aliased to 'File' and 'FileName'</p>
-<pre><code class="language-yaml">Type: String[]
+<h3>-IpAddress</h3>
+<p>Please enter a subnet in the form a.b.c.d/#</p>
+<pre><code class="language-yaml">Type: IPAddress[]
 Parameter Sets: (All)
-Aliases: FileName, File
+Aliases: Address
 
-Required: False
+Required: True
 Position: 1
 Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+</code></pre>
+<h3>-SubnetMask</h3>
+<p>{{ Fill SubnetMask Description }}</p>
+<pre><code class="language-yaml">Type: IPAddress
+Parameter Sets: (All)
+Aliases: Sn
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 </code></pre>
 <h3>-IncludeInput</h3>
-<p>Switch to include input in the output stream.
-Aliased to 'IncludeFile'</p>
+<p>{{ Fill IncludeInput Description }}</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: IncludeFile
+Aliases:
 
 Required: False
 Position: Named
@@ -113,8 +118,11 @@ Accept wildcard characters: False
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
 <h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
-<h3>string</h3>
 <h2>NOTES</h2>
+<p>Inspired by https://gallery.technet.microsoft.com/PowerShell-Subnet-db45ec74</p>
+<ul>
+<li>Added comment help</li>
+</ul>
 <h2>RELATED LINKS</h2>
 
 </body>

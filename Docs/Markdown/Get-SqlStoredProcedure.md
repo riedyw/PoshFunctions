@@ -1,4 +1,4 @@
-﻿---
+---
 external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
 online version: https://social.msdn.microsoft.com/Forums/vstudio/en-US/0221d962-26e6-4a7e-be7a-72cd669a0dfc/why-systemmathround0251-2?forum=vbgeneral

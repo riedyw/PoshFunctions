@@ -167,7 +167,8 @@ function New-InputBoxSecureString {
         $Result = $ValidateEntry.ShowDialog()
         if ($Result -eq 'OK') {
             if (-not $DisableValidation) {
-                if ($ValidateBox.Text -eq $EntryBox.Text) {
+                # Previously this erroneously had -eq operator which was case insensitive
+                if ($ValidateBox.Text -ceq $EntryBox.Text) {
                     if ($EntryBox.Text.Length -eq 0) {
                         Write-Error -Message 'Must enter a string'
                         break

@@ -4,6 +4,8 @@ function Set-WindowState {
     https://gist.github.com/Nora-Ballard/11240204
     #>
 
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidGlobalVars', '')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
     [CmdletBinding(DefaultParameterSetName = 'InputObject')]
     param(
         [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true)]

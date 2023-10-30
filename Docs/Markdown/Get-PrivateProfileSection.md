@@ -1,4 +1,4 @@
-﻿---
+---
 external help file: PoshFunctions-help.xml
 Module Name: poshfunctions
 online version:
@@ -132,5 +132,6 @@ Some modifications have been made:
 * Error checking around file
 * Ability to take relative path to file
 * Normally produce output as \[hashtable\], but -AsString switch will return a string array
+* Corrected logic to search for '\' and replace with '\\\\' if performing ConvertFrom-StringData
 
 ## RELATED LINKS

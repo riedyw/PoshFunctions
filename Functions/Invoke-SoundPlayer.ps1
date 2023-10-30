@@ -46,9 +46,9 @@ function Invoke-SoundPlayer {
                     $SoundPlayer = New-Object System.Media.SoundPlayer
                     $SoundPlayer.SoundLocation = $ResolveFile.FullName
                     if ($Async) {
-                        $SoundPlayer.play()
+                        $SoundPlayer.Play()
                     } else {
-                        $SoundPlayer.playsync()
+                        $SoundPlayer.PlaySync()
                     }
                 }
             }
@@ -58,6 +58,7 @@ function Invoke-SoundPlayer {
     }
 
     end {
+        $SoundPlayer.Dispose()
         Write-Verbose -Message "Ending [$($MyInvocation.MyCommand)]"
     }
 
