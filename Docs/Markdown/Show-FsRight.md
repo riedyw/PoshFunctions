@@ -1,27 +1,33 @@
 ---
-external help file: PoshFunctions-help.xml
+external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version:
+online version: 
 schema: 2.0.0
 ---
 
 # Show-FsRight
 
 ## SYNOPSIS
+
 To list all potential file system rights
 
 ## SYNTAX
+
+### __AllParameterSets
 
 ```
 Show-FsRight [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 To list all potential file system rights
+
 
 ## EXAMPLES
 
-### EXAMPLE 1
+### Example 1: EXAMPLE 1
+
 ```
 Show-FsRight
 ```
@@ -63,16 +69,29 @@ ReadAndExecute,Modify,Write Combo  0x001301BF         1245631
              GenericRead Combo  0x80000000      2147483648
   ReadAndExecuteExtended Combo  0xFFA0000000 1097901015040
 
+
+
+
+
+
 ## PARAMETERS
 
-### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## OUTPUTS
 
 ### An array of objects containing the fields Name, Type, Dec, Hex
+
+
+
 ## NOTES
 
+
+
 ## RELATED LINKS
+
+Fill Related Links Here
+

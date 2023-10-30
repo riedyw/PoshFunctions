@@ -50,20 +50,21 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: http://wonkysoftware.appspot.com
+online version:
 schema: 2.0.0</h2>
 <h1>Get-Enum</h1>
 <h2>SYNOPSIS</h2>
 <p>To get the static values of enum datatypes</p>
 <h2>SYNTAX</h2>
+<h3>__AllParameterSets</h3>
 <pre><code>Get-Enum [-TypeName] &lt;Type[]&gt; [-Binary] [-Hex] [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>To get the static values of enum datatypes</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Get-Enum -TypeName 'System.Windows.Forms.DialogResult'
 </code></pre>
 <p>Name   Value</p>
@@ -76,7 +77,7 @@ Retry      4
 Ignore     5
 Yes        6
 No         7</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Get-Enum -TypeName 'System.Windows.Forms.MessageBoxButtons' -Hex -IncludeInput
 </code></pre>
 <p>TypeName                               Name             Value Hex</p>
@@ -87,7 +88,7 @@ System.Windows.Forms.MessageBoxButtons AbortRetryIgnore     2 0x2
 System.Windows.Forms.MessageBoxButtons YesNoCancel          3 0x3
 System.Windows.Forms.MessageBoxButtons YesNo                4 0x4
 System.Windows.Forms.MessageBoxButtons RetryCancel          5 0x5</p>
-<h3>EXAMPLE 3</h3>
+<h3>Example 3: EXAMPLE 3</h3>
 <pre><code>Get-Enum -TypeName 'System.Windows.Forms.MessageBoxButtons' -Binary
 </code></pre>
 <p>Name             Value Binary</p>
@@ -99,42 +100,33 @@ YesNoCancel          3 11
 YesNo                4 100
 RetryCancel          5 101</p>
 <h2>PARAMETERS</h2>
-<h3>-TypeName</h3>
-<p>A typename or array of typenames that you wish to enumerate the enum values.
-Can accept input from the pipeline.</p>
-<pre><code class="language-yaml">Type: Type[]
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-</code></pre>
 <h3>-Binary</h3>
 <p>A switch that will also display the value in binary form.</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-Hex</h3>
 <p>A switch that will also display the value in hexadecimal form.</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-IncludeInput</h3>
 <p>A switch determining if you want the TypeName to appear in the output.
@@ -142,20 +134,37 @@ Aliased to 'IncludeType'</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: IncludeType
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-TypeName</h3>
+<p>A typename or array of typenames that you wish to enumerate the enum values.
+Can accept input from the pipeline.</p>
+<pre><code class="language-yaml">Type: Type[]
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: True
+Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>psobject</h3>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

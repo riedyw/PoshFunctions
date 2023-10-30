@@ -1,31 +1,35 @@
 ---
-external help file: PoshFunctions-help.xml
+external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: https://github.com/iRon7/Join-Object
+online version: 
 schema: 2.0.0
 ---
 
 # mklink
 
 ## SYNOPSIS
+
 mklink calls out to the Command Prompt (cmd.exe) and creates a link
 
 ## SYNTAX
 
+### __AllParameterSets
+
 ```
-mklink
+mklink [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 mklink calls out to the Command Prompt (cmd.exe) and creates a link
 
 mklink /?
 Creates a symbolic link.
 
-MKLINK \[\[/D\] | \[/H\] | \[/J\]\] Link Target
+MKLINK [[/D] | [/H] | [/J]] Link Target
 
-        /D      Creates a directory symbolic link. 
-Default is a file
+        /D      Creates a directory symbolic link.
+ Default is a file
                 symbolic link.
         /H      Creates a hard link instead of a symbolic link.
         /J      Creates a Directory Junction.
@@ -33,23 +37,31 @@ Default is a file
         Target  Specifies the path (relative or absolute) that the new link
                 refers to.
 
+
 ## EXAMPLES
 
-### EXAMPLE 1
+### Example 1: EXAMPLE 1
+
 ```
 mklink LINK REALFILE
 ```
 
 would return
-symbolic link created for link \<\<===\>\> realfile
+symbolic link created for link <<===>> realfile
+
+
+
+
+
 
 ## PARAMETERS
 
-## INPUTS
-
-## OUTPUTS
-
 ## NOTES
+
 Passes all command line arguments to cmd.exe embedded command mklink
 
+
 ## RELATED LINKS
+
+Fill Related Links Here
+

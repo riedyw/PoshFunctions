@@ -1,56 +1,55 @@
 ---
-external help file: PoshFunctions-help.xml
+external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: https://github.com/iRon7/Join-Object
+online version: 
 schema: 2.0.0
 ---
 
 # Merge-Object
 
 ## SYNOPSIS
+
 Returns a 'clean' array of objects that have all property names in each element of the array
 
 ## SYNTAX
 
+### __AllParameterSets
+
 ```
-Merge-Object [[-Property] <String[]>]
+Merge-Object [[-Property <String[]>]] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 Returns a 'clean' array of objects that have all property names in each element of the array.
 Function aliased to 'Union-Object'
 
+
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
-```
-
-{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Property
+
 {{ Fill Property Description }}
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 1
+Required: True (None) False (All)
+Position: 0
 Default value: @()
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
-## INPUTS
-
-## OUTPUTS
-
 ## NOTES
+
 Inspired by Union-Object on https://powersnippets.com/union-object/
 
 Notes from the web page:
@@ -69,7 +68,7 @@ $List = @(
 
 If you simply display this object array, only the Id property will be listed:
 
-PS C:\\\> $List
+PS C:\> $List
 
 Id
 --
@@ -85,7 +84,7 @@ $List = @(
 )
 This will work for most of the cases:
 
-PS C:\\\> $List
+PS C:\> $List
 
 Id Name
 -- ----
@@ -94,7 +93,7 @@ Id Name
  3 Test
 But not in every case:
 
-PS C:\\\> $List | Sort Id
+PS C:\> $List | Sort Id
 
 Id
 --
@@ -130,4 +129,8 @@ Made following changes
 * added help
 * formatting changes
 
+
 ## RELATED LINKS
+
+Fill Related Links Here
+

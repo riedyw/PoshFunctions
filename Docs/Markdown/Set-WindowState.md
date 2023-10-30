@@ -1,7 +1,7 @@
 ---
-external help file: PoshFunctions-help.xml
+external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: https://gist.github.com/Nora-Ballard/11240204
+online version: 
 schema: 2.0.0
 ---
 
@@ -9,97 +9,126 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
+Sets the window state of a currently running application
+
 ## SYNTAX
 
+### InputObject (Default)
+
 ```
-Set-WindowState [-InputObject] <Object[]> [[-State] <String>] [-SuppressErrors] [-SetForegroundWindow]
- [<CommonParameters>]
+Set-WindowState [-InputObject] <Object[]> [[-State <String>]] [-SetForegroundWindow] [-SuppressErrors] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+Sets the window state of a currently running application
+
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### Example 1: EXAMPLE 1
+
+```
+Get-Process notepad | Set-WindowState -State MAXIMIZE -SetForegroundWindow
 ```
 
-{{ Add example description here }}
+Will take the currently running Notepad.exe process, maximize it, and put it into the foreground
+
+
+
+
+
 
 ## PARAMETERS
 
 ### -InputObject
-{{ Fill InputObject Description }}
+
+Describe parameter -InputObject.
 
 ```yaml
 Type: Object[]
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
+```
+
+### -SetForegroundWindow
+
+Determines whether the application will become the foreground (currently selected) application
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
 ```
 
 ### -State
-{{ Fill State Description }}
+
+Which state you want to place the application into.
+Validate set: 'FORCEMINIMIZE', 'HIDE', 'MAXIMIZE', 'MINIMIZE', 'RESTORE',
+                 'SHOW', 'SHOWDEFAULT', 'SHOWMAXIMIZED', 'SHOWMINIMIZED',
+                 'SHOWMINNOACTIVE', 'SHOWNA', 'SHOWNOACTIVATE', 'SHOWNORMAL'
+Defaults to 'SHOW'
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 2
+Required: True (None) False (All)
+Position: 1
 Default value: SHOW
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
 ### -SuppressErrors
-{{ Fill SuppressErrors Description }}
+
+Control error processing
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
-### -SetForegroundWindow
-{{ Fill SetForegroundWindow Description }}
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
-
-## INPUTS
-
-## OUTPUTS
 
 ## NOTES
 
+Most of this code was taken from GitHub.
+I added help, put in Write-Verbose, option for pushing the application to the foreground
+
+
 ## RELATED LINKS
 
-[https://gist.github.com/Nora-Ballard/11240204](https://gist.github.com/Nora-Ballard/11240204)
+[] (https://gist.github.com/Nora-Ballard/11240204)
 

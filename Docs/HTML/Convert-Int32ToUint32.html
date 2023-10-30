@@ -50,7 +50,7 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
@@ -58,54 +58,58 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>Converts int32 values to uint32 values</p>
 <h2>SYNTAX</h2>
+<h3>__AllParameterSets</h3>
 <pre><code>Convert-Int32ToUint32 [-Number] &lt;Int32[]&gt; [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Converts int32 values to uint32 values.
 Useful for handling 32 bitmasks returned from some functions like Get-Acl</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Convert-Int32ToUint32 -Number -1610612736,-1 -IncludeInput
 </code></pre>
 <p>Int32     Uint32
 -----     ------
 -1610612736 2684354560
 -1 4294967295</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Convert-Int32ToUint32 -Number -1610612736
 </code></pre>
 <p>2684354560</p>
 <h2>PARAMETERS</h2>
-<h3>-Number</h3>
-<p>An array of int32 values</p>
-<pre><code class="language-yaml">Type: Int32[]
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-</code></pre>
 <h3>-IncludeInput</h3>
 <p>Switch to include the input in the output</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-Number</h3>
+<p>An array of int32 values</p>
+<pre><code class="language-yaml">Type: Int32[]
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: True
+Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
-<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

@@ -1,23 +1,26 @@
 ---
-external help file: PoshFunctions-help.xml
+external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: http://code.google.com/apis/chart/infographics/docs/qr_codes.html
+online version: 
 schema: 2.0.0
 ---
 
 # New-QR
 
 ## SYNOPSIS
+
 Create New Quick Response Code
 
 ## SYNTAX
 
+### __AllParameterSets
+
 ```
-New-QR [-Message] <String> [[-Path] <String>] [-CHS <String>] [-ECL <String>] [-Enc <String>] [-Margin <Int32>]
- [-Size <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+New-QR [-Message] <String> [[-Path <String>]] [-CHS <String>] [-Confirm] [-ECL <String>] [-Enc <String>] [-Margin <Int32>] [-Size <String>] [-WhatIf] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 Create New Quick Response Code
 
 Function uses Google API so script requires internet access.
@@ -25,9 +28,11 @@ Script will compose QR request and then download generated image.
 
 New-QR returns the properties of the new QR code created.
 
+
 ## EXAMPLES
 
-### EXAMPLE 1
+### Example 1: EXAMPLE 1
+
 ```
 New-QR http://painterinfo.com
 ```
@@ -37,7 +42,12 @@ Description
 Creates a new QR code (URL)
 Path to QR code image is returned by script
 
-### EXAMPLE 2
+
+
+
+
+### Example 2: EXAMPLE 2
+
 ```
 New-QR -Message "This is a test" -Size C -CHS 200x200
 ```
@@ -48,7 +58,12 @@ Creates a new QR code (TEXT)
 Custom image size 200x200 is created.
 Path to QR code is returned by script
 
-### EXAMPLE 3
+
+
+
+
+### Example 3: EXAMPLE 3
+
 ```
 ii (New-QR -message TEL:0754419999 -Size L -ECL H).fullname
 ```
@@ -59,7 +74,12 @@ Creates a new QR code (Phone Number) and is opened with default image viewer.
 -Size L (image size is 300x300 pixels)
 -ECL H (30% of image is redundant)
 
-### EXAMPLE 4
+
+
+
+
+### Example 4: EXAMPLE 4
+
 ```
 Import-Csv "C:\QR\users.csv" | New-QR -S L
 ```
@@ -74,74 +94,59 @@ Using the following CSV, multiple 300x300 QR Codes are generated.
 "TEL:0418123456","C:\QR\Ruth.png"
 "TEL:0419123456","C:\QR\Fred.png"
 
+
+
+
+
+
 ## PARAMETERS
 
-### -Message
-Message to be encoded in QR code.
-Script will check the message length to ensure it does not exceed the max allowed size
-Purely numeric content allows for a larger storage capacity in code.
-
-Message Examples
-"TEL:0416123456" (Will call my cell phone)
-"SMSTO:0416123456:Hi Matt,\`nI am at your desk." (An SMS to me.
-Note the new line character)
-"http://painterinfo.com" (Open this website)
-"This is the Pishkin Building" (A plain text message encoded in the QR Code)
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -Path
-File name of QR code to be created.
-Aliased to 'FileName' for backward compatibility.
-Can specify fullpath, please use .PNG file extension.
-If specifying fullpath ensure directory structure exists.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: FileName
-
-Required: False
-Position: 2
-Default value: "$env:temp\QR.png"
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
 ### -CHS
+
 This is the custom size of the image in pixels e.g.
 150x150
 This parameter is only read when -Size C parameter is specified.
 (Otherwise ignored)
-Min = 50x50 \[approximate\] Large QR codes may need to be physically larger to fit the data.
+Min = 50x50 [approximate] Large QR codes may need to be physically larger to fit the data.
 Max = 547x547
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: 150x150
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+```
+
+### -Confirm
+
+{{ Fill Confirm Description }}
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
 ```
 
 ### -ECL
+
 Error Correction Level
 
-L - \[Default\] Allows recovery of up to 7% data loss
+L - [Default] Allows recovery of up to 7% data loss
 M - Allows recovery of up to 15% data loss
 Q - Allows recovery of up to 25% data loss
 H - Allows recovery of up to 30% data loss
@@ -152,16 +157,19 @@ Use H if you think the QR code might get damaged or if you want to embed plain t
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: L
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
 ### -Enc
+
 Allowed encoding types are:
 UTF-8, Shift_JIS, ISO-8859-1
 UTF-8 is default and recommended type
@@ -169,16 +177,19 @@ UTF-8 is default and recommended type
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: UTF-8
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
 ### -Margin
+
 Defaults to 4 and it is recommended to leave it at that.
 A white space margin of 4 is required for reliable QR code reading.
 Valid Values are 1..4
@@ -186,20 +197,71 @@ Valid Values are 1..4
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: 4
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+```
+
+### -Message
+
+Message to be encoded in QR code.
+Script will check the message length to ensure it does not exceed the max allowed size
+Purely numeric content allows for a larger storage capacity in code.
+
+Message Examples
+"TEL:0416123456" (Will call my cell phone)
+"SMSTO:0416123456:Hi Matt,`nI am at your desk." (An SMS to me.
+Note the new line character)
+"http://painterinfo.com" (Open this website)
+"This is the Pishkin Building" (A plain text message encoded in the QR Code)
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: True
+Accept wildcard characters: False
+DontShow: False
+```
+
+### -Path
+
+File name of QR code to be created.
+Aliased to 'FileName' for backward compatibility.
+Can specify fullpath, please use .PNG file extension.
+If specifying fullpath ensure directory structure exists.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: FileName
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 1
+Default value: "$env:temp\QR.png"
+Accept pipeline input: True
+Accept wildcard characters: False
+DontShow: False
 ```
 
 ### -Size
+
 The QR code's physical size in pixels, not to be confused with the data storage size.
 Function caters for several pre-set sizes and a custom size option
 S - 75x75
-M - 150x150 \[default\]
+M - 150x150 [default]
 L - 300x300
 X - 547x547 - This appears to be the maximum size that the API can produce.
 C - Custom size to be used - Warning too small will result QR code generation failure.
@@ -209,58 +271,56 @@ C - Custom size to be used - Warning too small will result QR code generation fa
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: M
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
 ### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
+
+{{ Fill WhatIf Description }}
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
-Default value: None
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### psObject
-### (FileName,Message)
+(FileName,Message)
+
+
+
 ## OUTPUTS
 
 ### psObject
-### (FullName,ErrorCorrrection,Margin,Dimensions,DataSize)
+(FullName,ErrorCorrrection,Margin,Dimensions,DataSize)
+
+
+
 ## NOTES
+
 NAME:      New-QR
 PURPOSE:   Generate QR codes with PowerShell
 VERSION:   1.0
@@ -274,7 +334,8 @@ Changes
 Aliased to 'FileName' for backward compatibility
 * reordered parameters by position, also reordered .PARAMETER entries in comment help to match order in parameter section
 
+
 ## RELATED LINKS
 
-[http://code.google.com/apis/chart/infographics/docs/qr_codes.html](http://code.google.com/apis/chart/infographics/docs/qr_codes.html)
+[] (http://code.google.com/apis/chart/infographics/docs/qr_codes.html)
 

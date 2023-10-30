@@ -26,14 +26,14 @@ function Get-AppEventSound {
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         Write-Verbose -Message "Searching for AppEvents matching [$Name]"
-        $Path = "HKCU:\AppEvents\Schemes\Apps\.Default\*\.Current"
+        $Path = 'HKCU:\AppEvents\Schemes\Apps\.Default\*\.Current'
     }
 
     process {
         $Key = Get-ChildItem -Path $Path
         $Key | ForEach-Object {
             $Item = $_
-            $AppEvent = Split-Path $Item.PsParentPath -Leaf
+            $AppEvent = Split-Path -Path $Item.PsParentPath -Leaf
             if ($AppEvent -like $Name) {
                 $Expanded = $Item.GetValue($null, $null)
                 $UnExpanded = $Item.GetValue($null, $null, [Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames)

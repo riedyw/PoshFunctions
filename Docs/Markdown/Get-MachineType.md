@@ -1,41 +1,57 @@
 ---
-external help file: PoshFunctions-help.xml
+external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: https://gallery.technet.microsoft.com/scriptcenter/Get-MachineType-VM-or-ff43f3a9
+online version: 
 schema: 2.0.0
 ---
 
 # Get-MachineType
 
 ## SYNOPSIS
+
 A quick function to determine if a computer is VM or physical box.
 
 ## SYNTAX
 
+### __AllParameterSets
+
 ```
-Get-MachineType [[-ComputerName] <String[]>] [<CommonParameters>]
+Get-MachineType [[-ComputerName <String[]>]] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 This function is designed to quickly determine if a local or remote computer is a physical machine or a virtual machine.
+
 
 ## EXAMPLES
 
-### EXAMPLE 1
+### Example 1: EXAMPLE 1
+
 ```
 Get-MachineType
 ```
 
 Query if the local machine is a physical or virtual machine.
 
-### EXAMPLE 2
+
+
+
+
+### Example 2: EXAMPLE 2
+
 ```
 Get-MachineType -ComputerName SERVER01
 ```
 
 Query if SERVER01 is a physical or virtual machine.
 
-### EXAMPLE 3
+
+
+
+
+### Example 3: EXAMPLE 3
+
 ```
 Get-MachineType -ComputerName DEMOLAPTOP, CORPDC1
 ```
@@ -43,45 +59,63 @@ Get-MachineType -ComputerName DEMOLAPTOP, CORPDC1
 ComputerName Type     Manufacturer          Model
 ------------ ----     ------------          -----
 DEMOLAPTOP   Physical Microsoft Corporation Surface Pro 6
-CORPDC1      VM       VMware, Inc. 
-VMware Virtual Platform
+CORPDC1      VM       VMware, Inc.
+         VMware Virtual Platform
 
-### EXAMPLE 4
+
+
+
+
+### Example 4: EXAMPLE 4
+
 ```
 Get-MachineType -ComputerName (Get-Content c:\temp\computerlist.txt)
 ```
 
 Query if a list of computers are physical or virtual machines.
 
+
+
+
+
+
 ## PARAMETERS
 
 ### -ComputerName
+
 ComputerName
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: CN, Server
+Aliases: CN,Server
+Accepted values: 
 
-Required: False
-Position: 1
+Required: True (None) False (All)
+Position: 0
 Default value: $env:COMPUTERNAME
-Accept pipeline input: True (ByPropertyName, ByValue)
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
 ```
 
-### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## OUTPUTS
 
 ### PSCustomObject
+
+
+
 ## NOTES
+
 Put in error checking around Get-CimInstance to handle Kerberos errors.
+
 
 ## RELATED LINKS
 
-[https://gallery.technet.microsoft.com/scriptcenter/Get-MachineType-VM-or-ff43f3a9](https://gallery.technet.microsoft.com/scriptcenter/Get-MachineType-VM-or-ff43f3a9)
+[] (https://gallery.technet.microsoft.com/scriptcenter/Get-MachineType-VM-or-ff43f3a9)
 

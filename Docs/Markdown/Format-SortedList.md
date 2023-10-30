@@ -1,27 +1,33 @@
 ---
-external help file: PoshFunctions-help.xml
+external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version:
+online version: 
 schema: 2.0.0
 ---
 
 # Format-SortedList
 
 ## SYNOPSIS
+
 Creates a formatted list with properties sorted alphabetically
 
 ## SYNTAX
 
+### __AllParameterSets
+
 ```
-Format-SortedList [[-InputObject] <Object>] [-Descending] [<CommonParameters>]
+Format-SortedList [[-InputObject <Object>]] [-Descending] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 Creates a formatted list with properties sorted alphabetically
+
 
 ## EXAMPLES
 
-### EXAMPLE 1
+### Example 1: EXAMPLE 1
+
 ```
 # Assuming I have one instance of notepad.exe running
 ```
@@ -96,54 +102,68 @@ NonpagedSystemMemorySize64 : 16088
               WorkingSet64 : 17121280
                         WS : 17121280
 
+
+
+
+
+
 ## PARAMETERS
 
+### -Descending
+
+Switch to sort the properties in reverse alphabetical order
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
 ### -InputObject
+
 The object that needs to be output.
 Can be specified as a parameter, or accepted via the pipeline
 
 ```yaml
 Type: Object
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
+Required: True (None) False (All)
+Position: 0
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
 ```
 
-### -Descending
-Switch to sort the properties in reverse alphabetical order
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
-
-## OUTPUTS
-
 ## NOTES
+
 Inspired by: https://stackoverflow.com/questions/3281999/format-list-sort-properties-by-name
 
 Modifications:
 * changed logic slightly to handle properties that are currently set to $null
-* added \[cmdletbinding()\] and write-verbose statements
+* added [cmdletbinding()] and write-verbose statements
 * changed write-host statements to write-output
 * performed calculations of $logestvalue as a positive number then multiplied by -1 in -f statement so that the property name is right justified
 * sorted properties by name as one object could have multiple property types (property, noteproperty, etc) and the resulting set of all properties would not be alphabetical
 
+
 ## RELATED LINKS
+
+Fill Related Links Here
+

@@ -22,6 +22,28 @@ All code has also been loaded into ISE with ISESteroids. Most, if not all, SUGGE
 Code has had Invoke-ScriptAnalyzer run against them so that errors are not thrown. Invoke-ScriptAnalyzer is not perfect however and sometimes returns false positives. For those that returned false positives I added declaration statement(s) after the [Cmdlet()] block to not throw the false positive error. An example declaration is as follows:
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]
 
+### 2.2.10
+* added Get-AppEventsSound - determines sounds configured for Windows events
+* added Get-ConsoleWindowSize - returns both the window size and buffer size of current console window
+* added Get-DiskType - returns the type of disk and type of bus for a given computer(s) local disk(s)
+* added Get-FileSizeOnDisk - returns actual disk usage when NTFS compression is enabled for file(s)
+* added Get-IpV4Network - to determine network given IP address and subnet mask
+* added Get-StringHash - to send a string, or array of strings through a hashing function
+* added Set-EOLTerminator - to convert a text file to either Unix, Mac, or Windows EOL characters
+* added Set-FileEncoding - to set the file encoding on a text file
+* added Set-WindowState - to minimize/maximize a window
+* added Test-CSVFormat - determine if number of fields match header row
+* removed Get-MD5Sum - functionality already present in Get-FileHash available in Microsoft.PowerShell.Utility module
+* updated ConvertFrom-Base64 - added $EncodingType to provide support for Ascii, UTF32, etc. encoding
+* updated ConvertTo-Base64 - added $EncodingType to provide support for Ascii, UTF32, etc. encoding
+* updated Get-CaesarCipher - to allow negative rotation
+* updated Get-FileEncoding - allow processing of multiple files, output now shows both encoding and fullname of file
+* updated Get-PrivateProfileSection - fixed error when ini value contains a backslash '\'
+* updated Get-SqlIndexFragmentation - fixed ???
+* updated Invoke-Beep - fixed ???
+* updated Invoke-SoundPlayer - performed a .Dispose() as part of cleanup
+* updated New-InputBoxSecureString - correct equality test to be case sensitive
+
 ### 2.2.9
 * added ConvertFrom-HexString - converting a hex string back to plain text: '41' -> 'A'
 * added ConvertTo-HexString = converting plain text to a hex string: 'A' -> '41'

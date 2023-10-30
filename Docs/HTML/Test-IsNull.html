@@ -50,7 +50,7 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
@@ -59,74 +59,80 @@ schema: 2.0.0</h2>
 <p>Given a passed [string] tests to determine if .IsNullOrEmpty() or .IsNullOrWhitespace(), with .IsNullOrEmpty() being the default</p>
 <h2>SYNTAX</h2>
 <h3>Empty (Default)</h3>
-<pre><code>Test-IsNull [[-String] &lt;String&gt;] [-Empty] [&lt;CommonParameters&gt;]
+<pre><code>Test-IsNull [[-String &lt;String&gt;]] [-Empty] [&lt;CommonParameters&gt;]
 </code></pre>
 <h3>WhiteSpace</h3>
-<pre><code>Test-IsNull [[-String] &lt;String&gt;] [-WhiteSpace] [&lt;CommonParameters&gt;]
+<pre><code>Test-IsNull [[-String &lt;String&gt;]] [-WhiteSpace] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Given a passed [string] tests to determine if .IsNullOrEmpty() or .IsNullOrWhitespace(), with .IsNullOrEmpty() being the default</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Test-IsNull -String ''
 </code></pre>
 <p>Would return
 $true</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Test-IsNull -String ' '
 </code></pre>
 <p>Would return
 $false</p>
-<h3>EXAMPLE 3</h3>
+<h3>Example 3: EXAMPLE 3</h3>
 <pre><code>Test-IsNull -String &quot; `t &quot; -WhiteSpace
 </code></pre>
 <p>Would return
 $true</p>
 <h2>PARAMETERS</h2>
-<h3>-String</h3>
-<p>A [string] that you wanted tested to see if Null or (Empty or WhiteSpace).
-In both parameter set names 'Empty' and 'WhiteSpace'</p>
-<pre><code class="language-yaml">Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-</code></pre>
 <h3>-Empty</h3>
 <p>A switch to control if looking for .IsNullOrEmpty()</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: Empty
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (Empty)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-String</h3>
+<p>A [string] that you wanted tested to see if Null or (Empty or WhiteSpace).
+In both parameter set names 'Empty' and 'WhiteSpace'</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: WhiteSpace, Empty
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (WhiteSpace, Empty)
+Position: 0
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-WhiteSpace</h3>
 <p>A switch to control if looking for .IsNullOrWhitespace()</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: WhiteSpace
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (WhiteSpace)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>'bool'</h3>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

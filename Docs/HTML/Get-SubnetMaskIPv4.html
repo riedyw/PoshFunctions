@@ -50,28 +50,29 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: https://www.Google.com
+online version:
 schema: 2.0.0</h2>
 <h1>Get-SubnetMaskIPv4</h1>
 <h2>SYNOPSIS</h2>
 <p>Gets a dotted decimal subnet mask given the number of bits in the mask</p>
 <h2>SYNTAX</h2>
+<h3>__AllParameterSets</h3>
 <pre><code>Get-SubnetMaskIPv4 [-Length] &lt;Int32[]&gt; [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Gets a dotted decimal subnet mask given the number of bits in the mask.
 Can optionally include the number of bits.</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Get-SubnetMaskIPv4 -Length 22 -IncludeInput
 </code></pre>
 <p>Length SubnetMask</p>
 <hr />
 <pre><code>22 255.255.252.0
 </code></pre>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>22..25 | Get-SubnetMaskIPv4 -IncludeInput
 </code></pre>
 <p>Length SubnetMask</p>
@@ -81,48 +82,51 @@ Can optionally include the number of bits.</p>
 24 255.255.255.0
 25 255.255.255.128
 </code></pre>
-<h3>EXAMPLE 3</h3>
+<h3>Example 3: EXAMPLE 3</h3>
 <pre><code>Get-SubnetMaskIPv4 23
 </code></pre>
 <p>Would return:
 255.255.254.0</p>
 <h2>PARAMETERS</h2>
-<h3>-Length</h3>
-<p>A mandatory [int] or array of [int] for which you want the subnet mask.
-Can be fed from the pipeline.
-Aliased to both 'NetworkLength' and 'CIDR'</p>
-<pre><code class="language-yaml">Type: Int32[]
-Parameter Sets: (All)
-Aliases: NetworkLength, CIDR
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-</code></pre>
 <h3>-IncludeInput</h3>
 <p>A switch controlling whether you want to see the CIDR length.
 Aliased to 'IncludeCIDR' for backward compatibility</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: IncludeCIDR
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-Length</h3>
+<p>A mandatory [int] or array of [int] for which you want the subnet mask.
+Can be fed from the pipeline.
+Aliased to both 'NetworkLength' and 'CIDR'</p>
+<pre><code class="language-yaml">Type: Int32[]
+Parameter Sets: (All)
+Aliases: NetworkLength,CIDR
+Accepted values: 
+
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: True
+Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>[psobject]  if -IncludeInput switch specified</h3>
-<h3>[string]    default</h3>
+<p>[string]    default</p>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
-<p><a href="https://www.Google.com">https://www.Google.com</a></p>
+<p>[] (https://www.Google.com)</p>
 
 </body>
 </html>

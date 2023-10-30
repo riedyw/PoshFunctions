@@ -1,29 +1,33 @@
 ---
-external help file: PoshFunctions-help.xml
+external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: https://social.msdn.microsoft.com/Forums/vstudio/en-US/0221d962-26e6-4a7e-be7a-72cd669a0dfc/why-systemmathround0251-2?forum=vbgeneral
-
-Talks about Visual Basic but the same info applies to Powershell.
+online version: 
 schema: 2.0.0
 ---
 
 # Get-StaticProperty
 
 ## SYNOPSIS
+
 To list the static properties of a .NET class
 
 ## SYNTAX
 
+### __AllParameterSets
+
 ```
-Get-StaticProperty [[-TypeName] <String[]>] [-IncludeInput] [<CommonParameters>]
+Get-StaticProperty [[-TypeName <String[]>]] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 To list the static properties of a .NET class
+
 
 ## EXAMPLES
 
-### EXAMPLE 1
+### Example 1: EXAMPLE 1
+
 ```
 Get-StaticProperty -TypeName 'Microsoft.Win32.RegistryValueKind'
 ```
@@ -39,7 +43,12 @@ QWord           11
 String           1
 Unknown          0
 
-### EXAMPLE 2
+
+
+
+
+### Example 2: EXAMPLE 2
+
 ```
 Get-StaticProperty -TypeName 'datetime' -IncludeInput
 ```
@@ -52,7 +61,12 @@ datetime      System.DateTime Now      4/9/2020 8:47:49 AM
 datetime      System.DateTime Today    4/9/2020 12:00:00 AM
 datetime      System.DateTime UtcNow   4/9/2020 12:47:49 PM
 
-### EXAMPLE 3
+
+
+
+
+### Example 3: EXAMPLE 3
+
 ```
 Get-StaticProperty -TypeName 'math' -IncludeInput
 ```
@@ -62,24 +76,15 @@ SpecifiedType ExpandedType Name            Value
 math          System.Math  E    2.71828182845905
 math          System.Math  PI   3.14159265358979
 
+
+
+
+
+
 ## PARAMETERS
 
-### -TypeName
-The name of a .Net typename or class
-
-```yaml
-Type: String[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -IncludeInput
+
 A switch to determine if the typename and expanded full type name will be included in the output.
 Aliased to 'IncludeTypeName' for backward compatibility
 
@@ -87,22 +92,50 @@ Aliased to 'IncludeTypeName' for backward compatibility
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: IncludeTypeName
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
-### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+### -TypeName
 
-## INPUTS
+The name of a .Net typename or class
+
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 0
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## OUTPUTS
 
 ### System.Collections.ArrayList
+
+
+
 ## NOTES
 
+
+
 ## RELATED LINKS
+
+Fill Related Links Here
+

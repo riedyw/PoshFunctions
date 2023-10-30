@@ -1,37 +1,46 @@
 ---
-external help file: PoshFunctions-help.xml
+external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version:
+online version: 
 schema: 2.0.0
 ---
 
 # Write-TextMenu
 
 ## SYNOPSIS
-Creates the logic for a new simple text based menu.
-Originally published as script New-TextMenu in the PowerShellGallery
+
+Creates the logic for a new simple text based menu. Originally published as script New-TextMenu in the PowerShellGallery
 
 ## SYNTAX
 
+### __AllParameterSets
+
 ```
-Write-TextMenu [-Option] <String[]> [[-Title] <String>] [[-VariableName] <String>] [-TestMenu] [-Clipboard]
- [<CommonParameters>]
+Write-TextMenu [-Option] <String[]> [[-Title <String>]] [[-VariableName <String>]] [-Clipboard] [-TestMenu] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 Creates the logic for a new simple text based menu.
 Originally published as script New-TextMenu in the PowerShellGallery
 
+
 ## EXAMPLES
 
-### EXAMPLE 1
+### Example 1: EXAMPLE 1
+
 ```
 Write-TextMenu -Title 'Menu Title' -Option 'One', 'Two', 'Three'
 ```
 
 Creates a 3 option menu.
 
-### EXAMPLE 2
+
+
+
+
+### Example 2: EXAMPLE 2
+
 ```
 Write-TextMenu -Title 'My Menu' -Option 'One' -VariableName 'Choice2'
 ```
@@ -54,7 +63,12 @@ switch ($Choice2) {
 }
 }
 
-### EXAMPLE 3
+
+
+
+
+### Example 3: EXAMPLE 3
+
 ```
 Write-TextMenu -Option 'Uno'
 ```
@@ -77,105 +91,130 @@ switch ($Choice) {
 }
 }
 
+
+
+
+
+
 ## PARAMETERS
 
+### -Clipboard
+
+If this switch is enabled then the menu logic is copied to the clipboard.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
 ### -Option
-An array of \[string\] indicating the menu options.
+
+An array of [string] indicating the menu options.
 If you need to create a menu with a single option enclose the option in @().
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
+```
+
+### -TestMenu
+
+If this switch is enabled then the menu is saved to a temporary file and run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
 ```
 
 ### -Title
+
 The title of the menu.
 Defaults to 'Menu Title'.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 2
+Required: True (None) False (All)
+Position: 1
 Default value: Menu Title
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
 ### -VariableName
+
 The name of the choice variable.
 Defaults to 'Choice'.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 3
+Required: True (None) False (All)
+Position: 2
 Default value: Choice
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
-### -TestMenu
-If this switch is enabled then the menu is saved to a temporary file and run.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Clipboard
-If this switch is enabled then the menu logic is copied to the clipboard.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## OUTPUTS
 
 ### [string[]]
+
+
+
 ## NOTES
+
 * The resulting output is a relatively small string array so the shorthand way of adding
   to an array ( += ) is used.
 * Removed extraneous temporary file.
 * Cleaned up formatting.
 * Only set of parameters so removing ParameterSetName and DefaultParameterSetName
 
+
 ## RELATED LINKS
 
 [about_while
 Write-Host
 Read-Host
-about_switch]()
+about_switch] ()
 

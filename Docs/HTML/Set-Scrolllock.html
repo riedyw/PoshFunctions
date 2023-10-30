@@ -50,7 +50,7 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
@@ -59,83 +59,90 @@ schema: 2.0.0</h2>
 <p>Sets the state of the ScrollLock button.</p>
 <h2>SYNTAX</h2>
 <h3>On (Default)</h3>
-<pre><code>Set-Scrolllock [-On] [-WhatIf] [-Confirm] [&lt;CommonParameters&gt;]
+<pre><code>Set-Scrolllock [-Confirm] [-On] [-WhatIf] [&lt;CommonParameters&gt;]
 </code></pre>
 <h3>Off</h3>
-<pre><code>Set-Scrolllock [-Off] [-WhatIf] [-Confirm] [&lt;CommonParameters&gt;]
+<pre><code>Set-Scrolllock [-Confirm] [-Off] [-WhatIf] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Sets the state of the ScrollLock button.
 It first determines the state of the ScrollLock and then acts accordingly.</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Set-ScrollLock
 </code></pre>
 <p>Will turn on the ScrollLock</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Set-ScrollLock -Off
 </code></pre>
 <p>Will turn off the ScrollLock</p>
 <h2>PARAMETERS</h2>
-<h3>-On</h3>
-<p>A switch parameter to determine if you want the ScrollLock on.</p>
+<h3>-Confirm</h3>
+<p>{{ Fill Confirm Description }}</p>
 <pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: On
-Aliases:
+Parameter Sets: (All)
+Aliases: cf
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
-Default value: False
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-Off</h3>
 <p>A switch parameter to determine if you want the ScrollLock off.</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: Off
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (Off)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-On</h3>
+<p>A switch parameter to determine if you want the ScrollLock on.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: On
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (On)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-WhatIf</h3>
-<p>Shows what would happen if the cmdlet runs.
-The cmdlet is not run.</p>
+<p>{{ Fill WhatIf Description }}</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: wi
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
-Default value: None
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
-</code></pre>
-<h3>-Confirm</h3>
-<p>Prompts you for confirmation before running the cmdlet.</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
+<h3></h3>
 <h2>NOTES</h2>
 <p>Inspiration: # Inspired by https://gallery.technet.microsoft.com/on-off-keyboad-lock-keys-6ba9885c
 Changes:     Created function to set on or off the ScrollLock.
 Requires use of helper function Test-IsScrollLock</p>
 <h2>RELATED LINKS</h2>
-<p><a href="">Wscript.Shell</a></p>
+<p>[Wscript.Shell] ()</p>
 
 </body>
 </html>

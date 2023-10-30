@@ -50,27 +50,21 @@
 </head>
 <body>
     <hr />
-<p>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: https://social.msdn.microsoft.com/Forums/vstudio/en-US/0221d962-26e6-4a7e-be7a-72cd669a0dfc/why-systemmathround0251-2?forum=vbgeneral</p>
-<h2>Talks about Visual Basic but the same info applies to Powershell.
+online version:
 schema: 2.0.0</h2>
 <h1>Get-ScheduledTaskUser</h1>
 <h2>SYNOPSIS</h2>
-<p>Get a list of scheduled tasks and the user context that they run under.
-By default excluded system tasks</p>
+<p>Get a list of scheduled tasks and the user context that they run under. By default excluded system tasks</p>
 <h2>SYNTAX</h2>
-<pre><code>Get-ScheduledTaskUser [[-ComputerName] &lt;String[]&gt;] [[-UserName] &lt;String&gt;] [-IncludeSystem]
- [-IncludeInteractive] [&lt;CommonParameters&gt;]
+<h3>__AllParameterSets</h3>
+<pre><code>Get-ScheduledTaskUser [[-ComputerName &lt;String[]&gt;]] [[-UserName &lt;String&gt;]] [-IncludeInteractive] [-IncludeSystem] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Get a list of scheduled tasks and the user context that they run under.
 By default excluded system tasks</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1</h3>
-<pre><code class="language-powershell">PS C:\&gt; {{ Add example code here }}
-</code></pre>
-<p>{{ Add example description here }}</p>
 <h2>PARAMETERS</h2>
 <h3>-ComputerName</h3>
 <p>An array of computer names.
@@ -78,39 +72,15 @@ Defaults to $env:COMPUTERNAME.
 Aliased to 'CN', 'Server'</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
-Aliases: CN, Server
+Aliases: CN,Server
+Accepted values: 
 
-Required: False
-Position: 1
+Required: True (None) False (All)
+Position: 0
 Default value: $env:COMPUTERNAME
 Accept pipeline input: False
 Accept wildcard characters: False
-</code></pre>
-<h3>-UserName</h3>
-<p>A -like search string to compare process username context.
-Defaults to '*'</p>
-<pre><code class="language-yaml">Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 2
-Default value: *
-Accept pipeline input: False
-Accept wildcard characters: False
-</code></pre>
-<h3>-IncludeSystem</h3>
-<p>Switch to include the system scheduled tasks.
-Aliased to 'IS'</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: IS
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-IncludeInteractive</h3>
 <p>Switch to include interactive only tasks.
@@ -118,16 +88,47 @@ Aliased to 'II'</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: II
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-IncludeSystem</h3>
+<p>Switch to include the system scheduled tasks.
+Aliased to 'IS'</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: IS
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-UserName</h3>
+<p>A -like search string to compare process username context.
+Defaults to '*'</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 1
+Default value: *
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>psobject</h3>
 <h2>NOTES</h2>
@@ -143,6 +144,7 @@ Accept wildcard characters: False
 'SYSTEM',
 'Users'</p>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

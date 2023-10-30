@@ -1,123 +1,156 @@
 ---
-external help file: PoshFunctions-help.xml
+external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version:
+online version: 
 schema: 2.0.0
 ---
 
 # Set-Capslock
 
 ## SYNOPSIS
+
 Sets the state of the CapsLock button.
 
 ## SYNTAX
 
 ### On (Default)
+
 ```
-Set-Capslock [-On] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-Capslock [-Confirm] [-On] [-WhatIf] [<CommonParameters>]
 ```
 
 ### Off
+
 ```
-Set-Capslock [-Off] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-Capslock [-Confirm] [-Off] [-WhatIf] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 Sets the state of the CapsLock button.
 It first determines the state of the CapsLock and then acts accordingly.
 
+
 ## EXAMPLES
 
-### EXAMPLE 1
+### Example 1: EXAMPLE 1
+
 ```
 Set-CapsLock
 ```
 
 Will turn on the CapsLock
 
-### EXAMPLE 2
+
+
+
+
+### Example 2: EXAMPLE 2
+
 ```
 Set-CapsLock -Off
 ```
 
 Will turn off the CapsLock
 
+
+
+
+
+
 ## PARAMETERS
 
-### -On
-A switch parameter to determine if you want the CapsLock on.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: On
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Off
-A switch parameter to determine if you want the CapsLock off.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: Off
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: wi
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Confirm
-Prompts you for confirmation before running the cmdlet.
+
+{{ Fill Confirm Description }}
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: cf
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
-Default value: None
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
-### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+### -Off
 
-## INPUTS
+A switch parameter to determine if you want the CapsLock off.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: Off
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (Off)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
+### -On
+
+A switch parameter to determine if you want the CapsLock on.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: On
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (On)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
+### -WhatIf
+
+{{ Fill WhatIf Description }}
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## OUTPUTS
 
+### 
+
+
+
 ## NOTES
+
 Inspiration: # Inspired by https://gallery.technet.microsoft.com/on-off-keyboad-lock-keys-6ba9885c
 Changes:     Created function to set on or off the CapsLock.
 Requires use of helper function Test-IsCapsLock
 
+
 ## RELATED LINKS
 
-[Wscript.Shell]()
+[Wscript.Shell] ()
 

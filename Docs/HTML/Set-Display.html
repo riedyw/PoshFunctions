@@ -50,14 +50,13 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
 <h1>Set-Display</h1>
 <h2>SYNOPSIS</h2>
-<p>Set-Display turns the display on or off via energy saver api.
-Can also set display brightness</p>
+<p>Set-Display turns the display on or off via energy saver api. Can also set display brightness</p>
 <h2>SYNTAX</h2>
 <h3>On (Default)</h3>
 <pre><code>Set-Display [-On] [&lt;CommonParameters&gt;]
@@ -72,60 +71,67 @@ Can also set display brightness</p>
 <p>Set-Display turns the display on or off via energy saver api.
 Can also set display brightness</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Set-Display -Off ; Start-Sleep -Seconds 5 ; Set-Display -On
 </code></pre>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Set-Display -Brightness 75
 </code></pre>
 <h2>PARAMETERS</h2>
-<h3>-On</h3>
-<p>Switch to turn the display on</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: On
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-</code></pre>
-<h3>-Off</h3>
-<p>Switch to turn the display off</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: Off
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-</code></pre>
 <h3>-Brightness</h3>
 <p>[int] representing the brightness.
 Valid range 1-100</p>
 <pre><code class="language-yaml">Type: Int32
 Parameter Sets: Brightness
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (Brightness)
 Position: Named
 Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-Off</h3>
+<p>Switch to turn the display off</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: Off
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (Off)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-On</h3>
+<p>Switch to turn the display on</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: On
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (On)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
+<h3></h3>
 <h2>NOTES</h2>
 <p>Inspired by</p>
 <h1>Turning off display http://community.idera.com/database-tools/powershell/powertips/b/tips/posts/turning-display-off-immediately</h1>
 <h1>Turning on display  https://www.codeproject.com/Articles/11099/Turn-on-off-monitor</h1>
 <h1>Brightness https://winaero.com/change-screen-brightness-windows-10/</h1>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

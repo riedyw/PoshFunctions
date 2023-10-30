@@ -50,14 +50,15 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: https://gallery.technet.microsoft.com/scriptcenter/Get-MachineType-VM-or-ff43f3a9
+online version:
 schema: 2.0.0</h2>
 <h1>Get-NtpDate</h1>
 <h2>SYNOPSIS</h2>
 <p>To get the time from an NTP server</p>
 <h2>SYNTAX</h2>
+<h3>__AllParameterSets</h3>
 <pre><code>Get-NtpDate [-ComputerName] &lt;String&gt; [-Port &lt;Int32&gt;] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
@@ -65,7 +66,7 @@ schema: 2.0.0</h2>
 <p>Will return a [DateTime] and accepts the -Verbose parameter.
 If request fails it will return &quot;1/1/1900&quot;</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Get-NtpDate $DC
 </code></pre>
 <p>Assuming $DC holds the name of the domain controller then would return a datetime similar to
@@ -76,34 +77,38 @@ Monday, March 05, 2018 9:52:57 AM</p>
 Aliased to 'CN', 'Server', 'NtpServer'</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: CN, Server, NtpServer
+Aliases: CN,Server,NtpServer
+Accepted values: 
 
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-Port</h3>
 <p>The port number NTP is listening to.
 Defaults to 123</p>
 <pre><code class="language-yaml">Type: Int32
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: 123
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>[datetime]</h3>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

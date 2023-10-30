@@ -50,7 +50,7 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
@@ -58,6 +58,7 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>To split a string line by line and return a string array</p>
 <h2>SYNTAX</h2>
+<h3>__AllParameterSets</h3>
 <pre><code>Split-Line [-String] &lt;String&gt; [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
@@ -66,7 +67,7 @@ Here strings, script EOL character sequence, and system
 default NewLine character can muck up parsing a string into lines.
 This is an attempt to address this.</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>$HereString = @'
 </code></pre>
 <p>Server1
@@ -76,7 +77,7 @@ Server3
 <p>$Object = Split-Line -String $HereString
 $Object.Count</p>
 <p>3</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>(Split-Line -String 'SimpleString').GetType()
 </code></pre>
 <p>IsPublic IsSerial Name                                     BaseType</p>
@@ -87,21 +88,23 @@ $Object.Count</p>
 <p>The string that you want split line by line</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>string[]</h3>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

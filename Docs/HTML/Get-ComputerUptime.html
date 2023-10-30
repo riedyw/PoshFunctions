@@ -50,22 +50,22 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: http://wonkysoftware.appspot.com
+online version:
 schema: 2.0.0</h2>
 <h1>Get-ComputerUptime</h1>
 <h2>SYNOPSIS</h2>
 <p>To mimic and extend the Get-ComputerUptime function found in PowerShell 6 or 7</p>
 <h2>SYNTAX</h2>
-<pre><code>Get-ComputerUptime [-Since] [[-Name] &lt;String[]&gt;] [-IncludeComputerName] [[-Credential] &lt;PSCredential&gt;]
- [&lt;CommonParameters&gt;]
+<h3>__AllParameterSets</h3>
+<pre><code>Get-ComputerUptime [[-Name &lt;String[]&gt;]] [[-Credential &lt;PSCredential&gt;]] [-IncludeComputerName] [-Since] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>To mimic and extend the Get-ComputerUptime function found in PowerShell 6 or 7.
 Function aliased to 'Get-LastReboot' for backward compatibility</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Get-ComputerUptime
 </code></pre>
 <p>Days              : 0
@@ -79,17 +79,17 @@ TotalHours        : 8.34369615536111
 TotalMinutes      : 500.621769321667
 TotalSeconds      : 30037.3061593
 TotalMilliseconds : 30037306.1593</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Get-ComputerUptime -Since
 </code></pre>
 <p>Sunday, February 28, 2021 12:47:04 PM</p>
-<h3>EXAMPLE 3</h3>
+<h3>Example 3: EXAMPLE 3</h3>
 <pre><code>Get-ComputerUptime -IncludeComputerName -Since
 </code></pre>
 <p>ComputerName LastBoot</p>
 <hr />
 <p>DemoLaptop   3/16/2021 12:59:24 PM</p>
-<h3>EXAMPLE 4</h3>
+<h3>Example 4: EXAMPLE 4</h3>
 <pre><code>Get-ComputerUptime -IncludeComputerName -Since -ComputerName server1, server2
 </code></pre>
 <p>ComputerName LastBoot</p>
@@ -97,63 +97,71 @@ TotalMilliseconds : 30037306.1593</p>
 <p>server1      3/18/2021 10:58:53 PM
 server2      3/17/2021 1:50:49 PM</p>
 <h2>PARAMETERS</h2>
-<h3>-Since</h3>
-<p>Switch to show last boot time, not the timespan since last boot</p>
-<pre><code class="language-yaml">Type: SwitchParameter
+<h3>-Credential</h3>
+<p>{{ Fill Credential Description }}</p>
+<pre><code class="language-yaml">Type: PSCredential
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: Named
-Default value: False
+Required: True (None) False (All)
+Position: 1
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
-</code></pre>
-<h3>-Name</h3>
-<p>{{ Fill Name Description }}</p>
-<pre><code class="language-yaml">Type: String[]
-Parameter Sets: (All)
-Aliases: ComputerName, CN, Server
-
-Required: False
-Position: 1
-Default value: $env:COMPUTERNAME
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-IncludeComputerName</h3>
 <p>Switch on whether to include the computer name in the output</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
-<h3>-Credential</h3>
-<p>{{ Fill Credential Description }}</p>
-<pre><code class="language-yaml">Type: PSCredential
+<h3>-Name</h3>
+<p>{{ Fill Name Description }}</p>
+<pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
-Aliases:
+Aliases: ComputerName,CN,Server
+Accepted values: 
 
-Required: False
-Position: 2
-Default value: None
+Required: True (None) False (All)
+Position: 0
+Default value: $env:COMPUTERNAME
+Accept pipeline input: True
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-Since</h3>
+<p>Switch to show last boot time, not the timespan since last boot</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>psobject</h3>
 <h2>NOTES</h2>
 <p>To mimic and extend the functionality of the Get-Uptime function found in PowerShell 6 or 7</p>
 <p>Put in error checking around Get-CimInstance to handle Kerberos errors.</p>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

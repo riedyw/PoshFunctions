@@ -1,32 +1,32 @@
 ---
-external help file: PoshFunctions-help.xml
+external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version:
+online version: 
 schema: 2.0.0
 ---
 
 # New-MessageBox
 
 ## SYNOPSIS
-New-Popup will display a message box.
-If a timeout is requested it uses Wscript.Shell PopUp method.
-If a default button is requested it uses the ::Show method from 'Windows.Forms.MessageBox'
+
+New-Popup will display a message box. If a timeout is requested it uses Wscript.Shell PopUp method. If a default button is requested it uses the ::Show method from 'Windows.Forms.MessageBox'
 
 ## SYNTAX
 
 ### Timeout (Default)
+
 ```
-New-MessageBox -Message <String> -Title <String> [-Time <Int32>] [-Buttons <String>] [-Icon <String>]
- [-ShowOnTop] [-AsString] [<CommonParameters>]
+New-MessageBox -Message <String> -Title <String> [-AsString] [-Buttons <String>] [-Icon <String>] [-ShowOnTop] [-Time <Int32>] [<CommonParameters>]
 ```
 
 ### DefaultButton
+
 ```
-New-MessageBox -Message <String> -Title <String> [-Buttons <String>] [-Icon <String>] [-DefaultButton <String>]
- [-AsString] [<CommonParameters>]
+New-MessageBox -Message <String> -Title <String> [-AsString] [-Buttons <String>] [-DefaultButton <String>] [-Icon <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The New-Popup command uses the Wscript.Shell PopUp method to display a graphical message
 box.
 You can customize its appearance of icons and buttons.
@@ -46,9 +46,11 @@ No      =  7
 
 If no button is clicked, the return value is -1.
 
+
 ## EXAMPLES
 
-### EXAMPLE 1
+### Example 1: EXAMPLE 1
+
 ```
 new-popup -message "The update script has completed" -title "Finished" -time 5
 ```
@@ -57,7 +59,12 @@ This will display a popup message using the default OK button and default
 Information icon.
 The popup will automatically dismiss after 5 seconds.
 
-### EXAMPLE 2
+
+
+
+
+### Example 2: EXAMPLE 2
+
 ```
 $answer = new-popup -Message "Please pick" -Title "form" -buttons "OKCancel" -icon "information"
 ```
@@ -66,7 +73,12 @@ If the user clicks "OK" the $answer variable will be equal to 1.
 If the user clicks "Cancel" the
 $answer variable will be equal to 2.
 
-### EXAMPLE 3
+
+
+
+
+### Example 3: EXAMPLE 3
+
 ```
 $answer = new-popup -Message "Please pick" -Title "form" -buttons "OKCancel" -icon "information" -AsString
 ```
@@ -75,55 +87,33 @@ If the user clicks "OK" the $answer variable will be equal to 'OK'.
 If the user clicks "Cancel" the
 $answer variable will be 'Cancel'
 
+
+
+
+
+
 ## PARAMETERS
 
-### -Message
-The message you want displayed
+### -AsString
+
+Will return a human readable representation of which button was pressed as opposed to an integer value.
 
 ```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
+Type: SwitchParameter
+Parameter Sets: Timeout, DefaultButton
+Aliases: 
+Accepted values: 
 
-Required: True
+Required: True (None) False (Timeout, DefaultButton)
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-```
-
-### -Title
-The text to appear in title bar of dialog box
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Time
-The time to display the message.
-Defaults to 0 (zero) which will keep dialog open until a button is clicked
-
-```yaml
-Type: Int32
-Parameter Sets: Timeout
-Aliases:
-
-Required: False
-Position: Named
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
+DontShow: False
 ```
 
 ### -Buttons
+
 Valid values for -Buttons include:
 "OK"
 "OKCancel"
@@ -134,17 +124,38 @@ Valid values for -Buttons include:
 
 ```yaml
 Type: String
-Parameter Sets: (All)
-Aliases:
+Parameter Sets: Timeout, DefaultButton
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (Timeout, DefaultButton)
 Position: Named
 Default value: OK
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+```
+
+### -DefaultButton
+
+{{ Fill DefaultButton Description }}
+
+```yaml
+Type: String
+Parameter Sets: DefaultButton
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (DefaultButton)
+Position: Named
+Default value: Button1
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
 ```
 
 ### -Icon
+
 Valid values for -Icon include:
 "Stop"
 "Question"
@@ -154,80 +165,116 @@ Valid values for -Icon include:
 
 ```yaml
 Type: String
-Parameter Sets: (All)
-Aliases:
+Parameter Sets: Timeout, DefaultButton
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (Timeout, DefaultButton)
 Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+```
+
+### -Message
+
+The message you want displayed
+
+```yaml
+Type: String
+Parameter Sets: Timeout, DefaultButton
+Aliases: 
+Accepted values: 
+
+Required: True (Timeout, DefaultButton) False (None)
+Position: Named
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
 ```
 
 ### -ShowOnTop
+
 Switch which will force the popup window to appear on top of all other windows.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: Timeout
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (Timeout)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
-### -DefaultButton
-{{ Fill DefaultButton Description }}
+### -Time
+
+The time to display the message.
+Defaults to 0 (zero) which will keep dialog open until a button is clicked
+
+```yaml
+Type: Int32
+Parameter Sets: Timeout
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (Timeout)
+Position: Named
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
+### -Title
+
+The text to appear in title bar of dialog box
 
 ```yaml
 Type: String
-Parameter Sets: DefaultButton
-Aliases:
+Parameter Sets: Timeout, DefaultButton
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (Timeout, DefaultButton) False (None)
 Position: Named
-Default value: Button1
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
-### -AsString
-Will return a human readable representation of which button was pressed as opposed to an integer value.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## OUTPUTS
 
 ### An integer with the following value depending upon the button pushed.
-### Timeout = -1    # Value when timer finishes countdown.
-### OK      =  1
-### Cancel  =  2
-### Abort   =  3
-### Retry   =  4
-### Ignore  =  5
-### Yes     =  6
-### No      =  7
+
+Timeout = -1    # Value when timer finishes countdown.
+OK      =  1
+Cancel  =  2
+Abort   =  3
+Retry   =  4
+Ignore  =  5
+Yes     =  6
+No      =  7
+
+
+
 ## NOTES
+
+
 
 ## RELATED LINKS
 
-[Wscript.Shell]()
+[Wscript.Shell] ()
 

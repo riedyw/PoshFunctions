@@ -50,7 +50,7 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
@@ -58,6 +58,7 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>Converts a HashTable, Array, or an OrderedDictionary to an OrderedDictionary.</p>
 <h2>SYNTAX</h2>
+<h3>__AllParameterSets</h3>
 <pre><code>ConvertTo-OrderedDictionary [-Hash] &lt;Hashtable&gt; [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
@@ -68,7 +69,7 @@ alphanumerically in the dictionary.
 If you enter an array, the keys
 are integers 0 - n.</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>$myHash = @{a=1; b=2; c=3}
 </code></pre>
 <p>ConvertTo-OrderedDictionary -Hash $myHash</p>
@@ -77,7 +78,7 @@ are integers 0 - n.</p>
 <p>a                              1
 b                              2
 c                              3</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>$myHash = @{a=1; b=2; c=3}
 </code></pre>
 <p>$myHash = .\ConvertTo-OrderedDictionary.ps1 -Hash $myHash
@@ -90,8 +91,9 @@ c                              3</p>
 <p>$myHash | Get-Member</p>
 <p>TypeName: System.Collections.Specialized.OrderedDictionary
 .
-. .</p>
-<h3>EXAMPLE 3</h3>
+.
+.</p>
+<h3>Example 3: EXAMPLE 3</h3>
 <pre><code>$colors = &quot;red&quot;, &quot;green&quot;, &quot;blue&quot;
 </code></pre>
 <p>$colors = .\ConvertTo-OrderedDictionary.ps1 -Hash $colors
@@ -110,27 +112,29 @@ If the input
 is an OrderedDictionary the key order is the same in the copy.</p>
 <pre><code class="language-yaml">Type: Hashtable
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
 <h2>INPUTS</h2>
 <h3>System.Collections.Hashtable</h3>
-<h3>System.Array</h3>
-<h3>System.Collections.Specialized.OrderedDictionary</h3>
+<p>System.Array
+System.Collections.Specialized.OrderedDictionary</p>
 <h2>OUTPUTS</h2>
 <h3>System.Collections.Specialized.OrderedDictionary</h3>
 <h2>NOTES</h2>
 <p>source: https://gallery.technet.microsoft.com/scriptcenter/ConvertTo-OrderedDictionary-cf2404ba
 converted to function and added ability to copy OrderedDictionary</p>
 <h2>RELATED LINKS</h2>
-<p><a href="">about_hash_tables</a></p>
+<p>[about_hash_tables] ()</p>
 
 </body>
 </html>

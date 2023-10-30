@@ -50,39 +50,38 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
 <h1>Test-IsLocalIPv4</h1>
 <h2>SYNOPSIS</h2>
-<p>Tests to determine if a specified IPv4 address is LOCAL or REMOTE (must be sent to default gateway).
-Aliased to 'Test-IsLocalIP'</p>
+<p>Tests to determine if a specified IPv4 address is LOCAL or REMOTE (must be sent to default gateway). Aliased to 'Test-IsLocalIP'</p>
 <h2>SYNTAX</h2>
-<pre><code>Test-IsLocalIPv4 [-Target] &lt;IPAddress[]&gt; [-Source] &lt;IPAddress&gt; [-SubnetMask] &lt;IPAddress&gt; [-IncludeInput]
- [&lt;CommonParameters&gt;]
+<h3>__AllParameterSets</h3>
+<pre><code>Test-IsLocalIPv4 [-Target] &lt;IPAddress[]&gt; [-Source] &lt;IPAddress&gt; [-SubnetMask] &lt;IPAddress&gt; [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Tests to determine if a specified IPv4 address is LOCAL or REMOTE (must be sent to default gateway)</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Test-IsLocalIPv4 -Source 10.100.10.20 -SubnetMask 255.255.255.0 -Target 10.100.10.30, 10.100.20.40 -IncludeInput
 </code></pre>
 <p>Source       Target       SubnetMask    Local</p>
 <hr />
 <p>10.100.10.20 10.100.10.30 255.255.255.0  True
 10.100.10.20 10.100.20.40 255.255.255.0 False</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Test-IsLocalIPv4 -Source 10.100.10.20 -SubnetMask 255.255.255.0 -Target 10.100.10.30
 </code></pre>
 <p>True</p>
-<h3>EXAMPLE 3</h3>
+<h3>Example 3: EXAMPLE 3</h3>
 <pre><code>[pscustomobject] @{ Source='10.100.10.20'; Target='10.100.20.30'; SubnetMask='255.255.255.0'} | Test-IsLocalIPv4 -IncludeInput
 </code></pre>
 <p>Source       Target       SubnetMask    Local</p>
 <hr />
 <p>10.100.10.20 10.100.20.30 255.255.255.0 False</p>
-<h3>EXAMPLE 4</h3>
+<h3>Example 4: EXAMPLE 4</h3>
 <pre><code>Test-IsLocalIPv4 -Source 10.100.10.1 -SubnetMask 255.255.0.0 -Target 10.100.20.1,10.101.10.2 -Verbose -IncludeInput
 </code></pre>
 <p>VERBOSE: Starting [Test-IsLocalIPv4]
@@ -95,64 +94,71 @@ Source      Target      SubnetMask  Local</p>
 <p>10.100.10.1 10.100.20.1 255.255.0.0  True
 10.100.10.1 10.101.10.2 255.255.0.0 False</p>
 <h2>PARAMETERS</h2>
-<h3>-Target</h3>
-<p>The target IPv4 address(es) [ipaddress[]].
-Can take values from the pipeline.
-Can take property values by name from the pipeline.</p>
-<pre><code class="language-yaml">Type: IPAddress[]
+<h3>-IncludeInput</h3>
+<p>{{ Fill IncludeInput Description }}</p>
+<pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-Source</h3>
 <p>The source IPv4 address [ipaddress].
 Can take property values by name from the pipeline.</p>
 <pre><code class="language-yaml">Type: IPAddress
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: True
-Position: 2
-Default value: None
-Accept pipeline input: True (ByPropertyName)
+Required: True (All) False (None)
+Position: 1
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-SubnetMask</h3>
 <p>The subnet mask in IPv4 address format [ipaddress].
 Can take property values by name from the pipeline.</p>
 <pre><code class="language-yaml">Type: IPAddress
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: True
-Position: 3
-Default value: None
-Accept pipeline input: True (ByPropertyName)
+Required: True (All) False (None)
+Position: 2
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
-<h3>-IncludeInput</h3>
-<p>{{ Fill IncludeInput Description }}</p>
-<pre><code class="language-yaml">Type: SwitchParameter
+<h3>-Target</h3>
+<p>The target IPv4 address(es) [ipaddress[]].
+Can take values from the pipeline.
+Can take property values by name from the pipeline.</p>
+<pre><code class="language-yaml">Type: IPAddress[]
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
-<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

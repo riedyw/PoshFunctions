@@ -50,7 +50,7 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
@@ -58,22 +58,23 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>To take a normal Windows path and convert it to a bash path for things like git bash.</p>
 <h2>SYNTAX</h2>
+<h3>__AllParameterSets</h3>
 <pre><code>Get-BashPath [-Path] &lt;String[]&gt; [-IncludeInput] [-NoResolvePath] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>To take a normal Windows path and convert it to a bash path for things like git bash.</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Get-BashPath -Path 'c:\temp\*.csv'
 </code></pre>
 <p>/C/temp/Encoding\ Time.csv</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Get-BashPath -Path 'c:\temp\*.csv' -IncludeInput
 </code></pre>
 <p>Posh                      bash</p>
 <hr />
 <p>C:\temp\Encoding Time.csv /C/temp/Encoding\ Time.csv</p>
-<h3>EXAMPLE 3</h3>
+<h3>Example 3: EXAMPLE 3</h3>
 <pre><code>$Special = Show-SpecialFolder -IncludeLocations | Where-Object {$_.Location -and $_.Location -match 'Program Files'}
 </code></pre>
 <p>$Special | Add-Member -MemberType NoteProperty -Name BashPath -Value 'x'
@@ -87,6 +88,34 @@ CommonProgramFilesX86 C:\Program Files (x86)\Common Files /C/Program\ Files\ (x8
 ProgramFiles          C:\Program Files                    /C/Program\ Files
 ProgramFilesX86       C:\Program Files (x86)              /C/Program\ Files\ (x86)</p>
 <h2>PARAMETERS</h2>
+<h3>-IncludeInput</h3>
+<p>Switch to indicate if input parameters should be included in the output, aliased to 'IncludeOriginal'</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: IncludeOriginal
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-NoResolvePath</h3>
+<p>Switch to not resolve the provided path to see if it exists</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
 <h3>-Path</h3>
 <p>A path to a file or files.
 Can include wildcards and the wildcards will be resolved to underlying
@@ -94,46 +123,24 @@ files.
 Can be a single path, an array of paths, or from the pipeline.</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
-</code></pre>
-<h3>-IncludeInput</h3>
-<p>Switch to indicate if input parameters should be included in the output, aliased to 'IncludeOriginal'</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: IncludeOriginal
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-</code></pre>
-<h3>-NoResolvePath</h3>
-<p>Switch to not resolve the provided path to see if it exists</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>psobject</h3>
 <h2>NOTES</h2>
 <p>The file(s) must exist for this function to work</p>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

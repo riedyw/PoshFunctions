@@ -1,27 +1,33 @@
 ---
-external help file: PoshFunctions-help.xml
+external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version:
+online version: 
 schema: 2.0.0
 ---
 
 # Show-FileAttribute
 
 ## SYNOPSIS
+
 Shows the available file attributes
 
 ## SYNTAX
+
+### __AllParameterSets
 
 ```
 Show-FileAttribute [-IncludeValue] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 Shows the available file attributes
+
 
 ## EXAMPLES
 
-### EXAMPLE 1
+### Example 1: EXAMPLE 1
+
 ```
 Show-FileAttribute
 ```
@@ -44,7 +50,12 @@ Encrypted
 IntegrityStream
 NoScrubData
 
-### EXAMPLE 2
+
+
+
+
+### Example 2: EXAMPLE 2
+
 ```
 Show-FileAttribute
 ```
@@ -69,31 +80,47 @@ Encrypted          16384 0x4000
 IntegrityStream    32768 0x8000
 NoScrubData       131072 0x20000
 
+
+
+
+
+
 ## PARAMETERS
 
 ### -IncludeValue
+
 {{ Fill IncludeValue Description }}
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
-### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## OUTPUTS
 
 ### [string[]]
+
+
+
 ## NOTES
 
+
+
 ## RELATED LINKS
+
+Fill Related Links Here
+

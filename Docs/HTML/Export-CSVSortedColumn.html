@@ -50,7 +50,7 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
@@ -58,166 +58,183 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>Sorts the column names alphabetically and exports to csv</p>
 <h2>SYNTAX</h2>
-<pre><code>Export-CSVSortedColumn [[-InputObject] &lt;Object[]&gt;] [-Descending] [-Append] [-Confirm] [[-Delimiter] &lt;Char&gt;]
- [[-Encoding] &lt;String&gt;] [-Force] [[-LiteralPath] &lt;String&gt;] [-NoClobber] [-NoTypeInformation] [[-Path] &lt;String&gt;]
- [-UseCulture] [&lt;CommonParameters&gt;]
+<h3>__AllParameterSets</h3>
+<pre><code>Export-CSVSortedColumn [[-InputObject &lt;Object[]&gt;]] [[-Delimiter &lt;Char&gt;]] [[-Encoding &lt;String&gt;]] [[-LiteralPath &lt;String&gt;]] [[-Path &lt;String&gt;]] [-Append] [-Confirm] [-Descending] [-Force] [-NoClobber] [-NoTypeInformation] [-UseCulture] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Sorts the column names alphabetically and exports to csv</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1</h3>
-<pre><code class="language-powershell">PS C:\&gt; {{ Add example code here }}
-</code></pre>
-<p>{{ Add example description here }}</p>
 <h2>PARAMETERS</h2>
-<h3>-InputObject</h3>
-<p>The object that will be exported</p>
-<pre><code class="language-yaml">Type: Object[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-</code></pre>
-<h3>-Descending</h3>
-<p>Switch if you want the columns to be in reverse alphabetical order.</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-</code></pre>
 <h3>-Append</h3>
 <p>Optional parameter matches parameter in Export-CSV</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-Confirm</h3>
 <p>Optional parameter matches parameter in Export-CSV</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-Delimiter</h3>
 <p>Optional parameter matches parameter in Export-CSV</p>
 <pre><code class="language-yaml">Type: Char
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 2
+Required: True (None) False (All)
+Position: 1
 Default value: ,
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-Descending</h3>
+<p>Switch if you want the columns to be in reverse alphabetical order.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-Encoding</h3>
 <p>Optional parameter matches parameter in Export-CSV</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 3
-Default value: None
+Required: True (None) False (All)
+Position: 2
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-Force</h3>
 <p>Optional parameter matches parameter in Export-CSV</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-InputObject</h3>
+<p>The object that will be exported</p>
+<pre><code class="language-yaml">Type: Object[]
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 0
+Default value: 
+Accept pipeline input: True
+Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-LiteralPath</h3>
 <p>Optional parameter matches parameter in Export-CSV</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 4
-Default value: None
+Required: True (None) False (All)
+Position: 3
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-NoClobber</h3>
 <p>Optional parameter matches parameter in Export-CSV</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-NoTypeInformation</h3>
 <p>Optional parameter matches parameter in Export-CSV</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-Path</h3>
 <p>Optional parameter matches parameter in Export-CSV</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 5
-Default value: None
+Required: True (None) False (All)
+Position: 4
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-UseCulture</h3>
 <p>Optional parameter matches parameter in Export-CSV</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
-<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <p>Inspired by https://stackoverflow.com/questions/3281999/format-list-sort-properties-by-name</p>
 <p>Made following changes</p>
@@ -225,7 +242,7 @@ Accept wildcard characters: False
 <li>added all parameters from Export-CSV</li>
 </ul>
 <h2>RELATED LINKS</h2>
-<p><a href="">Export-CSV</a></p>
+<p>[Export-CSV] ()</p>
 
 </body>
 </html>

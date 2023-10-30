@@ -50,7 +50,7 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
@@ -58,58 +58,60 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>Display a short quote</p>
 <h2>SYNTAX</h2>
-<pre><code>Get-Fortune [[-Path] &lt;String&gt;] [[-Delimiter] &lt;String&gt;] [-Speak] [&lt;CommonParameters&gt;]
+<h3>__AllParameterSets</h3>
+<pre><code>Get-Fortune [[-Path &lt;String&gt;]] [[-Delimiter &lt;String&gt;]] [-Speak] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Display a short quote from a file which defaults to: 'c:\scripts\wisdom.txt') but can be changed with parameter -Path.</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1</h3>
-<pre><code class="language-powershell">PS C:\&gt; {{ Add example code here }}
-</code></pre>
-<p>{{ Add example description here }}</p>
 <h2>PARAMETERS</h2>
+<h3>-Delimiter</h3>
+<p>Indicates delimiter between the individual fortunes.
+Defaults to &quot;<code>n%</code>n&quot; (newline percent newline)</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 1
+Default value: %
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
 <h3>-Path</h3>
 <p>A path to a filename containing the fortunes.
 Defaults to: ((Split-Path -path $profile)+'\wisdom.txt')
 Aliased to 'FileName' and 'Fortune'</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: FileName, Fortune
+Aliases: FileName,Fortune
+Accepted values: 
 
-Required: False
-Position: 1
+Required: True (None) False (All)
+Position: 0
 Default value: $script:FortuneFile
 Accept pipeline input: False
 Accept wildcard characters: False
-</code></pre>
-<h3>-Delimiter</h3>
-<p>Indicates delimiter between the individual fortunes.
-Defaults to &quot;`n%`n&quot; (newline percent newline)</p>
-<pre><code class="language-yaml">Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 2
-Default value: %
-Accept pipeline input: False
-Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-Speak</h3>
 <p>{{ Fill Speak Description }}</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>[string]</h3>
 <h2>NOTES</h2>
@@ -128,9 +130,9 @@ Time is money.</li>
 <li>Benjamin Franklin</li>
 </ul>
 <h2>RELATED LINKS</h2>
-<p><a href="">Get-Content
+<p>[Get-Content
 Get-Random
-Split-Path</a></p>
+Split-Path] ()</p>
 
 </body>
 </html>

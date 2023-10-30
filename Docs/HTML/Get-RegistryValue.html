@@ -50,14 +50,15 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: http://code.msdn.microsoft.com/PSRemoteRegistry
+online version:
 schema: 2.0.0</h2>
 <h1>Get-RegistryValue</h1>
 <h2>SYNOPSIS</h2>
 <p>Get the values from a specified registry key</p>
 <h2>SYNTAX</h2>
+<h3>__AllParameterSets</h3>
 <pre><code>Get-RegistryValue [-RegistryKey] &lt;String&gt; [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
@@ -67,7 +68,7 @@ with the 4 letter abbreviations or fully spelled out.
 ExpandString (aka REG_EXPAND_SZ)
 are NOT expanded.</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Get-RegistryValue -RegistryKey 'HKEY_CURRENT_USER\Environment'
 </code></pre>
 <p>Name Type         Value</p>
@@ -75,7 +76,7 @@ are NOT expanded.</p>
 <p>Path ExpandString %USERPROFILE%\AppData\Local\Microsoft\WindowsApps;
 TEMP ExpandString %USERPROFILE%\AppData\Local\Temp
 TMP  ExpandString %USERPROFILE%\AppData\Local\Temp</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Get-RegistryValue 'HKCU\Control Panel\Cursors' -IncludeInput | Select-Object -Last 4
 </code></pre>
 <p>RegistryKey                Name      Type   Value</p>
@@ -85,37 +86,40 @@ HKCU\Control Panel\Cursors UpArrow   String C:\WINDOWS\cursors\aero_up.cur
 HKCU\Control Panel\Cursors Wait      String C:\WINDOWS\cursors\aero_busy.ani
 HKCU\Control Panel\Cursors (Default) String Windows Default</p>
 <h2>PARAMETERS</h2>
-<h3>-RegistryKey</h3>
-<p>The full registry key.
-Values can actually be copied from regedit.exe in the address bar.</p>
-<pre><code class="language-yaml">Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-</code></pre>
 <h3>-IncludeInput</h3>
 <p>Changed name from -IncludeRegistryKey to be consistent, aliased to 'IncludeRegistryKey' for backward compatibility</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: IncludeRegistryKey
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-RegistryKey</h3>
+<p>The full registry key.
+Values can actually be copied from regedit.exe in the address bar.</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
-<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

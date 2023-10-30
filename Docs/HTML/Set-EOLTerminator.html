@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.highlightAll();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: poshfunctions-help.xml
+Module Name: poshfunctions
+online version:
+schema: 2.0.0</h2>
+<h1>Set-EOLTerminator</h1>
+<h2>SYNOPSIS</h2>
+<p>Converts to EOL character(s) considered &quot;normal&quot; for various operating systems. For Unix it is &quot;LF&quot;, for Mac it is &quot;CR&quot;, and for Windows it is &quot;CRLF&quot;</p>
+<h2>SYNTAX</h2>
+<h3>__AllParameterSets</h3>
+<pre><code>Set-EOLTerminator [[-LineEnding &lt;String&gt;]] [-Path] &lt;String[]&gt; [-Quiet] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Converts to EOL character(s) considered &quot;normal&quot; for various operating systems.
+For Unix it is &quot;LF&quot;, for Mac it is &quot;CR&quot;, and for Windows it is &quot;CRLF&quot;</p>
+<h2>EXAMPLES</h2>
+<h3>Example 1: EXAMPLE 1</h3>
+<pre><code>Get-FileEncoding -Path c:\temp\tempfile.txt
+</code></pre>
+<p>EncodingType Path</p>
+<hr />
+<p>ASCII        C:\temp\tempfile.txt</p>
+<h2>PARAMETERS</h2>
+<h3>-LineEnding</h3>
+<p>EOL format to be used.
+Validate set 'Mac', 'Unix', 'Win'.
+Defaults to 'Win'</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 0
+Default value: Win
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-Path</h3>
+<p>The path to the file(s)</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (All) False (None)
+Position: 1
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-Quiet</h3>
+<p>If specified there will be no output produced by the function</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>NOTES</h2>
+<p>Inspired by https://ss64.com/ps/syntax-set-eol.html.</p>
+<p>Converted it into a function.
+Added comment based help, begin/process/end code blocks, changing parameter $file to $Path to be more
+inline with other PowerShell commands.
+$Path can be an array of strings.
+Relative paths are accepted.
+Test for existence of $Path and that it is not a directory
+Provides output by default, can be disabled with -Quiet parameter.
+Function as originally written was doing the file write 2 or 3 times (depending on code branching),
+and rereading the file which is not necessary as it stores the contents of the file in memory.</p>
+<h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
+
+</body>
+</html>

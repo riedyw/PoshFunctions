@@ -50,17 +50,16 @@
 </head>
 <body>
     <hr />
-<p>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: https://social.msdn.microsoft.com/Forums/vstudio/en-US/0221d962-26e6-4a7e-be7a-72cd669a0dfc/why-systemmathround0251-2?forum=vbgeneral</p>
-<h2>Talks about Visual Basic but the same info applies to Powershell.
+online version:
 schema: 2.0.0</h2>
 <h1>Get-SaveFileName</h1>
 <h2>SYNOPSIS</h2>
 <p>Gets a filename through the native SaveFileDialog.</p>
 <h2>SYNTAX</h2>
-<pre><code>Get-SaveFileName [[-Path] &lt;String&gt;] [[-OverwritePrompt] &lt;Boolean&gt;] [[-Filter] &lt;String&gt;] [[-Title] &lt;String&gt;]
- [-AddExtension] [[-DefaultExt] &lt;String&gt;] [&lt;CommonParameters&gt;]
+<h3>__AllParameterSets</h3>
+<pre><code>Get-SaveFileName [[-Path &lt;String&gt;]] [[-OverwritePrompt &lt;Boolean&gt;]] [[-Filter &lt;String&gt;]] [[-Title &lt;String&gt;]] [[-DefaultExt &lt;String&gt;]] [-AddExtension] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Gets a filename through the native SaveFileDialog.
@@ -68,30 +67,30 @@ Can select a single file, or type a
 file name in the text entry field.
 If user clicks 'OK' an [array] is returned, otherwise returns a $null if the dialog is canceled.</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>$File = Get-SaveFileName
 </code></pre>
 <p>Will present a savefile dialog box where only a single file can be selected and the savefile
 dialog box will start in the current directory.
 Assigns selected file to the 'File' variable.</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>$File = Get-SaveFileName -Filter 'Powershell files|*.ps1|All files|*.*'
 </code></pre>
 <p>Will present a savefile dialog box and will start in the current directory.
 There will be a drop down list box in lower right
 where the user can select 'Powershell files' or 'All files' and the files listed will change.
 Assigns selected file(s) to the 'File' variable.</p>
-<h3>EXAMPLE 3</h3>
+<h3>Example 3: EXAMPLE 3</h3>
 <pre><code>$File = Get-SaveFileName -Path 'C:\Temp'
 </code></pre>
 <p>Will present a savefile dialog box where a file can be selected and the savefile
 dialog box will start in the C:\Temp directory.
 Assigns selected file(s) to the 'File' variable.</p>
-<h3>EXAMPLE 4</h3>
+<h3>Example 4: EXAMPLE 4</h3>
 <pre><code>Get-SaveFileName | get-childitem
 </code></pre>
 <p>Pipes selected filename to the get-childitem cmdlet.</p>
-<h3>EXAMPLE 5</h3>
+<h3>Example 5: EXAMPLE 5</h3>
 <pre><code>$File = Get-SaveFileName -OverwritePrompt:$false
 </code></pre>
 <p>Will present a savefile dialog box where a file can be selected and the savefile
@@ -100,34 +99,33 @@ If you select an existing file it
 not prompt that the file will be overwritten.
 Assigns selected file(s) to the 'File' variable.</p>
 <h2>PARAMETERS</h2>
-<h3>-Path</h3>
-<p>The directory for the SaveFileDialog to start in.
-Defaults to $pwd.
-Aliased to 'InitialDirectory'
-Aliased to 'Path'.</p>
+<h3>-AddExtension</h3>
+<p>{{ Fill AddExtension Description }}</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-DefaultExt</h3>
+<p>{{ Fill DefaultExt Description }}</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: InitialDirectory
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 1
-Default value: &quot;$pwd&quot;
+Required: True (None) False (All)
+Position: 4
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
-</code></pre>
-<h3>-OverwritePrompt</h3>
-<p>Determines whether dialog box will warn if you select an already existing file.
-Defaults to $true.
-Aliased to 'Overwrite'.</p>
-<pre><code class="language-yaml">Type: Boolean
-Parameter Sets: (All)
-Aliases: Overwrite
-
-Required: False
-Position: 2
-Default value: True
-Accept pipeline input: False
-Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-Filter</h3>
 <p>A character string delimited with pipe '|' character.
@@ -138,49 +136,62 @@ by the pipe character.
 Defaults to 'All files|<em>.</em>'.</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 3
+Required: True (None) False (All)
+Position: 2
 Default value: All files|*.*
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-OverwritePrompt</h3>
+<p>Determines whether dialog box will warn if you select an already existing file.
+Defaults to $true.
+Aliased to 'Overwrite'.</p>
+<pre><code class="language-yaml">Type: Boolean
+Parameter Sets: (All)
+Aliases: Overwrite
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 1
+Default value: True
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-Path</h3>
+<p>The directory for the SaveFileDialog to start in.
+Defaults to $pwd.
+Aliased to 'InitialDirectory'
+Aliased to 'Path'.</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases: InitialDirectory
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 0
+Default value: &quot;$pwd&quot;
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-Title</h3>
 <p>default</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 4
-Default value: None
+Required: True (None) False (All)
+Position: 3
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
-</code></pre>
-<h3>-AddExtension</h3>
-<p>{{ Fill AddExtension Description }}</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-</code></pre>
-<h3>-DefaultExt</h3>
-<p>{{ Fill DefaultExt Description }}</p>
-<pre><code class="language-yaml">Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 5
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
@@ -188,9 +199,10 @@ Accept wildcard characters: False
 <h3>None are required, but you can use parameters to control behavior.</h3>
 <h2>OUTPUTS</h2>
 <h3>[array]     If user selects a file, or enters a new filename in the text entry box</h3>
-<h3>and clicks 'OK'. Will return an array with a .Count property.</h3>
-<h3>Each element in the array will be the file selected or entered.</h3>
-<h3>$null       If the user clicks 'Cancel'.</h3>
+<pre><code>        and clicks 'OK'. Will return an array with a .Count property.
+        Each element in the array will be the file selected or entered.
+</code></pre>
+<p>$null       If the user clicks 'Cancel'.</p>
 <h2>NOTES</h2>
 <p>Inspiration: Part of the ISEColorThemeCmdlets.ps1 Script by Jeff Pollock
 http://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e
@@ -206,6 +218,7 @@ Powershell 2+ and to be more &quot;Powershelly&quot;.</p>
 <h1>Source: https://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e</h1>
 <h1>get-help about_ISE-Color-Theme-Cmdlets for more information</h1>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

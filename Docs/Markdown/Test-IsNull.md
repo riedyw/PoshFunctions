@@ -1,33 +1,39 @@
 ---
-external help file: PoshFunctions-help.xml
+external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version:
+online version: 
 schema: 2.0.0
 ---
 
 # Test-IsNull
 
 ## SYNOPSIS
-Given a passed \[string\] tests to determine if .IsNullOrEmpty() or .IsNullOrWhitespace(), with .IsNullOrEmpty() being the default
+
+Given a passed [string] tests to determine if .IsNullOrEmpty() or .IsNullOrWhitespace(), with .IsNullOrEmpty() being the default
 
 ## SYNTAX
 
 ### Empty (Default)
+
 ```
-Test-IsNull [[-String] <String>] [-Empty] [<CommonParameters>]
+Test-IsNull [[-String <String>]] [-Empty] [<CommonParameters>]
 ```
 
 ### WhiteSpace
+
 ```
-Test-IsNull [[-String] <String>] [-WhiteSpace] [<CommonParameters>]
+Test-IsNull [[-String <String>]] [-WhiteSpace] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Given a passed \[string\] tests to determine if .IsNullOrEmpty() or .IsNullOrWhitespace(), with .IsNullOrEmpty() being the default
+
+Given a passed [string] tests to determine if .IsNullOrEmpty() or .IsNullOrWhitespace(), with .IsNullOrEmpty() being the default
+
 
 ## EXAMPLES
 
-### EXAMPLE 1
+### Example 1: EXAMPLE 1
+
 ```
 Test-IsNull -String ''
 ```
@@ -35,7 +41,12 @@ Test-IsNull -String ''
 Would return
 $true
 
-### EXAMPLE 2
+
+
+
+
+### Example 2: EXAMPLE 2
+
 ```
 Test-IsNull -String ' '
 ```
@@ -43,7 +54,12 @@ Test-IsNull -String ' '
 Would return
 $false
 
-### EXAMPLE 3
+
+
+
+
+### Example 3: EXAMPLE 3
+
 ```
 Test-IsNull -String " `t " -WhiteSpace
 ```
@@ -51,62 +67,84 @@ Test-IsNull -String " `t " -WhiteSpace
 Would return
 $true
 
+
+
+
+
+
 ## PARAMETERS
 
-### -String
-A \[string\] that you wanted tested to see if Null or (Empty or WhiteSpace).
-In both parameter set names 'Empty' and 'WhiteSpace'
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Empty
+
 A switch to control if looking for .IsNullOrEmpty()
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: Empty
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (Empty)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+```
+
+### -String
+
+A [string] that you wanted tested to see if Null or (Empty or WhiteSpace).
+In both parameter set names 'Empty' and 'WhiteSpace'
+
+```yaml
+Type: String
+Parameter Sets: WhiteSpace, Empty
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (WhiteSpace, Empty)
+Position: 0
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
 ```
 
 ### -WhiteSpace
+
 A switch to control if looking for .IsNullOrWhitespace()
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: WhiteSpace
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (WhiteSpace)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
-### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## OUTPUTS
 
 ### 'bool'
+
+
+
 ## NOTES
 
+
+
 ## RELATED LINKS
+
+Fill Related Links Here
+

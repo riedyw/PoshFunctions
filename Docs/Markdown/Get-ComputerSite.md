@@ -1,29 +1,34 @@
 ---
-external help file: PoshFunctions-help.xml
+external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: http://wonkysoftware.appspot.com
+online version: 
 schema: 2.0.0
 ---
 
 # Get-ComputerSite
 
 ## SYNOPSIS
-Determines the Active Directory site of a specified computername(s).
-Relies on nltest.exe that comes with Windows
+
+Determines the Active Directory site of a specified computername(s). Relies on nltest.exe that comes with Windows
 
 ## SYNTAX
 
+### __AllParameterSets
+
 ```
-Get-ComputerSite [[-ComputerName] <String[]>] [-IncludeInput] [<CommonParameters>]
+Get-ComputerSite [[-ComputerName <String[]>]] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 Determines the Active Directory site of a specified computername(s).
 Relies on nltest.exe that comes with Windows
 
+
 ## EXAMPLES
 
-### EXAMPLE 1
+### Example 1: EXAMPLE 1
+
 ```
 Get-ComputerSite
 ```
@@ -31,7 +36,12 @@ Get-ComputerSite
 Example result
 CORP
 
-### EXAMPLE 2
+
+
+
+
+### Example 2: EXAMPLE 2
+
 ```
 Get-ComputerSite -IncludeInput
 ```
@@ -41,25 +51,34 @@ ComputerName Site
 ------------ ----
 DEMOLAPTOP   CORP
 
+
+
+
+
+
 ## PARAMETERS
 
 ### -ComputerName
+
 The computername you want to run the command against, defaults to $env:COMPUTERNAME.
 Aliased to 'CN', 'Server'
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: CN, Server
+Aliases: CN,Server
+Accepted values: 
 
-Required: False
-Position: 1
+Required: True (None) False (All)
+Position: 0
 Default value: $env:COMPUTERNAME
-Accept pipeline input: True (ByValue)
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
 ```
 
 ### -IncludeInput
+
 Switch that will display input parameter in the output.
 Aliased to 'IncludeComputerName'
 
@@ -67,21 +86,26 @@ Aliased to 'IncludeComputerName'
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: IncludeComputerName
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
+
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
-
-## INPUTS
-
-## OUTPUTS
 
 ## NOTES
 
+
+
 ## RELATED LINKS
+
+Fill Related Links Here
+

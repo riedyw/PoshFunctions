@@ -43,7 +43,7 @@ function Invoke-SoundPlayer {
                 if ($ResolveFile.Extension -ne '.wav') {
                     Write-Error -Message "ERROR: File does not end in extension '.wav'"
                 } else {
-                    $SoundPlayer = New-Object System.Media.SoundPlayer
+                    $SoundPlayer = New-Object -TypeName System.Media.SoundPlayer
                     $SoundPlayer.SoundLocation = $ResolveFile.FullName
                     if ($Async) {
                         $SoundPlayer.Play()

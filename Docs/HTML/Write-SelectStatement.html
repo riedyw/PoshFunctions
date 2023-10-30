@@ -50,7 +50,7 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
@@ -58,8 +58,8 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>From a single object with named properties it will write out a select statement that will join array elements.</p>
 <h2>SYNTAX</h2>
-<pre><code>Write-SelectStatement [[-InputObject] &lt;Object&gt;] [[-Wrapper] &lt;String&gt;] [[-Delimiter] &lt;String&gt;]
- [&lt;CommonParameters&gt;]
+<h3>__AllParameterSets</h3>
+<pre><code>Write-SelectStatement [[-InputObject &lt;Object&gt;]] [[-Wrapper &lt;String&gt;]] [[-Delimiter &lt;String&gt;]] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>From a single object with named properties it will write out a select statement that will join array elements.
@@ -67,7 +67,7 @@ Helpful when attempt to export a complex object to a CSV.
 Can optionally enclose the array in different wrapper characters.
 Can optionally specify the delimiter between elements in the array.</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Get-ADUser UserID -Properties dSCorePropagationData |
 </code></pre>
 <p>Select-Object SamAccountName, DistinguishedName, dsCorePropogationData |
@@ -75,7 +75,7 @@ Write-SelectStatement</p>
 <p>Would return
 Select-Object -Property SamAccountName, DistinguishedName, @{N='dsCorePropogationData';E={'[' + ($_.dsCorePropogationData -join ';') + ']'}}</p>
 <p>Because dsCorePropogationData is an array of values</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Get-ADUser UserID -Properties dSCorePropagationData |
 </code></pre>
 <p>Select-Object SamAccountName, DistinguishedName, dsCorePropogationData |
@@ -83,53 +83,58 @@ Write-SelectStatement -Wrapper Parentheses -Delimiter '|'</p>
 <p>Would return
 Select-Object -Property SamAccountName, DistinguishedName, @{N='dsCorePropogationData';E={'(' + ($_.dsCorePropogationData -join '|') + ')'}}</p>
 <h2>PARAMETERS</h2>
+<h3>-Delimiter</h3>
+<p>A string parameter used to separate the values within the array.
+Defaults to ';'</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 2
+Default value: ;
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
 <h3>-InputObject</h3>
 <p>The object that you wish to write the select-object statement against</p>
 <pre><code class="language-yaml">Type: Object
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
+Required: True (None) False (All)
+Position: 0
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-Wrapper</h3>
 <p>A string parameter with one of these values: ('Braces', 'Brackets', 'Chevrons', 'Parentheses', 'None').
 Defaults to 'Brackets'</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 2
+Required: True (None) False (All)
+Position: 1
 Default value: Brackets
 Accept pipeline input: False
 Accept wildcard characters: False
-</code></pre>
-<h3>-Delimiter</h3>
-<p>A string parameter used to separate the values within the array.
-Defaults to ';'</p>
-<pre><code class="language-yaml">Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 3
-Default value: ;
-Accept pipeline input: False
-Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
-<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <p>1 - The object has to have named properties
 2 - The named properties can NOT have embedded spaces
 3 - The function will create a temporary file from New-TemporaryFile and remove it when finished</p>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

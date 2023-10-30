@@ -50,27 +50,26 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
 <h1>Write-TextMenu</h1>
 <h2>SYNOPSIS</h2>
-<p>Creates the logic for a new simple text based menu.
-Originally published as script New-TextMenu in the PowerShellGallery</p>
+<p>Creates the logic for a new simple text based menu. Originally published as script New-TextMenu in the PowerShellGallery</p>
 <h2>SYNTAX</h2>
-<pre><code>Write-TextMenu [-Option] &lt;String[]&gt; [[-Title] &lt;String&gt;] [[-VariableName] &lt;String&gt;] [-TestMenu] [-Clipboard]
- [&lt;CommonParameters&gt;]
+<h3>__AllParameterSets</h3>
+<pre><code>Write-TextMenu [-Option] &lt;String[]&gt; [[-Title &lt;String&gt;]] [[-VariableName &lt;String&gt;]] [-Clipboard] [-TestMenu] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Creates the logic for a new simple text based menu.
 Originally published as script New-TextMenu in the PowerShellGallery</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Write-TextMenu -Title 'Menu Title' -Option 'One', 'Two', 'Three'
 </code></pre>
 <p>Creates a 3 option menu.</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Write-TextMenu -Title 'My Menu' -Option 'One' -VariableName 'Choice2'
 </code></pre>
 <p>Creates a 1 option menu that looks like:</p>
@@ -89,7 +88,7 @@ q { 'Exit message and code' }
 default { Write-Host 'Please enter a valid selection' }
 }
 }</p>
-<h3>EXAMPLE 3</h3>
+<h3>Example 3: EXAMPLE 3</h3>
 <pre><code>Write-TextMenu -Option 'Uno'
 </code></pre>
 <p>Creates a 1 option menu that looks like:</p>
@@ -109,72 +108,81 @@ default { Write-Host 'Please enter a valid selection' }
 }
 }</p>
 <h2>PARAMETERS</h2>
+<h3>-Clipboard</h3>
+<p>If this switch is enabled then the menu logic is copied to the clipboard.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
 <h3>-Option</h3>
 <p>An array of [string] indicating the menu options.
 If you need to create a menu with a single option enclose the option in @().</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-TestMenu</h3>
+<p>If this switch is enabled then the menu is saved to a temporary file and run.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-Title</h3>
 <p>The title of the menu.
 Defaults to 'Menu Title'.</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 2
+Required: True (None) False (All)
+Position: 1
 Default value: Menu Title
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-VariableName</h3>
 <p>The name of the choice variable.
 Defaults to 'Choice'.</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 3
+Required: True (None) False (All)
+Position: 2
 Default value: Choice
 Accept pipeline input: False
 Accept wildcard characters: False
-</code></pre>
-<h3>-TestMenu</h3>
-<p>If this switch is enabled then the menu is saved to a temporary file and run.</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-</code></pre>
-<h3>-Clipboard</h3>
-<p>If this switch is enabled then the menu logic is copied to the clipboard.</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>[string[]]</h3>
 <h2>NOTES</h2>
@@ -186,10 +194,10 @@ to an array ( += ) is used.</li>
 <li>Only set of parameters so removing ParameterSetName and DefaultParameterSetName</li>
 </ul>
 <h2>RELATED LINKS</h2>
-<p><a href="">about_while
+<p>[about_while
 Write-Host
 Read-Host
-about_switch</a></p>
+about_switch] ()</p>
 
 </body>
 </html>

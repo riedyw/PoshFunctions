@@ -50,7 +50,7 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
@@ -58,34 +58,35 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>Resolves a hostname to an IPv4 address.</p>
 <h2>SYNTAX</h2>
+<h3>__AllParameterSets</h3>
 <pre><code>Resolve-HostName [-Hostname] &lt;String[]&gt; [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Specify a hostname as a parameter or pipelined in and it will resolve to an IPv4 address.</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Resolve-HostName -Hostname $env:computername
 </code></pre>
 <h1>Display the IPv4 address of this computer</h1>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Resolve-HostName -Hostname .
 </code></pre>
 <h1>Display the IPv4 address of this computer using '.' shorthand.</h1>
-<h3>EXAMPLE 3</h3>
+<h3>Example 3: EXAMPLE 3</h3>
 <pre><code>Resolve-HostName -Hostname &quot;server1&quot;
 </code></pre>
 <h1>Display the IPv4 address of &quot;server1&quot;</h1>
-<h3>EXAMPLE 4</h3>
+<h3>Example 4: EXAMPLE 4</h3>
 <pre><code>$DomainController = (($env:logonserver).Substring(2))
 </code></pre>
 <p>Resolve-HostName -Hostname $DomainController</p>
 <h1>Display the IPv4 address of the Active Directory Domain Controller that</h1>
 <h1>you authenticated against when you logged onto Windows.</h1>
-<h3>EXAMPLE 5</h3>
+<h3>Example 5: EXAMPLE 5</h3>
 <pre><code>&quot;server2&quot; | Resolve-HostName
 </code></pre>
 <h1>Display the IPv4 address of &quot;server2&quot; using the pipeline.</h1>
-<h3>EXAMPLE 6</h3>
+<h3>Example 6: EXAMPLE 6</h3>
 <pre><code>Resolve-HostName -Hostname server1, DOESNOTEXIST -IncludeInput
 </code></pre>
 <p>Sample return
@@ -98,32 +99,35 @@ doesnotexist False</p>
 <p>The hostname(s) that you want resolved</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
-Aliases: host, ComputerName
+Aliases: host,ComputerName
+Accepted values: 
 
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-IncludeInput</h3>
 <p>Switch that includes the input parameters in the output</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
-<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

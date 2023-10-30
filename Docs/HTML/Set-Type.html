@@ -50,7 +50,7 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
@@ -58,14 +58,15 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>Sets the data type of a property given the property name and the data type.</p>
 <h2>SYNTAX</h2>
-<pre><code>Set-Type [[-InputObject] &lt;PSObject[]&gt;] [[-TypeHash] &lt;Hashtable&gt;] [&lt;CommonParameters&gt;]
+<h3>__AllParameterSets</h3>
+<pre><code>Set-Type [[-InputObject &lt;PSObject[]&gt;]] [[-TypeHash &lt;Hashtable&gt;]] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Sets the data type of a property given the property name and the data type.
 This is needed as cmdlets such as Import-CSV pulls everything in as a string
 datatype so you can't sort numerically or date wise.</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>$csv = Import-CSV -Path .\test.csv | Set-Type -TypeHash @{ 'LastWriteTime' = 'DateTime'}
 </code></pre>
 <h2>PARAMETERS</h2>
@@ -73,30 +74,32 @@ datatype so you can't sort numerically or date wise.</p>
 <p>{{ Fill InputObject Description }}</p>
 <pre><code class="language-yaml">Type: PSObject[]
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
+Required: True (None) False (All)
+Position: 0
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-TypeHash</h3>
 <p>A hashtable of property names and their associated datatype</p>
 <pre><code class="language-yaml">Type: Hashtable
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 2
-Default value: None
+Required: True (None) False (All)
+Position: 1
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
-<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <h1>inspired by https://mjolinor.wordpress.com/2011/05/01/typecasting-imported-csv-data/</h1>
 <p>Changes</p>
@@ -105,7 +108,7 @@ Accept wildcard characters: False
 <li>reworked logic to work properly with pwsh and powershell</li>
 </ul>
 <h2>RELATED LINKS</h2>
-<p><a href="">about_Properties</a></p>
+<p>[about_Properties] ()</p>
 
 </body>
 </html>

@@ -50,7 +50,7 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
@@ -58,6 +58,7 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>Determine if a file is locked.</p>
 <h2>SYNTAX</h2>
+<h3>__AllParameterSets</h3>
 <pre><code>Test-IsFileLocked [-Path] &lt;String[]&gt; [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
@@ -65,18 +66,18 @@ schema: 2.0.0</h2>
 Wildcards are acceptable in the path and are
 resolved to all files that match the pattern.</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Test-IsFileLocked -Path c:\temp\*.csv
 </code></pre>
 <p>File                      IsLocked</p>
 <hr />
 <p>C:\temp\Encoding Time.csv    False
 C:\temp\Test.csv             False</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Test-IsFileLocked -Path .
 </code></pre>
 <p>Test-IsFileLocked : ERROR: Path [.] is a folder</p>
-<h3>EXAMPLE 3</h3>
+<h3>Example 3: EXAMPLE 3</h3>
 <pre><code>Test-IsFileLocked -Path .\FileDoesNotExist
 </code></pre>
 <p>Test-IsFileLocked : ERROR: Path [.\FileDoesNotExist] does not exist</p>
@@ -86,23 +87,25 @@ C:\temp\Test.csv             False</p>
 Can accept from the pipeline.</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
-Aliases: FullName, PSPath
+Aliases: FullName,PSPath
+Accepted values: 
 
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>System.Management.Automation.PSObject[]</h3>
 <h2>NOTES</h2>
 <h1>inspired by https://mcpmag.com/articles/2018/07/10/check-for-locked-file-using-powershell.aspx</h1>
 <h1>changed logic for testing if file exists</h1>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

@@ -50,39 +50,36 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: https://github.com/iRon7/Join-Object
+online version:
 schema: 2.0.0</h2>
 <h1>Merge-Object</h1>
 <h2>SYNOPSIS</h2>
 <p>Returns a 'clean' array of objects that have all property names in each element of the array</p>
 <h2>SYNTAX</h2>
-<pre><code>Merge-Object [[-Property] &lt;String[]&gt;]
+<h3>__AllParameterSets</h3>
+<pre><code>Merge-Object [[-Property &lt;String[]&gt;]] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Returns a 'clean' array of objects that have all property names in each element of the array.
 Function aliased to 'Union-Object'</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1</h3>
-<pre><code class="language-powershell">PS C:\&gt; {{ Add example code here }}
-</code></pre>
-<p>{{ Add example description here }}</p>
 <h2>PARAMETERS</h2>
 <h3>-Property</h3>
 <p>{{ Fill Property Description }}</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 1
+Required: True (None) False (All)
+Position: 0
 Default value: @()
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
-<h2>INPUTS</h2>
-<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <p>Inspired by Union-Object on https://powersnippets.com/union-object/</p>
 <p>Notes from the web page:
@@ -98,7 +95,7 @@ New-Object -TypeName PSObject -Property @{Id = 1}
 New-Object -TypeName PSObject -Property @{Id = 3; Name = &quot;Test&quot;}
 )</p>
 <p>If you simply display this object array, only the Id property will be listed:</p>
-<p>PS C:\&gt; $List</p>
+<p>PS C:&gt; $List</p>
 <h2>Id</h2>
 <p>2
 1
@@ -110,14 +107,14 @@ New-Object -TypeName PSObject -Property @{Id = 1}
 New-Object -TypeName PSObject -Property @{Id = 3; Name = &quot;Test&quot;}
 )
 This will work for most of the cases:</p>
-<p>PS C:\&gt; $List</p>
+<p>PS C:&gt; $List</p>
 <p>Id Name</p>
 <hr />
 <p>2
 1
 3 Test
 But not in every case:</p>
-<p>PS C:\&gt; $List | Sort Id</p>
+<p>PS C:&gt; $List | Sort Id</p>
 <h2>Id</h2>
 <p>1
 2
@@ -148,6 +145,7 @@ Made following changes</p>
 <li>formatting changes</li>
 </ul>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

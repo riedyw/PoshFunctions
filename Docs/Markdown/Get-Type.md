@@ -1,28 +1,33 @@
 ---
-external help file: PoshFunctions-help.xml
+external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: https://www.Google.com
+online version: 
 schema: 2.0.0
 ---
 
 # Get-Type
 
 ## SYNOPSIS
+
 Get exported types in the current session
 
 ## SYNTAX
 
+### __AllParameterSets
+
 ```
-Get-Type [[-Module] <String>] [[-Assembly] <String>] [[-FullName] <String>] [[-Namespace] <String>]
- [[-BaseType] <String>] [-IsEnum] [<CommonParameters>]
+Get-Type [[-Module <String>]] [[-Assembly <String>]] [[-FullName <String>]] [[-Namespace <String>]] [[-BaseType <String>]] [-IsEnum] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 Get exported types in the current session
+
 
 ## EXAMPLES
 
-### EXAMPLE 1
+### Example 1: EXAMPLE 1
+
 ```
 Get-Type | Select-Object -First 1
 ```
@@ -32,14 +37,24 @@ IsPublic IsSerial Name                                     BaseType
 -------- -------- ----                                     --------
 True     False    Registry                                 System.Object
 
-### EXAMPLE 2
+
+
+
+
+### Example 2: EXAMPLE 2
+
 ```
 #List the full name of all Enums in the current session
 ```
 
 $List = Get-Type -IsEnum | Select -ExpandProperty FullName | Sort -Unique
 
-### EXAMPLE 3
+
+
+
+
+### Example 3: EXAMPLE 3
+
 ```
 Get-Type -Namespace System.Xaml.Hosting
 ```
@@ -49,7 +64,12 @@ IsPublic IsSerial Name                                     BaseType
 -------- -------- ----                                     --------
 True     False    XamlBuildProvider                        System.Web.Compilation.BuildProvider
 
-### EXAMPLE 4
+
+
+
+
+### Example 4: EXAMPLE 4
+
 ```
 # Here is a list of all the properties that are returned
 ```
@@ -65,24 +85,24 @@ AssemblyQualifiedName      Property   string AssemblyQualifiedName {get;}
 Attributes                 Property   System.Reflection.TypeAttributes Attributes {get;}
 BaseType                   Property   type BaseType {get;}
 ContainsGenericParameters  Property   bool ContainsGenericParameters {get;}
-CustomAttributes           Property   System.Collections.Generic.IEnumerable\[System.Reflection.CustomAttributeData\] CustomAttributes {get;}
-DeclaredConstructors       Property   System.Collections.Generic.IEnumerable\[System.Reflection.ConstructorInfo\] DeclaredConstructors {get;}
-DeclaredEvents             Property   System.Collections.Generic.IEnumerable\[System.Reflection.EventInfo\] DeclaredEvents {get;}
-DeclaredFields             Property   System.Collections.Generic.IEnumerable\[System.Reflection.FieldInfo\] DeclaredFields {get;}
-DeclaredMembers            Property   System.Collections.Generic.IEnumerable\[System.Reflection.MemberInfo\] DeclaredMembers {get;}
-DeclaredMethods            Property   System.Collections.Generic.IEnumerable\[System.Reflection.MethodInfo\] DeclaredMethods {get;}
-DeclaredNestedTypes        Property   System.Collections.Generic.IEnumerable\[System.Reflection.TypeInfo\] DeclaredNestedTypes {get;}
-DeclaredProperties         Property   System.Collections.Generic.IEnumerable\[System.Reflection.PropertyInfo\] DeclaredProperties {get;}
+CustomAttributes           Property   System.Collections.Generic.IEnumerable[System.Reflection.CustomAttributeData] CustomAttributes {get;}
+DeclaredConstructors       Property   System.Collections.Generic.IEnumerable[System.Reflection.ConstructorInfo] DeclaredConstructors {get;}
+DeclaredEvents             Property   System.Collections.Generic.IEnumerable[System.Reflection.EventInfo] DeclaredEvents {get;}
+DeclaredFields             Property   System.Collections.Generic.IEnumerable[System.Reflection.FieldInfo] DeclaredFields {get;}
+DeclaredMembers            Property   System.Collections.Generic.IEnumerable[System.Reflection.MemberInfo] DeclaredMembers {get;}
+DeclaredMethods            Property   System.Collections.Generic.IEnumerable[System.Reflection.MethodInfo] DeclaredMethods {get;}
+DeclaredNestedTypes        Property   System.Collections.Generic.IEnumerable[System.Reflection.TypeInfo] DeclaredNestedTypes {get;}
+DeclaredProperties         Property   System.Collections.Generic.IEnumerable[System.Reflection.PropertyInfo] DeclaredProperties {get;}
 DeclaringMethod            Property   System.Reflection.MethodBase DeclaringMethod {get;}
 DeclaringType              Property   type DeclaringType {get;}
 FullName                   Property   string FullName {get;}
 GenericParameterAttributes Property   System.Reflection.GenericParameterAttributes GenericParameterAttributes {get;}
 GenericParameterPosition   Property   int GenericParameterPosition {get;}
-GenericTypeArguments       Property   type\[\] GenericTypeArguments {get;}
-GenericTypeParameters      Property   type\[\] GenericTypeParameters {get;}
+GenericTypeArguments       Property   type[] GenericTypeArguments {get;}
+GenericTypeParameters      Property   type[] GenericTypeParameters {get;}
 GUID                       Property   guid GUID {get;}
 HasElementType             Property   bool HasElementType {get;}
-ImplementedInterfaces      Property   System.Collections.Generic.IEnumerable\[type\] ImplementedInterfaces {get;}
+ImplementedInterfaces      Property   System.Collections.Generic.IEnumerable[type] ImplementedInterfaces {get;}
 IsAbstract                 Property   bool IsAbstract {get;}
 IsAnsiClass                Property   bool IsAnsiClass {get;}
 IsArray                    Property   bool IsArray {get;}
@@ -133,112 +153,138 @@ TypeHandle                 Property   System.RuntimeTypeHandle TypeHandle {get;}
 TypeInitializer            Property   System.Reflection.ConstructorInfo TypeInitializer {get;}
 UnderlyingSystemType       Property   type UnderlyingSystemType {get;}
 
+
+
+
+
+
 ## PARAMETERS
 
-### -Module
-Filter on Module. 
-Accepts wildcard
+### -Assembly
+
+Filter on Assembly.
+ Accepts wildcard
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: 1
 Default value: *
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
-### -Assembly
-Filter on Assembly. 
-Accepts wildcard
+### -BaseType
+
+Filter on BaseType.
+ Accepts wildcard
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 2
-Default value: *
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -FullName
-Filter on FullName. 
-Accepts wildcard
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 3
-Default value: *
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Namespace
-Filter on Namespace. 
-Accepts wildcard
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
+Required: True (None) False (All)
 Position: 4
 Default value: *
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
-### -BaseType
-Filter on BaseType. 
-Accepts wildcard
+### -FullName
+
+Filter on FullName.
+ Accepts wildcard
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 5
+Required: True (None) False (All)
+Position: 2
 Default value: *
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
 ### -IsEnum
+
 Switch to just return IsEnum types.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
+### -Module
+
+Filter on Module.
+ Accepts wildcard
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 0
+Default value: *
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
+### -Namespace
+
+Filter on Namespace.
+ Accepts wildcard
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 3
+Default value: *
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
+
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
-
-## OUTPUTS
-
 ## NOTES
+
 # inspired by https://gallery.technet.microsoft.com/scriptcenter/Get-Type-Get-exported-fee19cf7
 # changed what is output by the function
 
+
 ## RELATED LINKS
+
+Fill Related Links Here
+

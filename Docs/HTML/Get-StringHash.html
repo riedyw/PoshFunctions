@@ -50,85 +50,91 @@
 </head>
 <body>
     <hr />
-<p>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: https://social.msdn.microsoft.com/Forums/vstudio/en-US/0221d962-26e6-4a7e-be7a-72cd669a0dfc/why-systemmathround0251-2?forum=vbgeneral</p>
-<h2>Talks about Visual Basic but the same info applies to Powershell.
+online version:
 schema: 2.0.0</h2>
 <h1>Get-StringHash</h1>
 <h2>SYNOPSIS</h2>
 <p>To calculate a hash for provided strings</p>
 <h2>SYNTAX</h2>
-<pre><code>Get-StringHash [[-String] &lt;String[]&gt;] [[-Algorithm] &lt;String&gt;] [-IncludeInput] [&lt;CommonParameters&gt;]
+<h3>__AllParameterSets</h3>
+<pre><code>Get-StringHash [[-String &lt;String[]&gt;]] [[-Algorithm &lt;String&gt;]] [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>To calculate a hash for provided strings</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Get-StringHash -String 123, hello -IncludeInput -Algorithm SHA1
 </code></pre>
 <p>Algorithm Hash                                     String</p>
 <hr />
 <p>SHA1      40BD001563085FC35165329EA1FF5C5ECBDBBEEF 123
 SHA1      AAF4C61DDCC5E8A2DABEDE0F3B482CD9AEA9434D hello</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>123, 'hello' | Get-StringHash -IncludeInput
 </code></pre>
 <p>Algorithm Hash                             String</p>
 <hr />
 <p>MD5       202CB962AC59075B964B07152D234B70 123
 MD5       5D41402ABC4B2A76B9719D911017C592 hello</p>
-<h3>EXAMPLE 3</h3>
+<h3>Example 3: EXAMPLE 3</h3>
 <pre><code>Get-StringHash -String hello
 </code></pre>
 <p>5D41402ABC4B2A76B9719D911017C592</p>
 <h2>PARAMETERS</h2>
-<h3>-String</h3>
-<p>A string or array of strings that you want to send through a hashing function.
-Accepts input from the pipeline</p>
-<pre><code class="language-yaml">Type: String[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-</code></pre>
 <h3>-Algorithm</h3>
 <p>The hashing algorithm to run against the string.
 Valid entries are: 'SHA1', 'SHA256', 'SHA384', 'SHA512', 'MACTripleDES', 'MD5', 'RIPEMD160'
 Defaults to 'MD5'</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 2
+Required: True (None) False (All)
+Position: 1
 Default value: MD5
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-IncludeInput</h3>
 <p>Switch to include input in the output stream.</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-String</h3>
+<p>A string or array of strings that you want to send through a hashing function.
+Accepts input from the pipeline</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 0
+Default value: 
+Accept pipeline input: True
+Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>string</h3>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

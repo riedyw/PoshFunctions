@@ -50,7 +50,7 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
@@ -58,26 +58,26 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>Show progress as items pass through a section of the pipline</p>
 <h2>SYNTAX</h2>
-<pre><code>Show-Progress [-InputObject] &lt;PSObject[]&gt; [-Activity &lt;String&gt;] [-UpdatePercentage &lt;Int32&gt;] [-PassThru]
- [-Id &lt;Int32&gt;] [-SecondsRemaining] [&lt;CommonParameters&gt;]
+<h3>__AllParameterSets</h3>
+<pre><code>Show-Progress [-InputObject] &lt;PSObject[]&gt; [-Activity &lt;String&gt;] [-Id &lt;Int32&gt;] [-PassThru] [-SecondsRemaining] [-UpdatePercentage &lt;Int32&gt;] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>This function allows you to show progress from the pipeline.
 It's intentionally written for efficiency/speed so some compromises on readability were made</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code># This runs through the numbers 1 through 1000 and displays a progress bar based on how many have gone through the pipeline
 </code></pre>
 <p>1..1000 | Show-Progress</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code># Showing progress with a specific activity message and only updating at 10%, 20% etc
 </code></pre>
 <p>1..10000 | Show-Progress -Activity &quot;doin stuff&quot; -UpdatePercentage 10</p>
-<h3>EXAMPLE 3</h3>
+<h3>Example 3: EXAMPLE 3</h3>
 <pre><code># Showing progress displaying estimated seconds remaining.
 </code></pre>
 <p>1..50 | show-progress  -PassThru -SecondsRemaining | foreach { start-sleep  -Milliseconds (get-random -min 100 -max 1000) }</p>
-<h3>EXAMPLE 4</h3>
+<h3>Example 4: EXAMPLE 4</h3>
 <pre><code>1..1000 | show-progress -SecondsRemaining -PassThru -Activity 'Performing activity'  | foreach { start-sleep -mil (get-random -min 100 -max 1000)}
 </code></pre>
 <p>Will display a progress bar at the top that will look similar to:</p>
@@ -86,31 +86,79 @@ Working - 2%
 [ooo                                                                                                           ]
 00:09:20 remaining.</p>
 <h2>PARAMETERS</h2>
+<h3>-Activity</h3>
+<p>A decription of the activity being measured.</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: Processing items
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-Id</h3>
+<p>Allows you to have multiple progress bars running simultaneously.
+Defaults to 1.</p>
+<pre><code class="language-yaml">Type: Int32
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: 1
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
 <h3>-InputObject</h3>
 <p>The items on the pipeline being processed.
 Can also accept this input from the pipeline, which is how this parameter
 is normally used.</p>
 <pre><code class="language-yaml">Type: PSObject[]
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
-<h3>-Activity</h3>
-<p>A decription of the activity being measured.</p>
-<pre><code class="language-yaml">Type: String
+<h3>-PassThru</h3>
+<p>Controls whether data is passed along the pipeline.
+Normally this switch should be used.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: PassThrough
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
-Default value: Processing items
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-SecondsRemaining</h3>
+<p>Switch that will control the display of estimated number of seconds remaining based upon current progress.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-UpdatePercentage</h3>
 <p>The percentage of time to update the progress bar.
@@ -119,62 +167,25 @@ reasons with larger data sets.
 Defaults to 1.</p>
 <pre><code class="language-yaml">Type: Int32
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: 1
 Accept pipeline input: False
 Accept wildcard characters: False
-</code></pre>
-<h3>-PassThru</h3>
-<p>Controls whether data is passed along the pipeline.
-Normally this switch should be used.</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: PassThrough
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-</code></pre>
-<h3>-Id</h3>
-<p>Allows you to have multiple progress bars running simultaneously.
-Defaults to 1.</p>
-<pre><code class="language-yaml">Type: Int32
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: 1
-Accept pipeline input: False
-Accept wildcard characters: False
-</code></pre>
-<h3>-SecondsRemaining</h3>
-<p>Switch that will control the display of estimated number of seconds remaining based upon current progress.</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
-<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <h1>Inspired by: https://www.powershellgallery.com/packages/Show-Progress/0.0.1</h1>
 <h1>Added [switch] parameter $PassThru to pass items through the pipeline</h1>
 <h1>Added [switch] parameter $SecondsRemaining</h1>
 <h1>Added [int] parameter $Id to enable multiple progress bars</h1>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

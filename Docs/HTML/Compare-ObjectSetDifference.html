@@ -50,7 +50,7 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
@@ -58,72 +58,77 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>Compares 2 arrays of strings and returns The SET DIFFERENCE of the arrays</p>
 <h2>SYNTAX</h2>
-<pre><code>Compare-ObjectSetDifference [[-ReferenceObject] &lt;String[]&gt;] [[-DifferenceObject] &lt;String[]&gt;] [-CaseSensitive]
- [&lt;CommonParameters&gt;]
+<h3>__AllParameterSets</h3>
+<pre><code>Compare-ObjectSetDifference [[-ReferenceObject &lt;String[]&gt;]] [[-DifferenceObject &lt;String[]&gt;]] [-CaseSensitive] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Compares 2 arrays of strings and returns The SET DIFFERENCE of the arrays.
 Optionally case sensitive.</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Compare-ObjectSetDifference -ReferenceObject a,b,c -DifferenceObject a,c -CaseSensitive
 </code></pre>
 <p>b</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Compare-ObjectSetDifference -ReferenceObject a,b,c -DifferenceObject a,b,C -CaseSensitive
 </code></pre>
 <p>c</p>
-<h3>EXAMPLE 3</h3>
+<h3>Example 3: EXAMPLE 3</h3>
 <pre><code>Compare-ObjectSetDifference -ReferenceObject a,b,c -DifferenceObject a,b,D
 </code></pre>
 <p>c</p>
-<h3>EXAMPLE 4</h3>
+<h3>Example 4: EXAMPLE 4</h3>
 <pre><code>Compare-ObjectSetDifference -ReferenceObject a,b,c -DifferenceObject a,b,C
 </code></pre>
 <p>$null</p>
 <h2>PARAMETERS</h2>
-<h3>-ReferenceObject</h3>
-<p>The array that is the baseline.
-Aliased to 'RO', 'Left'</p>
-<pre><code class="language-yaml">Type: String[]
-Parameter Sets: (All)
-Aliases: RO, Left
-
-Required: False
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-</code></pre>
-<h3>-DifferenceObject</h3>
-<p>The array that is being compared to the baseline set.
-Aliased to 'DO', 'Right'</p>
-<pre><code class="language-yaml">Type: String[]
-Parameter Sets: (All)
-Aliases: DO, Right
-
-Required: False
-Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-</code></pre>
 <h3>-CaseSensitive</h3>
 <p>Switch indicating that a case sensitive comparison should be made.
 Aliased to 'CS'</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: CS
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-DifferenceObject</h3>
+<p>The array that is being compared to the baseline set.
+Aliased to 'DO', 'Right'</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: (All)
+Aliases: DO,Right
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 1
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-ReferenceObject</h3>
+<p>The array that is the baseline.
+Aliased to 'RO', 'Left'</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: (All)
+Aliases: RO,Left
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 0
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>psobject</h3>
 <h2>NOTES</h2>
@@ -133,6 +138,7 @@ http://www.cs.odu.edu/~toida/nerzic/content/set/set_operations.html
 http://www.dummies.com/how-to/content/find-the-union-intersection-relative-complement-an.html</p>
 <p>Added PSReviewUnusedParameter to prevent Invoke-ScriptAnalyzer from returning a false positive</p>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

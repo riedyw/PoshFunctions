@@ -50,7 +50,7 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
@@ -58,7 +58,8 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>To get data out of an .ini file</p>
 <h2>SYNTAX</h2>
-<pre><code>Get-PrivateProfileSection [[-File] &lt;String&gt;] [[-Section] &lt;String&gt;] [-AsString] [&lt;CommonParameters&gt;]
+<h3>__AllParameterSets</h3>
+<pre><code>Get-PrivateProfileSection [[-File &lt;String&gt;]] [[-Section &lt;String&gt;]] [-AsString] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>To get data out of an .ini file.
@@ -70,7 +71,7 @@ file content is as follows:</p>
 <p>[Section1]
 Key1=Data1</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Get-PrivateProfileSection -File test.ini -Section 'Section2' -Verbose
 </code></pre>
 <p>Assuming .\test.ini has the following section within it:
@@ -86,7 +87,7 @@ VERBOSE: Getting value from section [section2]</p>
 <p>Key3                           Value3
 Key4                           Value4
 VERBOSE: Ending Get-PrivateProfileSection</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Get-PrivateProfileSection -File test.ini -Section 'Section2' -AsString
 </code></pre>
 <p>Assuming .\test.ini has the following section within it:
@@ -97,18 +98,34 @@ Key4 = Value4</p>
 Key3=Value3
 Key4=Value4</p>
 <h2>PARAMETERS</h2>
+<h3>-AsString</h3>
+<p>A switch that will output a string array as opposed to a hash table</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
 <h3>-File</h3>
 <p>The path to the .ini file.
 Can be a relative path.</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 1
-Default value: None
+Required: True (None) False (All)
+Position: 0
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-Section</h3>
 <p>The name of the section within the .ini file.
@@ -117,32 +134,21 @@ are enveloped in square brackets.
 []</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 2
-Default value: None
+Required: True (None) False (All)
+Position: 1
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
-</code></pre>
-<h3>-AsString</h3>
-<p>A switch that will output a string array as opposed to a hash table</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>[hashtable] normally</h3>
-<h3>[string[]] with -AsString switch</h3>
+<p>[string[]] with -AsString switch</p>
 <h2>NOTES</h2>
 <h1>inspired by: http://powershell-scripting.com/index.php?option=com_joomlaboard&amp;Itemid=76&amp;func=view&amp;view=threaded&amp;id=24376&amp;catid=5</h1>
 <h1>also sourced at: https://gallery.technet.microsoft.com/Edit-old-fashioned-INI-f8fbc067?redir=0</h1>
@@ -151,9 +157,10 @@ Accept wildcard characters: False
 <li>Error checking around file</li>
 <li>Ability to take relative path to file</li>
 <li>Normally produce output as [hashtable], but -AsString switch will return a string array</li>
-<li>Corrected logic to search for '' and replace with '\\' if performing ConvertFrom-StringData</li>
+<li>Corrected logic to search for '' and replace with '\' if performing ConvertFrom-StringData</li>
 </ul>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

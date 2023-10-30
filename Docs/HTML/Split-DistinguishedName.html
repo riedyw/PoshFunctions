@@ -50,7 +50,7 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
@@ -72,32 +72,32 @@ schema: 2.0.0</h2>
 Commas within
 one of the constituent properties are represented by ','</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Split-DistinguishedName -DistinguishedName 'CN=Duck\, Daffy,DC=contosco,DC=com' -Leaf
 </code></pre>
 <p>CN=Duck, Daffy</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Split-DistinguishedName -DistinguishedName 'CN=Duck\, Daffy,DC=contosco,DC=com' -Parent
 </code></pre>
 <p>DC=contosco,DC=com</p>
-<h3>EXAMPLE 3</h3>
+<h3>Example 3: EXAMPLE 3</h3>
 <pre><code>Split-DistinguishedName -DistinguishedName 'CN=Mickey Mouse,DC=contosco,DC=com' -Leaf
 </code></pre>
 <p>CN=Mickey Mouse</p>
-<h3>EXAMPLE 4</h3>
+<h3>Example 4: EXAMPLE 4</h3>
 <pre><code>'CN=Duck\, Daffy,DC=contosco,DC=com' | Split-DistinguishedName
 </code></pre>
 <p>DC=contosco,DC=com</p>
-<h3>EXAMPLE 5</h3>
+<h3>Example 5: EXAMPLE 5</h3>
 <pre><code>'CN=Duck\, Daffy,DC=contosco,DC=com' | Split-DistinguishedName -Leaf
 </code></pre>
 <p>CN=Duck, Daffy</p>
-<h3>EXAMPLE 6</h3>
+<h3>Example 6: EXAMPLE 6</h3>
 <pre><code>Split-DistinguishedName -DistinguishedName 'CN=Mickey Mouse,DC=contosco,DC=com', 'CN=Duck\, Daffy,DC=contosco,DC=com' -Leaf
 </code></pre>
 <p>CN=Mickey Mouse
 CN=Duck, Daffy</p>
-<h3>EXAMPLE 7</h3>
+<h3>Example 7: EXAMPLE 7</h3>
 <pre><code>'CN=Duck\, Daffy,DC=contosco,DC=com' | Split-DistinguishedName -Token
 </code></pre>
 <p>CN=Duck, Daffy
@@ -110,59 +110,67 @@ Can be single string or array of strings.
 Values can be passed
 via the pipeline as straight text or via property name</p>
 <pre><code class="language-yaml">Type: String[]
-Parameter Sets: (All)
-Aliases:
+Parameter Sets: Token, Leaf, Parent
+Aliases: 
+Accepted values: 
 
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByPropertyName, ByValue)
+Required: True (Token, Leaf, Parent) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-Leaf</h3>
+<p>Switch to display the leaf of the distinguished name</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: Leaf
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (Leaf)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-Parent</h3>
 <p>Switch to display the parent of the distinguished name.
 Default parameter</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: Parent
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (Parent)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-</code></pre>
-<h3>-Leaf</h3>
-<p>Switch to display the leaf of the distinguished name</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: Leaf
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-Token</h3>
 <p>Switch to return an array of all the parts</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: Token
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (Token)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>string[]</h3>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

@@ -1,22 +1,26 @@
 ---
-external help file: PoshFunctions-help.xml
+external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: https://github.com/iRon7/Join-Object
+online version: 
 schema: 2.0.0
 ---
 
 # New-Inputbox
 
 ## SYNOPSIS
+
 Display a Visual Basic style inputbox.
 
 ## SYNTAX
 
+### __AllParameterSets
+
 ```
-New-Inputbox [[-Prompt] <String>] [[-Title] <String>] [[-Default] <String>] [<CommonParameters>]
+New-Inputbox [[-Prompt <String>]] [[-Title <String>]] [[-Default <String>]] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 This function will display a graphical Inputbox, like the one from VisualBasic
 and VBScript.
 You must specify a message prompt.
@@ -30,70 +34,94 @@ will still write a string to the pipeline with a length of 0.
 It is recommended
 that you validate input.
 
+
 ## EXAMPLES
 
-### EXAMPLE 1
+### Example 1: EXAMPLE 1
+
 ```
 $c = New-Inputbox -Prompt 'Enter the Netbios name of a domain computer' -Title "Enter a computername" -Default $env:computername
 ```
 
 Get-Service -ComputerName $c
 
+
+
+
+
+
 ## PARAMETERS
 
-### -Prompt
-A string that is displayed before the text entry field in dialog box
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: Please enter a value
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Title
-A string that appears as the title of the dialog box
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 2
-Default value: Input
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Default
+
 An optional parameter indicating the default value of the text entry field
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 3
-Default value: None
+Required: True (None) False (All)
+Position: 2
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
-### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+### -Prompt
 
-## INPUTS
+A string that is displayed before the text entry field in dialog box
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 0
+Default value: Please enter a value
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
+### -Title
+
+A string that appears as the title of the dialog box
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 1
+Default value: Input
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## OUTPUTS
 
 ### [string]
+
+
+
 ## NOTES
 
+
+
 ## RELATED LINKS
+
+Fill Related Links Here
+

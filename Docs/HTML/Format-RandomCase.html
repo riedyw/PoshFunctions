@@ -50,7 +50,7 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
@@ -58,17 +58,18 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>Formats a string character by character randomly into upper or lower case.</p>
 <h2>SYNTAX</h2>
-<pre><code>Format-RandomCase [[-String] &lt;String[]&gt;] [-IncludeInput] [&lt;CommonParameters&gt;]
+<h3>__AllParameterSets</h3>
+<pre><code>Format-RandomCase [[-String &lt;String[]&gt;]] [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Formats a string character by character randomly into upper or lower case.</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Format-RandomCase -String 'HELLO WORLD IT IS ME!'
 </code></pre>
 <p>Example return
 HelLo worlD It is me!</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Format-RandomCase -String HELLO, WORLD, IT, IS, ME -IncludeInput
 </code></pre>
 <p>Example return
@@ -80,37 +81,41 @@ IT       It
 IS       is
 ME       ME</p>
 <h2>PARAMETERS</h2>
-<h3>-String</h3>
-<p>A [string[]] that you want formatted randomly into upper or lower case</p>
-<pre><code class="language-yaml">Type: String[]
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-</code></pre>
 <h3>-IncludeInput</h3>
 <p>Switch that will display input parameters in the output</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-String</h3>
+<p>A [string[]] that you want formatted randomly into upper or lower case</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 0
+Default value: 
+Accept pipeline input: True
+Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>[string[]]</h3>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

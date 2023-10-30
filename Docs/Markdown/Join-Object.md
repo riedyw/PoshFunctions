@@ -1,40 +1,38 @@
 ---
-external help file: PoshFunctions-help.xml
+external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version: https://github.com/iRon7/Join-Object
+online version: 
 schema: 2.0.0
 ---
 
 # Join-Object
 
 ## SYNOPSIS
+
 Combines two object lists based on a related property between them.
 
 ## SYNTAX
 
 ### Default (Default)
+
 ```
-Join-Object [-LeftObject <Object>] [[-RightObject] <Object>] [[-Discern] <String[]>] [-Property <Object>]
- [[-Where] <ScriptBlock>] [-JoinType <String>] [-ValueName <String>] [<CommonParameters>]
+Join-Object [[-RightObject <Object>]] [[-Discern <String[]>]] [[-Where <ScriptBlock>]] [-JoinType <String>] [-LeftObject <Object>] [-Property <Object>] [-ValueName <String>] [<CommonParameters>]
 ```
 
 ### Expression
+
 ```
-Join-Object [-LeftObject <Object>] [[-RightObject] <Object>] [[-OnExpression] <ScriptBlock>]
- [[-Discern] <String[]>] [-Property <Object>] [[-Where] <ScriptBlock>] [-JoinType <String>]
- [-ValueName <String>] [<CommonParameters>]
+Join-Object [[-RightObject <Object>]] [[-OnExpression <ScriptBlock>]] [[-Discern <String[]>]] [[-Where <ScriptBlock>]] [-JoinType <String>] [-LeftObject <Object>] [-Property <Object>] [-ValueName <String>] [<CommonParameters>]
 ```
 
 ### On
+
 ```
-Join-Object [-LeftObject <Object>] [[-RightObject] <Object>]
- [[-On] <System.Collections.Generic.List`1[System.String]>]
- [-Equals <System.Collections.Generic.List`1[System.String]>] [[-Discern] <String[]>] [-Property <Object>]
- [[-Where] <ScriptBlock>] [-JoinType <String>] [-ValueName <String>] [-Strict] [-MatchCase]
- [<CommonParameters>]
+Join-Object [[-RightObject <Object>]] [[-On <List`1[System.String]>]] [[-Discern <String[]>]] [[-Where <ScriptBlock>]] [-Equals <List`1[System.String]>] [-JoinType <String>] [-LeftObject <Object>] [-MatchCase] [-Property <Object>] [-Strict] [-ValueName <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 Combines properties from one or more objects.
 It creates a set that can
 be saved as a new object or used as it is.
@@ -60,9 +58,11 @@ their own (-JoinType and -Property) defaults:
   Returns each left object updated with the right object properties
   and the rest of the right objects
 
+
 ## EXAMPLES
 
-### EXAMPLE 1
+### Example 1: EXAMPLE 1
+
 ```
 $Employee
 ```
@@ -96,7 +96,12 @@ Id Name                   Country Department  Age ReportsTo
  5 {Evans, Marketing}     England Marketing    35
  6 {Fischer, Engineering} Germany Engineering  29         4
 
-### EXAMPLE 2
+
+
+
+
+### Example 2: EXAMPLE 2
+
 ```
 $Employee | InnerJoin $Department -On Department -Equals Name -Discern Employee, Department | Format-Table
 ```
@@ -110,7 +115,12 @@ Id EmployeeName EmployeeCountry Department  Age ReportsTo DepartmentName Departm
  5 Evans        England         Marketing    35           Marketing      England
  6 Fischer      Germany         Engineering  29         4 Engineering    Germany
 
-### EXAMPLE 3
+
+
+
+
+### Example 3: EXAMPLE 3
+
 ```
 $Changes
 ```
@@ -133,7 +143,12 @@ Id Name    Country Department  Age ReportsTo
  6 Fischer France  Engineering  29         4
  7 Geralds Belgium Sales        71         1
 
-### EXAMPLE 4
+
+
+
+
+### Example 4: EXAMPLE 4
+
 ```
 LeftJoin $Employee -On ReportsTo -Equals Id -Property @{Name = {$Left.Name}; Manager = {$Right.Name}}
 ```
@@ -147,116 +162,15 @@ Duval   Evans
 Evans
 Fischer Duval
 
+
+
+
+
+
 ## PARAMETERS
 
-### -LeftObject
-The LeftObject, usually provided through the pipeline, defines the
-left object (or datatable) to be joined.
-
-```yaml
-Type: Object
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```
-
-### -RightObject
-The RightObject, provided by the first argument, defines the right
-object (or datatable) to be joined.
-
-```yaml
-Type: Object
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -On
-The -On parameter (alias -Using) defines which objects should be joined.
-If the -Equals parameter is omitted, the value(s) of the properties
-listed by the -On parameter should be equal at both sides in order to
-join the left object with the right object.
-
-Note 1: The list of properties defined by the -On parameter will be
-complemented with the list of properties defined by the -Equals
-parameter and vice versa.
-
-Note 2: Related joined properties will be merged to a single (left)
-property by default (see also the -Property parameter).
-
-Note 3: If the -On and the -OnExpression parameter are omitted, a
-join by row index is returned.
-
-```yaml
-Type: System.Collections.Generic.List`1[System.String]
-Parameter Sets: On
-Aliases: Using
-
-Required: False
-Position: 2
-Default value: [Collections.Generic.List[string]]::new()
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -OnExpression
-Any conditional expression (where $Left refers to each left object and
-$Right refers to each right object) that requires to evaluate to true
-in order to join the left object with the right object.
-
-Note 1: The -OnExporession parameter has the most complex comparison
-possibilities but is considerable slower than the other types.
-
-Note 2: The -OnExpression parameter cannot be used with the -On
-parameter.
-
-```yaml
-Type: ScriptBlock
-Parameter Sets: Expression
-Aliases: UsingExpression
-
-Required: False
-Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Equals
-If the -Equals parameter is supplied, the value(s) of the left object
-properties listed by the -On parameter should be equal to the value(s)
-of the right object listed by the -Equals parameter in order to join
-the left object with the right object.
-
-Note 1: The list of properties defined by the -Equal parameter will be
-complemented with the list of properties defined by the -On parameter
-and vice versa.
-
-Note 2: The -Equals parameter can only be used with the -On parameter.
-
-```yaml
-Type: System.Collections.Generic.List`1[System.String]
-Parameter Sets: On
-Aliases:
-
-Required: False
-Position: Named
-Default value: [Collections.Generic.List[string]]::new()
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Discern
+
 The -Discern parameter defines how to discern the left and right object
 with respect to the common properties that aren't joined.
 
@@ -274,22 +188,170 @@ Note: The -Discern parameter cannot be used with the -Property parameter.
 
 ```yaml
 Type: String[]
-Parameter Sets: (All)
+Parameter Sets: Expression, On, Default
 Aliases: NameItems
+Accepted values: 
 
-Required: False
-Position: 3
-Default value: None
+Required: True (None) False (Expression, On, Default)
+Position: 2
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
+```
+
+### -Equals
+
+If the -Equals parameter is supplied, the value(s) of the left object
+properties listed by the -On parameter should be equal to the value(s)
+of the right object listed by the -Equals parameter in order to join
+the left object with the right object.
+
+Note 1: The list of properties defined by the -Equal parameter will be
+complemented with the list of properties defined by the -On parameter
+and vice versa.
+
+Note 2: The -Equals parameter can only be used with the -On parameter.
+
+```yaml
+Type: List`1[System.String]
+Parameter Sets: On
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (On)
+Position: Named
+Default value: [Collections.Generic.List[string]]::new()
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
+### -JoinType
+
+Defines which unrelated objects should be included (see: Descripton).
+Valid values are: 'Inner', 'Left', 'Right', 'Full' or 'Cross'.
+The default is 'Inner'.
+
+Note: It is recommended to use the related proxy commands instead.
+
+```yaml
+Type: String
+Parameter Sets: Expression, On, Default
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (Expression, On, Default)
+Position: Named
+Default value: Inner
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
+### -LeftObject
+
+The LeftObject, usually provided through the pipeline, defines the
+left object (or datatable) to be joined.
+
+```yaml
+Type: Object
+Parameter Sets: Expression, On, Default
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (Expression, On, Default)
+Position: Named
+Default value: 
+Accept pipeline input: True
+Accept wildcard characters: False
+DontShow: False
+```
+
+### -MatchCase
+
+If the -MatchCase (alias -CaseSensitive) switch is set, the comparison
+between the related properties defined by the -On Parameter (and the
+-Equals parameter) will case sensitive.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: On
+Aliases: CaseSensitive
+Accepted values: 
+
+Required: True (None) False (On)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
+### -On
+
+The -On parameter (alias -Using) defines which objects should be joined.
+If the -Equals parameter is omitted, the value(s) of the properties
+listed by the -On parameter should be equal at both sides in order to
+join the left object with the right object.
+
+Note 1: The list of properties defined by the -On parameter will be
+complemented with the list of properties defined by the -Equals
+parameter and vice versa.
+
+Note 2: Related joined properties will be merged to a single (left)
+property by default (see also the -Property parameter).
+
+Note 3: If the -On and the -OnExpression parameter are omitted, a
+join by row index is returned.
+
+```yaml
+Type: List`1[System.String]
+Parameter Sets: On
+Aliases: Using
+Accepted values: 
+
+Required: True (None) False (On)
+Position: 1
+Default value: [Collections.Generic.List[string]]::new()
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
+### -OnExpression
+
+Any conditional expression (where $Left refers to each left object and
+$Right refers to each right object) that requires to evaluate to true
+in order to join the left object with the right object.
+
+Note 1: The -OnExporession parameter has the most complex comparison
+possibilities but is considerable slower than the other types.
+
+Note 2: The -OnExpression parameter cannot be used with the -On
+parameter.
+
+```yaml
+Type: ScriptBlock
+Parameter Sets: Expression
+Aliases: UsingExpression
+Accepted values: 
+
+Required: True (None) False (Expression)
+Position: 1
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
 ```
 
 ### -Property
+
 A hash table or list of property names (strings) and/or hash tables that
 define a new selection of property names and values
 
-Hash tables should be in the format @{\<PropertyName\> = \<Expression\>}
-where the \<Expression\> defines how the specific left and right
+Hash tables should be in the format @{<PropertyName> = <Expression>}
+where the <Expression> defines how the specific left and right
 properties should be merged.
 Where the following variables are
 available for each joined object:
@@ -329,69 +391,39 @@ Note: The -Property parameter cannot be used with the -Discern parameter.
 
 ```yaml
 Type: Object
-Parameter Sets: (All)
-Aliases:
+Parameter Sets: Expression, On, Default
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (Expression, On, Default)
 Position: Named
-Default value: None
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
-### -Where
-An expression that defines the condition to be met for the objects to
-be returned.
-There is no limit to the number of predicates that can be
-included in the condition.
+### -RightObject
+
+The RightObject, provided by the first argument, defines the right
+object (or datatable) to be joined.
 
 ```yaml
-Type: ScriptBlock
-Parameter Sets: (All)
-Aliases:
+Type: Object
+Parameter Sets: Expression, On, Default
+Aliases: 
+Accepted values: 
 
-Required: False
-Position: 4
-Default value: { $True }
+Required: True (None) False (Expression, On, Default)
+Position: 0
+Default value: 
 Accept pipeline input: False
 Accept wildcard characters: False
-```
-
-### -JoinType
-Defines which unrelated objects should be included (see: Descripton).
-Valid values are: 'Inner', 'Left', 'Right', 'Full' or 'Cross'.
-The default is 'Inner'.
-
-Note: It is recommended to use the related proxy commands instead.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: Inner
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ValueName
-{{ Fill ValueName Description }}
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: Value
-Accept pipeline input: False
-Accept wildcard characters: False
+DontShow: False
 ```
 
 ### -Strict
+
 If the -Strict switch is set, the comparison between the related
 properties defined by the -On Parameter (and the -Equals parameter) is
 based on a strict equality (both type and value need to be equal).
@@ -399,44 +431,73 @@ based on a strict equality (both type and value need to be equal).
 ```yaml
 Type: SwitchParameter
 Parameter Sets: On
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (On)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
-### -MatchCase
-If the -MatchCase (alias -CaseSensitive) switch is set, the comparison
-between the related properties defined by the -On Parameter (and the
--Equals parameter) will case sensitive.
+### -ValueName
+
+{{ Fill ValueName Description }}
 
 ```yaml
-Type: SwitchParameter
-Parameter Sets: On
-Aliases: CaseSensitive
+Type: String
+Parameter Sets: Expression, On, Default
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (Expression, On, Default)
 Position: Named
-Default value: False
+Default value: Value
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 ```
 
-### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+### -Where
 
-## INPUTS
+An expression that defines the condition to be met for the objects to
+be returned.
+There is no limit to the number of predicates that can be
+included in the condition.
+
+```yaml
+Type: ScriptBlock
+Parameter Sets: Expression, On, Default
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (Expression, On, Default)
+Position: 3
+Default value: { $True }
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
+
+### CommonParameters
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## OUTPUTS
 
 ### System.Object[]
+
+
+
 ## NOTES
+
 # Source https://www.powershellgallery.com/packages/Join/3.5.3
+
 
 ## RELATED LINKS
 
-[https://github.com/iRon7/Join-Object](https://github.com/iRon7/Join-Object)
+[] (https://github.com/iRon7/Join-Object)
 

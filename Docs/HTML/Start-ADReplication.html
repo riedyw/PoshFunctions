@@ -50,7 +50,7 @@
 </head>
 <body>
     <hr />
-<h2>external help file: PoshFunctions-help.xml
+<h2>external help file: poshfunctions-help.xml
 Module Name: poshfunctions
 online version:
 schema: 2.0.0</h2>
@@ -58,6 +58,7 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>Forces replication to occur between domain controllers in domain.</p>
 <h2>SYNTAX</h2>
+<h3>__AllParameterSets</h3>
 <pre><code>Start-ADReplication [-Name] &lt;String[]&gt; [-Quiet] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
@@ -65,19 +66,19 @@ schema: 2.0.0</h2>
 Invoke-Command to a DC.
 Requires to be running in elevated Powershell prompt.</p>
 <h2>EXAMPLES</h2>
-<h3>EXAMPLE 1</h3>
+<h3>Example 1: EXAMPLE 1</h3>
 <pre><code>Start-ADReplication
 </code></pre>
 <p>Will issue a call to Get-ADDomainController and run the replication against that one DC</p>
-<h3>EXAMPLE 2</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Get-ADDomainController -Filter * | Start-ADReplication
 </code></pre>
 <p>Will return a list of all DCs and run the replication against that list</p>
-<h3>EXAMPLE 3</h3>
+<h3>Example 3: EXAMPLE 3</h3>
 <pre><code>Get-ADDomainController -Filter &quot;Name -like '*CORP*'&quot; | Start-ADReplication
 </code></pre>
 <p>Will return a list of all DCs that have 'CORP' in their name and run the replication against that list</p>
-<h3>EXAMPLE 4</h3>
+<h3>Example 4: EXAMPLE 4</h3>
 <pre><code>Start-ADReplication -Name DC1 -Verbose
 </code></pre>
 <p>Assuming there are two DCs (DC1, DC2) in the contosco.com domain here is a sample return
@@ -97,44 +98,50 @@ If not specified will query AD for a domain controller.
 Aliased to 'DomainController', 'DC', 'CN', 'ComputerName'</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
-Aliases: DomainController, DC, CN, ComputerName
+Aliases: DomainController,DC,CN,ComputerName
+Accepted values: 
 
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByPropertyName)
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>-Quiet</h3>
 <p>Switch will create no output</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: False
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
+DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>string</h3>
 <h2>NOTES</h2>
 <ul>
-<li>Reworked logic so it just replicates the links that are defined. Previously it ran repadmin.exe with /ApeD switch
+<li>Reworked logic so it just replicates the links that are defined.
+Previously it ran repadmin.exe with /ApeD switch
 and it was horribly slow.</li>
 <li>Changed parameter $DC to $Name so that it would take input from Get-ADDomainController and to accept an array and
 added aliases to it</li>
 <li>Changed output so that it would remove blank or commented lines from the output and to display what is being
 replicated in the output</li>
 <li>Changed output so that it creates CSV output</li>
-<li>Added '-ThrottleLimit' to the Invoke-Command so as to not saturate the local computer. Changed value to
+<li>Added '-ThrottleLimit' to the Invoke-Command so as to not saturate the local computer.
+Changed value to
 [environment]::ProcessorCount which is the number of processors on the computer.</li>
 </ul>
 <h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
 
 </body>
 </html>

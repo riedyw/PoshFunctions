@@ -1,27 +1,33 @@
 ---
-external help file: PoshFunctions-help.xml
+external help file: poshfunctions-help.xml
 Module Name: poshfunctions
-online version:
+online version: 
 schema: 2.0.0
 ---
 
 # Remove-EmptyProperty
 
 ## SYNOPSIS
+
 To take an object and return only non-empty properties
 
 ## SYNTAX
+
+### __AllParameterSets
 
 ```
 Remove-EmptyProperty [-InputObject] <Object> [-AsHashTable] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 To take an object and return only non-empty properties
+
 
 ## EXAMPLES
 
-### EXAMPLE 1
+### Example 1: EXAMPLE 1
+
 ```
 $A = New-Object -TypeName 'psobject' -Property ([Ordered] @{
 ```
@@ -41,7 +47,12 @@ Name
 ----
 test
 
-### EXAMPLE 2
+
+
+
+
+### Example 2: EXAMPLE 2
+
 ```
 Remove-EmptyProperty -InputObject $A -AsHashTable
 ```
@@ -50,47 +61,61 @@ Name                           Value
 ----                           -----
 Name                           test
 
+
+
+
+
+
 ## PARAMETERS
 
+### -AsHashTable
+
+To return a hashtable as opposed to another object
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
 ### -InputObject
+
 The object that you want empty properties to be removed.
 Value from pipeline.
 
 ```yaml
 Type: Object
 Parameter Sets: (All)
-Aliases:
+Aliases: 
+Accepted values: 
 
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: True
 Accept wildcard characters: False
+DontShow: False
 ```
 
-### -AsHashTable
-To return a hashtable as opposed to another object
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
-
-## OUTPUTS
-
 ## NOTES
+
 # from: http://community.idera.com/powershell/powertips/b/tips/posts/listing-properties-with-values-part-3
 
+
 ## RELATED LINKS
+
+Fill Related Links Here
+
