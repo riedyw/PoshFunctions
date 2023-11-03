@@ -31,10 +31,12 @@ function Get-VssadminListWriters {
     Task Scheduler Writer           {d61d61c8-d73a-4eee-8cdd-f6f9786b7124} {1bddd48e-5052-49db-9b07-b96f96727e6b} [1] Stable No error
     VSS Metadata Store Writer       {75dfb225-e2e4-4d39-9ac9-ffaff65ddf06} {088e7a7d-09a8-4cc6-a609-ad90e75ddc93} [1] Stable No error
     WMI Writer                      {a6ad56c2-b509-4e6c-bb19-49d8f43532f0} {891f28b0-0e51-4e96-936a-01a06107552a} [1] Stable No error
+.NOTES
+    Added PSTypeName       = 'PFVSSAdminWriter' to [pscustomobject] so it can be handled by formatting file
 #>
 
     [CmdletBinding(ConfirmImpact = 'None')]
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns','')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns', '')]
     param()
 
     begin {
@@ -69,6 +71,7 @@ function Get-VssadminListWriters {
                 '^   Last error:' {
                     $lasterror = $vss[$i].Substring(15)
                     [PSCustomObject] @{
+                        PSTypeName       = 'PFVSSAdminWriter'
                         Writer           = $writer
                         WriterID         = $writerid
                         WriterInstanceID = $writerinstanceid

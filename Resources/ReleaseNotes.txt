@@ -22,6 +22,14 @@ All code has also been loaded into ISE with ISESteroids. Most, if not all, SUGGE
 Code has had Invoke-ScriptAnalyzer run against them so that errors are not thrown. Invoke-ScriptAnalyzer is not perfect however and sometimes returns false positives. For those that returned false positives I added declaration statement(s) after the [Cmdlet()] block to not throw the false positive error. An example declaration is as follows:
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]
 
+### 2.2.11
+* added format files for result sets containing more than 4 columns
+* updated Get-DriveState - to use custom types for formatting
+* updated Get-ExecutableForFile - to resolve path names to explicit path if passed a relative one
+* updated Get-PrintableAscii - to use custom type for formatting
+* updated Get-VssAdminListWriters - to use custom type for formatting
+* updated Get-WordCount - changed property names, sorted by frequency descending, then word ascending
+
 ### 2.2.10
 * added Get-AppEventsSound - determines sounds configured for Windows events
 * added Get-ConsoleWindowSize - returns both the window size and buffer size of current console window

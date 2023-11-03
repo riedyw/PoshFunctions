@@ -58,10 +58,11 @@
     # Recreate by running from PS prompts in PoshFunctions folder
     # dir .\Formats\*.ps1xml | Get-RelativePath -RelativeTo $pwd | Write-StringArray -VariableName FormatsToProcess -ExcludeDollarSign | Format-WrapText -Width 100 | Set-Clipboard
 
-    FormatsToProcess  = @( '.\Formats\Get-DriveStatBytes-Format.ps1xml',
-        '.\Formats\Get-DriveStatGB-Format.ps1xml', '.\Formats\Get-DriveStatKB-Format.ps1xml',
-        '.\Formats\Get-DriveStatMB-Format.ps1xml', '.\Formats\Get-PrintableAscii-Format.ps1xml',
-        '.\Formats\New-PFDateFormat-Format.ps1xml' )
+    FormatsToProcess  = @( '.\Formats\Get-DriveStatBytes.Format.ps1xml',
+        '.\Formats\Get-DriveStatGB.Format.ps1xml', '.\Formats\Get-DriveStatKB.Format.ps1xml',
+        '.\Formats\Get-DriveStatMB.Format.ps1xml', '.\Formats\Get-PrintableAscii.Format.ps1xml',
+        '.\Formats\Get-RebootHistory.Format.ps1xml', '.\Formats\Get-VssAdminListWriters.Format.ps1xml',
+        '.\Formats\New-PFDateFormat.Format.ps1xml' )
 
     # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
     # NestedModules = @()
@@ -102,10 +103,10 @@
         'Get-PrintableAscii', 'Get-PrivateProfileComment', 'Get-PrivateProfileSection',
         'Get-PrivateProfileSectionNames', 'Get-PrivateProfileString',
         'Get-ProcessUser', 'Get-PSWho', 'Get-RandomDate', 'Get-RandomHexDigit',
-        'Get-RandomMacAddress', 'Get-RegExpandString', 'Get-RegistryValue',
-        'Get-RelativePath', 'Get-Round', 'Get-SaveFileName', 'Get-ScheduledTaskUser',
-        'Get-ServiceUser', 'Get-Shortcut', 'Get-ShortName', 'Get-SID',
-        'Get-SpecialFolder', 'Get-SqlDatabase', 'Get-SqlIndexFragmentation',
+        'Get-RandomMacAddress', 'Get-RebootHistory', 'Get-RegExpandString',
+        'Get-RegistryValue', 'Get-RelativePath', 'Get-Round', 'Get-SaveFileName',
+        'Get-ScheduledTaskUser', 'Get-ServiceUser', 'Get-Shortcut', 'Get-ShortName',
+        'Get-SID', 'Get-SpecialFolder', 'Get-SqlDatabase', 'Get-SqlIndexFragmentation',
         'Get-SqlStoredProcedure', 'Get-StaticProperty', 'Get-String', 'Get-StringHash',
         'Get-SubnetMaskIPv4', 'Get-TruncatedDate', 'Get-Type', 'Get-TypeAccelerator',
         'Get-UrlContent', 'Get-VssAdminListVolumes', 'Get-VssAdminListWriters',
@@ -197,6 +198,14 @@
             # ReleaseNotes of this module
             ReleaseNotes = @'
 For full release notes see .\Resources\ReleaseNotes.txt
+### 2.2.11
+* added format files for result sets containing more than 4 columns
+* updated Get-DriveState - to use custom types for formatting
+* updated Get-ExecutableForFile - to resolve path names to explicit path if passed a relative one
+* updated Get-PrintableAscii - to use custom type for formatting
+* updated Get-VssAdminListWriters - to use custom type for formatting
+* updated Get-WordCount - changed property names, sorted by frequency descending, then word ascending
+
 ### 2.2.10
 * added Get-AppEventsSound - determines sounds configured for Windows events
 * added Get-ConsoleWindowSize - returns both the window size and buffer size of current console window

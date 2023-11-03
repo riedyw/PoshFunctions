@@ -1,5 +1,5 @@
 function Get-WordCount {
-<#
+    <#
 .SYNOPSIS
     Gets summary statistics of all the words and how many of each there are
 .DESCRIPTION
@@ -20,7 +20,7 @@ function Get-WordCount {
 .EXAMPLE
     Get-WordCount -Path .\Sample.txt
 
-    Name                           Value
+    Word                           Frequency
     ----                           -----
     unicorn                        4
     cat                            3
@@ -29,7 +29,7 @@ function Get-WordCount {
 .EXAMPLE
     Get-WordCount -Path .\sample.txt -Exclude .\Exclude.txt
 
-    Name                           Value
+    Word                           Frequency
     ----                           -----
     cat                            3
     dog                            2
@@ -37,6 +37,9 @@ function Get-WordCount {
 .NOTES
     Updated logic around keys to the working hash. If any of the words in the file match PowerShell keywords you'll
     get a bunch of error messages. Workaround stores hash in slightly different manner.
+    Forced each word to lower case
+    Sorted Word frequency in descending order, then word in ascending order
+    Changed properties from (Name, Value) to (Word, Frequency) to better reflect their meanings
 #>
 
     [CmdletBinding()]
@@ -53,7 +56,7 @@ function Get-WordCount {
 
     process {
         Write-Verbose -Message "PATH    = [$($Path)]"
-        $textString = $(Get-Content -Path $Path) -join ' '
+        $textString = $(Get-Content -Path $Path).ToLower() -join ' '
         $textString = $textString -replace "`n", ' '
         $textString = $textString -replace '[^a-z| ]'
         $textWords = $textString -split '\s+'
@@ -75,9 +78,13 @@ function Get-WordCount {
                 }
             }
         }
-        Write-Verbose -Message 'Word frequency in descending order'
-        $statistic.GetEnumerator() | Sort-Object -Property Value -Descending |
-            Select-Object -Property @{Name='Name';Expr={$_.Name -replace "'"}}, Value
+        Write-Verbose -Message 'Word frequency in descending order, then word in ascending order'
+
+        $statistic.GetEnumerator() |
+            Sort-Object -Property @{Expression = { $_.Value }; Descending = $true },
+                @{Expression = { $_.Name }; Descending = $false } |
+            Select-Object -Property @{Name = 'Word'; Expr = { $_.Key -replace "'" } }, @{Name = 'Frequency'; Expr = {$_.Value}}
+
     }
 
     end {
