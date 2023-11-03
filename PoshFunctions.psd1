@@ -58,7 +58,10 @@
     # Recreate by running from PS prompts in PoshFunctions folder
     # dir .\Formats\*.ps1xml | Get-RelativePath -RelativeTo $pwd | Write-StringArray -VariableName FormatsToProcess -ExcludeDollarSign | Format-WrapText -Width 100 | Set-Clipboard
 
-    FormatsToProcess  = @( '.\Formats\PFDateFormat-Format.ps1xml' )
+    FormatsToProcess  = @( '.\Formats\Get-DriveStatBytes-Format.ps1xml',
+        '.\Formats\Get-DriveStatGB-Format.ps1xml', '.\Formats\Get-DriveStatKB-Format.ps1xml',
+        '.\Formats\Get-DriveStatMB-Format.ps1xml', '.\Formats\Get-PrintableAscii-Format.ps1xml',
+        '.\Formats\New-PFDateFormat-Format.ps1xml' )
 
     # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
     # NestedModules = @()

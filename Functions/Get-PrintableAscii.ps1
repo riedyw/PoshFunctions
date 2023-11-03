@@ -75,6 +75,7 @@ function Get-PrintableAscii {
     process {
         $PrintableAscii = 32..126 | ForEach-Object {
             [pscustomobject] @{
+                PSTypeName = 'PFPrintableAscii'
                 Ascii   = $_
                 Hex     = ('{0:X2}' -f $_)
                 Char    = ( [string] [char] [byte] $_)
