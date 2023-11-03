@@ -4,7 +4,7 @@
     RootModule        = 'PoshFunctions.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '2.2.10'
+    ModuleVersion     = '2.2.11'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -55,7 +55,10 @@
     # TypesToProcess = @()
 
     # Format files (.ps1xml) to be loaded when importing this module
-    FormatsToProcess  = @('PoshFunctions.ps1xml')
+    # Recreate by running from PS prompts in PoshFunctions folder
+    # dir .\Formats\*.ps1xml | Get-RelativePath -RelativeTo $pwd | Write-StringArray -VariableName FormatsToProcess -ExcludeDollarSign | Format-WrapText -Width 100 | Set-Clipboard
+
+    FormatsToProcess  = @( '.\Formats\PFDateFormat-Format.ps1xml' )
 
     # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
     # NestedModules = @()

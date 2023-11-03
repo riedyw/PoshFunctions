@@ -16,12 +16,12 @@ $Functions | ForEach-Object { . $_.FullName }
 $Script:WordList = Get-Content -Path $PSScriptRoot\Resources\WordList.txt -ReadCount 0
 $Script:WordListFull = Get-Content -Path $PSScriptRoot\Resources\words_alpha.txt -ReadCount 0
 $Script:FortuneFile = "$ModulePath\Resources\Wisdom.txt"
-$Script:Stopwatch =  [System.Diagnostics.Stopwatch]::New()
+$Script:Stopwatch = [System.Diagnostics.Stopwatch]::New()
 
 # inspired by: http://powershell-scripting.com/index.php?option=com_joomlaboard&Itemid=76&func=view&view=threaded&id=24376&catid=5
 # also sourced at: https://gallery.technet.microsoft.com/Edit-old-fashioned-INI-f8fbc067?redir=0
 
-$IniCode=@'
+$IniCode = @'
 /* ======================================================================
 
 C# Source File -- Created with SAPIEN Technologies PrimalScript 2011
@@ -150,23 +150,23 @@ class PFDateFormat {
     # add parameterless default constructor
     PFDateFormat() {
         $this.Date = $(Get-Date)
-        $this.DMTF = $(ConvertFrom-Datetime -Date $this.Date -DMTF -Verbose:$false)
-        $this.Unix = $(ConvertFrom-Datetime -Date $this.Date -Unix -Verbose:$false)
-        $this.FileTime = $(ConvertFrom-Datetime -Date $this.Date -FileTime -Verbose:$false)
-        $this.ICSDateTime = $(ConvertFrom-Datetime -Date $this.Date -ICSDateTime -Verbose:$false)
-        $this.ISO8601 = $(ConvertFrom-Datetime -Date $this.Date -ISO8601 -Verbose:$false)
-        $this.Excel = $(ConvertFrom-Datetime -Date $this.Date -Excel -Verbose:$false)
+        $this.DMTF = $(ConvertFrom-DateTime -Date $this.Date -DMTF -Verbose:$false)
+        $this.Unix = $(ConvertFrom-DateTime -Date $this.Date -Unix -Verbose:$false)
+        $this.FileTime = $(ConvertFrom-DateTime -Date $this.Date -FileTime -Verbose:$false)
+        $this.ICSDateTime = $(ConvertFrom-DateTime -Date $this.Date -ICSDateTime -Verbose:$false)
+        $this.ISO8601 = $(ConvertFrom-DateTime -Date $this.Date -ISO8601 -Verbose:$false)
+        $this.Excel = $(ConvertFrom-DateTime -Date $this.Date -Excel -Verbose:$false)
     }
 
     # add custom constructor that takes parameters
     PFDateFormat([datetime] $Date) {
         $this.Date = $Date
-        $this.DMTF = $(ConvertFrom-Datetime -Date $Date -DMTF -Verbose:$false)
-        $this.Unix = $(ConvertFrom-Datetime -Date $Date -Unix -Verbose:$false)
-        $this.FileTime = $(ConvertFrom-Datetime -Date $Date -FileTime -Verbose:$false)
-        $this.ICSDateTime = $(ConvertFrom-Datetime -Date $Date -ICSDateTime -Verbose:$false)
-        $this.ISO8601 = $(ConvertFrom-Datetime -Date $Date -ISO8601 -Verbose:$false)
-        $this.Excel = $(ConvertFrom-Datetime -Date $Date -Excel -Verbose:$false)
+        $this.DMTF = $(ConvertFrom-DateTime -Date $Date -DMTF -Verbose:$false)
+        $this.Unix = $(ConvertFrom-DateTime -Date $Date -Unix -Verbose:$false)
+        $this.FileTime = $(ConvertFrom-DateTime -Date $Date -FileTime -Verbose:$false)
+        $this.ICSDateTime = $(ConvertFrom-DateTime -Date $Date -ICSDateTime -Verbose:$false)
+        $this.ISO8601 = $(ConvertFrom-DateTime -Date $Date -ISO8601 -Verbose:$false)
+        $this.Excel = $(ConvertFrom-DateTime -Date $Date -Excel -Verbose:$false)
     }
 }
 

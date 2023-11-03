@@ -26,19 +26,19 @@ function Start-RecordSession {
     }
 
     process {
-        $logDate = Get-Date -Format 'yyyyMMdd'
-        $LogPath = Join-Path -Path $env:userprofile -ChildPath '\logs'
+        $LogDate = Get-Date -Format 'yyyyMMdd'
+        $LogPath = Join-Path -Path $env:USERPROFILE -ChildPath 'Logs'
         if (-not (Test-Path -Path $LogPath)) {
             mkdir -Path $LogPath
         }
-        $Logfile = Join-Path -Path $LogPath -ChildPath ('\PS-' + $logDate + '-' + $PID + '.log')
-        $global:PSLOG = "$Logfile"
-        $env:PSLOG = "$Logfile"
-        # $global:Transcript = "$Logfile"
-        if (-not (Test-Path -Path $Logfile)) {
-            $null = New-Item -Path $Logfile -ItemType File
+        $LogFile = Join-Path -Path $LogPath -ChildPath ('\PS-' + $LogDate + '-' + $PID + '.log')
+        $global:PSLOG = "$LogFile"
+        $env:PSLOG = "$LogFile"
+        # $global:Transcript = "$LogFile"
+        if (-not (Test-Path -Path $LogFile)) {
+            $null = New-Item -Path $LogFile -ItemType File
         }
-        $null = Start-Transcript -Path "$Logfile" -Append -Force
+        $null = Start-Transcript -Path "$LogFile" -Append -Force
     }
 
     end {
