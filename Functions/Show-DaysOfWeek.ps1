@@ -8,6 +8,8 @@ function Show-DaysOfWeek {
     [string[]]
 #>
 
+    # todo rename Get-DaysOfWeek, update readme, add function alias
+
     [CmdletBinding(ConfirmImpact='None')]
     [OutputType([string[]])]
     Param ()

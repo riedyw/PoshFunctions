@@ -22,7 +22,7 @@
     Copyright         = '(c) 2023 Bill Riedy. All rights reserved.'
 
     # Description of the functionality provided by this module
-    Description       = 'A curated collection of over 225 PowerShell functions. Many functions written by me. Others are attributed wherever possible.'
+    Description       = 'A curated collection of over 230 PowerShell functions. Many functions written by me. Others are attributed wherever possible.'
 
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '5.0'
@@ -56,11 +56,19 @@
 
     # Format files (.ps1xml) to be loaded when importing this module
     # Recreate by running from PS prompts in PoshFunctions folder
-    # dir .\Formats\*.ps1xml | Get-RelativePath -RelativeTo $pwd | Write-StringArray -VariableName FormatsToProcess -ExcludeDollarSign | Format-WrapText -Width 100 | Set-Clipboard
+    #
+    <#
+    dir .\Formats\*.ps1xml |
+    Get-RelativePath -RelativeTo $pwd |
+    Write-StringArray -VariableName FormatsToProcess -ExcludeDollarSign |
+    Format-WrapText -Width 100 |
+    Set-Clipboard
+ #>
 
     FormatsToProcess  = @( '.\Formats\Get-DriveStatBytes.Format.ps1xml',
         '.\Formats\Get-DriveStatGB.Format.ps1xml', '.\Formats\Get-DriveStatKB.Format.ps1xml',
-        '.\Formats\Get-DriveStatMB.Format.ps1xml', '.\Formats\Get-PrintableAscii.Format.ps1xml',
+        '.\Formats\Get-DriveStatMB.Format.ps1xml', '.\Formats\Get-NamedColorBrief.Format.ps1xml',
+        '.\Formats\Get-NamedColorFull.Format.ps1xml', '.\Formats\Get-PrintableAscii.Format.ps1xml',
         '.\Formats\Get-RebootHistory.Format.ps1xml', '.\Formats\Get-VssAdminListWriters.Format.ps1xml',
         '.\Formats\New-PFDateFormat.Format.ps1xml' )
 
@@ -69,17 +77,24 @@
 
     # Functions export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
     # Recreated by running the following from PS prompt in PoshFunctions folder
-    # dir .\Functions\*.ps1 | select -expand basename | Write-StringArray -VariableName FunctionsToExport -ExcludeDollarSign | Format-WrapText -Width 80 | set-clipboard
+    <#
+    dir .\Functions\*.ps1 |
+    select -expand basename |
+    Write-StringArray -VariableName FunctionsToExport -ExcludeDollarSign |
+    Format-WrapText -Width 80 |
+    set-clipboard
+ #>
 
-    FunctionsToExport = @( 'Compare-ObjectProperty', 'Compare-ObjectSetComplement',
-        'Compare-ObjectSetDifference', 'Compare-ObjectSetIntersection',
-        'Compare-ObjectSetUnion', 'Compare-PSGalleryObject', 'Convert-HexToRGB',
-        'Convert-Int32ToUint32', 'Convert-Int64ToText', 'Convert-ObjectToHashtable',
-        'Convert-RGBToHex', 'Convert-SecureStringToString', 'Convert-UserFlag',
-        'ConvertFrom-Base64', 'ConvertFrom-Binary', 'ConvertFrom-DateTime',
-        'ConvertFrom-FsRight', 'ConvertFrom-Hex', 'ConvertFrom-HexString',
-        'ConvertFrom-HtmlEncode', 'ConvertFrom-RomanNumeral', 'ConvertFrom-UrlEncode',
-        'ConvertFrom-UTC', 'ConvertFrom-Xml', 'ConvertTo-Base64', 'ConvertTo-Binary',
+    FunctionsToExport = @( 'Add-FileAttribute', 'Compare-ObjectProperty',
+        'Compare-ObjectSetComplement', 'Compare-ObjectSetDifference',
+        'Compare-ObjectSetIntersection', 'Compare-ObjectSetUnion',
+        'Compare-PSGalleryObject', 'Convert-HexToRGB', 'Convert-Int32ToUint32',
+        'Convert-Int64ToText', 'Convert-ObjectToHashtable', 'Convert-RGBToHex',
+        'Convert-SecureStringToString', 'Convert-UserFlag', 'ConvertFrom-Base64',
+        'ConvertFrom-Binary', 'ConvertFrom-DateTime', 'ConvertFrom-FsRight',
+        'ConvertFrom-Hex', 'ConvertFrom-HexString', 'ConvertFrom-HtmlEncode',
+        'ConvertFrom-RomanNumeral', 'ConvertFrom-UrlEncode', 'ConvertFrom-UTC',
+        'ConvertFrom-Xml', 'ConvertTo-Base64', 'ConvertTo-Binary',
         'ConvertTo-BinaryIPv4', 'ConvertTo-Bool', 'ConvertTo-DateTime',
         'ConvertTo-DecimalIPv4', 'ConvertTo-DottedDecimalIPv4', 'ConvertTo-Hex',
         'ConvertTo-HexString', 'ConvertTo-HtmlEncode', 'ConvertTo-OrderedDictionary',
@@ -89,18 +104,19 @@
         'FileSizeBelow', 'Format-MacAddress', 'Format-RandomCase',
         'Format-ReverseString', 'Format-ReverseToken', 'Format-SortedList',
         'Format-TitleCase', 'Format-WrapText', 'Get-AppEventSound', 'Get-ArpTable',
-        'Get-Assoc', 'Get-BashPath', 'Get-BinaryType', 'Get-CeasarCipher',
-        'Get-ComputerSite', 'Get-ComputerUptime', 'Get-ConsoleWindowSize',
-        'Get-DiceRoll', 'Get-DiskType', 'Get-DisplayBrightness',
-        'Get-DNSHostEntryAsync', 'Get-DriveStat', 'Get-DuplicateFileName', 'Get-Enum',
-        'Get-ErrorInfo', 'Get-ExecutableForFile', 'Get-Factorial', 'Get-FileEncoding',
-        'Get-FileName', 'Get-FileSizeOnDisk', 'Get-FileWithLeadingSpace',
-        'Get-FolderName', 'Get-Font', 'Get-Fortune', 'Get-Ftype',
-        'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-IpV4Network',
-        'Get-LastDayInMonth', 'Get-List', 'Get-LongName', 'Get-MachineType',
-        'Get-MacVendor', 'Get-Magic8Ball', 'Get-MyLocalLogonTime',
-        'Get-NetworkCredential', 'Get-NTFSPermission', 'Get-NtpDate', 'Get-Power',
-        'Get-PrintableAscii', 'Get-PrivateProfileComment', 'Get-PrivateProfileSection',
+        'Get-Assoc', 'Get-AutoRun.inf', 'Get-BashPath', 'Get-BinaryType',
+        'Get-CeasarCipher', 'Get-ComputerSite', 'Get-ComputerUptime',
+        'Get-ConsoleColor', 'Get-ConsoleWindowSize', 'Get-Desktop.ini', 'Get-DiceRoll',
+        'Get-DiskType', 'Get-DisplayBrightness', 'Get-DNSHostEntryAsync',
+        'Get-DriveStat', 'Get-DuplicateFileName', 'Get-Enum', 'Get-ErrorInfo',
+        'Get-ExecutableForFile', 'Get-Factorial', 'Get-FileEncoding', 'Get-FileName',
+        'Get-FileSizeOnDisk', 'Get-FileWithLeadingSpace', 'Get-FolderName', 'Get-Font',
+        'Get-Fortune', 'Get-FsRight', 'Get-Ftype', 'Get-InvalidFileCharacter',
+        'Get-IpRange', 'Get-IpV4Network', 'Get-LastDayInMonth', 'Get-List',
+        'Get-LongName', 'Get-MachineType', 'Get-MacVendor', 'Get-Magic8Ball',
+        'Get-MyLocalLogonTime', 'Get-NamedColor', 'Get-NetworkCredential',
+        'Get-NTFSPermission', 'Get-NtpDate', 'Get-Power', 'Get-PrintableAscii',
+        'Get-PrivateProfileComment', 'Get-PrivateProfileSection',
         'Get-PrivateProfileSectionNames', 'Get-PrivateProfileString',
         'Get-ProcessUser', 'Get-PSWho', 'Get-RandomDate', 'Get-RandomHexDigit',
         'Get-RandomMacAddress', 'Get-RebootHistory', 'Get-RegExpandString',
@@ -118,15 +134,16 @@
         'New-PFDateFormat', 'New-QR', 'New-RandomPassword', 'New-Screenshot',
         'New-Shortcut', 'Optimize-SqlIndexFragmentation',
         'Optimize-SqlStoredProcedure', 'Out-PDFToPrinter', 'Read-HostWithDefault',
-        'Remove-BlankOrComment', 'Remove-EmptyProperty', 'Remove-QuotesFromCsv',
-        'Remove-TeamsCache', 'Remove-Trailing', 'Reset-Desktop', 'Resolve-FQDN',
-        'Resolve-HostName', 'sed', 'Set-Capslock', 'Set-Display', 'Set-EOLTerminator',
-        'Set-FileEncoding', 'Set-Numlock', 'Set-PrivateProfileComment',
-        'Set-PrivateProfileString', 'Set-Scrolllock', 'Set-SpeakerVolume', 'Set-Type',
-        'Set-WindowState', 'Set-WindowStyle', 'Show-AllColor', 'Show-Calendar',
-        'Show-Color', 'Show-ColorsWithBackground', 'Show-DaysOfWeek',
-        'Show-FileAttribute', 'Show-FsRight', 'Show-Month', 'Show-NamedColor',
-        'Show-Object', 'Show-Progress', 'Show-ShortDaysOfWeek', 'Show-ShortMonth',
+        'Remove-BlankOrComment', 'Remove-EmptyProperty', 'Remove-FileAttribute',
+        'Remove-QuotesFromCsv', 'Remove-TeamsCache', 'Remove-Trailing',
+        'Reset-Desktop', 'Resolve-FQDN', 'Resolve-HostName', 'Resolve-PathForce',
+        'sed', 'Set-AutoRun.inf', 'Set-Capslock', 'Set-Desktop.ini', 'Set-Display',
+        'Set-EOLTerminator', 'Set-FileEncoding', 'Set-Numlock',
+        'Set-PrivateProfileComment', 'Set-PrivateProfileString', 'Set-Scrolllock',
+        'Set-SpeakerVolume', 'Set-Type', 'Set-WindowState', 'Set-WindowStyle',
+        'Show-AllColor', 'Show-Calendar', 'Show-ColorsWithBackground',
+        'Show-DaysOfWeek', 'Show-FileAttribute', 'Show-Month', 'Show-Object',
+        'Show-Progress', 'Show-ShortDaysOfWeek', 'Show-ShortMonth',
         'Show-SubnetMaskIPv4', 'Show-Timezone', 'Split-CanonicalName',
         'Split-DistinguishedName', 'Split-Line', 'Start-ADReplication',
         'Start-RecordSession', 'Stop-RecordSession', 'Switch-Mute',
@@ -147,15 +164,28 @@
 
     # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
     # AliasesToExport   = '*'
+    <#
+    To recreate:
+
+    $regex = "\[alias\('(.+)'\)]"
+    findstr.exe /i FunctionAlias .\Functions\*.ps1 | foreach-object {
+        if ($_ -match $regex) {
+            $matches[1]
+        }
+    } | sort-object |
+    Write-StringArray -VariableName AliasesToExport -ExcludeDollarSign |
+    Format-WrapText -width 80 | set-clipboard
+ #>
 
     AliasesToExport   = @( 'Base64Decode', 'Base64Encode', 'Beep',
         'Convert-IntToText', 'Convert-ROT13', 'ConvertTo-BinaryIP',
         'ConvertTo-DecimalIP', 'ConvertTo-DottedDecimalIP', 'CountdownTimer',
         'Fortune', 'Get-DupeFileName', 'Get-Folder', 'Get-LastReboot', 'Get-SaveFile',
-        'Get-SubnetMaskIP', 'Parse-Bool', 'Recycle', 'ReverseString',
-        'Set-Speaker', 'Show-InvalidFileCharacter', 'Show-SpecialFolder',
-        'Show-SubnetMaskIP', 'Show-TypeAccelerator', 'Speak', 'Test-IsLocalIP',
-        'Test-IsValidIP', 'Test-MultiBool', 'UrlDecode', 'UrlEncode', 'WrapText' )
+        'Get-SubnetMaskIP', 'Parse-Bool', 'Recycle', 'ReverseString', 'Set-Speaker',
+        'Show-Color', 'Show-InvalidFileCharacter', 'Show-NamedColor',
+        'Show-SpecialFolder', 'Show-SubnetMaskIP', 'Show-TypeAccelerator', 'Speak',
+        'Test-IsLocalIP', 'Test-IsValidIP', 'Test-MultiBool', 'Union-Object',
+        'UrlDecode', 'UrlEncode', 'WrapText' )
 
     # DSC resources to export from this module
     # DscResourcesToExport = @()
@@ -200,11 +230,34 @@
 For full release notes see .\Resources\ReleaseNotes.txt
 ### 2.2.11
 * added format files for result sets containing more than 4 columns
+* added Add-FileAttribute - to manipulate 'ReadOnly', 'Hidden', 'System', 'Archive' file attributes
+* added Get-AutoRun.inf - to get the values from the hidden/system file found at the root of a drive letter: icon and label
+* added Set-AutoRun.inf - to set the values from the hidden/system file found at the root of a drive letter: icon and label
+* added Get-Desktop.ini - to get the values from the hidden/system file found in a folder: folder type, infotip (hover info), icon
+* added Set-Desktop.ini - to set the values from the hidden/system file found in a folder: folder type, infotip (hover info), icon
+* added Get-RebootHistory - to return a history of reboots, includes custom type for formatting
+* added Remove-FileAttribute - to manipulate 'ReadOnly', 'Hidden', 'System', 'Archive' file attributes
+* added Resolve-PathForce - returns explicit path to single file/folder even if it doesn't exist
+* added Set-FileAttribute - to manipulate 'ReadOnly', 'Hidden', 'System', 'Archive' file attributes
+* renamed Get-NamedColor - from original name Show-NamedColor to be more in line with PowerShell standards, added -Full parameter and formatting
+* renamed Get-FsRight - from original Show-FsRight, provided alias as Show-FsRight, changed += to ArrayList, left justify name
+* updated Convert-HexToRGB - changed delimiter from ',' to ', ' so exports to CSV are read properly by Excel
+* updated ConvertFrom-FsRight - changed reference from Show-FsRight to Get-FsRight
+* updated Export-FontSample - changed to use System.Collections.Arraylist, default $Path to (Join-Path -Path $env:TEMP -ChildPath 'FontSample.htm'), no longer HTML tokenizing -Text
+* updated Get-Assoc - added /d argument to cmd.exe to bypass any AutoRun setting in registry
+* updated Get-ConsoleColor - alignment was right justified, fixed by converting color enum ToString()
 * updated Get-DriveState - to use custom types for formatting
 * updated Get-ExecutableForFile - to resolve path names to explicit path if passed a relative one
+* updated Get-FType - added /d argument to cmd.exe to bypass any AutoRun setting in registry
+* updated Get-IPv4Network - corrected comment help, set default for subnet mask
 * updated Get-PrintableAscii - to use custom type for formatting
 * updated Get-VssAdminListWriters - to use custom type for formatting
 * updated Get-WordCount - changed property names, sorted by frequency descending, then word ascending
+* updated New-MessageBox - fixed issue with -AsString and a timeout not reporting correctly
+* updated New-Shortcut - resolved path to .lnk as it must be explicit path, used resolve-pathforce to resolve non-existent file
+* updated Set-PrivateProfileComment - ???? # todo
+* updated Write-StringHash - change += to System.Collections.Arraylist for $ReturnVal
+* updated Write-TextMnu - changed temporary file handling, fixed options passed from pipeline problem
 
 ### 2.2.10
 * added Get-AppEventsSound - determines sounds configured for Windows events

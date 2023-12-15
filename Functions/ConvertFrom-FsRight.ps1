@@ -27,8 +27,6 @@ function ConvertFrom-FsRight {
     A [string] of all the applicable rights in readable form
 #>
 
-    # todo Change += to System.Collections.Arraylist
-
     #region Parameters
     [CmdletBinding()]
     [OutputType('string')]
@@ -44,7 +42,7 @@ function ConvertFrom-FsRight {
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
-        $fsPermission = Show-FsRight -Verbose:$false
+        $fsPermission = Get-FsRight -Verbose:$false
         $fsPermissionCombo  = $fsPermission | Where-Object { $_.Type -eq 'Combo' }
         $fsPermissionSingle = $fsPermission | Where-Object { $_.Type -ne 'Combo' }
     }
@@ -88,4 +86,4 @@ function ConvertFrom-FsRight {
     end {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-}
+} # EndFunction ConvertFrom-FsRight

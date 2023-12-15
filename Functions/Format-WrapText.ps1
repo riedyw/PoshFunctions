@@ -24,11 +24,9 @@ function Format-WrapText {
     Format-List
 #>
 
-    # todo Change += to System.Collections.Arraylist
-
     #region Parameter
     [CmdletBinding(ConfirmImpact = 'Low', DefaultParameterSetName = 'Width')]
-    [alias('WrapText')]
+    [alias('WrapText')] #FunctionAlias
     [OutputType('string')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
     Param(
@@ -84,4 +82,4 @@ function Format-WrapText {
         }
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-}
+} # EndFunction Format-WrapText

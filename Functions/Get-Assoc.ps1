@@ -34,7 +34,7 @@ function Get-Assoc {
     }
 
     process {
-        $CmdReturn = (cmd.exe /c assoc)
+        $CmdReturn = (cmd.exe /d /c assoc)
         $GetAssoc = ([ordered] @{})
         foreach ($CurItem in $CmdReturn) {
             $Temp = $CurItem.Split('=')
@@ -43,8 +43,8 @@ function Get-Assoc {
         if ($AsArray) {
             $ArrayOutput = $GetAssoc.GetEnumerator() | ForEach-Object {
                     new-object -TypeName psobject -Property ([ordered] @{
-                        Name = $_.Name
-                        Value = $_.Value
+                        Extension = $_.Name
+                        FType = $_.Value
                     })
                 }
                 Write-Output -InputObject $ArrayOutput

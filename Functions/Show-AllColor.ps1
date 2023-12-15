@@ -6,6 +6,8 @@ function Show-AllColor {
     Shows all console colors
 #>
 
+# todo rename to Show-ConsoleColor, function alias, update release notes
+
     [CmdletBinding(ConfirmImpact = 'None')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost', '')]
     Param ()

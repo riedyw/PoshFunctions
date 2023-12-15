@@ -1,12 +1,13 @@
-function Show-Color {
+function Get-ConsoleColor {
 <#
 .SYNOPSIS
-    Show-Color displays the names and values of the console colors
+    Get-ConsoleColor displays the names and values of the console colors
 .DESCRIPTION
-    Show-Color displays the names and values of the console colors
+    Get-ConsoleColor displays the names and values of the console colors
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
+    [alias('Show-Color')] #FunctionAlias
     Param ()
 
     begin {
@@ -15,7 +16,7 @@ function Show-Color {
 
     process {
         [Enum]::GetValues([System.ConsoleColor]) |
-            Select-Object -Property @{'Name' = 'Name'; 'Expression' = {$_}},
+            Select-Object -Property @{'Name' = 'Name'; 'Expression' = {$_.ToString()}},
                 @{'Name' = 'Dec'; 'Expression' = {[Int] $_}},
                 @{'Name' = 'Hex'; 'Expression' = {'0x{0:X1}' -f [Int] $_}}
     }
@@ -24,4 +25,4 @@ function Show-Color {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
 
-}
+} # EndFunction Get-ConsoleColor

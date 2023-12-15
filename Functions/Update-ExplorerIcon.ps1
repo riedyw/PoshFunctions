@@ -36,4 +36,6 @@ public static void Refresh()  {
     Add-Type -MemberDefinition $code -Namespace MyWinAPI -Name Explorer
     [MyWinAPI.Explorer]::Refresh()
 
+    RUNDLL32.EXE --% USER32.DLL,UpdatePerUserSystemParameters 1, True
+
 }

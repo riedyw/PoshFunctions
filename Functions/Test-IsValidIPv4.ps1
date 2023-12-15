@@ -24,7 +24,7 @@ function Test-IsValidIPv4 {
     #region Param
     [CmdletBinding(ConfirmImpact='None')]
     [Outputtype('bool')]
-    [alias('Test-IsValidIP')]
+    [alias('Test-IsValidIP')] #FunctionAlias
     Param (
         [parameter(ValueFromPipeLine, ValueFromPipeLineByPropertyName)]
         [Alias('IP')]

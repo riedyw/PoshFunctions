@@ -6,6 +6,8 @@ function Show-Month {
     Shows the months
 #>
 
+    # todo rename Get-AllMonth, function alias, update readme
+
     [CmdletBinding(ConfirmImpact='None')]
     Param ()
 

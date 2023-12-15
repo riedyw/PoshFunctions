@@ -36,7 +36,7 @@ function Get-SubnetMaskIPv4 {
 #>
 
     [CmdletBinding()]
-    [alias('Get-SubnetMaskIP')]
+    [alias('Get-SubnetMaskIP')] #FunctionAlias
     param(
         [Parameter(ValueFromPipeline,Mandatory,HelpMessage='Enter the length of the subnet mask (1-32). Press ENTER with no other input to finish.')]
         [Alias('NetworkLength','CIDR')]

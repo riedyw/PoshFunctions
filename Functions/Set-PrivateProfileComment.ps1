@@ -48,6 +48,7 @@ function Set-PrivateProfileComment {
 #>
 
     # todo Change += to System.Collections.Arraylist
+    # todo prevent success from returning a value of $true
 
     #region parameter
     [CmdletBinding(ConfirmImpact='Low')]

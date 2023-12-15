@@ -26,7 +26,7 @@ function ConvertFrom-Base64 {
 
     #region Parameter
     [CmdletBinding(ConfirmImpact='None')]
-    [alias('Base64Decode')]
+    [alias('Base64Decode')] #FunctionAlias
     Param(
         [Parameter(Position = 0, Mandatory, ValueFromPipeLine)]
         [string[]] $Base64,

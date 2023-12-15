@@ -6,6 +6,8 @@ function Show-ShortMonth {
     Shows short month
 #>
 
+# rename Get-ShortAllMonths, function alias, readme
+
     [CmdletBinding(ConfirmImpact='None')]
     Param ()
 

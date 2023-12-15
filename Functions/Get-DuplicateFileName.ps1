@@ -60,7 +60,7 @@ function Get-DuplicateFileName {
 #>
 
     [CmdletBinding(ConfirmImpact = 'None')]
-    [alias('Get-DupeFileName')]
+    [alias('Get-DupeFileName')] #FunctionAlias
     param(
         [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName)]
         [string] $Path = $pwd

@@ -28,7 +28,7 @@ function ConvertTo-Base64 {
 #>
 
     [CmdletBinding(ConfirmImpact = 'None')]
-    [alias('Base64Encode')]
+    [alias('Base64Encode')] #FunctionAlias
     param
     (
         [Parameter(ValueFromPipeline)]

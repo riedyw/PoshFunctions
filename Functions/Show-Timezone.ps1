@@ -6,6 +6,8 @@ Function Show-Timezone {
     Show timezone information
 #>
 
+# todo rename Get-AllTimezone, function alias, update readme
+
     [CmdletBinding(ConfirmImpact='None')]
     Param ()
 

@@ -52,8 +52,6 @@ function ConvertFrom-UTC {
     [System.TimeZoneInfo]
 #>
 
-    # todo - add Credential
-
     [CmdletBinding()]
     [OutputType('datetime')]
     param(

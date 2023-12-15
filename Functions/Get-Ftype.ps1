@@ -48,7 +48,7 @@ function Get-Ftype {
     }
 
     process {
-        $CmdReturn = (cmd.exe /c ftype)
+        $CmdReturn = (cmd.exe /d /c ftype)
         $GetFtype = ([ordered] @{})
         ForEach ($CurItem in $CmdReturn) {
             $Temp = $CurItem.Split('=')
@@ -57,8 +57,8 @@ function Get-Ftype {
         if ($AsArray) {
             $ArrayOutput = $GetFtype.GetEnumerator() | ForEach-Object {
                 new-object -TypeName psobject -Property ([ordered] @{
-                    Name = $_.Name
-                    Value = $_.Value
+                    FType = $_.Name
+                    Program = $_.Value
                 })
             }
             Write-Output -InputObject $ArrayOutput

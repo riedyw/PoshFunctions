@@ -73,4 +73,4 @@ filter Remove-BlankOrComment {
         }
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-}
+} # EndFunction Remove-BlankOrComment

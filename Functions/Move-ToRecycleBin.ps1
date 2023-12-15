@@ -28,7 +28,7 @@ function Move-ToRecycleBin {
 #>
 
     [CmdletBinding(ConfirmImpact = 'Medium')]
-    [alias('Recycle')]
+    [alias('Recycle')] #FunctionAlias
     param (
         [Parameter(Mandatory, HelpMessage='Please enter a path to a file or folder. Wildcards accepted.', ValueFromPipeline, ValueFromPipelineByPropertyName)]
         [string[]] $Path

@@ -32,7 +32,7 @@ function Invoke-Beep {
 #>
 
     [CmdletBinding(DefaultParameterSetName = 'Default')]
-    [Alias('Beep')]
+    [Alias('Beep')] #FunctionAlias
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
     param(
         [Parameter(ParameterSetName = 'Default')]

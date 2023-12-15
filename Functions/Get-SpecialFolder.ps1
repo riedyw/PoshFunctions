@@ -26,7 +26,7 @@ function Get-SpecialFolder {
 #>
 
     [CmdletBinding(ConfirmImpact = 'None')]
-    [alias('Show-SpecialFolder')]
+    [alias('Show-SpecialFolder')] #FunctionAlias
     Param (
         [ValidateSet( 'AdminTools', 'ApplicationData', 'CDBurning',
             'CommonAdminTools', 'CommonApplicationData', 'CommonDesktopDirectory',

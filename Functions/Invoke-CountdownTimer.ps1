@@ -48,7 +48,7 @@ function Invoke-CountdownTimer {
 #>
 
     [CmdletBinding(DefaultParameterSetName = 'Seconds', ConfirmImpact = 'None')]
-    [alias('CountdownTimer')]
+    [alias('CountdownTimer')] #FunctionAlias
     param (
         [Parameter(Position = 0, ParameterSetName = 'Seconds')]
         [ValidateRange(10, 1800)]

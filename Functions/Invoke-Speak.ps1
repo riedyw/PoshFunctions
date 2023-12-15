@@ -22,7 +22,7 @@ function Invoke-Speak {
     # todo Change += to System.Collections.Arraylist
 
     [CmdletBinding()]
-    [Alias('Speak')]
+    [Alias('Speak')] #FunctionAlias
     param(
         [Parameter (Mandatory, HelpMessage = 'Please enter an expression you wish to be spoken', ValueFromPipeline, Position = 0)]
         [Alias('Text')]

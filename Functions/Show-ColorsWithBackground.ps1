@@ -6,9 +6,12 @@ function Show-ColorsWithBackground {
             Show-ColorsWithBackground displays all combinations of foreground/background of the console colors.
             .NOTES
             Uses Write-Host to display colors and as such does not use the pipeline.
+            Formatted output
             .LINK
             Write-Host
     #>
+
+    # todo rename to Show-ConsoleColorWithBackground, update readme
 
     [CmdletBinding(ConfirmImpact='None')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost','')]
@@ -25,7 +28,7 @@ function Show-ColorsWithBackground {
         foreach ( $bgcolor in $bgcolors ) {
             Write-Host ("{0,2}{1,$max}" -f [int] $bgcolor, $bgcolor) -NoNewline
             foreach ($color in $colors) {
-                Write-Host ("{0,$max}" -f ,$color) -NoNewline -BackgroundColor $bgcolor -ForegroundColor $color
+                Write-Host (" {0}" -f ,$color) -NoNewline -BackgroundColor $bgcolor -ForegroundColor $color
                 #if ($color -eq "Gray") { write-host " " ; write-host "  " -NoNewLine}
             }
             Write-Host ' '

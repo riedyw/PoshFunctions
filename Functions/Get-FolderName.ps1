@@ -25,7 +25,7 @@ function Get-FolderName {
 #>
 
     [CmdletBinding(ConfirmImpact = 'None')]
-    [alias('Get-Folder')]
+    [alias('Get-Folder')] #FunctionAlias
     [OutputType([string[]])]
     Param(
         [Alias('InitialDirectory', 'RootFolder')]

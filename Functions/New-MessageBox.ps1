@@ -72,6 +72,8 @@ function New-MessageBox {
     No      =  7
 .LINK
     Wscript.Shell
+.NOTES
+    Fixed issue with -AsString and a timeout not reporting correctly.
 #>
 
     #region Parameters
@@ -179,7 +181,7 @@ function New-MessageBox {
                         Write-Verbose -Message "User pressed [$($returnkey[$return])]"
                     }
                     if ($AsString) {
-                        $ReturnKey[$return]
+                        $ReturnKey.$return
                     } else {
                         $return
                     }
@@ -196,7 +198,7 @@ function New-MessageBox {
                     $Return = ($MessageBox::Show($Message, $Title, $ButtonsKey[$Buttons], $Iconkey[$Icon], $DefaultButton)).Value__
                     Write-Verbose -Message "User pressed [$($returnkey[$return])]"
                     if ($AsString) {
-                        $ReturnKey[$return]
+                        $ReturnKey.$return
                     } else {
                         $return
                     }

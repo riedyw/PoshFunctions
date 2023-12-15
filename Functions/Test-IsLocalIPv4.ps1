@@ -44,7 +44,7 @@ function Test-IsLocalIPv4 {
 
     #region parameter
     [CmdletBinding(ConfirmImpact = 'Low')]
-    [alias('Test-IsLocalIP')]
+    [alias('Test-IsLocalIP')] #FunctionAlias
     param
     (
         [Parameter(Mandatory, ValueFromPipeline, ValueFromPipelineByPropertyName)]

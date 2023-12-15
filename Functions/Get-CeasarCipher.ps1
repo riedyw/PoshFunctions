@@ -37,7 +37,7 @@ function Get-CeasarCipher {
 #>
 
     [CmdletBinding()]
-    [alias('Convert-ROT13')]
+    [alias('Convert-ROT13')] #FunctionAlias
 
     Param
     (

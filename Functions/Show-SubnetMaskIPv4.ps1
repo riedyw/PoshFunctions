@@ -6,10 +6,10 @@ function Show-SubnetMaskIPv4 {
     Show IPv4 subnet masks. Function aliased to 'Show-SubnetMaskIP'
 #>
 
-
+# todo rename Get-AllSubnetMaskIPv4, function alias, update readme
 
     [CmdletBinding(ConfirmImpact='None')]
-    [alias('Show-SubnetMaskIP')]
+    [alias('Show-SubnetMaskIP')] #FunctionAlias
     Param ()
 
     begin {

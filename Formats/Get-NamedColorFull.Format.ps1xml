@@ -1,0 +1,110 @@
+<!--
+This file was created using the New-PSFormatXML command that is part
+of the PSScriptTools module.
+
+https://github.com/jdhitsolutions/PSScriptTools
+-->
+<Configuration>
+  <ViewDefinitions>
+    <View>
+      <Name>default</Name>
+      <ViewSelectedBy>
+        <TypeName>PFNamedColorFull</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+            <Label>Name</Label>
+            <Width>25</Width>
+            <Alignment>Left</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>IsKnownColor</Label>
+            <Width>15</Width>
+            <Alignment>Left</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>IsNamedColor</Label>
+            <Width>15</Width>
+            <Alignment>Left</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>IsSystemColor</Label>
+            <Width>16</Width>
+            <Alignment>Left</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>IsEmpty</Label>
+            <Width>10</Width>
+            <Alignment>Left</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>A</Label>
+            <Width>6</Width>
+            <Alignment>Right</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>R</Label>
+            <Width>6</Width>
+            <Alignment>Right</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>G</Label>
+            <Width>6</Width>
+            <Alignment>Right</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>B</Label>
+            <Width>5</Width>
+            <Alignment>Right</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Hex</Label>
+            <Width>9</Width>
+            <Alignment>Left</Alignment>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <!--
+            By default the entries use property names, but you can replace them with scriptblocks.
+            <ScriptBlock>$_.foo /1mb -as [int]</ScriptBlock>
+-->
+              <TableColumnItem>
+                <PropertyName>Name</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>IsKnownColor</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>IsNamedColor</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>IsSystemColor</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>IsEmpty</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>A</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>R</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>G</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>B</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Hex</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+  </ViewDefinitions>
+</Configuration>

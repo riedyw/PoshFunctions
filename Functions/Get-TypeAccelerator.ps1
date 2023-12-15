@@ -30,7 +30,7 @@ function Get-TypeAccelerator {
     # todo Change += to System.Collections.Arraylist
 
     [CmdletBinding(ConfirmImpact = 'None')]
-    [alias('Show-TypeAccelerator')]
+    [alias('Show-TypeAccelerator')] #FunctionAlias
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
     Param (
         [string] $MatchString = ''

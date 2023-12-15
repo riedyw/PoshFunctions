@@ -83,6 +83,8 @@ function New-Shortcut {
         + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,New-Shortcut
 #>
 
+# todo support for relative path
+
     #region Parameters
     [CmdletBinding(SupportsShouldProcess)]
     [OutputType('psobject')]
@@ -127,16 +129,17 @@ function New-Shortcut {
     }
 
     process {
-        If (!($Path -match '^.*(\.lnk)$')) {
+        If (-not ($Path -match '^.*(\.lnk)$')) {
             $Path = "$Path`.lnk"
         }
+        $Path = Resolve-PathForce -Path $Path
         [System.IO.FileInfo] $Path = $Path
         $ShouldMessage = "WHATIF: Would create SHORTCUT [$($path.fullname)] ARGUMENTS [$($Arguments)] DESCRIPTION [$($Description)] HOTKEY [$($HotKey)]`nWORKDIR [$($WorkDir)] WINDOWSTYLE [$($WindowStyle)] ICON [$($IconLocation)]"
         if ($PSCmdlet.ShouldProcess($ShouldMessage))
         {
             try {
-                If (!(Test-Path -Path $Path.DirectoryName)) {
-                    $null = mkdir -Path $Path.DirectoryName -ErrorAction Stop
+                If (-not (Test-Path -Path $Path.DirectoryName)) {
+                    $null = mkdir -Path $Path.DirectoryName -ErrorAction Stop -Force
                 }
             } catch {
                 Write-Error -Message "Unable to create [$($Path.DirectoryName)], shortcut cannot be created"

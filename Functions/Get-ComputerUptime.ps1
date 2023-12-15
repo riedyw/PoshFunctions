@@ -53,7 +53,7 @@ function Get-ComputerUptime {
 
     #region Parameter
     [CmdletBinding(ConfirmImpact = 'Low')]
-    [alias('Get-LastReboot')]
+    [alias('Get-LastReboot')] #FunctionAlias
     [OutputType('psobject')]
     Param(
         [switch] $Since,

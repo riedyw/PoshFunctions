@@ -44,7 +44,7 @@ True,False,True AND       False
 
     [CmdletBinding(DefaultParameterSetName = 'And')]
     [OutputType('bool')]
-    [alias('Test-MultiBool')]
+    [alias('Test-MultiBool')] #FunctionAlias
     param(
         [Parameter(Mandatory, ValueFromPipeline, ParameterSetName = 'And')]
         [Parameter(Mandatory, ValueFromPipeline, ParameterSetName = 'Or')]

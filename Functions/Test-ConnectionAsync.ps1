@@ -166,4 +166,4 @@ function Test-ConnectionAsync {
         }
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-}
+} # EndFunction Test-ConnectionAsync

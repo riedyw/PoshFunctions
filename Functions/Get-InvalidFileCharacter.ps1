@@ -40,7 +40,7 @@ function Get-InvalidFileCharacter {
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
-    [alias('Show-InvalidFileCharacter')]
+    [alias('Show-InvalidFileCharacter')] #FunctionAlias
     [OutputType([char[]])]
     Param (
         [switch] $IncludeValues,

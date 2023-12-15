@@ -84,7 +84,7 @@ function Merge-Object ([String[]]$Property = @()) {
     # todo Change += to System.Collections.Arraylist
 
     [cmdletbinding()]
-    [alias('Union-Object')]
+    [alias('Union-Object')] #FunctionAlias
 
     $Objects = $Input | ForEach-Object {$_}
     if (-not $Property) {

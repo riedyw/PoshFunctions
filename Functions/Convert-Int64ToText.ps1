@@ -28,8 +28,9 @@ function Convert-Int64ToText {
        723 Seven Hundred Twenty Three
       4560 Four Thousand Five Hundred Sixty
 #>
+
     [cmdletbinding()]
-    [alias('Convert-IntToText')]
+    [alias('Convert-IntToText')] #FunctionAlias
     param (
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [int64[]] $Number,
@@ -103,4 +104,4 @@ public class PFNum2Word
     end {
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"
     }
-}
+} # EndFunction Convert-Int64ToText

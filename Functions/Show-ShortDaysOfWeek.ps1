@@ -6,6 +6,8 @@ function Show-ShortDaysOfWeek {
     Show short days of the week
 #>
 
+# todo rename Get-ShortDaysOfWeek, function alias, update readme
+
     [CmdletBinding(ConfirmImpact='None')]
     Param ()
 

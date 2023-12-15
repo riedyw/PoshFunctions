@@ -50,6 +50,8 @@ function Show-FileAttribute {
     [string[]]
 #>
 
+# todo rename to Get-FileAttribute, function alias, update readme
+
     [CmdletBinding(ConfirmImpact='None')]
     [OutputType([string[]])]
     Param (

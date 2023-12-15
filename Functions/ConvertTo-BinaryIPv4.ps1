@@ -46,7 +46,7 @@ function ConvertTo-BinaryIPv4 {
     #region Parameter
 
     [CmdletBinding(ConfirmImpact = 'None')]
-    [alias('ConvertTo-BinaryIP')]
+    [alias('ConvertTo-BinaryIP')] #FunctionAlias
     [OutputType('PsObject')]
     param(
         [Parameter(Mandatory,HelpMessage='Enter an IPv4 address', Position = 0, ValueFromPipeline)]

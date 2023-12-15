@@ -23,7 +23,7 @@ function ConvertTo-UrlEncode {
 #>
 
     [CmdletBinding()]
-    [alias('UrlEncode')]
+    [alias('UrlEncode')] #FunctionAlias
     param(
         [Parameter(ValueFromPipeline)]
         [string[]] $URL,

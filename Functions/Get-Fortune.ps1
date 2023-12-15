@@ -31,7 +31,7 @@ function Get-Fortune {
 
     #region Parameter
     [CmdletBinding(ConfirmImpact='None')]
-    [alias('Fortune')]
+    [alias('Fortune')] #FunctionAlias
     [OutputType('string')]
     Param(
         [Alias('FileName', 'Fortune')]

@@ -30,7 +30,7 @@ function Set-SpeakerVolume {
 
     [CmdletBinding(DefaultParameterSetName = 'Volume', ConfirmImpact = 'Low')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '')]
-    [alias('Set-Speaker')]
+    [alias('Set-Speaker')] #FunctionAlias
     Param(
         [Parameter(ParameterSetName = 'Volume', ValueFromPipeline, HelpMessage = 'Enter the speaker volume from 0-100')]
         [ValidateRange(0, 100)]

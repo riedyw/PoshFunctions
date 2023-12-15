@@ -30,7 +30,7 @@ Function Format-ReverseString {
 #>
 
     [CmdletBinding(ConfirmImpact='None')]
-    [alias('ReverseString')]
+    [alias('ReverseString')] #FunctionAlias
     [OutputType('string')]
     param(
         [Parameter(Mandatory, HelpMessage='Enter a string you wish to be reversed',Position=0,ValueFromPipeline)]

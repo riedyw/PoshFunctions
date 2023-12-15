@@ -48,8 +48,6 @@ function Write-StringHash {
     [string[]]
 #>
 
-    # todo Change += to System.Collections.Arraylist
-
     #region Parameter
     [CmdletBinding(ConfirmImpact = 'None')]
     [OutputType('string')]
@@ -67,7 +65,6 @@ function Write-StringHash {
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
-        $ReturnVal = @()
         $ReturnVal = [System.Collections.ArrayList]::new()
         if (-not (($Hash -is [System.Collections.Hashtable]) -or
             ($Hash -is [System.Collections.Specialized.OrderedDictionary])))

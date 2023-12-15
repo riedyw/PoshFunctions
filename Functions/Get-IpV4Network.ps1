@@ -1,42 +1,36 @@
 function Get-IpV4Network {
-    <#
-    .SYNOPSIS
-        Given a subnet in CIDR format, get all of the valid IP addresses in that range.
-    .DESCRIPTION
-        Given a subnet in CIDR format, get all of the valid IP addresses in that range.
-    .PARAMETER Subnets
-        The subnet written in CIDR format 'a.b.c.d/#' and an example would be '192.168.1.24/27'. Can be a single value, an
-        array of values, or values can be taken from the pipeline.
-    .EXAMPLE
-        Get-IpRange -Subnets '192.168.1.24/30'
+<#
+.SYNOPSIS
+    Determine the IPv4 network given an ip address and a subnet mask
+.DESCRIPTION
+    Determine the IPv4 network given an ip address and a subnet mask
+.PARAMETER IpAddress
+    An IP address (or array of addresses) that you want to determine the network of
+.PARAMETER SubnetMask
+    An IP subnet mask. Defaults to: '255.255.255.0'
+.PARAMETER IncludeInput
+    Switch to determine if you want the input as part of the output
+.EXAMPLE
+    Get-IpV4Network -IpAddress 10.10.10.200 -SubnetMask 255.255.255.128
 
-        192.168.1.25
-        192.168.1.26
-    .EXAMPLE
-        (Get-IpRange -Subnets '10.100.10.0/24').count
+    10.10.10.128
+.EXAMPLE
+    Get-IpV4Network -IpAddress 10.10.10.200, 192.168.1.32 -SubnetMask 255.255.255.0 -IncludeInput
 
-        254
-    .EXAMPLE
-        '192.168.1.128/30' | Get-IpRange
-
-        192.168.1.129
-        192.168.1.130
-    .NOTES
-        Inspired by https://gallery.technet.microsoft.com/PowerShell-Subnet-db45ec74
-
-        * Added comment help
-    #>
-
-        # todo Change += to System.Collections.Arraylist
+    IpAddress    SubnetMask    Network
+    ---------    ----------    -------
+    10.10.10.200 255.255.255.0 10.10.10.0
+    192.168.1.32 255.255.255.0 192.168.1.0
+#>
 
         [CmdletBinding(ConfirmImpact = 'None')]
         Param(
-            [Parameter(Mandatory, HelpMessage = 'Please enter a subnet in the form a.b.c.d/#', ValueFromPipeline, Position = 0)]
+            [Parameter(Mandatory, HelpMessage = 'Please enter an IpAddress in the form a.b.c.d', ValueFromPipeline, Position = 0)]
             [alias('Address')]
             [ipaddress[]] $IpAddress,
 
             [alias('Sn')]
-            [ipaddress] $SubnetMask,
+            [ipaddress] $SubnetMask = '255.255.255.0',
 
             [switch] $IncludeInput
         )

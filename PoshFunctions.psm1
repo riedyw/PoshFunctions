@@ -2,10 +2,10 @@
 # Author: Bill Riedy
 
 Add-Type -AssemblyName Microsoft.VisualBasic
+Add-Type -AssemblyName PresentationFramework
 Add-Type -AssemblyName System.Drawing
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Web
-
 
 $Script:ModulePath = Split-Path -Parent -Path $MyInvocation.MyCommand.Path
 
@@ -15,7 +15,7 @@ $Functions | ForEach-Object { . $_.FullName }
 
 $Script:WordList = Get-Content -Path $PSScriptRoot\Resources\WordList.txt -ReadCount 0
 $Script:WordListFull = Get-Content -Path $PSScriptRoot\Resources\words_alpha.txt -ReadCount 0
-$Script:FortuneFile = "$ModulePath\Resources\Wisdom.txt"
+$Script:FortuneFile = Join-Path -Path $ModulePath -ChildPath 'Resources\Wisdom.txt'
 $Script:Stopwatch = [System.Diagnostics.Stopwatch]::New()
 
 # inspired by: http://powershell-scripting.com/index.php?option=com_joomlaboard&Itemid=76&func=view&view=threaded&id=24376&catid=5

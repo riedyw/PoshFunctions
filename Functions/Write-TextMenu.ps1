@@ -92,16 +92,23 @@ while ($Choice -ne 'q') {
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         $Result = [System.Collections.ArrayList]::new()
+        $tmpOption = [System.Collections.ArrayList]::new()
     }
 
     process {
+        foreach ($curOption in $Option) {
+            $null = $tmpOption.Add($curOption)
+        }
+    }
+
+    end {
         $null = $Result.Add("`$$VariableName = ''")
         $null = $Result.Add("while (`$$VariableName -ne 'q') {")
         $null = $Result.Add("    Write-Host '$title'")
         $null = $Result.Add("    Write-Host '$('='*$title.length)'")
         $null = $Result.Add("    Write-Host ' '")
-        for ($i = 0; $i -lt $option.count; $i++) {
-            $null = $Result.Add("    Write-Host '$($i+1) - $($option[$i])'")
+        for ($i = 0; $i -lt $tmpOption.count; $i++) {
+            $null = $Result.Add("    Write-Host '$($i+1) - $($tmpOption[$i])'")
         }
         $null = $Result.Add("    Write-Host 'Q - Quit'")
         $null = $Result.Add("    Write-Host ' '")
@@ -109,19 +116,14 @@ while ($Choice -ne 'q') {
         $null = $Result.Add("    switch (`$$VariableName) {")
         $null = $Result.Add("        q { 'Exit message and code' }")
         #$Result += "             break }"
-        for ($i = 0; $i -lt $option.count; $i++) {
+        for ($i = 0; $i -lt $tmpOption.count; $i++) {
             $null = $Result.Add("        $($i+1) { 'Option $($i+1) code' }")
         }
         $null = $Result.Add("        default { Write-Host 'Please enter a valid selection' }")
         $null = $Result.Add('    }')
         $null = $Result.Add('}')
-    }
-
-    end {
         if ($TestMenu) {
-            $tempFilename = New-TemporaryFile
-            Remove-Item -Path $tempFilename
-            $tempFilename = $tempFilename.Directory.ToString() + '\' + $tempFilename.BaseName + '.ps1'
+            $tempFilename = Join-Path -Path $env:TEMP -ChildPath 'TestMenu.ps1'
             $Result | Out-File -FilePath $tempFilename
             & $tempFilename
             Remove-Item -Path $tempFilename
