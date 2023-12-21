@@ -3,7 +3,7 @@ function Get-AutoRun.inf {
     param (
         [ValidateScript({
             if ($_ -notmatch '^[a-z]:') {
-                throw 'Path specified must begin with a drive letter followed by a colon (ex. X:)'
+                throw 'ERROR: Path specified must begin with a drive letter followed by a colon (ex. X:)'
                 $false
             } else {
                 $true
@@ -24,7 +24,7 @@ function Get-AutoRun.inf {
     process {
         $AutoRun_inf = Join-Path -Path $DriveLetter -ChildPath 'AutoRun.inf'
         if (-not (Test-Path -Path $AutoRun_inf)) {
-            throw "No AutoRun.inf found on [$DriveLetter]."
+            throw "ERROR: No AutoRun.inf found on [$DriveLetter]."
             break
         }
         $Label = Get-PrivateProfileString -File $AutoRun_inf -Section 'AutoRun' -Key 'Label'

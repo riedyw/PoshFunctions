@@ -31,7 +31,7 @@ function New-ScreenShot {
             } else {
                 if (! (Test-Path -Path $folder)) {
                     #write a custom error message for v3
-                    throw "Can't verify that $folder exists."
+                    throw "ERROR: Can't verify that [$folder] exists."
                 } else {
                     $true
                 }

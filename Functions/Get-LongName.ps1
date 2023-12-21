@@ -54,7 +54,7 @@ function Get-LongName {
                 if ($_ -notmatch '[\?\*]') {
                     $true
                 } else {
-                    throw 'Wildcard characters *, ? are not acceptable with -LiteralPath'
+                    throw 'ERROR: Wildcard characters *, ? are not acceptable with -LiteralPath'
                 }
             })]
         [string[]] $LiteralPath,

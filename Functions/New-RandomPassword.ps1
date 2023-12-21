@@ -22,6 +22,10 @@ function New-RandomPassword {
     Switch to use web algorithm. ParameterSetName: Web
 .PARAMETER FullWordList
     Switch to use full word list of 370,103 words vs. 38,000 words
+.PARAMETER NumeralCount
+    Integer representing the number of digits. Valid range 1-2, default is 1
+.PARAMETER SymbolCount
+    Integer representing the number of symbol characters. Valid range 1-2, default is 1
 .EXAMPLE
     New-RandomPassword -Web
 .EXAMPLE
@@ -32,6 +36,10 @@ function New-RandomPassword {
     New-RandomPassword -MinLength 16 -AvoidSimilar -Web
 .EXAMPLE
     New-RandomPassword -MinLength 16 -MaxLength 20 -Readable -AvoidSimilar
+.EXAMPLE
+    New-RandomPassword -MinLength 16 -Readable -NumeralCount 2 -SymbolCount 2 
+
+    Tonics39Sue@Joy(
 .NOTES
     Changes:
 
@@ -42,6 +50,7 @@ function New-RandomPassword {
     Updated help comments
     DefaultParameterSetName is 'ReadableTitleCase'
     Added 'Q' to similar regex given closeness to 'O'
+    Added NumeralCount and SymbolCount to increase complexity
 #>
 
     #region parameter
@@ -86,7 +95,17 @@ function New-RandomPassword {
 
         [Parameter(ParameterSetName = 'ReadableTitleCase')]
         [Parameter(ParameterSetName = 'ReadableRandomCase')]
-        [switch] $FullWordList
+        [switch] $FullWordList,
+
+        [Parameter(ParameterSetName = 'ReadableTitleCase')]
+        [Parameter(ParameterSetName = 'ReadableRandomCase')]
+        [ValidateRange(1,3)]
+        [int] $NumeralCount = 1,
+
+        [Parameter(ParameterSetName = 'ReadableTitleCase')]
+        [Parameter(ParameterSetName = 'ReadableRandomCase')]
+        [ValidateRange(1,3)]
+        [int] $SymbolCount = 1
     )
     #endregion parameter
 
@@ -143,43 +162,27 @@ function New-RandomPassword {
                 } until (($ReturnVal.Length -ge $MinLength) -and ($ReturnVal.Length -le $MaxLength))
                 $ReturnVal
             }
-            'ReadableTitleCase' {
+            default {
                 do {
                     if (-not $AvoidSimilar) {
-                        $RandomSymbol = $Symbol.Char | Get-Random -Verbose:$false
-                        $RandomDigit = 0..9 | Get-Random -Verbose:$false
+                        [array] $RandomSymbol = 1..$SymbolCount | foreach-object { $Symbol.Char | Get-Random -Verbose:$false }
+                        [array] $RandomDigit = 1..$NumeralCount | foreach-object { 0..9 | Get-Random -Verbose:$false }
                         $curWords = Get-Random -Minimum $MinWords -Maximum ($MaxWords + 1) -Verbose:$false
                         Write-Verbose -Message "Symbol [$RandomSymbol] Digit [$RandomDigit]"
-                        $ReturnVal = ( @(($Sample | Get-Random -Count $curWords -Verbose:$false), $RandomDigit, $RandomSymbol) | Get-Random -Count ($curWords + 2)) -join ''
+                        $ReturnVal = (($Sample | Get-Random -Count $curWords -Verbose:$false) + $RandomDigit + $RandomSymbol |
+                            Get-Random -Count ($curWords + $SymbolCount + $NumeralCount)) -join ''
                     } else {
-                        $RandomSymbol = $Symbol.Char | Where-Object { -not ($_ -cmatch $SimilarRegex) } | Get-Random -Verbose:$false
-                        $RandomDigit = 0..9 | Where-Object { -not ($_ -cmatch $SimilarRegex) } | Get-Random -Verbose:$false
+                        [array] $RandomSymbol = 1..$SymbolCount | foreach-object { $Symbol.Char | Where-Object { -not ($_ -cmatch $SimilarRegex) } | Get-Random -Verbose:$false }
+                        [array] $RandomDigit = 1..$NumeralCount | foreach-object { 0..9 | Where-Object { -not ($_ -cmatch $SimilarRegex) } | Get-Random -Verbose:$false }
                         $curWords = Get-Random -Minimum $MinWords -Maximum ($MaxWords + 1) -Verbose:$false
                         $Sample = $Sample | Where-Object { -not ($_ -cmatch $SimilarRegex) }
-                        $ReturnVal = ( @(($Sample | Get-Random -Count $curWords -Verbose:$false), $RandomDigit, $RandomSymbol) | Get-Random -Count ($curWords + 2)) -join ''
+                        $ReturnVal = (($Sample | Get-Random -Count $curWords -Verbose:$false) + $RandomDigit + $RandomSymbol |
+                            Get-Random -Count ($curWords + $SymbolCount + $NumeralCount)) -join ''
                     }
                 } until (($ReturnVal.Length -ge $MinLength) -and ($ReturnVal.Length -le $MaxLength))
                 $ReturnVal
             }
-            'ReadableRandomCase' {
-                do {
-                    if (-not $AvoidSimilar) {
-                        $RandomSymbol = $Symbol.Char | Get-Random -Verbose:$false
-                        $RandomDigit = 0..9 | Get-Random -Verbose:$false
-                        $curWords = Get-Random -Minimum $MinWords -Maximum ($MaxWords + 1) -Verbose:$false
-                        Write-Verbose -Message "Symbol [$RandomSymbol] Digit [$RandomDigit]"
-                        $ReturnVal = ( @(($Sample | Get-Random -Count $curWords -Verbose:$false), $RandomDigit, $RandomSymbol) | Get-Random -Count ($curWords + 2)) -join ''
-                    } else {
-                        $RandomSymbol = $Symbol.Char | Where-Object { -not ($_ -cmatch $SimilarRegex) } | Get-Random -Verbose:$false
-                        $RandomDigit = 0..9 | Where-Object { -not ($_ -cmatch $SimilarRegex) } | Get-Random -Verbose:$false
-                        $curWords = Get-Random -Minimum $MinWords -Maximum ($MaxWords + 1) -Verbose:$false
-                        $Sample = $Sample | Where-Object { -not ($_ -cmatch $SimilarRegex) }
-                        $ReturnVal = ( @(($Sample | Get-Random -Count $curWords -Verbose:$false), $RandomDigit, $RandomSymbol) | Get-Random -Count ($curWords + 2)) -join ''
-                    }
-                } until (($ReturnVal.Length -ge $MinLength) -and ($ReturnVal.Length -le $MaxLength))
-                $ReturnVal
-            }
-        }
+         }
     }
 
     end {

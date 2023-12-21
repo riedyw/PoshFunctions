@@ -125,7 +125,7 @@ function Get-RegExpandString {
                 Write-Verbose -Message "Open remote subkey: [$Key]"
                 $subKey = $reg.OpenSubKey($Key)
                 if (!$subKey) {
-                    Throw "Key '$Key' doesn't exist."
+                    throw "ERROR: Key [$Key] doesn't exist."
                 }
                 if ($ExpandEnvironmentNames) {
                     Write-Verbose -Message 'Parameter [ExpandEnvironmentNames] is present, expanding value of environment strings.'

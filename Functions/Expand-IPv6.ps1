@@ -70,7 +70,7 @@ function Expand-IPV6 {
             }
             # If we didnt find a double colon and the count isn't 7, then throw an exception
             if ($loc -lt 0 -and $count -ne 7) {
-                throw 'Invalid IPv6 Address'
+                throw 'ERROR: Invalid IPv6 Address'
             }
             # Add in any missing colons if we had a double
             $cleaned = $curIPv6

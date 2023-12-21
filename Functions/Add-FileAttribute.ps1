@@ -7,7 +7,7 @@ function Add-FileAttribute {
             if (Test-MultipleBool -Bool ($_ | Foreach-Object { Test-Path -Path $_ }) -TestAnd) {
                 $true
             } else {
-                throw 'File(s) specified must exist'
+                throw 'ERROR: File(s) specified must exist'
             }
         })]
         [string[]] $Path,
@@ -17,7 +17,7 @@ function Add-FileAttribute {
             if (Test-MultipleBool -Bool ($_ | Foreach-Object { $_ -in @('ReadOnly', 'Hidden', 'System', 'Archive') }) -TestAnd) {
                 $true
             } else {
-                throw 'The only valid options are: [ReadOnly, Hidden, System, Archive]'
+                throw 'ERROR: The only valid options are: [ReadOnly, Hidden, System, Archive]'
             }
         })]
         [string[]] $FileAttribute

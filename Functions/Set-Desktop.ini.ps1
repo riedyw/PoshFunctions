@@ -8,7 +8,7 @@ function Set-Desktop.ini {
 
         [ValidateScript({
             if ($_.Length -gt 32) {
-                throw 'Maximum length for -InfoTip is 32 characters'
+                throw 'ERROR: Maximum length for -InfoTip is 32 characters'
                 $false
             } else {
                 $true
@@ -20,7 +20,7 @@ function Set-Desktop.ini {
             if (Test-Path $_) {
                 $true
             } else {
-                throw "Icon specified [$_] does not exist."
+                throw "ERROR: Icon specified [$_] does not exist."
                 $false
             }
         })]

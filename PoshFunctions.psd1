@@ -132,7 +132,7 @@
         'Move-ToRecycleBin', 'New-ColorPicker', 'New-Credential', 'New-DatePicker',
         'New-FontPicker', 'New-InputBox', 'New-InputBoxSecureString', 'New-MessageBox',
         'New-PFDateFormat', 'New-QR', 'New-RandomPassword', 'New-Screenshot',
-        'New-Shortcut', 'Optimize-SqlIndexFragmentation',
+        'New-Shortcut', 'New-VirtualHardDisk', 'Optimize-SqlIndexFragmentation',
         'Optimize-SqlStoredProcedure', 'Out-PDFToPrinter', 'Read-HostWithDefault',
         'Remove-BlankOrComment', 'Remove-EmptyProperty', 'Remove-FileAttribute',
         'Remove-QuotesFromCsv', 'Remove-TeamsCache', 'Remove-Trailing',
@@ -232,17 +232,20 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * added format files for result sets containing more than 4 columns
 * added Add-FileAttribute - to manipulate 'ReadOnly', 'Hidden', 'System', 'Archive' file attributes
 * added Get-AutoRun.inf - to get the values from the hidden/system file found at the root of a drive letter: icon and label
-* added Set-AutoRun.inf - to set the values from the hidden/system file found at the root of a drive letter: icon and label
 * added Get-Desktop.ini - to get the values from the hidden/system file found in a folder: folder type, infotip (hover info), icon
-* added Set-Desktop.ini - to set the values from the hidden/system file found in a folder: folder type, infotip (hover info), icon
 * added Get-RebootHistory - to return a history of reboots, includes custom type for formatting
+* added New-VirtualHardDisk - to create local .vhd, need to run at elevated prompt
+* added Initialize-VirtualHardDisk - to initialize and format a local vhd
 * added Remove-FileAttribute - to manipulate 'ReadOnly', 'Hidden', 'System', 'Archive' file attributes
 * added Resolve-PathForce - returns explicit path to single file/folder even if it doesn't exist
+* added Set-AutoRun.inf - to set the values from the hidden/system file found at the root of a drive letter: icon and label
+* added Set-Desktop.ini - to set the values from the hidden/system file found in a folder: folder type, infotip (hover info), icon
 * added Set-FileAttribute - to manipulate 'ReadOnly', 'Hidden', 'System', 'Archive' file attributes
-* renamed Get-NamedColor - from original name Show-NamedColor to be more in line with PowerShell standards, added -Full parameter and formatting
 * renamed Get-FsRight - from original Show-FsRight, provided alias as Show-FsRight, changed += to ArrayList, left justify name
+* renamed Get-NamedColor - from original name Show-NamedColor to be more in line with PowerShell standards, added -Full parameter and formatting
 * updated Convert-HexToRGB - changed delimiter from ',' to ', ' so exports to CSV are read properly by Excel
 * updated ConvertFrom-FsRight - changed reference from Show-FsRight to Get-FsRight
+* updated Expand-IPv6 - added 'ERROR: ' to beginning of throw statement
 * updated Export-FontSample - changed to use System.Collections.Arraylist, default $Path to (Join-Path -Path $env:TEMP -ChildPath 'FontSample.htm'), no longer HTML tokenizing -Text
 * updated Get-Assoc - added /d argument to cmd.exe to bypass any AutoRun setting in registry
 * updated Get-ConsoleColor - alignment was right justified, fixed by converting color enum ToString()
@@ -250,10 +253,15 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * updated Get-ExecutableForFile - to resolve path names to explicit path if passed a relative one
 * updated Get-FType - added /d argument to cmd.exe to bypass any AutoRun setting in registry
 * updated Get-IPv4Network - corrected comment help, set default for subnet mask
+* updated Get-LongName - added 'ERROR: ' to beginning of throw statement
 * updated Get-PrintableAscii - to use custom type for formatting
+* updated Get-RegExpandString - added 'ERROR: ' to beginning of throw statement
+* updated Get-ShortName - added 'ERROR: ' to beginning of throw statement
 * updated Get-VssAdminListWriters - to use custom type for formatting
 * updated Get-WordCount - changed property names, sorted by frequency descending, then word ascending
 * updated New-MessageBox - fixed issue with -AsString and a timeout not reporting correctly
+* updated New-RandomPassword - added NumeralCount and SymbolCount parameters to increase complexity
+* updated New-Screenshot - added 'ERROR: ' to beginning of throw statement
 * updated New-Shortcut - resolved path to .lnk as it must be explicit path, used resolve-pathforce to resolve non-existent file
 * updated Set-PrivateProfileComment - ???? # todo
 * updated Write-StringHash - change += to System.Collections.Arraylist for $ReturnVal
@@ -276,73 +284,10 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * updated Get-CaesarCipher - to allow negative rotation
 * updated Get-FileEncoding - allow processing of multiple files, output now shows both encoding and fullname of file
 * updated Get-PrivateProfileSection - fixed error when ini value contains a backslash '\'
-* updated Get-SqlIndexFragmentation - fixed ???
-* updated Invoke-Beep - fixed ???
+* updated Get-SqlIndexFragmentation - removed indentation on SQL here string
+* updated Invoke-Beep - added Start-Sleep in -StarWars section
 * updated Invoke-SoundPlayer - performed a .Dispose() as part of cleanup
 * updated New-InputBoxSecureString - correct equality test to be case sensitive
-
-### 2.2.9
-* added ConvertFrom-HexString - converting a hex string back to plain text: '41' -> 'A'
-* added ConvertTo-HexString = converting plain text to a hex string: 'A' -> '41'
-* added Get-ErrorInfo - explain please
-* added Get-Factorial - calculates the factorial of a number 1-20. Higher than 20 results in overflow of [int64] datatype
-* added Invoke-SoundPlayer - will play a .wav file
-* added Split-CanonicalName - splits an AD canonical name into either -Parent or -Leaf
-* added Split-DistinguishedName - splits an AD distinguished name into either -Parent or -Leaf
-* added Write-SelectStatement - helper function to write a select statement for properties and converts properties that are arrays to a delimited string. Helpful when exporting complex object to CSV
-* updated Compare-ObjectProperty - replaced += with [System.Collections.Arraylist]
-* updated Convert-Int32ToUint32 - replaced += with [System.Collections.Arraylist]
-* updated Convert-Int64ToText - fixed trailing space with .Trim()
-* updated ConvertFrom-FsRight - removed $MatchFound | Out-Null, replaced += with [System.Collections.Arraylist], fixed logic error with Combo rights and IncludeInput
-* updated Copy-Object - replaced += with [System.Collections.Arraylist]
-* updated Expand-IPv6 - replaced += with [System.Collections.Arraylist]
-* updated Export-FontSample - replaced += with [System.Collections.Arraylist]
-* updated Format-RandomCase - replaced += with [System.Collections.Arraylist]
-* updated Format-WrapText - replaced += with [System.Collections.Arraylist]
-* updated Get-CeasarCipher - replaced += with [System.Collections.Arraylist]
-* updated Get-ComputerUptime - added Credential
-* updated Get-DisplayBrightness - added Credential, fixed error if not running on laptop monitor
-* updated Get-Enum - replaced += with [System.Collections.Arraylist]
-* updated Get-Font - minor logic fix in Where-Object statement that previously returned no results
-* updated Get-IpRange - replaced += with [System.Collections.Arraylist]
-* updated Get-MachineType - added Credential
-* updated Get-MacVendor - replaced Invoke-RestMethod with curl.exe as it was no longer returning correct results
-* updated Get-NTFSPermission - replaced += with [System.Collections.Arraylist]
-* updated Get-NtpDate - replace piping to Out-Null to $null =
-* updated Get-PSWho - added Credential
-* updated Get-PrintableAscii - updated logic to replace ' ' with '(Space)'
-* updated Get-PrivateProfileString - replace piping to Out-Null to $null =
-* updated Get-ProcessUser - added Credential
-* updated Get-ScheduledTaskUser - replaced += with [System.Collections.Arraylist], added Credential
-* updated Get-ServiceUser - replaced += with [System.Collections.Arraylist], added Credential
-* updated Get-SqlDatabase - replaced += with [System.Collections.Arraylist]
-* updated Get-SqlStoredProcedure - replaced += with [System.Collections.Arraylist]
-* updated Get-Type - replaced += with [System.Collections.Arraylist]
-* updated Get-TypeAccelerator - replaced += with [System.Collections.Arraylist]
-* updated Invoke-Speak - replaced += with [System.Collections.Arraylist]
-* updated Measure-Char - replaced += with [System.Collections.Arraylist]
-* updated Merge-Object - replaced += with [System.Collections.Arraylist]
-* updated New-Shortcut - replace piping to Out-Null to $null =
-* updated Optimize-SQLIndexFragmentation - replace piping to Out-Null to $null =
-* updated Optimize-SQLStoredProcedure - replace piping to Out-Null to $null =
-* updated Set-Display - added Credential
-* updated Set-PrivateProfileComment - replaced += with [System.Collections.Arraylist]
-* updated Set-WindowStyle - replace piping to Out-Null to $null =
-* updated Show-Calendar - replaced += with [System.Collections.Arraylist]
-* updated Show-FsRight - replaced += with [System.Collections.Arraylist]
-* updated Show-NamedColor - replaced += with [System.Collections.Arraylist]
-* updated Show-Object - replaced += with [System.Collections.Arraylist]
-* updated Show-Progress - replaced += with [System.Collections.Arraylist]
-* updated Start-ADReplication - added Credential
-* updated Start-RecordSession - replace piping to Out-Null to $null =
-* updated Test-IsDate - removed [DateTime] $d | Out-Null
-* updated Test-IsNumeric - replaced piping to Out-Null with saving to a variable
-* updated Test-MultipleBool - replaced += with [System.Collections.Arraylist]
-* updated Test-Password - added Credential
-* updated Write-StringArray - replaced += with [System.Collections.Arraylist]
-* updated Write-StringHash - changed type of -Hash and error check for hashtable or arraylist
-* updated Write-StringHash - replaced += with [System.Collections.Arraylist]
-* updated Write-TextMenu - replaced += with [System.Collections.Arraylist]
 '@
 
             # Flag to indicate whether the module requires explicit user acceptance for install/update/save

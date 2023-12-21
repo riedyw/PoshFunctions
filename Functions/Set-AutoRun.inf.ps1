@@ -3,7 +3,7 @@ function Set-AutoRun.inf {
     param (
         [ValidateScript({
             if ($_ -notmatch '^[a-z]:') {
-                throw 'Path specified must begin with a drive letter followed by a colon (ex. X:)'
+                throw 'ERROR: Path specified must begin with a drive letter followed by a colon (ex. X:)'
                 $false
             } else {
                 $true
@@ -13,7 +13,7 @@ function Set-AutoRun.inf {
 
         [ValidateScript({
             if ($_.Length -gt 32) {
-                throw 'Maximum label length is 32 characters'
+                throw 'ERROR: Maximum label length is 32 characters'
                 $false
             } else {
                 $true
@@ -22,10 +22,14 @@ function Set-AutoRun.inf {
         [string] $Label = '',
 
         [ValidateScript({
-            if (Test-Path $_) {
+            if ((Test-Path $_) -and ($_ -match '\.ico$')) {
                 $true
             } else {
-                throw "Icon specified [$_] does not exist."
+                if (-not (Test-Path $_)) {
+                    throw "ERROR: Icon specified [$_] does not exist."
+                } else {
+                    throw 'ERROR: Icon must have .ico extension.'
+                }
                 $false
             }
         })]
@@ -36,14 +40,14 @@ function Set-AutoRun.inf {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
         $DriveLetter = "$($Path.Substring(0,2))\"
         if (-not (Test-Path -Path $DriveLetter)) {
-            throw "Drive [$DriveLetter] does not exist"
+            throw "ERROR: Drive [$DriveLetter] does not exist"
             break
         }
         if ((-not $Label) -and (-not $Icon)) {
-            throw 'Either -Label, -Icon, or both must be specified'
+            throw 'ERROR: Either -Label, -Icon, or both must be specified'
         }
 #         if ($Icon -and (-not (Test-Path -Path $Icon))) {
-#             throw "Icon [$Icon] does not exist."
+#             throw "ERROR: Icon [$Icon] does not exist."
 #             break
 #         }
     }
