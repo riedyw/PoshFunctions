@@ -17,18 +17,51 @@ All code is automatically formatted in VSCode. Here are some of the pertinent se
     "powershell.codeFormatting.newLineAfterOpenBrace": true,
     "powershell.codeFormatting.useCorrectCasing": true,
 
-All code has also been loaded into ISE with ISESteroids. Most, if not all, SUGGESTIONS from ISESteroids have been applied, most often 'Missing parameter' suggestions.
+All code has also been loaded into ISE with ISESteroids. Most, if not all, SUGGESTIONS from ISESteroids have been applied, most often 'Missing parameter name' suggestions.
 
 Code has had Invoke-ScriptAnalyzer run against them so that errors are not thrown. Invoke-ScriptAnalyzer is not perfect however and sometimes returns false positives. For those that returned false positives I added declaration statement(s) after the [Cmdlet()] block to not throw the false positive error. An example declaration is as follows:
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]
 
 ### 2.2.11
 * added format files for result sets containing more than 4 columns
+* updated .\Resources\WordList.txt and removed over 200 offensive words
+* added Add-FileAttribute - to manipulate 'ReadOnly', 'Hidden', 'System', 'Archive' file attributes
+* added Get-AutoRun.inf - to get the values from the hidden/system file found at the root of a drive letter: icon and label
+* added Get-Desktop.ini - to get the values from the hidden/system file found in a folder: folder type, infotip (hover info), icon
+* added Get-RebootHistory - to return a history of reboots, includes custom type for formatting
+* added New-VirtualHardDisk - to create local .vhd, need to run at elevated prompt
+* added Remove-FileAttribute - to manipulate 'ReadOnly', 'Hidden', 'System', 'Archive' file attributes
+* added Resolve-PathForce - returns explicit path to single file/folder even if it doesn't exist
+* added Set-AutoRun.inf - to set the values from the hidden/system file found at the root of a drive letter: icon and label
+* added Set-Desktop.ini - to set the values from the hidden/system file found in a folder: folder type, infotip (hover info), icon
+* added Set-FileAttribute - to manipulate 'ReadOnly', 'Hidden', 'System', 'Archive' file attributes
+* renamed Get-FsRight - from original Show-FsRight, provided alias as Show-FsRight, changed += to ArrayList, left justify name
+* renamed Get-NamedColor - from original name Show-NamedColor to be more in line with PowerShell standards, added -Full parameter and formatting
+* updated Convert-HexToRGB - changed delimiter from ',' to ', ' so exports to CSV are read properly by Excel
+* updated ConvertFrom-FsRight - changed reference from Show-FsRight to Get-FsRight
+* updated Expand-IPv6 - added 'ERROR: ' to beginning of throw statement
+* updated Export-FontSample - changed to use System.Collections.Arraylist, default $Path to (Join-Path -Path $env:TEMP -ChildPath 'FontSample.htm'), no longer HTML tokenizing -Text
+* updated Get-Assoc - added /d argument to cmd.exe to bypass any AutoRun setting in registry
+* updated Get-ConsoleColor - alignment was right justified, fixed by converting color enum ToString()
 * updated Get-DriveState - to use custom types for formatting
 * updated Get-ExecutableForFile - to resolve path names to explicit path if passed a relative one
+* updated Get-FType - added /d argument to cmd.exe to bypass any AutoRun setting in registry
+* updated Get-IPv4Network - corrected comment help, set default for subnet mask
+* updated Get-LongName - added 'ERROR: ' to beginning of throw statement
 * updated Get-PrintableAscii - to use custom type for formatting
+* updated Get-RegExpandString - added 'ERROR: ' to beginning of throw statement
+* updated Get-ShortName - added 'ERROR: ' to beginning of throw statement
 * updated Get-VssAdminListWriters - to use custom type for formatting
 * updated Get-WordCount - changed property names, sorted by frequency descending, then word ascending
+* updated New-MessageBox - fixed issue with -AsString and a timeout not reporting correctly
+* updated New-RandomPassword - added NumeralCount and SymbolCount parameters to increase complexity
+* updated New-Screenshot - added 'ERROR: ' to beginning of throw statement
+* updated New-Shortcut - resolved path to .lnk as it must be explicit path, used resolve-pathforce to resolve non-existent file
+* updated Set-PrivateProfileComment - ???? # todo
+* updated Split-CanonicalName - added alias of CN to CanonicalName
+* updated Split-DistinguishedName - added alias of DN to DistinguishedName
+* updated Write-StringHash - change += to System.Collections.Arraylist for $ReturnVal
+* updated Write-TextMnu - changed temporary file handling, fixed options passed from pipeline problem
 
 ### 2.2.10
 * added Get-AppEventsSound - determines sounds configured for Windows events

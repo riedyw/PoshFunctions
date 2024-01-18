@@ -85,6 +85,7 @@ function Get-RandomDate {
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
+        Write-Verbose -Message "DateLimit [$DateLimit]"
         if (-not $MinDate) {
             $MinDate = [datetime]::MinValue
             Write-Verbose -Message "`$MinDate not specified, setting it to [$($MinDate)]"

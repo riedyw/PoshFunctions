@@ -13,7 +13,7 @@ function New-VirtualHardDisk {
 .PARAMETER VhdType
     How the Vhd is allocated. Validate set: 'Expandable', 'Fixed'. Default: 'Expandable'
 .PARAMETER FileSystem
-    The filesystem that will be formatted onto the new virtual disk. Validate set: 'FAT', 'FAT32', 'ExFAT', 'NTFS', 'ReFS'. Default: 'FAT'
+    The filesystem that will be formatted onto the new virtual disk. Validate set: 'FAT', 'FAT32', 'ExFAT', 'NTFS'. Default: 'FAT'
 .PARAMETER Size
     The size of the disk in bytes. Default: 1GB
 .PARAMETER VolumeLabel
@@ -36,17 +36,19 @@ AutoRunIcon   : C:\temp\TemporaryFolder.ico
 
 #>
 
+# todo Max volumelabel length is 32 if NTFS, 11 if others
+# todo Remount disk doesn't seem to work look into it
 
     [CmdletBinding()]
     param(
         [ValidateScript({
-                if (Test-Path -Path $_) {
-                    throw "ERROR: Path [$_] already exists. This will not overwrite the file."
-                    $false
-                } else {
-                    $true
-                }
-            })]
+            if (Test-Path -Path $_) {
+                throw "ERROR: Path [$_] already exists. This will not overwrite the file."
+                $false
+            } else {
+                $true
+            }
+        })]
         [string] $Path,
 
         [ValidateSet('MBR', 'GPT')]
@@ -56,7 +58,7 @@ AutoRunIcon   : C:\temp\TemporaryFolder.ico
         [string] $VhdType = 'Expandable',
 
 
-        [ValidateSet('FAT', 'FAT32', 'ExFAT', 'NTFS', 'ReFS')]
+        [ValidateSet('FAT', 'FAT32', 'ExFAT', 'NTFS')]
         $FileSystem = 'FAT',
 
         [int64] $Size = 1GB,
@@ -64,27 +66,27 @@ AutoRunIcon   : C:\temp\TemporaryFolder.ico
         [string] $VolumeLabel,
 
         [ValidateScript({
-                if ((Test-Path $_) -and ($_ -match '\.ico$')) {
-                    $true
+            if ((Test-Path $_) -and ($_ -match '\.ico$')) {
+                $true
+            } else {
+                if (-not (Test-Path $_)) {
+                    throw "ERROR: Icon specified [$_] does not exist."
                 } else {
-                    if (-not (Test-Path $_)) {
-                        throw "ERROR: Icon specified [$_] does not exist."
-                    } else {
-                        throw 'ERROR: Icon must have .ico extension.'
-                    }
-                    $false
+                    throw 'ERROR: Icon must have .ico extension.'
                 }
-            })]
+                $false
+            }
+        })]
         [string] $AutoRunIcon,
 
         [ValidateScript({
-                if ($_.Length -gt 32) {
-                    throw 'Maximum label length is 32 characters'
-                    $false
-                } else {
-                    $true
-                }
-            })]
+            if ($_.Length -gt 32) {
+                throw 'Maximum label length is 32 characters'
+                $false
+            } else {
+                $true
+            }
+        })]
         [string] $AutoRunLabel
     )
 
@@ -102,10 +104,9 @@ AutoRunIcon   : C:\temp\TemporaryFolder.ico
         }
         $Messages = ([ordered] @{
                 FAT   = New-Object -TypeName psobject -Property ([ordered] @{ MinSizeMB = 8 ; MaxSizeMB = 2048 ; MaxVolumeLabel = 11 })
-                FAT32 = New-Object -TypeName psobject -Property ([ordered] @{ MinSizeMB = 256 ; MaxSizeMB = 32768 ; MaxVolumeLabel = 32 })
-                exFAT = New-Object -TypeName psobject -Property ([ordered] @{ MinSizeMB = 2048 ; MaxSizeMB = 102400 ; MaxVolumeLabel = 32 })
+                FAT32 = New-Object -TypeName psobject -Property ([ordered] @{ MinSizeMB = 256 ; MaxSizeMB = 32768 ; MaxVolumeLabel = 11 })
+                exFAT = New-Object -TypeName psobject -Property ([ordered] @{ MinSizeMB = 2048 ; MaxSizeMB = 102400 ; MaxVolumeLabel = 11 })
                 NTFS  = New-Object -TypeName psobject -Property ([ordered] @{ MinSizeMB = 8 ; MaxSizeMB = 102400 ; MaxVolumeLabel = 32 })
-                ReFS  = New-Object -TypeName psobject -Property ([ordered] @{ MinSizeMB = 256 ; MaxSizeMB = 102400 ; MaxVolumeLabel = 32 })
             })
 
         $VolumeBefore = Get-Volume

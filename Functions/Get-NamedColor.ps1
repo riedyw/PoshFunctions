@@ -63,7 +63,8 @@ function Get-NamedColor {
 
     process {
         Write-Verbose -Message 'Determining names of colors'
-        [System.Drawing.Color] | Get-Member -MemberType *property -Static | findstr.exe /i 'Property' |
+        [System.Drawing.Color] | Get-Member -MemberType *property -Static |
+        Select-Object -ExpandProperty Name |
         ForEach-Object -Begin {
             $result1 = @()
         } -Process {

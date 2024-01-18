@@ -7,7 +7,7 @@ Function Split-DistinguishedName {
     one of the constituent properties are represented by '\,'
 .PARAMETER DistinguishedName
     The DistinguishedName string you want to parse. Can be single string or array of strings. Values can be passed
-    via the pipeline as straight text or via property name
+    via the pipeline as straight text or via property name. Aliased to 'DN'
 .PARAMETER Parent
     Switch to display the parent of the distinguished name. Default parameter
 .PARAMETER Leaf
@@ -54,6 +54,7 @@ Function Split-DistinguishedName {
         [Parameter(Mandatory, HelpMessage = 'Enter a string composed of tokens separated by a comma', Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'Parent')]
         [Parameter(Mandatory, HelpMessage = 'Enter a string composed of tokens separated by a comma', Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'Leaf')]
         [Parameter(Mandatory, HelpMessage = 'Enter a string composed of tokens separated by a comma', Position = 0, ValueFromPipeline, ValueFromPipelineByPropertyName, ParameterSetName = 'Token')]
+        [Alias('DN')]
         [string[]] $DistinguishedName,
 
         [Parameter(ParameterSetName = 'Parent')]

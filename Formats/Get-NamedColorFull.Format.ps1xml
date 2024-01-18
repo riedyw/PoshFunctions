@@ -15,52 +15,52 @@ https://github.com/jdhitsolutions/PSScriptTools
         <TableHeaders>
           <TableColumnHeader>
             <Label>Name</Label>
-            <Width>25</Width>
+            <Width>21</Width>
             <Alignment>Left</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>IsKnownColor</Label>
-            <Width>15</Width>
+            <Width>13</Width>
             <Alignment>Left</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>IsNamedColor</Label>
-            <Width>15</Width>
+            <Width>13</Width>
             <Alignment>Left</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>IsSystemColor</Label>
-            <Width>16</Width>
+            <Width>14</Width>
             <Alignment>Left</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>IsEmpty</Label>
-            <Width>10</Width>
+            <Width>8</Width>
             <Alignment>Left</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>A</Label>
-            <Width>6</Width>
+            <Width>4</Width>
             <Alignment>Right</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>R</Label>
-            <Width>6</Width>
+            <Width>4</Width>
             <Alignment>Right</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>G</Label>
-            <Width>6</Width>
+            <Width>4</Width>
             <Alignment>Right</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>B</Label>
-            <Width>5</Width>
+            <Width>4</Width>
             <Alignment>Right</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>Hex</Label>
-            <Width>9</Width>
+            <Width>7</Width>
             <Alignment>Left</Alignment>
           </TableColumnHeader>
         </TableHeaders>

@@ -19,7 +19,7 @@
     CompanyName       = ''
 
     # Copyright statement for this module
-    Copyright         = '(c) 2023 Bill Riedy. All rights reserved.'
+    Copyright         = '(c) 2024 Bill Riedy. All rights reserved.'
 
     # Description of the functionality provided by this module
     Description       = 'A curated collection of over 230 PowerShell functions. Many functions written by me. Others are attributed wherever possible.'
@@ -143,7 +143,7 @@
         'Set-SpeakerVolume', 'Set-Type', 'Set-WindowState', 'Set-WindowStyle',
         'Show-AllColor', 'Show-Calendar', 'Show-ColorsWithBackground',
         'Show-DaysOfWeek', 'Show-FileAttribute', 'Show-Month', 'Show-Object',
-        'Show-Progress', 'Show-ShortDaysOfWeek', 'Show-ShortMonth',
+        'Read-HostPause', 'Show-Progress', 'Show-ShortDaysOfWeek', 'Show-ShortMonth',
         'Show-SubnetMaskIPv4', 'Show-Timezone', 'Split-CanonicalName',
         'Split-DistinguishedName', 'Split-Line', 'Start-ADReplication',
         'Start-RecordSession', 'Stop-RecordSession', 'Switch-Mute',
@@ -168,7 +168,7 @@
     To recreate:
 
     $regex = "\[alias\('(.+)'\)]"
-    findstr.exe /i FunctionAlias .\Functions\*.ps1 | foreach-object {
+    sls -pattern FunctionAlias .\Functions\*.ps1 | foreach-object {
         if ($_ -match $regex) {
             $matches[1]
         }
@@ -230,17 +230,18 @@
 For full release notes see .\Resources\ReleaseNotes.txt
 ### 2.2.11
 * added format files for result sets containing more than 4 columns
+* updated .\Resources\WordList.txt and removed over 200 offensive words
 * added Add-FileAttribute - to manipulate 'ReadOnly', 'Hidden', 'System', 'Archive' file attributes
 * added Get-AutoRun.inf - to get the values from the hidden/system file found at the root of a drive letter: icon and label
 * added Get-Desktop.ini - to get the values from the hidden/system file found in a folder: folder type, infotip (hover info), icon
 * added Get-RebootHistory - to return a history of reboots, includes custom type for formatting
 * added New-VirtualHardDisk - to create local .vhd, need to run at elevated prompt
-* added Initialize-VirtualHardDisk - to initialize and format a local vhd
 * added Remove-FileAttribute - to manipulate 'ReadOnly', 'Hidden', 'System', 'Archive' file attributes
 * added Resolve-PathForce - returns explicit path to single file/folder even if it doesn't exist
 * added Set-AutoRun.inf - to set the values from the hidden/system file found at the root of a drive letter: icon and label
 * added Set-Desktop.ini - to set the values from the hidden/system file found in a folder: folder type, infotip (hover info), icon
 * added Set-FileAttribute - to manipulate 'ReadOnly', 'Hidden', 'System', 'Archive' file attributes
+* added Read-HostPause - to mimic the PAUSE command in cmd.exe where you only need to press a key to continue, not just the Enter key
 * renamed Get-FsRight - from original Show-FsRight, provided alias as Show-FsRight, changed += to ArrayList, left justify name
 * renamed Get-NamedColor - from original name Show-NamedColor to be more in line with PowerShell standards, added -Full parameter and formatting
 * updated Convert-HexToRGB - changed delimiter from ',' to ', ' so exports to CSV are read properly by Excel
@@ -254,6 +255,7 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * updated Get-FType - added /d argument to cmd.exe to bypass any AutoRun setting in registry
 * updated Get-IPv4Network - corrected comment help, set default for subnet mask
 * updated Get-LongName - added 'ERROR: ' to beginning of throw statement
+* updated Get-NamedColor - addressed issue with named colors not appearing
 * updated Get-PrintableAscii - to use custom type for formatting
 * updated Get-RegExpandString - added 'ERROR: ' to beginning of throw statement
 * updated Get-ShortName - added 'ERROR: ' to beginning of throw statement
@@ -264,6 +266,8 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * updated New-Screenshot - added 'ERROR: ' to beginning of throw statement
 * updated New-Shortcut - resolved path to .lnk as it must be explicit path, used resolve-pathforce to resolve non-existent file
 * updated Set-PrivateProfileComment - ???? # todo
+* updated Split-CanonicalName - added alias of CN to CanonicalName
+* updated Split-DistinguishedName - added alias of DN to DistinguishedName
 * updated Write-StringHash - change += to System.Collections.Arraylist for $ReturnVal
 * updated Write-TextMnu - changed temporary file handling, fixed options passed from pipeline problem
 
