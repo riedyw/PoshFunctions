@@ -38,6 +38,8 @@ function Test-PasswordComplexity {
     Changed logic on getting $*Regex values so there would not be a dependency on Get-PrintableAscii
 #>
 
+    # todo Change logic so that only 3 classes of characters need to match
+
     #region Parameter
     [CmdletBinding(DefaultParameterSetName = 'SecureString')]
     [OutputType('bool')]
@@ -56,7 +58,7 @@ function Test-PasswordComplexity {
         [Parameter(ParameterSetName = 'SecureString')]
         [Parameter(ParameterSetName = 'Credential')]
         [Parameter(ParameterSetName = 'Password')]
-        [ValidateRange(0, 255)]
+        [ValidateRange(1, 255)]
         [Alias('MinLength')]
         [int] $MinimumLength = 8,
 

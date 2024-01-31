@@ -65,9 +65,9 @@ function ConvertTo-Hex {
         foreach ($curNumber in $Number) {
             $ReturnVal = ''
             if ($MinimumWidth) {
-                $ReturnVal = "{0:x$MinimumWidth}" -f $curNumber
+                $ReturnVal = "{0:X$MinimumWidth}" -f $curNumber
             } else {
-                $ReturnVal = '{0:x}' -f $curNumber
+                $ReturnVal = '{0:X}' -f $curNumber
             }
             if ($Prefix) {
                 $ReturnVal = $Prefix + $ReturnVal

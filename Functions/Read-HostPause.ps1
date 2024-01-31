@@ -38,7 +38,7 @@ function Read-HostPause {
             Return
         } else {
             Write-Host -NoNewline -ForegroundColor $ForegroundColor -Object $Prompt
-            $null = [System.Console]::ReadKey($false)
+            $null = [System.Console]::ReadKey($true)
         }
     }
 

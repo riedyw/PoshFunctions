@@ -133,28 +133,28 @@
         'New-FontPicker', 'New-InputBox', 'New-InputBoxSecureString', 'New-MessageBox',
         'New-PFDateFormat', 'New-QR', 'New-RandomPassword', 'New-Screenshot',
         'New-Shortcut', 'New-VirtualHardDisk', 'Optimize-SqlIndexFragmentation',
-        'Optimize-SqlStoredProcedure', 'Out-PDFToPrinter', 'Read-HostWithDefault',
-        'Remove-BlankOrComment', 'Remove-EmptyProperty', 'Remove-FileAttribute',
-        'Remove-QuotesFromCsv', 'Remove-TeamsCache', 'Remove-Trailing',
-        'Reset-Desktop', 'Resolve-FQDN', 'Resolve-HostName', 'Resolve-PathForce',
-        'sed', 'Set-AutoRun.inf', 'Set-Capslock', 'Set-Desktop.ini', 'Set-Display',
-        'Set-EOLTerminator', 'Set-FileEncoding', 'Set-Numlock',
-        'Set-PrivateProfileComment', 'Set-PrivateProfileString', 'Set-Scrolllock',
-        'Set-SpeakerVolume', 'Set-Type', 'Set-WindowState', 'Set-WindowStyle',
-        'Show-AllColor', 'Show-Calendar', 'Show-ColorsWithBackground',
-        'Show-DaysOfWeek', 'Show-FileAttribute', 'Show-Month', 'Show-Object',
-        'Read-HostPause', 'Show-Progress', 'Show-ShortDaysOfWeek', 'Show-ShortMonth',
-        'Show-SubnetMaskIPv4', 'Show-Timezone', 'Split-CanonicalName',
-        'Split-DistinguishedName', 'Split-Line', 'Start-ADReplication',
-        'Start-RecordSession', 'Stop-RecordSession', 'Switch-Mute',
-        'Test-ConnectionAsync', 'Test-CSVFormat', 'Test-IsAdmin', 'Test-IsCapsLock',
-        'Test-IsDate', 'Test-IsFileLocked', 'Test-IsHexString', 'Test-IsLocalIPv4',
-        'Test-IsNull', 'Test-IsNumeric', 'Test-IsNumLock', 'Test-IsScrollLock',
-        'Test-IsValidEmailAddress', 'Test-IsValidIPv4', 'Test-IsValidIPv6',
-        'Test-MultipleBool', 'Test-Network', 'Test-NtpDateVsNow', 'Test-Password',
-        'Test-PasswordComplexity', 'Test-Port', 'Test-Set', 'Update-ExplorerIcon',
-        'Use-Stopwatch', 'Write-SelectStatement', 'Write-StringArray',
-        'Write-StringHash', 'Write-TextMenu' )
+        'Optimize-SqlStoredProcedure', 'Out-PDFToPrinter', 'Read-HostPause',
+        'Read-HostWithDefault', 'Remove-BlankOrComment', 'Remove-EmptyProperty',
+        'Remove-FileAttribute', 'Remove-QuotesFromCsv', 'Remove-TeamsCache',
+        'Remove-Trailing', 'Reset-Desktop', 'Resolve-FQDN', 'Resolve-HostName',
+        'Resolve-PathForce', 'sed', 'Set-AutoRun.inf', 'Set-Capslock',
+        'Set-Desktop.ini', 'Set-Display', 'Set-EOLTerminator', 'Set-FileEncoding',
+        'Set-Numlock', 'Set-PrivateProfileComment', 'Set-PrivateProfileString',
+        'Set-Scrolllock', 'Set-SpeakerVolume', 'Set-Type', 'Set-WindowState',
+        'Set-WindowStyle', 'Show-AllColor', 'Show-Calendar',
+        'Show-ColorsWithBackground', 'Show-DaysOfWeek', 'Show-FileAttribute',
+        'Show-Month', 'Show-Object', 'Show-Progress', 'Show-ShortDaysOfWeek',
+        'Show-ShortMonth', 'Show-SubnetMaskIPv4', 'Show-Timezone',
+        'Split-CanonicalName', 'Split-DistinguishedName', 'Split-Line',
+        'Start-ADReplication', 'Start-RecordSession', 'Stop-RecordSession',
+        'Switch-Mute', 'Test-ConnectionAsync', 'Test-CSVFormat', 'Test-IsAdmin',
+        'Test-IsCapsLock', 'Test-IsDate', 'Test-IsFileLocked', 'Test-IsHexString',
+        'Test-IsLocalIPv4', 'Test-IsNull', 'Test-IsNumeric', 'Test-IsNumLock',
+        'Test-IsScrollLock', 'Test-IsValidEmailAddress', 'Test-IsValidIPv4',
+        'Test-IsValidIPv6', 'Test-MultipleBool', 'Test-Network', 'Test-NtpDateVsNow',
+        'Test-Password', 'Test-PasswordComplexity', 'Test-Port', 'Test-Set',
+        'Update-ExplorerIcon', 'Use-Stopwatch', 'Write-SelectStatement',
+        'Write-StringArray', 'Write-StringHash', 'Write-TextMenu' )
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     #CmdletsToExport = '*'
@@ -236,16 +236,17 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * added Get-Desktop.ini - to get the values from the hidden/system file found in a folder: folder type, infotip (hover info), icon
 * added Get-RebootHistory - to return a history of reboots, includes custom type for formatting
 * added New-VirtualHardDisk - to create local .vhd, need to run at elevated prompt
+* added Read-HostPause - to mimic the PAUSE command in cmd.exe where you only need to press a key to continue, not just the Enter key
 * added Remove-FileAttribute - to manipulate 'ReadOnly', 'Hidden', 'System', 'Archive' file attributes
 * added Resolve-PathForce - returns explicit path to single file/folder even if it doesn't exist
 * added Set-AutoRun.inf - to set the values from the hidden/system file found at the root of a drive letter: icon and label
 * added Set-Desktop.ini - to set the values from the hidden/system file found in a folder: folder type, infotip (hover info), icon
 * added Set-FileAttribute - to manipulate 'ReadOnly', 'Hidden', 'System', 'Archive' file attributes
-* added Read-HostPause - to mimic the PAUSE command in cmd.exe where you only need to press a key to continue, not just the Enter key
 * renamed Get-FsRight - from original Show-FsRight, provided alias as Show-FsRight, changed += to ArrayList, left justify name
 * renamed Get-NamedColor - from original name Show-NamedColor to be more in line with PowerShell standards, added -Full parameter and formatting
 * updated Convert-HexToRGB - changed delimiter from ',' to ', ' so exports to CSV are read properly by Excel
 * updated ConvertFrom-FsRight - changed reference from Show-FsRight to Get-FsRight
+* updated ConvertTo-Hex - changed hex value to be upper case to conform more with standard representation
 * updated Expand-IPv6 - added 'ERROR: ' to beginning of throw statement
 * updated Export-FontSample - changed to use System.Collections.Arraylist, default $Path to (Join-Path -Path $env:TEMP -ChildPath 'FontSample.htm'), no longer HTML tokenizing -Text
 * updated Get-Assoc - added /d argument to cmd.exe to bypass any AutoRun setting in registry
