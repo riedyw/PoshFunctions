@@ -72,6 +72,8 @@ while ($Choice -ne 'q') {
     about_switch
 #>
 
+    # todo .PadLeft(2) the numbers of choices and change quit option to ' Q' to align with numbers of choices
+
     #region Parameter
     [cmdletbinding(ConfirmImpact = 'Low')]
     [OutputType([string[]])]
