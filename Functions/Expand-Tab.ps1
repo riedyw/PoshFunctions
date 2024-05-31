@@ -1,5 +1,5 @@
 function Expand-Tab {
-<#
+    <#
 .SYNOPSIS
     To expand tab characters to spaces
 .DESCRIPTION
@@ -110,11 +110,11 @@ function Expand-Tab {
 
     [cmdletbinding()]
     param(
-        [Parameter(Position=0)]
-        [UInt32] $TabWidth = 8,
+        [Parameter(ValueFromPipeline, ValueFromPipelineByPropertyName, Position = 0)]
+        [string[]] $InputString,
 
-        [Parameter(ValueFromPipeline)]
-        [string[]] $InputString
+        [Parameter(Position = 1)]
+        [UInt32] $TabWidth = 8
     )
 
     begin {

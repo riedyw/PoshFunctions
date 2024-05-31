@@ -1,7 +1,10 @@
-$ModuleName = 'PoshFunctions'
-Import-Module -Name (Resolve-Path -Path "$PSScriptRoot\..\PoshFunctions.psm1") -Force
-$Manifest = Import-PowerShellDataFile -Path (Resolve-Path -Path "$PSScriptRoot\..\PoshFunctions.psd1").Path
-$FileCount = (Get-ChildItem -Path (Join-Path (Resolve-Path -Path "$PSScriptRoot\..\Functions") -ChildPath '*.ps1') -File).count
+BeforeAll {
+    $ModuleName = 'PoshFunctions'
+    Import-Module -Name (Resolve-Path -Path "$PSScriptRoot\..\PoshFunctions.psm1") -Force
+    $Manifest = Import-PowerShellDataFile -Path (Resolve-Path -Path "$PSScriptRoot\..\PoshFunctions.psd1").Path
+    $FileCount = (Get-ChildItem -Path (Join-Path (Resolve-Path -Path "$PSScriptRoot\..\Functions") -ChildPath '*.ps1') -File).count
+}
+
 
 Describe "$ModuleName Module Tests" {
 
@@ -33,5 +36,3 @@ Describe "$ModuleName Module Tests" {
     }
 
 }
-
-# todo update Pester tests

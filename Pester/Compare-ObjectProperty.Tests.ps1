@@ -13,3 +13,5 @@ Describe "[Compare-ObjectProperty] Tests" {
     }
 
 }
+
+# todo pester tests

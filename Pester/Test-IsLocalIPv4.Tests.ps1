@@ -9,5 +9,3 @@ Describe "[Test-IsLocalIPv4] Tests" {
     }
 
 }
-
-# todo update Pester tests

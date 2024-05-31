@@ -47,9 +47,6 @@ function Set-PrivateProfileComment {
     Error trapping on specific conditions.
 #>
 
-    # todo Change += to System.Collections.Arraylist
-    # todo prevent success from returning a value of $true
-
     #region parameter
     [CmdletBinding(ConfirmImpact='Low')]
     [OutputType('null')]
@@ -102,13 +99,13 @@ function Set-PrivateProfileComment {
             } else {
                 Write-Verbose -Message "Using file [$ResolveFile] in section [$Section], using comments [$($Comment -join ', ')]"
                 $IniContent = Get-Content -Path $ResolveFile
-                $NewIniContent = @()
+                $NewIniContent = New-Object -TypeName System.Collections.ArrayList
                 $Inserted = $false
                 if ($Section -eq '') {
                     $InSection = $true
                     foreach ($CurrentComment in $Comment) {
                         if ($CurrentComment -ne '') {
-                            $NewIniContent += "; $CurrentComment"
+                            $NewIniContent.Add("; $CurrentComment") | Out-Null
                         }
                     }
                     $Inserted = $true
@@ -119,42 +116,41 @@ function Set-PrivateProfileComment {
                         if ($_ -match '^(\s*\[\s*)([\S\s+\S|\S]+)(\s*\]).*$') {
                             Write-Verbose -Message "Match section regex ($_)"
                             $InSection = $false
-                            $NewIniContent += $_
+                            $NewIniContent.Add($_) | Out-Null
                         } elseif ($ReplaceComment -and $_ -match '^\s*;.*$') {
                             Write-Verbose -Message "Replace comment true and matches comment ($_)"
                         } else {
                             Write-Verbose -Message "Match key/value pair ($_)"
-                            $NewIniContent += $_
+                            $NewIniContent.Add($_) | Out-Null
                         }
                     } else {
                         if ($_ -match '^(\s*\[\s*)([\S\s+\S|\S]+)(\s*\]).*$') {
                             $MatchSection = $matches[2].Trim()
                             if ($MatchSection -eq $Section) {
                                 $InSection = $true
-                                $NewIniContent += $_
+                                $NewIniContent.Add($_) | Out-Null
                                 foreach ($CurrentComment in $Comment) {
                                     if ($CurrentComment -ne '') {
-                                        $NewIniContent += "; $CurrentComment"
+                                        $NewIniContent.Add("; $CurrentComment") | Out-Null
                                     }
                                 }
                                 $Inserted = $true
                             } else {
-                                $NewIniContent += $_
+                                $NewIniContent.Add($_) | Out-Null
                             }
                         } else {
-                            $NewIniContent += $_
+                            $NewIniContent.Add($_) | Out-Null
                         }
                     }
                 }
                 if (-not $Inserted -and $CreateSection) {
-                    $NewIniContent += "[$Section]"
+                    $NewIniContent.Add("[$Section]") | Out-Null
                     foreach ($CurrentComment in $Comment) {
                         $CurrentComment = $CurrentComment.Trim()
-                        $NewIniContent += "; $CurrentComment"
+                        $NewIniContent.Add("; $CurrentComment") | Out-Null
                     }
                     $Inserted = $true
                 }
-                Write-Output -InputObject $Inserted
                 if ($Inserted) {
                     $NewIniContent | Set-Content -Path $ResolveFile
                 }

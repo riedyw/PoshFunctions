@@ -1,8 +1,8 @@
-Describe "[Convert-HexToRGB] Tests" {
+Describe '[Convert-HexToRGB] Tests' {
 
     It 'RGB string' {
         $Result = Convert-HexToRGB -Hex '808080'
-        $Result | Should -Be '128,128,128'
+        $Result | Should -Be '128, 128, 128'
     }
 
     It 'Include input' {

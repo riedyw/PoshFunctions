@@ -34,5 +34,3 @@ Describe "[ConvertFrom-DateTime] Tests" {
         $UTCDate | ConvertFrom-DateTime -Unix | Should -Be 1648388717
     }
 }
-
-# todo update Pester tests

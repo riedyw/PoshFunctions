@@ -13,3 +13,5 @@ Describe "[Compare-PSGalleryObject] Tests" {
     }
 
 }
+
+# todo pester tests

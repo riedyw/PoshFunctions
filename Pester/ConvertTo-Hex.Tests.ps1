@@ -30,5 +30,3 @@ Describe "ConvertTo-Hex Tests" {
 
 
 }
-
-# todo update Pester tests

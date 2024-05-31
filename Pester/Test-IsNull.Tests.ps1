@@ -1,17 +1,16 @@
 Describe "[Test-IsNull] Tests" {
 
-    It "Number" {
-        Test-IsNull | Should -Be 15
-    }
-
-    It "Boolean" {
+    It "Nulls" {
         Test-IsNull | Should -BeTrue
+        Test-IsNull $null | Should -BeTrue
+        Test-IsNull '' | Should -BeTrue
     }
 
-    It "Pipeline" {
-        "data" | Test-IsNull | Should -Be 'Hello'
+    It "Non-nulls" {
+        Test-IsNull $true | Should -BeFalse
+        Test-IsNull $false | Should -BeFalse
+        Test-IsNull 'string' | Should -BeFalse
+        Test-IsNull 0 | Should -BeFalse
     }
 
 }
-
-# todo update Pester tests

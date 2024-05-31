@@ -99,7 +99,7 @@
         'ConvertTo-DecimalIPv4', 'ConvertTo-DottedDecimalIPv4', 'ConvertTo-Hex',
         'ConvertTo-HexString', 'ConvertTo-HtmlEncode', 'ConvertTo-OrderedDictionary',
         'ConvertTo-RomanNumeral', 'ConvertTo-UncPath', 'ConvertTo-UrlEncode',
-        'ConvertTo-UTC', 'Copy-Object', 'Eexit', 'Expand-IPv6', 'Expand-String',
+        'ConvertTo-UTC', 'Copy-Object', 'Expand-IPv6', 'Expand-String',
         'Expand-Tab', 'Export-CSVSortedColumn', 'Export-FontSample', 'FileSizeAbove',
         'FileSizeBelow', 'Format-MacAddress', 'Format-RandomCase',
         'Format-ReverseString', 'Format-ReverseToken', 'Format-SortedList',
@@ -242,12 +242,14 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * added Set-AutoRun.inf - to set the values from the hidden/system file found at the root of a drive letter: icon and label
 * added Set-Desktop.ini - to set the values from the hidden/system file found in a folder: folder type, infotip (hover info), icon
 * added Set-FileAttribute - to manipulate 'ReadOnly', 'Hidden', 'System', 'Archive' file attributes
+* removed Eexit - really belongs in the $profile of my computer and not here
 * renamed Get-FsRight - from original Show-FsRight, provided alias as Show-FsRight, changed += to ArrayList, left justify name
 * renamed Get-NamedColor - from original name Show-NamedColor to be more in line with PowerShell standards, added -Full parameter and formatting
 * updated Convert-HexToRGB - changed delimiter from ',' to ', ' so exports to CSV are read properly by Excel
 * updated ConvertFrom-FsRight - changed reference from Show-FsRight to Get-FsRight
 * updated ConvertTo-Hex - changed hex value to be upper case to conform more with standard representation
 * updated Expand-IPv6 - added 'ERROR: ' to beginning of throw statement
+* updated Expand-Tab - changed $InputString to position 0, also value from pipeline by name
 * updated Export-FontSample - changed to use System.Collections.Arraylist, default $Path to (Join-Path -Path $env:TEMP -ChildPath 'FontSample.htm'), no longer HTML tokenizing -Text
 * updated Get-Assoc - added /d argument to cmd.exe to bypass any AutoRun setting in registry
 * updated Get-ConsoleColor - alignment was right justified, fixed by converting color enum ToString()
@@ -266,7 +268,7 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * updated New-RandomPassword - added NumeralCount and SymbolCount parameters to increase complexity
 * updated New-Screenshot - added 'ERROR: ' to beginning of throw statement
 * updated New-Shortcut - resolved path to .lnk as it must be explicit path, used resolve-pathforce to resolve non-existent file
-* updated Set-PrivateProfileComment - ???? # todo
+* updated Set-PrivateProfileComment - change += to System.Collections.Arraylist for building new ini content. Removed diagnostic output of $Inserted
 * updated Split-CanonicalName - added alias of CN to CanonicalName
 * updated Split-DistinguishedName - added alias of DN to DistinguishedName
 * updated Write-StringHash - change += to System.Collections.Arraylist for $ReturnVal
