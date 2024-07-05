@@ -136,7 +136,7 @@ function Test-Port {
                     #Reset failed value
                     $failed = $Null
                     #Merge temp array with report
-                    Write-Output -InputObject $temp
+                    # Write-Output -InputObject $temp
                 }
                 if ($udp) {
                     #$temp = '' | Select-Object -Property ComputerName, Protocol, Port, Open, Notes
@@ -169,7 +169,29 @@ function Test-Port {
                     $socket.dispose()
                     Remove-Variable -Name socket
                     #Merge temp array with report
-                    Write-Output -InputObject $temp
+                    # Write-Output -InputObject $temp
+                }
+                $temp | foreach-object {
+                    New-Object -TypeName psobject -Property ([ordered] @{
+                        PSTypeName = 'PFTestPort'
+                        Port = $_.port
+                        Protocol = $_.Protocol
+                        Computername = $_.Computername
+                        Open = $_.Open
+                        Notes = $_.Notes
+                    })
+
+                # foreach ($item in $temp) {
+                    # New-Object -TypeName psobject -Property ([ordered] @{
+                        # PSTypeName = 'PFTestPort'
+                        # Port = $item.port
+                        # Protocol = $item.protocol
+                        # Computername = $item.protocol
+                        # Open = $item.Open
+                        # Notes = $item.Notes
+                    # })
+                # }
+
                 }
             }
         }

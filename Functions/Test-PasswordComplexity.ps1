@@ -3,8 +3,7 @@ function Test-PasswordComplexity {
 .SYNOPSIS
     Tests a password for length and password complexity
 .DESCRIPTION
-    Tests a password for length and password complexity. Complexity is at least 1 upper case character, 1 lower case character,
-    1 numeral, 1 special character.
+    Tests a password for length and password complexity. Complexity is at least 3 of the 4 classes of characters: upper case, lower case, numeral, special character.
 .PARAMETER SecureString
     The password passed as a secure string. In parameter sets 'SecureString'.
 .PARAMETER Credential
@@ -19,14 +18,14 @@ function Test-PasswordComplexity {
 .EXAMPLE
     Test-PasswordComplexity -Password 'Password1'
 
-    Would return $false as there is no special character
+    Would return $true as there are 3 classes of characters (excluding special characters)
 .EXAMPLE
     Test-PasswordComplexity -Password 'Password1' -IncludeInput
 
-    Would return the following as there is no special character
+    Would return the following as it matches 3 of the 4 character classes
     Password  MinLength Length MatchComplexity
     --------  --------- ------ ---------------
-    *********         8      9           False
+    *********         8      9           True
 .EXAMPLE
     Test-PasswordComplexity -Password 'Ab(0' -IncludeInput
 
@@ -36,9 +35,8 @@ function Test-PasswordComplexity {
     ****             8      4           False
 .NOTES
     Changed logic on getting $*Regex values so there would not be a dependency on Get-PrintableAscii
+    Changed logic so only 3 of the 4 classes of characters need to be matched
 #>
-
-    # todo Change logic so that only 3 classes of characters need to match
 
     #region Parameter
     [CmdletBinding(DefaultParameterSetName = 'SecureString')]
@@ -83,11 +81,12 @@ function Test-PasswordComplexity {
             'Password' {
                 foreach ($curPassword in $Password) {
                     if (
-                        ($curPassword -match $SpecialRegex) -and
-                        ($curPassword -cmatch $LowerRegex) -and
-                        ($curPassword -cmatch $UpperRegex) -and
-                        ($curPassword -match $NumberRegex) -and
-                        ($curPassword.Length -ge $MinimumLength)
+                        ($curPassword.Length -ge $MinimumLength) -and (
+                            ( $curPassword -match $SpecialRegex -and $curPassword -cmatch $LowerRegex -and $curPassword -cmatch $UpperRegex ) -or
+                            ( $curPassword -match $SpecialRegex -and $curPassword -cmatch $LowerRegex -and $curPassword -match $NumberRegex) -or
+                            ( $curPassword -match $SpecialRegex -and $curPassword -cmatch $UpperRegex -and $curPassword -match $NumberRegex) -or
+                            ( $curPassword -cmatch $LowerRegex -and $curPassword -cmatch $UpperRegex -and $curPassword -match $NumberRegex)
+                        )
                     ) {
                         $ReturnVal = $true
                     } else {
@@ -108,11 +107,12 @@ function Test-PasswordComplexity {
             'Credential' {
                 $curPassword = Convert-SecureStringToString -SecureString $Credential.Password
                 if (
-                    ($curPassword -match $SpecialRegex) -and
-                    ($curPassword -cmatch $LowerRegex) -and
-                    ($curPassword -cmatch $UpperRegex) -and
-                    ($curPassword -match $NumberRegex) -and
-                    ($curPassword.Length -ge $MinimumLength)
+                    ($curPassword.Length -ge $MinimumLength) -and (
+                        ( $curPassword -match $SpecialRegex -and $curPassword -cmatch $LowerRegex -and $curPassword -cmatch $UpperRegex ) -or
+                        ( $curPassword -match $SpecialRegex -and $curPassword -cmatch $LowerRegex -and $curPassword -match $NumberRegex) -or
+                        ( $curPassword -match $SpecialRegex -and $curPassword -cmatch $UpperRegex -and $curPassword -match $NumberRegex) -or
+                        ( $curPassword -cmatch $LowerRegex -and $curPassword -cmatch $UpperRegex -and $curPassword -match $NumberRegex)
+                    )
                 ) {
                     $ReturnVal = $true
                 } else {
@@ -133,11 +133,12 @@ function Test-PasswordComplexity {
             'SecureString' {
                 $curPassword = Convert-SecureStringToString -SecureString $SecureString
                 if (
-                    ($curPassword -match $SpecialRegex) -and
-                    ($curPassword -cmatch $LowerRegex) -and
-                    ($curPassword -cmatch $UpperRegex) -and
-                    ($curPassword -match $NumberRegex) -and
-                    ($curPassword.Length -ge $MinimumLength)
+                    ($curPassword.Length -ge $MinimumLength) -and (
+                        ( $curPassword -match $SpecialRegex -and $curPassword -cmatch $LowerRegex -and $curPassword -cmatch $UpperRegex ) -or
+                        ( $curPassword -match $SpecialRegex -and $curPassword -cmatch $LowerRegex -and $curPassword -match $NumberRegex) -or
+                        ( $curPassword -match $SpecialRegex -and $curPassword -cmatch $UpperRegex -and $curPassword -match $NumberRegex) -or
+                        ( $curPassword -cmatch $LowerRegex -and $curPassword -cmatch $UpperRegex -and $curPassword -match $NumberRegex)
+                    )
                 ) {
                     $ReturnVal = $true
                 } else {

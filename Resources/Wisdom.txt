@@ -3247,7 +3247,7 @@ The larger the island of knowledge the longer the shoreline of wonder. Wonder ra
 A drop of honey catches more flies than a gallon of gall.
 - Abraham Lincoln
 %
-If people see the Capitol going on, it is a sign we intend the Union shall go on
+If people see the Capitol going on, it is a sign we intend the Union shall go on.
 - Abraham Lincoln
 %
 He who moulds public sentiment goes deeper than he who enacts statutes or pronounces decisions. He makes statutes and decisions possible or impossible to be executed.
@@ -3322,7 +3322,7 @@ Marriage is neither heaven nor hell, it is simply purgatory.
 If we could first know where we are, and whither we are tending, we could better judge what to do, and how to do it.
 - Abraham Lincoln
 %
-Don't criticize the; they are just what we would be under similar circumstances.
+Don't criticize them; they are just what we would be under similar circumstances.
 - Abraham Lincoln
 %
 I am not bound to succeed, but I am bound to live up to what light I have.
@@ -3351,3 +3351,9 @@ If there is anything a man can do well, I say let him do it. Give him a chance.
 %
 We all declare for liberty, but in using the same word we do not all mean the same thing.
 - Abraham Lincoln
+%
+A new command I give you: Love one another. As I have loved you, so you must love one another.
+- Jesus, John 13:34 (NIV)
+%
+The monk who abides in universal love and is deeply devoted to the Teaching of the Buddha attains the peace of Nibbana, the bliss of the cessation of all conditioned things.
+- Verse 368, The Dhammapada: The Buddha's Path of Wisdom

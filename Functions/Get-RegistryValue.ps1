@@ -46,39 +46,43 @@ function Get-RegistryValue {
 
     process {
 
-        $key = Get-Item -Path "Registry::$RegistryKey"
-        $key.GetValueNames() |
+        $Key = Get-Item -Path "Registry::$RegistryKey"
+        $Key.GetValueNames() |
         ForEach-Object {
-            $name = $_
+            $Name = $_
 
             if ($IncludeInput) {
-                $rv = ([ordered] @{
+                $TempReturnValue = ([ordered] @{
                         RegistryKey = $RegistryKey
                         Name        = ''
                         Type        = ''
                         Value       = ''
                 })
             } else {
-                $rv = ([ordered] @{
+                $TempReturnValue = ([ordered] @{
                         Name        = ''
                         Type        = ''
                         Value       = ''
                 })
             }
 
-            $rv.Name = $name
-            $rv.Type = $key.GetValueKind($name).ToString()
-            if ($rv.Type -eq 'ExpandString') {
-                $rv.Value = $key.GetValue($name, $null, [Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames)
+            $TempReturnValue.Name = $Name
+            $TempReturnValue.Type = $Key.GetValueKind($Name).ToString()
+            if ($TempReturnValue.Type -eq 'ExpandString') {
+                $TempReturnValue.Value = $Key.GetValue($Name, $null, [Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames)
+            } elseif ($TempReturnValue.Type -eq 'DWord') {
+                $TempReturnValue.Value = Convert-Int32ToUint32 -Number $Key.GetValue($Name) -Verbose:$false
+            } elseif ($TempReturnValue.Type -eq 'QWord') {
+                $TempReturnValue.Value = Convert-Int64ToUint64 -Number $Key.GetValue($Name) -Verbose:$false
             } else {
-                $rv.Value = $key.GetValue($name)
+                $TempReturnValue.Value = $Key.GetValue($Name)
             }
 
-            if (-not $rv.name) {
-                $rv.name = '(Default)'
+            if (-not $TempReturnValue.Name) {
+                $TempReturnValue.Name = '(Default)'
             }
 
-            New-Object -TypeName 'psobject' -Property $rv
+            New-Object -TypeName 'psobject' -Property $TempReturnValue
 
         }
     }

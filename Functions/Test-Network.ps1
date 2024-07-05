@@ -19,6 +19,8 @@ function Test-Network {
     10.100.40.6 server-101875.contosco.com Success
 #>
 
+# todo need to ensure result set is an array and not a single item
+
     [cmdletbinding()]
     param(
         [Parameter(Mandatory,HelpMessage='Please enter a network in CIDR format (ex. 192.168.1.0/24)', Position = 0, ValueFromPipeline)]

@@ -1,22 +1,23 @@
-function Convert-Int32ToUint32 {
+function Convert-Int64ToUint64 {
     <#
 .SYNOPSIS
-    Converts int32 values to uint32 values
+    Converts int64 values to uint64 values
 .DESCRIPTION
-    Converts int32 values to uint32 values. Useful for handling 32 bitmasks returned from some functions like Get-Acl
+    Converts int64 values to uint64 values. Useful for handling 32 bitmasks returned from some functions like Get-Acl
 .PARAMETER Number
-    An array of int32 values
+    An array of int64 values
 .PARAMETER IncludeInput
     Switch to include the input in the output
 .EXAMPLE
-    Convert-Int32ToUint32 -Number -1610612736,-1 -IncludeInput
+    Convert-int64ToUint64 -Number -1610612736,-1,0x800000000000005b -IncludeInput
 
-          Int32     Uint32
-          -----     ------
-    -1610612736 2684354560
-             -1 4294967295
+                   int64  Uint64
+                   -----  ------
+             -1610612736 18446744072098938880
+                      -1 18446744073709551615
+    -9223372036854775717  9223372036854775899
 .EXAMPLE
-    Convert-Int32ToUint32 -Number -1610612736
+    Convert-int64ToUint64 -Number -1610612736
 
     2684354560
 #>
@@ -25,7 +26,7 @@ function Convert-Int32ToUint32 {
     [CmdletBinding(ConfirmImpact = 'None')]
     Param(
         [parameter(Mandatory, HelpMessage = 'Enter hex color val RGB in form #RRGGBB', ValueFromPipeline)]
-        [int32[]] $Number,
+        [int64[]] $Number,
 
         [switch] $IncludeInput
     )
@@ -38,16 +39,16 @@ function Convert-Int32ToUint32 {
     process {
         foreach ($curNumber in $Number) {
             $HexString = '{0:x}' -f $curNumber
-            [int] $power = 0
-            [uint32] $ReturnVal = 0
+            [int64] $power = 0
+            [uint64] $ReturnVal = 0
             for ($i = ($Hexstring.length - 1); $i -ge 0; $i--) {
-                $ReturnVal += ([int] "0x$($Hexstring.Substring($i,1))" * [bigint]::Pow(16, $power))
+                $ReturnVal += ([int64] "0x$($Hexstring.Substring($i,1))" * [bigint]::Pow(16, $power))
                 $power++
             }
             if ($IncludeInput) {
                 New-Object -TypeName psobject -Property ([ordered] @{
-                        Int32  = $curNumber
-                        Uint32 = $ReturnVal
+                        int64  = $curNumber
+                        Uint64 = $ReturnVal
                     })
             } else {
                 Write-Output -InputObject $ReturnVal

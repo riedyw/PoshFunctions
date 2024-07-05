@@ -70,7 +70,7 @@
         '.\Formats\Get-DriveStatMB.Format.ps1xml', '.\Formats\Get-NamedColorBrief.Format.ps1xml',
         '.\Formats\Get-NamedColorFull.Format.ps1xml', '.\Formats\Get-PrintableAscii.Format.ps1xml',
         '.\Formats\Get-RebootHistory.Format.ps1xml', '.\Formats\Get-VssAdminListWriters.Format.ps1xml',
-        '.\Formats\New-PFDateFormat.Format.ps1xml' )
+        '.\Formats\New-PFDateFormat.Format.ps1xml', '.\Formats\Test-Port.Format.ps1xml' )
 
     # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
     # NestedModules = @()
@@ -89,18 +89,18 @@
         'Compare-ObjectSetComplement', 'Compare-ObjectSetDifference',
         'Compare-ObjectSetIntersection', 'Compare-ObjectSetUnion',
         'Compare-PSGalleryObject', 'Convert-HexToRGB', 'Convert-Int32ToUint32',
-        'Convert-Int64ToText', 'Convert-ObjectToHashtable', 'Convert-RGBToHex',
-        'Convert-SecureStringToString', 'Convert-UserFlag', 'ConvertFrom-Base64',
-        'ConvertFrom-Binary', 'ConvertFrom-DateTime', 'ConvertFrom-FsRight',
-        'ConvertFrom-Hex', 'ConvertFrom-HexString', 'ConvertFrom-HtmlEncode',
-        'ConvertFrom-RomanNumeral', 'ConvertFrom-UrlEncode', 'ConvertFrom-UTC',
-        'ConvertFrom-Xml', 'ConvertTo-Base64', 'ConvertTo-Binary',
+        'Convert-Int64ToText', 'Convert-Int64ToUint64', 'Convert-ObjectToHashtable',
+        'Convert-RGBToHex', 'Convert-SecureStringToString', 'Convert-UserFlag',
+        'ConvertFrom-Base64', 'ConvertFrom-Binary', 'ConvertFrom-DateTime',
+        'ConvertFrom-FsRight', 'ConvertFrom-Hex', 'ConvertFrom-HexString',
+        'ConvertFrom-HtmlEncode', 'ConvertFrom-RomanNumeral', 'ConvertFrom-UrlEncode',
+        'ConvertFrom-UTC', 'ConvertFrom-Xml', 'ConvertTo-Base64', 'ConvertTo-Binary',
         'ConvertTo-BinaryIPv4', 'ConvertTo-Bool', 'ConvertTo-DateTime',
         'ConvertTo-DecimalIPv4', 'ConvertTo-DottedDecimalIPv4', 'ConvertTo-Hex',
         'ConvertTo-HexString', 'ConvertTo-HtmlEncode', 'ConvertTo-OrderedDictionary',
         'ConvertTo-RomanNumeral', 'ConvertTo-UncPath', 'ConvertTo-UrlEncode',
-        'ConvertTo-UTC', 'Copy-Object', 'Expand-IPv6', 'Expand-String',
-        'Expand-Tab', 'Export-CSVSortedColumn', 'Export-FontSample', 'FileSizeAbove',
+        'ConvertTo-UTC', 'Copy-Object', 'Expand-IPv6', 'Expand-String', 'Expand-Tab',
+        'Export-CSVSortedColumn', 'Export-FontSample', 'FileSizeAbove',
         'FileSizeBelow', 'Format-MacAddress', 'Format-RandomCase',
         'Format-ReverseString', 'Format-ReverseToken', 'Format-SortedList',
         'Format-TitleCase', 'Format-WrapText', 'Get-AppEventSound', 'Get-ArpTable',
@@ -230,8 +230,10 @@
 For full release notes see .\Resources\ReleaseNotes.txt
 ### 2.2.11
 * added format files for result sets containing more than 4 columns
+* added Pester test file templates for functions. Only a handful have been populated with real tests. This will be coming in future release
 * updated .\Resources\WordList.txt and removed over 200 offensive words
 * added Add-FileAttribute - to manipulate 'ReadOnly', 'Hidden', 'System', 'Archive' file attributes
+* added Convert-Int64ToUint64 - to properly return Reg_QWord values from the registry
 * added Get-AutoRun.inf - to get the values from the hidden/system file found at the root of a drive letter: icon and label
 * added Get-Desktop.ini - to get the values from the hidden/system file found in a folder: folder type, infotip (hover info), icon
 * added Get-RebootHistory - to return a history of reboots, includes custom type for formatting
@@ -261,6 +263,7 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * updated Get-NamedColor - addressed issue with named colors not appearing
 * updated Get-PrintableAscii - to use custom type for formatting
 * updated Get-RegExpandString - added 'ERROR: ' to beginning of throw statement
+* updated Get-RegistryValue - changed when retrieving DWord value performs Convert-Int32ToUint32 on the returned value, calling subfunctions with -Verbose:$false, minor typos
 * updated Get-ShortName - added 'ERROR: ' to beginning of throw statement
 * updated Get-VssAdminListWriters - to use custom type for formatting
 * updated Get-WordCount - changed property names, sorted by frequency descending, then word ascending
@@ -268,11 +271,11 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * updated New-RandomPassword - added NumeralCount and SymbolCount parameters to increase complexity
 * updated New-Screenshot - added 'ERROR: ' to beginning of throw statement
 * updated New-Shortcut - resolved path to .lnk as it must be explicit path, used resolve-pathforce to resolve non-existent file
-* updated Set-PrivateProfileComment - change += to System.Collections.Arraylist for building new ini content. Removed diagnostic output of $Inserted
+* updated Set-PrivateProfileComment - change += to System.Collections.Arraylist, changed positional parameters
 * updated Split-CanonicalName - added alias of CN to CanonicalName
 * updated Split-DistinguishedName - added alias of DN to DistinguishedName
 * updated Write-StringHash - change += to System.Collections.Arraylist for $ReturnVal
-* updated Write-TextMnu - changed temporary file handling, fixed options passed from pipeline problem
+* updated Write-TextMnu - changed temporary file handling, fixed options passed from pipeline problem, using Set-Clipboard vs clip.exe, padded menu selection option to 2 characters
 
 ### 2.2.10
 * added Get-AppEventsSound - determines sounds configured for Windows events

@@ -33,8 +33,8 @@ while ($Choice2 -ne 'q') {
     Write-Host 'My Menu'
     Write-Host '======='
     Write-Host ' '
-    Write-Host '1 - One'
-    Write-Host 'Q - Quit'
+    Write-Host ' 1 - One'
+    Write-Host ' Q - Quit'
     Write-Host ' '
     $Choice2 = Read-Host 'Selection'
     switch ($Choice2) {
@@ -53,8 +53,8 @@ while ($Choice -ne 'q') {
     Write-Host 'Menu Title'
     Write-Host '=========='
     Write-Host ' '
-    Write-Host '1 - Uno'
-    Write-Host 'Q - Quit'
+    Write-Host ' 1 - Uno'
+    Write-Host ' Q - Quit'
     Write-Host ' '
     $Choice = Read-Host 'Selection'
     switch ($Choice) {
@@ -71,8 +71,6 @@ while ($Choice -ne 'q') {
     Read-Host
     about_switch
 #>
-
-    # todo .PadLeft(2) the numbers of choices and change quit option to ' Q' to align with numbers of choices
 
     #region Parameter
     [cmdletbinding(ConfirmImpact = 'Low')]
@@ -110,14 +108,13 @@ while ($Choice -ne 'q') {
         $null = $Result.Add("    Write-Host '$('='*$title.length)'")
         $null = $Result.Add("    Write-Host ' '")
         for ($i = 0; $i -lt $tmpOption.count; $i++) {
-            $null = $Result.Add("    Write-Host '$($i+1) - $($tmpOption[$i])'")
+            $null = $Result.Add("    Write-Host '$(`"{0,2}`" -f ($i+1)) - $($tmpOption[$i])'")
         }
-        $null = $Result.Add("    Write-Host 'Q - Quit'")
+        $null = $Result.Add("    Write-Host ' Q - Quit'")
         $null = $Result.Add("    Write-Host ' '")
-        $null = $Result.Add("    `$$VariableName = Read-Host 'Selection'")
+        $null = $Result.Add("    `$$VariableName = (Read-Host 'Selection').Trim()")
         $null = $Result.Add("    switch (`$$VariableName) {")
         $null = $Result.Add("        q { 'Exit message and code' }")
-        #$Result += "             break }"
         for ($i = 0; $i -lt $tmpOption.count; $i++) {
             $null = $Result.Add("        $($i+1) { 'Option $($i+1) code' }")
         }
@@ -133,7 +130,7 @@ while ($Choice -ne 'q') {
             Write-Output -InputObject $Result
         }
         if ($Clipboard) {
-            $Result | clip.exe
+            $Result | Set-Clipboard
             Write-Warning -Message 'Menu logic copied to clipboard'
         }
         Write-Verbose -Message "Ending [$($MyInvocation.Mycommand)]"

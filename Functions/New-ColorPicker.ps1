@@ -205,6 +205,8 @@ function New-ColorPicker {
         $AsHashCheck.Checked = $AsHashTable
         #endregion
 
+        $ColorDialog.Color = [System.Drawing.Color]::FromArgb($R, $G, $B)
+
         function Show-Result {
             [CmdletBinding()]
             [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
