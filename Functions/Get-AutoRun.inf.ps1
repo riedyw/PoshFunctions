@@ -1,4 +1,27 @@
 function Get-AutoRun.inf {
+    <#
+.SYNOPSIS
+    Gets the content of an AutoRun.inf for a drive.
+.DESCRIPTION
+    Gets the content of an AutoRun.inf for a drive.
+.PARAMETER Path
+    The path to the drive. Must begin with a drive letter followed by a colon ':'. Defaults to $pwd
+.EXAMPLE
+    Assuming the D: drive has an AutoRun.inf file with the following contents
+
+    [AutoRun]
+    Icon=TemporaryFolder.ico
+    Label=10 MB FAT VHD
+
+    Get-AutoRun.inf -Path d:
+
+    Path Label         Icon
+    ---- -----         ----
+    D:\  10 MB FAT VHD TemporaryFolder.ico
+
+#>
+
+
     [CmdletBinding()]
     param (
         [ValidateScript({

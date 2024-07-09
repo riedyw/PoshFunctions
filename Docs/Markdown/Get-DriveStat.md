@@ -128,10 +128,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### psobject
 
 
-
-## NOTES
+## NOTES
 
 Put in error checking around Get-CimInstance to handle Kerberos errors.
+Changed Select-Object statements to New-Object statements and specified hidden property PSTypeName
+to define typename (which can be used for formatting purposes)
 
 
 ## RELATED LINKS

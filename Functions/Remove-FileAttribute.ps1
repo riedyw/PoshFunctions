@@ -1,5 +1,26 @@
 function Remove-FileAttribute {
-    # todo add CommentHelp
+    <#
+.SYNOPSIS
+    Removes a file attribute from specified path (ReadOnly, Hidden, System, Archive)
+.DESCRIPTION
+    Removes a file attribute from specified path (ReadOnly, Hidden, System, Archive)
+.PARAMETER Path
+    A string, or string array, of path to file(s)
+.PARAMETER FileAttribute
+    A string, or string array, that represents file attributes. Valid entries are: (ReadOnly, Hidden, System, Archive)
+.EXAMPLE
+    (Get-Item -Path .\Control.ini).Attributes
+
+    Archive
+
+    Remove-FileAttribute -Path .\Control.ini -FileAttribute Archive
+
+    (Get-Item -Path .\Control.ini).Attributes
+
+    Normal
+#>
+
+
     [cmdletbinding()]
     param (
         [parameter(Mandatory,HelpMessage='Please specify a file')]
@@ -11,7 +32,7 @@ function Remove-FileAttribute {
             }
         })]
         [string[]] $Path,
-        
+
         [parameter(Mandatory,HelpMessage='Enter one or more of the following: [ReadOnly, Hidden, System, Archive]')]
         [validatescript({
             if (Test-MultipleBool -Bool ($_ | Foreach-Object { $_ -in @('ReadOnly', 'Hidden', 'System', 'Archive') }) -TestAnd) {
@@ -22,12 +43,12 @@ function Remove-FileAttribute {
         })]
         [string[]] $FileAttribute
     )
-    
+
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
     }
 
-    process { 
+    process {
         foreach ($File in $Path) {
             Write-Verbose "Processing file [$File]"
             $File = Get-Item -Path $File -Force

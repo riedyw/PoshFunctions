@@ -131,8 +131,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### string
 
 
-
-## NOTES
+## NOTES
 
 Inspired by: https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/title-casing-strings-capital-letter-starts-each-word
 

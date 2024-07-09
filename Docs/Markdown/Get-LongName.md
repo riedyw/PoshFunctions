@@ -152,8 +152,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### [string[]]
 
 
-
-## NOTES
+## NOTES
 
 Inspired by https://devblogs.microsoft.com/scripting/use-powershell-to-display-short-file-and-folder-names/
 

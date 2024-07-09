@@ -66,14 +66,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### None
 
 
-
-## OUTPUTS
+## OUTPUTS
 
 ### bool
 
 
-
-## NOTES
+## NOTES
 
 Inspiration: # Inspired by https://gallery.technet.microsoft.com/on-off-keyboad-lock-keys-6ba9885c
 

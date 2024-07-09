@@ -154,8 +154,7 @@ or
 'psobject'
 
 
-
-## NOTES
+## NOTES
 
 If you need to specify 10 or more of a particular type of dice use several entries of that dice type that add up to the value you want.
 

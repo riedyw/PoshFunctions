@@ -114,8 +114,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### Either $Null if any errors exist or a [string] if successful
 
 
-
-## NOTES
+## NOTES
 
 This function only exists for PowerShell versions prior to the inclusion of Invoke-WebRequest
 

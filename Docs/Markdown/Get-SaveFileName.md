@@ -231,8 +231,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### None are required, but you can use parameters to control behavior.
 
 
-
-## OUTPUTS
+## OUTPUTS
 
 ### [array]     If user selects a file, or enters a new filename in the text entry box
             and clicks 'OK'. Will return an array with a .Count property.
@@ -240,8 +239,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 $null       If the user clicks 'Cancel'.
 
 
-
-## NOTES
+## NOTES
 
 Inspiration: Part of the ISEColorThemeCmdlets.ps1 Script by Jeff Pollock
              http://gallery.technet.microsoft.com/ISE-Color-Theme-Cmdlets-24905f9e

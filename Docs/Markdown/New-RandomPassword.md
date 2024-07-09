@@ -16,13 +16,13 @@ Creates a new random password
 ### ReadableTitleCase (Default)
 
 ```
-New-RandomPassword [-AvoidSimilar] [-FullWordList] [-MaxLength <Int32>] [-MinLength <Int32>] [-Readable] [-TitleCase] [<CommonParameters>]
+New-RandomPassword [-AvoidSimilar] [-FullWordList] [-MaxLength <Int32>] [-MinLength <Int32>] [-NumeralCount <Int32>] [-Readable] [-SymbolCount <Int32>] [-TitleCase] [<CommonParameters>]
 ```
 
 ### ReadableRandomCase
 
 ```
-New-RandomPassword [-AvoidSimilar] [-FullWordList] [-MaxLength <Int32>] [-MinLength <Int32>] [-RandomCase] [-Readable] [<CommonParameters>]
+New-RandomPassword [-AvoidSimilar] [-FullWordList] [-MaxLength <Int32>] [-MinLength <Int32>] [-NumeralCount <Int32>] [-RandomCase] [-Readable] [-SymbolCount <Int32>] [<CommonParameters>]
 ```
 
 ### Web
@@ -95,6 +95,18 @@ New-RandomPassword -MinLength 16 -MaxLength 20 -Readable -AvoidSimilar
 ```
 
 
+
+
+
+
+
+### Example 6: EXAMPLE 6
+
+```
+New-RandomPassword -MinLength 16 -Readable -NumeralCount 2 -SymbolCount 2
+```
+
+Tonics39Sue@Joy(
 
 
 
@@ -199,6 +211,25 @@ Accept wildcard characters: False
 DontShow: False
 ```
 
+### -NumeralCount
+
+Integer representing the number of digits.
+Valid range 1-2, default is 1
+
+```yaml
+Type: Int32
+Parameter Sets: ReadableRandomCase, ReadableTitleCase
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (ReadableRandomCase, ReadableTitleCase)
+Position: Named
+Default value: 1
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
 ### -RandomCase
 
 Switch to randomly capitalize letters in each word.
@@ -233,6 +264,25 @@ Accepted values:
 Required: True (None) False (ReadableRandomCase, ReadableTitleCase)
 Position: Named
 Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
+### -SymbolCount
+
+Integer representing the number of symbol characters.
+Valid range 1-2, default is 1
+
+```yaml
+Type: Int32
+Parameter Sets: ReadableRandomCase, ReadableTitleCase
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (ReadableRandomCase, ReadableTitleCase)
+Position: Named
+Default value: 1
 Accept pipeline input: False
 Accept wildcard characters: False
 DontShow: False
@@ -286,8 +336,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### string
 
 
-
-## NOTES
+## NOTES
 
 Changes:
 
@@ -298,6 +347,7 @@ Changed parameter set names to more accurately reflect what they do
 Updated help comments
 DefaultParameterSetName is 'ReadableTitleCase'
 Added 'Q' to similar regex given closeness to 'O'
+Added NumeralCount and SymbolCount to increase complexity
 
 
 ## RELATED LINKS

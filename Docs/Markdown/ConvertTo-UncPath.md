@@ -134,8 +134,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### Will create a string for remote computer path
 
 
-
-## NOTES
+## NOTES
 
 Inspired by: https://www.powershellgallery.com/packages/PPoShTools/1.0.19
 * added -IncludeInput

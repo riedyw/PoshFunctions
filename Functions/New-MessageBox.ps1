@@ -1,7 +1,7 @@
 function New-MessageBox {
     <#
 .SYNOPSIS
-    New-Popup will display a message box. If a timeout is requested it uses Wscript.Shell PopUp method. If a default button is requested it uses the ::Show method from 'Windows.Forms.MessageBox'
+    New-Popup will display a message box. If a timeout is requested it uses Wscript.Shell PopUp method.
 .DESCRIPTION
     The New-Popup command uses the Wscript.Shell PopUp method to display a graphical message
     box. You can customize its appearance of icons and buttons. By default the user
@@ -74,6 +74,8 @@ function New-MessageBox {
     Wscript.Shell
 .NOTES
     Fixed issue with -AsString and a timeout not reporting correctly.
+
+    If a default button is requested it uses the ::Show method from 'Windows.Forms.MessageBox'
 #>
 
     #region Parameters

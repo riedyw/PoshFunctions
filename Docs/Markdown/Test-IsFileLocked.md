@@ -99,8 +99,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.Management.Automation.PSObject[]
 
 
-
-## NOTES
+## NOTES
 
 # inspired by https://mcpmag.com/articles/2018/07/10/check-for-locked-file-using-powershell.aspx
 # changed logic for testing if file exists

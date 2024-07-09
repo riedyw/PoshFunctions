@@ -1,4 +1,32 @@
 function Get-Desktop.ini {
+    <#
+.SYNOPSIS
+    Gets the current Desktop.ini file for a particular folder
+.DESCRIPTION
+    Gets the current Desktop.ini file for a particular folder from the hidden, system file Desktop.ini from the specified path
+.PARAMETER Path
+    The path to the folder
+.EXAMPLE
+    Assuming the file Desktop.ini exists in the current folder and contains:
+
+    Get-Content -Path .\Desktop.ini
+    [ViewState]
+    Mode=
+    Vid=
+    FolderType=Generic
+
+    [.ShellClassInfo]
+    InfoTip=This is hover over text
+    IconResource=TemporaryFolder2.ico,0
+
+    Get-Desktop.ini
+
+    Path    FolderType InfoTip                 IconResource
+    ----    ---------- -------                 ------------
+    C:\Temp Generic    This is hover over text TemporaryFolder2.ico,0
+#>
+
+
     [CmdletBinding()]
     param (
         [string] $Path = $pwd

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -56,7 +56,7 @@ online version:
 schema: 2.0.0</h2>
 <h1>New-MessageBox</h1>
 <h2>SYNOPSIS</h2>
-<p>New-Popup will display a message box. If a timeout is requested it uses Wscript.Shell PopUp method. If a default button is requested it uses the ::Show method from 'Windows.Forms.MessageBox'</p>
+<p>New-Popup will display a message box. If a timeout is requested it uses Wscript.Shell PopUp method.</p>
 <h2>SYNTAX</h2>
 <h3>Timeout (Default)</h3>
 <pre><code>New-MessageBox -Message &lt;String&gt; -Title &lt;String&gt; [-AsString] [-Buttons &lt;String&gt;] [-Icon &lt;String&gt;] [-ShowOnTop] [-Time &lt;Int32&gt;] [&lt;CommonParameters&gt;]
@@ -238,6 +238,8 @@ Ignore  =  5
 Yes     =  6
 No      =  7</p>
 <h2>NOTES</h2>
+<p>Fixed issue with -AsString and a timeout not reporting correctly.</p>
+<p>If a default button is requested it uses the ::Show method from 'Windows.Forms.MessageBox'</p>
 <h2>RELATED LINKS</h2>
 <p>[Wscript.Shell] ()</p>
 

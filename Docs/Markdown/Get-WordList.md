@@ -140,8 +140,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### [string[]]
 
 
-
-## NOTES
+## NOTES
 
 Originally taken from a Linux distribution and original file name was linuxwords
 Over 38,000 words appear in the file WordList.txt found in the installation folder of this module.

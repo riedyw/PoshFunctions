@@ -175,8 +175,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### psobject
 
 
-
-## NOTES
+## NOTES
 
 To mimic and extend the functionality of the Get-Uptime function found in PowerShell 6 or 7
 

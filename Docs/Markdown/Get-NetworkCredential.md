@@ -69,14 +69,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### 'PSCredential'
 
 
-
-## OUTPUTS
+## OUTPUTS
 
 ### 'System.Net.NetworkCredential'
 
 
-
-## NOTES
+## NOTES
 
 Medium to High impact as this function will return the password, albeit hidden from default view
 

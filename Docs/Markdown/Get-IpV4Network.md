@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Given a subnet in CIDR format, get all of the valid IP addresses in that range.
+Determine the IPv4 network given an ip address and a subnet mask
 
 ## SYNTAX
 
@@ -21,7 +21,7 @@ Get-IpV4Network [-IpAddress] <IPAddress[]> [-IncludeInput] [-SubnetMask <IPAddre
 
 ## DESCRIPTION
 
-Given a subnet in CIDR format, get all of the valid IP addresses in that range.
+Determine the IPv4 network given an ip address and a subnet mask
 
 
 ## EXAMPLES
@@ -29,11 +29,10 @@ Given a subnet in CIDR format, get all of the valid IP addresses in that range.
 ### Example 1: EXAMPLE 1
 
 ```
-Get-IpRange -Subnets '192.168.1.24/30'
+Get-IpV4Network -IpAddress 10.10.10.200 -SubnetMask 255.255.255.128
 ```
 
-192.168.1.25
-192.168.1.26
+10.10.10.128
 
 
 
@@ -42,23 +41,13 @@ Get-IpRange -Subnets '192.168.1.24/30'
 ### Example 2: EXAMPLE 2
 
 ```
-(Get-IpRange -Subnets '10.100.10.0/24').count
+Get-IpV4Network -IpAddress 10.10.10.200, 192.168.1.32 -SubnetMask 255.255.255.0 -IncludeInput
 ```
 
-254
-
-
-
-
-
-### Example 3: EXAMPLE 3
-
-```
-'192.168.1.128/30' | Get-IpRange
-```
-
-192.168.1.129
-192.168.1.130
+IpAddress    SubnetMask    Network
+---------    ----------    -------
+10.10.10.200 255.255.255.0 10.10.10.0
+192.168.1.32 255.255.255.0 192.168.1.0
 
 
 
@@ -69,7 +58,7 @@ Get-IpRange -Subnets '192.168.1.24/30'
 
 ### -IncludeInput
 
-{{ Fill IncludeInput Description }}
+Switch to determine if you want the input as part of the output
 
 ```yaml
 Type: SwitchParameter
@@ -87,7 +76,7 @@ DontShow: False
 
 ### -IpAddress
 
-Please enter a subnet in the form a.b.c.d/#
+An IP address (or array of addresses) that you want to determine the network of
 
 ```yaml
 Type: IPAddress[]
@@ -105,7 +94,8 @@ DontShow: False
 
 ### -SubnetMask
 
-{{ Fill SubnetMask Description }}
+An IP subnet mask.
+Defaults to: '255.255.255.0'
 
 ```yaml
 Type: IPAddress
@@ -115,7 +105,7 @@ Accepted values:
 
 Required: True (None) False (All)
 Position: Named
-Default value: 
+Default value: 255.255.255.0
 Accept pipeline input: False
 Accept wildcard characters: False
 DontShow: False
@@ -128,9 +118,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
-Inspired by https://gallery.technet.microsoft.com/PowerShell-Subnet-db45ec74
-
-* Added comment help
 
 
 ## RELATED LINKS

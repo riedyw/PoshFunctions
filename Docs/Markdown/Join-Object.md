@@ -491,8 +491,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.Object[]
 
 
-
-## NOTES
+## NOTES
 
 # Source https://www.powershellgallery.com/packages/Join/3.5.3
 

@@ -142,8 +142,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### datetime
 
 
-
-## NOTES
+## NOTES
 
 If -IncludeTime is not specified the time is truncated to midnight (the zero hour) of the day selected.
 

@@ -141,8 +141,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### A boolean $true or $false indicating if comparing local time to NTP time falls within a tolerance
 
 
-
-## NOTES
+## NOTES
 
 Will return a value of $False if either: a) the time difference is greater than the $Tolerance; or b) the time server does not reply to the NTP time request being sent by this function
 

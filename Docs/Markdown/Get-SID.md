@@ -167,8 +167,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### string
 
 
-
-## NOTES
+## NOTES
 
 Helpful if you don't have the ActiveDirectory module installed on your system.
 

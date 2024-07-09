@@ -136,8 +136,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### string
 
 
-
-## NOTES
+## NOTES
 
 * Reworked logic so it just replicates the links that are defined.
 Previously it ran repadmin.exe with /ApeD switch

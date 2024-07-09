@@ -213,8 +213,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### [datetime]
 
 
-
-## NOTES
+## NOTES
 
 If you specify -MinDate or -MaxDate, -MinDate must be less than or equal to -MaxDate.
 

@@ -1,4 +1,24 @@
 function Set-Desktop.ini {
+        <#
+.SYNOPSIS
+    Sets the customization attributes for a given folder
+.DESCRIPTION
+    Sets the customization attributes for a given folder
+.PARAMETER Path
+    The path to the folder
+.PARAMETER FolderType
+    String value validated against set: ('Generic', 'Documents', 'Pictures', 'Music', 'Videos').
+    Defaults to 'Generic'
+.PARAMETER InfoTip
+    Text to be displayed if you hover over folder in Windows Explorer. Maximum of 32 characters
+.PARAMETER Icon
+    Path to the icon file. Optional. If specified the file must exist
+.PARAMETER CopyIcon
+    Switch indicating that the icon will be copied to the root of the $Path folder
+.EXAMPLE
+    Add an example
+#>
+
     [CmdletBinding()]
     param (
         [string] $Path = $pwd,
@@ -24,7 +44,7 @@ function Set-Desktop.ini {
                 $false
             }
         })]
-        [string] $Icon = '',
+        [string] $Icon,
 
         [switch] $CopyIcon
     )

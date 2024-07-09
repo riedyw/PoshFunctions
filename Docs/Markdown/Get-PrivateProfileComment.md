@@ -110,8 +110,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### [string[]]
 
 
-
-## NOTES
+## NOTES
 
 I wanted to have an ability to get comments from an .ini file.
 

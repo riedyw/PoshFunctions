@@ -16,7 +16,7 @@ To expand tab characters to spaces
 ### __AllParameterSets
 
 ```
-Expand-Tab [[-TabWidth <UInt32>]] [-InputString <String[]>] [<CommonParameters>]
+Expand-Tab [[-InputString <String[]>]] [[-TabWidth <UInt32>]] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -81,7 +81,7 @@ Aliases:
 Accepted values: 
 
 Required: True (None) False (All)
-Position: Named
+Position: 0
 Default value: 
 Accept pipeline input: True
 Accept wildcard characters: False
@@ -99,7 +99,7 @@ Aliases:
 Accepted values: 
 
 Required: True (None) False (All)
-Position: 0
+Position: 1
 Default value: 8
 Accept pipeline input: False
 Accept wildcard characters: False

@@ -34,8 +34,7 @@ Test-PasswordComplexity [-IncludeInput] [-MinimumLength <Int32>] [-Password <Str
 ## DESCRIPTION
 
 Tests a password for length and password complexity.
-Complexity is at least 1 upper case character, 1 lower case character,
-1 numeral, 1 special character.
+Complexity is at least 3 of the 4 classes of characters: upper case, lower case, numeral, special character.
 
 
 ## EXAMPLES
@@ -46,7 +45,7 @@ Complexity is at least 1 upper case character, 1 lower case character,
 Test-PasswordComplexity -Password 'Password1'
 ```
 
-Would return $false as there is no special character
+Would return $true as there are 3 classes of characters (excluding special characters)
 
 
 
@@ -58,10 +57,10 @@ Would return $false as there is no special character
 Test-PasswordComplexity -Password 'Password1' -IncludeInput
 ```
 
-Would return the following as there is no special character
+Would return the following as it matches 3 of the 4 character classes
 Password  MinLength Length MatchComplexity
 --------  --------- ------ ---------------
-*********         8      9           False
+*********         8      9           True
 
 
 
@@ -194,10 +193,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### bool
 
 
-
-## NOTES
+## NOTES
 
 Changed logic on getting $*Regex values so there would not be a dependency on Get-PrintableAscii
+Changed logic so only 3 of the 4 classes of characters need to be matched
 
 
 ## RELATED LINKS

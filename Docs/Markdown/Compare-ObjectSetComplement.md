@@ -145,8 +145,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### psobject
 
 
-
-## NOTES
+## NOTES
 
 Inspired by:
 https://sqljana.wordpress.com/2015/09/23/perform-set-operations-union-intersection-minus-complement-using-powershell/

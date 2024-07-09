@@ -194,8 +194,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### bool
 
 
-
-## NOTES
+## NOTES
 
 # inspired by https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/validating-user-account-passwords-part-2
 # extra code to fix .ValidateCredentials error https://stackoverflow.com/questions/46170531/exception-in-validatecredentials-the-server-cannot-handle-directory-requests#comment95679386_46172068

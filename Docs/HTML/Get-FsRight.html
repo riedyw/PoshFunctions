@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.highlightAll();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: poshfunctions-help.xml
+Module Name: poshfunctions
+online version:
+schema: 2.0.0</h2>
+<h1>Get-FsRight</h1>
+<h2>SYNOPSIS</h2>
+<p>To list all potential file system rights</p>
+<h2>SYNTAX</h2>
+<h3>__AllParameterSets</h3>
+<pre><code>Get-FsRight [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>To list all potential file system rights</p>
+<h2>EXAMPLES</h2>
+<h3>Example 1: EXAMPLE 1</h3>
+<pre><code>Get-FsRight
+</code></pre>
+<p>Would return
+A listing of all of the explicit filesystemrights</p>
+<p>Name                         Type   Hex                    Dec</p>
+<hr />
+<p>ReadData                     Single 0x00000001               1
+CreateFiles                  Single 0x00000002               2
+AppendData                   Single 0x00000004               4
+ReadExtendedAttributes       Single 0x00000008               8
+WriteExtendedAttributes      Single 0x00000010              16
+ExecuteFile                  Single 0x00000020              32
+DeleteSubdirectoriesAndFiles Single 0x00000040              64
+ReadAttributes               Single 0x00000080             128
+WriteAttributes              Single 0x00000100             256
+Write                        Combo  0x00000116             278
+Delete                       Single 0x00010000           65536
+ReadPermissions              Single 0x00020000          131072
+Read                         Combo  0x00020089          131209
+ReadAndExecute               Combo  0x000200A9          131241
+Modify                       Combo  0x000301BF          197055
+ChangePermissions            Single 0x00040000          262144
+TakeOwnership                Single 0x00080000          524288
+Synchronize                  Single 0x00100000         1048576
+Read                         Combo  0x00120089         1179785
+ReadAndExecute               Combo  0x001200A9         1179817
+Read,Write                   Combo  0x0012019F         1180063
+ReadAndExecute,Write         Combo  0x001201BF         1180095
+ReadAndExecute,Modify,Write  Combo  0x001301BF         1245631
+FullControl                  Combo  0x001F01FF         2032127
+AccessSystemSecurity         Single 0x01000000        16777216
+MaximumAllowed               Single 0x02000000        33554432
+GenericAll                   Single 0x10000000       268435456
+GenericExecute               Single 0x20000000       536870912
+GenericWrite                 Single 0x40000000      1073741824
+GenericRead                  Single 0x80000000      2147483648
+ReadAndExecuteExtended       Combo  0xFFA0000000 1097901015040</p>
+<h2>PARAMETERS</h2>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>OUTPUTS</h2>
+<h3>An array of objects containing the fields Name, Type, Dec, Hex</h3>
+<h2>NOTES</h2>
+<p>Renamed to Get-FsRight, provided an alias as Show-FsRight
+Changed += to System.Collections.Arraylist
+Left justified Name by calling .ToString()</p>
+<h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
+
+</body>
+</html>

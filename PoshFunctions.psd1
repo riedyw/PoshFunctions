@@ -4,7 +4,7 @@
     RootModule        = 'PoshFunctions.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '2.2.11'
+    ModuleVersion     = '2.2.12'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -228,6 +228,8 @@
             # ReleaseNotes of this module
             ReleaseNotes = @'
 For full release notes see .\Resources\ReleaseNotes.txt
+### 2.2.12
+
 ### 2.2.11
 * added format files for result sets containing more than 4 columns
 * added Pester test file templates for functions. Only a handful have been populated with real tests. This will be coming in future release

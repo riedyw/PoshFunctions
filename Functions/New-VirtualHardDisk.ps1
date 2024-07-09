@@ -1,8 +1,7 @@
 function New-VirtualHardDisk {
 <#
 .SYNOPSIS
-    Creates a new virtual hard disk (*.vhd), mounts it, initializes it, formats it and optionally sets the volume label and
-    optionally creates an AutoRun.inf in the root of the new drive
+    Creates a new virtual hard disk (*.vhd), mounts it, initializes it, formats it and optionally sets the volume label and optionally creates an AutoRun.inf in the root of the new drive
 .DESCRIPTION
     Creates a new virtual hard disk (*.vhd), mounts it, initializes it, formats it and optionally sets the volume label and
     optionally creates an AutoRun.inf in the root of the new drive

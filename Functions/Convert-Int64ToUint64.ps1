@@ -23,7 +23,7 @@ function Convert-Int64ToUint64 {
 #>
 
     #region Parameter
-    [CmdletBinding(ConfirmImpact = 'None')]
+    [CmdletBinding(ConfirmImpact = 'None', HelpURI='https://undernewmanagement.info/2021/06/pick-up-the-bow/')]
     Param(
         [parameter(Mandatory, HelpMessage = 'Enter hex color val RGB in form #RRGGBB', ValueFromPipeline)]
         [int64[]] $Number,

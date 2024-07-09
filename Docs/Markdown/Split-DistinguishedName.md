@@ -135,12 +135,13 @@ DC=com
 The DistinguishedName string you want to parse.
 Can be single string or array of strings.
 Values can be passed
-via the pipeline as straight text or via property name
+via the pipeline as straight text or via property name.
+Aliased to 'DN'
 
 ```yaml
 Type: String[]
 Parameter Sets: Token, Leaf, Parent
-Aliases: 
+Aliases: DN
 Accepted values: 
 
 Required: True (Token, Leaf, Parent) False (None)
@@ -216,8 +217,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### string[]
 
 
-
-## NOTES
+## NOTES
 
 
 

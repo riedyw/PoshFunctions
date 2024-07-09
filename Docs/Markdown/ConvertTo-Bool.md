@@ -201,8 +201,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### [bool]
 
 
-
-## NOTES
+## NOTES
 
 ConvertTo-Bool will .Trim() the InputVal before trying to parse it.
 

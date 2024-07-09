@@ -37,6 +37,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 Uses Write-Host to display colors and as such does not use the pipeline.
+Formatted output
 
 
 ## RELATED LINKS

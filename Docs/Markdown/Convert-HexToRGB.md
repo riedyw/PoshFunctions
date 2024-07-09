@@ -114,6 +114,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
+Updated to change delimiter from ',' to ', ' so as to properly export to CSV and then read into Excel
 
 
 ## RELATED LINKS

@@ -86,8 +86,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### PSCustomObject
 
 
-
-## NOTES
+## NOTES
 
 inspired by https://learn.microsoft.com/en-us/answers/questions/350272/detect-if-system-windows-drive-is-ssd-or-hdd.html
 

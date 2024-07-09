@@ -16,7 +16,7 @@ Given a file, determine what program is associated with file.
 ### __AllParameterSets
 
 ```
-Get-ExecutableForFile [-Path] <String> [<CommonParameters>]
+Get-ExecutableForFile [-Path] <String> [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -40,6 +40,24 @@ C:\Program Files (x86)\Microsoft Office\Root\Office16\WINWORD.EXE
 
 
 ## PARAMETERS
+
+### -IncludeInput
+
+Include the specified file as part of the output
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
 
 ### -Path
 
@@ -66,8 +84,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
-# source http://community.idera.com/powershell/powertips/b/tips/posts/finding-executable-for-file
-# requires explicit path NOT relative
+Inspired by http://community.idera.com/powershell/powertips/b/tips/posts/finding-executable-for-file
+Added logic to resolve relative path to file
+Added logic to test if item is a file and not a folder
+Added -IncludeInput as an option.
 
 
 ## RELATED LINKS

@@ -311,15 +311,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 (FileName,Message)
 
 
-
-## OUTPUTS
+## OUTPUTS
 
 ### psObject
 (FullName,ErrorCorrrection,Margin,Dimensions,DataSize)
 
 
-
-## NOTES
+## NOTES
 
 NAME:      New-QR
 PURPOSE:   Generate QR codes with PowerShell

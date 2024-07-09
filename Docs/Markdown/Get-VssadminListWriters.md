@@ -79,6 +79,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
+Added PSTypeName       = 'PFVSSAdminWriter' to [pscustomobject] so it can be handled by formatting file
 
 
 ## RELATED LINKS

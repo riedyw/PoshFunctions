@@ -5,23 +5,23 @@ online version:
 schema: 2.0.0
 ---
 
-# Show-Color
+# Get-ConsoleColor
 
 ## SYNOPSIS
 
-Show-Color displays the names and values of the console colors
+Get-ConsoleColor displays the names and values of the console colors
 
 ## SYNTAX
 
 ### __AllParameterSets
 
 ```
-Show-Color [<CommonParameters>]
+Get-ConsoleColor [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-Show-Color displays the names and values of the console colors
+Get-ConsoleColor displays the names and values of the console colors
 
 
 ## EXAMPLES

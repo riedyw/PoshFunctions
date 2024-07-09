@@ -295,8 +295,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.String
 
 
-
-## NOTES
+## NOTES
 
 # Inspired and based on Clean-MacAddress.ps1 by
 # Francois-Xavier Cat

@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-New-Popup will display a message box. If a timeout is requested it uses Wscript.Shell PopUp method. If a default button is requested it uses the ::Show method from 'Windows.Forms.MessageBox'
+New-Popup will display a message box. If a timeout is requested it uses Wscript.Shell PopUp method.
 
 ## SYNTAX
 
@@ -269,9 +269,11 @@ Yes     =  6
 No      =  7
 
 
+## NOTES
 
-## NOTES
+Fixed issue with -AsString and a timeout not reporting correctly.
 
+If a default button is requested it uses the ::Show method from 'Windows.Forms.MessageBox'
 
 
 ## RELATED LINKS

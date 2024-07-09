@@ -155,14 +155,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### None
 
 
-
-## OUTPUTS
+## OUTPUTS
 
 ### [string[]]
 
 
-
-## NOTES
+## NOTES
 
 
 

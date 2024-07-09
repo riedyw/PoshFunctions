@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -76,7 +76,7 @@ unicorn</p>
 <h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Get-WordCount -Path .\Sample.txt
 </code></pre>
-<p>Name                           Value</p>
+<p>Word                           Frequency</p>
 <hr />
 <p>unicorn                        4
 cat                            3
@@ -85,7 +85,7 @@ fish                           1</p>
 <h3>Example 3: EXAMPLE 3</h3>
 <pre><code>Get-WordCount -Path .\sample.txt -Exclude .\Exclude.txt
 </code></pre>
-<p>Name                           Value</p>
+<p>Word                           Frequency</p>
 <hr />
 <p>cat                            3
 dog                            2
@@ -125,7 +125,10 @@ DontShow: False
 <p>Updated logic around keys to the working hash.
 If any of the words in the file match PowerShell keywords you'll
 get a bunch of error messages.
-Workaround stores hash in slightly different manner.</p>
+Workaround stores hash in slightly different manner.
+Forced each word to lower case
+Sorted Word frequency in descending order, then word in ascending order
+Changed properties from (Name, Value) to (Word, Frequency) to better reflect their meanings</p>
 <h2>RELATED LINKS</h2>
 <p>Fill Related Links Here</p>
 

@@ -1,4 +1,17 @@
 function Set-AutoRun.inf {
+<#
+.SYNOPSIS
+    Creates an AutoRun.inf for a drive. Can set icon, label. Either an icon or label must be specified
+.DESCRIPTION
+    Creates an AutoRun.inf for a drive. Can set icon, label. Either an icon or label must be specified
+.PARAMETER Path
+    The path to the drive. Must begin with a drive letter followed by a colon ':'. Defaults to $pwd
+.PARAMETER Label
+    A string up to 32 characters that will represent the label for the drive
+.PARAMETER Icon
+    A path to an icon file (.ico). File must exist and it is copied to the root of the Path specified
+#>
+
     [CmdletBinding()]
     param (
         [ValidateScript({
@@ -46,10 +59,6 @@ function Set-AutoRun.inf {
         if ((-not $Label) -and (-not $Icon)) {
             throw 'ERROR: Either -Label, -Icon, or both must be specified'
         }
-#         if ($Icon -and (-not (Test-Path -Path $Icon))) {
-#             throw "ERROR: Icon [$Icon] does not exist."
-#             break
-#         }
     }
 
     process {

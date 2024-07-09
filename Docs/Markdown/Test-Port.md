@@ -222,8 +222,7 @@ Open            A boolean
 Notes           Any notes when attempting to make a connection
 
 
-
-## NOTES
+## NOTES
 
 # inspired by https://gallery.technet.microsoft.com/scriptcenter/97119ed6-6fb2-446d-98d8-32d823867131
 

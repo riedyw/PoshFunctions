@@ -45,6 +45,7 @@ Export-FontSample
 
 The path to the file that you want the font sample exported to.
 If the file does not end in either '.htm', or '.html' then an extension of '.htm' will be added to the file.
+Defaults to the filename FontSample.htm in the path specified by $env:TEMP
 
 ```yaml
 Type: String
@@ -54,7 +55,7 @@ Accepted values:
 
 Required: True (None) False (All)
 Position: 0
-Default value: .\FontSample.htm
+Default value: (Join-Path -Path $env:TEMP -ChildPath 'FontSample.htm')
 Accept pipeline input: False
 Accept wildcard characters: False
 DontShow: False
@@ -119,7 +120,8 @@ Default value: @(
                'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
                'abcdefghijklmnopqrstuvwxyz',
                '1234567890',
-                '!@#$%^&*()[]{}-_=+ ??'
+               '!@#$%^&*()&#91;&#93;&#123;&#125;-_=+ &cent;&pound;',
+               '&gamma;&delta;&theta;&lambda;&xi;&pi;&sigma;&upsilon;&psi;&omega;'
             )
 Accept pipeline input: False
 Accept wildcard characters: False

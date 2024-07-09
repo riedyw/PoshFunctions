@@ -50,7 +50,7 @@ unicorn
 Get-WordCount -Path .\Sample.txt
 ```
 
-Name                           Value
+Word                           Frequency
 ----                           -----
 unicorn                        4
 cat                            3
@@ -67,7 +67,7 @@ fish                           1
 Get-WordCount -Path .\sample.txt -Exclude .\Exclude.txt
 ```
 
-Name                           Value
+Word                           Frequency
 ----                           -----
 cat                            3
 dog                            2
@@ -127,6 +127,9 @@ Updated logic around keys to the working hash.
 If any of the words in the file match PowerShell keywords you'll
 get a bunch of error messages.
 Workaround stores hash in slightly different manner.
+Forced each word to lower case
+Sorted Word frequency in descending order, then word in ascending order
+Changed properties from (Name, Value) to (Word, Frequency) to better reflect their meanings
 
 
 ## RELATED LINKS

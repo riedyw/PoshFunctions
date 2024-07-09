@@ -164,8 +164,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### psobject
 
 
-
-## NOTES
+## NOTES
 
 Does NOT appear to work properly in pwsh
 
