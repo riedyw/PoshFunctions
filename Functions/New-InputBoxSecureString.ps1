@@ -3,7 +3,7 @@ function New-InputBoxSecureString {
 .SYNOPSIS
     Provides a GUI text entry box to enter a string and convert it to a securestring
 .DESCRIPTION
-    Provides a GUI text entry box to enter a string and convert it to a securestring. Function validates input and provides an input mask, both of which can be disabled.
+    Provides a GUI text entry box to enter a string and convert it to a securestring. Function validates input and provides an input mask, both of which can be disabled. Optionally can output a plain text string with the $OutputAsPlainText parameter
 .PARAMETER Title
     The title of the form. Defaults to 'New SecureString'
 .PARAMETER DisableValidation
@@ -16,6 +16,9 @@ function New-InputBoxSecureString {
     The label block of the entry text input box. Defaults to 'Please enter the value'
 .PARAMETER ValidateBoxLabel
     The label block of the entry text input box. Defaults to 'Please re-enter the value'
+.PARAMETER OutputAsPlainText
+    Switch that will output plain text as opposed to a secure string
+    You would use this if you wanted validation logic but wanted the output to be a string
 .EXAMPLE
     $SecureString = New-InputBoxSecureString
 
@@ -58,7 +61,9 @@ function New-InputBoxSecureString {
         [string] $EntryBoxLabel = 'Please enter the value',
 
         [Parameter(ParameterSetName = 'Validate')]
-        [string] $ValidateBoxLabel = 'Please re-enter the value'
+        [string] $ValidateBoxLabel = 'Please re-enter the value',
+
+        [switch] $OutputAsPlainText
     )
 
     begin {
@@ -183,7 +188,11 @@ function New-InputBoxSecureString {
                         break
                     }
             }
-            $ReturnVal = ConvertTo-SecureString -String $EntryBox.Text -AsPlainText -Force
+            if ($OutputAsPlainText) {
+                $ReturnVal = $EntryBox.Text
+            } else {
+                $ReturnVal = ConvertTo-SecureString -String $EntryBox.Text -AsPlainText -Force
+            }
             Write-Output -InputObject $ReturnVal
         }
     }

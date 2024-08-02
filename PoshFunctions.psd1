@@ -229,6 +229,11 @@
             ReleaseNotes = @'
 For full release notes see .\Resources\ReleaseNotes.txt
 ### 2.2.12
+* added about_PoshFunctions for an overview of the module
+* updated Test-IsScrollLock - updated comment help
+* updated New-InputBoxSecureString - added switch parameter to allow for string output as opposed to secure string output
+* updated New-MessageBox - corrected validation set for -Defaultbutton parameter
+* updated New-VirtualHardDisk - updated comment help
 
 ### 2.2.11
 * added format files for result sets containing more than 4 columns

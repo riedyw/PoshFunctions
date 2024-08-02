@@ -1,7 +1,7 @@
 function New-VirtualHardDisk {
 <#
 .SYNOPSIS
-    Creates a new virtual hard disk (*.vhd), mounts it, initializes it, formats it and optionally sets the volume label and optionally creates an AutoRun.inf in the root of the new drive
+    Creates a new virtual hard disk (*.vhd) and several other operations
 .DESCRIPTION
     Creates a new virtual hard disk (*.vhd), mounts it, initializes it, formats it and optionally sets the volume label and
     optionally creates an AutoRun.inf in the root of the new drive
@@ -22,17 +22,18 @@ function New-VirtualHardDisk {
 .PARAMETER AutoRunLabel
     Optional label that will be displayed in Windows Explorer and AutoRun.inf setting for it
 .EXAMPLE
-New-VirtualHardDisk -Path c:\temp\512.vhd -Size 512MB -VhdType Expandable -FileSystem NTFS -VolumeLabel 'Temp Volume' -AutoRunLabel 'This is my temporary volume' -AutoRunIcon C:\temp\TemporaryFolder.ico
+    New-VirtualHardDisk -Path c:\temp\512.vhd -Size 512MB -VhdType Expandable -FileSystem NTFS -VolumeLabel 'Temp Volume' -AutoRunLabel 'This is my temporary volume' -AutoRunIcon C:\temp\TemporaryFolder.ico
 
-Path          : C:\temp\512.vhd
-MaxSizeMB     : 512
-VhdType       : Expandable
-PartitionType : MBR
-FileSystem    : NTFS
-VolumeLabel   : Temp Volume
-AutoRunLabel  : This is my temporary volume
-AutoRunIcon   : C:\temp\TemporaryFolder.ico
-
+    Path          : C:\temp\512.vhd
+    MaxSizeMB     : 512
+    VhdType       : Expandable
+    PartitionType : MBR
+    FileSystem    : NTFS
+    VolumeLabel   : Temp Volume
+    AutoRunLabel  : This is my temporary volume
+    AutoRunIcon   : C:\temp\TemporaryFolder.ico
+.NOTES
+    Must be run from an elevated prompt.
 #>
 
 # todo Max volumelabel length is 32 if NTFS, 11 if others
@@ -128,9 +129,9 @@ AutoRunIcon   : C:\temp\TemporaryFolder.ico
     process {
         $null = diskpart.exe /s "$DiskPartScript"
 
-        $MountInfo = Mount-DiskImage -ImagePath "$Path"
+        Mount-DiskImage -ImagePath "$Path"
 
-        $FormatInfo = Get-Disk |
+        Get-Disk |
         Where-Object { $_.Partitionstyle -eq 'Raw' } |
         Initialize-Disk -PartitionStyle $PartitionType -PassThru |
         New-Partition -AssignDriveLetter -UseMaximumSize | Tee-Object -Variable NewDrive |

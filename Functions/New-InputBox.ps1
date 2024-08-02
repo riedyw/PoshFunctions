@@ -47,7 +47,7 @@ function New-Inputbox {
 
     process {
         try {
-            Add-Type -AssemblyName 'microsoft.visualbasic' -ErrorAction Stop
+            Add-Type -AssemblyName 'Microsoft.VisualBasic' -ErrorAction Stop
             [Microsoft.VisualBasic.Interaction]::InputBox($Prompt,$Title,$Default)
         }
         catch {
