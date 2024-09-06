@@ -15,6 +15,9 @@ function New-ScreenShot {
     New-ScreenShot -Path .\Screenshot.bmp -Full -Passthru
 
     Taking a full screenshot of the desktop and saving it to .\Screenshot.bmp
+.NOTES
+    Some anti-virus / anti-malware software will flag this as a breach. Short of disabling that software
+    there is nothing that can be done
 #>
 
     [CmdletBinding(SupportsShouldProcess,ConfirmImpact='Low')]

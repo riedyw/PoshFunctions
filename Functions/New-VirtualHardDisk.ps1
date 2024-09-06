@@ -129,7 +129,7 @@ function New-VirtualHardDisk {
     process {
         $null = diskpart.exe /s "$DiskPartScript"
 
-        Mount-DiskImage -ImagePath "$Path"
+        $null = Mount-DiskImage -ImagePath "$Path"
 
         Get-Disk |
         Where-Object { $_.Partitionstyle -eq 'Raw' } |

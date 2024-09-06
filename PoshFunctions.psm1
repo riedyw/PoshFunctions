@@ -17,6 +17,7 @@ $Script:WordList = Get-Content -Path $PSScriptRoot\Resources\WordList.txt -ReadC
 $Script:WordListFull = Get-Content -Path $PSScriptRoot\Resources\words_alpha.txt -ReadCount 0
 $Script:FortuneFile = Join-Path -Path $ModulePath -ChildPath 'Resources\Wisdom.txt'
 $Script:Stopwatch = [System.Diagnostics.Stopwatch]::New()
+$Script:IconFile = Join-Path -Path $ModulePath -ChildPath 'Resources\PoshFunctions.ico'
 
 # inspired by: http://powershell-scripting.com/index.php?option=com_joomlaboard&Itemid=76&func=view&view=threaded&id=24376&catid=5
 # also sourced at: https://gallery.technet.microsoft.com/Edit-old-fashioned-INI-f8fbc067?redir=0

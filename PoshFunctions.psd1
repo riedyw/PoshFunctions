@@ -230,10 +230,16 @@
 For full release notes see .\Resources\ReleaseNotes.txt
 ### 2.2.12
 * added about_PoshFunctions for an overview of the module
-* updated Test-IsScrollLock - updated comment help
-* updated New-InputBoxSecureString - added switch parameter to allow for string output as opposed to secure string output
+* updated PoshFunctions.psm1 - added $Script:IconFile variable
+* updated Get-Font - updated comment help to indicate that it captures the state of fonts when the Powershell session initiated
+* updated New-ColorPicker - changed how the icon is set
+* updated New-DatePicker - changed how the icon is set
+* updated New-FontPicker - changed how the icon is set
+* updated New-InputBoxSecureString - added switch parameter to allow for string output as opposed to secure string output, changed how icon set
 * updated New-MessageBox - corrected validation set for -Defaultbutton parameter
-* updated New-VirtualHardDisk - updated comment help
+* updated New-ScreenShot - added note in comment help that it may trigger anti-malware software
+* updated New-VirtualHardDisk - updated comment help, removed unused variables
+* updated Test-IsScrollLock - updated comment help
 
 ### 2.2.11
 * added format files for result sets containing more than 4 columns

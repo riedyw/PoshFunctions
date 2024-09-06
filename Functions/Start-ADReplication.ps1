@@ -54,9 +54,9 @@ function Start-ADReplication {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseOutputTypeCorrectly', '')]
     Param
     (
-        [parameter(Mandatory, HelpMessage = 'Please enter the name of a domain controller', ValueFromPipelineByPropertyName)]
+        [parameter(ValueFromPipelineByPropertyName)]
         [Alias('DomainController', 'DC', 'CN', 'ComputerName')]
-        [string[]] $Name,
+        [string[]] $Name = $env:COMPUTERNAME,
 
         [switch] $Quiet
     )
