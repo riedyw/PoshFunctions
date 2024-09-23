@@ -6,12 +6,10 @@ function Start-ADReplication {
     Forces replication to occur between domain controllers in domain. Invoke-Command to a DC. Requires to be running in elevated Powershell prompt.
 .PARAMETER Name
     A string array containing the name, fqdn or ipaddress of a domain controller. If not specified will query AD for a domain controller. Aliased to 'DomainController', 'DC', 'CN', 'ComputerName'
+
+    Optional, defaults to $env:COMPUTERNAME
 .PARAMETER Quiet
     Switch will create no output
-.EXAMPLE
-    Start-ADReplication
-
-    Will issue a call to Get-ADDomainController and run the replication against that one DC
 .EXAMPLE
     Get-ADDomainController -Filter * | Start-ADReplication
 
@@ -43,6 +41,7 @@ function Start-ADReplication {
     * Changed output so that it creates CSV output
     * Added '-ThrottleLimit' to the Invoke-Command so as to not saturate the local computer. Changed value to
       [environment]::ProcessorCount which is the number of processors on the computer.
+    * Changed $Name to optional and defaulting to $env:COMPUTERNAME
 #>
 
     # todo - add -Credential
@@ -78,7 +77,7 @@ function Start-ADReplication {
             }
         }
         if (-not $Quiet) {
-            "`"DestinationDSA`",`"SourceDSA`",`"NamingContext`",`"Message`""
+            Write-Output -InputObject "`"DestinationDSA`",`"SourceDSA`",`"NamingContext`",`"Message`""
         }
     }
 

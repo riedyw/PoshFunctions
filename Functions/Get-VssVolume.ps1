@@ -1,20 +1,20 @@
-function Get-VssadminListVolumes {
+function Get-VssVolume {
     <#
 .SYNOPSIS
     Runs 'vssadmin.exe list volumes' and parses the output into objects
 .DESCRIPTION
     Runs 'vssadmin.exe list volumes' and parses the output into objects
 .EXAMPLE
-    Get-VssAdminListVolumes
+    Get-VssVolume
 
-    VolumePath                                        VolumeName
-    ----------                                        ----------
-    \\?\Volume{727a7233-cd8b-44bb-a2fc-dfa771957fe6}\ \\?\Volume{727a7233-cd8b-44bb-a2fc-dfa771957fe6}\
-    C:\                                               \\?\Volume{e02a6fff-32f6-4c83-a7ac-527a0f0b3377}\
-    \\?\Volume{cd99c472-eaed-4de9-a0e0-aa618450adaa}\ \\?\Volume{cd99c472-eaed-4de9-a0e0-aa618450adaa}\
+    VssVolume                                         VolumeName
+    ---------                                         ----------
+    C:\                                               \\?\Volume{613fc8d3-61cc-4199-868b-530990bde935}\
+    \\?\Volume{ddc280b3-b5f1-4feb-a12a-512d0488fbd8}\ \\?\Volume{ddc280b3-b5f1-4feb-a12a-512d0488fbd8}\
 #>
 
     [CmdletBinding(ConfirmImpact = 'None')]
+    [Alias('Get-VssadminListVolumes')] #FunctionAlias
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns','')]
     param()
 
@@ -38,7 +38,7 @@ function Get-VssadminListVolumes {
                 '^    Volume name:' {
                     $VolumeName = $vss[$i].Substring(17)
                     [PSCustomObject] @{
-                        VolumePath           = $volumepath
+                        VssVolume           = $volumepath
                         VolumeName          = $VolumeName
                     }
                     break

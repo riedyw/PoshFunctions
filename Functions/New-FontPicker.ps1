@@ -150,7 +150,7 @@ function New-FontPicker {
             [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
             param
             (
-                $object
+                [object] $object
             )
             $FontResult = $FontDialog.ShowDialog()
             if ($FontResult -eq 'OK') {
@@ -166,7 +166,7 @@ function New-FontPicker {
             [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
             param
             (
-                $object
+                [object] $object
             )
             $NameText.Text = $FontDialog.Font.Name
             $SizeText.Text = $FontDialog.Font.Size

@@ -11,7 +11,7 @@ function Get-VssWriterToService {
 .EXAMPLE
     Get-VssWriterToService
 
-    VssWriterName                     ServiceName         ServiceDisplayName
+    VssWriter                         ServiceName         ServiceDisplayName
     -------------                     -----------         ------------------
     ASR Writer                        VSS                 Volume Shadow Copy
     BITS Writer                       BITS                Background Intelligent Transfer Service
@@ -46,6 +46,29 @@ function Get-VssWriterToService {
     WINS Jet Writer                   WINS                Windows Internet Name Service (WINS)
     WMI Writer                        Winmgmt             Windows Management Instrumentation
 .EXAMPLE
+    Find the list of unstable vss writers and restart their corresponding service
+
+    $UnstableVss = Get-VssWriter | Where-Object { $_.State -ne '[1] Stable' }
+    $VssToService = Get-VssWriterToService
+
+    $VssToService  |
+        Where-Object { $_.VssWriter -in $UnstableVss.Writer } |
+        ForEach-Object { Restart-Service -Name $_.ServiceName -Force }
+.EXAMPLE
+    (Get-VssWriterToService)[0..2]
+
+    VssWriter             ServiceName ServiceDisplayName
+    ---------             ----------- ------------------
+    ASR Writer            VSS         Volume Shadow Copy
+    BITS Writer           BITS        Background Intelligent Transfer Service
+    Certificate Authority CertSvc     Active Directory Certificate Services
+.NOTES
+    List of VSS Writers coming from multiple places
+
+    https://support.carbonite.com/articles/Server-Windows-List-of-VSS-Writers-and-Services
+    https://support.unitrends.com/hc/en-us/articles/360013245618-VSS-Writer-Failed-How-to-Restart-and-Re-Register-VSS-Writers>
+    https://web.archive.org/web/20220118095704/https://support.unitrends.com/hc/en-us/articles/360013245618-VSS-Writer-Failed-How-to-Restart-and-Re-Register-VSS-Writers
+    https://www.veeam.com/kb2041
 
 #>
 
@@ -56,8 +79,8 @@ function Get-VssWriterToService {
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
 
-        $VssToService = @"
-VssWriterName,ServiceName,ServiceDisplayName
+        $VssToService = @'
+VssWriter,ServiceName,ServiceDisplayName
 ASR Writer,VSS,Volume Shadow Copy
 BITS Writer,BITS,Background Intelligent Transfer Service
 Certificate Authority,CertSvc,Active Directory Certificate Services
@@ -68,6 +91,7 @@ FRS Writer,NtFrs,File Replication
 FSRM writer,srmsvc,File Server Resource Manager
 IIS Config Writer,AppHostSvc,Application Host Helper Service
 IIS Metabase Writer,IISADMIN,IIS Admin Service
+MailStore VSS Writer,MailStore VSS Writer,MailStore VSS Writer
 Microsoft Exchange Replica Writer,MSExchangeRepl,Microsoft Exchange Replication Service
 Microsoft Exchange Writer,MSExchangeIS,Microsoft Exchange Information Store
 Microsoft Hyper-V VSS Writer,vmms,Hyper-V Virtual Machine Management
@@ -77,6 +101,7 @@ NPS VSS Writer,EventSystem,COM+ Event System
 NTDS,NTDS,Active Directory Domain Services
 OSearch VSS Writer,OSearch,Office SharePoint Server Search
 OSearch14 VSS Writer,OSearch14,SharePoint Server Search 14
+OSearch15 VSS Writer,OSearch15,SharePoint Server Search 15
 Registry Writer,VSS,Volume Shadow Copy
 Shadow Copy Optimization Writer,VSS,Volume Shadow Copy
 SMS Writer,SMS_SITE_VSS_WRITER,SMS_SITE_VSS_WRITER
@@ -90,7 +115,7 @@ WDS VSS Writer,WDSServer,Windows Deployment Services Server
 WIDWriter,WIDWriter,Windows Internal Database VSS Writer
 WINS Jet Writer,WINS,Windows Internet Name Service (WINS)
 WMI Writer,Winmgmt,Windows Management Instrumentation
-"@ -split '\r?\n' | ConvertFrom-Csv
+'@ -split '\r?\n' | ConvertFrom-Csv
 
     }
 

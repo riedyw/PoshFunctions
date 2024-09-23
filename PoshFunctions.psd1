@@ -22,7 +22,7 @@
     Copyright         = '(c) 2024 Bill Riedy. All rights reserved.'
 
     # Description of the functionality provided by this module
-    Description       = 'A curated collection of over 230 PowerShell functions. Many functions written by me. Others are attributed wherever possible.'
+    Description       = 'A curated collection of over 250 PowerShell functions. Many functions written by me. Others are attributed wherever possible.'
 
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '5.0'
@@ -57,13 +57,14 @@
     # Format files (.ps1xml) to be loaded when importing this module
     # Recreate by running from PS prompts in PoshFunctions folder
     #
-    <#
+
+<#
     dir .\Formats\*.ps1xml |
     Get-RelativePath -RelativeTo $pwd |
     Write-StringArray -VariableName FormatsToProcess -ExcludeDollarSign |
     Format-WrapText -Width 100 |
     Set-Clipboard
- #>
+#>
 
     FormatsToProcess  = @( '.\Formats\Get-DriveStatBytes.Format.ps1xml',
         '.\Formats\Get-DriveStatGB.Format.ps1xml', '.\Formats\Get-DriveStatKB.Format.ps1xml',
@@ -77,13 +78,14 @@
 
     # Functions export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
     # Recreated by running the following from PS prompt in PoshFunctions folder
-    <#
+
+<#
     dir .\Functions\*.ps1 |
     select -expand basename |
     Write-StringArray -VariableName FunctionsToExport -ExcludeDollarSign |
     Format-WrapText -Width 80 |
     set-clipboard
- #>
+#>
 
     FunctionsToExport = @( 'Add-FileAttribute', 'Compare-ObjectProperty',
         'Compare-ObjectSetComplement', 'Compare-ObjectSetDifference',
@@ -98,10 +100,10 @@
         'ConvertTo-BinaryIPv4', 'ConvertTo-Bool', 'ConvertTo-DateTime',
         'ConvertTo-DecimalIPv4', 'ConvertTo-DottedDecimalIPv4', 'ConvertTo-Hex',
         'ConvertTo-HexString', 'ConvertTo-HtmlEncode', 'ConvertTo-OrderedDictionary',
-        'ConvertTo-RomanNumeral', 'ConvertTo-UncPath', 'ConvertTo-UrlEncode',
-        'ConvertTo-UTC', 'Copy-Object', 'Expand-IPv6', 'Expand-String', 'Expand-Tab',
-        'Export-CSVSortedColumn', 'Export-FontSample', 'FileSizeAbove',
-        'FileSizeBelow', 'Format-MacAddress', 'Format-RandomCase',
+        'ConvertTo-PFEscape', 'ConvertTo-RomanNumeral', 'ConvertTo-UncPath',
+        'ConvertTo-UrlEncode', 'ConvertTo-UTC', 'Copy-Object', 'Expand-IPv6',
+        'Expand-String', 'Expand-Tab', 'Export-CSVSortedColumn', 'Export-FontSample',
+        'FileSizeAbove', 'FileSizeBelow', 'Format-MacAddress', 'Format-RandomCase',
         'Format-ReverseString', 'Format-ReverseToken', 'Format-SortedList',
         'Format-TitleCase', 'Format-WrapText', 'Get-AppEventSound', 'Get-ArpTable',
         'Get-Assoc', 'Get-AutoRun.inf', 'Get-BashPath', 'Get-BinaryType',
@@ -122,25 +124,28 @@
         'Get-RandomMacAddress', 'Get-RebootHistory', 'Get-RegExpandString',
         'Get-RegistryValue', 'Get-RelativePath', 'Get-Round', 'Get-SaveFileName',
         'Get-ScheduledTaskUser', 'Get-ServiceUser', 'Get-Shortcut', 'Get-ShortName',
-        'Get-SID', 'Get-SpecialFolder', 'Get-SqlDatabase', 'Get-SqlIndexFragmentation',
-        'Get-SqlStoredProcedure', 'Get-StaticProperty', 'Get-String', 'Get-StringHash',
-        'Get-SubnetMaskIPv4', 'Get-TruncatedDate', 'Get-Type', 'Get-TypeAccelerator',
-        'Get-UrlContent', 'Get-VssAdminListVolumes', 'Get-VssAdminListWriters',
-        'Get-WordCount', 'Get-WordList', 'grep', 'Invoke-Beep',
-        'Invoke-CountdownTimer', 'Invoke-SoundPlayer', 'Invoke-Speak', 'Join-Object',
-        'Lock-Workstation', 'Measure-Char', 'Merge-Object', 'mklink',
-        'Move-ToRecycleBin', 'New-ColorPicker', 'New-Credential', 'New-DatePicker',
-        'New-FontPicker', 'New-InputBox', 'New-InputBoxSecureString', 'New-MessageBox',
-        'New-PFDateFormat', 'New-QR', 'New-RandomPassword', 'New-Screenshot',
-        'New-Shortcut', 'New-VirtualHardDisk', 'Optimize-SqlIndexFragmentation',
-        'Optimize-SqlStoredProcedure', 'Out-PDFToPrinter', 'Read-HostPause',
-        'Read-HostWithDefault', 'Remove-BlankOrComment', 'Remove-EmptyProperty',
-        'Remove-FileAttribute', 'Remove-QuotesFromCsv', 'Remove-TeamsCache',
-        'Remove-Trailing', 'Reset-Desktop', 'Resolve-FQDN', 'Resolve-HostName',
-        'Resolve-PathForce', 'sed', 'Set-AutoRun.inf', 'Set-Capslock',
-        'Set-Desktop.ini', 'Set-Display', 'Set-EOLTerminator', 'Set-FileEncoding',
-        'Set-Numlock', 'Set-PrivateProfileComment', 'Set-PrivateProfileString',
-        'Set-Scrolllock', 'Set-SpeakerVolume', 'Set-Type', 'Set-WindowState',
+        'Get-SID', 'Get-SpeakerVolume', 'Get-SpecialFolder', 'Get-SqlDatabase',
+        'Get-SqlIndexFragmentation', 'Get-SqlStoredProcedure', 'Get-StaticProperty',
+        'Get-String', 'Get-StringHash', 'Get-SubnetMaskIPv4', 'Get-TruncatedDate',
+        'Get-Type', 'Get-TypeAccelerator', 'Get-UrlContent', 'Get-VssVolume',
+        'Get-VssWriter', 'Get-VssWriterToService', 'Get-WordCount', 'Get-WordList',
+        'grep', 'Invoke-Beep', 'Invoke-CountdownTimer', 'Invoke-SoundPlayer',
+        'Invoke-Speak', 'Join-Object', 'Lock-Workstation', 'Measure-Char',
+        'Merge-Object', 'mklink', 'Move-ToRecycleBin', 'New-ColorPicker',
+        'New-Credential', 'New-DatePicker', 'New-FontPicker', 'New-InputBox',
+        'New-InputBoxSecureString', 'New-MailToURI', 'New-MessageBox',
+        'New-PFDateFormat', 'New-QR', 'New-QRCode', 'New-RandomPassword',
+        'New-Screenshot', 'New-Shortcut', 'New-SmsUri', 'New-TelephoneUri',
+        'New-TemporaryFileWithExtension', 'New-VirtualHardDisk', 'New-WifiUri',
+        'Optimize-SqlIndexFragmentation', 'Optimize-SqlStoredProcedure',
+        'Out-PDFToPrinter', 'Read-HostPause', 'Read-HostWithDefault',
+        'Remove-BlankOrComment', 'Remove-EmptyProperty', 'Remove-FileAttribute',
+        'Remove-QuotesFromCsv', 'Remove-TeamsCache', 'Remove-Trailing',
+        'Reset-Desktop', 'Resolve-FQDN', 'Resolve-HostName', 'Resolve-PathForce',
+        'sed', 'Set-AutoRun.inf', 'Set-Capslock', 'Set-Desktop.ini', 'Set-Display',
+        'Set-EOLTerminator', 'Set-FileEncoding', 'Set-Numlock',
+        'Set-PrivateProfileComment', 'Set-PrivateProfileString', 'Set-Scrolllock',
+        'Set-SpeakerMute', 'Set-SpeakerVolume', 'Set-Type', 'Set-WindowState',
         'Set-WindowStyle', 'Show-AllColor', 'Show-Calendar',
         'Show-ColorsWithBackground', 'Show-DaysOfWeek', 'Show-FileAttribute',
         'Show-Month', 'Show-Object', 'Show-Progress', 'Show-ShortDaysOfWeek',
@@ -150,10 +155,10 @@
         'Switch-Mute', 'Test-ConnectionAsync', 'Test-CSVFormat', 'Test-IsAdmin',
         'Test-IsCapsLock', 'Test-IsDate', 'Test-IsFileLocked', 'Test-IsHexString',
         'Test-IsLocalIPv4', 'Test-IsNull', 'Test-IsNumeric', 'Test-IsNumLock',
-        'Test-IsScrollLock', 'Test-IsValidEmailAddress', 'Test-IsValidIPv4',
-        'Test-IsValidIPv6', 'Test-MultipleBool', 'Test-Network', 'Test-NtpDateVsNow',
-        'Test-Password', 'Test-PasswordComplexity', 'Test-Port', 'Test-Set',
-        'Update-ExplorerIcon', 'Use-Stopwatch', 'Write-SelectStatement',
+        'Test-IsScrollLock', 'Test-IsSpeakerMute', 'Test-IsValidEmailAddress',
+        'Test-IsValidIPv4', 'Test-IsValidIPv6', 'Test-MultipleBool', 'Test-Network',
+        'Test-NtpDateVsNow', 'Test-Password', 'Test-PasswordComplexity', 'Test-Port',
+        'Test-Set', 'Update-ExplorerIcon', 'Use-Stopwatch', 'Write-SelectStatement',
         'Write-StringArray', 'Write-StringHash', 'Write-TextMenu' )
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -164,7 +169,8 @@
 
     # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
     # AliasesToExport   = '*'
-    <#
+
+<#
     To recreate:
 
     $regex = "\[alias\('(.+)'\)]"
@@ -175,17 +181,18 @@
     } | sort-object |
     Write-StringArray -VariableName AliasesToExport -ExcludeDollarSign |
     Format-WrapText -width 80 | set-clipboard
- #>
+#>
 
     AliasesToExport   = @( 'Base64Decode', 'Base64Encode', 'Beep',
         'Convert-IntToText', 'Convert-ROT13', 'ConvertTo-BinaryIP',
         'ConvertTo-DecimalIP', 'ConvertTo-DottedDecimalIP', 'CountdownTimer',
         'Fortune', 'Get-DupeFileName', 'Get-Folder', 'Get-LastReboot', 'Get-SaveFile',
-        'Get-SubnetMaskIP', 'Parse-Bool', 'Recycle', 'ReverseString', 'Set-Speaker',
-        'Show-Color', 'Show-InvalidFileCharacter', 'Show-NamedColor',
-        'Show-SpecialFolder', 'Show-SubnetMaskIP', 'Show-TypeAccelerator', 'Speak',
-        'Test-IsLocalIP', 'Test-IsValidIP', 'Test-MultiBool', 'Union-Object',
-        'UrlDecode', 'UrlEncode', 'WrapText' )
+        'Get-SubnetMaskIP', 'Get-VssadminListVolumes', 'Get-VssadminListWriters',
+        'Parse-Bool', 'Recycle', 'ReverseString', 'Set-Speaker', 'Show-Color',
+        'Show-InvalidFileCharacter', 'Show-NamedColor', 'Show-SpecialFolder',
+        'Show-SubnetMaskIP', 'Show-TypeAccelerator', 'Speak', 'Test-IsLocalIP',
+        'Test-IsValidIP', 'Test-MultiBool', 'Union-Object', 'UrlDecode', 'UrlEncode',
+        'WrapText' )
 
     # DSC resources to export from this module
     # DscResourcesToExport = @()
@@ -231,6 +238,20 @@ For full release notes see .\Resources\ReleaseNotes.txt
 ### 2.2.12
 * added about_PoshFunctions for an overview of the module
 * updated PoshFunctions.psm1 - added $Script:IconFile variable
+* added ConvertTo-PFEscape - some of the New-*Uri functions needed to be able to escape strings in a special way
+* added Get-SpeakerVolume - wanted to be able to determine what the current volume of the speakers are
+* added Get-VssWriterToService - VSS writers are managed by a particular service and this corresponds the two
+* added New-MailToURI - used to create properly formatted string to generate a QR code to begin composing an email
+* added New-SmsUri - used to create properly formatted string to generate a QR code to compose a text message
+* added New-TelephoneUri - used to create properly formatted string to generate a QR code to begin calling a number
+* added New-TemporaryFileWithExtension - extend functionality of New-TemporaryFile so that a custom extension can be used
+* added New-WifiUri - used to create properly formatted string to generate a QR code to join a particular SSID
+* added Set-SpeakerMute - using API based function
+* added Test-IsSpeakerMute - using API based function
+* renamed Get-VssVolume - Original name 'Get-VssadminListVolumes', aliased to 'Get-VssadminListVolumes'
+* renamed Get-VssWriter - Original name 'Get-VssadminListWriters', aliased to 'Get-VssadminListWriters'
+* rewrote New-QRCode - previous version relied on Google service no longer available, using a new service now
+* rewrote Set-SpeakerVolume - to use API based function and not SendKeys
 * updated Get-Font - updated comment help to indicate that it captures the state of fonts when the Powershell session initiated
 * updated New-ColorPicker - changed how the icon is set
 * updated New-DatePicker - changed how the icon is set
@@ -239,6 +260,7 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * updated New-MessageBox - corrected validation set for -Defaultbutton parameter
 * updated New-ScreenShot - added note in comment help that it may trigger anti-malware software
 * updated New-VirtualHardDisk - updated comment help, removed unused variables
+* updated Start-ADReplication - made $Name optional and defaults to $env:COMPUTERNAME
 * updated Test-IsScrollLock - updated comment help
 
 ### 2.2.11

@@ -14,7 +14,7 @@ https://github.com/jdhitsolutions/PSScriptTools
             <TableControl>
                 <TableHeaders>
                     <TableColumnHeader>
-                        <Label>Writer</Label>
+                        <Label>VssWriter</Label>
                         <Width>45</Width>
                         <Alignment>Left</Alignment>
                     </TableColumnHeader>
@@ -47,7 +47,7 @@ https://github.com/jdhitsolutions/PSScriptTools
             <ScriptBlock>$_.foo /1mb -as [int]</ScriptBlock>
 -->
                             <TableColumnItem>
-                                <PropertyName>Writer</PropertyName>
+                                <PropertyName>VssWriter</PropertyName>
                             </TableColumnItem>
                             <TableColumnItem>
                                 <PropertyName>WriterID</PropertyName>

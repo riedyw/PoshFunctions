@@ -211,7 +211,7 @@ function New-ColorPicker {
             [CmdletBinding()]
             [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '')]
             param (
-                $object
+                [object] $object
             )
             if ($HexRb.Checked) {
                 $AsHashCheck.Enabled = $false
