@@ -1,4 +1,4 @@
-function Show-ColorsWithBackground {
+function Show-ConsoleColorWithBackground {
     <#
             .SYNOPSIS
             Show-ColorsWithBackground displays all combinations of foreground/background of the console colors.
@@ -15,6 +15,7 @@ function Show-ColorsWithBackground {
 
     [CmdletBinding(ConfirmImpact='None')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost','')]
+    [Alias('Show-ColorsWithBackground')] #FunctionAlias
     Param ()
 
     begin {

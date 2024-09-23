@@ -250,6 +250,8 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * added Test-IsSpeakerMute - using API based function
 * renamed Get-VssVolume - Original name 'Get-VssadminListVolumes', aliased to 'Get-VssadminListVolumes'
 * renamed Get-VssWriter - Original name 'Get-VssadminListWriters', aliased to 'Get-VssadminListWriters'
+* renamed Show-ConsoleColor - from original name Show-AllColor, aliased to Show-AllColor
+* renamed Show-ColorWithBackground - from original name Show-ColorsWithBackground, aliased to Show-ColorsWithBackground. Be more Powershell-y
 * rewrote New-QRCode - previous version relied on Google service no longer available, using a new service now
 * rewrote Set-SpeakerVolume - to use API based function and not SendKeys
 * updated Get-Font - updated comment help to indicate that it captures the state of fonts when the Powershell session initiated
