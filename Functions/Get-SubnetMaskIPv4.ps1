@@ -38,11 +38,16 @@ function Get-SubnetMaskIPv4 {
     [CmdletBinding()]
     [alias('Get-SubnetMaskIP')] #FunctionAlias
     param(
-        [Parameter(ValueFromPipeline,Mandatory,HelpMessage='Enter the length of the subnet mask (1-32). Press ENTER with no other input to finish.')]
+        [Parameter(ParameterSetName = 'Length', Mandatory, ValueFromPipeline, HelpMessage='Enter the length of the subnet mask (1-32). Press ENTER with no other input to finish.')]
         [Alias('NetworkLength','CIDR')]
         [ValidateRange(1,32)]
         [int[]] $Length,
 
+        [Parameter(ParameterSetName = 'All')]
+        [switch] $All,
+
+        [Parameter(ParameterSetName = 'All')]
+        [Parameter(ParameterSetName = 'Length')]
         [Alias('IncludeCIDR')]
         [switch] $IncludeInput
     )
@@ -52,19 +57,24 @@ function Get-SubnetMaskIPv4 {
     }
 
     process {
-        foreach ($curLength in $Length) {
-            $MaskBinary = ('1' * $curLength).PadRight(32, '0')
-            $DottedMaskBinary = $MaskBinary -replace '(.{8}(?!\z))', '${1}.'
-            $SubnetMask = ($DottedMaskBinary.Split('.') | foreach-object { [Convert]::ToInt32($_, 2) }) -join '.'
-            if ($IncludeInput) {
-                New-Object -typename PsObject -Property ([ordered] @{
-                    Length = $curLength
-                    SubnetMask = $SubnetMask
-                })
-            } else {
-                Write-Output -InputObject $SubnetMask
+        if ($PSBoundParameters.ContainsKey('Length')) {
+            foreach ($curLength in $Length) {
+                $MaskBinary = ('1' * $curLength).PadRight(32, '0')
+                $DottedMaskBinary = $MaskBinary -replace '(.{8}(?!\z))', '${1}.'
+                $SubnetMask = ($DottedMaskBinary.Split('.') | foreach-object { [Convert]::ToInt32($_, 2) }) -join '.'
+                if ($IncludeInput) {
+                    New-Object -typename PsObject -Property ([ordered] @{
+                        Length = $curLength
+                        SubnetMask = $SubnetMask
+                    })
+                } else {
+                    Write-Output -InputObject $SubnetMask
+                }
             }
+        } else {
+            1..32 | Get-SubnetMaskIPv4 -IncludeCIDR
         }
+
     }
 
     end {

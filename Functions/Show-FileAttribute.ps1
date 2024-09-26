@@ -25,7 +25,7 @@ function Show-FileAttribute {
     IntegrityStream
     NoScrubData
 .EXAMPLE
-    Show-FileAttribute
+    Show-FileAttribute -IncludeValue
 
     Would return
     Name                 Dec Hex
@@ -63,15 +63,15 @@ function Show-FileAttribute {
     }
 
     process {
-        $datatype = 'System.IO.FileAttributes'
+        $Datatype = 'System.IO.FileAttributes'
         if (-not $IncludeValue) {
-            [enum]::GetNames($datatype)
+            [enum]::GetNames($Datatype)
         }
         else {
-            [enum]::Getvalues($datatype) |
+            [enum]::Getvalues($Datatype) |
             ForEach-Object {
                 New-Object -TypeName psobject -Property ([ordered] @{
-                    Name = $_.toString()
+                    Name = $_.ToString()
                     Dec = $_.value__
                     Hex = '0x{0:x}' -f ($_.value__)
                 })

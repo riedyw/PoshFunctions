@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -58,8 +58,11 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>Gets a dotted decimal subnet mask given the number of bits in the mask</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>Get-SubnetMaskIPv4 [-Length] &lt;Int32[]&gt; [-IncludeInput] [&lt;CommonParameters&gt;]
+<h3>Length</h3>
+<pre><code>Get-SubnetMaskIPv4 -Length &lt;Int32[]&gt; [-IncludeInput] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>All</h3>
+<pre><code>Get-SubnetMaskIPv4 [-All] [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Gets a dotted decimal subnet mask given the number of bits in the mask.
@@ -88,15 +91,29 @@ Can optionally include the number of bits.</p>
 <p>Would return:
 255.255.254.0</p>
 <h2>PARAMETERS</h2>
+<h3>-All</h3>
+<p>{{ Fill All Description }}</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: All
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
 <h3>-IncludeInput</h3>
 <p>A switch controlling whether you want to see the CIDR length.
 Aliased to 'IncludeCIDR' for backward compatibility</p>
 <pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: Length, All
 Aliases: IncludeCIDR
 Accepted values: 
 
-Required: True (None) False (All)
+Required: True (None) False (Length, All)
 Position: Named
 Default value: False
 Accept pipeline input: False
@@ -108,12 +125,12 @@ DontShow: False
 Can be fed from the pipeline.
 Aliased to both 'NetworkLength' and 'CIDR'</p>
 <pre><code class="language-yaml">Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: Length
 Aliases: NetworkLength,CIDR
 Accepted values: 
 
-Required: True (All) False (None)
-Position: 0
+Required: True (Length) False (None)
+Position: Named
 Default value: 
 Accept pipeline input: True
 Accept wildcard characters: False

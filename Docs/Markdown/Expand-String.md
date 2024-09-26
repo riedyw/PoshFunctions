@@ -229,7 +229,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### string
 
 
-## NOTES
+
+## NOTES
 
 The c# source code was found by me on the Internet, but I can't determine where I originally found it.
 The ability to expand

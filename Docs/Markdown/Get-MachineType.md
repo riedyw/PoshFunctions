@@ -109,7 +109,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### PSCustomObject
 
 
-## NOTES
+
+## NOTES
 
 Put in error checking around Get-CimInstance to handle Kerberos errors.
 

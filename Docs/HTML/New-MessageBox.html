@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -81,21 +81,22 @@ Ignore  =  5
 Yes     =  6
 No      =  7</p>
 <p>If no button is clicked, the return value is -1.</p>
+<p>Values are static properties of Microsoft.VisualBasic.MsgBoxResult plus the additional entry of Timeout, -1.</p>
 <h2>EXAMPLES</h2>
 <h3>Example 1: EXAMPLE 1</h3>
-<pre><code>new-popup -message &quot;The update script has completed&quot; -title &quot;Finished&quot; -time 5
+<pre><code>New-MessageBox -Message &quot;The update script has completed&quot; -Title &quot;Finished&quot; -Time 5
 </code></pre>
 <p>This will display a popup message using the default OK button and default
 Information icon.
 The popup will automatically dismiss after 5 seconds.</p>
 <h3>Example 2: EXAMPLE 2</h3>
-<pre><code>$answer = new-popup -Message &quot;Please pick&quot; -Title &quot;form&quot; -buttons &quot;OKCancel&quot; -icon &quot;information&quot;
+<pre><code>$answer = New-MessageBox -Message &quot;Please pick&quot; -Title &quot;form&quot; -buttons &quot;OKCancel&quot; -icon &quot;information&quot;
 </code></pre>
 <p>If the user clicks &quot;OK&quot; the $answer variable will be equal to 1.
 If the user clicks &quot;Cancel&quot; the
 $answer variable will be equal to 2.</p>
 <h3>Example 3: EXAMPLE 3</h3>
-<pre><code>$answer = new-popup -Message &quot;Please pick&quot; -Title &quot;form&quot; -buttons &quot;OKCancel&quot; -icon &quot;information&quot; -AsString
+<pre><code>$answer = New-MessageBox -Message &quot;Please pick&quot; -Title &quot;form&quot; -buttons &quot;OKCancel&quot; -icon &quot;information&quot; -AsString
 </code></pre>
 <p>If the user clicks &quot;OK&quot; the $answer variable will be equal to 'OK'.
 If the user clicks &quot;Cancel&quot; the
@@ -123,6 +124,7 @@ DontShow: False
 &quot;YesNo&quot;
 &quot;YesNoCancel&quot;
 &quot;RetryCancel&quot;</p>
+<p>Values are static properties of System.Windows.Forms.MessageBoxButtons</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: Timeout, DefaultButton
 Aliases: 
@@ -136,7 +138,8 @@ Accept wildcard characters: False
 DontShow: False
 </code></pre>
 <h3>-DefaultButton</h3>
-<p>{{ Fill DefaultButton Description }}</p>
+<p>Which button do you wish to be the default? Validate set: Button1, Button2, Button3.
+Values are static properties of 'System.Windows.Forms.MessageBoxDefaultButton'</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: DefaultButton
 Aliases: 
@@ -156,6 +159,7 @@ DontShow: False
 &quot;Exclamation&quot;
 &quot;Information&quot;
 &quot;None&quot;</p>
+<p>Values are static properties of System.Windows.Forms.MessageBoxIcon</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: Timeout, DefaultButton
 Aliases: 

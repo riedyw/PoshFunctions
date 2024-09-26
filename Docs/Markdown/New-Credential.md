@@ -132,12 +132,14 @@ or
 'string', 'string'
 
 
-## OUTPUTS
+
+## OUTPUTS
 
 ### 'PSCredential'
 
 
-## NOTES
+
+## NOTES
 
 Medium to High impact as this function will return the password, albeit hidden from default view
 

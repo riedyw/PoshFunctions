@@ -139,6 +139,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
+Some anti-virus / anti-malware software will flag this as a breach.
+Short of disabling that software
+there is nothing that can be done
 
 
 ## RELATED LINKS

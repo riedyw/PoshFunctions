@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Creates a new virtual hard disk (*.vhd), mounts it, initializes it, formats it and optionally sets the volume label and optionally creates an AutoRun.inf in the root of the new drive
+Creates a new virtual hard disk (*.vhd) and several other operations
 
 ## SYNTAX
 
@@ -207,6 +207,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
+Must be run from an elevated prompt.
 
 
 ## RELATED LINKS

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.highlightAll();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: poshfunctions-help.xml
+Module Name: poshfunctions
+online version:
+schema: 2.0.0</h2>
+<h1>New-QRCode</h1>
+<h2>SYNOPSIS</h2>
+<p>Creates a file containing a QR code based on the data and specifications provided</p>
+<h2>SYNTAX</h2>
+<h3>__AllParameterSets</h3>
+<pre><code>New-QRCode [-Data] &lt;String&gt; [[-Size &lt;Int32&gt;]] [[-ECC &lt;String&gt;]] [[-Margin &lt;Int32&gt;]] [[-Format &lt;String&gt;]] [[-Path &lt;String&gt;]] [-Force] [-Show] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Creates a file containing a QR code based on the data and specifications provided</p>
+<h2>EXAMPLES</h2>
+<h3>Example 1: EXAMPLE 1</h3>
+<pre><code>New-QRCode -Data 'https://cnn.com' -Show -Force
+</code></pre>
+<p>[INFORMATION] New QR code written to [C:\Users\USER\AppData\Local\Temp\tmpDEB9.png]</p>
+<pre><code>Directory: C:\Users\USER\AppData\Local\Temp
+</code></pre>
+<p>Mode                 LastWriteTime         Length Name</p>
+<hr />
+<p>-a----         9/19/2024   1:50 PM            416 tmpDEB9.png</p>
+<p>A new file will be created and the program associated with .png files will be launched.
+If you attempt to photograph
+the picture with a smart phone it will prompt if you want to open the URL specified in your default browser.</p>
+<h2>PARAMETERS</h2>
+<h3>-Data</h3>
+<p>The data to be QR encoded.
+Could be plain text, a URL, or the output of any of the New-*Uri functions in this module</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (All) False (None)
+Position: 0
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-ECC</h3>
+<p>Level of Error Correction Code where:
+L = low, ~7% destroyed data may be corrected
+M = middle, ~15% destroyed data may be corrected
+Q = quality, ~25% destroyed data may be corrected
+H = high, ~30% destroyed data may be corrected</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 2
+Default value: M
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-Force</h3>
+<p>To force overwriting the file specified in -Path</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-Format</h3>
+<p>Format of the file to be produced.
+Options: 'png', 'jpg', 'gif', 'svg'.
+Default 'png'</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 4
+Default value: png
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-Margin</h3>
+<p>Margin, in pixels before the actual QR code begins.
+Range 0-10, default of 4</p>
+<pre><code class="language-yaml">Type: Int32
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 3
+Default value: 4
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-Path</h3>
+<p>The path to the file to be created.
+Extension of the file with match the format name.
+If not specified it will create a temporary file in $env:TEMP
+If the file exists and you want it to be overwritten you must specify -Force</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 5
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-Show</h3>
+<p>Calls Invoke-Item and the path of the file created to open it in the associated program</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-Size</h3>
+<p>Size of one of the edges of the picture, in pixels.
+Range 50-750, default 200</p>
+<pre><code class="language-yaml">Type: Int32
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 1
+Default value: 200
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>OUTPUTS</h2>
+<h3>System.IO.FileInfo</h3>
+<h2>NOTES</h2>
+<p>Inspired by From <a href="https://goqr.me/api/doc/create-qr-code/">https://goqr.me/api/doc/create-qr-code/</a></p>
+<p>Writes to the information stream the name of the file that is created</p>
+<p>This function was rewritten because Google shut down their QR code API web portal</p>
+<h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
+
+</body>
+</html>

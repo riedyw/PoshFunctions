@@ -143,7 +143,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### 
 
 
-## NOTES
+
+## NOTES
 
 Inspiration: # Inspired by https://gallery.technet.microsoft.com/on-off-keyboad-lock-keys-6ba9885c
 Changes:     Created function to set on or off the NumLock.

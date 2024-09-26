@@ -353,12 +353,14 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### Strings and Integer
 
 
-## OUTPUTS
+
+## OUTPUTS
 
 ### [psobject]
 
 
-## NOTES
+
+## NOTES
 
 * Added -Interactive switch to display created shortcut
 * Updated -WindowStyle to accept readable content of 'Normal', 'Maximized', 'Minimized' and write correct integer values to shortcut

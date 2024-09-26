@@ -198,7 +198,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 Error trapping on specific conditions.
 
 
-## NOTES
+
+## NOTES
 
 I wanted to have an ability to write comments into an .ini file.
 

@@ -201,7 +201,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### [string[]]
 
 
-## NOTES
+
+## NOTES
 
 * The resulting output is a relatively small string array so the shorthand way of adding
   to an array ( += ) is used.

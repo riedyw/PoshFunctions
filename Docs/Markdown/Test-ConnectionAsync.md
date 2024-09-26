@@ -209,7 +209,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### [pscustomobject] with output from Net.AsyncPingResult and optionally the source address
 
 
-## NOTES
+
+## NOTES
 
 Inspired by Test-ConnectionAsync by 'Boe Prox'
 https://gallery.technet.microsoft.com/scriptcenter/Asynchronous-Network-Ping-abdf01aa

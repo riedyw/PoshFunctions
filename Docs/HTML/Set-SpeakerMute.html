@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.highlightAll();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: poshfunctions-help.xml
+Module Name: poshfunctions
+online version:
+schema: 2.0.0</h2>
+<h1>Set-SpeakerMute</h1>
+<h2>SYNOPSIS</h2>
+<p>Sets the state of the speaker being mute. If you pass $true to function it will turn on Mute.</p>
+<h2>SYNTAX</h2>
+<h3>On (Default)</h3>
+<pre><code>Set-SpeakerMute [-Confirm] [-On] [-WhatIf] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3>Off</h3>
+<pre><code>Set-SpeakerMute [-Confirm] [-Off] [-WhatIf] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Sets the state of the speaker being mute.
+If you pass $true to function it will turn on Mute.</p>
+<h2>EXAMPLES</h2>
+<h3>Example 1: EXAMPLE 1</h3>
+<pre><code>Set-SpeakerMute -On
+</code></pre>
+<p>Will turn on speaker mute</p>
+<h3>Example 2: EXAMPLE 2</h3>
+<pre><code>Set-SpeakerMute -Off
+</code></pre>
+<p>Will turn off speaker mute</p>
+<h2>PARAMETERS</h2>
+<h3>-Confirm</h3>
+<p>{{ Fill Confirm Description }}</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-Off</h3>
+<p>A switch parameter to determine if you want SpeakerMute off.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: Off
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (Off)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-On</h3>
+<p>A switch parameter to determine if you want SpeakerMute on.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: On
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (On)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-WhatIf</h3>
+<p>{{ Fill WhatIf Description }}</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: 
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>OUTPUTS</h2>
+<h3></h3>
+<h2>NOTES</h2>
+<p>Inspired by https://stackoverflow.com/questions/255419/how-can-i-mute-unmute-my-sound-from-powershell</p>
+<h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
+
+</body>
+</html>

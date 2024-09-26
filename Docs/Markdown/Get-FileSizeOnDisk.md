@@ -116,7 +116,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.Management.Automation.PSObject[]
 
 
-## NOTES
+
+## NOTES
 
 Inspired by: https://www.opentechguides.com/how-to/article/powershell/133/size-on-disk-ps.html
 

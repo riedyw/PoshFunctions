@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -59,7 +59,7 @@ schema: 2.0.0</h2>
 <p>Forces replication to occur between domain controllers in domain.</p>
 <h2>SYNTAX</h2>
 <h3>__AllParameterSets</h3>
-<pre><code>Start-ADReplication [-Name] &lt;String[]&gt; [-Quiet] [&lt;CommonParameters&gt;]
+<pre><code>Start-ADReplication [[-Name &lt;String[]&gt;]] [-Quiet] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Forces replication to occur between domain controllers in domain.
@@ -67,18 +67,14 @@ Invoke-Command to a DC.
 Requires to be running in elevated Powershell prompt.</p>
 <h2>EXAMPLES</h2>
 <h3>Example 1: EXAMPLE 1</h3>
-<pre><code>Start-ADReplication
-</code></pre>
-<p>Will issue a call to Get-ADDomainController and run the replication against that one DC</p>
-<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Get-ADDomainController -Filter * | Start-ADReplication
 </code></pre>
 <p>Will return a list of all DCs and run the replication against that list</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>Example 2: EXAMPLE 2</h3>
 <pre><code>Get-ADDomainController -Filter &quot;Name -like '*CORP*'&quot; | Start-ADReplication
 </code></pre>
 <p>Will return a list of all DCs that have 'CORP' in their name and run the replication against that list</p>
-<h3>Example 4: EXAMPLE 4</h3>
+<h3>Example 3: EXAMPLE 3</h3>
 <pre><code>Start-ADReplication -Name DC1 -Verbose
 </code></pre>
 <p>Assuming there are two DCs (DC1, DC2) in the contosco.com domain here is a sample return
@@ -96,14 +92,15 @@ VERBOSE: Ending [Start-ADReplication]</p>
 <p>A string array containing the name, fqdn or ipaddress of a domain controller.
 If not specified will query AD for a domain controller.
 Aliased to 'DomainController', 'DC', 'CN', 'ComputerName'</p>
+<p>Optional, defaults to $env:COMPUTERNAME</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
 Aliases: DomainController,DC,CN,ComputerName
 Accepted values: 
 
-Required: True (All) False (None)
+Required: True (None) False (All)
 Position: 0
-Default value: 
+Default value: $env:COMPUTERNAME
 Accept pipeline input: True
 Accept wildcard characters: False
 DontShow: False
@@ -139,6 +136,7 @@ replicated in the output</li>
 <li>Added '-ThrottleLimit' to the Invoke-Command so as to not saturate the local computer.
 Changed value to
 [environment]::ProcessorCount which is the number of processors on the computer.</li>
+<li>Changed $Name to optional and defaulting to $env:COMPUTERNAME</li>
 </ul>
 <h2>RELATED LINKS</h2>
 <p>Fill Related Links Here</p>

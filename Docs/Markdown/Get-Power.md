@@ -158,7 +158,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### [double]
 
 
-## NOTES
+
+## NOTES
 
 To do square or cube roots invert the power.
     square root, -Power (1/2)

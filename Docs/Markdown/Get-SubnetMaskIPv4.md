@@ -13,10 +13,16 @@ Gets a dotted decimal subnet mask given the number of bits in the mask
 
 ## SYNTAX
 
-### __AllParameterSets
+### Length
 
 ```
-Get-SubnetMaskIPv4 [-Length] <Int32[]> [-IncludeInput] [<CommonParameters>]
+Get-SubnetMaskIPv4 -Length <Int32[]> [-IncludeInput] [<CommonParameters>]
+```
+
+### All
+
+```
+Get-SubnetMaskIPv4 [-All] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -74,6 +80,24 @@ Would return:
 
 ## PARAMETERS
 
+### -All
+
+{{ Fill All Description }}
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: All
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+```
+
 ### -IncludeInput
 
 A switch controlling whether you want to see the CIDR length.
@@ -81,11 +105,11 @@ Aliased to 'IncludeCIDR' for backward compatibility
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: Length, All
 Aliases: IncludeCIDR
 Accepted values: 
 
-Required: True (None) False (All)
+Required: True (None) False (Length, All)
 Position: Named
 Default value: False
 Accept pipeline input: False
@@ -101,12 +125,12 @@ Aliased to both 'NetworkLength' and 'CIDR'
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: Length
 Aliases: NetworkLength,CIDR
 Accepted values: 
 
-Required: True (All) False (None)
-Position: 0
+Required: True (Length) False (None)
+Position: Named
 Default value: 
 Accept pipeline input: True
 Accept wildcard characters: False
@@ -124,7 +148,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [string]    default
 
 
-## NOTES
+
+## NOTES
 
 
 

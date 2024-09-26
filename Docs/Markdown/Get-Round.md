@@ -157,7 +157,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### [double]
 
 
-## NOTES
+
+## NOTES
 
 # Inspired by: https://stackoverflow.com/questions/41700200/how-to-correctly-round-numbers-in-powershell
 

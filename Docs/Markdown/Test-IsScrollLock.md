@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Sets the state of the ScrollLock button. If you pass $true to function it will turn on ScrollLock.
+Determines if the ScrollLock key is on or not
 
 ## SYNTAX
 
@@ -21,10 +21,7 @@ Test-IsScrollLock [<CommonParameters>]
 
 ## DESCRIPTION
 
-Sets the state of the ScrollLock button.
-If you pass $true to function it will turn on
-ScrollLock.
-It first determines the state of the ScrollLock and then acts accordingly.
+Determines if the ScrollLock key is on or not
 
 
 ## EXAMPLES
@@ -32,10 +29,10 @@ It first determines the state of the ScrollLock and then acts accordingly.
 ### Example 1: EXAMPLE 1
 
 ```
-Set-ScrollLock -State
+Test-IsScrollLock
 ```
 
-Will turn on the ScrollLock
+
 
 
 
@@ -44,10 +41,10 @@ Will turn on the ScrollLock
 ### Example 2: EXAMPLE 2
 
 ```
-Set-ScrollLock -State:$false
+Test-IsScrollLock -Verbose
 ```
 
-Will turn off the ScrollLock
+
 
 
 
@@ -61,17 +58,13 @@ Will turn off the ScrollLock
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
-## INPUTS
-
-### None
-
-
-## OUTPUTS
+## OUTPUTS
 
 ### bool
 
 
-## NOTES
+
+## NOTES
 
 Inspiration: # Inspired by https://gallery.technet.microsoft.com/on-off-keyboad-lock-keys-6ba9885c
 

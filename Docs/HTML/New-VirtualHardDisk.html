@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -56,7 +56,7 @@ online version:
 schema: 2.0.0</h2>
 <h1>New-VirtualHardDisk</h1>
 <h2>SYNOPSIS</h2>
-<p>Creates a new virtual hard disk (*.vhd), mounts it, initializes it, formats it and optionally sets the volume label and optionally creates an AutoRun.inf in the root of the new drive</p>
+<p>Creates a new virtual hard disk (*.vhd) and several other operations</p>
 <h2>SYNTAX</h2>
 <h3>__AllParameterSets</h3>
 <pre><code>New-VirtualHardDisk [[-Path &lt;String&gt;]] [[-PartitionType &lt;String&gt;]] [[-VhdType &lt;String&gt;]] [[-FileSystem &lt;Object&gt;]] [[-Size &lt;Int64&gt;]] [[-VolumeLabel &lt;String&gt;]] [[-AutoRunIcon &lt;String&gt;]] [[-AutoRunLabel &lt;String&gt;]] [&lt;CommonParameters&gt;]
@@ -199,6 +199,7 @@ DontShow: False
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
 <h2>NOTES</h2>
+<p>Must be run from an elevated prompt.</p>
 <h2>RELATED LINKS</h2>
 <p>Fill Related Links Here</p>
 

@@ -154,12 +154,14 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### [int]
 
 
-## OUTPUTS
+
+## OUTPUTS
 
 ### [string]
 
 
-## NOTES
+
+## NOTES
 
 This function contains a here string.
 The contents of the here string to its closing token MUST, MUST, MUST be at column 0.

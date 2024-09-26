@@ -202,7 +202,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### PSFanatic.Registry.RegistryValue (PSCustomObject)
 
 
-## NOTES
+
+## NOTES
 
 Author: Shay Levy
 Blog : http://blogs.microsoft.co.il/blogs/ScriptFanatic/

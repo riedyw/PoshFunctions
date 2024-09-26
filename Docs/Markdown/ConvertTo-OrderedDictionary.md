@@ -132,12 +132,14 @@ System.Array
 System.Collections.Specialized.OrderedDictionary
 
 
-## OUTPUTS
+
+## OUTPUTS
 
 ### System.Collections.Specialized.OrderedDictionary
 
 
-## NOTES
+
+## NOTES
 
 source: https://gallery.technet.microsoft.com/scriptcenter/ConvertTo-OrderedDictionary-cf2404ba
 converted to function and added ability to copy OrderedDictionary

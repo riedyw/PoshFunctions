@@ -58,7 +58,18 @@
     # Recreate by running from PS prompts in PoshFunctions folder
     #
 
-<#
+    <# To recreate Markdown help
+
+    remove-item .\Docs\Markdown\*
+    new-markdownhelp -Module PoshFunctions -OutputFolder .\Docs\Markdown -Encoding ([System.Text.Encoding]::Ascii)
+
+    To recreate HTML from Markdown
+
+    remove-item .\Docs\HTML\* -recurse -force
+    Convert-MarkdownToHTML -Path .\Docs\Markdown\* -SiteDirectory .\Docs\Html
+
+    #>
+    <#
     dir .\Formats\*.ps1xml |
     Get-RelativePath -RelativeTo $pwd |
     Write-StringArray -VariableName FormatsToProcess -ExcludeDollarSign |
@@ -79,7 +90,7 @@
     # Functions export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
     # Recreated by running the following from PS prompt in PoshFunctions folder
 
-<#
+    <#
     dir .\Functions\*.ps1 |
     select -expand basename |
     Write-StringArray -VariableName FunctionsToExport -ExcludeDollarSign |
@@ -108,32 +119,32 @@
         'Format-TitleCase', 'Format-WrapText', 'Get-AppEventSound', 'Get-ArpTable',
         'Get-Assoc', 'Get-AutoRun.inf', 'Get-BashPath', 'Get-BinaryType',
         'Get-CeasarCipher', 'Get-ComputerSite', 'Get-ComputerUptime',
-        'Get-ConsoleColor', 'Get-ConsoleWindowSize', 'Get-Desktop.ini', 'Get-DiceRoll',
-        'Get-DiskType', 'Get-DisplayBrightness', 'Get-DNSHostEntryAsync',
-        'Get-DriveStat', 'Get-DuplicateFileName', 'Get-Enum', 'Get-ErrorInfo',
-        'Get-ExecutableForFile', 'Get-Factorial', 'Get-FileEncoding', 'Get-FileName',
-        'Get-FileSizeOnDisk', 'Get-FileWithLeadingSpace', 'Get-FolderName', 'Get-Font',
-        'Get-Fortune', 'Get-FsRight', 'Get-Ftype', 'Get-InvalidFileCharacter',
-        'Get-IpRange', 'Get-IpV4Network', 'Get-LastDayInMonth', 'Get-List',
-        'Get-LongName', 'Get-MachineType', 'Get-MacVendor', 'Get-Magic8Ball',
-        'Get-MyLocalLogonTime', 'Get-NamedColor', 'Get-NetworkCredential',
-        'Get-NTFSPermission', 'Get-NtpDate', 'Get-Power', 'Get-PrintableAscii',
-        'Get-PrivateProfileComment', 'Get-PrivateProfileSection',
-        'Get-PrivateProfileSectionNames', 'Get-PrivateProfileString',
-        'Get-ProcessUser', 'Get-PSWho', 'Get-RandomDate', 'Get-RandomHexDigit',
-        'Get-RandomMacAddress', 'Get-RebootHistory', 'Get-RegExpandString',
-        'Get-RegistryValue', 'Get-RelativePath', 'Get-Round', 'Get-SaveFileName',
-        'Get-ScheduledTaskUser', 'Get-ServiceUser', 'Get-Shortcut', 'Get-ShortName',
-        'Get-SID', 'Get-SpeakerVolume', 'Get-SpecialFolder', 'Get-SqlDatabase',
-        'Get-SqlIndexFragmentation', 'Get-SqlStoredProcedure', 'Get-StaticProperty',
-        'Get-String', 'Get-StringHash', 'Get-SubnetMaskIPv4', 'Get-TruncatedDate',
-        'Get-Type', 'Get-TypeAccelerator', 'Get-UrlContent', 'Get-VssVolume',
-        'Get-VssWriter', 'Get-VssWriterToService', 'Get-WordCount', 'Get-WordList',
-        'grep', 'Invoke-Beep', 'Invoke-CountdownTimer', 'Invoke-SoundPlayer',
-        'Invoke-Speak', 'Join-Object', 'Lock-Workstation', 'Measure-Char',
-        'Merge-Object', 'mklink', 'Move-ToRecycleBin', 'New-ColorPicker',
-        'New-Credential', 'New-DatePicker', 'New-FontPicker', 'New-InputBox',
-        'New-InputBoxSecureString', 'New-MailToURI', 'New-MessageBox',
+        'Get-ConsoleColor', 'Get-ConsoleWindowSize', 'Get-DaysOfWeek',
+        'Get-Desktop.ini', 'Get-DiceRoll', 'Get-DiskType', 'Get-DisplayBrightness',
+        'Get-DNSHostEntryAsync', 'Get-DriveStat', 'Get-DuplicateFileName', 'Get-Enum',
+        'Get-ErrorInfo', 'Get-ExecutableForFile', 'Get-Factorial', 'Get-FileEncoding',
+        'Get-FileName', 'Get-FileSizeOnDisk', 'Get-FileWithLeadingSpace',
+        'Get-FolderName', 'Get-Font', 'Get-Fortune', 'Get-FsRight', 'Get-Ftype',
+        'Get-InvalidFileCharacter', 'Get-IpRange', 'Get-IpV4Network',
+        'Get-LastDayInMonth', 'Get-List', 'Get-LongName', 'Get-MachineType',
+        'Get-MacVendor', 'Get-Magic8Ball', 'Get-Months', 'Get-MyLocalLogonTime',
+        'Get-NamedColor', 'Get-NetworkCredential', 'Get-NTFSPermission', 'Get-NtpDate',
+        'Get-Power', 'Get-PrintableAscii', 'Get-PrivateProfileComment',
+        'Get-PrivateProfileSection', 'Get-PrivateProfileSectionNames',
+        'Get-PrivateProfileString', 'Get-ProcessUser', 'Get-PSWho', 'Get-RandomDate',
+        'Get-RandomHexDigit', 'Get-RandomMacAddress', 'Get-RebootHistory',
+        'Get-RegExpandString', 'Get-RegistryValue', 'Get-RelativePath', 'Get-Round',
+        'Get-SaveFileName', 'Get-ScheduledTaskUser', 'Get-ServiceUser', 'Get-Shortcut',
+        'Get-ShortName', 'Get-SID', 'Get-SpeakerVolume', 'Get-SpecialFolder',
+        'Get-SqlDatabase', 'Get-SqlIndexFragmentation', 'Get-SqlStoredProcedure',
+        'Get-StaticProperty', 'Get-String', 'Get-StringHash', 'Get-SubnetMaskIPv4',
+        'Get-TruncatedDate', 'Get-Type', 'Get-TypeAccelerator', 'Get-UrlContent',
+        'Get-VssVolume', 'Get-VssWriter', 'Get-VssWriterToService', 'Get-WordCount',
+        'Get-WordList', 'grep', 'Invoke-Beep', 'Invoke-CountdownTimer',
+        'Invoke-SoundPlayer', 'Invoke-Speak', 'Join-Object', 'Lock-Workstation',
+        'Measure-Char', 'Merge-Object', 'mklink', 'Move-ToRecycleBin',
+        'New-ColorPicker', 'New-Credential', 'New-DatePicker', 'New-FontPicker',
+        'New-InputBox', 'New-InputBoxSecureString', 'New-MailToURI', 'New-MessageBox',
         'New-PFDateFormat', 'New-QR', 'New-QRCode', 'New-RandomPassword',
         'New-Screenshot', 'New-Shortcut', 'New-SmsUri', 'New-TelephoneUri',
         'New-TemporaryFileWithExtension', 'New-VirtualHardDisk', 'New-WifiUri',
@@ -146,19 +157,17 @@
         'Set-EOLTerminator', 'Set-FileEncoding', 'Set-Numlock',
         'Set-PrivateProfileComment', 'Set-PrivateProfileString', 'Set-Scrolllock',
         'Set-SpeakerMute', 'Set-SpeakerVolume', 'Set-Type', 'Set-WindowState',
-        'Set-WindowStyle', 'Show-AllColor', 'Show-Calendar',
-        'Show-ColorsWithBackground', 'Show-DaysOfWeek', 'Show-FileAttribute',
-        'Show-Month', 'Show-Object', 'Show-Progress', 'Show-ShortDaysOfWeek',
-        'Show-ShortMonth', 'Show-SubnetMaskIPv4', 'Show-Timezone',
-        'Split-CanonicalName', 'Split-DistinguishedName', 'Split-Line',
-        'Start-ADReplication', 'Start-RecordSession', 'Stop-RecordSession',
-        'Switch-Mute', 'Test-ConnectionAsync', 'Test-CSVFormat', 'Test-IsAdmin',
-        'Test-IsCapsLock', 'Test-IsDate', 'Test-IsFileLocked', 'Test-IsHexString',
-        'Test-IsLocalIPv4', 'Test-IsNull', 'Test-IsNumeric', 'Test-IsNumLock',
-        'Test-IsScrollLock', 'Test-IsSpeakerMute', 'Test-IsValidEmailAddress',
-        'Test-IsValidIPv4', 'Test-IsValidIPv6', 'Test-MultipleBool', 'Test-Network',
-        'Test-NtpDateVsNow', 'Test-Password', 'Test-PasswordComplexity', 'Test-Port',
-        'Test-Set', 'Update-ExplorerIcon', 'Use-Stopwatch', 'Write-SelectStatement',
+        'Set-WindowStyle', 'Show-Calendar', 'Show-FileAttribute', 'Show-Object',
+        'Show-Progress', 'Show-SubnetMaskIPv4', 'Show-Timezone', 'Split-CanonicalName',
+        'Split-DistinguishedName', 'Split-Line', 'Start-ADReplication',
+        'Start-RecordSession', 'Stop-RecordSession', 'Switch-Mute',
+        'Test-ConnectionAsync', 'Test-CSVFormat', 'Test-IsAdmin', 'Test-IsCapsLock',
+        'Test-IsDate', 'Test-IsFileLocked', 'Test-IsHexString', 'Test-IsLocalIPv4',
+        'Test-IsNull', 'Test-IsNumeric', 'Test-IsNumLock', 'Test-IsScrollLock',
+        'Test-IsSpeakerMute', 'Test-IsValidEmailAddress', 'Test-IsValidIPv4',
+        'Test-IsValidIPv6', 'Test-MultipleBool', 'Test-Network', 'Test-NtpDateVsNow',
+        'Test-Password', 'Test-PasswordComplexity', 'Test-Port', 'Test-Set',
+        'Update-ExplorerIcon', 'Use-Stopwatch', 'Write-SelectStatement',
         'Write-StringArray', 'Write-StringHash', 'Write-TextMenu' )
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -170,7 +179,7 @@
     # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
     # AliasesToExport   = '*'
 
-<#
+    <#
     To recreate:
 
     $regex = "\[alias\('(.+)'\)]"
@@ -189,10 +198,10 @@
         'Fortune', 'Get-DupeFileName', 'Get-Folder', 'Get-LastReboot', 'Get-SaveFile',
         'Get-SubnetMaskIP', 'Get-VssadminListVolumes', 'Get-VssadminListWriters',
         'Parse-Bool', 'Recycle', 'ReverseString', 'Set-Speaker', 'Show-Color',
-        'Show-InvalidFileCharacter', 'Show-NamedColor', 'Show-SpecialFolder',
-        'Show-SubnetMaskIP', 'Show-TypeAccelerator', 'Speak', 'Test-IsLocalIP',
-        'Test-IsValidIP', 'Test-MultiBool', 'Union-Object', 'UrlDecode', 'UrlEncode',
-        'WrapText' )
+        'Show-DaysOfWeek', 'Show-InvalidFileCharacter', 'ShowMonth', 'Show-NamedColor',
+        'Show-SpecialFolder', 'Show-SubnetMaskIP', 'Show-TypeAccelerator', 'Speak',
+        'Test-IsLocalIP', 'Test-IsValidIP', 'Test-MultiBool', 'Union-Object',
+        'UrlDecode', 'UrlEncode', 'WrapText' )
 
     # DSC resources to export from this module
     # DscResourcesToExport = @()
@@ -248,13 +257,23 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * added New-WifiUri - used to create properly formatted string to generate a QR code to join a particular SSID
 * added Set-SpeakerMute - using API based function
 * added Test-IsSpeakerMute - using API based function
+* deleted Show-ShortDaysOfWeek - incorporated into Get-DaysOfWeek with -Short parameter
+* deleted Show-ShortMonth - incorporated into Get-Months with -Short parameter
+* deleted Show-ConsoleColorWithBackground - incorporated into Get-ConsoleColor
+* deleted Show-ConsoleColor - incorporated into Get-ConsoleColor
+* deleted Show-SubnetMaskIPv4 - incorporated into Get-SubnetMaskIPv4 with -All parameter
+* deleted Show-Timezone - no longer needed with Get-TimeZone from Microsoft.PowerShell.Management
+* renamed Get-DaysOfWeek - from Show-DaysOfWeek, also incorporated -Short parameter so that this incorporates both functions
+* renamed Get-Months - from Show-Month, also incorporated -Short parameter so that this incorporates both functions
 * renamed Get-VssVolume - Original name 'Get-VssadminListVolumes', aliased to 'Get-VssadminListVolumes'
 * renamed Get-VssWriter - Original name 'Get-VssadminListWriters', aliased to 'Get-VssadminListWriters'
 * renamed Show-ConsoleColor - from original name Show-AllColor, aliased to Show-AllColor
 * renamed Show-ColorWithBackground - from original name Show-ColorsWithBackground, aliased to Show-ColorsWithBackground. Be more Powershell-y
 * rewrote New-QRCode - previous version relied on Google service no longer available, using a new service now
 * rewrote Set-SpeakerVolume - to use API based function and not SendKeys
+* updated Get-ConsoleColor - incorporated -Show and -ShowWithBackground parameters
 * updated Get-Font - updated comment help to indicate that it captures the state of fonts when the Powershell session initiated
+* updated Get-SubnetMaskIPv4 - added -All parameter, used parameter set names
 * updated New-ColorPicker - changed how the icon is set
 * updated New-DatePicker - changed how the icon is set
 * updated New-FontPicker - changed how the icon is set

@@ -92,7 +92,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### [string]
 
 
-## NOTES
+
+## NOTES
 
 Inspired by: https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/html-encoding
 

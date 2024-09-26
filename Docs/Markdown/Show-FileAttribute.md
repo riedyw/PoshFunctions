@@ -57,7 +57,7 @@ NoScrubData
 ### Example 2: EXAMPLE 2
 
 ```
-Show-FileAttribute
+Show-FileAttribute -IncludeValue
 ```
 
 Would return
@@ -115,7 +115,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### [string[]]
 
 
-## NOTES
+
+## NOTES
 
 
 

@@ -86,7 +86,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### An array of objects containing the fields Name, Type, Dec, Hex
 
 
-## NOTES
+
+## NOTES
 
 Renamed to Get-FsRight, provided an alias as Show-FsRight
 Changed += to System.Collections.Arraylist

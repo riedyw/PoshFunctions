@@ -85,7 +85,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### Net.AsyncGetHostResult
 
 
-## NOTES
+
+## NOTES
 
 Inspired by: Get-DNSHostEntryAsync by Boe Prox
 

@@ -16,7 +16,7 @@ Forces replication to occur between domain controllers in domain.
 ### __AllParameterSets
 
 ```
-Start-ADReplication [-Name] <String[]> [-Quiet] [<CommonParameters>]
+Start-ADReplication [[-Name <String[]>]] [-Quiet] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,18 +31,6 @@ Requires to be running in elevated Powershell prompt.
 ### Example 1: EXAMPLE 1
 
 ```
-Start-ADReplication
-```
-
-Will issue a call to Get-ADDomainController and run the replication against that one DC
-
-
-
-
-
-### Example 2: EXAMPLE 2
-
-```
 Get-ADDomainController -Filter * | Start-ADReplication
 ```
 
@@ -52,7 +40,7 @@ Will return a list of all DCs and run the replication against that list
 
 
 
-### Example 3: EXAMPLE 3
+### Example 2: EXAMPLE 2
 
 ```
 Get-ADDomainController -Filter "Name -like '*CORP*'" | Start-ADReplication
@@ -64,7 +52,7 @@ Will return a list of all DCs that have 'CORP' in their name and run the replica
 
 
 
-### Example 4: EXAMPLE 4
+### Example 3: EXAMPLE 3
 
 ```
 Start-ADReplication -Name DC1 -Verbose
@@ -94,15 +82,17 @@ A string array containing the name, fqdn or ipaddress of a domain controller.
 If not specified will query AD for a domain controller.
 Aliased to 'DomainController', 'DC', 'CN', 'ComputerName'
 
+Optional, defaults to $env:COMPUTERNAME
+
 ```yaml
 Type: String[]
 Parameter Sets: (All)
 Aliases: DomainController,DC,CN,ComputerName
 Accepted values: 
 
-Required: True (All) False (None)
+Required: True (None) False (All)
 Position: 0
-Default value: 
+Default value: $env:COMPUTERNAME
 Accept pipeline input: True
 Accept wildcard characters: False
 DontShow: False
@@ -136,7 +126,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### string
 
 
-## NOTES
+
+## NOTES
 
 * Reworked logic so it just replicates the links that are defined.
 Previously it ran repadmin.exe with /ApeD switch
@@ -149,6 +140,7 @@ Previously it ran repadmin.exe with /ApeD switch
 * Added '-ThrottleLimit' to the Invoke-Command so as to not saturate the local computer.
 Changed value to
   [environment]::ProcessorCount which is the number of processors on the computer.
+* Changed $Name to optional and defaulting to $env:COMPUTERNAME
 
 
 ## RELATED LINKS

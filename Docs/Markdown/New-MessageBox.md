@@ -46,13 +46,15 @@ No      =  7
 
 If no button is clicked, the return value is -1.
 
+Values are static properties of Microsoft.VisualBasic.MsgBoxResult plus the additional entry of Timeout, -1.
+
 
 ## EXAMPLES
 
 ### Example 1: EXAMPLE 1
 
 ```
-new-popup -message "The update script has completed" -title "Finished" -time 5
+New-MessageBox -Message "The update script has completed" -Title "Finished" -Time 5
 ```
 
 This will display a popup message using the default OK button and default
@@ -66,7 +68,7 @@ The popup will automatically dismiss after 5 seconds.
 ### Example 2: EXAMPLE 2
 
 ```
-$answer = new-popup -Message "Please pick" -Title "form" -buttons "OKCancel" -icon "information"
+$answer = New-MessageBox -Message "Please pick" -Title "form" -buttons "OKCancel" -icon "information"
 ```
 
 If the user clicks "OK" the $answer variable will be equal to 1.
@@ -80,7 +82,7 @@ $answer variable will be equal to 2.
 ### Example 3: EXAMPLE 3
 
 ```
-$answer = new-popup -Message "Please pick" -Title "form" -buttons "OKCancel" -icon "information" -AsString
+$answer = New-MessageBox -Message "Please pick" -Title "form" -buttons "OKCancel" -icon "information" -AsString
 ```
 
 If the user clicks "OK" the $answer variable will be equal to 'OK'.
@@ -122,6 +124,8 @@ Valid values for -Buttons include:
 "YesNoCancel"
 "RetryCancel"
 
+Values are static properties of System.Windows.Forms.MessageBoxButtons
+
 ```yaml
 Type: String
 Parameter Sets: Timeout, DefaultButton
@@ -138,7 +142,8 @@ DontShow: False
 
 ### -DefaultButton
 
-{{ Fill DefaultButton Description }}
+Which button do you wish to be the default? Validate set: Button1, Button2, Button3.
+Values are static properties of 'System.Windows.Forms.MessageBoxDefaultButton'
 
 ```yaml
 Type: String
@@ -162,6 +167,8 @@ Valid values for -Icon include:
 "Exclamation"
 "Information"
 "None"
+
+Values are static properties of System.Windows.Forms.MessageBoxIcon
 
 ```yaml
 Type: String
@@ -269,7 +276,8 @@ Yes     =  6
 No      =  7
 
 
-## NOTES
+
+## NOTES
 
 Fixed issue with -AsString and a timeout not reporting correctly.
 

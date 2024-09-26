@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>---</title>
+    <link rel="stylesheet" type="text/css" href="styles/md-styles.css" />
+
+    <!-- Code syntax highlighting configuration -->
+    <!-- Comment this to deactivate syntax highlighting. -->
+    <link rel="stylesheet" type="text/css" href="styles/vs.min.css" />
+    <!-- Alternative highlighting styles -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/agate.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/far.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/tomorrow-night-blue.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/vs2015.min.css" /> -->
+    <script src="js/highlight.min.js"></script>
+    <script>
+        hljs.configure({ languages: [] });
+        hljs.highlightAll();
+    </script>
+    <!-- -->
+    <!-- mermaid diagram generator configuration -->
+    <!-- Comment this to deactivate the diagramming extension ('diagrams'). -->
+    <script src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+    <!-- -->
+    <!-- KaTeX LaTeX Math typesetting configuration -->
+    <!-- Comment this to deactivate the LaTeX math extension ('mathematics'). -->
+    <link rel="stylesheet" type="text/css" href="katex/katex.min.css" />
+    <script defer src="katex/katex.min.js"></script>
+    <script>
+        // <![CDATA[
+        window.onload = function () {
+            var tex = document.getElementsByClassName("math");
+            Array.prototype.forEach.call(tex, function (el) {
+                katex.render(el.textContent, el, {
+                    displayMode: (el.nodeName == "DIV"),
+                    macros: {
+                        "\\(": "",
+                        "\\)": "",
+                        "\\[": "",
+                        "\\]": ""
+                    }
+                })
+            });
+        };
+          // ]]>
+    </script>
+    <!-- -->
+</head>
+<body>
+    <hr />
+<h2>external help file: poshfunctions-help.xml
+Module Name: poshfunctions
+online version:
+schema: 2.0.0</h2>
+<h1>ConvertTo-PFEscape</h1>
+<h2>SYNOPSIS</h2>
+<p>Will return an escaped string given the original string, a string containing special characters that need to be escaped and the escape character itself.</p>
+<h2>SYNTAX</h2>
+<h3>__AllParameterSets</h3>
+<pre><code>ConvertTo-PFEscape [[-String &lt;String&gt;]] [[-SpecialChar &lt;String&gt;]] [[-EscapeChar &lt;Char&gt;]] [-IncludeInput] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2>DESCRIPTION</h2>
+<p>Will return an escaped string given the original string, a string containing special characters that need to be escaped and the escape character itself.</p>
+<h2>EXAMPLES</h2>
+<h3>Example 1: EXAMPLE 1</h3>
+<pre><code>ConvertTo-PFEscape -String 'new\pass&quot;word,123' -SpecialChar '''&quot;;,\' -EscapeChar '\'
+</code></pre>
+<p>new\pass&quot;word,123</p>
+<h3>Example 2: EXAMPLE 2</h3>
+<pre><code>ConvertTo-PFEscape -String 'new\pass&quot;word,123' -SpecialChar '''&quot;;,\' -EscapeChar '\' -IncludeInput
+</code></pre>
+<p>OriginalString    SpecialChar EscapeChar EscapedString</p>
+<hr />
+<p>new\pass&quot;word,123 '&quot;;,\                \ new\pass&quot;word,123</p>
+<h2>PARAMETERS</h2>
+<h3>-EscapeChar</h3>
+<p>The single character that is the escape character</p>
+<pre><code class="language-yaml">Type: Char
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 2
+Default value: \
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-IncludeInput</h3>
+<p>Optional switch that will display all given values and the escaped result</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-SpecialChar</h3>
+<p>A string containing all special characters that need to be escaped.</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 1
+Default value: '&quot;;,\
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-String</h3>
+<p>The original text that needs to be escaped.
+Mandatory</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: 0
+Default value: new\pass&quot;word,123
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>CommonParameters</h3>
+<p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>NOTES</h2>
+<h2>RELATED LINKS</h2>
+<p>Fill Related Links Here</p>
+
+</body>
+</html>

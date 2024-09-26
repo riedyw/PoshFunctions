@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -58,15 +58,13 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>Provides a GUI text entry box to enter a string and convert it to a securestring</p>
 <h2>SYNTAX</h2>
-<h3>Default (Default)</h3>
-<pre><code>New-InputBoxSecureString [-Description &lt;String&gt;] [-DisableInputMask] [-EntryBoxLabel &lt;String&gt;] [-Title &lt;String&gt;] [&lt;CommonParameters&gt;]
-</code></pre>
-<h3>Validate</h3>
-<pre><code>New-InputBoxSecureString [-Description &lt;String&gt;] [-DisableInputMask] [-DisableValidation] [-EntryBoxLabel &lt;String&gt;] [-Title &lt;String&gt;] [-ValidateBoxLabel &lt;String&gt;] [&lt;CommonParameters&gt;]
+<h3>__AllParameterSets</h3>
+<pre><code>New-InputBoxSecureString [[-Title &lt;String&gt;]] [[-Description &lt;String&gt;]] [[-EntryBoxLabel &lt;String&gt;]] [[-ValidateBoxLabel &lt;String&gt;]] [-DisableInputMask] [-DisableValidation] [-Force] [-OutputAsPlainText] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Provides a GUI text entry box to enter a string and convert it to a securestring.
-Function validates input and provides an input mask, both of which can be disabled.</p>
+Function validates input and provides an input mask, both of which can be disabled.
+Optionally can output a plain text string with the $OutputAsPlainText parameter</p>
 <h2>EXAMPLES</h2>
 <h3>Example 1: EXAMPLE 1</h3>
 <pre><code>$SecureString = New-InputBoxSecureString
@@ -76,12 +74,10 @@ Function validates input and provides an input mask, both of which can be disabl
 <pre><code>$SecureString = New-InputBoxSecureString -Verbose
 </code></pre>
 <p>VERBOSE: Starting [New-InputBoxSecureString]
-VERBOSE: Title [New SecureString]
-VERBOSE: Description [Please enter the plain text you wish to be converted to a securestring]
-VERBOSE: EntryBoxLabel [Please enter the value]
-VERBOSE: ValidateBoxLabel [Please re-enter the value]
+VERBOSE: Title [New SecureString], Description [Please enter the plain text you wish to be converted to a securestring]
+VERBOSE: EntryBoxLabel [Please enter the value], ValidateBoxLabel [Please re-enter the value]
 VERBOSE: DisableValidation [False], DisableInputMask [False]
-System.Security.SecureString
+VERBOSE: OutputAsPlainText [False], Force [False]
 VERBOSE: Ending [New-InputBoxSecureString]</p>
 <p>Will display a form with 2 text entry fields that are masked with '*', and will verify the values match before converting to a securestring</p>
 <h2>PARAMETERS</h2>
@@ -89,12 +85,12 @@ VERBOSE: Ending [New-InputBoxSecureString]</p>
 <p>The description block of the form.
 Defaults to 'Please enter the plain text you wish to be converted to a securestring'</p>
 <pre><code class="language-yaml">Type: String
-Parameter Sets: Validate, Default
+Parameter Sets: (All)
 Aliases: 
 Accepted values: 
 
-Required: True (None) False (Validate, Default)
-Position: Named
+Required: True (None) False (All)
+Position: 1
 Default value: Please enter the plain text you wish to be converted to a securestring
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -103,11 +99,11 @@ DontShow: False
 <h3>-DisableInputMask</h3>
 <p>Switch that will disable the input mask character which defaults to '*'</p>
 <pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: Validate, Default
+Parameter Sets: (All)
 Aliases: 
 Accepted values: 
 
-Required: True (None) False (Validate, Default)
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
@@ -117,11 +113,11 @@ DontShow: False
 <h3>-DisableValidation</h3>
 <p>Switch that will turn off the second entry box which ensures that data is input correctly.</p>
 <pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: Validate
+Parameter Sets: (All)
 Aliases: 
 Accepted values: 
 
-Required: True (None) False (Validate)
+Required: True (None) False (All)
 Position: Named
 Default value: False
 Accept pipeline input: False
@@ -132,13 +128,42 @@ DontShow: False
 <p>The label block of the entry text input box.
 Defaults to 'Please enter the value'</p>
 <pre><code class="language-yaml">Type: String
-Parameter Sets: Validate, Default
+Parameter Sets: (All)
 Aliases: 
 Accepted values: 
 
-Required: True (None) False (Validate, Default)
-Position: Named
+Required: True (None) False (All)
+Position: 2
 Default value: Please enter the value
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-Force</h3>
+<p>Switch that will determine behavior if -OutputAsPlainText is specified</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+DontShow: False
+</code></pre>
+<h3>-OutputAsPlainText</h3>
+<p>Switch that will output plain text as opposed to a secure string
+You would use this if you wanted validation logic but wanted the output to be a string</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: 
+Accepted values: 
+
+Required: True (None) False (All)
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 DontShow: False
@@ -147,12 +172,12 @@ DontShow: False
 <p>The title of the form.
 Defaults to 'New SecureString'</p>
 <pre><code class="language-yaml">Type: String
-Parameter Sets: Validate, Default
+Parameter Sets: (All)
 Aliases: 
 Accepted values: 
 
-Required: True (None) False (Validate, Default)
-Position: Named
+Required: True (None) False (All)
+Position: 0
 Default value: New SecureString
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -162,12 +187,12 @@ DontShow: False
 <p>The label block of the entry text input box.
 Defaults to 'Please re-enter the value'</p>
 <pre><code class="language-yaml">Type: String
-Parameter Sets: Validate
+Parameter Sets: (All)
 Aliases: 
 Accepted values: 
 
-Required: True (None) False (Validate)
-Position: Named
+Required: True (None) False (All)
+Position: 3
 Default value: Please re-enter the value
 Accept pipeline input: False
 Accept wildcard characters: False

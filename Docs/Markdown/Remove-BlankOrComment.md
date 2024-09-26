@@ -132,7 +132,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### [string[]]
 
 
-## NOTES
+
+## NOTES
 
 Changed logic to regex escape on the begin comment token.
 

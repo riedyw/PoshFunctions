@@ -116,7 +116,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### A [string] of all the applicable rights in readable form
 
 
-## NOTES
+
+## NOTES
 
 
 

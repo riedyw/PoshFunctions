@@ -81,6 +81,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
+This function will return the fonts that were present at the launch of the Powershell session.
+If fonts are either added or deleted this function will not detect them until you launch
+a new Powershell session.
+
 Slight code fix in Where-Object logic.
 Previously it would return zero results
 

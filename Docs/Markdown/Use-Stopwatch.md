@@ -238,7 +238,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.Diagnostics.Stopwatch
 
 
-## NOTES
+
+## NOTES
 
 Inspired by: https://mcpmag.com/articles/2017/10/19/using-a-stopwatch-in-powershell.aspx
 

@@ -96,7 +96,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### [string]
 
 
-## NOTES
+
+## NOTES
 
 # Sample wisdom.txt file with 3 entries.
  Each 'fortune' is delimited by a line consisting of just the pct sign

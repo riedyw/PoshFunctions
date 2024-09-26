@@ -99,12 +99,14 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.String[]
 
 
-## OUTPUTS
+
+## OUTPUTS
 
 ### System.Int32
 
 
-## NOTES
+
+## NOTES
 
 Requires PowerShell version 3.0
 

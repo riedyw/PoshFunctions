@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -56,30 +56,23 @@ online version:
 schema: 2.0.0</h2>
 <h1>Test-IsScrollLock</h1>
 <h2>SYNOPSIS</h2>
-<p>Sets the state of the ScrollLock button. If you pass $true to function it will turn on ScrollLock.</p>
+<p>Determines if the ScrollLock key is on or not</p>
 <h2>SYNTAX</h2>
 <h3>__AllParameterSets</h3>
 <pre><code>Test-IsScrollLock [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
-<p>Sets the state of the ScrollLock button.
-If you pass $true to function it will turn on
-ScrollLock.
-It first determines the state of the ScrollLock and then acts accordingly.</p>
+<p>Determines if the ScrollLock key is on or not</p>
 <h2>EXAMPLES</h2>
 <h3>Example 1: EXAMPLE 1</h3>
-<pre><code>Set-ScrollLock -State
+<pre><code>Test-IsScrollLock
 </code></pre>
-<p>Will turn on the ScrollLock</p>
 <h3>Example 2: EXAMPLE 2</h3>
-<pre><code>Set-ScrollLock -State:$false
+<pre><code>Test-IsScrollLock -Verbose
 </code></pre>
-<p>Will turn off the ScrollLock</p>
 <h2>PARAMETERS</h2>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
-<h2>INPUTS</h2>
-<h3>None</h3>
 <h2>OUTPUTS</h2>
 <h3>bool</h3>
 <h2>NOTES</h2>

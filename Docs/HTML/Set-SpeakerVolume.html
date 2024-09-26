@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -58,11 +58,8 @@ schema: 2.0.0</h2>
 <h2>SYNOPSIS</h2>
 <p>Sets the speaker volume.</p>
 <h2>SYNTAX</h2>
-<h3>Volume (Default)</h3>
-<pre><code>Set-SpeakerVolume [-Volume &lt;Int32&gt;] [&lt;CommonParameters&gt;]
-</code></pre>
-<h3>Adjust</h3>
-<pre><code>Set-SpeakerVolume [-Adjust &lt;Int32&gt;] [&lt;CommonParameters&gt;]
+<h3>__AllParameterSets</h3>
+<pre><code>Set-SpeakerVolume [[-Volume &lt;Int32&gt;]] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Sets the speaker volume.</p>
@@ -72,37 +69,21 @@ schema: 2.0.0</h2>
 </code></pre>
 <p>Will display nothing and set the speaker to 80%</p>
 <h3>Example 2: EXAMPLE 2</h3>
-<pre><code>Set-SpeakerVolume -Volume 97 -Verbose
+<pre><code>Set-SpeakerVolume -Volume 60 -Verbose
 </code></pre>
-<p>Will diplay the following while setting the speaker to 96%
-VERBOSE: You specified the speaker volume should be 97%
-VERBOSE: Rounding down to 96%
-VERBOSE: Turning volume down to 0%
-VERBOSE: Turning volume up to 96%</p>
+<p>VERBOSE: Starting [Set-SpeakerVolume]
+VERBOSE: Setting speaker volume to [60]
+VERBOSE: Ending [Set-SpeakerVolume]</p>
 <h2>PARAMETERS</h2>
-<h3>-Adjust</h3>
-<p>{{ Fill Adjust Description }}</p>
-<pre><code class="language-yaml">Type: Int32
-Parameter Sets: Adjust
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (Adjust)
-Position: Named
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
 <h3>-Volume</h3>
 <p>An integer value from 0 to 100 that will set the volume level of the speaker.</p>
 <pre><code class="language-yaml">Type: Int32
-Parameter Sets: Volume
+Parameter Sets: (All)
 Aliases: 
 Accepted values: 
 
-Required: True (None) False (Volume)
-Position: Named
+Required: True (None) False (All)
+Position: 0
 Default value: 50
 Accept pipeline input: True
 Accept wildcard characters: False
@@ -114,11 +95,7 @@ DontShow: False
 <p>Renamed function from Set-Speaker to Set-SpeakerVolume to be clearer as to the purpose.
 Set an alias for the
 function to 'Set-Speaker' for backward compatibility.</p>
-<p>The interface to setting the speaker volume really accepts values 0-50, and displays as 0-100.
-Given this oddity, the function will round DOWN to an even number.
-So if you run
-Set-SpeakerVolume -Volume 99
-The icon for the speaker will display 98% if you hover over it.</p>
+<p>Inspired by https://stackoverflow.com/questions/255419/how-can-i-mute-unmute-my-sound-from-powershell</p>
 <h2>RELATED LINKS</h2>
 <p>Fill Related Links Here</p>
 
