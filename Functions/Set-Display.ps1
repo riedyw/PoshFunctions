@@ -21,8 +21,6 @@ function Set-Display {
     # Brightness https://winaero.com/change-screen-brightness-windows-10/
 #>
 
-    # todo - add Credential
-
     #region Parameter
     [CmdletBinding(ConfirmImpact = 'Low', DefaultParameterSetName = 'On')]
     [OutputType($null)]

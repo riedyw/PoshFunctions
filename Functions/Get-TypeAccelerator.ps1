@@ -27,8 +27,6 @@ function Get-TypeAccelerator {
     uint32 System.UInt32
 #>
 
-    # todo Change += to System.Collections.Arraylist
-
     [CmdletBinding(ConfirmImpact = 'None')]
     [alias('Show-TypeAccelerator')] #FunctionAlias
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter','')]
@@ -43,8 +41,8 @@ function Get-TypeAccelerator {
         } else {
             $split = "`r`n"
         }
-         # The contents of the here string to its closing token MUST, MUST, MUST be at column 0. Autoformatting and indentation will break the here string.
-        $HereString = @'
+        # The contents of the here string to its closing token MUST, MUST, MUST be at column 0. Autoformatting and indentation will break the here string.
+        $ToAddArray = @'
 Name,FullName
 arraylist,System.Collections.ArrayList
 bitarray,System.Collections.BitArray
@@ -58,8 +56,8 @@ stack,System.Collections.Stack
 timezoneinfo,System.TimeZoneInfo
 webclient,System.Net.WebClient
 webrequest,System.Net.WebRequest
-'@
-        $ToAddArray = $HereString -split $split | ConvertFrom-Csv
+'@ -split '\r?\n' | ConvertFrom-Csv
+
         Write-Verbose -Message "ToAddArray has [$($ToAddArray.count)] entries"
     }
 
@@ -67,8 +65,8 @@ webrequest,System.Net.WebRequest
         $tmpObj = [PSObject].Assembly.GetType('System.Management.Automation.TypeAccelerators')::Get.GetEnumerator()
         # [PSObject].Assembly.GetType('System.Management.Automation.TypeAccelerators')::Get
         #  $ReturnVal = $tmpObj::Get.GetEnumerator() | Where-Object { $_.Value.Name -notlike '*Attribute*' } |
-        $ReturnVal = $tmpObj | Select-Object -Property @{Name = 'Name'; Expr = { $_.Key } }, @{Name = 'FullName'; Expr = { $_.Value } }
-        $ReturnVal += $ToAddArray
+        [System.Collections.ArrayList] $ReturnVal = $tmpObj | Select-Object -Property @{Name = 'Name'; Expr = { $_.Key } }, @{Name = 'FullName'; Expr = { $_.Value } }
+        $ReturnVal.Add($ToAddArray) | Out-Null
         $ReturnVal = $ReturnVal | Sort-Object -Property Name -Unique
         $ReturnVal | Where-Object { ($_.Name -match $MatchString) -or ($_.FullName -match $MatchString) }
     }

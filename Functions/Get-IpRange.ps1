@@ -27,8 +27,6 @@ function Get-IpRange {
     * Added comment help
 #>
 
-    # todo Change += to System.Collections.Arraylist
-
     [CmdletBinding(ConfirmImpact = 'None')]
     Param(
         [Parameter(Mandatory, HelpMessage = 'Please enter a subnet in the form a.b.c.d/#', ValueFromPipeline, Position = 0)]
@@ -52,7 +50,8 @@ function Get-IpRange {
                 #Convert IP into binary
                 #Split IP into different octects and for each one, figure out the binary with leading zeros and add to the total
                 $Octets = $IP -split '\.'
-                $IPInBinary = @()
+                #$IPInBinary = @()
+                $IPInBinary = [System.Collections.ArrayList]::new()
                 foreach ($Octet in $Octets) {
                     #convert to binary
                     $OctetInBinary = [convert]::ToString($Octet, 2)
@@ -71,6 +70,7 @@ function Get-IpRange {
                 #Work out max $HostIDInBinary
                 $imax = [convert]::ToInt32(('1' * $HostBits), 2) - 1
                 $IPs = @()
+                $IPs = [System.Collections.ArrayList]::new()
                 #Next ID is first network ID converted to decimal plus $i then converted to binary
                 For ($i = 1 ; $i -le $imax ; $i++) {
                     #Convert to decimal and add $i
@@ -98,7 +98,8 @@ function Get-IpRange {
                     }
                     #Separate by .
                     $IP = $IP -join '.'
-                    $IPs += $IP
+                    # $IPs += $IP
+                    $IPs.Add($IP) | Out-Null
                 }
                 Write-Output -InputObject $IPs
             } else {

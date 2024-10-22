@@ -255,25 +255,32 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * added New-TelephoneUri - used to create properly formatted string to generate a QR code to begin calling a number
 * added New-TemporaryFileWithExtension - extend functionality of New-TemporaryFile so that a custom extension can be used
 * added New-WifiUri - used to create properly formatted string to generate a QR code to join a particular SSID
+* added Remove-OldFiles - given a path, a filespec, and a count it will search that path for the filespec and keep the latest count of files that match
 * added Set-SpeakerMute - using API based function
 * added Test-IsSpeakerMute - using API based function
+* deleted Show-ConsoleColor - incorporated into Get-ConsoleColor
+* deleted Show-ConsoleColorWithBackground - incorporated into Get-ConsoleColor
 * deleted Show-ShortDaysOfWeek - incorporated into Get-DaysOfWeek with -Short parameter
 * deleted Show-ShortMonth - incorporated into Get-Months with -Short parameter
-* deleted Show-ConsoleColorWithBackground - incorporated into Get-ConsoleColor
-* deleted Show-ConsoleColor - incorporated into Get-ConsoleColor
 * deleted Show-SubnetMaskIPv4 - incorporated into Get-SubnetMaskIPv4 with -All parameter
 * deleted Show-Timezone - no longer needed with Get-TimeZone from Microsoft.PowerShell.Management
 * renamed Get-DaysOfWeek - from Show-DaysOfWeek, also incorporated -Short parameter so that this incorporates both functions
 * renamed Get-Months - from Show-Month, also incorporated -Short parameter so that this incorporates both functions
 * renamed Get-VssVolume - Original name 'Get-VssadminListVolumes', aliased to 'Get-VssadminListVolumes'
 * renamed Get-VssWriter - Original name 'Get-VssadminListWriters', aliased to 'Get-VssadminListWriters'
-* renamed Show-ConsoleColor - from original name Show-AllColor, aliased to Show-AllColor
 * renamed Show-ColorWithBackground - from original name Show-ColorsWithBackground, aliased to Show-ColorsWithBackground. Be more Powershell-y
-* rewrote New-QRCode - previous version relied on Google service no longer available, using a new service now
+* renamed Show-ConsoleColor - from original name Show-AllColor, aliased to Show-AllColor
+* rewrote New-QRCode - previous version relied on Google service no longer available, using a new service now, parameters changed
 * rewrote Set-SpeakerVolume - to use API based function and not SendKeys
+* updated Get-ComputerUptime - added credential to New-CimSession
 * updated Get-ConsoleColor - incorporated -Show and -ShowWithBackground parameters
+* updated Get-DisplayBrightness - using more standard -IncludeInput parameter
+* updated Get-Enum - changed logic from adding to array with += to using [System.Collections.ArrayList] and .Add method
 * updated Get-Font - updated comment help to indicate that it captures the state of fonts when the Powershell session initiated
-* updated Get-SubnetMaskIPv4 - added -All parameter, used parameter set names
+* updated Get-IpRange - changed logic from adding to array with += to using [System.Collections.ArrayList] and .Add method
+* updated Get-SubnetMaskIPv4 - added -All parameter, used parameter set names, defined default parameter set name, made subnet mask first property in output
+* updated Get-Type - changed logic from adding to array with += to using [System.Collections.ArrayList] and .Add method
+* updated Get-TypeAccelerator - changed logic from adding to array with += to using [System.Collections.ArrayList] and .Add method
 * updated New-ColorPicker - changed how the icon is set
 * updated New-DatePicker - changed how the icon is set
 * updated New-FontPicker - changed how the icon is set
@@ -281,8 +288,10 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * updated New-MessageBox - corrected validation set for -Defaultbutton parameter
 * updated New-ScreenShot - added note in comment help that it may trigger anti-malware software
 * updated New-VirtualHardDisk - updated comment help, removed unused variables
+* updated Set-SpeakerVolume - use defined class to directly set the volume
 * updated Start-ADReplication - made $Name optional and defaults to $env:COMPUTERNAME
 * updated Test-IsScrollLock - updated comment help
+* updated Test-Network - altered logic so that it returns an array even if returning 0 or 1 item
 
 ### 2.2.11
 * added format files for result sets containing more than 4 columns

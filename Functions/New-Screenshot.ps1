@@ -7,10 +7,9 @@ function New-ScreenShot {
 .PARAMETER Path
     The path to the file being saved.
 .PARAMETER Full
-    A switch to determine if you are taking a screenshot of the full desktop or
-    just the active window.
+    A switch to determine if you are taking a screenshot of the full desktop or just the active window.
 .PARAMETER Passthru
-    A switch determining if the screenshot image will be passed down the pipeline.
+    A switch determining if the screenshot image file object will be passed down the pipeline.
 .EXAMPLE
     New-ScreenShot -Path .\Screenshot.bmp -Full -Passthru
 
@@ -18,7 +17,16 @@ function New-ScreenShot {
 .NOTES
     Some anti-virus / anti-malware software will flag this as a breach. Short of disabling that software
     there is nothing that can be done
+
+    Assumes that there are permissions to write files in the location specified by -Path
+
+    If you are using a snapshot tool like SnagIt or PickPic it must be configured to pass the image to the Clipboard or this will not work
 #>
+
+    # todo Fix Path so that if empty if call New-TemporaryFilewithExtension -Extension .png, also make not mandatory
+    # todo Fix path so that it does Resolve-PathForce on it to get explicit path and only resolves to one file
+    # todo Add -Extension parameter defaulting to '.png' with a validate set of '.png','.bmp','.gif','.emf','.jpg','.tiff','.wmf','.exif'
+    # todo Add -Show switch which will Invoke-Item on the newly created file
 
     [CmdletBinding(SupportsShouldProcess,ConfirmImpact='Low')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]

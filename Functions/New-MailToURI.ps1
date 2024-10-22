@@ -1,37 +1,43 @@
 function New-MailToUri {
-  <#
-      .SYNOPSIS
-      Creates appropriately formatted text for an SMS URI that can be embedded in a QR code
-      .DESCRIPTION
-      Creates appropriately formatted text for an SMS URI that can be embedded in a QR code. If it is embedded in a QR code
-      the resulting QR code will begin writing an SMS text in the default messaging app on your smart phone addressed to
-      the Telephone parameter. Optionally if Message is specified it puts that in the message portion of the text. This will be
-      in draft mode on your smart phone, the user has to press Send
-      .PARAMETER Telephone
-      The digits representing the telephone number.
-      .PARAMETER Message
-      An optional message
-      .NOTES
-      Inspired by https://support.seagullscientific.com/hc/en-us/community/posts/4415554566167-QR-Code-SMSTO-multiple-recipients>
-      .LINK
-      New-QRCode
-      .EXAMPLE
-      New-SmsUri -Telephone 212-555-8600
+<#
+.SYNOPSIS
+    Creates appropriately formatted text for a MailTo URI that can be embedded in a QR code
+.DESCRIPTION
+    Creates appropriately formatted text for a MailTo URI that can be embedded in a QR code. If a QR code is created
+    a mail message will be composed with the appropriate information, but it will NOT be sent
+.PARAMETER To
+    Mandatory recipient of the email
+.PARAMETER Subject
+    The subject of the mail. This value will be HTML encoded in the output.
+.PARAMETER Body
+    The body of the mail, can be a string or an array of strings. This value will be HTML encoded in the output.
+.PARAMETER CC
+    The person(s) copied on the mail
+.PARAMETER BCC
+    The person(s) blind copied on the mail
+.NOTES
+    Inspired by https://stackoverflow.com/questions/16822371/generating-an-email-with-a-qr-code
+.LINK
+    New-QRCode
+.EXAMPLE
+    New-MailToUri -To webmaster@google.com -Subject 'Bad search' -Body 'My search did not return desired results'
 
-      SMSTO:212-555-8600
-      .EXAMPLE
-      New-SmsUri -Telephone 212-555-8500 -Message 'Please text back'
+    MAILTO:webmaster@google.com?subject=Bad%20search&body=My%20search%20did%20not%20return%20desired%20results&
+.EXAMPLE
+    New-MailToUri -To webmaster@google.com -Subject 'Hello'
 
-      SMSTO:212-555-8500:Please text back
-      .EXAMPLE
-      $QRCodeData = New-SmsUri -Telephone 212-555-8500 -Message 'Please text back'
-      New-QRCode -Data $QRCodeData -Show
+    MAILTO:webmaster@google.com?subject=Hello&&
+.EXAMPLE
+    New-MailToUri -To webmaster@google.com -Subject 'Hello' -IncludeInput
 
-      And attempting to take a picture on your smart phone will begin composing an SMS message to Telephone containing
-      Message in the message block.
-  #>
+    To      : webmaster@google.com
+    Subject : Hello
+    Body    :
+    CC      :
+    BCC     :
+    URI     : MAILTO:webmaster@google.com?subject=Hello&&
+#>
 
-    # todo - update comment help, add -IncludeInput
     [CmdletBinding()]
     param (
         [Parameter(Mandatory, Position=0, ValueFromPipeline)]
@@ -43,7 +49,9 @@ function New-MailToUri {
 
         [string[]] $CC,
 
-        [string[]] $BCC
+        [string[]] $BCC,
+
+        [switch] $IncludeInput
     )
 
     begin {
@@ -77,7 +85,18 @@ function New-MailToUri {
 
     process {
         $ReturnVal = $Data
-        Write-Output -InputObject $ReturnVal
+        if ($IncludeInput) {
+            New-Object -TypeName psobject -Property ([ordered] @{
+                To = $To -join ', '
+                Subject = $Subject
+                Body = $Body -join '\n'
+                CC = $CC -join ', '
+                BCC = $BCC -join ', '
+                URI = $ReturnVal
+            })
+        } else {
+            Write-Output -InputObject $ReturnVal
+        }
     }
 
     end {
