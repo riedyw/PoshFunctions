@@ -19,7 +19,7 @@ function Invoke-Speak {
     Invoke-Speak -Expression 'This is a really long line of text. I wonder how long it will take to speak' -Async
 #>
 
-    # todo Change += to System.Collections.Arraylist
+    # += here is doing string concatenation not array manipulation
 
     [CmdletBinding()]
     [Alias('Speak')] #FunctionAlias

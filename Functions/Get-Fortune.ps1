@@ -19,10 +19,12 @@ function Get-Fortune {
 .OUTPUTS
     [string]
 .PARAMETER Path
-    A path to a filename containing the fortunes. Defaults to: ((Split-Path -path $profile)+'\wisdom.txt')
+    A path to a filename containing the fortunes. Defaults to: (Get-Module -Name PoshFunctions).Path + '\Resources\Wisdom.txt'
     Aliased to 'FileName' and 'Fortune'
 .PARAMETER Delimiter
     Indicates delimiter between the individual fortunes. Defaults to "`n%`n" (newline percent newline)
+.NOTES
+    When this function reads in the file it will replace CRLF ("`r`n") with LF ("`n") so as to simplify the Delimiter parameter
 .LINK
     Get-Content
     Get-Random

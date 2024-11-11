@@ -10,8 +10,6 @@ function Get-DaysOfWeek {
     Renamed from Show-DaysOfWeek and incorporated functionality of Show-ShortDaysOfWeek
 #>
 
-    # todo rename Get-DaysOfWeek, update readme, add function alias
-
     [CmdletBinding(ConfirmImpact='None')]
     [Alias('Show-DaysOfWeek')] #FunctionAlias
     [OutputType([string[]])]
@@ -29,7 +27,6 @@ function Get-DaysOfWeek {
         } else {
             [System.Globalization.DateTimeFormatInfo]::CurrentInfo.DayNames
         }
-
     }
 
     end {

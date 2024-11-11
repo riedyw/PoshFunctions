@@ -247,6 +247,7 @@ For full release notes see .\Resources\ReleaseNotes.txt
 ### 2.2.12
 * added about_PoshFunctions for an overview of the module
 * updated PoshFunctions.psm1 - added $Script:IconFile variable
+* updated Wisdom.txt - minor grammatical mistakes
 * added ConvertTo-PFEscape - some of the New-*Uri functions needed to be able to escape strings in a special way
 * added Get-SpeakerVolume - wanted to be able to determine what the current volume of the speakers are
 * added Get-VssWriterToService - VSS writers are managed by a particular service and this corresponds the two
@@ -277,6 +278,7 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * updated Get-DisplayBrightness - using more standard -IncludeInput parameter
 * updated Get-Enum - changed logic from adding to array with += to using [System.Collections.ArrayList] and .Add method
 * updated Get-Font - updated comment help to indicate that it captures the state of fonts when the Powershell session initiated
+* updated Get-Fortune - updated comment help and clarified a few things
 * updated Get-IpRange - changed logic from adding to array with += to using [System.Collections.ArrayList] and .Add method
 * updated Get-SubnetMaskIPv4 - added -All parameter, used parameter set names, defined default parameter set name, made subnet mask first property in output
 * updated Get-Type - changed logic from adding to array with += to using [System.Collections.ArrayList] and .Add method

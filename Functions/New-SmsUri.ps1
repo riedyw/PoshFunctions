@@ -8,7 +8,7 @@ function New-SmsUri {
     the Telephone parameter. Optionally if Message is specified it puts that in the message portion of the text. This will be
     in draft mode on your smart phone, the user has to press Send
 .PARAMETER Telephone
-    enting the telephone number.
+    The telephone number.
 .PARAMETER Message
     An optional message
 .NOTES

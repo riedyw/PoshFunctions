@@ -286,7 +286,7 @@ Practical dreamers do not quit.
 He who cannot help many hinders.
 - German Proverb
 %
-He who has hope has everything,
+He who has hope has everything.
 - Arabian Proverb
 %
 Hitch your wagon to a star.
@@ -646,7 +646,7 @@ Impromptu thoughts are mental wild-flowers.
 Divide the fire and you will soon put it out.
 - Greek Proverb
 %
-If you're going through hell, keep going.
+If you're going through hell, keep going!
 - Winston Churchill
 %
 Be bold and mighty forces will come to your aid.
@@ -707,7 +707,7 @@ The most difficult thing in life is to know yourself.
 - Thales
 %
 The more you say, the less people remember.
-- François Fénelon
+- FranÃ§ois FÃ©nelon
 %
 Make use of time, let not advantage slip.
 - William Shakespeare
@@ -1217,7 +1217,7 @@ You may find the worst enemy or best friend in yourself.
 - English Proverb
 %
 We never listen when we are eager to speak.
-- François de La Rochefoucauld
+- FranÃ§ois de La Rochefoucauld
 %
 There is no such thing as failure. There are only results.
 - Tony Robbins
@@ -1741,7 +1741,7 @@ If you love life, don't waste time, for time is what life is made up of.
 If you change the way you look at things, the things you look at change.
 - Wayne Dyer
 %
-Some make it happen, some watch it happen, and some say, 'What happened?'
+Some make it happen, some watch it happen, and some say, 'What happened?'.
 - Anonymous
 %
 I did then what I knew how to do. Now that I know better, I do better.
@@ -2695,7 +2695,7 @@ Stand with anyone that is right; stand with him while he is right and part with 
 Those who deny freedom to others deserve it not for themselves, and, under a just God cannot retain it.
 - Abraham Lincoln
 %
-You cannot build character and courage by taking away people's initiative and independence
+You cannot build character and courage by taking away people's initiative and independence.
 - Abraham Lincoln
 %
 Take all that you can of this book upon reason, and the balance on faith, and you will live and die a happier man. (When a skeptic expressed surprise to see him reading a Bible)
@@ -2749,7 +2749,7 @@ You cannot lift the wage earner up by pulling the wage payer down.
 I believe the Bible is the best gift God has ever given to man. All the good from The Savior of the world is communicated to us through this Book.
 - Abraham Lincoln
 %
-Congressmen who willfully take action during wartime that damages morale and undermine the military are saboteurs and should be arrested, exiled, or hung
+Congressmen who willfully take action during wartime that damages morale and undermine the military are saboteurs and should be arrested, exiled, or hung.
 - Abraham Lincoln
 %
 A woman is the only thing I am afraid of that I know will not hurt me.
@@ -2965,7 +2965,7 @@ Laughter can be used to sooth the mind and get rid of those awful thoughts.
 The world will little note nor long remember what we say here, but it can never forget what they did here.
 - Abraham Lincoln
 %
-He whose wisdom surpasses that of all philosophers, has declared that 'a house divided against itself cannot stand
+He whose wisdom surpasses that of all philosophers, has declared that 'a house divided against itself cannot stand'.
 - Abraham Lincoln
 %
 If you would win a man to your cause, first convince him that you are his sincere friend.
@@ -3055,7 +3055,7 @@ It is not best to swap horses while crossing the river.
 Teach the children so it won't be necessary to teach the adults.
 - Abraham Lincoln
 %
-If we magnified our successes as much as we magnify our disappointments, we'd all be much happier
+If we magnified our successes as much as we magnify our disappointments, we'd all be much happier.
 - Abraham Lincoln
 %
 You can lose everything in life, but not dreams.
@@ -3097,7 +3097,7 @@ I shall adopt new Muse as fast as they appear to be true Muse.
 Everyone desires to live long, but no one would be old.
 - Abraham Lincoln
 %
-I have destroyed my enemies when I make friends with them
+I have destroyed my enemies when I make friends with them.
 - Abraham Lincoln
 %
 With the catching end the pleasures of the chase.

@@ -1,23 +1,24 @@
 function New-TelephoneUri {
-  <#
-      .SYNOPSIS
-      A short one-line action-based description, e.g. 'Tests if a function is valid'
-      .DESCRIPTION
-      A longer description of the function, its purpose, common use cases, etc.
-      .NOTES
-      Information or caveats about the function e.g. 'This function is not supported in Linux'
-      .LINK
-      Specify a URI to a help page, this will show when Get-Help -Online is used.
-      .EXAMPLE
-      Test-MyTestFunction -Verbose
-      Explanation of the function or its result. You can include multiple examples with additional .EXAMPLE lines
-  #>
+    <#
+.SYNOPSIS
+    Creates appropriately formatted text for an Telephone URI that can be embedded in a QR code
+.DESCRIPTION
+    Creates appropriately formatted text for an Telephone URI that can be embedded in a QR code
+.PARAMETER Telephone
+    The telephone number for the URI text
+.EXAMPLE
+    New-TelephoneUri -telephone '518.555.1212'
 
+    TEL:518.555.1212
+.NOTES
+    Inspired by https://support.seagullscientific.com/hc/en-us/community/posts/4415554566167-QR-Code-SMSTO-multiple-recipients>
+.LINK
+    New-QRCode
+#>
 
-    # todo update comment help
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory, HelpMessage='Enter the Telephone number', Position=0, ValueFromPipeline)]
+        [Parameter(Mandatory, HelpMessage = 'Enter the Telephone number', Position = 0, ValueFromPipeline)]
         [string] $Telephone
     )
 

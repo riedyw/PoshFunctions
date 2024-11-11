@@ -63,7 +63,7 @@ function Get-DiceRoll {
     'psobject'
 #>
 
-    # todo Change += to System.Collections.Arraylist
+    # purposely not changing += to either [System.Collections.Arraylist] or other generic list as it is handling relatively small # of entries
 
     #region Parameter
     [CmdletBinding(ConfirmImpact = 'Low')]
