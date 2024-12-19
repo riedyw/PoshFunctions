@@ -38,7 +38,7 @@ function Set-SpeakerVolume {
 
     process {
         Write-Verbose -Message "Setting speaker volume to [$Volume]"
-        [Audio]::Volume = [single] ($Volume / 100)
+        [PFAudio]::Volume = [single] ($Volume / 100)
     }
 
     end {

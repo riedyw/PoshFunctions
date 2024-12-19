@@ -36,9 +36,9 @@ function Set-SpeakerMute {
 
     process {
         if ($On) {
-            [Audio]::Mute = $true
+            [PFAudio]::Mute = $true
         } else {
-            [Audio]::Mute = $false
+            [PFAudio]::Mute = $false
         }
     }
 

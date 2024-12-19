@@ -6,6 +6,8 @@ function Switch-Mute {
     Toggles speaker mute
 #>
 
+    # toto Change any references of [New-Object -ComObject WScript.Shell] as it's being deprecated. Replace with [System.Windows.Forms*] which will continue to be supported
+
     [CmdletBinding(ConfirmImpact='Low')]
     Param ()
 

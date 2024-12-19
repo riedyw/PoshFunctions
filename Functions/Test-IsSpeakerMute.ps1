@@ -24,7 +24,7 @@ function Test-IsSpeakerMute {
 
     process {
         Write-Verbose -Message 'Determining the state of [SpeakerMute]'
-        $ReturnVal = [Audio]::Mute
+        $ReturnVal = [PFAudio]::Mute
         Write-Output -InputObject $ReturnVal
     }
 

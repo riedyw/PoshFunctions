@@ -1,4 +1,4 @@
-function Set-Capslock {
+function Set-CapsLock {
 <#
 .SYNOPSIS
     Sets the state of the CapsLock button.
@@ -20,6 +20,8 @@ function Set-Capslock {
 .LINK
     Wscript.Shell
 #>
+
+    # toto Change any references of [New-Object -ComObject WScript.Shell] as it's being deprecated. Replace with [System.Windows.Forms*] which will continue to be supported
 
     [CmdletBinding(ConfirmImpact = 'Low', SupportsShouldProcess, DefaultParameterSetName = 'On')]
     [OutputType($null)]

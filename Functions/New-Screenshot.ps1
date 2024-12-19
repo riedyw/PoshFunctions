@@ -27,6 +27,7 @@ function New-ScreenShot {
     # todo Fix path so that it does Resolve-PathForce on it to get explicit path and only resolves to one file
     # todo Add -Extension parameter defaulting to '.png' with a validate set of '.png','.bmp','.gif','.emf','.jpg','.tiff','.wmf','.exif'
     # todo Add -Show switch which will Invoke-Item on the newly created file
+    # toto Change any references of [New-Object -ComObject WScript.Shell] as it's being deprecated. Replace with [System.Windows.Forms*] which will continue to be supported
 
     [CmdletBinding(SupportsShouldProcess,ConfirmImpact='Low')]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]

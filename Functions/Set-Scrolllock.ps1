@@ -1,4 +1,4 @@
-function Set-Scrolllock {
+function Set-ScrollLock {
 <#
 .SYNOPSIS
     Sets the state of the ScrollLock button.
@@ -20,6 +20,8 @@ function Set-Scrolllock {
 .LINK
     Wscript.Shell
 #>
+
+    # toto Change any references of [New-Object -ComObject WScript.Shell] as it's being deprecated. Replace with [System.Windows.Forms*] which will continue to be supported
 
     [CmdletBinding(ConfirmImpact='Low',SupportsShouldProcess,DefaultParameterSetName='On')]
     [OutputType($null)]

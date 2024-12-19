@@ -1,4 +1,4 @@
-function Set-Numlock {
+function Set-NumLock {
 <#
 .SYNOPSIS
     Sets the state of the NumLock button. If you pass $true to function it will turn on NumLock.
@@ -20,6 +20,8 @@ function Set-Numlock {
 .LINK
     Wscript.Shell
 #>
+
+    # toto Change any references of [New-Object -ComObject WScript.Shell] as it's being deprecated. Replace with [System.Windows.Forms*] which will continue to be supported
 
     [CmdletBinding(ConfirmImpact = 'Low', SupportsShouldProcess, DefaultParameterSetName = 'On')]
     [OutputType($null)]

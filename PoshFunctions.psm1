@@ -21,6 +21,7 @@ $Script:IconFile = Join-Path -Path $ModulePath -ChildPath 'Resources\PoshFunctio
 
 # inspired by: http://powershell-scripting.com/index.php?option=com_joomlaboard&Itemid=76&func=view&view=threaded&id=24376&catid=5
 # also sourced at: https://gallery.technet.microsoft.com/Edit-old-fashioned-INI-f8fbc067?redir=0
+# most recently found at: https://web.archive.org/web/*/https://gallery.technet.microsoft.com/Edit-old-fashioned-INI-f8fbc067/file/148760/1/IniFileManager.ps1
 
 $IniCode = @'
 /* ======================================================================
@@ -128,6 +129,7 @@ public class ProfileAPI{
 Add-Type -TypeDefinition $IniCode
 
 # source: https://stackoverflow.com/questions/255419/how-can-i-mute-unmute-my-sound-from-powershell
+# changed public class from 'Audio' to 'PFAudio'
 
 Add-Type -TypeDefinition @'
 using System.Runtime.InteropServices;
@@ -154,7 +156,7 @@ interface IMMDeviceEnumerator {
 }
 [ComImport, Guid("BCDE0395-E52F-467C-8E3D-C4579291692E")] class MMDeviceEnumeratorComObject { }
 
-public class Audio {
+public class PFAudio {
     static IAudioEndpointVolume Vol() {
         var enumerator = new MMDeviceEnumeratorComObject() as IMMDeviceEnumerator;
         IMMDevice dev = null;
@@ -218,6 +220,32 @@ class PFDateFormat {
         $this.ISO8601 = $(ConvertFrom-DateTime -Date $Date -ISO8601 -Verbose:$false)
         $this.Excel = $(ConvertFrom-DateTime -Date $Date -Excel -Verbose:$false)
     }
+}
+
+[Flags()]
+enum PFUserAccountControl {
+    SCRIPT = 0x1
+    ACCOUNTDISABLE = 0x2
+    HOMEDIR_REQUIRED = 0x8
+    LOCKOUT = 0x10
+    PASSWD_NOTREQD = 0x20
+    PASSWD_CANT_CHANGE = 0x40
+    ENCRYPTED_TEXT_PASSWORD_ALLOWED = 0x80
+    TEMP_DUPLICATE_ACCOUNT = 0x100
+    NORMAL_ACCOUNT = 0x200
+    INTERDOMAIN_TRUST_ACCOUNT = 0x800
+    WORKSTATION_TRUST_ACCOUNT = 0x1000
+    SERVER_TRUST_ACCOUNT = 0x2000
+    DONT_EXPIRE_PASSWD = 0x10000
+    MNS_LOGON_ACCOUNT = 0x20000
+    SMARTCARD_REQUIRED = 0x40000
+    TRUSTED_FOR_DELEGATION = 0x80000
+    NOT_DELEGATED = 0x100000
+    USE_DES_KEY_ONLY = 0x200000
+    DONT_REQUIRE_PREAUTH = 0x400000
+    PASSWORD_EXPIRED = 0x800000
+    TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION = 0x1000000
+    ADS_UF_PARTIAL_SECRETS_ACCOUNT = 0x04000000
 }
 
 # EOF: PoshFunctions.psm1

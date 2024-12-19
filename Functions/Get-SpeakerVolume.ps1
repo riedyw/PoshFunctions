@@ -33,7 +33,7 @@ function Get-SpeakerVolume {
     }
 
     process {
-        [int] ([Audio]::Volume * 100)
+        [int] ([PFAudio]::Volume * 100)
 
     }
 
