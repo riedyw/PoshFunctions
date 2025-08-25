@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,61 +50,57 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>Read-HostPause</h1>
 <h2>SYNOPSIS</h2>
 <p>To more closely mimic the behavior of PAUSE in cmd.exe where you only have to press a key</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>Read-HostPause [[-Prompt &lt;String&gt;]] [[-ForegroundColor &lt;String&gt;]] [&lt;CommonParameters&gt;]
+<pre><code>Read-HostPause [[-Prompt] &lt;String&gt;] [[-ForegroundColor] &lt;String&gt;] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>To more closely mimic the behavior of PAUSE in cmd.exe where you only have to press a key</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Read-HostPause -ForegroundColor Cyan
 </code></pre>
 <p>Displays 'Press any key to continue...' in Cyan and waits until a key is pressed.</p>
 <h2>PARAMETERS</h2>
+<h3>-Prompt</h3>
+<p>The message to be displayed.
+Defaults to 'Press any key to continue...'</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: Press any key to continue...
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
 <h3>-ForegroundColor</h3>
 <p>String representing the foreground color.
 Validates against the console color names in English.
 Defaults to 'Gray'</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 1
+Required: False
+Position: 2
 Default value: Gray
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-Prompt</h3>
-<p>The message to be displayed.
-Defaults to 'Press any key to continue...'</p>
-<pre><code class="language-yaml">Type: String
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: 0
-Default value: Press any key to continue...
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

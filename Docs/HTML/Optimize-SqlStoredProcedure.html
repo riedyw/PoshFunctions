@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,87 +50,80 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>Optimize-SqlStoredProcedure</h1>
 <h2>SYNOPSIS</h2>
 <p>Optimize SQL Stored Procedures</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>Optimize-SqlStoredProcedure [[-ServerInstance &lt;String&gt;]] [[-Database &lt;String&gt;]] [-IncludeSystemDatabase] [-Interactive] [&lt;CommonParameters&gt;]
+<pre><code>Optimize-SqlStoredProcedure [[-ServerInstance] &lt;String&gt;] [[-Database] &lt;String&gt;] [-Interactive]
+ [-IncludeSystemDatabase] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Optimize SQL Stored Procedures, on a database LIKE string.
 Recompiles all stored procedures the next time they are run.</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Optimize-SqlStoredProcedure
 </code></pre>
 <p>Determine all non system active databases, and issue sp_recompile on all found stored procedures</p>
 <h2>PARAMETERS</h2>
+<h3>-ServerInstance</h3>
+<p>Database instance that you wish to connect to.
+Defaults to $env:COMPUTERNAME</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: $env:COMPUTERNAME
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
 <h3>-Database</h3>
 <p>String containing text for database name to be LIKE.
 Wildcards can be used.
 Defaults to '*'</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 1
+Required: False
+Position: 2
 Default value: *
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-IncludeSystemDatabase</h3>
-<p>Switch whether to include system databases</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-Interactive</h3>
 <p>Switch whether output should be interactive and provide progress</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
-<h3>-ServerInstance</h3>
-<p>Database instance that you wish to connect to.
-Defaults to $env:COMPUTERNAME</p>
-<pre><code class="language-yaml">Type: String
+<h3>-IncludeSystemDatabase</h3>
+<p>Switch whether to include system databases</p>
+<pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 0
-Default value: $env:COMPUTERNAME
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>psobject</h3>
 <h2>NOTES</h2>
@@ -138,7 +131,6 @@ DontShow: False
 2 - By default system databases are excluded
 3 - Requires Get-SqlStoredProcedure function</p>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

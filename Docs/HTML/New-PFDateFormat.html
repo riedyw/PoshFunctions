@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,21 +50,20 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>New-PFDateFormat</h1>
 <h2>SYNOPSIS</h2>
 <p>Returns a [psobject] with a [datetime] in multiple other formats</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>New-PFDateFormat [[-Date &lt;DateTime&gt;]] [&lt;CommonParameters&gt;]
+<pre><code>New-PFDateFormat [[-Date] &lt;DateTime&gt;] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Returns a [psobject] with a [datetime] in multiple other formats</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>New-PFDateFormat -Date '9/11/2001 08:15'
 </code></pre>
 <p>Date        : 9/11/2001 8:15:00 AM
@@ -74,7 +73,7 @@ FileTime    : 126446877000000000
 ICSDateTime : 20010911T081500
 ISO8601     : 2001.09.11T08:15:00
 Excel       : 37143.34375</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>New-PFDateFormat
 </code></pre>
 <p>Date        : 2/9/2022 3:14:37 PM
@@ -84,7 +83,7 @@ FileTime    : 132889112776168387
 ICSDateTime : 20220209T151437
 ISO8601     : 2022.02.09T15:14:37
 Excel       : 44599.6351576023</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>New-PFDateFormat -Verbose
 </code></pre>
 <p>VERBOSE: Starting [New-PFDateFormat]</p>
@@ -103,18 +102,18 @@ If omitted it will call the class::New method with no parameter
 which will determine the current [datetime] and format it several different ways</p>
 <pre><code class="language-yaml">Type: DateTime
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 0
-Default value: 
+Required: False
+Position: 1
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <p>Relies on PFDateFormat class defined in .\PoshFunctions.psm1</p>
 <p>DMTF is of the form 'yyyymmddHHMMSS.ffffff+UUU'
@@ -129,7 +128,6 @@ ICSDateTime is a [datetime] formatted is of the form 'yyyyMMddTHHmmss'
 ISO8601 is a [datetime] formatted is of the form 'yyyy.MMddTHH:mm:ss'
 Excel is a [double] that represents dates as the number of days since (Get-Date 1/1/1900)</p>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

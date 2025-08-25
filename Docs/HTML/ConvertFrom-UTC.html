@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,33 +50,32 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>ConvertFrom-UTC</h1>
 <h2>SYNOPSIS</h2>
 <p>Converts a datetime from UTC to local time</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
 <pre><code>ConvertFrom-UTC [-Date] &lt;DateTime[]&gt; [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Converts a datetime from Universal Coordinated Time to local time</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>ConvertFrom-UTC -Date &quot;1/25/2018 1:34:31 PM&quot;
 </code></pre>
 <p>Assuming that your local time zone is EST, and your region/culture is EN-US this would return the datetime</p>
 <p>Thursday, January 25, 2018 8:34:31 AM</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>ConvertFrom-UTC -Date &quot;1/25/2018 1:34:31 PM&quot; -IncludeInput
 </code></pre>
 <p>Assuming that your local time zone is EST, and your region/culture is EN-US this would return the datetime</p>
 <p>UTC                  LocalTime</p>
 <hr />
 <p>1/25/2018 1:34:31 PM 1/25/2018 8:34:31 AM</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>ConvertFrom-UTC '2/1/2018 9:27:59 PM' -verbose
 </code></pre>
 <p>Would return
@@ -86,12 +85,12 @@ VERBOSE: Your local timezone is '(UTC-05:00) Eastern Time (US &amp; Canada)'
 VERBOSE: Your local time is: '02/01/2018 16:27:59'</p>
 <p>Thursday, February 1, 2018 4:27:59 PM
 VERBOSE: Ending ConvertFrom-UTC</p>
-<h3>Example 4: EXAMPLE 4</h3>
+<h3>EXAMPLE 4</h3>
 <pre><code>&quot;3/15/2018 12:00:00 PM&quot; | ConvertFrom-UTC
 </code></pre>
 <p>Assuming that your local time zone is EST, and your region/culture is EN-US this would return the datetime</p>
 <p>Thursday, March 15, 2018 8:00:00 AM</p>
-<h3>Example 5: EXAMPLE 5</h3>
+<h3>EXAMPLE 5</h3>
 <pre><code>ConvertFrom-UTC -date '2/1/2018 9:27:59 PM' -IncludeInput
 </code></pre>
 <p>Would return the following if your local time zone is EST, and your region/culture is EN-US
@@ -103,38 +102,35 @@ UTC                 LocalTime</p>
 <p>The date you wish to convert to UTC</p>
 <pre><code class="language-yaml">Type: DateTime[]
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (All) False (None)
-Position: 0
-Default value: 
-Accept pipeline input: True
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-IncludeInput</h3>
 <p>Switch to enable displaying input parameters in the output</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>datetime</h3>
 <h2>NOTES</h2>
 <h1>inspired by: https://blogs.technet.microsoft.com/heyscriptingguy/2017/02/01/powertip-convert-from-utc-to-my-local-time-zone/</h1>
 <h2>RELATED LINKS</h2>
-<p>[[System.TimeZoneInfo]] ()</p>
+<p><a href="">[System.TimeZoneInfo]</a></p>
 
 </body>
 </html>

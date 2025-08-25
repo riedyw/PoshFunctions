@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,16 +50,15 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>Get-PrivateProfileSectionNames</h1>
 <h2>SYNOPSIS</h2>
 <p>To get the section names out of an .ini file</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>Get-PrivateProfileSectionNames [[-File &lt;String&gt;]] [&lt;CommonParameters&gt;]
+<pre><code>Get-PrivateProfileSectionNames [[-File] &lt;String&gt;] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>To get the section names out of an .ini file.
@@ -71,7 +70,7 @@ file content is as follows:</p>
 <p>[Section1]
 Key1=Data1</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Assuming you have a file test2.ini that has the following content
 </code></pre>
 <p>[Section3]
@@ -87,18 +86,17 @@ Section1</p>
 Can be a relative path.</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 0
-Default value: 
+Required: False
+Position: 1
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>[$string[]]</h3>
 <h2>NOTES</h2>
@@ -110,7 +108,6 @@ DontShow: False
 <li>Ability to take relative path to file</li>
 </ul>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

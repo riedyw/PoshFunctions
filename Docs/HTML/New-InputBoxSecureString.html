@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,27 +50,27 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version:
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://github.com/iRon7/Join-Object
 schema: 2.0.0</h2>
 <h1>New-InputBoxSecureString</h1>
 <h2>SYNOPSIS</h2>
 <p>Provides a GUI text entry box to enter a string and convert it to a securestring</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>New-InputBoxSecureString [[-Title &lt;String&gt;]] [[-Description &lt;String&gt;]] [[-EntryBoxLabel &lt;String&gt;]] [[-ValidateBoxLabel &lt;String&gt;]] [-DisableInputMask] [-DisableValidation] [-Force] [-OutputAsPlainText] [&lt;CommonParameters&gt;]
+<pre><code>New-InputBoxSecureString [[-Title] &lt;String&gt;] [-DisableValidation] [-DisableInputMask] [[-Description] &lt;String&gt;]
+ [[-EntryBoxLabel] &lt;String&gt;] [[-ValidateBoxLabel] &lt;String&gt;] [-OutputAsPlainText] [-Force] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Provides a GUI text entry box to enter a string and convert it to a securestring.
 Function validates input and provides an input mask, both of which can be disabled.
 Optionally can output a plain text string with the $OutputAsPlainText parameter</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>$SecureString = New-InputBoxSecureString
 </code></pre>
 <p>Will display a form with 2 text entry fields that are masked with '*', and will verify the values match before converting to a securestring</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>$SecureString = New-InputBoxSecureString -Verbose
 </code></pre>
 <p>VERBOSE: Starting [New-InputBoxSecureString]
@@ -81,128 +81,113 @@ VERBOSE: OutputAsPlainText [False], Force [False]
 VERBOSE: Ending [New-InputBoxSecureString]</p>
 <p>Will display a form with 2 text entry fields that are masked with '*', and will verify the values match before converting to a securestring</p>
 <h2>PARAMETERS</h2>
-<h3>-Description</h3>
-<p>The description block of the form.
-Defaults to 'Please enter the plain text you wish to be converted to a securestring'</p>
+<h3>-Title</h3>
+<p>The title of the form.
+Defaults to 'New SecureString'</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: 1
-Default value: Please enter the plain text you wish to be converted to a securestring
+Default value: New SecureString
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-DisableInputMask</h3>
-<p>Switch that will disable the input mask character which defaults to '*'</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-DisableValidation</h3>
 <p>Switch that will turn off the second entry box which ensures that data is input correctly.</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-DisableInputMask</h3>
+<p>Switch that will disable the input mask character which defaults to '*'</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Description</h3>
+<p>The description block of the form.
+Defaults to 'Please enter the plain text you wish to be converted to a securestring'</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: Please enter the plain text you wish to be converted to a securestring
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>-EntryBoxLabel</h3>
 <p>The label block of the entry text input box.
 Defaults to 'Please enter the value'</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 2
+Required: False
+Position: 3
 Default value: Please enter the value
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-Force</h3>
-<p>Switch that will determine behavior if -OutputAsPlainText is specified</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-OutputAsPlainText</h3>
-<p>Switch that will output plain text as opposed to a secure string
-You would use this if you wanted validation logic but wanted the output to be a string</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-Title</h3>
-<p>The title of the form.
-Defaults to 'New SecureString'</p>
-<pre><code class="language-yaml">Type: String
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: 0
-Default value: New SecureString
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-ValidateBoxLabel</h3>
 <p>The label block of the entry text input box.
 Defaults to 'Please re-enter the value'</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 3
+Required: False
+Position: 4
 Default value: Please re-enter the value
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-OutputAsPlainText</h3>
+<p>Switch that will output plain text as opposed to a secure string
+You would use this if you wanted validation logic but wanted the output to be a string</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Force</h3>
+<p>Switch that will determine behavior if -OutputAsPlainText is specified</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

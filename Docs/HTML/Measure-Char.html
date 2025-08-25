@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,15 +50,14 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version:
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://github.com/iRon7/Join-Object
 schema: 2.0.0</h2>
 <h1>Measure-Char</h1>
 <h2>SYNOPSIS</h2>
 <p>To count the number of times a character appears in a string, or an array of strings.</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
 <pre><code>Measure-Char [-String] &lt;String[]&gt; [-Char] &lt;Char&gt; [-IgnoreCase] [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
@@ -66,47 +65,56 @@ schema: 2.0.0</h2>
 By default the function is case sensitive, but can be controlled with the $IgnoreCase switch.
 Can also optionally include the command line parameters passed to the program with the $IncludeInput switch</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Measure-Char -String 'Password' -Char 'S' -IgnoreCase -IncludeInput
 </code></pre>
 <p>Would return
 String   Char IgnoreCase Count</p>
 <hr />
 <p>Password    S True           2</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>Measure-Char -String 'Password' -Char 'S'
 </code></pre>
 <p>Would return
 0
 as the function by default is case sensitive.</p>
 <h2>PARAMETERS</h2>
+<h3>-String</h3>
+<p>A string, or an array of strings to count character against.
+Can accept pipeline input.</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+</code></pre>
 <h3>-Char</h3>
 <p>The individual character that you wish to count occurrences of.</p>
 <pre><code class="language-yaml">Type: Char
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (All) False (None)
-Position: 1
-Default value: 
+Required: True
+Position: 2
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-IgnoreCase</h3>
 <p>By default this function is case sensitive and this switch makes the function case insensitive.</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-IncludeInput</h3>
 <p>A switch to display the parameters specified when the function was called and the resulting count.
@@ -114,35 +122,19 @@ Aliased to 'IncludeOriginal'</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: IncludeOriginal
-Accepted values: 
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-String</h3>
-<p>A string, or an array of strings to count character against.
-Can accept pipeline input.</p>
-<pre><code class="language-yaml">Type: String[]
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (All) False (None)
-Position: 0
-Default value: 
-Accept pipeline input: True
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

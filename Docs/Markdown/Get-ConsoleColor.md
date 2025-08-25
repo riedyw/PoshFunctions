@@ -1,33 +1,27 @@
 ---
-external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version: 
+external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: http://wonkysoftware.appspot.com
 schema: 2.0.0
 ---
 
 # Get-ConsoleColor
 
 ## SYNOPSIS
-
 Get-ConsoleColor displays the names and values of the console colors
 
 ## SYNTAX
-
-### __AllParameterSets
 
 ```
 Get-ConsoleColor [-Show] [-ShowWithBackground] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-
 Get-ConsoleColor displays the names and values of the console colors
-
 
 ## EXAMPLES
 
-### Example 1: EXAMPLE 1
-
+### EXAMPLE 1
 ```
 Get-ConsoleColor
 ```
@@ -53,12 +47,7 @@ Magenta      13 0xD
 Yellow       14 0xE
 White        15 0xF
 
-
-
-
-
-### Example 2: EXAMPLE 2
-
+### EXAMPLE 2
 ```
 Get-ConsoleColor -Show
 ```
@@ -84,12 +73,7 @@ Dec    ColorName Color
  14       Yellow Yellow
  15        White White
 
-
-
-
-
-### Example 3: EXAMPLE 3
-
+### EXAMPLE 3
 ```
 Get-ConsoleColor -ShowWithBackground
 ```
@@ -116,59 +100,45 @@ Will perform Write-Hosts
 14      Yellow Black DarkBlue DarkGreen DarkCyan DarkRed DarkMagenta DarkYellow Gray DarkGray Blue Green Cyan Red Magenta Yellow White
 15       White Black DarkBlue DarkGreen DarkCyan DarkRed DarkMagenta DarkYellow Gray DarkGray Blue Green Cyan Red Magenta Yellow White
 
-
-
-
-
-
 ## PARAMETERS
 
 ### -Show
-
 Shows the console colors with the current background color of the console
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 ```
 
 ### -ShowWithBackground
-
 Shows the console colors with each possible background color
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 ```
 
-
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+## OUTPUTS
 
 ## NOTES
 
-
-
 ## RELATED LINKS
-
-Fill Related Links Here
-

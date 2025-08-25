@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,16 +50,16 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version:
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://www.Google.com
 schema: 2.0.0</h2>
 <h1>Invoke-Beep</h1>
 <h2>SYNOPSIS</h2>
 <p>Uses the Beep function of the .Net [Console] class</p>
 <h2>SYNTAX</h2>
 <h3>Default (Default)</h3>
-<pre><code>Invoke-Beep [-Duration &lt;Int32&gt;] [-Frequency &lt;Int32&gt;] [&lt;CommonParameters&gt;]
+<pre><code>Invoke-Beep [-Frequency &lt;Int32&gt;] [-Duration &lt;Int32&gt;] [&lt;CommonParameters&gt;]
 </code></pre>
 <h3>Nasa</h3>
 <pre><code>Invoke-Beep [-Nasa] [&lt;CommonParameters&gt;]
@@ -85,43 +85,29 @@ Alias as 'Beep'.
 Has the
 ability to play a number of different pre-defined set of tones.</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Invoke-Beep
 </code></pre>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>Invoke-Beep -Frequency 400 -Duration 500
 </code></pre>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>Invoke-Beep -Impossible
 </code></pre>
 <h2>PARAMETERS</h2>
-<h3>-Birthday</h3>
-<p>A switch to play Happy Birthday.</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: Birthday
-Aliases: 
-Accepted values: 
+<h3>-Frequency</h3>
+<p>The frequency, in mHz, of the tone that you want to play.
+Defaults to 800.
+Minimum 37 Hz, maximum 32,767 Hz.</p>
+<pre><code class="language-yaml">Type: Int32
+Parameter Sets: Default
+Aliases:
 
-Required: True (None) False (Birthday)
+Required: False
 Position: Named
-Default value: False
+Default value: 800
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-Censor</h3>
-<p>A switch to play the censor beep.</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: Censor
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (Censor)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-Duration</h3>
 <p>The duration, in milliseconds, that you wish to play the tone.
@@ -129,93 +115,92 @@ Defaults to 200.
 Minimum 61 ms, maximum 3000 ms (3 seconds).</p>
 <pre><code class="language-yaml">Type: Int32
 Parameter Sets: Default
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (Default)
+Required: False
 Position: Named
 Default value: 200
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-Frequency</h3>
-<p>The frequency, in mHz, of the tone that you want to play.
-Defaults to 800.
-Minimum 37 Hz, maximum 32,767 Hz.</p>
-<pre><code class="language-yaml">Type: Int32
-Parameter Sets: Default
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (Default)
-Position: Named
-Default value: 800
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-Impossible</h3>
-<p>A switch to play the Mission Impossible theme.</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: Impossible
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (Impossible)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-Mario</h3>
-<p>A switch to play the theme from Super Mario.</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: Mario
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (Mario)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-Nasa</h3>
 <p>A switch to play the NASA beep circa Apollo.</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: Nasa
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (Nasa)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-StarWars</h3>
 <p>A switch to play the Imperial March from Star Wars.</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: StarWars
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (StarWars)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-Impossible</h3>
+<p>A switch to play the Mission Impossible theme.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: Impossible
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Mario</h3>
+<p>A switch to play the theme from Super Mario.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: Mario
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Censor</h3>
+<p>A switch to play the censor beep.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: Censor
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Birthday</h3>
+<p>A switch to play Happy Birthday.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: Birthday
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

@@ -1,69 +1,53 @@
 ---
-external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version: 
+external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: http://wonkysoftware.appspot.com
 schema: 2.0.0
 ---
 
 # Get-DuplicateFileName
 
 ## SYNOPSIS
-
 To find duplicate file names within a given folder
 
 ## SYNTAX
 
-### __AllParameterSets
-
 ```
-Get-DuplicateFileName [[-Path <String>]] [<CommonParameters>]
+Get-DuplicateFileName [[-Path] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-
 To find duplicate file names within a given folder.
 Alias for function 'Get-DupeFileName'.
 Will run Get-ChildItem against the given path, groups them by filename, and finds those that have a count greater than 1
 
-
 ## EXAMPLES
 
-### Example 1: EXAMPLE 1
-
+### EXAMPLE 1
 ```
 Get-DuplicateFileName -Path 'NonExistentFolder'
 ```
 
-Get-DuplicateFileName : Path [NonExistentFolder] does not exist
+Get-DuplicateFileName : Path \[NonExistentFolder\] does not exist
 At line:1 char:1
 + Get-DuplicateFileName -Path 'NonExistentFolder'
 + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + CategoryInfo          : NotSpecified: (:) \[Write-Error\], WriteErrorException
     + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,Get-DuplicateFileName
 
-
-
-
-
-### Example 2: EXAMPLE 2
-
+### EXAMPLE 2
 ```
 Get-DuplicateFileName -Path 'TestFileName'
 ```
 
-Get-DuplicateFileName : Path [TestFileName] is not a folder
+Get-DuplicateFileName : Path \[TestFileName\] is not a folder
 At line:1 char:1
 + Get-DuplicateFileName -Path 'TestFileName'
 + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + CategoryInfo          : NotSpecified: (:) \[Write-Error\], WriteErrorException
     + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,Get-DuplicateFileName
 
-
-
-
-
-### Example 3: EXAMPLE 3
-
+### EXAMPLE 3
 ```
 Get-DuplicateFileName -Path 'C:\Temp\TestFiles\'
 ```
@@ -73,12 +57,7 @@ Count Name                      Group
 ----- ----                      -----
     2 TestFile.txt              {@{Name=TestFile.txt; Directory=C:\Temp\TestFiles; LastWriteTime=9/21/2021 1:00:20 PM; LastWriteTimeUtc=9/21/2021 5:00:20 PM; Length=0; Ful...
 
-
-
-
-
-### Example 4: EXAMPLE 4
-
+### EXAMPLE 4
 ```
 Get-DuplicateFileName -Path 'C:\Temp\TestFiles\' | Select-Object -ExpandProperty Group
 ```
@@ -97,39 +76,32 @@ LastWriteTimeUtc : 9/21/2021 5:03:49 PM
 Length           : 38
 FullName         : C:\Temp\TestFiles\Folder\TestFile.txt
 
-
-
-
-
-
 ## PARAMETERS
 
 ### -Path
-
 Name of a folder.
 Defaults to $pwd
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 0
+Required: False
+Position: 1
 Default value: $pwd
-Accept pipeline input: True
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
-DontShow: False
 ```
 
-
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
-## NOTES
+## INPUTS
 
+## OUTPUTS
+
+## NOTES
 Will return the following properties of each file:
     Name
     Directory
@@ -138,8 +110,4 @@ Will return the following properties of each file:
     Length
     FullName
 
-
 ## RELATED LINKS
-
-Fill Related Links Here
-

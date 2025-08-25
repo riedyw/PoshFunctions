@@ -1,4 +1,23 @@
 function Set-FileTime {
+<#
+.SYNOPSIS
+    A function to change the file time properties: LastWriteTime, LastAccessTime, CreationTime
+.DESCRIPTION
+    A function to change the file time properties: LastWriteTime, LastAccessTime, CreationTime
+.PARAMETER Path
+    Path to a file
+.PARAMETER CreationTime
+    Date to set the CreationTime property to
+.PARAMETER LastAccessTime
+    Date to set the LastAccessTime property to
+.PARAMETER LastWriteTime
+    Date to set the LastWriteTime property to
+.EXAMPLE
+    Test-MyTestFunction -Verbose
+    Explanation of the function or its result. You can include multiple examples with additional .EXAMPLE lines
+#>
+
+
     [CmdletBinding(DefaultParameterSetName = 'ByPipeline')]
     param (
         # [Parameter(Mandatory, Position = 0, ParameterSetName = 'ByName')]
@@ -8,7 +27,7 @@ function Set-FileTime {
         [string[]] $Path,
 
         [Parameter()]
-        [datetime]$CreationTime,
+        [datetime] $CreationTime,
 
         [Parameter()]
         [datetime]$LastAccessTime,
@@ -16,6 +35,10 @@ function Set-FileTime {
         [Parameter()]
         [datetime]$LastWriteTime
     )
+
+    begin {
+
+    }
 
     process {
         foreach ($item in $path) {
@@ -34,6 +57,10 @@ function Set-FileTime {
                 (Get-Item -LiteralPath $item).LastWriteTime = $LastWriteTime
             }
         }
+    }
+
+    end {
+
     }
 
 }

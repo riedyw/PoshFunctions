@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,22 +50,22 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version:
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: http://wonkysoftware.appspot.com
 schema: 2.0.0</h2>
 <h1>Get-CeasarCipher</h1>
 <h2>SYNOPSIS</h2>
-<p>Shifts letters in string by a certain number of positions. Default shift is 13 characters or the classic ROT13.</p>
+<p>Shifts letters in string by a certain number of positions.
+Default shift is 13 characters or the classic ROT13.</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>Get-CeasarCipher [-Text] &lt;String[]&gt; [[-Key &lt;Int32&gt;]] [-Decode] [-IncludeInput] [&lt;CommonParameters&gt;]
+<pre><code>Get-CeasarCipher [-Text] &lt;String[]&gt; [[-Key] &lt;Int32&gt;] [-Decode] [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Shifts letters in string by a certain number of positions.
 Default shift is 13 characters or the classic ROT13.</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Get-CeasarCipher -Text Zoo, human -IncludeInput -Verbose
 </code></pre>
 <p>VERBOSE: Starting [Get-CeasarCipher]
@@ -77,79 +77,72 @@ PlainText Key CipherText</p>
 <hr />
 <p>Zoo        13 Mbb
 human      13 uhzna</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>Get-CeasarCipher -Text Zoo -Key 10
 </code></pre>
 <p>Jyy</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>Get-CeasarCipher -Text Jyy -Key 10 -Decode
 </code></pre>
 <p>Zoo</p>
 <h2>PARAMETERS</h2>
-<h3>-Decode</h3>
-<p>Switch used if you want to decode cipher text by a certain number of characters.</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-IncludeInput</h3>
-<p>Switch that will include the input in the output</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-Key</h3>
-<p>The number of positions you want to switch.
-Defaults to '13', valid range '1' through '25'</p>
-<pre><code class="language-yaml">Type: Int32
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: 1
-Default value: 13
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
 <h3>-Text</h3>
 <p>A string array of plaintext that you want to run through the cipher.
 Aliased to 'String' to provide backward compatibility.</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
 Aliases: String
-Accepted values: 
 
-Required: True (All) False (None)
-Position: 0
-Default value: 
-Accept pipeline input: True
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-Key</h3>
+<p>The number of positions you want to switch.
+Defaults to '13', valid range '1' through '25'</p>
+<pre><code class="language-yaml">Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: 13
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Decode</h3>
+<p>Switch used if you want to decode cipher text by a certain number of characters.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-IncludeInput</h3>
+<p>Switch that will include the input in the output</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <p>Inspired by: https://titanwolf.org/Network/Articles/Article?AID=99197fe0-0b0e-4a9c-883e-49f4273a59ad#gsc.tab=0</p>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

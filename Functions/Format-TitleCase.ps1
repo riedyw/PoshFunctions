@@ -1,9 +1,9 @@
 function Format-TitleCase {
 <#
 .SYNOPSIS
-    Get the last day of the month given the year as an integer, and the month as an integer
+    Takes a string like 'happy birthday' and changes it to 'Happy Birthday'
 .DESCRIPTION
-    Get the last day of the month given the year as an integer, and the month as an integer
+    Takes a string like 'happy birthday' and changes it to 'Happy Birthday'. Can optionally convert all to lower case first.
 .PARAMETER String
     String or string array that you want to be put into your cultures title case
 .PARAMETER ToLowerFirst

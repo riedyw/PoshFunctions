@@ -44,8 +44,6 @@ function Start-ADReplication {
     * Changed $Name to optional and defaulting to $env:COMPUTERNAME
 #>
 
-    # todo - add -Credential
-
     #region parameter
     [CmdletBinding(ConfirmImpact = 'Medium')]
     [OutputType('string')]

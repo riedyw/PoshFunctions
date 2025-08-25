@@ -1,41 +1,43 @@
 ---
-external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version: 
+external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://gist.github.com/Nora-Ballard/11240204
 schema: 2.0.0
 ---
 
 # Start-RecordSession
 
 ## SYNOPSIS
-
 Creates a transcript of current Powershell session
 
 ## SYNTAX
-
-### __AllParameterSets
 
 ```
 Start-RecordSession [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-
 Creates a transcript of current Powershell session
-
 
 ## EXAMPLES
 
+### Example 1
+```powershell
+PS C:\> {{ Add example code here }}
+```
+
+{{ Add example description here }}
 
 ## PARAMETERS
 
-
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
-## NOTES
+## INPUTS
 
+## OUTPUTS
+
+## NOTES
 # Inspired by post https://groups.google.com/forum/#!topic/microsoft.public.exchange.admin/0z7249mOuzA
 # create a uniqely named transcript file for this session.
 It will have format of:
@@ -46,8 +48,4 @@ It will have format of:
 # creates it in the LOGS directory under persons userprofile directory.
 # sets global and environment variables so Stop-RecordSession can know the name of the transcript file
 
-
 ## RELATED LINKS
-
-Fill Related Links Here
-

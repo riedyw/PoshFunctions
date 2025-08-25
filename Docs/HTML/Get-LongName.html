@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,8 +50,8 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>Get-LongName</h1>
@@ -59,80 +59,75 @@ schema: 2.0.0</h2>
 <p>To get the longname of a provided shortname (8.3) of a file or folder</p>
 <h2>SYNTAX</h2>
 <h3>Path (Default)</h3>
-<pre><code>Get-LongName [-IncludeInput] [-Path &lt;String[]&gt;] [&lt;CommonParameters&gt;]
+<pre><code>Get-LongName [-Path &lt;String[]&gt;] [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h3>LiteralPath</h3>
-<pre><code>Get-LongName [-IncludeInput] [-LiteralPath &lt;String[]&gt;] [&lt;CommonParameters&gt;]
+<pre><code>Get-LongName [-LiteralPath &lt;String[]&gt;] [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>To get the longname of a provided shortname (8.3) of a file or folder.
 If the path resolves to 2 or more objects the function will generate an error</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Get-LongName -Path C:\temp\THISIS~1.TXT
 </code></pre>
 <p>C:\temp\This is a really long filename.txt</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>Get-LongName -Path C:\temp\THISIS~1.TXT -IncludeInput
 </code></pre>
 <p>ShortName            LongName                                   ItemType</p>
 <hr />
 <p>C:\temp\THISIS~1.TXT C:\temp\This is a really long filename.txt File</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>Get-LongName -Path C:\temp\REALLY~1
 </code></pre>
 <p>C:\temp\Really-long-folder-name</p>
-<h3>Example 4: EXAMPLE 4</h3>
+<h3>EXAMPLE 4</h3>
 <pre><code>Get-LongName -Path C:\temp\REALLY~1 -IncludeInput
 </code></pre>
 <p>ShortName        LongName                        ItemType</p>
 <hr />
 <p>C:\temp\REALLY~1 C:\temp\Really-long-folder-name Folder</p>
 <h2>PARAMETERS</h2>
-<h3>-IncludeInput</h3>
-<p>Switch to include the input parameters in the output</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: LiteralPath, Path
-Aliases: 
-Accepted values: 
+<h3>-Path</h3>
+<p>A string or string array of files and folders</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: Path
+Aliases:
 
-Required: True (None) False (LiteralPath, Path)
+Required: False
 Position: Named
-Default value: False
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-LiteralPath</h3>
 <p>{{ Fill LiteralPath Description }}</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: LiteralPath
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (LiteralPath)
+Required: False
 Position: Named
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
-<h3>-Path</h3>
-<p>A string or string array of files and folders</p>
-<pre><code class="language-yaml">Type: String[]
-Parameter Sets: Path
-Aliases: 
-Accepted values: 
+<h3>-IncludeInput</h3>
+<p>Switch to include the input parameters in the output</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
 
-Required: True (None) False (Path)
+Required: False
 Position: Named
-Default value: 
-Accept pipeline input: True
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>[string[]]</h3>
 <h2>NOTES</h2>
@@ -155,7 +150,6 @@ DontShow: False
 </li>
 </ul>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

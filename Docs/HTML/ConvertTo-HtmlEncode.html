@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,63 +50,59 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>ConvertTo-HtmlEncode</h1>
 <h2>SYNOPSIS</h2>
 <p>To encode plaintext using [Web.HttpUtility]::HtmlEncode()</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>ConvertTo-HtmlEncode [[-Text &lt;String[]&gt;]] [-IncludeInput] [&lt;CommonParameters&gt;]
+<pre><code>ConvertTo-HtmlEncode [[-Text] &lt;String[]&gt;] [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>To encode plaintext using [Web.HttpUtility]::HtmlEncode()</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Convertfrom-HtmlEncode -HTML '&amp;lt;This is some text &amp;amp; a goodbye&amp;gt;' -IncludeInput
 </code></pre>
 <p>HtmlEncoded                               PlainText</p>
 <hr />
 <p>&lt;This is some text &amp; a goodbye&gt; &lt;This is some text &amp; a goodbye&gt;</p>
 <h2>PARAMETERS</h2>
-<h3>-IncludeInput</h3>
-<p>A switch to determine if you want original text in the output.</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
 <h3>-Text</h3>
 <p>The original text that you want encoded.
 Can be a string or an array of strings.
 Accepts pipeline input.</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 0
-Default value: 
-Accept pipeline input: True
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-IncludeInput</h3>
+<p>A switch to determine if you want original text in the output.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <p>Inspired by: https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/html-encoding</p>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

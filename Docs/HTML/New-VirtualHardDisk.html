@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,22 +50,23 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>New-VirtualHardDisk</h1>
 <h2>SYNOPSIS</h2>
 <p>Creates a new virtual hard disk (*.vhd) and several other operations</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>New-VirtualHardDisk [[-Path &lt;String&gt;]] [[-PartitionType &lt;String&gt;]] [[-VhdType &lt;String&gt;]] [[-FileSystem &lt;Object&gt;]] [[-Size &lt;Int64&gt;]] [[-VolumeLabel &lt;String&gt;]] [[-AutoRunIcon &lt;String&gt;]] [[-AutoRunLabel &lt;String&gt;]] [&lt;CommonParameters&gt;]
+<pre><code>New-VirtualHardDisk [[-Path] &lt;String&gt;] [[-PartitionType] &lt;String&gt;] [[-VhdType] &lt;String&gt;]
+ [[-FileSystem] &lt;Object&gt;] [[-Size] &lt;Int64&gt;] [[-VolumeLabel] &lt;String&gt;] [[-AutoRunIcon] &lt;String&gt;]
+ [[-AutoRunLabel] &lt;String&gt;] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Creates a new virtual hard disk (*.vhd), mounts it, initializes it, formats it and optionally sets the volume label and
 optionally creates an AutoRun.inf in the root of the new drive</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>New-VirtualHardDisk -Path c:\temp\512.vhd -Size 512MB -VhdType Expandable -FileSystem NTFS -VolumeLabel 'Temp Volume' -AutoRunLabel 'This is my temporary volume' -AutoRunIcon C:\temp\TemporaryFolder.ico
 </code></pre>
 <p>Path          : C:\temp\512.vhd
@@ -77,49 +78,17 @@ VolumeLabel   : Temp Volume
 AutoRunLabel  : This is my temporary volume
 AutoRunIcon   : C:\temp\TemporaryFolder.ico</p>
 <h2>PARAMETERS</h2>
-<h3>-AutoRunIcon</h3>
-<p>Optional icon that will be copied onto root of the virtual disk and AutoRun.inf setting pointing to it</p>
+<h3>-Path</h3>
+<p>The explicit path to the new VHD file</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 6
-Default value: 
+Required: False
+Position: 1
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-AutoRunLabel</h3>
-<p>Optional label that will be displayed in Windows Explorer and AutoRun.inf setting for it</p>
-<pre><code class="language-yaml">Type: String
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: 7
-Default value: 
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-FileSystem</h3>
-<p>The filesystem that will be formatted onto the new virtual disk.
-Validate set: 'FAT', 'FAT32', 'ExFAT', 'NTFS'.
-Default: 'FAT'</p>
-<pre><code class="language-yaml">Type: Object
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: 3
-Default value: FAT
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-PartitionType</h3>
 <p>The partition type.
@@ -127,44 +96,13 @@ Validate set: 'MBR', 'GPT'.
 Default: 'MBR'</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 1
+Required: False
+Position: 2
 Default value: MBR
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-Path</h3>
-<p>The explicit path to the new VHD file</p>
-<pre><code class="language-yaml">Type: String
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: 0
-Default value: 
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-Size</h3>
-<p>The size of the disk in bytes.
-Default: 1GB</p>
-<pre><code class="language-yaml">Type: Int64
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: 4
-Default value: 1073741824
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-VhdType</h3>
 <p>How the Vhd is allocated.
@@ -172,36 +110,84 @@ Validate set: 'Expandable', 'Fixed'.
 Default: 'Expandable'</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 2
+Required: False
+Position: 3
 Default value: Expandable
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-FileSystem</h3>
+<p>The filesystem that will be formatted onto the new virtual disk.
+Validate set: 'FAT', 'FAT32', 'ExFAT', 'NTFS'.
+Default: 'FAT'</p>
+<pre><code class="language-yaml">Type: Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 4
+Default value: FAT
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Size</h3>
+<p>The size of the disk in bytes.
+Default: 1GB</p>
+<pre><code class="language-yaml">Type: Int64
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 5
+Default value: 1073741824
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>-VolumeLabel</h3>
 <p>Optional string for label on the filesystem</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 5
-Default value: 
+Required: False
+Position: 6
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-AutoRunIcon</h3>
+<p>Optional icon that will be copied onto root of the virtual disk and AutoRun.inf setting pointing to it</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 7
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-AutoRunLabel</h3>
+<p>Optional label that will be displayed in Windows Explorer and AutoRun.inf setting for it</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 8
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <p>Must be run from an elevated prompt.</p>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

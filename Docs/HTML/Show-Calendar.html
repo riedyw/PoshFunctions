@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,76 +50,69 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version:
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://gist.github.com/Nora-Ballard/11240204
 schema: 2.0.0</h2>
 <h1>Show-Calendar</h1>
 <h2>SYNOPSIS</h2>
 <p>Displays a visual representation of a calendar.</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>Show-Calendar [[-start &lt;DateTime&gt;]] [[-end &lt;DateTime&gt;]] [[-firstDayOfWeek &lt;Object&gt;]] [[-highlightDay &lt;Int32[]&gt;]] [[-highlightDate &lt;String[]&gt;]] [&lt;CommonParameters&gt;]
+<pre><code>Show-Calendar [[-start] &lt;DateTime&gt;] [[-end] &lt;DateTime&gt;] [[-firstDayOfWeek] &lt;Object&gt;]
+ [[-highlightDay] &lt;Int32[]&gt;] [[-highlightDate] &lt;String[]&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Displays a visual representation of a calendar.
 This function supports multiple months and lets you highlight specific date ranges or days.</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code># Show a default display of this month.
 </code></pre>
 <p>Show-Calendar</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code># Display a date range.
 </code></pre>
 <p>Show-Calendar -Start &quot;March, 2010&quot; -End &quot;May, 2010&quot;</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code># Highlight a range of days.
 </code></pre>
 <p>Show-Calendar -HighlightDay (1..10 + 22) -HighlightDate &quot;December 25, 2008&quot;</p>
 <h2>PARAMETERS</h2>
+<h3>-start</h3>
+<p>The first month to display as a datetime</p>
+<pre><code class="language-yaml">Type: DateTime
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: [DateTime]::Today
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
 <h3>-end</h3>
 <p>The last month to display as a datetime</p>
 <pre><code class="language-yaml">Type: DateTime
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 1
+Required: False
+Position: 2
 Default value: $start
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-firstDayOfWeek</h3>
 <p>The day of the month on which the week begins as an integer</p>
 <pre><code class="language-yaml">Type: Object
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 2
-Default value: 
+Required: False
+Position: 3
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-highlightDate</h3>
-<p>Specific days (named) to highlight.
-These dates are surrounded by asterisks.</p>
-<pre><code class="language-yaml">Type: String[]
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: 4
-Default value: [DateTime]::Today.ToString()
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-highlightDay</h3>
 <p>Specific days (numbered) to highlight.
@@ -130,33 +123,31 @@ These dates are
 enclosed in square brackets.</p>
 <pre><code class="language-yaml">Type: Int32[]
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 3
-Default value: 
+Required: False
+Position: 4
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
-<h3>-start</h3>
-<p>The first month to display as a datetime</p>
-<pre><code class="language-yaml">Type: DateTime
+<h3>-highlightDate</h3>
+<p>Specific days (named) to highlight.
+These dates are surrounded by asterisks.</p>
+<pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 0
-Default value: [DateTime]::Today
+Required: False
+Position: 5
+Default value: [DateTime]::Today.ToString()
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

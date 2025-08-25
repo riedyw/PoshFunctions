@@ -1,49 +1,69 @@
 ---
-external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version: 
+external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://social.msdn.microsoft.com/Forums/vstudio/en-US/0221d962-26e6-4a7e-be7a-72cd669a0dfc/why-systemmathround0251-2?forum=vbgeneral
+
+Talks about Visual Basic but the same info applies to Powershell.
 schema: 2.0.0
 ---
 
 # Get-ServiceUser
 
 ## SYNOPSIS
-
-Get a list of services and the user context that they run under. By default excluded services running as system
-
-## SYNTAX
-
-### __AllParameterSets
-
-```
-Get-ServiceUser [-Name] <String[]> [[-UserName <String>]] [-IncludeSystem] [<CommonParameters>]
-```
-
-## DESCRIPTION
-
 Get a list of services and the user context that they run under.
 By default excluded services running as system
 
+## SYNTAX
+
+```
+Get-ServiceUser [-Name] <String[]> [[-UserName] <String>] [-IncludeSystem] [<CommonParameters>]
+```
+
+## DESCRIPTION
+Get a list of services and the user context that they run under.
+By default excluded services running as system
 
 ## EXAMPLES
 
-### Example 1: EXAMPLE 1
-
+### EXAMPLE 1
 ```
 Get-ServiceUser
 ```
 
-
-
-
-
-
-
-
 ## PARAMETERS
 
-### -IncludeSystem
+### -Name
+Please enter the name of a computer
 
+```yaml
+Type: String[]
+Parameter Sets: (All)
+Aliases: ComputerName, CN, Server
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -UserName
+A -like search string to compare process username context.
+Defaults to '*'
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: *
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IncludeSystem
 Switch to include the system scheduled tasks.
 Aliased to 'IS'
 
@@ -51,66 +71,23 @@ Aliased to 'IS'
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: IS
-Accepted values: 
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 ```
-
-### -Name
-
-Please enter the name of a computer
-
-```yaml
-Type: String[]
-Parameter Sets: (All)
-Aliases: ComputerName,CN,Server
-Accepted values: 
-
-Required: True (All) False (None)
-Position: 0
-Default value: 
-Accept pipeline input: True
-Accept wildcard characters: False
-DontShow: False
-```
-
-### -UserName
-
-A -like search string to compare process username context.
-Defaults to '*'
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: 1
-Default value: *
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-```
-
 
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
 
 ## OUTPUTS
 
 ### psobject
-
-
-
 ## NOTES
-
 Unless the -IncludeSystem switch is specified the following will be excluded from the output:
     'LocalSystem',
     'NT AUTHORITY\LocalService',
@@ -118,8 +95,4 @@ Unless the -IncludeSystem switch is specified the following will be excluded fro
     'NT AUTHORITY\Network Service',
     'NT AUTHORITY\SYSTEM'
 
-
 ## RELATED LINKS
-
-Fill Related Links Here
-

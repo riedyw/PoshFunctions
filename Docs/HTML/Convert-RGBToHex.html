@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,8 +50,8 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>Convert-RGBToHex</h1>
@@ -59,36 +59,36 @@ schema: 2.0.0</h2>
 <p>Converts an RGB color string to hex equivalent</p>
 <h2>SYNTAX</h2>
 <h3>String (Default)</h3>
-<pre><code>Convert-RGBToHex [-RGB] &lt;String[]&gt; [-IncludeInput] [-Prefix] [&lt;CommonParameters&gt;]
+<pre><code>Convert-RGBToHex [-RGB] &lt;String[]&gt; [-Prefix] [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h3>Colors</h3>
-<pre><code>Convert-RGBToHex [-Blue &lt;Int32&gt;] [-Green &lt;Int32&gt;] [-IncludeInput] [-Prefix] [-Red &lt;Int32&gt;] [&lt;CommonParameters&gt;]
+<pre><code>Convert-RGBToHex [-Red &lt;Int32&gt;] [-Green &lt;Int32&gt;] [-Blue &lt;Int32&gt;] [-Prefix] [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Converts an RGB color string to hex equivalent.
 Input should be in the form 'A,R,G,B'</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Convert-RGBToHex -RGB '128,64,32'
 </code></pre>
 <p>Would return
 804020</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>Convert-RGBToHex -RGB '255,0,0' -Prefix
 </code></pre>
 <p>Would return
 #FF0000</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>convert-RGBtohex '64,128,255' -Prefix
 </code></pre>
 <p>Would return
 #4080FF</p>
-<h3>Example 4: EXAMPLE 4</h3>
+<h3>EXAMPLE 4</h3>
 <pre><code>'128,128,92' | convert-RGBtohex
 </code></pre>
 <p>Would return
 80805C</p>
-<h3>Example 5: EXAMPLE 5</h3>
+<h3>EXAMPLE 5</h3>
 <pre><code>Convert-RGBToHex -RGB @('255,0,0','128,80,80') -Prefix -IncludeInput
 </code></pre>
 <p>Would return
@@ -97,92 +97,81 @@ DecimalRGB  HexRGB</p>
 <p>255,0,0     #00FF0000
 128,80,80   #FF805050</p>
 <h2>PARAMETERS</h2>
-<h3>-Blue</h3>
-<p>{{ Fill Blue Description }}</p>
-<pre><code class="language-yaml">Type: Int32
-Parameter Sets: Colors
-Aliases: B
-Accepted values: 
+<h3>-RGB</h3>
+<p>An RGB color string in the form '#,#,#,#' where each number is between 0 and 255.</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: String
+Aliases:
 
-Required: True (None) False (Colors)
-Position: Named
-Default value: 0
-Accept pipeline input: True
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-Green</h3>
-<p>{{ Fill Green Description }}</p>
-<pre><code class="language-yaml">Type: Int32
-Parameter Sets: Colors
-Aliases: G
-Accepted values: 
-
-Required: True (None) False (Colors)
-Position: Named
-Default value: 0
-Accept pipeline input: True
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-IncludeInput</h3>
-<p>A switch indicating whether to include the original decimal RGB input in the output, aliased to 'IncludeOriginal'</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: Colors, String
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (Colors, String)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-Prefix</h3>
-<p>A switch indicating whether hex string should be preceded by a hash symbol #.</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: Colors, String
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (Colors, String)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-Red</h3>
 <p>{{ Fill Red Description }}</p>
 <pre><code class="language-yaml">Type: Int32
 Parameter Sets: Colors
 Aliases: R
-Accepted values: 
 
-Required: True (None) False (Colors)
+Required: False
 Position: Named
 Default value: 0
-Accept pipeline input: True
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
-<h3>-RGB</h3>
-<p>An RGB color string in the form '#,#,#,#' where each number is between 0 and 255.</p>
-<pre><code class="language-yaml">Type: String[]
-Parameter Sets: String
-Aliases: 
-Accepted values: 
+<h3>-Green</h3>
+<p>{{ Fill Green Description }}</p>
+<pre><code class="language-yaml">Type: Int32
+Parameter Sets: Colors
+Aliases: G
 
-Required: True (String) False (None)
-Position: 0
-Default value: 
-Accept pipeline input: True
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-Blue</h3>
+<p>{{ Fill Blue Description }}</p>
+<pre><code class="language-yaml">Type: Int32
+Parameter Sets: Colors
+Aliases: B
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+</code></pre>
+<h3>-Prefix</h3>
+<p>A switch indicating whether hex string should be preceded by a hash symbol #.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-IncludeInput</h3>
+<p>A switch indicating whether to include the original decimal RGB input in the output, aliased to 'IncludeOriginal'</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>[string]</h3>
 <h2>NOTES</h2>
@@ -195,8 +184,8 @@ c) Minor tweaking so that it passes Invoke-ScriptAnalyzer
 d) Added parameter validation on RGB.
 e) Added .LINK entries for related items</p>
 <h2>RELATED LINKS</h2>
-<p>[about_ISE-Color-Theme-Cmdlets] ()</p>
-<p>[Convert-HexToRGB] ()</p>
+<p><a href="">about_ISE-Color-Theme-Cmdlets</a></p>
+<p><a href="">Convert-HexToRGB</a></p>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,47 +50,44 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>New-TelephoneUri</h1>
 <h2>SYNOPSIS</h2>
-<p>A short one-line action-based description, e.g. 'Tests if a function is valid'</p>
+<p>Creates appropriately formatted text for an Telephone URI that can be embedded in a QR code</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
 <pre><code>New-TelephoneUri [-Telephone] &lt;String&gt; [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
-<p>A longer description of the function, its purpose, common use cases, etc.</p>
+<p>Creates appropriately formatted text for an Telephone URI that can be embedded in a QR code</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
-<pre><code>Test-MyTestFunction -Verbose
+<h3>EXAMPLE 1</h3>
+<pre><code>New-TelephoneUri -telephone '518.555.1212'
 </code></pre>
-<p>Explanation of the function or its result.
-You can include multiple examples with additional .EXAMPLE lines</p>
+<p>TEL:518.555.1212</p>
 <h2>PARAMETERS</h2>
 <h3>-Telephone</h3>
-<p>Enter the Telephone number</p>
+<p>The telephone number for the URI text</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (All) False (None)
-Position: 0
-Default value: 
-Accept pipeline input: True
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
-<p>Information or caveats about the function e.g.
-'This function is not supported in Linux'</p>
+<p>Inspired by https://support.seagullscientific.com/hc/en-us/community/posts/4415554566167-QR-Code-SMSTO-multiple-recipients&gt;</p>
 <h2>RELATED LINKS</h2>
-<p>[Specify a URI to a help page, this will show when Get-Help -Online is used.] ()</p>
+<p><a href="">New-QRCode</a></p>
 
 </body>
 </html>

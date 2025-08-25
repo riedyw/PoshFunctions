@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,26 +50,25 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version:
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://gist.github.com/Nora-Ballard/11240204
 schema: 2.0.0</h2>
 <h1>Test-IsAdmin</h1>
 <h2>SYNOPSIS</h2>
 <p>Determines if you are running elevated (as Administrator)</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
 <pre><code>Test-IsAdmin [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Determines if you are running elevated (as Administrator)</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Test-IsAdmin
 </code></pre>
 <p>Would return the following if the prompt was elevated.
 $True</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>Test-IsAdmin -Verbose
 </code></pre>
 <p>Would return the following if the prompt was elevated.
@@ -78,13 +77,13 @@ True</p>
 <h2>PARAMETERS</h2>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>bool</h3>
 <h2>NOTES</h2>
 <p>#source https://blogs.technet.microsoft.com/heyscriptingguy/2015/07/29/use-function-to-determine-elevation-of-powershell-console/</p>
 <h1>inspired by above, made some minor modifications like proving more output, making it an advanced function.</h1>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

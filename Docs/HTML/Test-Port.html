@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,46 +50,45 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>Test-Port</h1>
 <h2>SYNOPSIS</h2>
 <p>Tests a Port or a range of ports on a specific ComputerName(s).</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>Test-Port [-ComputerName] &lt;String[]&gt; [-Port] &lt;UInt16[]&gt; [-TCP] [-Timeout &lt;Int32&gt;] [-UDP] [&lt;CommonParameters&gt;]
+<pre><code>Test-Port [-ComputerName] &lt;String[]&gt; [-Port] &lt;UInt16[]&gt; [-Timeout &lt;Int32&gt;] [-TCP] [-UDP] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Tests a Port or a range of ports on a specific ComputerName(s).
 Creates a custom object with the properties: ComputerName, Protocol, Port, Open, Notes.</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Test-Port -ComputerName 'server' -port 80
 </code></pre>
 <p>Checks port 80 on server 'server' to see if it is listening</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>'server' | Test-Port -Port 80
 </code></pre>
 <p>Checks port 80 on server 'server' to see if it is listening</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>Test-Port -ComputerName @(&quot;server1&quot;,&quot;server2&quot;) -Port 80
 </code></pre>
 <p>Checks port 80 on server1 and server2 to see if it is listening</p>
-<h3>Example 4: EXAMPLE 4</h3>
+<h3>EXAMPLE 4</h3>
 <pre><code>@(&quot;server1&quot;,&quot;server2&quot;) | Test-Port -Port 80
 </code></pre>
 <p>Checks port 80 on server1 and server2 to see if it is listening</p>
-<h3>Example 5: EXAMPLE 5</h3>
+<h3>EXAMPLE 5</h3>
 <pre><code>(Get-Content hosts.txt) | Test-Port -Port 80
 </code></pre>
 <p>Checks port 80 on servers in host file to see if it is listening</p>
-<h3>Example 6: EXAMPLE 6</h3>
+<h3>EXAMPLE 6</h3>
 <pre><code>Test-Port -ComputerName (Get-Content hosts.txt) -Port 80
 </code></pre>
 <p>Checks port 80 on servers in host file to see if it is listening</p>
-<h3>Example 7: EXAMPLE 7</h3>
+<h3>EXAMPLE 7</h3>
 <pre><code>Test-Port -ComputerName (Get-Content hosts.txt) -Port @(1..59)
 </code></pre>
 <p>Checks a range of ports from 1-59 on all servers in the hosts.txt file</p>
@@ -99,87 +98,78 @@ Creates a custom object with the properties: ComputerName, Protocol, Port, Open,
 Aliased to 'CN', 'Server'</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
-Aliases: CN,Server
-Accepted values: 
+Aliases: CN, Server
 
-Required: True (All) False (None)
-Position: 0
-Default value: 
-Accept pipeline input: True
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-Port</h3>
 <p>Port number to test ([int16] 0 - 65535), an array can also be passed</p>
 <pre><code class="language-yaml">Type: UInt16[]
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (All) False (None)
-Position: 1
-Default value: 
+Required: True
+Position: 2
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-TCP</h3>
-<p>Use TCP as the transport protocol</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-Timeout</h3>
 <p>Sets a timeout for TCP or UDP port query.
 (In milliseconds, Default is 1000)</p>
 <pre><code class="language-yaml">Type: Int32
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: 1000
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-TCP</h3>
+<p>Use TCP as the transport protocol</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>-UDP</h3>
 <p>Use UDP as the transport protocol</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>[psobject]</h3>
-<p>An array of objects containing the fields:
-ComputerName    A string containing the computer name or ip address that was passed to the function
-Protocol        A string being either 'TCP' or 'UDP'
-Port            An integer in the range 1 - 65535
-Open            A boolean
-Notes           Any notes when attempting to make a connection</p>
+<h3>An array of objects containing the fields:</h3>
+<h3>ComputerName    A string containing the computer name or ip address that was passed to the function</h3>
+<h3>Protocol        A string being either 'TCP' or 'UDP'</h3>
+<h3>Port            An integer in the range 1 - 65535</h3>
+<h3>Open            A boolean</h3>
+<h3>Notes           Any notes when attempting to make a connection</h3>
 <h2>NOTES</h2>
 <h1>inspired by https://gallery.technet.microsoft.com/scriptcenter/97119ed6-6fb2-446d-98d8-32d823867131</h1>
 <h2>RELATED LINKS</h2>
-<p>[about_Properties] ()</p>
+<p><a href="">about_Properties</a></p>
 
 </body>
 </html>

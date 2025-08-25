@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,21 +50,20 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>Resolve-PathForce</h1>
 <h2>SYNOPSIS</h2>
 <p>Resolves a path to a single file/folder, even if it does not exist</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>Resolve-PathForce [[-Path &lt;String&gt;]] [-IncludeInput] [&lt;CommonParameters&gt;]
+<pre><code>Resolve-PathForce [[-Path] &lt;String&gt;] [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Resolves a path to a single file/folder, even if it does not exist</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Resolve-PathForce \dne\dne.txt -IncludeInput -Verbose
 </code></pre>
 <p>VERBOSE: Starting [Resolve-PathForce]
@@ -74,53 +73,50 @@ VERBOSE: Path [\dne\dne.txt] does not exist</p>
 Path         Exists Type    ResolvedPath</p>
 <hr />
 <p>\dne\dne.txt  False Unknown C:\dne\dne.txt</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>Resolve-PathForce \temp -IncludeInput
 </code></pre>
 <p>Path  Exists Type   ResolvedPath</p>
 <hr />
 <p>\temp   True Folder C:\temp</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>Resolve-PathForce \temp
 </code></pre>
 <p>C:\temp</p>
 <h2>PARAMETERS</h2>
-<h3>-IncludeInput</h3>
-<p>Switch to include the input as part of the output</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
 <h3>-Path</h3>
 <p>String path to file/folder.
 Can be relative path.
 Must not contain wildcards or invalid characters</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 0
-Default value: 
+Required: False
+Position: 1
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-IncludeInput</h3>
+<p>Switch to include the input as part of the output</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <p>Inspired by post: https://stackoverflow.com/questions/3038337/powershell-resolve-path-that-might-not-exist</p>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,39 +50,39 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version:
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://www.Google.com
 schema: 2.0.0</h2>
 <h1>Get-Type</h1>
 <h2>SYNOPSIS</h2>
 <p>Get exported types in the current session</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>Get-Type [[-Module &lt;String&gt;]] [[-Assembly &lt;String&gt;]] [[-FullName &lt;String&gt;]] [[-Namespace &lt;String&gt;]] [[-BaseType &lt;String&gt;]] [-IsEnum] [&lt;CommonParameters&gt;]
+<pre><code>Get-Type [[-Module] &lt;String&gt;] [[-Assembly] &lt;String&gt;] [[-FullName] &lt;String&gt;] [[-Namespace] &lt;String&gt;]
+ [[-BaseType] &lt;String&gt;] [-IsEnum] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Get exported types in the current session</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Get-Type | Select-Object -First 1
 </code></pre>
 <h1>Default view</h1>
 <p>IsPublic IsSerial Name                                     BaseType</p>
 <hr />
 <p>True     False    Registry                                 System.Object</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>#List the full name of all Enums in the current session
 </code></pre>
 <p>$List = Get-Type -IsEnum | Select -ExpandProperty FullName | Sort -Unique</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>Get-Type -Namespace System.Xaml.Hosting
 </code></pre>
 <h1>Default view</h1>
 <p>IsPublic IsSerial Name                                     BaseType</p>
 <hr />
 <p>True     False    XamlBuildProvider                        System.Web.Compilation.BuildProvider</p>
-<h3>Example 4: EXAMPLE 4</h3>
+<h3>EXAMPLE 4</h3>
 <pre><code># Here is a list of all the properties that are returned
 </code></pre>
 <p>Get-Type | Select-Object -First 1 | Get-Member -MemberType Property</p>
@@ -162,102 +162,91 @@ TypeHandle                 Property   System.RuntimeTypeHandle TypeHandle {get;}
 TypeInitializer            Property   System.Reflection.ConstructorInfo TypeInitializer {get;}
 UnderlyingSystemType       Property   type UnderlyingSystemType {get;}</p>
 <h2>PARAMETERS</h2>
+<h3>-Module</h3>
+<p>Filter on Module.
+Accepts wildcard</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: *
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
 <h3>-Assembly</h3>
 <p>Filter on Assembly.
 Accepts wildcard</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 1
+Required: False
+Position: 2
 Default value: *
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-BaseType</h3>
-<p>Filter on BaseType.
-Accepts wildcard</p>
-<pre><code class="language-yaml">Type: String
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: 4
-Default value: *
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-FullName</h3>
 <p>Filter on FullName.
 Accepts wildcard</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 2
+Required: False
+Position: 3
 Default value: *
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-IsEnum</h3>
-<p>Switch to just return IsEnum types.</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-Module</h3>
-<p>Filter on Module.
-Accepts wildcard</p>
-<pre><code class="language-yaml">Type: String
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: 0
-Default value: *
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-Namespace</h3>
 <p>Filter on Namespace.
 Accepts wildcard</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 3
+Required: False
+Position: 4
 Default value: *
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-BaseType</h3>
+<p>Filter on BaseType.
+Accepts wildcard</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 5
+Default value: *
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-IsEnum</h3>
+<p>Switch to just return IsEnum types.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <h1>inspired by https://gallery.technet.microsoft.com/scriptcenter/Get-Type-Get-exported-fee19cf7</h1>
 <h1>changed what is output by the function</h1>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

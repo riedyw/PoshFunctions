@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,58 +50,55 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version:
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: http://wonkysoftware.appspot.com
 schema: 2.0.0</h2>
 <h1>Get-DisplayBrightness</h1>
 <h2>SYNOPSIS</h2>
 <p>To get the current brightness of the display</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>Get-DisplayBrightness [-Full] [&lt;CommonParameters&gt;]
+<pre><code>Get-DisplayBrightness [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>To get the current brightness of the display</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Get-DisplayBrightness
 </code></pre>
 <p>60</p>
-<h3>Example 2: EXAMPLE 2</h3>
-<pre><code>Get-DisplayBrightness -Full
+<h3>EXAMPLE 2</h3>
+<pre><code>Get-DisplayBrightness -IncludeInput
 </code></pre>
 <p>Namespace Class                CurrentBrightness</p>
 <hr />
 <p>root/WMI  WmiMonitorBrightness                60</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>Set-Display -Brightness 100
 </code></pre>
 <p>Get-DisplayBrightness</p>
 <p>100</p>
 <h2>PARAMETERS</h2>
-<h3>-Full</h3>
+<h3>-IncludeInput</h3>
 <p>Switch to display the full WMI path to the current value</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>int</h3>
 <h2>NOTES</h2>
 <p>Inspired by: https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/check-monitor-brightness</p>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

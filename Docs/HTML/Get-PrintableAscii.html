@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,8 +50,8 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>Get-PrintableAscii</h1>
@@ -77,14 +77,15 @@ N - Numbers
 S - Symbols (not U, L, or N)</p>
 <p>Will also mark characters that are similar to one another at first glance which you may want to avoid when generating a password.</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Get-PrintableAscii | Select-Object -First 10
 </code></pre>
 <p>Would return:
 Ascii Hex Char    Class Similar</p>
 <hr />
 <p>32 20  (Space) S       False
-33 21  !       S       False
+33 21  !
+S       False
 34 22  &quot;       S       False
 35 23  #       S       False
 36 24  $       S       False
@@ -93,7 +94,7 @@ Ascii Hex Char    Class Similar</p>
 39 27  '       S        True
 40 28  (       S       False
 41 29  )       S       False</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>Get-PrintableAscii -Class N
 </code></pre>
 <p>Ascii Hex Char Class Similar</p>
@@ -113,32 +114,14 @@ Ascii Hex Char    Class Similar</p>
 <p>Single character U, L, N, S indicating you only want that class to be displayed.
 Optional.</p>
 <pre><code class="language-yaml">Type: Char
-Parameter Sets: NotSimilar, Similar, Default
-Aliases: 
-Accepted values: 
+Parameter Sets: (All)
+Aliases:
 
-Required: True (None) False (NotSimilar, Similar, Default)
+Required: False
 Position: Named
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-NotSimilar</h3>
-<p>Switch that will only display characters that are not similar.
-Default is to print all.
-ParameterSetName = 'NotSimilar'</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: NotSimilar
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (NotSimilar)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-Similar</h3>
 <p>Switch that will only display characters that are similar.
@@ -146,21 +129,34 @@ Default is to print all.
 ParameterSetName = 'Similar'</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: Similar
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (Similar)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-NotSimilar</h3>
+<p>Switch that will only display characters that are not similar.
+Default is to print all.
+ParameterSetName = 'NotSimilar'</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: NotSimilar
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

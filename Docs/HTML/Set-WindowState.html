@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,21 +50,21 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version:
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://gist.github.com/Nora-Ballard/11240204
 schema: 2.0.0</h2>
 <h1>Set-WindowState</h1>
 <h2>SYNOPSIS</h2>
 <p>Sets the window state of a currently running application</p>
 <h2>SYNTAX</h2>
-<h3>InputObject (Default)</h3>
-<pre><code>Set-WindowState [-InputObject] &lt;Object[]&gt; [[-State &lt;String&gt;]] [-SetForegroundWindow] [-SuppressErrors] [&lt;CommonParameters&gt;]
+<pre><code>Set-WindowState [-InputObject] &lt;Object[]&gt; [[-State] &lt;String&gt;] [-SuppressErrors] [-SetForegroundWindow]
+ [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Sets the window state of a currently running application</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Get-Process notepad | Set-WindowState -State MAXIMIZE -SetForegroundWindow
 </code></pre>
 <p>Will take the currently running Notepad.exe process, maximize it, and put it into the foreground</p>
@@ -73,29 +73,13 @@ schema: 2.0.0</h2>
 <p>Describe parameter -InputObject.</p>
 <pre><code class="language-yaml">Type: Object[]
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (All) False (None)
-Position: 0
-Default value: 
-Accept pipeline input: True
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-SetForegroundWindow</h3>
-<p>Determines whether the application will become the foreground (currently selected) application</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-State</h3>
 <p>Which state you want to place the application into.
@@ -105,37 +89,47 @@ Validate set: 'FORCEMINIMIZE', 'HIDE', 'MAXIMIZE', 'MINIMIZE', 'RESTORE',
 Defaults to 'SHOW'</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 1
+Required: False
+Position: 2
 Default value: SHOW
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-SuppressErrors</h3>
 <p>Control error processing</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-SetForegroundWindow</h3>
+<p>Determines whether the application will become the foreground (currently selected) application</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <p>Most of this code was taken from GitHub.
 I added help, put in Write-Verbose, option for pushing the application to the foreground</p>
 <h2>RELATED LINKS</h2>
-<p>[] (https://gist.github.com/Nora-Ballard/11240204)</p>
+<p><a href="https://gist.github.com/Nora-Ballard/11240204">https://gist.github.com/Nora-Ballard/11240204</a></p>
 
 </body>
 </html>

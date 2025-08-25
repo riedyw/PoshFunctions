@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,51 +50,50 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>ConvertTo-Bool</h1>
 <h2>SYNOPSIS</h2>
 <p>Parse a string and convert it to a Boolean</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>ConvertTo-Bool [[-InputVal &lt;String[]&gt;]] [-IncludeInput] [-TrueString &lt;String[]&gt;] [&lt;CommonParameters&gt;]
+<pre><code>ConvertTo-Bool [[-InputVal] &lt;String[]&gt;] [-TrueString &lt;String[]&gt;] [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Parse a string and convert it to a Boolean.
 Function aliased to 'Parse-Bool'.</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>ConvertTo-Bool 'true'
 </code></pre>
 <p>True</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>ConvertTo-Bool 't'
 </code></pre>
 <p>True</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>ConvertTo-Bool 'on'
 </code></pre>
 <p>True</p>
-<h3>Example 4: EXAMPLE 4</h3>
+<h3>EXAMPLE 4</h3>
 <pre><code>ConvertTo-Bool 0
 </code></pre>
 <p>False</p>
-<h3>Example 5: EXAMPLE 5</h3>
+<h3>EXAMPLE 5</h3>
 <pre><code>ConvertTo-Bool 1
 </code></pre>
 <p>Any NON-zero numeric would return
 True</p>
-<h3>Example 6: EXAMPLE 6</h3>
+<h3>EXAMPLE 6</h3>
 <pre><code>ConvertTo-Bool 'nonsense'
 </code></pre>
 <p>False</p>
-<h3>Example 7: EXAMPLE 7</h3>
+<h3>EXAMPLE 7</h3>
 <pre><code>ConvertTo-Bool 'radical' -TrueString 'radical', 'cool'
 </code></pre>
 <p>True</p>
-<h3>Example 8: EXAMPLE 8</h3>
+<h3>EXAMPLE 8</h3>
 <pre><code>'0',1,2,'t','enabled','darn','on' | ConvertTo-Bool -IncludeInput
 </code></pre>
 <p>Original  Bool TrueString</p>
@@ -107,58 +106,53 @@ enabled   True true, yes, on, enabled, t, y
 darn     False true, yes, on, enabled, t, y
 on        True true, yes, on, enabled, t, y</p>
 <h2>PARAMETERS</h2>
-<h3>-IncludeInput</h3>
-<p>Determines if you wish to see the original in the output, aliased to 'IncludeOriginal'</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: IncludeOriginal
-Accepted values: 
-
-Required: True (None) False (All)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
 <h3>-InputVal</h3>
 <p>The string or array of strings to be evaluated.
 Accepts from the pipeline</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 0
-Default value: 
-Accept pipeline input: True
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-TrueString</h3>
 <p>The string or array of strings that are considered as $true values.
 Defaults to 'true', 'yes', 'on', 'enabled', 't', 'y'</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: @('true', 'yes', 'on', 'enabled', 't', 'y')
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-IncludeInput</h3>
+<p>Determines if you wish to see the original in the output, aliased to 'IncludeOriginal'</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: IncludeOriginal
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>[bool]</h3>
 <h2>NOTES</h2>
 <p>ConvertTo-Bool will .Trim() the InputVal before trying to parse it.</p>
 <h2>RELATED LINKS</h2>
-<p>[about_Properties] ()</p>
+<p><a href="">about_Properties</a></p>
 
 </body>
 </html>

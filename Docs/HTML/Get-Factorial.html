@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,26 +50,25 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version:
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: http://wonkysoftware.appspot.com
 schema: 2.0.0</h2>
 <h1>Get-Factorial</h1>
 <h2>SYNOPSIS</h2>
 <p>Determine the factorial of a given integer value</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
 <pre><code>Get-Factorial [-Value] &lt;Int32[]&gt; [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Recursive function to determine the factorial of a given integer value.
 Values must be in range of 0-20</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Get-Factorial -Value 5
 </code></pre>
 <p>120</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>Get-Factorial -Value (1..5) -IncludeInput
 </code></pre>
 <p>Value Factorial</p>
@@ -80,7 +79,7 @@ Values must be in range of 0-20</p>
 4        24
 5       120
 </code></pre>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>1..5 | Get-Factorial -IncludeInput
 </code></pre>
 <p>Value Factorial</p>
@@ -91,7 +90,7 @@ Values must be in range of 0-20</p>
 4        24
 5       120
 </code></pre>
-<h3>Example 4: EXAMPLE 4</h3>
+<h3>EXAMPLE 4</h3>
 <pre><code>Get-Factorial -Value 3 -Verbose
 </code></pre>
 <p>VERBOSE: Starting [Get-Factorial]
@@ -104,7 +103,7 @@ VERBOSE: Ending [Get-Factorial]
 VERBOSE: Ending [Get-Factorial]
 6
 VERBOSE: Ending [Get-Factorial]</p>
-<h3>Example 5: EXAMPLE 5</h3>
+<h3>EXAMPLE 5</h3>
 <pre><code>Get-Factorial -Value -1
 </code></pre>
 <p>Get-Factorial : CurValue [-1] must be between 0 and 20
@@ -112,52 +111,44 @@ At line:1 char:1</p>
 <ul>
 <li>Get-Factorial -Value -1</li>
 <li>
-<pre><code>  + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+<pre><code>  + CategoryInfo          : NotSpecified: (:) \[Write-Error\], WriteErrorException
   + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,Get-Factorial
-
-
-
-
-
 
 </code></pre>
 </li>
 </ul>
 <h2>PARAMETERS</h2>
-<h3>-IncludeInput</h3>
-<p>Switch to include the input parameter into the output</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
 <h3>-Value</h3>
 <p>Array of integers each of which should be in the range of 0-20.
 Accepts values from the pipeline</p>
 <pre><code class="language-yaml">Type: Int32[]
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (All) False (None)
-Position: 0
-Default value: 
-Accept pipeline input: True
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-IncludeInput</h3>
+<p>Switch to include the input parameter into the output</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,33 +50,32 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version:
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://www.google.com
 schema: 2.0.0</h2>
 <h1>Expand-Tab</h1>
 <h2>SYNOPSIS</h2>
 <p>To expand tab characters to spaces</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>Expand-Tab [[-InputString &lt;String[]&gt;]] [[-TabWidth &lt;UInt32&gt;]] [&lt;CommonParameters&gt;]
+<pre><code>Expand-Tab [[-InputString] &lt;String[]&gt;] [[-TabWidth] &lt;UInt32&gt;] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>To expand tab characters to spaces.
 Default TabWidth is 8</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Get-Content t1.ps1 | Expand-Tab | Out-File t2.ps1
 </code></pre>
 <p>This command will get the contents of the t1.ps1 file, expand each tab to eight
 spaces, and save the &quot;de-tabbed&quot; contents in a file named t2.ps1.
 If the default
 tab width of eight spaces is too wide, you can specify a different tab width.</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>Get-Content t1.txt | Expand-Tab 2 | Out-File t2.txt
 </code></pre>
 <p>To expand tabs at a width of 2 characters.</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>Expand-Tab -InputString &quot;Hello`tWorld!&quot;
 </code></pre>
 <p>Would return
@@ -86,32 +85,30 @@ Hello   World!</p>
 <p>{{ Fill InputString Description }}</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 0
-Default value: 
-Accept pipeline input: True
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-TabWidth</h3>
 <p>{{ Fill TabWidth Description }}</p>
 <pre><code class="language-yaml">Type: UInt32
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 1
+Required: False
+Position: 2
 Default value: 8
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <p>Inspired by: https://www.itprotoday.com/powershell/expanding-tabs-spaces-powershell</p>
 <p>Changes:</p>
@@ -201,7 +198,6 @@ replacement string)</p>
 PowerShell from interpreting $1 or $2 as a variable name.</li>
 </ul>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

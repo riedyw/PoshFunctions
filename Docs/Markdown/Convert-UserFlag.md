@@ -1,33 +1,27 @@
 ---
-external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version: 
+external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://www.google.com
 schema: 2.0.0
 ---
 
 # Convert-UserFlag
 
 ## SYNOPSIS
-
 Converts a userflag enumeration to a human readable list of attributes about an AD object.
 
 ## SYNTAX
 
-### __AllParameterSets
-
 ```
-Convert-UserFlag [[-UserFlag <Int32[]>]] [-IncludeInput] [-ListAvailable] [<CommonParameters>]
+Convert-UserFlag [[-UserFlag] <Int32[]>] [-IncludeInput] [-ListAvailable] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-
 Converts a userflag enumeration to a human readable list of attributes about an AD object.
-
 
 ## EXAMPLES
 
-### Example 1: EXAMPLE 1
-
+### EXAMPLE 1
 ```
 Convert-UserFlag -UserFlag (0x0200 + 0x0010 + 0x800000)
 ```
@@ -35,12 +29,7 @@ Convert-UserFlag -UserFlag (0x0200 + 0x0010 + 0x800000)
 Would return
 ACCOUNTENABLE, LOCKOUT, NORMAL_ACCOUNT, PASSWORD_EXPIRED
 
-
-
-
-
-### Example 2: EXAMPLE 2
-
+### EXAMPLE 2
 ```
 Convert-UserFlag -UserFlag (0x0200 +  0x800000)
 ```
@@ -48,12 +37,7 @@ Convert-UserFlag -UserFlag (0x0200 +  0x800000)
 Would return
 NOT_LOCKOUT, ACCOUNTENABLE, NORMAL_ACCOUNT, PASSWORD_EXPIRED
 
-
-
-
-
-### Example 3: EXAMPLE 3
-
+### EXAMPLE 3
 ```
 Convert-UserFlag -ListAvailable
 ```
@@ -83,95 +67,71 @@ UserFlagHex UserFlagDec Text
 0x1000000      16777216 TRUSTED_TO_AUTH_FOR_DELEGATION
 0x04000000     67108864 PARTIAL_SECRETS_ACCOUNT
 
-
-
-
-
-
 ## PARAMETERS
 
-### -IncludeInput
-
-{{ Fill IncludeInput Description }}
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-```
-
-### -ListAvailable
-
-{{ Fill ListAvailable Description }}
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-```
-
 ### -UserFlag
-
 A integer value providing attributes about an AD object.
 
 ```yaml
 Type: Int32[]
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 0
-Default value: 
-Accept pipeline input: True
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
-DontShow: False
 ```
 
+### -IncludeInput
+{{ Fill IncludeInput Description }}
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ListAvailable
+{{ Fill ListAvailable Description }}
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### [int]
-
-
-
 ## OUTPUTS
 
 ### [string]
-
-
-
 ## NOTES
-
 This function contains a here string.
 The contents of the here string to its closing token MUST, MUST, MUST be at column 0.
 Autoformatting and indentation will break the here string.
 Please do NOT autoformat this document.
 
-
 ## RELATED LINKS
 
-[] (https://www.google.com)
+[https://www.google.com](https://www.google.com)
 
-[] (https://docs.microsoft.com/en-us/troubleshoot/windows-server/identity/useraccountcontrol-manipulate-account-properties)
+[https://docs.microsoft.com/en-us/troubleshoot/windows-server/identity/useraccountcontrol-manipulate-account-properties](https://docs.microsoft.com/en-us/troubleshoot/windows-server/identity/useraccountcontrol-manipulate-account-properties)
 

@@ -1,32 +1,31 @@
 ---
-external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version: 
+external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version:
 schema: 2.0.0
 ---
 
 # New-MessageBox
 
 ## SYNOPSIS
-
-New-Popup will display a message box. If a timeout is requested it uses Wscript.Shell PopUp method.
+New-Popup will display a message box.
+If a timeout is requested it uses Wscript.Shell PopUp method.
 
 ## SYNTAX
 
 ### Timeout (Default)
-
 ```
-New-MessageBox -Message <String> -Title <String> [-AsString] [-Buttons <String>] [-Icon <String>] [-ShowOnTop] [-Time <Int32>] [<CommonParameters>]
+New-MessageBox -Message <String> -Title <String> [-Time <Int32>] [-Buttons <String>] [-Icon <String>]
+ [-ShowOnTop] [-AsString] [<CommonParameters>]
 ```
 
 ### DefaultButton
-
 ```
-New-MessageBox -Message <String> -Title <String> [-AsString] [-Buttons <String>] [-DefaultButton <String>] [-Icon <String>] [<CommonParameters>]
+New-MessageBox -Message <String> -Title <String> [-Buttons <String>] [-Icon <String>] [-DefaultButton <String>]
+ [-AsString] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-
 The New-Popup command uses the Wscript.Shell PopUp method to display a graphical message
 box.
 You can customize its appearance of icons and buttons.
@@ -48,11 +47,9 @@ If no button is clicked, the return value is -1.
 
 Values are static properties of Microsoft.VisualBasic.MsgBoxResult plus the additional entry of Timeout, -1.
 
-
 ## EXAMPLES
 
-### Example 1: EXAMPLE 1
-
+### EXAMPLE 1
 ```
 New-MessageBox -Message "The update script has completed" -Title "Finished" -Time 5
 ```
@@ -61,12 +58,7 @@ This will display a popup message using the default OK button and default
 Information icon.
 The popup will automatically dismiss after 5 seconds.
 
-
-
-
-
-### Example 2: EXAMPLE 2
-
+### EXAMPLE 2
 ```
 $answer = New-MessageBox -Message "Please pick" -Title "form" -buttons "OKCancel" -icon "information"
 ```
@@ -75,12 +67,7 @@ If the user clicks "OK" the $answer variable will be equal to 1.
 If the user clicks "Cancel" the
 $answer variable will be equal to 2.
 
-
-
-
-
-### Example 3: EXAMPLE 3
-
+### EXAMPLE 3
 ```
 $answer = New-MessageBox -Message "Please pick" -Title "form" -buttons "OKCancel" -icon "information" -AsString
 ```
@@ -89,33 +76,55 @@ If the user clicks "OK" the $answer variable will be equal to 'OK'.
 If the user clicks "Cancel" the
 $answer variable will be 'Cancel'
 
-
-
-
-
-
 ## PARAMETERS
 
-### -AsString
-
-Will return a human readable representation of which button was pressed as opposed to an integer value.
+### -Message
+The message you want displayed
 
 ```yaml
-Type: SwitchParameter
-Parameter Sets: Timeout, DefaultButton
-Aliases: 
-Accepted values: 
+Type: String
+Parameter Sets: (All)
+Aliases:
 
-Required: True (None) False (Timeout, DefaultButton)
+Required: True
 Position: Named
-Default value: False
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+```
+
+### -Title
+The text to appear in title bar of dialog box
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Time
+The time to display the message.
+Defaults to 0 (zero) which will keep dialog open until a button is clicked
+
+```yaml
+Type: Int32
+Parameter Sets: Timeout
+Aliases:
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
 ```
 
 ### -Buttons
-
 Valid values for -Buttons include:
 "OK"
 "OKCancel"
@@ -128,39 +137,17 @@ Values are static properties of System.Windows.Forms.MessageBoxButtons
 
 ```yaml
 Type: String
-Parameter Sets: Timeout, DefaultButton
-Aliases: 
-Accepted values: 
+Parameter Sets: (All)
+Aliases:
 
-Required: True (None) False (Timeout, DefaultButton)
+Required: False
 Position: Named
 Default value: OK
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-```
-
-### -DefaultButton
-
-Which button do you wish to be the default? Validate set: Button1, Button2, Button3.
-Values are static properties of 'System.Windows.Forms.MessageBoxDefaultButton'
-
-```yaml
-Type: String
-Parameter Sets: DefaultButton
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (DefaultButton)
-Position: Named
-Default value: Button1
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 ```
 
 ### -Icon
-
 Valid values for -Icon include:
 "Stop"
 "Question"
@@ -172,119 +159,85 @@ Values are static properties of System.Windows.Forms.MessageBoxIcon
 
 ```yaml
 Type: String
-Parameter Sets: Timeout, DefaultButton
-Aliases: 
-Accepted values: 
+Parameter Sets: (All)
+Aliases:
 
-Required: True (None) False (Timeout, DefaultButton)
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-```
-
-### -Message
-
-The message you want displayed
-
-```yaml
-Type: String
-Parameter Sets: Timeout, DefaultButton
-Aliases: 
-Accepted values: 
-
-Required: True (Timeout, DefaultButton) False (None)
-Position: Named
-Default value: 
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 ```
 
 ### -ShowOnTop
-
 Switch which will force the popup window to appear on top of all other windows.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: Timeout
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (Timeout)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 ```
 
-### -Time
-
-The time to display the message.
-Defaults to 0 (zero) which will keep dialog open until a button is clicked
-
-```yaml
-Type: Int32
-Parameter Sets: Timeout
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (Timeout)
-Position: Named
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-```
-
-### -Title
-
-The text to appear in title bar of dialog box
+### -DefaultButton
+Which button do you wish to be the default?
+Validate set: Button1, Button2, Button3.
+Values are static properties of 'System.Windows.Forms.MessageBoxDefaultButton'
 
 ```yaml
 Type: String
-Parameter Sets: Timeout, DefaultButton
-Aliases: 
-Accepted values: 
+Parameter Sets: DefaultButton
+Aliases:
 
-Required: True (Timeout, DefaultButton) False (None)
+Required: False
 Position: Named
-Default value: 
+Default value: Button1
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 ```
 
+### -AsString
+Will return a human readable representation of which button was pressed as opposed to an integer value.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
 
 ## OUTPUTS
 
 ### An integer with the following value depending upon the button pushed.
-
-Timeout = -1    # Value when timer finishes countdown.
-OK      =  1
-Cancel  =  2
-Abort   =  3
-Retry   =  4
-Ignore  =  5
-Yes     =  6
-No      =  7
-
-
-
+### Timeout = -1    # Value when timer finishes countdown.
+### OK      =  1
+### Cancel  =  2
+### Abort   =  3
+### Retry   =  4
+### Ignore  =  5
+### Yes     =  6
+### No      =  7
 ## NOTES
-
 Fixed issue with -AsString and a timeout not reporting correctly.
 
 If a default button is requested it uses the ::Show method from 'Windows.Forms.MessageBox'
 
-
 ## RELATED LINKS
 
-[Wscript.Shell] ()
+[Wscript.Shell]()
 

@@ -1,33 +1,27 @@
 ---
-external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version: 
+external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://www.Google.com
 schema: 2.0.0
 ---
 
 # Get-WordList
 
 ## SYNOPSIS
-
 Returns a list of over 38,000 words.
 
 ## SYNTAX
-
-### __AllParameterSets
 
 ```
 Get-WordList [-Full] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-
 Returns a list of over 38,000 words.
-
 
 ## EXAMPLES
 
-### Example 1: EXAMPLE 1
-
+### EXAMPLE 1
 ```
 # Desire to get a list the First 2 palindromes
 ```
@@ -38,12 +32,7 @@ Would return
 bib
 bob
 
-
-
-
-
-### Example 2: EXAMPLE 2
-
+### EXAMPLE 2
 ```
 # Desire to get the longest word in the wordlist
 ```
@@ -54,18 +43,13 @@ Word                         WordLength
 ----                         ----------
 antidisestablishmentarianism         28
 
-
-
-
-
-### Example 3: EXAMPLE 3
-
+### EXAMPLE 3
 ```
 # Desire to get a count of words by length
 ```
 
 Get-WordList | Select-Object @{Name='Word';Expr={$_}}, @{Name='Len';Expr={$_.Length}} | Group-Object Len |
-    Select-Object Name, Count | Select-Object @{Name='WordLength';Expr={([int] $_.Name)}}, Count | Sort-Object WordLength
+    Select-Object Name, Count | Select-Object @{Name='WordLength';Expr={(\[int\] $_.Name)}}, Count | Sort-Object WordLength
 
 WordLength Count
 ---------- -----
@@ -92,12 +76,7 @@ WordLength Count
         22     1
         28     1
 
-
-
-
-
-### Example 4: EXAMPLE 4
-
+### EXAMPLE 4
 ```
 # Get the longest word in the full list whose length is 31 characters
 ```
@@ -105,49 +84,33 @@ WordLength Count
 Get-WordList -Full | Where-Object { $_.Length -eq 31 }
 dichlorodiphenyltrichloroethane
 
-
-
-
-
-
 ## PARAMETERS
 
 ### -Full
-
 Switch to return longer list of 370,103 words from file words_alpha.txt from Git repository https://github.com/dwyl/english-words.git
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 ```
 
-
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
 
 ## OUTPUTS
 
 ### [string[]]
-
-
-
 ## NOTES
-
 Originally taken from a Linux distribution and original file name was linuxwords
 Over 38,000 words appear in the file WordList.txt found in the installation folder of this module.
 
-
 ## RELATED LINKS
-
-Fill Related Links Here
-

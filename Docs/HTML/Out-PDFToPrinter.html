@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,31 +50,30 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>Out-PDFToPrinter</h1>
 <h2>SYNOPSIS</h2>
 <p>To print a .PDF to the default printer</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>Out-PDFToPrinter [-Path] &lt;String[]&gt; [-KillProcess] [-PrintDelay &lt;Int32&gt;] [&lt;CommonParameters&gt;]
+<pre><code>Out-PDFToPrinter [-Path] &lt;String[]&gt; [-PrintDelay &lt;Int32&gt;] [-KillProcess] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>To print a .PDF to the default printer, will use default application to read .PDF files</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Out-PDFToPrinter -Path file1.pdf, file2.pdf
 </code></pre>
 <p>Will open file1.pdf in default PDF reader, print, wait default delay of 10 seconds, then open file2.pdf in default
 PDF reader, print, wait default delay of 10 seconds and finish.</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>Out-PDFToPrinter -Path file1.pdf, file2.pdf -KillProcess -PrintDelay 15
 </code></pre>
 <p>Will open file1.pdf in default PDF reader, print, wait delay of 15 seconds, kill the default PDF reader process,
 then open file2.pdf in default PDF reader, print, wait delay of 15 seconds, kill the default PDF reader process, and finish.</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>Attempt to print two PDF files that do not exist.
 </code></pre>
 <p>Out-PDFToPrinter -Path DNE1.pdf, DNE2.pdf -KillProcess -PrintDelay 15 -Verbose</p>
@@ -86,7 +85,7 @@ At line:1 char:1</p>
 <ul>
 <li>Out-PDFToPrinter -Path DNE1.pdf, DNE2.pdf -KillProcess -PrintDelay 15 - ...</li>
 <li>
-<pre><code>  + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+<pre><code>  + CategoryInfo          : NotSpecified: (:) \[Write-Error\], WriteErrorException
   + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,Out-PDFToPrinter
 
 </code></pre>
@@ -94,52 +93,48 @@ At line:1 char:1</p>
 </ul>
 <p>VERBOSE: Ending [Out-PDFToPrinter]</p>
 <h2>PARAMETERS</h2>
-<h3>-KillProcess</h3>
-<p>Switch to kill the process of the default PDF reader that was started to print the file</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
 <h3>-Path</h3>
 <p>A string or string array of files to print.
 Accepts paths from pipeline</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (All) False (None)
-Position: 0
-Default value: 
-Accept pipeline input: True
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-PrintDelay</h3>
 <p>Integer representing the number of seconds to delay after issuing the command to print the file.
 Valid range 10-120.</p>
 <pre><code class="language-yaml">Type: Int32
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: 10
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-KillProcess</h3>
+<p>Switch to kill the process of the default PDF reader that was started to print the file</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <p>Inspired by https://community.idera.com/database-tools/powershell/powertips/b/tips/posts/printing-pdf-files-part-1</p>
 <p>Changes</p>
@@ -151,7 +146,6 @@ DontShow: False
 <li>stops processing when the first error is encountered</li>
 </ul>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

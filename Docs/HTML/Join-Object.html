@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,22 +50,29 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version:
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://github.com/iRon7/Join-Object
 schema: 2.0.0</h2>
 <h1>Join-Object</h1>
 <h2>SYNOPSIS</h2>
 <p>Combines two object lists based on a related property between them.</p>
 <h2>SYNTAX</h2>
 <h3>Default (Default)</h3>
-<pre><code>Join-Object [[-RightObject &lt;Object&gt;]] [[-Discern &lt;String[]&gt;]] [[-Where &lt;ScriptBlock&gt;]] [-JoinType &lt;String&gt;] [-LeftObject &lt;Object&gt;] [-Property &lt;Object&gt;] [-ValueName &lt;String&gt;] [&lt;CommonParameters&gt;]
+<pre><code>Join-Object [-LeftObject &lt;Object&gt;] [[-RightObject] &lt;Object&gt;] [[-Discern] &lt;String[]&gt;] [-Property &lt;Object&gt;]
+ [[-Where] &lt;ScriptBlock&gt;] [-JoinType &lt;String&gt;] [-ValueName &lt;String&gt;] [&lt;CommonParameters&gt;]
 </code></pre>
 <h3>Expression</h3>
-<pre><code>Join-Object [[-RightObject &lt;Object&gt;]] [[-OnExpression &lt;ScriptBlock&gt;]] [[-Discern &lt;String[]&gt;]] [[-Where &lt;ScriptBlock&gt;]] [-JoinType &lt;String&gt;] [-LeftObject &lt;Object&gt;] [-Property &lt;Object&gt;] [-ValueName &lt;String&gt;] [&lt;CommonParameters&gt;]
+<pre><code>Join-Object [-LeftObject &lt;Object&gt;] [[-RightObject] &lt;Object&gt;] [[-OnExpression] &lt;ScriptBlock&gt;]
+ [[-Discern] &lt;String[]&gt;] [-Property &lt;Object&gt;] [[-Where] &lt;ScriptBlock&gt;] [-JoinType &lt;String&gt;]
+ [-ValueName &lt;String&gt;] [&lt;CommonParameters&gt;]
 </code></pre>
 <h3>On</h3>
-<pre><code>Join-Object [[-RightObject &lt;Object&gt;]] [[-On &lt;List`1[System.String]&gt;]] [[-Discern &lt;String[]&gt;]] [[-Where &lt;ScriptBlock&gt;]] [-Equals &lt;List`1[System.String]&gt;] [-JoinType &lt;String&gt;] [-LeftObject &lt;Object&gt;] [-MatchCase] [-Property &lt;Object&gt;] [-Strict] [-ValueName &lt;String&gt;] [&lt;CommonParameters&gt;]
+<pre><code>Join-Object [-LeftObject &lt;Object&gt;] [[-RightObject] &lt;Object&gt;]
+ [[-On] &lt;System.Collections.Generic.List`1[System.String]&gt;]
+ [-Equals &lt;System.Collections.Generic.List`1[System.String]&gt;] [[-Discern] &lt;String[]&gt;] [-Property &lt;Object&gt;]
+ [[-Where] &lt;ScriptBlock&gt;] [-JoinType &lt;String&gt;] [-ValueName &lt;String&gt;] [-Strict] [-MatchCase]
+ [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Combines properties from one or more objects.
@@ -94,7 +101,7 @@ Returns each left object updated with the right object properties
 and the rest of the right objects</li>
 </ul>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>$Employee
 </code></pre>
 <p>Id Name    Country Department  Age ReportsTo</p>
@@ -121,7 +128,7 @@ Purchase    France</p>
 4 {Duval, Purchase}      France  Engineering  21         5
 5 {Evans, Marketing}     England Marketing    35
 6 {Fischer, Engineering} Germany Engineering  29         4</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>$Employee | InnerJoin $Department -On Department -Equals Name -Discern Employee, Department | Format-Table
 </code></pre>
 <p>Id EmployeeName EmployeeCountry Department  Age ReportsTo DepartmentName DepartmentCountry</p>
@@ -132,7 +139,7 @@ Purchase    France</p>
 4 Duval        France          Engineering  21         5 Engineering    Germany
 5 Evans        England         Marketing    35           Marketing      England
 6 Fischer      Germany         Engineering  29         4 Engineering    Germany</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>$Changes
 </code></pre>
 <p>Id Name    Country Department  Age ReportsTo</p>
@@ -150,7 +157,7 @@ Purchase    France</p>
 5 Evans   England Marketing    35
 6 Fischer France  Engineering  29         4
 7 Geralds Belgium Sales        71         1</p>
-<h3>Example 4: EXAMPLE 4</h3>
+<h3>EXAMPLE 4</h3>
 <pre><code>LeftJoin $Employee -On ReportsTo -Equals Id -Property @{Name = {$Left.Name}; Manager = {$Right.Name}}
 </code></pre>
 <p>Name    Manager</p>
@@ -162,97 +169,31 @@ Duval   Evans
 Evans
 Fischer Duval</p>
 <h2>PARAMETERS</h2>
-<h3>-Discern</h3>
-<p>The -Discern parameter defines how to discern the left and right object
-with respect to the common properties that aren't joined.</p>
-<p>The first string defines how to rename the left property, the second
-string (if defined) defines how to rename the right property.
-If the string contains an asterisks (*), the asterisks will be replaced
-with the original property name, otherwise, the property name will be
-prefixed with the given string.</p>
-<p>Properties that don't exist on both sides will not be renamed.</p>
-<p>Joined properties (defined by the -On parameter) will be merged.</p>
-<p>Note: The -Discern parameter cannot be used with the -Property parameter.</p>
-<pre><code class="language-yaml">Type: String[]
-Parameter Sets: Expression, On, Default
-Aliases: NameItems
-Accepted values: 
-
-Required: True (None) False (Expression, On, Default)
-Position: 2
-Default value: 
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-Equals</h3>
-<p>If the -Equals parameter is supplied, the value(s) of the left object
-properties listed by the -On parameter should be equal to the value(s)
-of the right object listed by the -Equals parameter in order to join
-the left object with the right object.</p>
-<p>Note 1: The list of properties defined by the -Equal parameter will be
-complemented with the list of properties defined by the -On parameter
-and vice versa.</p>
-<p>Note 2: The -Equals parameter can only be used with the -On parameter.</p>
-<pre><code class="language-yaml">Type: List`1[System.String]
-Parameter Sets: On
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (On)
-Position: Named
-Default value: [Collections.Generic.List[string]]::new()
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-JoinType</h3>
-<p>Defines which unrelated objects should be included (see: Descripton).
-Valid values are: 'Inner', 'Left', 'Right', 'Full' or 'Cross'.
-The default is 'Inner'.</p>
-<p>Note: It is recommended to use the related proxy commands instead.</p>
-<pre><code class="language-yaml">Type: String
-Parameter Sets: Expression, On, Default
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (Expression, On, Default)
-Position: Named
-Default value: Inner
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
 <h3>-LeftObject</h3>
 <p>The LeftObject, usually provided through the pipeline, defines the
 left object (or datatable) to be joined.</p>
 <pre><code class="language-yaml">Type: Object
-Parameter Sets: Expression, On, Default
-Aliases: 
-Accepted values: 
+Parameter Sets: (All)
+Aliases:
 
-Required: True (None) False (Expression, On, Default)
+Required: False
 Position: Named
-Default value: 
-Accept pipeline input: True
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
-<h3>-MatchCase</h3>
-<p>If the -MatchCase (alias -CaseSensitive) switch is set, the comparison
-between the related properties defined by the -On Parameter (and the
--Equals parameter) will case sensitive.</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: On
-Aliases: CaseSensitive
-Accepted values: 
+<h3>-RightObject</h3>
+<p>The RightObject, provided by the first argument, defines the right
+object (or datatable) to be joined.</p>
+<pre><code class="language-yaml">Type: Object
+Parameter Sets: (All)
+Aliases:
 
-Required: True (None) False (On)
-Position: Named
-Default value: False
+Required: False
+Position: 1
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-On</h3>
 <p>The -On parameter (alias -Using) defines which objects should be joined.
@@ -266,17 +207,15 @@ parameter and vice versa.</p>
 property by default (see also the -Property parameter).</p>
 <p>Note 3: If the -On and the -OnExpression parameter are omitted, a
 join by row index is returned.</p>
-<pre><code class="language-yaml">Type: List`1[System.String]
+<pre><code class="language-yaml">Type: System.Collections.Generic.List`1[System.String]
 Parameter Sets: On
 Aliases: Using
-Accepted values: 
 
-Required: True (None) False (On)
-Position: 1
+Required: False
+Position: 2
 Default value: [Collections.Generic.List[string]]::new()
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-OnExpression</h3>
 <p>Any conditional expression (where $Left refers to each left object and
@@ -289,20 +228,58 @@ parameter.</p>
 <pre><code class="language-yaml">Type: ScriptBlock
 Parameter Sets: Expression
 Aliases: UsingExpression
-Accepted values: 
 
-Required: True (None) False (Expression)
-Position: 1
-Default value: 
+Required: False
+Position: 2
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-Equals</h3>
+<p>If the -Equals parameter is supplied, the value(s) of the left object
+properties listed by the -On parameter should be equal to the value(s)
+of the right object listed by the -Equals parameter in order to join
+the left object with the right object.</p>
+<p>Note 1: The list of properties defined by the -Equal parameter will be
+complemented with the list of properties defined by the -On parameter
+and vice versa.</p>
+<p>Note 2: The -Equals parameter can only be used with the -On parameter.</p>
+<pre><code class="language-yaml">Type: System.Collections.Generic.List`1[System.String]
+Parameter Sets: On
+Aliases:
+
+Required: False
+Position: Named
+Default value: [Collections.Generic.List[string]]::new()
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Discern</h3>
+<p>The -Discern parameter defines how to discern the left and right object
+with respect to the common properties that aren't joined.</p>
+<p>The first string defines how to rename the left property, the second
+string (if defined) defines how to rename the right property.
+If the string contains an asterisks (*), the asterisks will be replaced
+with the original property name, otherwise, the property name will be
+prefixed with the given string.</p>
+<p>Properties that don't exist on both sides will not be renamed.</p>
+<p>Joined properties (defined by the -On parameter) will be merged.</p>
+<p>Note: The -Discern parameter cannot be used with the -Property parameter.</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: (All)
+Aliases: NameItems
+
+Required: False
+Position: 3
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>-Property</h3>
 <p>A hash table or list of property names (strings) and/or hash tables that
 define a new selection of property names and values</p>
-<p>Hash tables should be in the format @{<PropertyName> = <Expression>}
-where the <Expression> defines how the specific left and right
+<p>Hash tables should be in the format @{&lt;PropertyName&gt; = &lt;Expression&gt;}
+where the &lt;Expression&gt; defines how the specific left and right
 properties should be merged.
 Where the following variables are
 available for each joined object:</p>
@@ -339,61 +316,14 @@ be assigned to all known properties in the $LeftObject and $RightObject.</p>
 expressions</p>
 <p>Note: The -Property parameter cannot be used with the -Discern parameter.</p>
 <pre><code class="language-yaml">Type: Object
-Parameter Sets: Expression, On, Default
-Aliases: 
-Accepted values: 
+Parameter Sets: (All)
+Aliases:
 
-Required: True (None) False (Expression, On, Default)
+Required: False
 Position: Named
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-RightObject</h3>
-<p>The RightObject, provided by the first argument, defines the right
-object (or datatable) to be joined.</p>
-<pre><code class="language-yaml">Type: Object
-Parameter Sets: Expression, On, Default
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (Expression, On, Default)
-Position: 0
-Default value: 
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-Strict</h3>
-<p>If the -Strict switch is set, the comparison between the related
-properties defined by the -On Parameter (and the -Equals parameter) is
-based on a strict equality (both type and value need to be equal).</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: On
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (On)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-ValueName</h3>
-<p>{{ Fill ValueName Description }}</p>
-<pre><code class="language-yaml">Type: String
-Parameter Sets: Expression, On, Default
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (Expression, On, Default)
-Position: Named
-Default value: Value
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-Where</h3>
 <p>An expression that defines the condition to be met for the objects to
@@ -401,25 +331,79 @@ be returned.
 There is no limit to the number of predicates that can be
 included in the condition.</p>
 <pre><code class="language-yaml">Type: ScriptBlock
-Parameter Sets: Expression, On, Default
-Aliases: 
-Accepted values: 
+Parameter Sets: (All)
+Aliases:
 
-Required: True (None) False (Expression, On, Default)
-Position: 3
+Required: False
+Position: 4
 Default value: { $True }
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-JoinType</h3>
+<p>Defines which unrelated objects should be included (see: Descripton).
+Valid values are: 'Inner', 'Left', 'Right', 'Full' or 'Cross'.
+The default is 'Inner'.</p>
+<p>Note: It is recommended to use the related proxy commands instead.</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: Inner
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-ValueName</h3>
+<p>{{ Fill ValueName Description }}</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: Value
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-Strict</h3>
+<p>If the -Strict switch is set, the comparison between the related
+properties defined by the -On Parameter (and the -Equals parameter) is
+based on a strict equality (both type and value need to be equal).</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: On
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-MatchCase</h3>
+<p>If the -MatchCase (alias -CaseSensitive) switch is set, the comparison
+between the related properties defined by the -On Parameter (and the
+-Equals parameter) will case sensitive.</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: On
+Aliases: CaseSensitive
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>System.Object[]</h3>
 <h2>NOTES</h2>
 <h1>Source https://www.powershellgallery.com/packages/Join/3.5.3</h1>
 <h2>RELATED LINKS</h2>
-<p>[] (https://github.com/iRon7/Join-Object)</p>
+<p><a href="https://github.com/iRon7/Join-Object">https://github.com/iRon7/Join-Object</a></p>
 
 </body>
 </html>

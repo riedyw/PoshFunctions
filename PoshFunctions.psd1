@@ -19,7 +19,7 @@
     CompanyName       = ''
 
     # Copyright statement for this module
-    Copyright         = '(c) 2024 Bill Riedy. All rights reserved.'
+    Copyright         = '(c) 2025 Bill Riedy. All rights reserved.'
 
     # Description of the functionality provided by this module
     Description       = 'A curated collection of over 250 PowerShell functions. Many functions written by me. Others are attributed wherever possible.'
@@ -251,16 +251,22 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * updated PoshFunctions.psm1 - added $Script:IconFile variable
 * updated Wisdom.txt - minor grammatical mistakes
 * added ConvertTo-PFEscape - some of the New-*Uri functions needed to be able to escape strings in a special way
+* added Get-LocalProfile - to return information on profiles local to the machine
 * added Get-SpeakerVolume - wanted to be able to determine what the current volume of the speakers are
 * added Get-VssWriterToService - VSS writers are managed by a particular service and this corresponds the two
+* added New-LocalAdmin - to quickly create local admin user account
 * added New-MailToURI - used to create properly formatted string to generate a QR code to begin composing an email
+* added New-QRCode - to create a QR code from a string of text. Useful with New-*URI functions
 * added New-SmsUri - used to create properly formatted string to generate a QR code to compose a text message
 * added New-TelephoneUri - used to create properly formatted string to generate a QR code to begin calling a number
 * added New-TemporaryFileWithExtension - extend functionality of New-TemporaryFile so that a custom extension can be used
 * added New-WifiUri - used to create properly formatted string to generate a QR code to join a particular SSID
 * added Remove-OldFiles - given a path, a filespec, and a count it will search that path for the filespec and keep the latest count of files that match
+* added Remove-TemporaryFile - to delete temp files older than X days. Can specify -All to run against all user profiles (need to run as Admin)
+* added Set-FileTime - to be able to set CreationTime, LastAccessTime, LastWriteTime
 * added Set-SpeakerMute - using API based function
 * added Test-IsSpeakerMute - using API based function
+* added Write-AnsiString - to mimic the functionality of Write-Host, helpful when trying to create a single string to appear in Transcript file, otherwise writes multiple line entries
 * deleted Show-ConsoleColor - incorporated into Get-ConsoleColor
 * deleted Show-ConsoleColorWithBackground - incorporated into Get-ConsoleColor
 * deleted Show-ShortDaysOfWeek - incorporated into Get-DaysOfWeek with -Short parameter
@@ -290,6 +296,7 @@ For full release notes see .\Resources\ReleaseNotes.txt
 * updated New-FontPicker - changed how the icon is set
 * updated New-InputBoxSecureString - added switch parameter to allow for string output as opposed to secure string output, changed how icon set
 * updated New-MessageBox - corrected validation set for -Defaultbutton parameter
+* updated New-RandomPassword - added -Clipboard switch, changed default for -NonAlphaChars, slight corrections to comment based help
 * updated New-ScreenShot - added note in comment help that it may trigger anti-malware software
 * updated New-VirtualHardDisk - updated comment help, removed unused variables
 * updated Set-SpeakerVolume - use defined class to directly set the volume

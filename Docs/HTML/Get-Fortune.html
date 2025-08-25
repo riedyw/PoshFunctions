@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,89 +50,74 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>Get-Fortune</h1>
 <h2>SYNOPSIS</h2>
 <p>Display a short quote</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>Get-Fortune [[-Path &lt;String&gt;]] [[-Delimiter &lt;String&gt;]] [-Speak] [&lt;CommonParameters&gt;]
+<pre><code>Get-Fortune [[-Path] &lt;String&gt;] [[-Delimiter] &lt;String&gt;] [-Speak] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Display a short quote from a file which defaults to: 'c:\scripts\wisdom.txt') but can be changed with parameter -Path.</p>
 <h2>EXAMPLES</h2>
-<h2>PARAMETERS</h2>
-<h3>-Delimiter</h3>
-<p>Indicates delimiter between the individual fortunes.
-Defaults to &quot;<code>n%</code>n&quot; (newline percent newline)</p>
-<pre><code class="language-yaml">Type: String
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: 1
-Default value: %
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
+<h3>Example 1</h3>
+<pre><code class="language-powershell">PS C:\&gt; {{ Add example code here }}
 </code></pre>
+<p>{{ Add example description here }}</p>
+<h2>PARAMETERS</h2>
 <h3>-Path</h3>
 <p>A path to a filename containing the fortunes.
-Defaults to: ((Split-Path -path $profile)+'\wisdom.txt')
+Defaults to: (Get-Module -Name PoshFunctions).Path + '\Resources\Wisdom.txt'
 Aliased to 'FileName' and 'Fortune'</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: FileName,Fortune
-Accepted values: 
+Aliases: FileName, Fortune
 
-Required: True (None) False (All)
-Position: 0
+Required: False
+Position: 1
 Default value: $script:FortuneFile
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-Delimiter</h3>
+<p>Indicates delimiter between the individual fortunes.
+Defaults to &quot;`n%`n&quot; (newline percent newline)</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: %
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>-Speak</h3>
 <p>{{ Fill Speak Description }}</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>[string]</h3>
 <h2>NOTES</h2>
-<h1>Sample wisdom.txt file with 3 entries.</h1>
-<p>Each 'fortune' is delimited by a line consisting of just the pct sign</p>
-<h1>The last fortune in the file should NOT be terminated with a pct sign</h1>
-<p>%
-This too will pass.</p>
-<ul>
-<li>Attar
-%
-Don't think, just do.</li>
-<li>Horace
-%
-Time is money.</li>
-<li>Benjamin Franklin</li>
-</ul>
+<p>When this function reads in the file it will replace CRLF (&quot;`r`n&quot;) with LF (&quot;`n&quot;) so as to simplify the Delimiter parameter</p>
 <h2>RELATED LINKS</h2>
-<p>[Get-Content
+<p><a href="">Get-Content
 Get-Random
-Split-Path] ()</p>
+Split-Path</a></p>
 
 </body>
 </html>

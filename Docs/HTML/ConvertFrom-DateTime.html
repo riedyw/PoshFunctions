@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,8 +50,8 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>ConvertFrom-DateTime</h1>
@@ -59,55 +59,55 @@ schema: 2.0.0</h2>
 <p>Converts a datetime into a datetime represented in a different format.</p>
 <h2>SYNTAX</h2>
 <h3>DMTF (Default)</h3>
-<pre><code>ConvertFrom-DateTime [[-Date &lt;DateTime[]&gt;]] [-DMTF] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+<pre><code>ConvertFrom-DateTime [[-Date] &lt;DateTime[]&gt;] [-DMTF] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
 </code></pre>
 <h3>Excel</h3>
-<pre><code>ConvertFrom-DateTime [[-Date &lt;DateTime[]&gt;]] [-Excel] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+<pre><code>ConvertFrom-DateTime [[-Date] &lt;DateTime[]&gt;] [-Excel] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
 </code></pre>
 <h3>Format</h3>
-<pre><code>ConvertFrom-DateTime [[-Date &lt;DateTime[]&gt;]] [-Format &lt;String&gt;] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+<pre><code>ConvertFrom-DateTime [[-Date] &lt;DateTime[]&gt;] [-Format &lt;String&gt;] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
 </code></pre>
 <h3>ISO8601</h3>
-<pre><code>ConvertFrom-DateTime [[-Date &lt;DateTime[]&gt;]] [-IncludeInput] [-ISO8601] [-UTC] [&lt;CommonParameters&gt;]
+<pre><code>ConvertFrom-DateTime [[-Date] &lt;DateTime[]&gt;] [-ISO8601] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
 </code></pre>
 <h3>ICSDateTime</h3>
-<pre><code>ConvertFrom-DateTime [[-Date &lt;DateTime[]&gt;]] [-ICSDateTime] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+<pre><code>ConvertFrom-DateTime [[-Date] &lt;DateTime[]&gt;] [-ICSDateTime] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
 </code></pre>
 <h3>FileTime</h3>
-<pre><code>ConvertFrom-DateTime [[-Date &lt;DateTime[]&gt;]] [-FileTime] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
+<pre><code>ConvertFrom-DateTime [[-Date] &lt;DateTime[]&gt;] [-FileTime] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
 </code></pre>
 <h3>Unix</h3>
-<pre><code>ConvertFrom-DateTime [[-Date &lt;DateTime[]&gt;]] [-IncludeInput] [-Unix] [-UTC] [&lt;CommonParameters&gt;]
+<pre><code>ConvertFrom-DateTime [[-Date] &lt;DateTime[]&gt;] [-Unix] [-IncludeInput] [-UTC] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Converts a datetime into a datetime represented in a different format.
 All datetime output is in local timezone.
 If you wish the output to be in UTC timezone include the -UTC parameter.</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>ConvertFrom-DateTime -DateTime '1/28/1986 11:39' -FileTime -IncludeInput
 </code></pre>
 <p>DateTime                        FileTime</p>
 <hr />
 <p>1/28/1986 11:39:00 AM 121517879400000000</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>ConvertFrom-DateTime -DateTime '1/25/2018 8:34:31 AM' -DMTF -IncludeInput
 </code></pre>
 <p>Assuming a timezone of 'Eastern Time' and a culture of 'en-US' this would return the string</p>
 <p>20180125083431.000000-300</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>ConvertFrom-DateTime -DateTime '1/25/2018 8:34:31 AM' -DMTF -IncludeInput
 </code></pre>
 <p>Assuming your current timezone is EST then the output would be:
 DateTime             DMTF</p>
 <hr />
 <p>1/25/2018 8:34:31 AM 20180125083431.000000-300</p>
-<h3>Example 4: EXAMPLE 4</h3>
+<h3>EXAMPLE 4</h3>
 <pre><code>ConvertFrom-DateTime -DateTime '1/25/2018 8:34:31 AM' -DMTF -UTC
 </code></pre>
 <p>Assuming your current timezone is EST then the output would be:
 20180125133431.000000+000</p>
-<h3>Example 5: EXAMPLE 5</h3>
+<h3>EXAMPLE 5</h3>
 <pre><code>'3/15/2018 12:00:00 PM' | ConvertFrom-DateTime -UTC
 </code></pre>
 <p>Assuming a timezone of 'Eastern Time' and a culture of 'en-US' this would return the string
@@ -116,16 +116,14 @@ DateTime             DMTF</p>
 <h3>-Date</h3>
 <p>{{ Fill Date Description }}</p>
 <pre><code class="language-yaml">Type: DateTime[]
-Parameter Sets: Excel, Format, ISO8601, ICSDateTime, FileTime, Unix, DMTF
+Parameter Sets: (All)
 Aliases: DateTime
-Accepted values: 
 
-Required: True (None) False (Excel, Format, ISO8601, ICSDateTime, FileTime, Unix, DMTF)
-Position: 0
+Required: False
+Position: 1
 Default value: (Get-Date)
-Accept pipeline input: True
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-DMTF</h3>
 <p>A switch parameter to display in DMTF format.
@@ -148,29 +146,25 @@ ffffff  is the 6 digit microsecond</p>
 <p>UUU     is the 3 digit number of minutes offset from UTC (000-720)</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: DMTF
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (DMTF)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
-<h3>-Excel</h3>
-<p>Switch to indicate that the datestring is in Excel format which represents dates as the number of days since (get-date 1/1/1900)</p>
+<h3>-Unix</h3>
+<p>Switch to convert a datetime to a UnixEpoch which is the number of seconds since '1/1/1970 12:00:00 AM UTC'</p>
 <pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: Excel
-Aliases: 
-Accepted values: 
+Parameter Sets: Unix
+Aliases:
 
-Required: True (None) False (Excel)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-FileTime</h3>
 <p>Switch to convert a datetime to a large integer filetime [int64].
@@ -183,30 +177,13 @@ Translating these into dates you get
 2650467743999999999 = Friday, December 31, 9999 11:59:59.99999 PM</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: FileTime
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (FileTime)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-Format</h3>
-<p>See help for Get-Date and the -Format parameter.
-This duplicates that capability.</p>
-<pre><code class="language-yaml">Type: String
-Parameter Sets: Format
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (Format)
-Position: Named
-Default value: 
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-ICSDateTime</h3>
 <p>Switch to convert a datetime to IcsDateTime format is of the form 'yyyymmddTHHMMSSZ'</p>
@@ -222,83 +199,86 @@ Z       is an optional suffix indicating UTC or Zulu time</p>
 <p>If the final character is NOT a Z then the time is local time.</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: ICSDateTime
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (ICSDateTime)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-IncludeInput</h3>
-<p>Switch to enable the original datetime to appear in the output.
-Aliased to 'IncludeOriginal'</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: Excel, Format, ISO8601, ICSDateTime, FileTime, Unix, DMTF
-Aliases: IncludeOriginal
-Accepted values: 
-
-Required: True (None) False (Excel, Format, ISO8601, ICSDateTime, FileTime, Unix, DMTF)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-ISO8601</h3>
 <p>Switch to convert a datetime to ISO-8601 format: 'yyyy.MM.ddTHH:mm:ss'</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: ISO8601
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (ISO8601)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
-<h3>-Unix</h3>
-<p>Switch to convert a datetime to a UnixEpoch which is the number of seconds since '1/1/1970 12:00:00 AM UTC'</p>
+<h3>-Excel</h3>
+<p>Switch to indicate that the datestring is in Excel format which represents dates as the number of days since (get-date 1/1/1900)</p>
 <pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: Unix
-Aliases: 
-Accepted values: 
+Parameter Sets: Excel
+Aliases:
 
-Required: True (None) False (Unix)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-Format</h3>
+<p>See help for Get-Date and the -Format parameter.
+This duplicates that capability.</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: Format
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-IncludeInput</h3>
+<p>Switch to enable the original datetime to appear in the output.
+Aliased to 'IncludeOriginal'</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: IncludeOriginal
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>-UTC</h3>
 <p>Forces the output to be in the UTC timezone.
 Alias of this parameter is 'Zulu'</p>
 <pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: Excel, Format, ISO8601, ICSDateTime, FileTime, Unix, DMTF
+Parameter Sets: (All)
 Aliases: Zulu
-Accepted values: 
 
-Required: True (None) False (Excel, Format, ISO8601, ICSDateTime, FileTime, Unix, DMTF)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>string</h3>
 <h2>NOTES</h2>
 <p>Info:       For further information on DMTF time formats see https://docs.microsoft.com/en-us/windows/desktop/wmisdk/cim-datetime</p>
 <p>Added Excel functionality</p>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

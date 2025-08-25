@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,27 +50,26 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version:
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://www.Google.com
 schema: 2.0.0</h2>
 <h1>Get-VssWriter</h1>
 <h2>SYNOPSIS</h2>
 <p>Runs 'vssadmin.exe list writers' and parses the output into objects</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
 <pre><code>Get-VssWriter [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Runs 'vssadmin.exe list writers' and parses the output into objects</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Get-VssWriter | Where-Object { $_.VssWriter -eq 'Registry Writer' }
 </code></pre>
 <p>VssWriter                                     WriterID                                  WriterInstanceID                          State                       LastError</p>
 <hr />
 <p>Registry Writer                               {afbab4a2-367d-4d15-a586-71dbb18f8485}    {195b1f2f-5656-435e-aee9-6fe0176cbc9a}    [1] Stable                  No error</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>Get-VssWriter | Sort-Object VssWriter | Format-Table -AutoSize
 </code></pre>
 <p>VssWriter                                   WriterID                               WriterInstanceID                       State      LastError</p>
@@ -92,10 +91,11 @@ WMI Writer                                  {a6ad56c2-b509-4e6c-bb19-49d8f43532f
 <h2>PARAMETERS</h2>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <p>Added PSTypeName       = 'PFVSSAdminWriter' to [pscustomobject] so it can be handled by formatting file</p>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

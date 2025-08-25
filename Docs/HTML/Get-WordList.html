@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,35 +50,34 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version:
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://www.Google.com
 schema: 2.0.0</h2>
 <h1>Get-WordList</h1>
 <h2>SYNOPSIS</h2>
 <p>Returns a list of over 38,000 words.</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
 <pre><code>Get-WordList [-Full] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Returns a list of over 38,000 words.</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code># Desire to get a list the First 2 palindromes
 </code></pre>
 <p>Get-WordList | Where-Object { $_ -eq (format-reversestring $_)} | Select-Object -First 2 | Tee-Object -Variable Palindrome</p>
 <p>Would return
 bib
 bob</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code># Desire to get the longest word in the wordlist
 </code></pre>
 <p>Get-WordList | Select-Object @{Name='Word';Expr={$<em>}}, @{Name='WordLength';Expr={$</em>.Length}} | Sort WordLength -Descending | Select-Object -First 1</p>
 <p>Word                         WordLength</p>
 <hr />
 <p>antidisestablishmentarianism         28</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code># Desire to get a count of words by length
 </code></pre>
 <p>Get-WordList | Select-Object @{Name='Word';Expr={$<em>}}, @{Name='Len';Expr={$</em>.Length}} | Group-Object Len |
@@ -108,7 +107,7 @@ Select-Object Name, Count | Select-Object @{Name='WordLength';Expr={([int] $_.Na
     22     1
     28     1
 </code></pre>
-<h3>Example 4: EXAMPLE 4</h3>
+<h3>EXAMPLE 4</h3>
 <pre><code># Get the longest word in the full list whose length is 31 characters
 </code></pre>
 <p>Get-WordList -Full | Where-Object { $_.Length -eq 31 }
@@ -118,25 +117,23 @@ dichlorodiphenyltrichloroethane</p>
 <p>Switch to return longer list of 370,103 words from file words_alpha.txt from Git repository https://github.com/dwyl/english-words.git</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>[string[]]</h3>
 <h2>NOTES</h2>
 <p>Originally taken from a Linux distribution and original file name was linuxwords
 Over 38,000 words appear in the file WordList.txt found in the installation folder of this module.</p>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

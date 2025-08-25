@@ -1,58 +1,48 @@
 ---
-external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version: 
+external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version:
 schema: 2.0.0
 ---
 
 # Test-PasswordComplexity
 
 ## SYNOPSIS
-
 Tests a password for length and password complexity
 
 ## SYNTAX
 
 ### SecureString (Default)
-
 ```
-Test-PasswordComplexity [-IncludeInput] [-MinimumLength <Int32>] [-SecureString <SecureString>] [<CommonParameters>]
+Test-PasswordComplexity [-SecureString <SecureString>] [-MinimumLength <Int32>] [-IncludeInput]
+ [<CommonParameters>]
 ```
 
 ### Credential
-
 ```
-Test-PasswordComplexity [-Credential <PSCredential>] [-IncludeInput] [-MinimumLength <Int32>] [<CommonParameters>]
+Test-PasswordComplexity [-Credential <PSCredential>] [-MinimumLength <Int32>] [-IncludeInput]
+ [<CommonParameters>]
 ```
 
 ### Password
-
 ```
-Test-PasswordComplexity [-IncludeInput] [-MinimumLength <Int32>] [-Password <String[]>] [<CommonParameters>]
+Test-PasswordComplexity [-Password <String[]>] [-MinimumLength <Int32>] [-IncludeInput] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-
 Tests a password for length and password complexity.
 Complexity is at least 3 of the 4 classes of characters: upper case, lower case, numeral, special character.
 
-
 ## EXAMPLES
 
-### Example 1: EXAMPLE 1
-
+### EXAMPLE 1
 ```
 Test-PasswordComplexity -Password 'Password1'
 ```
 
 Would return $true as there are 3 classes of characters (excluding special characters)
 
-
-
-
-
-### Example 2: EXAMPLE 2
-
+### EXAMPLE 2
 ```
 Test-PasswordComplexity -Password 'Password1' -IncludeInput
 ```
@@ -62,12 +52,7 @@ Password  MinLength Length MatchComplexity
 --------  --------- ------ ---------------
 *********         8      9           True
 
-
-
-
-
-### Example 3: EXAMPLE 3
-
+### EXAMPLE 3
 ```
 Test-PasswordComplexity -Password 'Ab(0' -IncludeInput
 ```
@@ -77,54 +62,57 @@ Password MinLength Length MatchComplexity
 -------- --------- ------ ---------------
 ****             8      4           False
 
-
-
-
-
-
 ## PARAMETERS
 
-### -Credential
+### -SecureString
+The password passed as a secure string.
+In parameter sets 'SecureString'.
 
+```yaml
+Type: SecureString
+Parameter Sets: SecureString
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Credential
 The password passed as part of a credential.
 In parameter sets 'Credential'.
 
 ```yaml
 Type: PSCredential
 Parameter Sets: Credential
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (Credential)
+Required: False
 Position: Named
-Default value: 
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 ```
 
-### -IncludeInput
-
-Switch whether to include input in the output.
-Passwords are masked with a '*'.
-In parameter sets 'SecureString', 'Credential', 'Password'
+### -Password
+The password passed as plain text.
+In parameter sets 'Password'.
 
 ```yaml
-Type: SwitchParameter
-Parameter Sets: Password, Credential, SecureString
-Aliases: 
-Accepted values: 
+Type: String[]
+Parameter Sets: Password
+Aliases:
 
-Required: True (None) False (Password, Credential, SecureString)
+Required: False
 Position: Named
-Default value: False
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
-DontShow: False
 ```
 
 ### -MinimumLength
-
 Integer minimum number of characters in password.
 Valid range 1-255.
 Defaults to 8.
@@ -133,74 +121,43 @@ In parameter sets 'SecureString', 'Credential', 'Password'
 
 ```yaml
 Type: Int32
-Parameter Sets: Password, Credential, SecureString
+Parameter Sets: (All)
 Aliases: MinLength
-Accepted values: 
 
-Required: True (None) False (Password, Credential, SecureString)
+Required: False
 Position: Named
 Default value: 8
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 ```
 
-### -Password
-
-The password passed as plain text.
-In parameter sets 'Password'.
-
-```yaml
-Type: String[]
-Parameter Sets: Password
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (Password)
-Position: Named
-Default value: 
-Accept pipeline input: True
-Accept wildcard characters: False
-DontShow: False
-```
-
-### -SecureString
-
-The password passed as a secure string.
-In parameter sets 'SecureString'.
+### -IncludeInput
+Switch whether to include input in the output.
+Passwords are masked with a '*'.
+In parameter sets 'SecureString', 'Credential', 'Password'
 
 ```yaml
-Type: SecureString
-Parameter Sets: SecureString
-Aliases: 
-Accepted values: 
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
 
-Required: True (None) False (SecureString)
+Required: False
 Position: Named
-Default value: 
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 ```
 
-
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
 
 ## OUTPUTS
 
 ### bool
-
-
-
 ## NOTES
-
 Changed logic on getting $*Regex values so there would not be a dependency on Get-PrintableAscii
 Changed logic so only 3 of the 4 classes of characters need to be matched
 
-
 ## RELATED LINKS
-
-Fill Related Links Here
-

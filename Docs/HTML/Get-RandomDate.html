@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,16 +50,16 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>Get-RandomDate</h1>
 <h2>SYNOPSIS</h2>
 <p>Gets a random date</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>Get-RandomDate [[-MinDate &lt;DateTime&gt;]] [[-MaxDate &lt;DateTime&gt;]] [-DateLimit &lt;String&gt;] [-IncludeInput] [&lt;CommonParameters&gt;]
+<pre><code>Get-RandomDate [[-MinDate] &lt;DateTime&gt;] [[-MaxDate] &lt;DateTime&gt;] [-DateLimit &lt;String&gt;] [-IncludeInput]
+ [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Gets a random date.
@@ -69,7 +69,7 @@ stay within the time limits of the possible datatypes.
 Can also use formatting switches -Format
 or -UFormat which function the same as Get-Date parameters of the same name.</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Get-Randomdate  -MinDate 1/1/1969 -MaxDate 1/1/2040 -DateLimit UnixEpoch -verbose
 </code></pre>
 <p>Would return something similar to the following:
@@ -80,12 +80,12 @@ VERBOSE: $MaxDate outside valid UnixEpoch setting to [01/19/2038 03:14:07]
 VERBOSE: The random date calculated is [12/26/1997 18:41:51]
 VERBOSE: The return value is [System.DateTime] datatype
 Friday, December 26, 1997 6:41:51 PM</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>Get-RandomDate -DateLimit UnixEpoch
 </code></pre>
 <p>Would return something similar to the following:
 Friday, August 12, 2005 2:57:51 AM</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>Get-RandomDate  -MinDate 1/1/1576 -MaxDate 7/4/1776 -DateLimit FileTime -Verbose
 </code></pre>
 <p>Would return something similar to the following:
@@ -95,23 +95,47 @@ VERBOSE: $MinDate outside valid FileTime setting to [01/01/1601 00:00:00]
 VERBOSE: The random date calculated is [06/27/1615 16:45:27]
 VERBOSE: The return value is [System.DateTime] datatype
 Saturday, June 27, 1615 4:45:27 PM</p>
-<h3>Example 4: EXAMPLE 4</h3>
+<h3>EXAMPLE 4</h3>
 <pre><code>Get-RandomDate  -MinDate 1/1/19 -MaxDate 2/1/19
 </code></pre>
 <p>Would return something similar to the following:
 Wednesday, January 30, 2019 1:25:06 AM</p>
-<h3>Example 5: EXAMPLE 5</h3>
+<h3>EXAMPLE 5</h3>
 <pre><code># Desire to get random date between a year in the past, and a year in the future
 </code></pre>
 <p>Get-RandomDate  -MinDate (Get-Date).AddMonths(-12) -MaxDate (Get-Date).AddMonths(12)</p>
 <p>Saturday, March 27, 2021 3:22:55 AM</p>
-<h3>Example 6: EXAMPLE 6</h3>
+<h3>EXAMPLE 6</h3>
 <pre><code>Get-RandomDate -DateLimit UnixEpoch -IncludeInput
 </code></pre>
 <p>DateLimit MinDate              MaxDate              RandomDate</p>
 <hr />
 <p>UnixEpoch 1/1/1970 12:00:00 AM 1/19/2038 3:14:07 AM 9/19/2003 1:50:32 PM</p>
 <h2>PARAMETERS</h2>
+<h3>-MinDate</h3>
+<p>An optional [datetime] indicating the lowest date to return</p>
+<pre><code class="language-yaml">Type: DateTime
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
+<h3>-MaxDate</h3>
+<p>An optional [datetime] indicating the highest date to return</p>
+<pre><code class="language-yaml">Type: DateTime
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
 <h3>-DateLimit</h3>
 <p>A [string] validated against the set @('DateTime','UnixEpoch','FileTime').
 Defaults to 'DateTime'
@@ -122,66 +146,35 @@ UnixEpoch       01/01/1970 12:00:00AM   01/19/2038 03:14:07AM
 FileTime        01/01/1601 12:00:00AM   12/31/9999 11:59:59PM</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: DateTime
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-IncludeInput</h3>
 <p>{{ Fill IncludeInput Description }}</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-MaxDate</h3>
-<p>An optional [datetime] indicating the highest date to return</p>
-<pre><code class="language-yaml">Type: DateTime
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: 1
-Default value: 
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-MinDate</h3>
-<p>An optional [datetime] indicating the lowest date to return</p>
-<pre><code class="language-yaml">Type: DateTime
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: 0
-Default value: 
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>[datetime]</h3>
 <h2>NOTES</h2>
 <p>If you specify -MinDate or -MaxDate, -MinDate must be less than or equal to -MaxDate.</p>
 <h2>RELATED LINKS</h2>
-<p>[Get-Date] ()</p>
+<p><a href="">Get-Date</a></p>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,67 +50,63 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>Get-FileSizeOnDisk</h1>
 <h2>SYNOPSIS</h2>
 <p>Powershell script to get file size and size on disk of all files in a directory.</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>Get-FileSizeOnDisk [[-Path &lt;String[]&gt;]] [-Full] [&lt;CommonParameters&gt;]
+<pre><code>Get-FileSizeOnDisk [[-Path] &lt;String[]&gt;] [-Full] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>This PowerShell script gets file size and size on disk in bytes of all files in a directory.</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Get-FileSizeOnDisk c:\myfolder
 </code></pre>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>Get-FileSizeOnDisk -Path *.psd1
 </code></pre>
 <p>Name               Length SizeOnDisk FullName</p>
 <hr />
 <p>PoshFunctions.psd1  21190      12288 C:\Git\PoshFunctions\PoshFunctions.psd1</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>Get-FileSizeOnDisk -Path *.psd1 -Full | Select-Object Name, Length, SizeOnDisk, LastWriteTime
 </code></pre>
 <p>Name               Length SizeOnDisk LastWriteTime</p>
 <hr />
 <p>PoshFunctions.psd1  21190      12288 11/22/2022 1:35:42 PM</p>
 <h2>PARAMETERS</h2>
-<h3>-Full</h3>
-<p>Switch to return all attributes of Get-Item on the file plus the attribute SizeOnDisk</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
-</code></pre>
 <h3>-Path</h3>
 <p>Directory path of the files to check.
 If this parameter is not specified the default value is current directory.</p>
 <pre><code class="language-yaml">Type: String[]
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 0
+Required: False
+Position: 1
 Default value: .
-Accept pipeline input: True
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-Full</h3>
+<p>Switch to return all attributes of Get-Item on the file plus the attribute SizeOnDisk</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>System.Management.Automation.PSObject[]</h3>
 <h2>NOTES</h2>
@@ -124,7 +120,7 @@ DontShow: False
 <li>added ability to accept input from the pipeline</li>
 </ul>
 <h2>RELATED LINKS</h2>
-<p>[www.opentechguides.com] ()</p>
+<p><a href="">www.opentechguides.com</a></p>
 
 </body>
 </html>

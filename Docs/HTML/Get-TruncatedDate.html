@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,21 +50,20 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version:
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://www.Google.com
 schema: 2.0.0</h2>
 <h1>Get-TruncatedDate</h1>
 <h2>SYNOPSIS</h2>
 <p>To truncate a date at a given level</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>Get-TruncatedDate [[-Date &lt;DateTime[]&gt;]] [-IncludeInput] [-WhereToTruncate &lt;String&gt;] [&lt;CommonParameters&gt;]
+<pre><code>Get-TruncatedDate [[-Date] &lt;DateTime[]&gt;] [-WhereToTruncate &lt;String&gt;] [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>To truncate a date at a given level</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>All of the following examples will be looking to truncate $testdate. Here is how $testdate
 </code></pre>
 <p>is originally set.</p>
@@ -78,34 +77,34 @@ Second = 43
 Millisecond = 780
 })
 $testdate = get-date @prop</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>Example of truncating at Millisecond and including original date in output
 </code></pre>
 <p>Get-TruncatedDate -Date $testdate -WhereToTruncate Millisecond -IncludeInput</p>
 <p>Original                Where       Truncated</p>
 <hr />
 <p>2020/03/15 11:39:43.780 MilliSecond 2020/03/15 11:39:43.000</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>Example of truncating at Second
 </code></pre>
 <p>Get-TruncatedDate -Date $testdate -WhereToTruncate Second</p>
 <p>Sunday, March 15, 2020 11:39:00 AM</p>
-<h3>Example 4: EXAMPLE 4</h3>
+<h3>EXAMPLE 4</h3>
 <pre><code>Example of truncating at Minute
 </code></pre>
 <p>Get-TruncatedDate -Date $testdate -WhereToTruncate Minute</p>
 <p>Sunday, March 15, 2020 11:00:00 AM</p>
-<h3>Example 5: EXAMPLE 5</h3>
+<h3>EXAMPLE 5</h3>
 <pre><code>Example of truncating at Hour
 </code></pre>
 <p>Get-TruncatedDate -Date $testdate -WhereToTruncate Hour</p>
 <p>Sunday, March 15, 2020 12:00:00 AM</p>
-<h3>Example 6: EXAMPLE 6</h3>
+<h3>EXAMPLE 6</h3>
 <pre><code>Example of truncating at Day
 </code></pre>
 <p>Get-TruncatedDate -Date $testdate -WhereToTruncate Day</p>
 <p>Sunday, March 1, 2020 12:00:00 AM</p>
-<h3>Example 7: EXAMPLE 7</h3>
+<h3>EXAMPLE 7</h3>
 <pre><code>Example of truncating at Month
 </code></pre>
 <p>Get-TruncatedDate -Date $testdate -WhereToTruncate Month</p>
@@ -115,29 +114,13 @@ $testdate = get-date @prop</p>
 <p>The date that you wish to truncate.</p>
 <pre><code class="language-yaml">Type: DateTime[]
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 0
+Required: False
+Position: 1
 Default value: $(Get-Date)
-Accept pipeline input: True
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-IncludeInput</h3>
-<p>A switch determining if you wish to see the original date in the output, aliased to 'IncludeOriginal'</p>
-<pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: IncludeOriginal
-Accepted values: 
-
-Required: True (None) False (All)
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-WhereToTruncate</h3>
 <p>A string containing where in the date you wish to truncate.
@@ -145,22 +128,33 @@ Has a ValidateSet
 against it of: 'Millisecond', 'Second', 'Minute', 'Hour', 'Day', 'Month'</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: Hour
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-IncludeInput</h3>
+<p>A switch determining if you wish to see the original date in the output, aliased to 'IncludeOriginal'</p>
+<pre><code class="language-yaml">Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: IncludeOriginal
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <h1>source   # https://www.reddit.com/r/usefulscripts/comments/9ghdzo/powershell_setdatetruncate_is_that_dumb_function/</h1>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

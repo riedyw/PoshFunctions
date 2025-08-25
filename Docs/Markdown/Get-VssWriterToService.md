@@ -1,37 +1,31 @@
 ---
-external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version: 
+external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://www.Google.com
 schema: 2.0.0
 ---
 
 # Get-VssWriterToService
 
 ## SYNOPSIS
-
 Displays a list of 'vssadmin list writers' and corresponds them to a service
 
 ## SYNTAX
-
-### __AllParameterSets
 
 ```
 Get-VssWriterToService [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-
 Displays a list of 'vssadmin list writers' and corresponds them to a service
 
-When diagnosing vss writer issues if the State of one of the vss writes is not equal to '[1] Stable' the next troubleshooting tip is to restart the corresponding service.
+When diagnosing vss writer issues if the State of one of the vss writes is not equal to '\[1\] Stable' the next troubleshooting tip is to restart the corresponding service.
 
 This function returns that list
 
-
 ## EXAMPLES
 
-### Example 1: EXAMPLE 1
-
+### EXAMPLE 1
 ```
 Get-VssWriterToService
 ```
@@ -71,29 +65,19 @@ WIDWriter                         WIDWriter           Windows Internal Database 
 WINS Jet Writer                   WINS                Windows Internet Name Service (WINS)
 WMI Writer                        Winmgmt             Windows Management Instrumentation
 
-
-
-
-
-### Example 2: EXAMPLE 2
-
+### EXAMPLE 2
 ```
 Find the list of unstable vss writers and restart their corresponding service
 ```
 
-$UnstableVss = Get-VssWriter | Where-Object { $_.State -ne '[1] Stable' }
+$UnstableVss = Get-VssWriter | Where-Object { $_.State -ne '\[1\] Stable' }
 $VssToService = Get-VssWriterToService
 
 $VssToService  |
     Where-Object { $_.VssWriter -in $UnstableVss.Writer } |
     ForEach-Object { Restart-Service -Name $_.ServiceName -Force }
 
-
-
-
-
-### Example 3: EXAMPLE 3
-
+### EXAMPLE 3
 ```
 (Get-VssWriterToService)[0..2]
 ```
@@ -104,35 +88,22 @@ ASR Writer            VSS         Volume Shadow Copy
 BITS Writer           BITS        Background Intelligent Transfer Service
 Certificate Authority CertSvc     Active Directory Certificate Services
 
-
-
-
-
-
 ## PARAMETERS
 
-
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
 
 ## OUTPUTS
 
 ### System.Management.Automation.PSObject
-
-
-
 ## NOTES
-
 List of VSS Writers coming from multiple places
 
 https://support.carbonite.com/articles/Server-Windows-List-of-VSS-Writers-and-Services
-https://support.unitrends.com/hc/en-us/articles/360013245618-VSS-Writer-Failed-How-to-Restart-and-Re-Register-VSS-Writers>
+https://support.unitrends.com/hc/en-us/articles/360013245618-VSS-Writer-Failed-How-to-Restart-and-Re-Register-VSS-Writers\>
 https://web.archive.org/web/20220118095704/https://support.unitrends.com/hc/en-us/articles/360013245618-VSS-Writer-Failed-How-to-Restart-and-Re-Register-VSS-Writers
 https://www.veeam.com/kb2041
 
-
 ## RELATED LINKS
-
-Fill Related Links Here
-

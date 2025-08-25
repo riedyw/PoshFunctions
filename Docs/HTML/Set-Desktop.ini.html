@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,52 +50,61 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
+<h2>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
 online version:
 schema: 2.0.0</h2>
 <h1>Set-Desktop.ini</h1>
 <h2>SYNOPSIS</h2>
 <p>Sets the customization attributes for a given folder</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>Set-Desktop.ini [[-Path &lt;String&gt;]] [[-FolderType &lt;String&gt;]] [[-InfoTip &lt;String&gt;]] [[-Icon &lt;String&gt;]] [-CopyIcon] [&lt;CommonParameters&gt;]
+<pre><code>Set-Desktop.ini [[-Path] &lt;String&gt;] [[-FolderType] &lt;String&gt;] [[-InfoTip] &lt;String&gt;] [[-Icon] &lt;String&gt;]
+ [-CopyIcon] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>Sets the customization attributes for a given folder</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Add an example
 </code></pre>
 <h2>PARAMETERS</h2>
-<h3>-CopyIcon</h3>
-<p>Switch indicating that the icon will be copied to the root of the $Path folder</p>
-<pre><code class="language-yaml">Type: SwitchParameter
+<h3>-Path</h3>
+<p>The path to the folder</p>
+<pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: Named
-Default value: False
+Required: False
+Position: 1
+Default value: $pwd
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>-FolderType</h3>
 <p>String value validated against set: ('Generic', 'Documents', 'Pictures', 'Music', 'Videos').
 Defaults to 'Generic'</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 1
+Required: False
+Position: 2
 Default value: Generic
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
+</code></pre>
+<h3>-InfoTip</h3>
+<p>Text to be displayed if you hover over folder in Windows Explorer.
+Maximum of 32 characters</p>
+<pre><code class="language-yaml">Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
 </code></pre>
 <h3>-Icon</h3>
 <p>Path to the icon file.
@@ -103,50 +112,32 @@ Optional.
 If specified the file must exist</p>
 <pre><code class="language-yaml">Type: String
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 3
-Default value: 
+Required: False
+Position: 4
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
 </code></pre>
-<h3>-InfoTip</h3>
-<p>Text to be displayed if you hover over folder in Windows Explorer.
-Maximum of 32 characters</p>
-<pre><code class="language-yaml">Type: String
+<h3>-CopyIcon</h3>
+<p>Switch indicating that the icon will be copied to the root of the $Path folder</p>
+<pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: 
-Accepted values: 
+Aliases:
 
-Required: True (None) False (All)
-Position: 2
-Default value: 
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-Path</h3>
-<p>The path to the folder</p>
-<pre><code class="language-yaml">Type: String
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: 0
-Default value: $pwd
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
+<h2>OUTPUTS</h2>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

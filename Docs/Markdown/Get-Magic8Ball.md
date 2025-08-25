@@ -1,26 +1,22 @@
 ---
-external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version: 
+external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://gallery.technet.microsoft.com/scriptcenter/Get-MachineType-VM-or-ff43f3a9
 schema: 2.0.0
 ---
 
 # Get-Magic8Ball
 
 ## SYNOPSIS
-
 Get one of the answers from the magic 8 ball.
 
 ## SYNTAX
 
-### __AllParameterSets
-
 ```
-Get-Magic8Ball [<CommonParameters>]
+Get-Magic8Ball
 ```
 
 ## DESCRIPTION
-
 Get one of the answers from the magic 8 ball.
 The 20 possible answers are:
 
@@ -45,29 +41,21 @@ Yes.
 Yes - definitely.
 You may rely on it.
 
-
 ## EXAMPLES
 
-### Example 1: EXAMPLE 1
-
+### EXAMPLE 1
 ```
 Get-Magic8Ball
 ```
 
 Reply hazy, try again.
 
-
-
-
-
-
 ## PARAMETERS
+
+## INPUTS
+
+## OUTPUTS
 
 ## NOTES
 
-
-
 ## RELATED LINKS
-
-Fill Related Links Here
-

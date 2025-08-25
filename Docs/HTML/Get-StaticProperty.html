@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -50,21 +50,21 @@
 </head>
 <body>
     <hr />
-<h2>external help file: poshfunctions-help.xml
-Module Name: poshfunctions
-online version:
+<p>external help file: PoshFunctions-help.xml
+Module Name: PoshFunctions
+online version: https://social.msdn.microsoft.com/Forums/vstudio/en-US/0221d962-26e6-4a7e-be7a-72cd669a0dfc/why-systemmathround0251-2?forum=vbgeneral</p>
+<h2>Talks about Visual Basic but the same info applies to Powershell.
 schema: 2.0.0</h2>
 <h1>Get-StaticProperty</h1>
 <h2>SYNOPSIS</h2>
 <p>To list the static properties of a .NET class</p>
 <h2>SYNTAX</h2>
-<h3>__AllParameterSets</h3>
-<pre><code>Get-StaticProperty [[-TypeName &lt;String[]&gt;]] [-IncludeInput] [&lt;CommonParameters&gt;]
+<pre><code>Get-StaticProperty [[-TypeName] &lt;String[]&gt;] [-IncludeInput] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2>DESCRIPTION</h2>
 <p>To list the static properties of a .NET class</p>
 <h2>EXAMPLES</h2>
-<h3>Example 1: EXAMPLE 1</h3>
+<h3>EXAMPLE 1</h3>
 <pre><code>Get-StaticProperty -TypeName 'Microsoft.Win32.RegistryValueKind'
 </code></pre>
 <p>Name         Value</p>
@@ -77,7 +77,7 @@ None            -1
 QWord           11
 String           1
 Unknown          0</p>
-<h3>Example 2: EXAMPLE 2</h3>
+<h3>EXAMPLE 2</h3>
 <pre><code>Get-StaticProperty -TypeName 'datetime' -IncludeInput
 </code></pre>
 <p>SpecifiedType ExpandedType    Name     Value</p>
@@ -87,7 +87,7 @@ datetime      System.DateTime MinValue 1/1/0001 12:00:00 AM
 datetime      System.DateTime Now      4/9/2020 8:47:49 AM
 datetime      System.DateTime Today    4/9/2020 12:00:00 AM
 datetime      System.DateTime UtcNow   4/9/2020 12:47:49 PM</p>
-<h3>Example 3: EXAMPLE 3</h3>
+<h3>EXAMPLE 3</h3>
 <pre><code>Get-StaticProperty -TypeName 'math' -IncludeInput
 </code></pre>
 <p>SpecifiedType ExpandedType Name            Value</p>
@@ -95,42 +95,38 @@ datetime      System.DateTime UtcNow   4/9/2020 12:47:49 PM</p>
 <p>math          System.Math  E    2.71828182845905
 math          System.Math  PI   3.14159265358979</p>
 <h2>PARAMETERS</h2>
+<h3>-TypeName</h3>
+<p>The name of a .Net typename or class</p>
+<pre><code class="language-yaml">Type: String[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+</code></pre>
 <h3>-IncludeInput</h3>
 <p>A switch to determine if the typename and expanded full type name will be included in the output.
 Aliased to 'IncludeTypeName' for backward compatibility</p>
 <pre><code class="language-yaml">Type: SwitchParameter
 Parameter Sets: (All)
 Aliases: IncludeTypeName
-Accepted values: 
 
-Required: True (None) False (All)
+Required: False
 Position: Named
 Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
-DontShow: False
-</code></pre>
-<h3>-TypeName</h3>
-<p>The name of a .Net typename or class</p>
-<pre><code class="language-yaml">Type: String[]
-Parameter Sets: (All)
-Aliases: 
-Accepted values: 
-
-Required: True (None) False (All)
-Position: 0
-Default value: 
-Accept pipeline input: False
-Accept wildcard characters: False
-DontShow: False
 </code></pre>
 <h3>CommonParameters</h3>
 <p>This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see <a href="http://go.microsoft.com/fwlink/?LinkID=113216">about_CommonParameters</a>.</p>
+<h2>INPUTS</h2>
 <h2>OUTPUTS</h2>
 <h3>System.Collections.ArrayList</h3>
 <h2>NOTES</h2>
 <h2>RELATED LINKS</h2>
-<p>Fill Related Links Here</p>
 
 </body>
 </html>

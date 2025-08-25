@@ -9,7 +9,7 @@ function New-RandomPassword {
 .PARAMETER MaxLength
     Integer representing maximum password length, valid range 8-102 characters. ParameterSetName: ReadableTitleCase, ReadableRandomCase, Web
 .PARAMETER NonAlphaChars
-    Integer representing the number of non alphabetic characters. ParameterSetName: Web
+    Integer representing the minimum number of non alphabetic characters. ParameterSetName: Web. Range 2-10, default 2.
 .PARAMETER Readable
     Switch indicating to use combinations of English words. Default behavior is to output a words that are title cased. ParameterSetName: ReadableTitleCase, ReadableRandomCase
 .PARAMETER AvoidSimilar
@@ -23,9 +23,11 @@ function New-RandomPassword {
 .PARAMETER FullWordList
     Switch to use full word list of 370,103 words vs. 38,000 words
 .PARAMETER NumeralCount
-    Integer representing the number of digits. Valid range 1-2, default is 1
+    Integer representing the number of digits. Valid range 1-3, default is 1
 .PARAMETER SymbolCount
-    Integer representing the number of symbol characters. Valid range 1-2, default is 1
+    Integer representing the number of symbol characters. Valid range 1-3, default is 1
+.PARAMETER Clipboard
+    Switch to control copying the password to the clipboard
 .EXAMPLE
     New-RandomPassword -Web
 .EXAMPLE
@@ -37,7 +39,7 @@ function New-RandomPassword {
 .EXAMPLE
     New-RandomPassword -MinLength 16 -MaxLength 20 -Readable -AvoidSimilar
 .EXAMPLE
-    New-RandomPassword -MinLength 16 -Readable -NumeralCount 2 -SymbolCount 2 
+    New-RandomPassword -MinLength 16 -Readable -NumeralCount 2 -SymbolCount 2
 
     Tonics39Sue@Joy(
 .NOTES
@@ -51,6 +53,8 @@ function New-RandomPassword {
     DefaultParameterSetName is 'ReadableTitleCase'
     Added 'Q' to similar regex given closeness to 'O'
     Added NumeralCount and SymbolCount to increase complexity
+
+    Added Clipboard to copy the password to the clipboard
 #>
 
     #region parameter
@@ -73,7 +77,8 @@ function New-RandomPassword {
         [int] $MaxLength,
 
         [Parameter(ParameterSetName = 'Web')]
-        [int] $NonAlphaChars,
+        [ValidateRange(2,10)]
+        [int] $NonAlphaChars = 2,
 
         [Parameter(ParameterSetName = 'ReadableTitleCase')]
         [Parameter(ParameterSetName = 'ReadableRandomCase')]
@@ -105,7 +110,9 @@ function New-RandomPassword {
         [Parameter(ParameterSetName = 'ReadableTitleCase')]
         [Parameter(ParameterSetName = 'ReadableRandomCase')]
         [ValidateRange(1,3)]
-        [int] $SymbolCount = 1
+        [int] $SymbolCount = 1,
+
+        [switch] $Clipboard
     )
     #endregion parameter
 
@@ -180,6 +187,10 @@ function New-RandomPassword {
                             Get-Random -Count ($curWords + $SymbolCount + $NumeralCount)) -join ''
                     }
                 } until (($ReturnVal.Length -ge $MinLength) -and ($ReturnVal.Length -le $MaxLength))
+                if ($Clipboard) {
+                    Write-Verbose 'Copying to the clipboard.'
+                    $ReturnVal | Set-Clipboard
+                }
                 $ReturnVal
             }
          }
