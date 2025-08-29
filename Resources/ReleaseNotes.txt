@@ -22,6 +22,64 @@ All code has also been loaded into ISE with ISESteroids. Most, if not all, SUGGE
 Code has had Invoke-ScriptAnalyzer run against them so that errors are not thrown. Invoke-ScriptAnalyzer is not perfect however and sometimes returns false positives. For those that returned false positives I added declaration statement(s) after the [Cmdlet()] block to not throw the false positive error. An example declaration is as follows:
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','')]
 
+### 2.2.12
+* added about_PoshFunctions for an overview of the module
+* updated PoshFunctions.psm1 - added $Script:IconFile variable
+* updated Wisdom.txt - minor grammatical mistakes
+* added ConvertTo-PFEscape - some of the New-*Uri functions needed to be able to escape strings in a special way
+* added Get-LocalProfile - to return information on profiles local to the machine
+* added Get-SpeakerVolume - wanted to be able to determine what the current volume of the speakers are
+* added Get-VssWriterToService - VSS writers are managed by a particular service and this corresponds the two
+* added New-LocalAdmin - to quickly create local admin user account
+* added New-MailToURI - used to create properly formatted string to generate a QR code to begin composing an email
+* added New-QRCode - to create a QR code from a string of text. Useful with New-*URI functions
+* added New-SmsUri - used to create properly formatted string to generate a QR code to compose a text message
+* added New-TelephoneUri - used to create properly formatted string to generate a QR code to begin calling a number
+* added New-TemporaryFileWithExtension - extend functionality of New-TemporaryFile so that a custom extension can be used
+* added New-WifiUri - used to create properly formatted string to generate a QR code to join a particular SSID
+* added Remove-OldFiles - given a path, a filespec, and a count it will search that path for the filespec and keep the latest count of files that match
+* added Remove-TemporaryFile - to delete temp files older than X days. Can specify -All to run against all user profiles (need to run as Admin)
+* added Set-FileTime - to be able to set CreationTime, LastAccessTime, LastWriteTime
+* added Set-SpeakerMute - using API based function
+* added Test-IsSpeakerMute - using API based function
+* added Write-AnsiString - to mimic the functionality of Write-Host, helpful when trying to create a single string to appear in Transcript file, otherwise writes multiple line entries
+* deleted Show-ConsoleColor - incorporated into Get-ConsoleColor
+* deleted Show-ConsoleColorWithBackground - incorporated into Get-ConsoleColor
+* deleted Show-ShortDaysOfWeek - incorporated into Get-DaysOfWeek with -Short parameter
+* deleted Show-ShortMonth - incorporated into Get-Months with -Short parameter
+* deleted Show-SubnetMaskIPv4 - incorporated into Get-SubnetMaskIPv4 with -All parameter
+* deleted Show-Timezone - no longer needed with Get-TimeZone from Microsoft.PowerShell.Management
+* renamed Get-DaysOfWeek - from Show-DaysOfWeek, also incorporated -Short parameter so that this incorporates both functions
+* renamed Get-Months - from Show-Month, also incorporated -Short parameter so that this incorporates both functions
+* renamed Get-VssVolume - Original name 'Get-VssadminListVolumes', aliased to 'Get-VssadminListVolumes'
+* renamed Get-VssWriter - Original name 'Get-VssadminListWriters', aliased to 'Get-VssadminListWriters'
+* renamed Show-ColorWithBackground - from original name Show-ColorsWithBackground, aliased to Show-ColorsWithBackground. Be more Powershell-y
+* renamed Show-ConsoleColor - from original name Show-AllColor, aliased to Show-AllColor
+* rewrote New-QRCode - previous version relied on Google service no longer available, using a new service now, parameters changed
+* rewrote Set-SpeakerVolume - to use API based function and not SendKeys
+* updated Get-ComputerUptime - added credential to New-CimSession
+* updated Get-ConsoleColor - incorporated -Show and -ShowWithBackground parameters
+* updated Get-DisplayBrightness - using more standard -IncludeInput parameter
+* updated Get-Enum - changed logic from adding to array with += to using [System.Collections.ArrayList] and .Add method
+* updated Get-Font - updated comment help to indicate that it captures the state of fonts when the Powershell session initiated
+* updated Get-Fortune - updated comment help and clarified a few things
+* updated Get-IpRange - changed logic from adding to array with += to using [System.Collections.ArrayList] and .Add method
+* updated Get-SubnetMaskIPv4 - added -All parameter, used parameter set names, defined default parameter set name, made subnet mask first property in output
+* updated Get-Type - changed logic from adding to array with += to using [System.Collections.ArrayList] and .Add method
+* updated Get-TypeAccelerator - changed logic from adding to array with += to using [System.Collections.ArrayList] and .Add method
+* updated New-ColorPicker - changed how the icon is set
+* updated New-DatePicker - changed how the icon is set
+* updated New-FontPicker - changed how the icon is set
+* updated New-InputBoxSecureString - added switch parameter to allow for string output as opposed to secure string output, changed how icon set
+* updated New-MessageBox - corrected validation set for -Defaultbutton parameter
+* updated New-RandomPassword - added -Clipboard switch, changed default for -NonAlphaChars, slight corrections to comment based help
+* updated New-ScreenShot - added note in comment help that it may trigger anti-malware software
+* updated New-VirtualHardDisk - updated comment help, removed unused variables
+* updated Set-SpeakerVolume - use defined class to directly set the volume
+* updated Start-ADReplication - made $Name optional and defaults to $env:COMPUTERNAME
+* updated Test-IsScrollLock - updated comment help
+* updated Test-Network - altered logic so that it returns an array even if returning 0 or 1 item
+
 ### 2.2.11
 * added format files for result sets containing more than 4 columns
 * added Pester test file templates for functions. Only a handful have been populated with real tests. This will be coming in future release

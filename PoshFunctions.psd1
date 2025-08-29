@@ -4,7 +4,7 @@
     RootModule        = 'PoshFunctions.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '2.2.12'
+    ModuleVersion     = '2.2.13'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -154,23 +154,23 @@
         'Remove-BlankOrComment', 'Remove-EmptyProperty', 'Remove-FileAttribute',
         'Remove-OldFiles', 'Remove-QuotesFromCsv', 'Remove-TeamsCache',
         'Remove-TemporaryFile', 'Remove-Trailing', 'Reset-Desktop', 'Resolve-FQDN',
-        'Resolve-HostName', 'Resolve-PathForce', 'sed', 'Set-AutoRun.inf',
-        'Set-Capslock', 'Set-Desktop.ini', 'Set-Display', 'Set-EOLTerminator',
-        'Set-FileEncoding', 'Set-FileTime', 'Set-Numlock', 'Set-PrivateProfileComment',
-        'Set-PrivateProfileString', 'Set-Scrolllock', 'Set-SpeakerMute',
-        'Set-SpeakerVolume', 'Set-Type', 'Set-WindowState', 'Set-WindowStyle',
-        'Show-Calendar', 'Show-FileAttribute', 'Show-Object', 'Show-Progress',
-        'Split-CanonicalName', 'Split-DistinguishedName', 'Split-Line',
-        'Start-ADReplication', 'Start-RecordSession', 'Stop-RecordSession',
-        'Switch-Mute', 'Test-ConnectionAsync', 'Test-CSVFormat', 'Test-IsAdmin',
-        'Test-IsCapsLock', 'Test-IsDate', 'Test-IsFileLocked', 'Test-IsHexString',
-        'Test-IsLocalIPv4', 'Test-IsNull', 'Test-IsNumeric', 'Test-IsNumLock',
-        'Test-IsScrollLock', 'Test-IsSpeakerMute', 'Test-IsValidEmailAddress',
-        'Test-IsValidIPv4', 'Test-IsValidIPv6', 'Test-MultipleBool', 'Test-Network',
-        'Test-NtpDateVsNow', 'Test-Password', 'Test-PasswordComplexity', 'Test-Port',
-        'Test-Set', 'Update-ExplorerIcon', 'Use-Stopwatch', 'Write-AnsiString',
-        'Write-SelectStatement', 'Write-StringArray', 'Write-StringHash',
-        'Write-TextMenu' )
+        'Resolve-HostName', 'Resolve-PathForce', 'Resolve-SID', 'sed',
+        'Set-AutoRun.inf', 'Set-Capslock', 'Set-Desktop.ini', 'Set-Display',
+        'Set-EOLTerminator', 'Set-FileEncoding', 'Set-FileTime', 'Set-Numlock',
+        'Set-PrivateProfileComment', 'Set-PrivateProfileString', 'Set-Scrolllock',
+        'Set-SpeakerMute', 'Set-SpeakerVolume', 'Set-Type', 'Set-WindowState',
+        'Set-WindowStyle', 'Show-Calendar', 'Show-FileAttribute', 'Show-Object',
+        'Show-Progress', 'Split-CanonicalName', 'Split-DistinguishedName',
+        'Split-Line', 'Start-ADReplication', 'Start-RecordSession',
+        'Stop-RecordSession', 'Switch-Mute', 'Test-ConnectionAsync', 'Test-CSVFormat',
+        'Test-IsAdmin', 'Test-IsCapsLock', 'Test-IsDate', 'Test-IsFileLocked',
+        'Test-IsHexString', 'Test-IsLocalIPv4', 'Test-IsNull', 'Test-IsNumeric',
+        'Test-IsNumLock', 'Test-IsScrollLock', 'Test-IsSpeakerMute',
+        'Test-IsValidEmailAddress', 'Test-IsValidIPv4', 'Test-IsValidIPv6',
+        'Test-MultipleBool', 'Test-Network', 'Test-NtpDateVsNow', 'Test-Password',
+        'Test-PasswordComplexity', 'Test-Port', 'Test-Set', 'Update-ExplorerIcon',
+        'Use-Stopwatch', 'Write-AnsiString', 'Write-SelectStatement',
+        'Write-StringArray', 'Write-StringHash', 'Write-TextMenu' )
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     #CmdletsToExport = '*'
