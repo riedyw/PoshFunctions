@@ -38,19 +38,19 @@ Index ExceptionType                                                    ErrorText
     param(
         [Parameter(Position = 0)]
         [ValidateRange(1, 100)]
-        [int] $Count = $Error.Count
+        [int] $Count = $global:Error.Count
     )
 
     begin {
         Write-Verbose -Message "Starting [$($MyInvocation.Mycommand)]"
-        if ($Count -gt $Error.Count) {
-            $Count = $Error.Count
-            Write-Verbose -Message "Setting Count to [$($Error.Count)]"
+        if ($Count -gt $global:Error.Count) {
+            $Count = $global:Error.Count
+            Write-Verbose -Message "Setting Count to [$($global:Error.Count)]"
         }
     }
 
     process {
-        $tmp = foreach ($curError in $Error[0..$($Count - 1)]) {
+        $tmp = foreach ($curError in $global:Error[0..$($Count - 1)]) {
             $curError
         }
         $result = for ($Index = 0; $Index -lt $Count; $Index++) {
